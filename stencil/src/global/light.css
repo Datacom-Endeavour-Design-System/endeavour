@@ -1,0 +1,9 @@
+:root {
+    --primary-background: #ffffff;
+    --button-background-enabled: #0055FF;
+    --button-background-disabled: #999999;
+    --button-background-hover: #003FBC;
+    --button-text: #ffffff;
+    --button-font-size: 18px;
+    --primary-font: Montserrat;  
+}

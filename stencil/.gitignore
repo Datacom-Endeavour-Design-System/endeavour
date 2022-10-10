@@ -1,0 +1,10 @@
+dist/
+www/
+loader/
+*.log
+*.lock
+*.tmp
+*.tmp.*
+.stencil/
+.idea/
+.vscode/

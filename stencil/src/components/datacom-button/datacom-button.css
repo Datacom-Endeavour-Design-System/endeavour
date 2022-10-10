@@ -1,0 +1,27 @@
+button {
+  display: block;
+  height: 48px;
+  line-height: 24px;
+  background-color: var(--button-background-enabled);
+  border: none;
+  color: var(--button-text);
+  font-weight: 600;
+  font-size: var(--button-font-size);
+  font-family: var(--primary-font);  
+  padding: 12px 24px;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: var(--button-background-hover);
+}
+
+button:disabled {
+  background-color: var(--button-background-disabled);
+}
+
+button:focus {
+  outline: 3px solid var(--button-background-enabled);
+  outline-offset: 1px;
+}
+
