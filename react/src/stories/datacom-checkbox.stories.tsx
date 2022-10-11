@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { DatacomCheckbox } from '../components';
-import {useEventRef} from '../hooks/use-event-hook';
+import {useEventRef} from '../hooks';
 
 export default {
   title: 'Checkbox',
@@ -18,8 +18,10 @@ Primary.args = {
 const CheckboxWrapperToggle: React.FC = () => {
   const [toggled, setToggled] = useState(false);
 
-  const ref = useEventRef<HTMLDatacomCheckboxElement>('toggle', () => setToggled(!toggled))
-
+  const ref = useEventRef<HTMLDatacomCheckboxElement>('toggle', (e: CustomEvent<boolean>) => {
+    setToggled(e.detail);
+  });
+  
   return (
       <div>
         <DatacomCheckbox label="With toggle" ref={ref} />

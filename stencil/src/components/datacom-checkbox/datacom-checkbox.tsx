@@ -13,8 +13,6 @@ export class DatacomCheckbox {
   
   handleChange = () => {
     this.checked = !this.checked;
-    console.log(`Checkbox changed to ${this.checked}`);
-    
     this.toggle.emit(this.checked);
   }
 
@@ -22,8 +20,8 @@ export class DatacomCheckbox {
     return (
       <Host>
         <span>
-          <label>{this.label}</label>
-          <input type="checkbox" checked={this.checked} onChange={this.handleChange}/>
+          <label htmlFor="checkbox">{this.label}</label>
+          <input name="checkbox" type="checkbox" checked={this.checked} onChange={this.handleChange}/>
         </span>
       </Host>
     );
