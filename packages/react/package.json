@@ -6,7 +6,7 @@
   "description": "React specific wrapper for Datacom design systems web components",
   "scripts": {
     "build": "npm run clean && npm run compile",
-    "clean": "rm -rf dist",
+    "clean": "rimraf dist",
     "compile": "npm run tsc",
     "tsc": "tsc -p .",
     "rollup": "rollup -c",
@@ -29,17 +29,13 @@
     "@storybook/manager-webpack4": "^6.5.12",
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "0.0.13",
-    "@types/jest": "23.3.9",
     "@types/node": "^15.12.2",
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
     "babel-loader": "^8.2.5",
-    "jest": "^23.0.0",
-    "jest-dom": "^3.0.2",
     "np": "^3.1.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "typescript": "^3.3.4000"
+    "react-dom": "^17.0.2"
   },
   "peerDependencies": {
     "react": "^17.0.2",
@@ -52,5 +48,18 @@
       "node_modules",
       "dist"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewwh/datacom-endeavour.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewwh/datacom-endeavour/issues"
+  },
+  "homepage": "https://github.com/andrewwh/datacom-endeavour#readme",
+  "dependencies": {
+    "@datacom/endeavour": "file:../stencil"
   }
 }
