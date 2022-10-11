@@ -2,26 +2,26 @@ button {
   display: block;
   height: 48px;
   line-height: 24px;
-  background-color: var(--button-background-enabled);
+  background-color: var(--dc-button-background-enabled);
   border: none;
-  color: var(--button-text);
+  color: var(--dc-button-text);
   font-weight: 600;
-  font-size: var(--button-font-size);
-  font-family: var(--primary-font);  
+  font-size: var(--dc-button-font-size);
+  font-family: var(--dc-primary-font);  
   padding: 12px 24px;
   border-radius: 8px;
 }
 
 button:hover {
-  background-color: var(--button-background-hover);
+  background-color: var(--dc-button-background-hover);
 }
 
 button:disabled {
-  background-color: var(--button-background-disabled);
+  background-color: var(--dc-button-background-disabled);
 }
 
 button:focus {
-  outline: 3px solid var(--button-background-enabled);
+  outline: 3px solid var(--dc-button-background-enabled);
   outline-offset: 1px;
 }
 
