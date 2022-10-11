@@ -19,3 +19,11 @@ jobs:
       - uses: nrwl/nx-set-shas@v3
       - run: npm ci
       - run: npx nx affected --target=build --parallel=3
+      - name: Publish
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: datacom-endeavour
+          directory: packages/react/storybook-static
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
