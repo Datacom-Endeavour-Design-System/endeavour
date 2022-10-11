@@ -5,7 +5,7 @@
   "private": true,
   "description": "React specific wrapper for Datacom design systems web components",
   "scripts": {
-    "build": "npm run clean && npm run compile",
+    "build": "npm run clean && npm run compile && npm run build-storybook",
     "clean": "rimraf dist",
     "compile": "npm run tsc",
     "tsc": "tsc -p .",
