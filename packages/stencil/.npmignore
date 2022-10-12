@@ -1,0 +1,6 @@
+tsconfig.json
+*.md
+src
+stencil.config.ts
+.prettierrrc.json
+www

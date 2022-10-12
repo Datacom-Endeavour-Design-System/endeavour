@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { DatacomButton } from '../components';
+import { DatacomButton } from '@datacom/endeavour-react';
 
 export default {
   title: 'Button',

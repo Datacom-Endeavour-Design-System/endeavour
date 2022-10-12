@@ -2,19 +2,20 @@
   "name": "datacom",
   "version": "1.0.0",
   "description": "Datacom Endeavour Design System",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "nx run-many --target=build",
     "clean": "nx run-many --target=clean",
-    "start:storybook": "nx run @datacom/endeavour-react:start",
+    "start:storybook": "nx run @datacom/endeavour-storybook:start",
     "start:stencil": "nx run @datacom/endeavour:start",
     "package": "nx run-many --target=package"
   },
-  "author": "jonv@datacom.co.nz",
+  "author": "endeavour@datacom.co.nz",
   "license": "ISC",
   "workspaces": [
-    "./packages/*"
+    "./packages/stencil",
+    "./packages/react",
+    "./apps/storybook"
   ],
   "devDependencies": {
     "@nrwl/nx-cloud": "latest",
