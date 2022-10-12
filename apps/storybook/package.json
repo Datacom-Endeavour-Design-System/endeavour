@@ -1,9 +1,10 @@
 {
   "name": "@datacom/endeavour-storybook",
   "version": "0.0.1",
+  "private": true,
   "description": "Endeavour storybook",
   "scripts": {
-    "clean": "rimraf storybook-static",
+    "clean": "rimraf dist storybook-static",
     "start": "start-storybook -p 6006",
     "package": "build-storybook"
   },
