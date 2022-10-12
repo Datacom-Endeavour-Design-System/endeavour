@@ -17,6 +17,7 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
+    "clean": "rimraf dist loader www",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
@@ -30,13 +31,12 @@
     "rollup-plugin-copy": "^3.4.0"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/andrewwh/datacom-endeavour.git"
-  },
   "author": "",
-  "bugs": {
-    "url": "https://github.com/andrewwh/datacom-endeavour/issues"
-  },
-  "homepage": "https://github.com/andrewwh/datacom-endeavour#readme"
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{projectRoot}/dist", "{projectRoot}/loader", "{projectRoot}/www"]
+      }
+    }
+  }
 }

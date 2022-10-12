@@ -5,18 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "nx run-many --target=build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/andrewwh/datacom-endeavour.git"
+    "build": "nx run-many --target=build",
+    "clean": "nx run-many --target=clean",
+    "start:storybook": "nx run @datacom/endeavour-react:start",
+    "start:stencil": "nx run @datacom/endeavour:start",
+    "package": "nx run-many --target=package"
   },
   "author": "jonv@datacom.co.nz",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/andrewwh/datacom-endeavour/issues"
-  },
-  "homepage": "https://github.com/andrewwh/datacom-endeavour#readme",
   "workspaces": [
     "./packages/*"
   ],

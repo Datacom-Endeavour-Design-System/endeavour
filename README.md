@@ -1,41 +1,49 @@
-# Datacom design systems
+# Datacom Endeavour
+Datacom Endeavour is a web component library for Datacom branding.
 
 ## Table of Contents
-- [Datacom design systems](#datacom-design-systems)
+- [Datacom Endeavour](#datacom-endeavour)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
+    - [Lifecycle](#lifecycle)
   - [Getting Started](#getting-started)
-    - [Start stencil:](#start-stencil)
-    - [Start storybook:](#start-storybook)
+    - [Initialise project](#initialise-project)
+    - [Start Storybook](#start-storybook)
+    - [Start Stencil](#start-stencil)
   - [Developing](#developing)
   - [References](#references)
   
  
 ## Introduction
 
+### Lifecycle
+| Name    | Description                                                                  |
+| ------- | ---------------------------------------------------------------------------- |
+| build   | Compile application outputs                                                  |
+| clean   | Clean applications of build artifacts                                        |
+| start:* | Start development servers. Known sub-tasks are<br/>* stencil<br/>* storybook |
+| package | Build and package all libraries and applications                             |
+
 ## Getting Started
 To develop and run you will need NodeJs > 14 (LTS)
 
-### Start stencil:
+### Initialise project
+Install npm dependencies:
 ```
-cd stencil
 npm install
-npm run build
-npm link
-npm run start
 ```
 
-Open [localhost:3333](http://localhost:3333/) in your browser (if it does not open autoamtically)
-
-### Start storybook:
+### Start Storybook
+Start and launch storybook after compiling the web components and generating React wrapper code:
 ```
-cd react
-npm install
-npm link @datacom/endeavour
-npm run storybook
+npm run start:storybook
 ```
 
-Open [localhost:6006](http://localhost:6006) in your browser (if it does not open autoamtically)
+### Start Stencil
+Start and launch stencil web view after compiling web components:
+```
+npm run start:stencil
+```
 
 ## Developing
 See [Developing](DEVELOP.md) for more information.

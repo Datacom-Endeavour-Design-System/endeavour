@@ -5,13 +5,11 @@
   "private": true,
   "description": "React specific wrapper for Datacom design systems web components",
   "scripts": {
-    "build": "npm run clean && npm run compile && npm run build-storybook",
-    "clean": "rimraf dist",
-    "compile": "npm run tsc",
-    "tsc": "tsc -p .",
+    "build": "tsc -p .",
+    "clean": "rimraf dist storybook-static",
     "rollup": "rollup -c",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "start": "start-storybook -p 6006",
+    "package": "build-storybook"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -19,6 +17,9 @@
   "files": [
     "dist/"
   ],
+  "dependencies": {
+    "@datacom/endeavour": "file:../stencil"
+  },  
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@storybook/addon-actions": "^6.5.12",
@@ -49,17 +50,13 @@
       "dist"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/andrewwh/datacom-endeavour.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/andrewwh/datacom-endeavour/issues"
-  },
-  "homepage": "https://github.com/andrewwh/datacom-endeavour#readme",
-  "dependencies": {
-    "@datacom/endeavour": "file:../stencil"
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{projectRoot}/storybook-static"]
+      }
+    }  
   }
 }

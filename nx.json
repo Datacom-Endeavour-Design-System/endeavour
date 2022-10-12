@@ -7,14 +7,11 @@
         "cacheableOperations": [
           "build",
           "clean",
-          "compile",
-          "tsc",
-          "rollup",
-          "storybook",
-          "build-storybook",
+          "package",
+          "start:storybook",
+          "start:stencil",
           "test",
-          "test.watch",
-          "generate"
+          "test.watch"
         ]
       }
     }
@@ -24,7 +21,17 @@
       "dependsOn": [
         "^build"
       ]
-    }
+    },
+    "start": {
+      "dependsOn": [
+        { "projects": "dependencies", "target": "build" }
+      ]
+    },
+    "package": {
+      "dependsOn": [
+        { "projects": "dependencies", "target": "build" }
+      ]
+    }    
   },
   "affected": {
     "defaultBase": "main"
