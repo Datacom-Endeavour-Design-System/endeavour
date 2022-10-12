@@ -1,0 +1,47 @@
+{
+  "name": "@datacom/endeavour-storybook",
+  "version": "0.0.1",
+  "description": "Endeavour storybook",
+  "scripts": {
+    "clean": "rimraf storybook-static",
+    "start": "start-storybook -p 6006",
+    "package": "build-storybook"
+  },
+  "dependencies": {
+    "@datacom/endeavour-react": "*"
+  },  
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack4": "^6.5.12",
+    "@storybook/manager-webpack4": "^6.5.12",
+    "@storybook/react": "^6.5.12",
+    "@storybook/testing-library": "0.0.13",
+    "@types/node": "^15.12.2",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
+    "babel-loader": "^8.2.5",  
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "setupTestFrameworkScriptFile": "<rootDir>/jest.setup.js",
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "dist"
+    ]
+  },
+  "author": "endeavour@datacom.co.nz",
+  "license": "ISC",
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": ["{projectRoot}/storybook-static"]
+      }
+    }  
+  }
+}

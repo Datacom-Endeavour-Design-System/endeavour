@@ -6,34 +6,19 @@
   "description": "React specific wrapper for Datacom design systems web components",
   "scripts": {
     "build": "tsc -p .",
-    "clean": "rimraf dist storybook-static",
-    "rollup": "rollup -c",
-    "start": "start-storybook -p 6006",
-    "package": "build-storybook"
+    "clean": "rimraf dist",
+    "rollup": "rollup -c"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist/"
-  ],
   "dependencies": {
-    "@datacom/endeavour": "file:../stencil"
+    "@datacom/endeavour": "*"
   },  
   "devDependencies": {
-    "@babel/core": "^7.19.3",
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/builder-webpack4": "^6.5.12",
-    "@storybook/manager-webpack4": "^6.5.12",
-    "@storybook/react": "^6.5.12",
-    "@storybook/testing-library": "0.0.13",
     "@types/node": "^15.12.2",
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
-    "babel-loader": "^8.2.5",
     "np": "^3.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -55,7 +40,7 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{projectRoot}/storybook-static"]
+        "outputs": ["{projectRoot}/dist"]
       }
     }  
   }

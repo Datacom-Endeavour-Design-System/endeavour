@@ -25,5 +25,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: datacom-endeavour
-          directory: packages/react/storybook-static
+          directory: apps/storybook/storybook-static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}

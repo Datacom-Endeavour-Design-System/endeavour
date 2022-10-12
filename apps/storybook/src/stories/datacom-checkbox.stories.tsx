@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { DatacomCheckbox } from '../components';
-import {useEventRef} from '../hooks';
+import { DatacomCheckbox } from '@datacom/endeavour-react';
+import {useEventRef} from '@datacom/endeavour-react';
 
 export default {
   title: 'Checkbox',
