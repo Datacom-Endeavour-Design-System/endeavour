@@ -8,23 +8,26 @@ import { Component, h, Prop, Event, EventEmitter, Host } from '@stencil/core';
 export class DatacomCheckbox {
   @Prop() checked: boolean = false;
   @Prop() label: string;
+  @Prop() size: ['sm:14px', 'md:16px', 'lg'];
 
-  @Event() toggle: EventEmitter<boolean>;  
-  
+  @Event() toggle: EventEmitter<boolean>;
+
   handleChange = () => {
     this.checked = !this.checked;
     this.toggle.emit(this.checked);
-  }
+  };
 
   render() {
     return (
       <Host>
-        <span>
-          <label htmlFor="checkbox">{this.label}</label>
-          <input name="checkbox" type="checkbox" checked={this.checked} onChange={this.handleChange}/>
-        </span>
+        <div class="checkbox-container">
+          <input name="datacom-checkbox" type="checkbox" class="checkbox" id="datacom-checkbox1" checked={this.checked} onChange={this.handleChange} />
+          <label htmlFor="datacom-checkbox1" class="label">
+            {this.label}
+          </label>
+        </div>
+       
       </Host>
     );
   }
-
 }

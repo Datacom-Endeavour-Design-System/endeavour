@@ -10,10 +10,7 @@ export default {
 
 const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => <DatacomCheckbox {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Tick Me!'
-};
+
 
 const CheckboxWrapperToggle: React.FC = () => {
   const [toggled, setToggled] = useState(false);
@@ -31,5 +28,16 @@ const CheckboxWrapperToggle: React.FC = () => {
       </div>
   );
 };
+export const Primary= Template.bind({});
+Primary.args = {
+  label: 'Checkbox Item',
+  size:"md"
+};
+export const small = Template.bind({});
+small.args = {
+  label: 'Checkbox Item',
+  size:"sm",
+};
+
 
 export const Toggle = () => <CheckboxWrapperToggle/>;

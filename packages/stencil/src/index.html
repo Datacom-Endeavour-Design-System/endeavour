@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Datacom Web Components Demo</title>
-    <link rel="stylesheet" href="/build/datacom.css" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <script type="module" src="/build/datacom.esm.js"></script>
-    <script nomodule src="/build/datacom.js"></script>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+
+
+  <link rel="stylesheet" href="/build/datacom.css" />
+  <script type="module" src="/build/datacom.esm.js"></script>
+  <script nomodule src="/build/datacom.js"></script>
+ 
+
+</head>
 
   <body>
 
@@ -23,25 +26,16 @@
               <datacom-button text="Hello World!"></datacom-button>
             </p>
 
-            <p>
-              <datacom-button text="Disabled" disabled="true"></datacom-button>
-            </p>
-          </div>
-        </datacom-tab>
-
-        <datacom-tab label="Checkbox">
-          <div>
-            <p>
-              <datacom-checkbox label="Tick me!" checked="true"></datacom-checkbox>
-            </p>
-          </div>
-        </datacom-tab>
-      </datacom-tabgroup>
-    </main>
-
-    <footer>
-
-    </footer>
-  </body>
+  <p>
+    <datacom-button text="Disabled" disabled="true"></datacom-button>
+  </p>
+  <p>
+    <datacom-checkbox label ="standard" checked="true"></datacom-checkbox>
+  </p>
+  <p>
+  <datacom-checkbox label ="small" checked="false"></datacom-checkbox>
+</p>
+  
+</body>
 
 </html>
