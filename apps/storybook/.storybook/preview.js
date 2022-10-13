@@ -1,4 +1,5 @@
 import '@datacom/endeavour/dist/datacom/datacom.css';
+import '/static/css/main.css';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
