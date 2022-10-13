@@ -1,8 +1,6 @@
 {
   "name": "@datacom/endeavour-react",
-  "sideEffects": false,
   "version": "0.0.1",
-  "private": true,
   "description": "React specific wrapper for Datacom design systems web components",
   "scripts": {
     "build": "tsc -p .",
@@ -35,7 +33,7 @@
       "dist"
     ]
   },
-  "author": "",
+  "author": "endeavour@datacom.co.nz",
   "license": "ISC",
   "nx": {
     "targets": {

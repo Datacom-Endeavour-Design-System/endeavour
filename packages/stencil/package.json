@@ -10,10 +10,6 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/@datacom/endeavour/datacom.esm.js",
-  "files": [
-    "dist/",
-    "loader/"
-  ],
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
@@ -31,11 +27,11 @@
     "rollup-plugin-copy": "^3.4.0"
   },
   "license": "MIT",
-  "author": "",
+  "author": "endeavour@datacom.co.nz",
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{projectRoot}/dist", "{projectRoot}/loader", "{projectRoot}/www"]
+        "outputs": ["{projectRoot}/dist", "{projectRoot}/loader", "{projectRoot}/www", "{projectRoot}/../react/src/components/stencil-generated"]
       }
     }
   }

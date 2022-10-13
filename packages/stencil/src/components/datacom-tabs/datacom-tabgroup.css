@@ -1,0 +1,9 @@
+.tab-group {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+}
+
+site-tab {
+    display: block;
+}
