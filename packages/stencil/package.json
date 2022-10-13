@@ -31,7 +31,7 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{projectRoot}/dist", "{projectRoot}/loader", "{projectRoot}/www"]
+        "outputs": ["{projectRoot}/dist", "{projectRoot}/loader", "{projectRoot}/www", "{projectRoot}/../react/src/components/stencil-generated"]
       }
     }
   }

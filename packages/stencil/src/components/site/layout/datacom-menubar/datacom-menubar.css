@@ -1,0 +1,34 @@
+.menu-wrap {
+    margin: 20px 0;
+}
+
+.menu-bar {
+    padding-left: 10vw;
+    padding-right: 10vw;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: inline-block;
+}
+
+.logo img {
+    width: 128px;
+    height: 24px;
+}
+
+.navigation {
+    
+}
+
+.navigation ul {
+    display: inline-block;
+    list-style-type: none;
+}
+
+.navigation ul>li {
+    display: inline;
+    padding-left: 2rem;
+    font-family: var(--dc-primary-font);  
+}
