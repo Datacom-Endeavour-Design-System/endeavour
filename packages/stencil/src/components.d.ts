@@ -5,10 +5,19 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-button/datacom-button";
 export namespace Components {
     interface DatacomButton {
+        "autofocus": boolean;
         "disabled": boolean;
+        "icon": string;
+        "imagePosition": ImagePosition;
+        "loading": boolean;
+        "size": ButtonSize;
+        "src": string;
         "text": string;
+        "type": string;
+        "variant": ButtonVariant;
     }
     interface DatacomCheckbox {
         "checked": boolean;
@@ -74,8 +83,16 @@ declare global {
 }
 declare namespace LocalJSX {
     interface DatacomButton {
+        "autofocus"?: boolean;
         "disabled"?: boolean;
+        "icon"?: string;
+        "imagePosition"?: ImagePosition;
+        "loading"?: boolean;
+        "size"?: ButtonSize;
+        "src"?: string;
         "text"?: string;
+        "type"?: string;
+        "variant"?: ButtonVariant;
     }
     interface DatacomCheckbox {
         "checked"?: boolean;

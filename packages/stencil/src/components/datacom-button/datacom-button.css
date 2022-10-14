@@ -1,27 +1,192 @@
+:host {
+  display: inline;
+}
+
+/* Common CSS */
 button {
-  display: block;
-  height: 48px;
-  line-height: 24px;
-  background-color: var(--dc-button-background-enabled);
-  border: none;
-  color: var(--dc-button-text);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--dc-font-family);  
   font-weight: 600;
-  font-size: var(--dc-button-font-size);
-  font-family: var(--dc-primary-font);  
-  padding: 12px 24px;
-  border-radius: 8px;
 }
 
 button:hover {
-  background-color: var(--dc-button-background-hover);
+  cursor: pointer;
 }
 
-button:disabled {
-  background-color: var(--dc-button-background-disabled);
+.image-right {
+  flex-direction: row-reverse;
 }
 
-button:focus {
-  outline: 3px solid var(--dc-button-background-enabled);
+.size-standard.image-left .image {
+  padding-right: 12px;
+}
+
+.size-standard.image-right .image {
+  padding-left: 12px;
+}
+
+.size-small.image-left .image {
+  padding-right: 8px;
+}
+
+.size-small.image-right .image {
+  padding-left: 8px;
+}
+
+.size-small {
+  height: 34px;
+  line-height: 18px;  
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  min-width: 140px;
+}
+
+.size-small .image {
+  height: 18px;
+  width: 18px;
+}
+
+.size-standard {
+  height: 48px;
+  line-height: 24px;  
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  min-width: 160px;
+}
+
+.size-standard .image {
+  height: 24px;
+  width: 24px;
+}
+
+.loading .text {
+  display: none;
+}
+
+.spinner {
+  animation: rotate 2s linear infinite;
+  display: inline-block;
+  height: 32px;
+}
+
+.size-small .spinner {
+  height: 16px;
+}
+
+.spinner circle {
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+.primary .spinner circle {
+  stroke: var(--dc-background-colour);
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+/* Primary */
+.primary {
+  color: var(--dc-background-colour);
+  background-color: var(--dc-primary-colour);
+  border: none;
+}
+
+.primary:focus {
+  outline: 3px solid var(--dc-primary-accent-colour);
   outline-offset: 1px;
 }
 
+.primary:hover, .primary:active {
+  background-color: var(--dc-primary-accent-colour);
+}
+
+.primary:disabled {
+  background-color: var(--dc-primary-disabled-colour);
+}
+
+/* Secondary */
+.secondary {
+  color: var(--dc-primary-colour);
+  background-color: var(--dc-background-colour);
+  border-color: var(--dc-primary-colour);
+  border-width: 2px;
+  border-style: solid;
+}
+
+.secondary:focus {
+  outline: 3px solid var(--dc-primary-colour);
+  outline-offset: 1px;
+}
+
+.secondary:hover, .secondary:active {
+  background-color: var(--dc-background-accent-color);
+}
+
+.secondary:disabled {
+  color: var(--dc-primary-disabled-colour);
+  border-color: var(--dc-primary-disabled-colour);
+}
+
+.secondary .image path {
+  fill: var(--dc-primary-colour);
+}
+
+.secondary .spinner circle {
+  stroke: var(--dc-primary-colour);
+  fill: none;
+}
+
+/* Ghost */
+.ghost {
+  color: var(--dc-primary-colour);
+  background-color: var(--dc-background-colour);
+  border-width: 2px;
+  border: none;  
+}
+
+.ghost:focus {
+  outline: 3px solid var(--dc-primary-colour);
+  outline-offset: 1px;
+  color: var(--dc-primary-colour);
+}
+
+.ghost:hover, .ghost:active {
+  background-color: var(--dc-background-accent-color);
+}
+
+.ghost:disabled {
+  color: var(--dc-primary-disabled-colour);
+}
+
+.ghost .image path {
+  fill: var(--dc-primary-colour);
+}
+
+.ghost .spinner circle {
+  stroke: var(--dc-primary-colour);
+  fill: none;
+}

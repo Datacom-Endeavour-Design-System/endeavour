@@ -28,14 +28,9 @@ export const config: Config = {
       type: 'www',
       copy: [
         {
-          src: '**/*.{jpg,png,svg}',
-        },
-        {
-          src: '**/*.ttf',
-        },
-        {
-          src: '**/*.css',
-        }        
+          src: 'assets',
+          dest: 'assets'
+        }
       ],
       serviceWorker: null,
     },
