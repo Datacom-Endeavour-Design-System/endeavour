@@ -25,6 +25,8 @@
   --dc-checkbox-border-hover: 1px solid #0055ff;
   --dc-checkbox-checked-background: #0055ff;
   --dc-checkbox-focus-border:3px solid #0055FF;
-  
+  --dc-checkbox-background-disabled:#F0F0F0 ;
+  --dc-checkbox-border-disabled:1px solid #DADADA;
+ 
 }
 >>>>>>> fcd7242 (changes):packages/stencil/src/global/light.css

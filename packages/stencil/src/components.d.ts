@@ -12,8 +12,10 @@ export namespace Components {
     }
     interface DatacomCheckbox {
         "checked": boolean;
+        "disabled": boolean;
         "label": string;
-        "size": ['sm:14px', 'md:16px', 'lg'];
+        "required": boolean;
+        "small": string;
     }
     interface DatacomMenubar {
     }
@@ -80,9 +82,11 @@ declare namespace LocalJSX {
     }
     interface DatacomCheckbox {
         "checked"?: boolean;
+        "disabled"?: boolean;
         "label"?: string;
         "onToggle"?: (event: DatacomCheckboxCustomEvent<boolean>) => void;
-        "size"?: ['sm:14px', 'md:16px', 'lg'];
+        "required"?: boolean;
+        "small"?: string;
     }
     interface DatacomMenubar {
     }

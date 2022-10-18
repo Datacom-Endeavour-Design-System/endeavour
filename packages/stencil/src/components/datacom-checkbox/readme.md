@@ -7,11 +7,13 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                           | Default     |
-| --------- | --------- | ----------- | ------------------------------ | ----------- |
-| `checked` | `checked` |             | `boolean`                      | `false`     |
-| `label`   | `label`   |             | `string`                       | `undefined` |
-| `size`    | --        |             | `["sm:14px", "md:16px", "lg"]` | `undefined` |
+| Property   | Attribute  | Description | Type      | Default     |
+| ---------- | ---------- | ----------- | --------- | ----------- |
+| `checked`  | `checked`  |             | `boolean` | `false`     |
+| `disabled` | `disabled` |             | `boolean` | `false`     |
+| `label`    | `label`    |             | `string`  | `undefined` |
+| `required` | `required` |             | `boolean` | `false`     |
+| `small`    | `small`    |             | `string`  | `undefined` |
 
 
 ## Events
