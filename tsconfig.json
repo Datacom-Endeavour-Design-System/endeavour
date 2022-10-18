@@ -1,0 +1,11 @@
+{
+  "buildOnSave": false,
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@datacom/endeavour": ["packages/stencil/src"],
+      "@datacom/endeavour-react": ["packages/react/src"]
+    }
+  }
+}

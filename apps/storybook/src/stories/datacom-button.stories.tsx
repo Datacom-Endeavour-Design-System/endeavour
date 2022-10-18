@@ -1,13 +1,13 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentStoryFn } from '@storybook/react';
 import { DatacomButton } from '@datacom/endeavour-react';
 
 export default {
   title: 'Button',
   component: DatacomButton
-} as ComponentMeta<typeof DatacomButton>;
+};
 
-const Template: ComponentStory<typeof DatacomButton> = (args) => <DatacomButton {...args} />;
+const Template: ComponentStoryFn<typeof DatacomButton> = (args) => <DatacomButton {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

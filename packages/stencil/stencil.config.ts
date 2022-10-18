@@ -4,6 +4,9 @@ import { reactOutputTarget as react } from '@stencil/react-output-target';
 export const config: Config = {
   namespace: 'datacom',
   globalStyle: 'src/global/css/light.css',
+  extras: {
+    experimentalImportInjection: true,
+  },
   outputTargets: [
     react({
       componentCorePackage: '@datacom/endeavour',
@@ -14,10 +17,9 @@ export const config: Config = {
       type: 'dist',
       copy: [
         {
-          src: 'global/*'
+          src: 'global/*',
         }
       ],
-      esmLoaderPath: '../loader',
     },
     {
       type: 'dist-custom-elements',
@@ -29,13 +31,13 @@ export const config: Config = {
           src: '**/*.{jpg,png,svg}',
         },
         {
-          src: '**/*.ttf'
+          src: '**/*.ttf',
         },
         {
-          src: '**/*.css'
+          src: '**/*.css',
         }        
       ],
-      serviceWorker: null    
+      serviceWorker: null,
     },
   ],
 };
