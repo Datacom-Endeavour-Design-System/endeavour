@@ -1,25 +1,21 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
-    "declaration": false,
+    "composite": true,
     "experimentalDecorators": true,
-    "lib": [
-      "dom",
-      "es2017"
-    ],
+    "lib": ["dom", "es2017"],
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es2017",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "react",
-    "jsxFactory": "h"
+    "jsxFactory": "h",
+    "rootDir": "src",
+    "outDir": "dist"
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src", "../react/src/components/blargh"],
+  "exclude": ["node_modules"]
 }

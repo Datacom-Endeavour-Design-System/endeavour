@@ -5,7 +5,7 @@ import { createReactComponent } from './react-component-lib';
 
 import type { JSX } from '@datacom/endeavour';
 
-import { defineCustomElements } from '@datacom/endeavour/loader';
+import { defineCustomElements } from '@datacom/endeavour/dist/loader';
 
 defineCustomElements();
 export const DatacomButton = /*@__PURE__*/createReactComponent<JSX.DatacomButton, HTMLDatacomButtonElement>('datacom-button');

@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "nx run-many --target=build",
     "clean": "nx run-many --target=clean",
+    "dev": "nx run-many --target dev --parallel=2",
     "start:storybook": "nx run @datacom/endeavour-storybook:start",
     "start:stencil": "nx run @datacom/endeavour:start",
     "package": "nx run-many --target=package"
