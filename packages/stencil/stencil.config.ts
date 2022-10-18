@@ -17,7 +17,7 @@ export const config: Config = {
       type: 'dist',
       copy: [
         {
-          src: 'global/*'
+          src: 'global/*',
         }
       ],
     },
@@ -31,13 +31,13 @@ export const config: Config = {
           src: '**/*.{jpg,png,svg}',
         },
         {
-          src: '**/*.ttf'
+          src: '**/*.ttf',
         },
         {
-          src: '**/*.css'
+          src: '**/*.css',
         }        
       ],
-      serviceWorker: null    
+      serviceWorker: null,
     },
   ],
 };

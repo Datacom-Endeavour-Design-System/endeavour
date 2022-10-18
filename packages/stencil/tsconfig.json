@@ -8,6 +8,7 @@
     "lib": ["dom", "es2017"],
     "moduleResolution": "node",
     "module": "esnext",
+    "skipLibCheck": true,
     "target": "es2017",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -16,6 +17,6 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src", "../react/src/components/blargh"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

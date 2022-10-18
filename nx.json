@@ -7,8 +7,8 @@
         "cacheableOperations": [
           "build",
           "package",
-          "storybook",
-          "stencil",
+          "start:storybook",
+          "start:stencil",
           "test",
           "test.watch"
         ]
