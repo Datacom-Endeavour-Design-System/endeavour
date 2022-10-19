@@ -32,13 +32,15 @@ export class DatacomCheckbox {
     return (
       <Host>
         <div class="checkbox-container">
-          <input name="datacom-checkbox" type="checkbox" class="checkbox" checked={this.checked} onChange={this.handleChange} disabled={this.disabled} required={this.required} />
-          <label htmlFor="datacom-checkbox1" class="label">
-            {this.label}
+        <label >    
+        <input name="datacom-checkbox" type="checkbox" class="checkbox" checked={this.checked} onChange={this.handleChange} disabled={this.disabled} required={this.required} />
+          {/* <label htmlFor="datacom-checkbox1" class="label"> */}
+         <span> {this.label}</span>
           </label>
-          <small class="small">{this.small}</small>
+         
           {/* <p class = "error">{this.checked ? "selected  ":"unselected  "}</p>  */}
         </div>
+         <small class="small">{this.small}</small>
       </Host>
     );
   }

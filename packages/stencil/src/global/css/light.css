@@ -1,5 +1,4 @@
 :root {
-<<<<<<< HEAD:packages/stencil/src/global/css/light.css
     --dc-primary-background: #ffffff;
     --dc-button-background-enabled: #0055FF;
     --dc-button-background-disabled: #999999;
@@ -7,8 +6,7 @@
     --dc-button-text: #ffffff;
     --dc-button-font-size: 18px;
     --dc-primary-font: 'Montserrat';  
-}
-=======
+
   --dc-primary-background: #ffffff;
   --dc-button-background-enabled: #0055ff;
   --dc-button-background-disabled: #999999;
@@ -27,6 +25,6 @@
   --dc-checkbox-focus-border:3px solid #0055FF;
   --dc-checkbox-background-disabled:#F0F0F0 ;
   --dc-checkbox-border-disabled:1px solid #DADADA;
+  --dc-checkbox-error-border-color: 1px solid #CF364E;
  
 }
->>>>>>> fcd7242 (changes):packages/stencil/src/global/light.css

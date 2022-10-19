@@ -29,65 +29,19 @@ const CheckboxWrapperToggle: React.FC = () => {
     </div>
   );
 };
-//  const NestedCheckboxes : React.FC = ()=>{
 
 
-
-//   const checkData = [{label:"checkbox1", id: "parent-1"}, {label:"checkbox2", id:"parent-2"}];
-//   const SelectedId = checkData.findIndex
-//   const[checkboxdata, setCheckData] =useState([]);
-//   const[checked , setChecked] =useState(false);
-//   useEffect(() => {
-//     setCheckData(checkData);
-//   }, []);
-  
-//   const handleChange =(e:any)=>{
-//     e.target.value;
-    
-// setChecked(checked);
-
-//     // if( =id ){}
-//     // let newItemList  = checkboxdata.map( item => item.id === child-id ? {...SelectedId, isChecked:checked}: items);
-//     // setCheckData(newItemList);
-
-   
-//     {
-
-//     }
-//   }
-
-//   return(
-//     <div>
-      
-//       <ul>
-//      <DatacomCheckbox  id ="parent-0" label ="select all" ></DatacomCheckbox>
-//      </ul>
-//    {checkboxdata.map((items) => ( items =
-//       <div>
-//         <DatacomCheckbox key ={items.id}  label={items.label} child-id={items.id} 
-// checked ={items?.isChecked || false}
-//         ></DatacomCheckbox >
-//       </div>
-//     ))}
-        
-
-//      </div>
-//   );
-
-
-  
-//   };
-export const Required = Template.bind({});
-Required.args = {
-  label: "Checkbox Item",
-  small: "Error message",
-  required: true,
-};
 
 export const standard = Template.bind({});
 standard.args = {
   label: "Checkbox Item",
   size: "Standard",
+};
+
+export const focused = Template.bind({});
+standard.args = {
+  label: "Checkbox Item",
+  focus: true,
 };
 export const Disabled = Template.bind({});
 Disabled.args = {
@@ -96,26 +50,21 @@ Disabled.args = {
 };
 export const DisabledSelected = Template.bind({});
 DisabledSelected.args = {
-  label: "Checkbox Item unselected",
+  label: "Checkbox Item selected",
   disabled: true,
   checked: true,
+};
+export const Required = Template.bind({});
+Required.args = {
+  label: "Checkbox Item",
+  small: "Error message",
+  required: true,
 };
 export const small = Template.bind({});
 small.args = {
   label: "Checkbox Item",
 };
-// export const CheckedInput = () => {
-//   const [isChecked, setChecked] = useState(true);
-//   return(
-//       <DatacomCheckbox
-//       id="check-2"
-//       label="Checked Input"
-//       onChange={() => setChecked(!isChecked)}
-//       checked={isChecked}
-//       />
-//   )
-// ;
-// }
+
 export const VerticalGrouping = () => {
   return (
     <div >
