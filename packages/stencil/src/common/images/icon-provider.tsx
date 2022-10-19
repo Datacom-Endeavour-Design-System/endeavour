@@ -1,4 +1,5 @@
 import * as icons from './icons';
+import {pascalToDashCase} from '../../utils';
 import {SVGComponent, SVGOpts} from './icons-opts';
 import { h } from '@stencil/core';
 
@@ -11,17 +12,17 @@ export const Empty = () => <svg></svg>;
 
 let mapped;
 export const getSvgComponent = (name: string): SVGComponent => {
-    const transformed = name.toLowerCase();
+    const imageName = name.toLowerCase();
 
     if (!mapped) {
-        mapped = Object.keys(icons).reduce((p, k) => {p[k.toLowerCase()] = icons[k]; return p}, {});
+        mapped = Object.keys(icons).reduce((p, k) => {p[pascalToDashCase(k)] = icons[k]; return p}, {});
     }
 
-    if (!mapped[transformed]) {
+    if (!mapped[imageName]) {
         throw Error(`Icon ${name} not found`);
     }
 
-    return mapped[transformed];
+    return mapped[imageName];
 }
 
 export const getSvg = (name: string, opts?: SVGOpts) => {

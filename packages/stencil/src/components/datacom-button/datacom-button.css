@@ -46,8 +46,8 @@ button:hover {
 }
 
 .size-small .image {
-  height: 18px;
-  width: 18px;
+  height: 16px;
+  width: 16px;
 }
 
 .size-standard {
@@ -60,8 +60,8 @@ button:hover {
 }
 
 .size-standard .image {
-  height: 24px;
-  width: 24px;
+  height: 18px;
+  width: 18px;
 }
 
 .loading .text {
@@ -113,6 +113,10 @@ button:hover {
   color: var(--dc-background-colour);
   background-color: var(--dc-primary-colour);
   border: none;
+}
+
+.primary .image path {
+  fill: var(--dc-background-colour);
 }
 
 .primary:focus {

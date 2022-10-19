@@ -38,7 +38,10 @@ export default {
       name: 'Icon',
       description: 'Display image icon from a set of pre-defined images',
       control: 'select', 
-      options: ['', 'globe'] 
+      options: ['', 'globe', 'upload', 'up', 'settings', 'search', 'remove', 
+            'refresh', 'menu', 'information', 'forward', 'filter', 'external-link', 
+            'download', 'down', 'copy', 'calendar', 'bookmark', 'back', 'back-to-top',
+            'add', 'add-to-cart'] 
     },
     disabled: {
       name: 'Disabled',
