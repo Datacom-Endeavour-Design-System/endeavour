@@ -24,8 +24,8 @@ export default {
       name: 'Size',
       description: 'Button size within variant. Defaults to standard if not set',
       control: 'select', 
-      defaultValue: 'standard',
-      options: ['standard', 'small']
+      defaultValue: 'large',
+      options: ['large', 'small']
     },
     'image-position': { 
       name: 'Image position', 
@@ -57,7 +57,7 @@ export default {
   args: {
     text: 'Button text',
     variant: 'primary',
-    size: 'standard',
+    size: 'large',
     "image-position": 'left',
     icon: "",
     loading: false,

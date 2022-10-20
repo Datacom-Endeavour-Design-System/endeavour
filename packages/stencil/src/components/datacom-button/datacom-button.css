@@ -20,11 +20,11 @@ button:hover {
   flex-direction: row-reverse;
 }
 
-.size-standard.image-left .image {
+.size-large.image-left .image {
   padding-right: 12px;
 }
 
-.size-standard.image-right .image {
+.size-large.image-right .image {
   padding-left: 12px;
 }
 
@@ -50,7 +50,7 @@ button:hover {
   width: 16px;
 }
 
-.size-standard {
+.size-large {
   height: 48px;
   line-height: 24px;  
   padding: 12px 24px;
@@ -59,7 +59,7 @@ button:hover {
   min-width: 160px;
 }
 
-.size-standard .image {
+.size-large .image {
   height: 18px;
   width: 18px;
 }

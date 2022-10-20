@@ -2,7 +2,7 @@ import { Component, Host, h, Prop} from '@stencil/core';
 import {getSvg} from '../../common/images/icon-provider';
 
 export type ButtonVariant = 'primary' | 'seconday' | 'ghost';
-export type ButtonSize = 'standard' | 'small';
+export type ButtonSize = 'large' | 'small';
 export type ImagePosition = 'left' | 'right';
 export type ButtonType = 'button' | 'submit';
 
@@ -16,7 +16,7 @@ export class DatacomButton {
   @Prop() type: string = 'button';
   @Prop() disabled: boolean = false;
   @Prop() variant: ButtonVariant = 'primary';
-  @Prop() size: ButtonSize = 'standard';
+  @Prop() size: ButtonSize = 'large';
   @Prop({ attribute: 'image-position' }) imagePosition: ImagePosition = 'left';
   @Prop() src: string;
   @Prop() icon: string;
@@ -25,15 +25,18 @@ export class DatacomButton {
 
   render() {
     if (!['primary','secondary', 'ghost'].includes(this.variant)) {
-      throw Error('Button variant must be either primary, secondary or ghost.');
+      console.log('Button variant must be either primary, secondary or ghost.');
+      this.variant = 'primary';
     }
 
-    if (!['standard', 'small'].includes(this.size)) {
-      throw Error('Button size must be either standard or small.');
+    if (!['large', 'small'].includes(this.size)) {
+      console.log('Button size must be either large or small.');
+      this.size = 'large';
     }
 
     if (!['left', 'right'].includes(this.imagePosition)) {
-      throw Error('Button image position must be either left or right.');
+      console.log('Button image position must be either left or right.');
+      this.imagePosition = 'left';
     }
 
     let image;
