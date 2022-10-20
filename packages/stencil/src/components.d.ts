@@ -5,17 +5,22 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { CheckboxSize } from "./components/datacom-checkbox/datacom-checkbox";
 export namespace Components {
     interface DatacomButton {
         "disabled": boolean;
         "text": string;
     }
     interface DatacomCheckbox {
+        "autofocus": boolean;
         "checked": boolean;
         "disabled": boolean;
         "label": string;
         "required": boolean;
+        "size": CheckboxSize;
         "small": string;
+        "type": string;
+        "value": string;
     }
     interface DatacomMenubar {
     }
@@ -81,12 +86,16 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface DatacomCheckbox {
+        "autofocus"?: boolean;
         "checked"?: boolean;
         "disabled"?: boolean;
         "label"?: string;
         "onToggle"?: (event: DatacomCheckboxCustomEvent<boolean>) => void;
         "required"?: boolean;
+        "size"?: CheckboxSize;
         "small"?: string;
+        "type"?: string;
+        "value"?: string;
     }
     interface DatacomMenubar {
     }

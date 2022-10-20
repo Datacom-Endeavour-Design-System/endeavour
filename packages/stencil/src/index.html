@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="/assets/css/main.css" />
     <script type="module" src="/build/datacom.esm.js"></script>
     <script nomodule src="/build/datacom.js"></script>
+ 
   </head>
-
+  
   <body>
     <datacom-menubar></datacom-menubar>
 
@@ -38,25 +39,28 @@
             <p>
               <datacom-checkbox label="Disable" id="check-3" required="false" disabled checked></datacom-checkbox>
             </p>
+            <datacom-checkbox class="size-small" label="Disable" id="check-3" required="false" checked></datacom-checkbox>
 
             <p>
               <datacom-checkbox label="error" id="check-4" required="true" small="Error message"></datacom-checkbox>
             </p>
-           <!--/* <p>
+            <p>
+            </p>
+           <p>
             <ul>
-              <li >
-                 <datacom-checkbox label="checkbox parent" id = "parent-1"></datacom-checkbox>
+              
+                 <datacom-checkbox label="parentbox" id = "checkall" value ="parentbox"></datacom-checkbox>
               <ul>
-                <li>
-                 <datacom-checkbox label="checkbox child1" id = "child-1"></datacom-checkbox>
-               </li>
-                 <li>
-                 <datacom-checkbox label="checkbox child2" id = "child-2"></datacom-checkbox>
-                </li>
+              
+                 <datacom-checkbox label="childbox1" id = "child-1" value="childbox1"></datacom-checkbox>
+               
+                 
+                 <datacom-checkbox label="childbox2" id = "child-2" value="childbox2"></datacom-checkbox>
+                
               </ul>
-              </li>
+              
             </ul>
-            </p> */-->
+            </p>
 
           </div>
         </datacom-tab>

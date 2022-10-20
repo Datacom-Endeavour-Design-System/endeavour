@@ -7,13 +7,17 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `checked`  | `checked`  |             | `boolean` | `false`     |
-| `disabled` | `disabled` |             | `boolean` | `false`     |
-| `label`    | `label`    |             | `string`  | `undefined` |
-| `required` | `required` |             | `boolean` | `false`     |
-| `small`    | `small`    |             | `string`  | `undefined` |
+| Property    | Attribute   | Description | Type                    | Default      |
+| ----------- | ----------- | ----------- | ----------------------- | ------------ |
+| `autofocus` | `autofocus` |             | `boolean`               | `false`      |
+| `checked`   | `checked`   |             | `boolean`               | `false`      |
+| `disabled`  | `disabled`  |             | `boolean`               | `false`      |
+| `label`     | `label`     |             | `string`                | `undefined`  |
+| `required`  | `required`  |             | `boolean`               | `false`      |
+| `size`      | `size`      |             | `"small" \| "standard"` | `'standard'` |
+| `small`     | `small`     |             | `string`                | `undefined`  |
+| `type`      | `type`      |             | `string`                | `'checkbox'` |
+| `value`     | `value`     |             | `string`                | `undefined`  |
 
 
 ## Events
