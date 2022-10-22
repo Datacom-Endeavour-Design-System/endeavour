@@ -9,7 +9,7 @@ export default {
   argTypes: {
     label: {
       name: "label",
-      defaultValue: "checkbox label",
+      defaultValue: "Checkbox Item",
       description: "checkbox lebel",
       type: { label: "string", required: true },
     },
@@ -29,7 +29,7 @@ export default {
     size: "standard",
     type: DatacomCheckbox,
     Required: false,
-    Disabled: false,
+    disabled: false,
     checked: false,
   },
 };
@@ -60,13 +60,14 @@ export const standard = Template.bind({});
 standard.args = {
   label: "Checkbox Item",
   size: "standard",
-  Disabled: false,
+  disabled: false,
   checked: false,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   label: "Checkbox Item unselected",
+  checked: false,
   disabled: true,
 };
 export const DisabledSelected = Template.bind({});
@@ -86,16 +87,17 @@ small.args = {
   label: "Checkbox Item",
   size: "small",
   cheked: true,
+  disabled:false,
 };
 
 export const VerticalGrouping = (args:any) => {
   return (
     <div>
       <div>
-        <DatacomCheckbox id="check-1" label="checkboxItem" {...args} />
+        <DatacomCheckbox id="check-1" label="CheckboxItem" {...args} />
       </div>
       <div style={{ gap: "24px" }}>
-        <DatacomCheckbox id="check-2" label="checkboxItem" {...args}/>
+        <DatacomCheckbox id="check-2" label="CheckboxItem" {...args}/>
       </div>
       <div>
         <DatacomCheckbox
