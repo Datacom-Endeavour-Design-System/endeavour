@@ -6,6 +6,7 @@ import {useEventRef} from '@datacom/endeavour-react';
 export default {
   title: 'Checkbox',
   component: DatacomCheckbox,
+  argTypes:{
   label: {
     name: 'label',
     defaultValue: 'checkbox label',
@@ -17,11 +18,25 @@ export default {
     description: 'checkbox size within variant. Defaults to standard if not set',
     control: 'select', 
     defaultValue: 'standard',
-    options: ['standard', 'small']
+    options: ['standard', 'small'],
+    type: {label: 'string', required: true} 
   },
+  
 
   
-};
+},
+arg:{
+  label:'checkbox',
+size:'standard',
+Required:false,
+Disabled:false,
+checked:false,
+
+
+
+}
+}
+
 
 const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => <DatacomCheckbox {...args} />;
 
@@ -80,8 +95,8 @@ export const small = Template.bind({});
 small.args = {
   label: "Checkbox Item",
   size: "small",
-  checked:true,
-  required:true,
+  cheked:true
+ 
 };
 
 export const VerticalGrouping = () => {

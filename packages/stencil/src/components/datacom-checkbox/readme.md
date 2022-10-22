@@ -16,7 +16,7 @@
 | `required`  | `required`  |             | `boolean`               | `false`      |
 | `size`      | `size`      |             | `"small" \| "standard"` | `'standard'` |
 | `small`     | `small`     |             | `string`                | `undefined`  |
-| `type`      | `type`      |             | `string`                | `'checkbox'` |
+| `type`      | `type`      |             | `"checkbox" \| "radio"` | `'checkbox'` |
 | `value`     | `value`     |             | `string`                | `undefined`  |
 
 
