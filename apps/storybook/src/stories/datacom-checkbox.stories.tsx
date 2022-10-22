@@ -1,79 +1,69 @@
-import React, {useState} from 'react';
-import { ComponentStoryFn } from '@storybook/react';
-import { DatacomCheckbox } from '@datacom/endeavour-react';
-import {useEventRef} from '@datacom/endeavour-react';
+import React, { useState } from "react";
+import { ComponentStoryFn } from "@storybook/react";
+import { DatacomCheckbox } from "@datacom/endeavour-react";
+import { useEventRef } from "@datacom/endeavour-react";
 
 export default {
-  title: 'Checkbox',
+  title: "Checkbox",
   component: DatacomCheckbox,
-  argTypes:{
-  label: {
-    name: 'label',
-    defaultValue: 'checkbox label',
-    description: 'checkbox lebel',
-    type: {label: 'string', required: true} 
+  argTypes: {
+    label: {
+      name: "label",
+      defaultValue: "checkbox label",
+      description: "checkbox lebel",
+      type: { label: "string", required: true },
+    },
+    size: {
+      name: "Size",
+      description:
+        "checkbox size within variant. Defaults to standard if not set",
+      control: "select",
+      defaultValue: "standard",
+      options: ["standard", "small"],
+      type: { label: "string", required: true },
+    },
   },
-  size: { 
-    name: 'Size',
-    description: 'checkbox size within variant. Defaults to standard if not set',
-    control: 'select', 
-    defaultValue: 'standard',
-    options: ['standard', 'small'],
-    type: {label: 'string', required: true} 
+  arg: {
+    label: "checkbox",
+    Checkboxtype: "checkbox",
+    size: "standard",
+    type: DatacomCheckbox,
+    Required: false,
+    Disabled: false,
+    checked: false,
   },
-  
-
-  
-},
-arg:{
-  label:'checkbox',
-size:'standard',
-Required:false,
-Disabled:false,
-checked:false,
-
-
-
-}
-}
-
-
-const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => <DatacomCheckbox {...args} />;
-
-
-const CheckboxWrapperToggle: React.FC = () => {
-  const [toggled, setToggled] = useState(false);
-
-  const ref = useEventRef<HTMLDatacomCheckboxElement>(
-    "toggle",
-    (e: CustomEvent<boolean>) => {
-      setToggled(e.detail);
-    }
-  );
-
-
-  return (
-    <div>
-      <DatacomCheckbox id="check-5" label="With toggle" ref={ref} />
-      {toggled && <p>You clicked the checkbox!</p>}
-    </div>
-  );
 };
 
+const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => (
+  <DatacomCheckbox {...args} />
+);
 
+// const CheckboxWrapperToggle: React.FC = () => {
+//   const [toggled, setToggled] = useState(false);
+
+//   const ref = useEventRef<HTMLDatacomCheckboxElement>(
+//     "toggle",
+//     (e: CustomEvent<boolean>) => {
+//       setToggled(e.detail);
+//     }
+//   );
+
+//   return (
+//     <div>
+//       <DatacomCheckbox id="check-5" label="With toggle" ref={ref} />
+//       {toggled && <p>You clicked the checkbox!</p>}
+//     </div>
+//   );
+// };
 
 export const standard = Template.bind({});
 standard.args = {
   label: "Checkbox Item",
-  size: "Standard",
+  size: "standard",
+  Disabled: false,
+  checked: false,
 };
 
-
-export const focused = Template.bind({});
-standard.args = {
-  label: "Checkbox Item",
-  focus: true,
-};
 export const Disabled = Template.bind({});
 Disabled.args = {
   label: "Checkbox Item unselected",
@@ -95,24 +85,27 @@ export const small = Template.bind({});
 small.args = {
   label: "Checkbox Item",
   size: "small",
-  cheked:true
- 
+  cheked: true,
 };
 
-export const VerticalGrouping = () => {
+export const VerticalGrouping = (args:any) => {
   return (
-    <div >
-      <div >
-        <DatacomCheckbox id="check-1" />
+    <div>
+      <div>
+        <DatacomCheckbox id="check-1" label="checkboxItem" {...args} />
       </div>
       <div style={{ gap: "24px" }}>
-        <DatacomCheckbox id="check-2" />
+        <DatacomCheckbox id="check-2" label="checkboxItem" {...args}/>
       </div>
       <div>
-        <DatacomCheckbox id="check-3" style={{ gap: "12px " }} />
+        <DatacomCheckbox
+          id="check-3"
+          style={{ gap: "12px " }}
+          label="checkboxItem"
+          {...args}/>
       </div>
     </div>
   );
 };
 // export const  Nested = () =><NestedCheckboxes/>
-export const Toggle = () => <CheckboxWrapperToggle />;
+// export const Toggle = () => <CheckboxWrapperToggle />;

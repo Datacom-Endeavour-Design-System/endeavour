@@ -1,7 +1,7 @@
 import { Component, h, Prop, Event, EventEmitter, Host } from '@stencil/core';
 
 export type CheckboxSize = 'standard' | 'small';
-export type Checkboxtype = 'checkbox'|'radio';
+export type Checkboxtype = 'checkbox'|'form';
 
 @Component({
   tag: 'datacom-checkbox',
@@ -33,7 +33,7 @@ export class DatacomCheckbox {
     const classes = {
       "disabled": this.disabled,
       [`size-${this.size}`]: true,
-      [this.type]:true,
+      [this.type]:true
     };
 
     return (
