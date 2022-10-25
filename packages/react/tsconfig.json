@@ -19,6 +19,7 @@
     "rootDir": "src",
     "removeComments": false,
     "sourceMap": true,
+    "skipLibCheck": true,
     "jsx": "react",
     "target": "es2015"
   },
