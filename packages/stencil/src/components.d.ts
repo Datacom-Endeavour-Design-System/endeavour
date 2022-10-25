@@ -10,13 +10,20 @@ export namespace Components {
     interface DatacomButton {
         "autofocus": boolean;
         "disabled": boolean;
+        "form": string;
+        "formaction": string;
+        "formenctype": string;
+        "formmethod": string;
+        "formtarget": string;
         "icon": string;
         "imagePosition": ImagePosition;
         "loading": boolean;
+        "name": string;
         "size": ButtonSize;
         "src": string;
         "text": string;
         "type": string;
+        "value": string;
         "variant": ButtonVariant;
     }
     interface DatacomCheckbox {
@@ -85,13 +92,20 @@ declare namespace LocalJSX {
     interface DatacomButton {
         "autofocus"?: boolean;
         "disabled"?: boolean;
+        "form"?: string;
+        "formaction"?: string;
+        "formenctype"?: string;
+        "formmethod"?: string;
+        "formtarget"?: string;
         "icon"?: string;
         "imagePosition"?: ImagePosition;
         "loading"?: boolean;
+        "name"?: string;
         "size"?: ButtonSize;
         "src"?: string;
         "text"?: string;
         "type"?: string;
+        "value"?: string;
         "variant"?: ButtonVariant;
     }
     interface DatacomCheckbox {
