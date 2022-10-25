@@ -1,9 +1,22 @@
+/**
+    Light theme. 
+
+    Convention follows dc-{control}-{variant}-{variable}
+    - Prefixed with dc
+    - Main variant or concatenated variants such as 'primary-small'
+    - Use css attribute names where possible
+*/
 :root {
-    --dc-primary-background: #ffffff;
-    --dc-button-background-enabled: #0055FF;
-    --dc-button-background-disabled: #999999;
-    --dc-button-background-hover: #003FBC;
-    --dc-button-text: #ffffff;
-    --dc-button-font-size: 18px;
-    --dc-primary-font: 'Montserrat';  
+    /* Global defaults */
+    --dc-background-colour: #ffffff;
+    --dc-background-accent-color: #F0F0F0;
+    --dc-font-family: 'Montserrat';  
+    --dc-font-size: 18px;
+    --dc-primary-colour: #0055FF;
+    --dc-primary-accent-colour: #003FBC;
+    --dc-primary-disabled-colour: #999999;
+    
+
+    /* Buttons */
+    --dc-button-primary-text-colour: #ffffff;
 }
