@@ -141,13 +141,17 @@ button:hover {
   border-style: solid;
 }
 
-.secondary:focus {
-  outline: 3px solid var(--dc-primary-colour);
-  outline-offset: 1px;
+.secondary:hover, .secondary:active {
+  color: var(--dc-primary-accent-colour);
+  border-color: var(--dc-primary-accent-colour);
+  background-color: var(--dc-background-accent-color);
 }
 
-.secondary:hover, .secondary:active {
-  background-color: var(--dc-background-accent-color);
+.secondary:focus {
+  outline: 3px solid var(--dc-primary-colour);
+  border-color: var(--dc-primary-colour);
+  color: var(--dc-primary-colour);
+  outline-offset: 1px;
 }
 
 .secondary:disabled {
@@ -172,14 +176,15 @@ button:hover {
   border: none;  
 }
 
+.ghost:hover, .ghost:active {
+  background-color: var(--dc-background-accent-color);
+  color: var(--dc-primary-accent-colour);
+}
+
 .ghost:focus {
   outline: 3px solid var(--dc-primary-colour);
   outline-offset: 1px;
   color: var(--dc-primary-colour);
-}
-
-.ghost:hover, .ghost:active {
-  background-color: var(--dc-background-accent-color);
 }
 
 .ghost:disabled {
