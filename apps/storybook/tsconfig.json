@@ -31,6 +31,7 @@
   "compileOnSave": false,
   "buildOnSave": false,
   "references": [
-    { "path": "../../packages/react" }
+    { "path": "../../packages/react" },
+    { "path": "../../packages/stencil" }
   ]
 }
