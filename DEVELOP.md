@@ -5,7 +5,6 @@
 
 ## Introduction
 
-
 ## Further information
 - [Stencil](stencil/README.md)
 - [React](react/README.md)
