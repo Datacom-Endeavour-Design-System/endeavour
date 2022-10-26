@@ -22,15 +22,18 @@ export default {
       options: ["standard", "small"],
       type: { label: "string", required: true },
     },
+   
   },
   arg: {
-    label: "checkbox",
+    label: "Checkbox",
     Checkboxtype: "checkbox",
     size: "standard",
     type: DatacomCheckbox,
     Required: false,
     disabled: false,
     checked: false,
+    span:"string"
+  
   },
 };
 
@@ -79,7 +82,7 @@ DisabledSelected.args = {
 export const Required = Template.bind({});
 Required.args = {
   label: "Checkbox Item",
-  small: "Error message",
+  span: "Error message",
   required: true,
 };
 export const small = Template.bind({});

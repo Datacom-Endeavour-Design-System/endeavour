@@ -3,6 +3,7 @@ import { Component, h, Prop, Event, EventEmitter, Host } from '@stencil/core';
 export type CheckboxSize = 'standard' | 'small';
 export type Checkboxtype = 'checkbox'|'form';
 
+
 @Component({
   tag: 'datacom-checkbox',
   styleUrl: 'datacom-checkbox.css',
@@ -15,7 +16,7 @@ export class DatacomCheckbox {
   @Prop() label: string;
   @Prop() disabled: boolean = false;
   @Prop() required: boolean = false;
-  @Prop() small: string;
+  @Prop() span: string;
   @Prop() value: string;
   @Prop() autofocus: boolean = false;
 
@@ -38,9 +39,8 @@ export class DatacomCheckbox {
 
     return (
       <Host>
-        {/* <div class={classes}> */}
-        
           <input
+          autofocus={this.autofocus}
             class={classes}
             name="datacom-checkbox"
             type={this.type}
@@ -49,17 +49,14 @@ export class DatacomCheckbox {
             disabled={this.disabled}
             required={this.required}
             value={this.value}
-            autoFocus={this.autofocus}
-            
           />
-          <label>
-          {/* <label htmlFor="datacom-checkbox1" class="label"> */}
-          {this.label}
-        </label>
+          <label class={`size-${this.size}`}>
+         
+          {this.label}</label>
+       
+        <span class="small">{this.span}</span>
 
-        {/* <p class = "error">{this.checked ? "selected  ":"unselected  "}</p>  */}
-        {/* </div> */}
-        <small class="small">{this.small}</small>
+       
       </Host>
     );
   }

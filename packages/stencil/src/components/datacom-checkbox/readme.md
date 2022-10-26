@@ -15,7 +15,7 @@
 | `label`     | `label`     |             | `string`                | `undefined`  |
 | `required`  | `required`  |             | `boolean`               | `false`      |
 | `size`      | `size`      |             | `"small" \| "standard"` | `'standard'` |
-| `small`     | `small`     |             | `string`                | `undefined`  |
+| `span`      | `span`      |             | `string`                | `undefined`  |
 | `type`      | `type`      |             | `"checkbox" \| "form"`  | `'checkbox'` |
 | `value`     | `value`     |             | `string`                | `undefined`  |
 

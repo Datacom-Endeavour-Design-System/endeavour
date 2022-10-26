@@ -18,7 +18,7 @@ export namespace Components {
         "label": string;
         "required": boolean;
         "size": CheckboxSize;
-        "small": string;
+        "span": string;
         "type": Checkboxtype;
         "value": string;
     }
@@ -93,7 +93,7 @@ declare namespace LocalJSX {
         "onToggle"?: (event: DatacomCheckboxCustomEvent<boolean>) => void;
         "required"?: boolean;
         "size"?: CheckboxSize;
-        "small"?: string;
+        "span"?: string;
         "type"?: Checkboxtype;
         "value"?: string;
     }
