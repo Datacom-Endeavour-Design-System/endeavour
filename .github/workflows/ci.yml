@@ -52,9 +52,7 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           record: false
-          project: ./apps/storybook
-              # we have already installed everything
-          install: false
+          working-directory: ./apps/storybook
           # to run component tests we need to use "component: true"
           component: true
   deploy:
