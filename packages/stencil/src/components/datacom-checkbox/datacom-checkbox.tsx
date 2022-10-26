@@ -55,8 +55,6 @@ export class DatacomCheckbox {
           {this.label}</label>
        
         <span class="small">{this.span}</span>
-
-       
       </Host>
     );
   }
