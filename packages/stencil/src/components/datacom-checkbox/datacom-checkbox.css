@@ -4,6 +4,19 @@
 border-bottom-right-radius: 7% 6%;
 border-top-left-radius: 7px;
 }
+.small {
+  color: #cf364e;
+  position: absolute;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.12px;
+  left: 0.36%;
+  top: 7.56%;
+  bottom: -4.34%;
+  }
 /*common css*/
 .checkbox {
   -webkit-appearance: none;
@@ -106,16 +119,3 @@ label.size-small {
   margin-bottom: 12px;
 }
 
-.small {
-color: #cf364e;
-position: absolute;
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 400;
-font-size: 12px;
-line-height: 16px;
-letter-spacing: -0.12px;
-left: 0.36%;
-top: 7.56%;
-bottom: -4.34%;
-}
