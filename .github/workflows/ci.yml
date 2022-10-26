@@ -52,7 +52,7 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           browser: chrome
-          build: npx cypress info
+          build: npm run build
           project: ./apps/storybook
           command: npm run test:ci
   deploy:
