@@ -12,11 +12,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  main:
-    name: Build and Deploy
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Use Node.js
@@ -24,11 +25,48 @@ jobs:
         with:
           node-version: '16.x'
           cache: 'npm'
-      - uses: nrwl/nx-set-shas@v3
       - name: Install
+        uses: nrwl/nx-set-shas@v3
         run: npm ci
       - name: Package
         run: npm run package
+      - name: Store build
+        uses: actions/upload-artifact@v3
+        with:
+          name: storybook-static
+          path: apps/storybook/storybook-static
+  test:
+    name: Test
+        name: Cypress run
+    runs-on: ubuntu-20.04
+    strategy:
+      # when one test fails, DO NOT cancel the other
+      # containers, because this will kill Cypress processes
+      # leaving the Dashboard hanging ...
+      # https://github.com/cypress-io/github-action/issues/48
+      fail-fast: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Component tests
+        uses: cypress-io/github-action@v4
+        with:
+          record: false
+          project: ./apps/storybook
+              # we have already installed everything
+          install: false
+          # to run component tests we need to use "component: true"
+          component: true
+  deploy:
+    name: Deploy
+    needs: [build,test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retrieve build
+        uses: actions/download-artifact@v3
+        with:
+          name: storybook-static
+          path: apps/storybook/storybook-static
       - name: Push to Cloudflare
         uses: cloudflare/pages-action@1
         with:
