@@ -25,7 +25,7 @@ export type ButtonType = 'button' | 'submit' | 'reset';
   shadow: true,
 })
 export class DatacomButton {
-  @Element() el;
+  @Element() el: HTMLElement;
 
   /* Custom properties */
   @Prop() text: string;
@@ -62,7 +62,7 @@ export class DatacomButton {
 
     let form: HTMLFormElement;
     if (this.form) {
-      form = document.querySelector(this.form);
+      form = document.querySelector(`#${this.form}`);
     } else {
       form = this.el.closest('form');
     }
@@ -117,7 +117,7 @@ export class DatacomButton {
       "loading": this.loading,
       [this.variant]: true,
       [`size-${this.size}`]: true,
-      [`image-${this.imagePosition}`]: (image != undefined && this.text !=undefined)
+      [`image-${this.imagePosition}`]: (image && this.text?.length > 0)
     }
 
     return (

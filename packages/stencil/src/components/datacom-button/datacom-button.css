@@ -12,6 +12,10 @@ button {
   font-weight: 600;
 }
 
+.text:empty {
+  display: none;
+}
+
 button:hover {
   cursor: pointer;
 }
@@ -120,7 +124,7 @@ button:hover {
 }
 
 .primary:focus {
-  outline: 3px solid var(--dc-primary-accent-colour);
+  outline: 2px solid var(--dc-primary-accent-colour);
   outline-offset: 1px;
 }
 
@@ -148,7 +152,7 @@ button:hover {
 }
 
 .secondary:focus {
-  outline: 3px solid var(--dc-primary-colour);
+  outline: 2px solid var(--dc-primary-colour);
   border-color: var(--dc-primary-colour);
   color: var(--dc-primary-colour);
   outline-offset: 1px;
@@ -161,6 +165,10 @@ button:hover {
 
 .secondary .image path {
   fill: var(--dc-primary-colour);
+}
+
+.secondary:disabled .image path {
+  fill: var(--dc-primary-disabled-colour);
 }
 
 .secondary .spinner circle {
@@ -182,7 +190,7 @@ button:hover {
 }
 
 .ghost:focus {
-  outline: 3px solid var(--dc-primary-colour);
+  outline: 2px solid var(--dc-primary-colour);
   outline-offset: 1px;
   color: var(--dc-primary-colour);
 }
@@ -193,6 +201,10 @@ button:hover {
 
 .ghost .image path {
   fill: var(--dc-primary-colour);
+}
+
+.ghost:disabled .image path {
+  fill: var(--dc-primary-disabled-colour);
 }
 
 .ghost .spinner circle {
