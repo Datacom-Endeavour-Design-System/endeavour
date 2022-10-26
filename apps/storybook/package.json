@@ -9,7 +9,7 @@
     "start": "storybook dev -p 6006",
     "package": "storybook build",
     "test": "cypress open --component",
-    "test:ci": "cypress run --component"
+    "test:ci": "cypress run --component --config video=false"
   },
   "dependencies": {
     "@datacom/endeavour": "*",
