@@ -91,7 +91,7 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
   deploy-staging:
     name: Deploy staging
-    if: ${{ github.ref == main && github.event_name == 'push' }}
+    if: ${{ github.ref == 'main' && github.event_name == 'push' }}
     environment: 'staging'
     needs: [build,test]
     runs-on: ubuntu-latest
