@@ -8,8 +8,8 @@
     "dev": "npm run start",
     "start": "storybook dev -p 6006",
     "package": "storybook build",
-    "test": "cypress open",
-    "test:ci": "cypress run"
+    "test": "cypress open --component",
+    "test:ci": "cypress run --component"
   },
   "dependencies": {
     "@datacom/endeavour": "*",
