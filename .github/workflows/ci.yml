@@ -2,6 +2,8 @@ name: Deploy
 
 on:
   push:
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
 
@@ -35,7 +37,6 @@ jobs:
           path: apps/storybook/storybook-static
   test:
     name: Test
-        name: Cypress run
     runs-on: ubuntu-20.04
     strategy:
       # when one test fails, DO NOT cancel the other
