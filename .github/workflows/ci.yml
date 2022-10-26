@@ -47,14 +47,14 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Component tests
         uses: cypress-io/github-action@v4
         with:
-          record: false
+          browser: chrome
+          build: npx cypress info
           project: ./apps/storybook
-          # to run component tests we need to use "component: true"
-          component: true
+          command: npm run test:ci
   deploy:
     name: Deploy
     needs: [build,test]
