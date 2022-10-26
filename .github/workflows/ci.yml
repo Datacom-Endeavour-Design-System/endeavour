@@ -55,12 +55,14 @@ jobs:
           project: ./apps/storybook
           runTests: false
       - name: Chrome components
+        uses: cypress-io/github-action@v4
         with:
           browser: chrome
           install: false
           project: ./apps/storybook
           command: npm run test:ci
       - name: Firefox Components
+        uses: cypress-io/github-action@v4
         with:
           browser: firefox
           install: false
