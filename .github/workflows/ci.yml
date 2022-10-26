@@ -68,8 +68,31 @@ jobs:
           install: false
           project: ./apps/storybook
           command: npm run test:ci
-  deploy:
-    name: Deploy
+  deploy-development:
+    name: Deploy to development
+    if: ${{ github.event_name == 'pull_request' }}
+    environment: 'development'
+    needs: [build,test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retrieve build
+        uses: actions/download-artifact@v3
+        with:
+          name: storybook-static
+          path: apps/storybook/storybook-static
+      - name: Push to Cloudflare
+        uses: cloudflare/pages-action@1
+        with:
+          branch: ${{ github.head_ref }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: datacom-endeavour
+          directory: apps/storybook/storybook-static
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+  deploy-staging:
+    name: Deploy staging
+    if: ${{ github.ref == main && github.event_name == 'push' }}
+    environment: 'staging'
     needs: [build,test]
     runs-on: ubuntu-latest
     steps:
