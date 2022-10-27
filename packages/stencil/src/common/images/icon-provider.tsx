@@ -12,6 +12,9 @@ export const Empty = () => <svg></svg>;
 
 let mapped;
 export const getSvgComponent = (name: string): SVGComponent => {
+    if (!name) {
+        throw new Error('Icon name must not be empty');
+    }
     const imageName = name.toLowerCase();
 
     if (!mapped) {
@@ -19,7 +22,7 @@ export const getSvgComponent = (name: string): SVGComponent => {
     }
 
     if (!mapped[imageName]) {
-        throw Error(`Icon ${name} not found`);
+        throw new Error(`Icon ${name} not found`);
     }
 
     return mapped[imageName];
