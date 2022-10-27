@@ -1,6 +1,17 @@
 {
-  "extends": ["../../.eslintrc.base.json"],
+  "extends": ["../../.eslintrc.json", "plugin:@stencil/recommended"],
   "parserOptions": {
     "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@stencil/decorators-context": "warn",
+    "@stencil/own-methods-must-be-private": "warn"
+  },
+  "ignorePatterns": ["stencil.config.ts"],
+  "settings": {
+    "react": {
+      "version": "detect",
+      "pragma": "h"
+    }
   }
 }

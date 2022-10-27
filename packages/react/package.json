@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc -p .",
     "dev": "tsc -p . --watch",
-    "lint": "eslint",
+    "lint": "eslint .",
     "clean": "rimraf dist",
     "rollup": "rollup -c"
   },

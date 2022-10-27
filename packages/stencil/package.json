@@ -13,7 +13,7 @@
   "scripts": {
     "build": "stencil build --docs",
     "dev": "stencil build --docs --watch",
-    "lint": "eslint",
+    "lint": "eslint .",
     "start": "stencil build --dev --watch --serve",
     "clean": "rimraf dist loader www",
     "generate": "stencil generate"
@@ -22,6 +22,7 @@
     "@stencil/core": "^2.18.1"
   },
   "devDependencies": {
+    "@stencil/eslint-plugin": "^0.4.0",
     "@stencil/react-output-target": "^0.3.1",
     "puppeteer": "^10.0.0",
     "rollup-plugin-copy": "^3.4.0"
