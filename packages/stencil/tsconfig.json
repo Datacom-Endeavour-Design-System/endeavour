@@ -1,22 +1,12 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
-    "composite": true,
-    "experimentalDecorators": true,
-    "lib": ["dom", "es2017"],
-    "moduleResolution": "node",
-    "module": "esnext",
-    "skipLibCheck": true,
-    "target": "es2017",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "jsx": "react",
     "jsxFactory": "h",
+    "module": "esnext",
+    "outDir": "dist",
     "rootDir": "src",
-    "outDir": "dist"
+    "skipLibCheck": true,
+    "noImplicitAny": false,
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": [ "src" ]
 }

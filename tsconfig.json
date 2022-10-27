@@ -2,10 +2,29 @@
   "buildOnSave": false,
   "compileOnSave": false,
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
     "baseUrl": ".",
+    "composite": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "paths": {
       "@datacom/endeavour": ["packages/stencil/src"],
       "@datacom/endeavour-react": ["packages/react/src"]
-    }
-  }
+    },
+    "removeComments": false,
+    "sourceMap": true,
+    "lib": ["dom", "es2015"],
+    "module": "es2015",
+    "target": "es2015"
+  },
+  "exclude": [
+    "node_modules",
+    "**/__tests__/**"
+  ]
 }
