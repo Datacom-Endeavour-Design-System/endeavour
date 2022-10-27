@@ -32,7 +32,7 @@ export default {
     Required: false,
     disabled: false,
     checked: false,
-    span:"string"
+    small:"string"
   
   },
 };
@@ -82,7 +82,9 @@ DisabledSelected.args = {
 export const Required = Template.bind({});
 Required.args = {
   label: "Checkbox Item",
-  span: "Error message",
+  disabled: false,
+  checked: false,
+  small: "Error message",
   required: true,
 };
 export const small = Template.bind({});

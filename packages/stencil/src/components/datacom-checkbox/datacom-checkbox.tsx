@@ -16,7 +16,7 @@ export class DatacomCheckbox {
   @Prop() label: string;
   @Prop() disabled: boolean = false;
   @Prop() required: boolean = false;
-  @Prop() span: string;
+  @Prop() small: string;
   @Prop() value: string;
   @Prop() autofocus: boolean = false;
 
@@ -24,14 +24,17 @@ export class DatacomCheckbox {
 
   handleChange = () => {
     this.checked = !this.checked;
-    this.toggle.emit(this.checked);
-  };
+    this.toggle.emit(this.checked)
+    
+ 
+}
   render() {
     if (!['standard', 'small'].includes(this.size)) {
       throw Error('Check size must be either standard or small.');
     }
 
     const classes = {
+      "required" :this.required,
       "disabled": this.disabled,
       [`size-${this.size}`]: true,
       [this.type]:true
@@ -51,10 +54,9 @@ export class DatacomCheckbox {
             value={this.value}
           />
           <label class={`size-${this.size}`}>
-         
           {this.label}</label>
+          <small class ="small">{this.small}</small>
        
-        <span class="small">{this.span}</span>
       </Host>
     );
   }

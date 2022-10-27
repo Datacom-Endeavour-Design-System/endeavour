@@ -1,24 +1,17 @@
 :host {
-  display: inline-block;
+  display: block;
   border-bottom-left-radius: 7px 3px;
-border-bottom-right-radius: 7% 6%;
-border-top-left-radius: 7px;
+  border-bottom-right-radius: 7% 6%;
+  border-top-left-radius: 7px;
 }
-.small {
-  color: #cf364e;
-  position: absolute;
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: -0.12px;
-  left: 0.36%;
-  top: 7.56%;
-  bottom: -4.34%;
-  }
+/* @-ms-viewport {
+  width: device-width;
+} */
+
+
 /*common css*/
 .checkbox {
+
   -webkit-appearance: none;
   appearance: none;
   /* creating a custom design */
@@ -34,7 +27,7 @@ border-top-left-radius: 7px;
   border-radius: var(--dc-checkbox-border-radius);
   border: var(--dc-checkbox-border-enabled);
   position: relative;
-  background-image: url('../../assets/images/tick.svg');
+  
 }
 label.size-standard {
   position: relative;
@@ -43,16 +36,16 @@ label.size-standard {
   font-style: normal;
   color: #0a1839;
   align-items: center;
-  font-family:var(--dc-primary-font) ;
+  font-family: var(--dc-primary-font);
   font-weight: 400;
   line-height: 12px;
-  vertical-align:right;
+  vertical-align: right;
   line-height: 25px;
   text-align: left;
   width: 104px;
   height: 18px;
 }
-.size-small{
+.size-small {
   width: 20px;
   height: 20px;
 }
@@ -64,19 +57,38 @@ label.size-small {
   font-style: normal;
   color: #0a1839;
   align-items: center;
-  font-family:var(--dc-primary-font);
+  font-family: var(--dc-primary-font);
   font-weight: 400;
   line-height: 12px;
-  vertical-align:right;
+  vertical-align: right;
   line-height: 25px;
   text-align: left;
   width: 104px;
   height: 18px;
- 
 }
 
 
-.checkbox:checked ,.size-standard:active {
+ .small {
+  display:flex;
+  width: 104px;
+  height: 18px;
+  align-items: bottom;
+  color: #cf364e;
+  text-align: left;
+  position: absolute;
+  font-family:'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: -0.12px;
+  left: 0.5%;
+  right: 71.43%;
+  top: 7.7%;
+  bottom: -0.10%;
+}
+
+
+.checkbox:checked {
   background-color: var(--dc-checkbox-checked-background);
   border-radius: var(--dc-checkbox-border-radius);
   background-image: url("data:image/svg+xml,%3csvg width='14' height='12' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.851 11.563a.765.765 0 0 1-.541-.243L.217 6.91c-.299-.318-.28-.822 0-1.14.3-.318.767-.3 1.065 0l3.55 3.83L12.7.688A.73.73 0 0 1 13.764.65c.299.299.317.803.037 1.14L5.41 11.32c-.167.15-.354.243-.56.243Z' fill='white'/%3e%3c/svg%3e");
@@ -84,24 +96,22 @@ label.size-small {
   background-position: 2px 2px;
   background-repeat: no-repeat;
 }
-.checkbox:checked span  {
+.checkbox:checked span {
   position: center;
-
   border-radius: var(--dc-checkbox-border-radius);
 }
- 
-.checkbox:hover:not([disabled]) ,.size-standard:active {
+
+.checkbox:hover:not([disabled]),
+.size-standard:active {
   border: var(--dc-checkbox-border-hover);
 }
 
-.checkbox:focus:not([disabled]) , .size-standard:active {
+.checkbox:focus:not([checked]){
   border: 3px solid #0055ff;
   border-radius: 4px;
-
 }
 
-
-.checkbox:disabled  {
+.checkbox:disabled {
   content: '';
   border-color: 1px solid #dadada;
   background-color: var(--dc-checkbox-background-disabled);
@@ -113,7 +123,15 @@ label.size-small {
 }
 
 .checkbox:required {
+  content:'';
   border: var(--dc-checkbox-error-border-color);
-  margin-bottom: 12px;
 }
 
+
+@media (max-width:550px) {
+  small {
+
+  font-size: 12px;
+
+  }
+}
