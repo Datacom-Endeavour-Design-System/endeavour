@@ -71,14 +71,14 @@ standard.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   label: "Checkbox Item unselected",
-  Checked: false,
-  Disabled: true,
+  checked: false,
+  disabled: true,
 };
 export const DisabledSelected = Template.bind({});
 DisabledSelected.args = {
   label: "Checkbox Item selected",
-  Disabled: true,
-  Checked: true,
+  disabled: true,
+  checked: true,
 };
 // export const Required = Template.bind({});
 // Required.args = {
