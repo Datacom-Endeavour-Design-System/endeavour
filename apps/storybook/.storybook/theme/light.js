@@ -9,7 +9,7 @@ export default create({
 
   brandTitle: 'Datacom Brandhub',
   brandUrl: 'https://datacom.co.nz',
-  brandImage: '/images/logo-white-bg.svg',
+  brandImage: '/images/logo.png',
   brandTarget: '_self',
 
   // Typography
