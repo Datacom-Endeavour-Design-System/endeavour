@@ -12,6 +12,10 @@ button {
   font-weight: 600;
 }
 
+.text:empty {
+  display: none;
+}
+
 button:hover {
   cursor: pointer;
 }
@@ -42,7 +46,6 @@ button:hover {
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
-  min-width: 140px;
 }
 
 .size-small .image {
@@ -56,7 +59,6 @@ button:hover {
   padding: 12px 24px;
   border-radius: 8px;
   font-size: 18px;
-  min-width: 160px;
 }
 
 .size-large .image {
@@ -65,13 +67,18 @@ button:hover {
 }
 
 .loading .text {
-  display: none;
+  visibility: hidden;
+}
+
+.loading .image {
+  visibility: hidden;
 }
 
 .spinner {
   animation: rotate 2s linear infinite;
   display: inline-block;
-  height: 32px;
+  height: 36px;
+  position: absolute;
 }
 
 .size-small .spinner {
@@ -81,10 +88,6 @@ button:hover {
 .spinner circle {
   stroke-linecap: round;
   animation: dash 1.5s ease-in-out infinite;
-}
-
-.primary .spinner circle {
-  stroke: var(--dc-background-colour);
 }
 
 @keyframes rotate {
@@ -120,16 +123,25 @@ button:hover {
 }
 
 .primary:focus {
-  outline: 3px solid var(--dc-primary-accent-colour);
+  outline: 2px solid var(--dc-primary-colour);
   outline-offset: 1px;
 }
 
 .primary:hover, .primary:active {
   background-color: var(--dc-primary-accent-colour);
+  outline: none;
 }
 
 .primary:disabled {
   background-color: var(--dc-primary-disabled-colour);
+}
+
+.primary .spinner circle {
+  stroke: var(--dc-background-colour);
+}
+
+.primary:disabled .spinner circle {
+  stroke: var(--dc-background-colour);
 }
 
 /* Secondary */
@@ -141,17 +153,18 @@ button:hover {
   border-style: solid;
 }
 
+.secondary:focus {
+  outline: 2px solid var(--dc-primary-colour);
+  border-color: var(--dc-primary-colour);
+  color: var(--dc-primary-colour);
+  outline-offset: 1px;
+}
+
 .secondary:hover, .secondary:active {
   color: var(--dc-primary-accent-colour);
   border-color: var(--dc-primary-accent-colour);
   background-color: var(--dc-background-accent-color);
-}
-
-.secondary:focus {
-  outline: 3px solid var(--dc-primary-colour);
-  border-color: var(--dc-primary-colour);
-  color: var(--dc-primary-colour);
-  outline-offset: 1px;
+  outline: none;
 }
 
 .secondary:disabled {
@@ -163,9 +176,17 @@ button:hover {
   fill: var(--dc-primary-colour);
 }
 
+.secondary:disabled .image path {
+  fill: var(--dc-primary-disabled-colour);
+}
+
 .secondary .spinner circle {
   stroke: var(--dc-primary-colour);
   fill: none;
+}
+
+.secondary:disabled .spinner circle {
+  stroke: var(--dc-primary-disabled-colour);
 }
 
 /* Ghost */
@@ -176,15 +197,16 @@ button:hover {
   border: none;  
 }
 
+.ghost:focus {
+  outline: 2px solid var(--dc-primary-colour);
+  outline-offset: 1px;
+  color: var(--dc-primary-colour);
+}
+
 .ghost:hover, .ghost:active {
   background-color: var(--dc-background-accent-color);
   color: var(--dc-primary-accent-colour);
-}
-
-.ghost:focus {
-  outline: 3px solid var(--dc-primary-colour);
-  outline-offset: 1px;
-  color: var(--dc-primary-colour);
+  outline: none;
 }
 
 .ghost:disabled {
@@ -195,7 +217,15 @@ button:hover {
   fill: var(--dc-primary-colour);
 }
 
+.ghost:disabled .image path {
+  fill: var(--dc-primary-disabled-colour);
+}
+
 .ghost .spinner circle {
   stroke: var(--dc-primary-colour);
   fill: none;
+}
+
+.ghost:disabled .spinner circle {
+  stroke: var(--dc-primary-disabled-colour);
 }
