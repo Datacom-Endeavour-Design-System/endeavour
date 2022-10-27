@@ -13,12 +13,9 @@
   "scripts": {
     "build": "stencil build --docs",
     "dev": "stencil build --docs --watch",
-<<<<<<< HEAD
     "lint": "eslint .",
-=======
     "test:unit": "stencil test --spec",
     "test:e2e": "stencil test --spec --e2e",
->>>>>>> main
     "start": "stencil build --dev --watch --serve",
     "clean": "rimraf dist loader www",
     "generate": "stencil generate"
