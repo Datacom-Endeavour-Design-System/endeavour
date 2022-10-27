@@ -8,9 +8,9 @@ export default {
   component: DatacomCheckbox,
   argTypes: {
     label: {
-      name: "label",
-      defaultValue: "Checkbox Item",
-      description: "checkbox lebel",
+      name: "Label",
+      defaultValue:"Checkbox Item",
+      description: "checkbox label",
       type: { label: "string", required: true },
     },
     size: {
@@ -25,14 +25,14 @@ export default {
    
   },
   arg: {
-    label: "Checkbox",
+    label:"Checkbox",
     Checkboxtype: "checkbox",
     size: "standard",
     type: DatacomCheckbox,
-    Required: false,
+    required: false,
     disabled: false,
     checked: false,
-    small:"string"
+   
   
   },
 };
@@ -65,34 +65,36 @@ standard.args = {
   size: "standard",
   disabled: false,
   checked: false,
+  required:false
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   label: "Checkbox Item unselected",
-  checked: false,
-  disabled: true,
+  Checked: false,
+  Disabled: true,
 };
 export const DisabledSelected = Template.bind({});
 DisabledSelected.args = {
   label: "Checkbox Item selected",
-  disabled: true,
-  checked: true,
+  Disabled: true,
+  Checked: true,
 };
-export const Required = Template.bind({});
-Required.args = {
-  label: "Checkbox Item",
-  disabled: false,
-  checked: false,
-  small: "Error message",
-  required: true,
-};
+// export const Required = Template.bind({});
+// Required.args = {
+//   label: "Checkbox Item",
+//   disabled: false,
+//   checked: false,
+//   small: "Error message",
+//   required: true,
+// };
 export const small = Template.bind({});
 small.args = {
   label: "Checkbox Item",
   size: "small",
-  cheked: true,
-  disabled:false,
+  Cheked: true,
+  Disabled:false,
+  
 };
 
 export const VerticalGrouping = (args:any) => {
@@ -114,5 +116,13 @@ export const VerticalGrouping = (args:any) => {
     </div>
   );
 };
+export const Error = (args:any) => {
+  return(
+  <div>
+    <DatacomCheckbox {...args} required = "true" disabled="false">
+    </DatacomCheckbox>
+    <small style = {{color:"#cf364e", font:"12px" }}>Error message</small>
+  </div>);
+}
 // export const  Nested = () =><NestedCheckboxes/>
 // export const Toggle = () => <CheckboxWrapperToggle />;
