@@ -46,7 +46,6 @@ button:hover {
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
-  min-width: 140px;
 }
 
 .size-small .image {
@@ -60,7 +59,6 @@ button:hover {
   padding: 12px 24px;
   border-radius: 8px;
   font-size: 18px;
-  min-width: 160px;
 }
 
 .size-large .image {
@@ -124,12 +122,13 @@ button:hover {
 }
 
 .primary:focus {
-  outline: 2px solid var(--dc-primary-accent-colour);
+  outline: 2px solid var(--dc-primary-colour);
   outline-offset: 1px;
 }
 
 .primary:hover, .primary:active {
   background-color: var(--dc-primary-accent-colour);
+  outline: none;
 }
 
 .primary:disabled {
@@ -149,6 +148,7 @@ button:hover {
   color: var(--dc-primary-accent-colour);
   border-color: var(--dc-primary-accent-colour);
   background-color: var(--dc-background-accent-color);
+  outline: none;
 }
 
 .secondary:focus {
