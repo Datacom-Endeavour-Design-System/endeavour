@@ -7,7 +7,9 @@
     "clean": "rimraf dist storybook-static",
     "dev": "npm run start",
     "start": "storybook dev -p 6006",
-    "package": "storybook build"
+    "package": "storybook build",
+    "test": "cypress open --component",
+    "test:ci": "cypress run --component --config video=false"
   },
   "dependencies": {
     "@datacom/endeavour": "*",
@@ -21,6 +23,7 @@
     "@storybook/addon-links": "7.0.0-alpha.43",
     "@storybook/react-vite": "7.0.0-alpha.43",
     "@storybook/testing-library": "0.0.14-next.0",
+    "@storybook/testing-react": "^1.3.0",
     "@types/node": "^15.12.2",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",

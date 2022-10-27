@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStoryFn } from '@storybook/react';
+import { ComponentStoryFn, Meta } from '@storybook/react';
 import { DatacomButton } from '@datacom/endeavour-react';
 
 export default {
@@ -63,7 +63,7 @@ export default {
     loading: false,
     disabled: false
   }
-};
+} as Meta<typeof DatacomButton>;
 
 const Template: ComponentStoryFn<typeof DatacomButton> = (args) => <DatacomButton {...args} />;
 

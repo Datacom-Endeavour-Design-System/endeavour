@@ -36,36 +36,38 @@ New components are developed first as web components and then subsequently wrapp
 The React components are generated from the Stencil web components. This project may include additional helpers, such as hooks or high-level components.
 
 ## Getting Started
-To develop and run you will need NodeJs > 14 (LTS)
+To develop and run you will need NodeJs > 16 (LTS)
 
 ### Initialise project
 Install npm dependencies:
 ```
 npm install
 ```
-### Start Storybook
-Start and launch storybook after compiling the web components and generating React wrapper code:
+### Build and package
+Build all dependencies and package for deployment and distribution:
 ```
-npm run start:storybook
+npm run package
 ```
-### Start Stencil
-Start and launch stencil web view after compiling web components:
+### Testing
+Run test suite in non-interactive mode:
 ```
-npm run start:stencil
+npm run test:ci
 ```
-
 ## Nx and mono-repo management
-This project uses [nx](https://nx.dev) to manage nodejs libraries as applications in a single mono-repo. 
+The project is structured as a monorepo with [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces). 
 
-The project is structured as an [npm workspace](https://docs.npmjs.com/cli/v7/using-npm/workspaces). 
+This project uses [nx](https://nx.dev) to orchestrate and cache project lifecycle tasks. 
 ## Lifecycle
 The following lifecycle events or jobs are available at the top-project. 
 
 | Name    | Description                                                                  |
 | ------- | ---------------------------------------------------------------------------- |
-| build   | Compile application outputs                                                  |
 | clean   | Clean applications of build artifacts                                        |
-| start:* | Start development servers. Known sub-tasks are<br/>* stencil<br/>* storybook |
+| dev     | Start development servers in watch mode                                      |
+| build   | Compile application outputs                                                  |
+| test    | Open interactive test suite                                                  |
+| test:ci | Run test suite in non-interactive mode                                       |
+| start:* | Start individual development servers. <br/>* stencil<br/>* storybook         |
 | package | Build and package all libraries and applications                             |
 
 ## Developing
