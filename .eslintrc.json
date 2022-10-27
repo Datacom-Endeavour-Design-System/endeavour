@@ -1,0 +1,26 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:promise/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier"
+  ],
+  "plugins": ["promise", "@typescript-eslint"],
+  "rules": {
+    "promise/prefer-await-to-then": "warn",
+    "promise/prefer-await-to-callbacks": "warn",
+    "@typescript-eslint/no-unsafe-assignment": "warn",
+    "@typescript-eslint/no-unsafe-call": "warn"
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "ignorePatterns": ["dist", "node_modules", "examples", "scripts", "generated"]
+}

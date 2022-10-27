@@ -6,8 +6,10 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "strictBindCallApply": true
   },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "references": [
     { "path": "../../packages/react" },
     { "path": "../../packages/stencil" }

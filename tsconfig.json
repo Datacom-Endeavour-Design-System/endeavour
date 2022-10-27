@@ -22,9 +22,5 @@
     "lib": ["dom", "es2015"],
     "module": "es2015",
     "target": "es2015"
-  },
-  "exclude": [
-    "node_modules",
-    "**/__tests__/**"
-  ]
+  }
 }

@@ -4,12 +4,14 @@
   "description": "React specific wrapper for Datacom design systems web components",
   "scripts": {
     "build": "tsc -p .",
+    "dev": "tsc -p . --watch",
+    "lint": "eslint",
     "clean": "rimraf dist",
     "rollup": "rollup -c"
   },
   "dependencies": {
     "@datacom/endeavour": "*"
-  },  
+  },
   "devDependencies": {
     "@types/node": "^15.12.2",
     "@types/react": "^17.0.39",
@@ -35,8 +37,10 @@
   "nx": {
     "targets": {
       "build": {
-        "outputs": ["{projectRoot}/dist"]
+        "outputs": [
+          "{projectRoot}/dist"
+        ]
       }
-    }  
+    }
   }
 }

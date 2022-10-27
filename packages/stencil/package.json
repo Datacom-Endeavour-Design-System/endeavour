@@ -13,6 +13,7 @@
   "scripts": {
     "build": "stencil build --docs",
     "dev": "stencil build --docs --watch",
+    "lint": "eslint",
     "start": "stencil build --dev --watch --serve",
     "clean": "rimraf dist loader www",
     "generate": "stencil generate"
