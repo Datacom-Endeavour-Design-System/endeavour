@@ -7,9 +7,8 @@
     "clean": "rimraf dist storybook-static",
     "dev": "npm run start",
     "start": "storybook dev -p 6006",
-    "package": "storybook build && npm run cleanup",
+    "package": "storybook build && node ./scripts/cleanup.js",
     "test": "cypress open --component",
-    "cleanup": "node -e \"require('fs').renameSync('./storybook-static/sb-addons/node_modules/@storybook', './storybook-static/sb-addons/storybook'); require('replace-in-file').sync({ files: './storybook-static/index.html', from: /node_modules\\/%40/g, to: '' });\"",
     "test:ci": "cypress run --component --config video=false"
   },
   "dependencies": {
