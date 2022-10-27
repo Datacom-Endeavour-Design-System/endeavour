@@ -5,6 +5,21 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Datacom styled button which extends HTML button. Custom attributes:
+
+text = button label
+variant = primary | secondar | ghost
+size = large | small
+image-position = left | right
+src = image url
+icon = svg icon name
+loading = true | false to show spinning icon
+
+This button cannot exist within the shadow root as it sits outside
+the DOM flow with regards to form submit.
+
 ## Properties
 
 | Property        | Attribute        | Description | Type                                 | Default     |

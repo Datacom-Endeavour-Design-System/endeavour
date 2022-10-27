@@ -20,3 +20,4 @@ export * from './back';
 export * from './back-to-top';
 export * from './add';
 export * from './add-to-cart';
+export * from './search';
