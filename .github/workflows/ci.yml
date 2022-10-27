@@ -70,7 +70,7 @@ jobs:
           command: npm run test:ci
   deploy-development:
     name: Deploy to development
-    if: ${{ github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
     environment: 'development'
     needs: [build,test]
     runs-on: ubuntu-latest
@@ -91,7 +91,7 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
   deploy-staging:
     name: Deploy staging
-    if: ${{ github.ref == 'main' && github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
     environment: 'staging'
     needs: [build,test]
     runs-on: ubuntu-latest
