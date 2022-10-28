@@ -8,7 +8,7 @@ export default create({
   colorSecondary: '#0055FF',
 
   brandTitle: 'Datacom Brandhub',
-  brandUrl: 'https://datacom.co.nz',
+  brandUrl: 'https://brandhub.datacom.com/d/fjZSq4WewHBg',
   brandImage: '/images/logo.png',
   brandTarget: '_self',
 
@@ -16,7 +16,7 @@ export default create({
   fontBase: 'Montserrat',
 
   // UI
-  appBorderColor: '#0055FF',
+  appBorderColor: '#DADADA',
   textInverseColor: 'rgb(0, 85, 255)',
   inputBorderRadius: '3px',
 
