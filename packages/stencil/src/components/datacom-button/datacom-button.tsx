@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element} from '@stencil/core';
+import { Component, Host, h, Prop, Element, VNode} from '@stencil/core';
 import {getSvg} from '../../common/images/icon-provider';
 
 export type ButtonVariant = 'primary' | 'seconday' | 'ghost';
@@ -40,9 +40,9 @@ export class DatacomButton {
   @Prop() loading: boolean;
 
   /* Pass through button properties */
-  @Prop() disabled: boolean = false;
+  @Prop() disabled = false;
   @Prop() autofocus: boolean;
-  @Prop() type: string = 'button';
+  @Prop() type = 'button';
   @Prop() name: string;
   @Prop() value: string;
   @Prop() formmethod: string;
@@ -67,15 +67,15 @@ export class DatacomButton {
       this.imagePosition = 'left';
     }
 
-    let image;
-    if (this.icon) {
+    let image: VNode;
+    if (this.icon !== undefined) {
       image = getSvg(this.icon, {class: 'image'});
-    } else if (this.src) {
+    } else if (this.src !== undefined) {
       image = <img src={this.src} class="image"></img>;
     }
 
     let spinner;
-    if (this.loading) {
+    if (this.loading !== undefined) {
       spinner = getSvg('spinner', {class: 'spinner'});
     }
 

@@ -12,22 +12,32 @@ interface DatacomTabElement {
   assetsDirs: ['assets']
 })
 export class DatacomTab implements DatacomTabElement {
-  @Prop() label: string = 'Not Set';
-  @Prop() enabled: boolean = true;
-  @State() selected: boolean = false;
+  @Prop() label = 'Not Set';
+  @Prop() enabled = true;
+  @State() selected = false;
 
   @Event({
     composed: true
   })
   tabSelected: EventEmitter<string>;
 
+  /**
+   * Is this tab currently selected
+   * 
+   * @returns boolean
+   */
   @Method()
-  async isSelected(): Promise<boolean> {
+  public async isSelected(): Promise<boolean> {
     return this.selected;
   }
 
+  /**
+   * Select this tab
+   * 
+   * @param value 
+   */
   @Method()
-  async setSelected(value: boolean): Promise<void> {
+  public async setSelected(value: boolean): Promise<void> {
     this.selected = value;
   }
 
