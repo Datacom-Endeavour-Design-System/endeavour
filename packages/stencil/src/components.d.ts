@@ -34,8 +34,16 @@ export namespace Components {
     }
     interface DatacomTab {
         "enabled": boolean;
+        /**
+          * Is this tab currently selected
+          * @returns boolean
+         */
         "isSelected": () => Promise<boolean>;
         "label": string;
+        /**
+          * Select this tab
+          * @param value
+         */
         "setSelected": (value: boolean) => Promise<void>;
     }
     interface DatacomTabgroup {

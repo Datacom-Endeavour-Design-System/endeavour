@@ -13,8 +13,7 @@
   "scripts": {
     "build": "stencil build --docs",
     "dev": "stencil build --docs --watch",
-    "lint": "eslint .",
-    "lint:one": "eslint",
+    "lint": "eslint src",
     "test:unit": "stencil test --spec",
     "test:e2e": "stencil test --spec --e2e",
     "start": "stencil build --dev --watch --serve",

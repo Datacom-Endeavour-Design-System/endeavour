@@ -1,26 +1,32 @@
-import {useRef, useEffect} from 'react';
-
-type ListenerFn = (event?: Event) => void;
+import { useRef, useEffect } from 'react';
 
 /**
  * Attach event listener to custom DOM event
- * 
- * @param name 
- * @param listener 
+ *
+ * @param name
+ * @param listener
  * @returns Ref
  */
-export const useEventRef = <T extends HTMLElement=HTMLElement>(name: string, listener: ListenerFn) => {
-    const targetRef=useRef<T>();
-    const handlerRef=useRef<ListenerFn>();
+export const useEventRef = <T extends HTMLElement = HTMLElement>(
+  name: string,
+  listener: EventListener
+) => {
+  const targetRef = useRef<T>();
+  const handlerRef = useRef(listener);
 
+  useEffect(() => {
     handlerRef.current = listener;
+  }, [listener]);
 
-    useEffect( () => {
-        const handler = (e: Event) => handlerRef.current(e);
-        targetRef.current.addEventListener(name, handler);
+  useEffect(() => {
+    const handler: EventListener = (e) => handlerRef.current(e);
 
-        return () => targetRef?.current?.removeEventListener(name, handler);
-    }, [name]);
+    const target = targetRef.current;
+    if (!target) return;
 
-    return targetRef;
-}
+    target.addEventListener(name, handler);
+    return () => target.removeEventListener(name, handler);
+  }, [name]);
+
+  return targetRef;
+};

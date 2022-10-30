@@ -17,7 +17,7 @@ export class SiteTabGroup {
         let first: HTMLDatacomTabElement;
         let selected = false;
         for (let i = 0; i < tabs.length; i++) {
-            const tab = tabs.item[i];
+            const tab = tabs.item[i] as HTMLDatacomTabElement;
 
             if (first == undefined) {
                 first = tab;
@@ -36,7 +36,7 @@ export class SiteTabGroup {
         const tabs = this.root.querySelectorAll<HTMLDatacomTabElement>('datacom-tab');
         
         for (let i = 0; i < tabs.length; i++) {
-            const tab = tabs.item[i];
+            const tab = tabs.item[i] as HTMLDatacomTabElement;
             const found = tab.getAttribute('data-tab');
             await tab.setSelected(false);
             if (found === name) {
