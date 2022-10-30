@@ -52,39 +52,44 @@ export class DatacomButton {
   @Prop() formtarget: string;
 
   render() {
-    if (!['primary', 'secondary', 'ghost'].includes(this.variant)) {
-      console.log('Button variant must be either primary, secondary or ghost.');
-      this.variant = 'primary';
+    // Cannot overwrite immutable properties so we must use local variables
+    let variant = this.variant;
+    let size = this.size;
+    let imagePosition = this.imagePosition;
+
+    if (!['primary', 'secondary', 'ghost'].includes(variant)) {
+      console.log('Button variant must be either primary, secondary or ghost. Defaulting to primary');
+      variant = 'primary';
     }
 
-    if (!['large', 'small'].includes(this.size)) {
-      console.log('Button size must be either large or small.');
-      this.size = 'large';
+    if (this.size?.length > 0 && !['large', 'small'].includes(size)) {
+      console.log('Button size must be either large or small. Defaulting to large');
+      size = 'large';
     }
 
     if (!['left', 'right'].includes(this.imagePosition)) {
-      console.log('Button image position must be either left or right.');
-      this.imagePosition = 'left';
+      console.log('Button image position must be either left or right. Defaulting to left');
+      imagePosition = 'left';
     }
 
     let image: VNode;
-    if (this.icon !== undefined) {
+    if (this.icon?.length > 0) {
       image = getSvg(this.icon, { class: 'image' });
-    } else if (this.src !== undefined) {
+    } else if (this.src?.length > 0) {
       image = <img src={this.src} class="image"></img>;
     }
 
     let spinner;
-    if (this.loading !== undefined) {
+    if (this.loading) {
       spinner = getSvg('spinner', { class: 'spinner' });
     }
 
     const classes = {
       disabled: this.disabled,
       loading: this.loading,
-      [this.variant]: true,
-      [`size-${this.size}`]: true,
-      [`image-${this.imagePosition}`]: image && this.text?.length > 0,
+      [variant]: true,
+      [`size-${size}`]: true,
+      [`image-${imagePosition}`]: image && this.text?.length > 0,
     };
 
     return (
