@@ -120,7 +120,7 @@ button:hover {
 }
 
 .primary:focus {
-  outline: 3px solid var(--dc-primary-accent-colour);
+  outline: 3px solid red;
   outline-offset: 1px;
 }
 

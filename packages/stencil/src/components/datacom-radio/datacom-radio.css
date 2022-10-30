@@ -1,0 +1,94 @@
+:host {
+  display: inline;
+}
+
+/* Common CSS */
+.radio {
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  align-items: center;
+  vertical-align: bottom;
+  background-color: var(--dc-primary-background);
+  border: 1px solid #dadada;
+  border-radius: 12px;
+}
+label.size-standard {
+  position: relative;
+  font-size: var(--dc-label-font-size);
+  letter-spacing: -0.2px;
+  font-style: normal;
+  color: #0a1839;
+  align-items: center;
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  line-height: 24px;
+  vertical-align: right;
+  text-align: left;
+  width: 145px;
+  height: 24px;
+}
+.size-small {
+  width: 20px;
+  height: 20px;
+}
+label.size-small {
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  font-style: normal;
+  color: #0a1839;
+  align-items: center;
+  font-family: var(--dc-primary-font);
+  font-weight: 400;
+  line-height: 12px;
+  vertical-align: right;
+  line-height: 25px;
+  text-align: left;
+  width: 104px;
+  height: 18px;
+}
+
+.radio:hover:not([disabled]),
+.size-standard:active {
+  border: 1px solid #0055ff;
+  border-radius: 12px;
+}
+/* .radio-outer-circle:checked {
+  content: '';
+  border-color: #0055ff;
+  border-width: 0.2rem;
+} */
+
+
+.radio:checked {
+ outline: 1px solid var(--dc-primary-accent-colour);
+  outline-offset: 4px;
+  background-color: #0055ff;
+  width: 16px;
+  height: 16px;
+ 
+ 
+  
+
+}
+
+/* .checkbox:focus:not([checked]) {
+  border: 3px solid #0055ff;
+  border-radius: 4px;
+}
+
+.checkbox:disabled {
+  border-color: 1px solid #dadada;
+  background-color: var(--dc-checkbox-background-disabled);
+  border-radius: var(--dc-checkbox-border-radius);
+}
+.checkbox:disabled:checked {
+  background-color: var(--dc-checkbox-background-disabled);
+  background-image: url("data:image/svg+xml,%3csvg width='14' height='12' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.851 11.563a.765.765 0 0 1-.541-.243L.217 6.91c-.299-.318-.28-.822 0-1.14.3-.318.767-.3 1.065 0l3.55 3.83L12.7.688A.73.73 0 0 1 13.764.65c.299.299.317.803.037 1.14L5.41 11.32c-.167.15-.354.243-.56.243Z' fill='gray'/%3e%3c/svg%3e");
+} */

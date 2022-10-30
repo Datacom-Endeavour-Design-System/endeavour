@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-button/datacom-button";
+import { RadioSize, RadioVariant } from "./components/datacom-radio/datacom-radio";
 export namespace Components {
     interface DatacomButton {
         "autofocus": boolean;
@@ -31,6 +32,17 @@ export namespace Components {
         "label": string;
     }
     interface DatacomMenubar {
+    }
+    interface DatacomRadio {
+        "autofocus": boolean;
+        "checked": boolean;
+        "disabled": boolean;
+        "label": string;
+        "required": boolean;
+        "size": RadioSize;
+        "type": string;
+        "value": string;
+        "variant": RadioVariant;
     }
     interface DatacomTab {
         "enabled": boolean;
@@ -68,6 +80,12 @@ declare global {
         prototype: HTMLDatacomMenubarElement;
         new (): HTMLDatacomMenubarElement;
     };
+    interface HTMLDatacomRadioElement extends Components.DatacomRadio, HTMLStencilElement {
+    }
+    var HTMLDatacomRadioElement: {
+        prototype: HTMLDatacomRadioElement;
+        new (): HTMLDatacomRadioElement;
+    };
     interface HTMLDatacomTabElement extends Components.DatacomTab, HTMLStencilElement {
     }
     var HTMLDatacomTabElement: {
@@ -84,6 +102,7 @@ declare global {
         "datacom-button": HTMLDatacomButtonElement;
         "datacom-checkbox": HTMLDatacomCheckboxElement;
         "datacom-menubar": HTMLDatacomMenubarElement;
+        "datacom-radio": HTMLDatacomRadioElement;
         "datacom-tab": HTMLDatacomTabElement;
         "datacom-tabgroup": HTMLDatacomTabgroupElement;
     }
@@ -115,6 +134,17 @@ declare namespace LocalJSX {
     }
     interface DatacomMenubar {
     }
+    interface DatacomRadio {
+        "autofocus"?: boolean;
+        "checked"?: boolean;
+        "disabled"?: boolean;
+        "label"?: string;
+        "required"?: boolean;
+        "size"?: RadioSize;
+        "type"?: string;
+        "value"?: string;
+        "variant"?: RadioVariant;
+    }
     interface DatacomTab {
         "enabled"?: boolean;
         "label"?: string;
@@ -126,6 +156,7 @@ declare namespace LocalJSX {
         "datacom-button": DatacomButton;
         "datacom-checkbox": DatacomCheckbox;
         "datacom-menubar": DatacomMenubar;
+        "datacom-radio": DatacomRadio;
         "datacom-tab": DatacomTab;
         "datacom-tabgroup": DatacomTabgroup;
     }
@@ -137,6 +168,7 @@ declare module "@stencil/core" {
             "datacom-button": LocalJSX.DatacomButton & JSXBase.HTMLAttributes<HTMLDatacomButtonElement>;
             "datacom-checkbox": LocalJSX.DatacomCheckbox & JSXBase.HTMLAttributes<HTMLDatacomCheckboxElement>;
             "datacom-menubar": LocalJSX.DatacomMenubar & JSXBase.HTMLAttributes<HTMLDatacomMenubarElement>;
+            "datacom-radio": LocalJSX.DatacomRadio & JSXBase.HTMLAttributes<HTMLDatacomRadioElement>;
             "datacom-tab": LocalJSX.DatacomTab & JSXBase.HTMLAttributes<HTMLDatacomTabElement>;
             "datacom-tabgroup": LocalJSX.DatacomTabgroup & JSXBase.HTMLAttributes<HTMLDatacomTabgroupElement>;
         }

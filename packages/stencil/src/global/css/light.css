@@ -15,8 +15,12 @@
     --dc-primary-colour: #0055FF;
     --dc-primary-accent-colour: #003FBC;
     --dc-primary-disabled-colour: #999999;
+   
+    
     
 
     /* Buttons */
     --dc-button-primary-text-colour: #ffffff;
+    /* Radio group  */
+    --dc-label-font-size:16px;
 }
