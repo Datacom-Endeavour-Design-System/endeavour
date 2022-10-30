@@ -7,7 +7,10 @@ import { h, FunctionalComponent, VNode } from '@stencil/core';
  * Get Scalable vector graphics images (svg) dynamically. 
  * 
  * This file must be a tsx and it must explicitly use an svg tag (Empty)
+ * 
  */
+
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 export const Empty: FunctionalComponent = () => <svg></svg>;
 type IconComponentMapType = {[key: string]: FunctionalComponent<SVGOpts>}
 
@@ -34,6 +37,7 @@ export const getSvgComponent = (name: string): FunctionalComponent<SVGOpts> => {
 
     return component;
 }
+/* eslint-enable */
 
 export const getSvg = (name: string, opts?: SVGOpts): VNode => {
     return getSvgComponent(name)(opts, [], null) as VNode;
