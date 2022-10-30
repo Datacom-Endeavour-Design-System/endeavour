@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rimraf dist storybook-static",
     "dev": "npm run start",
+    "lint": "eslint .",
     "start": "storybook dev -p 6006",
     "package": "storybook build && node ./scripts/cleanup.js",
     "test": "cypress open --component",

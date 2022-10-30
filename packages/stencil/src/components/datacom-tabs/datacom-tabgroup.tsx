@@ -10,35 +10,39 @@ import { HTMLDatacomTabElement } from './datacom-tab';
 export class SiteTabGroup {
     root!: HTMLElement;
 
-    async setRoot(value: HTMLElement) {
+    async setRoot(value: HTMLElement): Promise<void> {
         this.root = value;
         
         const tabs = this.root.querySelectorAll<HTMLDatacomTabElement>('datacom-tab');
         let first: HTMLDatacomTabElement;
         let selected = false;
-        tabs.forEach(async (tab) => {
-            if (!first) {
+        for (let i = 0; i < tabs.length; i++) {
+            const tab = tabs.item[i];
+
+            if (first == undefined) {
                 first = tab;
             }
             selected = selected || await tab.isSelected();
-        });        
+        }
 
-        if (!selected && first) {
-            first.setSelected(true);
+        if (!selected && first !== undefined) {
+            await first.setSelected(true);
         }
     }
 
     @Listen('tabSelected')
-    onTabSelected(event: CustomEvent<string>) {
+    async onTabSelected(event: CustomEvent<string>): Promise<void> {
         const name = event.detail;
         const tabs = this.root.querySelectorAll<HTMLDatacomTabElement>('datacom-tab');
-        tabs.forEach((tab) => {
+        
+        for (let i = 0; i < tabs.length; i++) {
+            const tab = tabs.item[i];
             const found = tab.getAttribute('data-tab');
-            tab.setSelected(false);
+            await tab.setSelected(false);
             if (found === name) {
-                tab.setSelected(true);
-            }
-        });
+                await tab.setSelected(true);
+            }            
+        }
 
         event.stopPropagation();
     }

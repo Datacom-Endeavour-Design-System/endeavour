@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "plugin:@stencil/recommended"
+  ],
+  "rules": {
+    "@stencil/decorators-context": "off",
+    "@stencil/own-methods-must-be-private": "off",
+    /* Ignore stencil JSX parser */
+    "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+              "varsIgnorePattern": "h"
+          }
+    ]    
+  },
+  "ignorePatterns": ["stencil.config.ts"]
+}
