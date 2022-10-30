@@ -10,11 +10,11 @@ describe('dynamic find svg', () => {
   });    
 
   it('throws exception if name is not passed', () => {
-    expect(() => getSvgComponent(undefined)).toThrowError();
+    expect(() => getSvgComponent(undefined)).toThrow();
   });    
 
   it('does not find unknown svg component', () => {
-    expect(() => getSvgComponent('xxxxxx')).toThrowError();
+    expect(() => getSvgComponent('xxxxxx')).toThrow();
   });    
 });
 

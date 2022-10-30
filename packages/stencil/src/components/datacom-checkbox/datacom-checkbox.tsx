@@ -6,7 +6,7 @@ import { Component, h, Prop, Event, EventEmitter, Host } from '@stencil/core';
   shadow: true,
 })
 export class DatacomCheckbox {
-  @Prop() checked: boolean = false;
+  @Prop() checked = false;
   @Prop() label: string;
 
   @Event() toggle: EventEmitter<boolean>;  
