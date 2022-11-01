@@ -12,6 +12,7 @@ export namespace Components {
         "text": string;
     }
     interface DatacomCheckbox {
+        "autocomplete": boolean;
         "autofocus": boolean;
         "checked": boolean;
         "disabled": boolean;
@@ -87,6 +88,7 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface DatacomCheckbox {
+        "autocomplete"?: boolean;
         "autofocus"?: boolean;
         "checked"?: boolean;
         "disabled"?: boolean;

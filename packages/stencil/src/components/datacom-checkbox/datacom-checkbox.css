@@ -76,17 +76,20 @@ label.size-small {
 .checkbox:checked {
   background-color: var(--dc-checkbox-checked-background);
   border-radius: var(--dc-checkbox-border-radius);
-  background-image: url("data:image/svg+xml,%3csvg width='12' height='12' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.851 11.563a.765.765 0 0 1-.541-.243L.217 6.91c-.299-.318-.28-.822 0-1.14.3-.318.767-.3 1.065 0l3.55 3.83L12.7.688A.73.73 0 0 1 13.764.65c.299.299.317.803.037 1.14L5.41 11.32c-.167.15-.354.243-.56.243Z' fill='white'/%3e%3c/svg%3e");
+  border-color: #0055ff;
+  background-image: url("data:image/svg+xml,%3csvg width='14' height='12' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.851 11.563a.765.765 0 0 1-.541-.243L.217 6.91c-.299-.318-.28-.822 0-1.14.3-.318.767-.3 1.065 0l3.55 3.83L12.7.688A.73.73 0 0 1 13.764.65c.299.299.317.803.037 1.14L5.41 11.32c-.167.15-.354.243-.56.243Z' fill='white'/%3e%3c/svg%3e");
   background-size: 14px;
-  background-position: 3px 3px;
+  align-content: center;
+  background-position: 4px 4px;
   background-repeat: no-repeat;
 }
 .size-small:checked{
   background-color: var(--dc-checkbox-checked-background);
   border-radius: var(--dc-checkbox-border-radius);
-  background-image: url("data:image/svg+xml,%3csvg width='12' height='12' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.851 11.563a.765.765 0 0 1-.541-.243L.217 6.91c-.299-.318-.28-.822 0-1.14.3-.318.767-.3 1.065 0l3.55 3.83L12.7.688A.73.73 0 0 1 13.764.65c.299.299.317.803.037 1.14L5.41 11.32c-.167.15-.354.243-.56.243Z' fill='white'/%3e%3c/svg%3e");
+  border-color: #0055ff;
+  background-image: url("data:image/svg+xml,%3csvg width='14' height='12' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.851 11.563a.765.765 0 0 1-.541-.243L.217 6.91c-.299-.318-.28-.822 0-1.14.3-.318.767-.3 1.065 0l3.55 3.83L12.7.688A.73.73 0 0 1 13.764.65c.299.299.317.803.037 1.14L5.41 11.32c-.167.15-.354.243-.56.243Z' fill='white'/%3e%3c/svg%3e");
   background-size: 12px;
-  background-position: 2px 2px;
+  background-position: 3px 3px;
   background-repeat: no-repeat;
 
 }
@@ -121,6 +124,10 @@ label.size-small {
 .checkbox:required {
   content: '';
   border: var(--dc-checkbox-error-border-color);
+}
+.error {
+  font-size: 12px;
+  color:red;
 }
 
 @media (max-width: 550px) {

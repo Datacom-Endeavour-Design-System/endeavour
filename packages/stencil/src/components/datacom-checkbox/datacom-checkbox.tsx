@@ -20,6 +20,7 @@ export class DatacomCheckbox {
   @Prop() value: string;
   @Prop() name:string;
   @Prop() autofocus: boolean = false;
+  @Prop() autocomplete:boolean=false;
 
   @Event() toggle: EventEmitter<boolean>;
 
@@ -60,12 +61,13 @@ export class DatacomCheckbox {
             disabled={this.disabled}
             required={this.required}
             value={this.value}
+        
       
             
           />
           <label class={`size-${this.size}`}>
           {this.label}</label>
-          <span class ="small">{this.error}</span>
+          <span>{this.error}</span>
        
       </Host>
     );

@@ -78,23 +78,27 @@ export const standard = Template.bind({});
 standard.args = {
   label: "Checkbox Item",
   size: "standard",
-  disabled: false,
   checked: false,
+  disabled: false,
   required:false,
  
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  label: "Checkbox Item unselected",
+  label: "Checkbox Item ",
+  size: "standard",
   checked: false,
   disabled: true,
+  required:false,
 };
 export const DisabledSelected = Template.bind({});
 DisabledSelected.args = {
-  label: "Checkbox Item selected",
-  disabled: true,
+  label: "Checkbox Item",
+  size: "standard",
   checked: true,
+  disabled: true,
+  required:false,
 };
 // export const Required = Template.bind({});
 // Required.args = {
@@ -108,8 +112,9 @@ export const small = Template.bind({});
 small.args = {
   label: "Checkbox Item",
   size: "small",
-  Cheked: true,
-  Disabled:false,
+  checked: false,
+  disabled: false,
+  required:false,
   
 };
 
@@ -135,7 +140,7 @@ export const VerticalGrouping = (args:any) => {
 export const Error = (args:any) => {
   return(
   <div>
-    <DatacomCheckbox {...args} required = "true" disabled="false">
+    <DatacomCheckbox {...args}  required = "true" disabled="false">
     </DatacomCheckbox>
     <small style = {{color:"#cf364e", font:"12px", fontFamily:"Montserrat", display:'block'}}>Error message</small>
   </div>);
