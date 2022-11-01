@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ComponentStoryFn } from "@storybook/react";
 import { DatacomCheckbox } from "@datacom/endeavour-react";
 import { useEventRef } from "@datacom/endeavour-react";
+import { error } from "console";
 
 export default {
   title: "Checkbox",
@@ -22,6 +23,21 @@ export default {
       options: ["standard", "small"],
       type: { label: "string", required: true },
     },
+    checked:{
+      name:"Selected",
+      description:'Checked Checkbox',
+      type:{name:'boolean'}
+    },
+    disabled: {
+      name: 'Disabled',
+      description: 'Disable Checkbox',
+      type: { name: 'boolean' },
+    },
+    required: {
+      name: 'Required',
+      description: 'Required Field',
+      type: { name: 'boolean' },
+    },
    
   },
   arg: {
@@ -32,7 +48,6 @@ export default {
     required: false,
     disabled: false,
     checked: false,
-   
   
   },
 };
@@ -65,7 +80,8 @@ standard.args = {
   size: "standard",
   disabled: false,
   checked: false,
-  required:false
+  required:false,
+ 
 };
 
 export const Disabled = Template.bind({});
@@ -111,7 +127,7 @@ export const VerticalGrouping = (args:any) => {
           id="check-3"
           style={{ gap: "12px " }}
           label="checkboxItem"
-          {...args}/>
+          {...args} />
       </div>
     </div>
   );
@@ -121,7 +137,7 @@ export const Error = (args:any) => {
   <div>
     <DatacomCheckbox {...args} required = "true" disabled="false">
     </DatacomCheckbox>
-    <small style = {{color:"#cf364e", font:"12px" }}>Error message</small>
+    <small style = {{color:"#cf364e", font:"12px", fontFamily:"Montserrat", display:'block'}}>Error message</small>
   </div>);
 }
 // export const  Nested = () =><NestedCheckboxes/>

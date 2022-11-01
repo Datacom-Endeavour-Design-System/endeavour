@@ -15,10 +15,11 @@ export namespace Components {
         "autofocus": boolean;
         "checked": boolean;
         "disabled": boolean;
+        "error": string;
         "label": string;
+        "name": string;
         "required": boolean;
         "size": CheckboxSize;
-        "small": string;
         "type": Checkboxtype;
         "value": string;
     }
@@ -89,11 +90,12 @@ declare namespace LocalJSX {
         "autofocus"?: boolean;
         "checked"?: boolean;
         "disabled"?: boolean;
+        "error"?: string;
         "label"?: string;
+        "name"?: string;
         "onToggle"?: (event: DatacomCheckboxCustomEvent<boolean>) => void;
         "required"?: boolean;
         "size"?: CheckboxSize;
-        "small"?: string;
         "type"?: Checkboxtype;
         "value"?: string;
     }
