@@ -12,7 +12,7 @@ export type Checkboxtype = 'checkbox'|'form';
 export class DatacomCheckbox {
   @Prop() type: Checkboxtype = 'checkbox';
   @Prop() size: CheckboxSize = 'standard';
-  @Prop() checked: boolean = false;
+  @Prop({mutable:true}) checked?: boolean = false;
   @Prop() label: string;
   @Prop() disabled: boolean = false;
   @Prop() required: boolean = false;
@@ -26,6 +26,7 @@ export class DatacomCheckbox {
 
   handleChange = () => {
     this.checked = !this.checked;
+    
     this.toggle.emit(this.checked)
     
  
@@ -61,6 +62,7 @@ export class DatacomCheckbox {
             disabled={this.disabled}
             required={this.required}
             value={this.value}
+            
         
       
             

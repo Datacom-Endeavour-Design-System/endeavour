@@ -14,7 +14,7 @@ export namespace Components {
     interface DatacomCheckbox {
         "autocomplete": boolean;
         "autofocus": boolean;
-        "checked": boolean;
+        "checked"?: boolean;
         "disabled": boolean;
         "error": string;
         "label": string;
