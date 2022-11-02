@@ -18,6 +18,15 @@
   <main>
     <h1>Welcome to Stencil</h1>
     <p>We're going to build a demo site using all our components...</p>
+
+    <form method="get" action="submit">
+      <datacom-input tabindex="1" id="name" required="true" name="firstname" placeholder="Enter first name" size="20" maxlength="50">First name</datacom-input><br/>
+      <datacom-input tabindex="2" id="phone" required="true" name="phone" pattern="^\d*$" message="Please enter phone number with numbers only" placeholder="Phone number" size="20" maxlength="12">Phone number</datacom-input>
+
+      <div style="margin-top: 20px">
+        <datacom-button type="submit" name="submit" value="go" type="submit" text="Submit"></datacom-button>
+      </div>
+    </form>   
   </main>
 
   <footer>

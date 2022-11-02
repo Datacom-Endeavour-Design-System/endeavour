@@ -7,16 +7,19 @@
     - Use css attribute names where possible
 */
 :root {
-    /* Global defaults */
-    --dc-background-colour: #ffffff;
-    --dc-background-accent-color: #F0F0F0;
-    --dc-font-family: 'Montserrat';  
-    --dc-font-size: 18px;
-    --dc-primary-colour: #0055FF;
-    --dc-primary-accent-colour: #003FBC;
-    --dc-primary-disabled-colour: #999999;
-    
+  /* Global defaults */
+  --dc-background-colour: #ffffff;
+  --dc-background-accent-color: #f0f0f0;
+  --dc-font-family: 'Montserrat';
+  --dc-font-size: 18px;
+  --dc-primary-colour: #0055ff;
+  --dc-primary-accent-colour: #003fbc;
+  --dc-primary-disabled-colour: #999999;
+  --dc-error-colour: #cf364e;
+  --dc-greyscale-05: #dadada;
+  --dc-greyscale-03: #666666;
+  --dc-primary-text-color: #0a1839;
 
-    /* Buttons */
-    --dc-button-primary-text-colour: #ffffff;
+  /* Buttons */
+  --dc-button-primary-text-colour: #ffffff;
 }

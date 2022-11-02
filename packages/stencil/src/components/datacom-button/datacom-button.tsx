@@ -1,5 +1,6 @@
-import { Component, Host, h, Prop, Element, VNode } from '@stencil/core';
+import { Component, Host, h, Prop, VNode } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
+import { randomString } from '../../utils';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'large' | 'small';
@@ -28,8 +29,6 @@ export type ButtonType = 'button' | 'submit' | 'reset';
   scoped: true,
 })
 export class DatacomButton {
-  @Element() el: HTMLElement;
-
   /* Custom properties */
   @Prop() text: string;
   @Prop() variant: ButtonVariant = 'primary';
@@ -50,6 +49,9 @@ export class DatacomButton {
   @Prop() formenctype: string;
   @Prop() formaction: string;
   @Prop() formtarget: string;
+
+  labelId = randomString();
+  buttonId = randomString();
 
   render() {
     // Cannot overwrite immutable properties so we must use local variables
@@ -95,6 +97,7 @@ export class DatacomButton {
     return (
       <Host>
         <button
+          id={this.buttonId}
           type={this.type}
           form={this.form}
           name={this.name}
@@ -104,13 +107,14 @@ export class DatacomButton {
           formtarget={this.formtarget}
           formenctype={this.formenctype}
           autoFocus={this.autofocus}
-          aria-labelledby="button-text"
+          aria-labelledby={this.labelId}
           disabled={this.disabled}
           class={classes}
         >
           {image}
-          <span id="button-text" class="text">
+          <span id={this.labelId} class="text">
             {this.text}
+            <slot></slot>
           </span>
           {spinner}
         </button>

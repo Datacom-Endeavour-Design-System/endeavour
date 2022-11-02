@@ -1,4 +1,5 @@
 export * from './globe';
+export * from './error';
 export * from './spinner';
 export * from './upload';
 export * from './up';
