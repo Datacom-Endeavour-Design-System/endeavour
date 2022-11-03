@@ -4,40 +4,31 @@
 
 ## Overview
 
-Datacom styled button which extends HTML button. Custom attributes:
+Datacom styled button which extends HTML button.
 
-text = button label
-variant = primary | secondar | ghost
-size = large | small
-image-position = left | right
-src = image url
-icon = svg icon name
-loading = true | false to show spinning icon
-
-This button cannot exist within the shadow root as it sits outside
-the DOM flow with regards to form submit.
+The control is scoped rather than shadow so the input field can participate in a form submit.
 
 ## Properties
 
-| Property        | Attribute        | Description | Type                                  | Default     |
-| --------------- | ---------------- | ----------- | ------------------------------------- | ----------- |
-| `autofocus`     | `autofocus`      |             | `boolean`                             | `undefined` |
-| `disabled`      | `disabled`       |             | `boolean`                             | `false`     |
-| `form`          | `form`           |             | `string`                              | `undefined` |
-| `formaction`    | `formaction`     |             | `string`                              | `undefined` |
-| `formenctype`   | `formenctype`    |             | `string`                              | `undefined` |
-| `formmethod`    | `formmethod`     |             | `string`                              | `undefined` |
-| `formtarget`    | `formtarget`     |             | `string`                              | `undefined` |
-| `icon`          | `icon`           |             | `string`                              | `undefined` |
-| `imagePosition` | `image-position` |             | `"left" \| "right"`                   | `'left'`    |
-| `loading`       | `loading`        |             | `boolean`                             | `undefined` |
-| `name`          | `name`           |             | `string`                              | `undefined` |
-| `size`          | `size`           |             | `"large" \| "small"`                  | `'large'`   |
-| `src`           | `src`            |             | `string`                              | `undefined` |
-| `text`          | `text`           |             | `string`                              | `undefined` |
-| `type`          | `type`           |             | `string`                              | `'button'`  |
-| `value`         | `value`          |             | `string`                              | `undefined` |
-| `variant`       | `variant`        |             | `"ghost" \| "primary" \| "secondary"` | `'primary'` |
+| Property        | Attribute        | Description                                                     | Type                                  | Default     |
+| --------------- | ---------------- | --------------------------------------------------------------- | ------------------------------------- | ----------- |
+| `autofocus`     | `autofocus`      |                                                                 | `boolean`                             | `undefined` |
+| `disabled`      | `disabled`       | HTML button element properties                                  | `boolean`                             | `false`     |
+| `form`          | `form`           |                                                                 | `string`                              | `undefined` |
+| `formaction`    | `formaction`     |                                                                 | `string`                              | `undefined` |
+| `formenctype`   | `formenctype`    |                                                                 | `string`                              | `undefined` |
+| `formmethod`    | `formmethod`     |                                                                 | `string`                              | `undefined` |
+| `formtarget`    | `formtarget`     |                                                                 | `string`                              | `undefined` |
+| `icon`          | `icon`           | Name of built-in icon named using dash case. E.g. "back-to-top" | `string`                              | `undefined` |
+| `imagePosition` | `image-position` | Image position: - left - right                                  | `"left" \| "right"`                   | `'left'`    |
+| `loading`       | `loading`        | If true, show loading icon                                      | `boolean`                             | `undefined` |
+| `name`          | `name`           |                                                                 | `string`                              | `undefined` |
+| `size`          | `size`           | Button size: - large - small                                    | `"large" \| "small"`                  | `'large'`   |
+| `src`           | `src`            | Image source as either relative or obsolute URI                 | `string`                              | `undefined` |
+| `text`          | `text`           | Button text content. If not present use component children      | `string`                              | `undefined` |
+| `type`          | `type`           |                                                                 | `string`                              | `'button'`  |
+| `value`         | `value`          |                                                                 | `string`                              | `undefined` |
+| `variant`       | `variant`        | Button variant: - primary - seconday - ghost                    | `"ghost" \| "primary" \| "secondary"` | `'primary'` |
 
 ---
 

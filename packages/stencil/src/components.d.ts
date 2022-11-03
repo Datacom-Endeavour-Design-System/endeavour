@@ -10,21 +10,45 @@ import { DatacomInputType } from "./components/datacom-input/datacom-input";
 export namespace Components {
     interface DatacomButton {
         "autofocus": boolean;
+        /**
+          * HTML button element properties
+         */
         "disabled": boolean;
         "form": string;
         "formaction": string;
         "formenctype": string;
         "formmethod": string;
         "formtarget": string;
+        /**
+          * Name of built-in icon named using dash case. E.g. "back-to-top"
+         */
         "icon": string;
+        /**
+          * Image position: - left - right
+         */
         "imagePosition": ImagePosition;
+        /**
+          * If true, show loading icon
+         */
         "loading": boolean;
         "name": string;
+        /**
+          * Button size: - large - small
+         */
         "size": ButtonSize;
+        /**
+          * Image source as either relative or obsolute URI
+         */
         "src": string;
-        "text": string;
+        /**
+          * Button text content. If not present use component children
+         */
+        "text"?: string;
         "type": string;
         "value": string;
+        /**
+          * Button variant: - primary - seconday - ghost
+         */
         "variant": ButtonVariant;
     }
     interface DatacomCheckbox {
@@ -39,21 +63,33 @@ export namespace Components {
         "formmethod"?: string;
         "formnovalidate"?: boolean;
         "formtarget"?: string;
+        /**
+          * Optional help text
+         */
+        "help"?: string;
         "inputmode"?: string;
-        "isValid": boolean;
-        "label": string;
+        "isValid"?: boolean;
+        /**
+          * Optional label for control.  This can be omitted if the host element has a text children.
+         */
+        "label"?: string;
         "max"?: number;
         "maxlength"?: number;
-        "message": string;
+        /**
+          * Error message to display in the case of input validity checks  or explicitly with 'valid' property
+         */
+        "message"?: string;
         "min"?: number;
         "minlength"?: number;
+        /**
+          * HTML element input properties
+         */
         "name": string;
         "pattern"?: string;
         "placeholder"?: string;
         "readonly"?: boolean;
         "required"?: boolean;
         "size"?: number;
-        "tabindex"?: number;
         "title": string;
         "type": DatacomInputType;
         "value"?: string;
@@ -138,21 +174,45 @@ declare global {
 declare namespace LocalJSX {
     interface DatacomButton {
         "autofocus"?: boolean;
+        /**
+          * HTML button element properties
+         */
         "disabled"?: boolean;
         "form"?: string;
         "formaction"?: string;
         "formenctype"?: string;
         "formmethod"?: string;
         "formtarget"?: string;
+        /**
+          * Name of built-in icon named using dash case. E.g. "back-to-top"
+         */
         "icon"?: string;
+        /**
+          * Image position: - left - right
+         */
         "imagePosition"?: ImagePosition;
+        /**
+          * If true, show loading icon
+         */
         "loading"?: boolean;
         "name"?: string;
+        /**
+          * Button size: - large - small
+         */
         "size"?: ButtonSize;
+        /**
+          * Image source as either relative or obsolute URI
+         */
         "src"?: string;
+        /**
+          * Button text content. If not present use component children
+         */
         "text"?: string;
         "type"?: string;
         "value"?: string;
+        /**
+          * Button variant: - primary - seconday - ghost
+         */
         "variant"?: ButtonVariant;
     }
     interface DatacomCheckbox {
@@ -168,14 +228,27 @@ declare namespace LocalJSX {
         "formmethod"?: string;
         "formnovalidate"?: boolean;
         "formtarget"?: string;
+        /**
+          * Optional help text
+         */
+        "help"?: string;
         "inputmode"?: string;
         "isValid"?: boolean;
+        /**
+          * Optional label for control.  This can be omitted if the host element has a text children.
+         */
         "label"?: string;
         "max"?: number;
         "maxlength"?: number;
+        /**
+          * Error message to display in the case of input validity checks  or explicitly with 'valid' property
+         */
         "message"?: string;
         "min"?: number;
         "minlength"?: number;
+        /**
+          * HTML element input properties
+         */
         "name"?: string;
         /**
           * Emit changed event when input changes. This relays up the 'input' event, but with the control's current value rather than the input value.
@@ -186,7 +259,6 @@ declare namespace LocalJSX {
         "readonly"?: boolean;
         "required"?: boolean;
         "size"?: number;
-        "tabindex"?: number;
         "title"?: string;
         "type"?: DatacomInputType;
         "value"?: string;

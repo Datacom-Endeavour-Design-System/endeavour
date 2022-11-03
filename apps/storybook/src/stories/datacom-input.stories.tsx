@@ -39,6 +39,11 @@ export default {
         'Error if validation fails or explicitly set with "valid" property',
       type: { name: 'string', required: false },
     },
+    help: {
+      name: 'Help text',
+      description: 'Assistance instructions below input',
+      type: { name: 'string', required: false },
+    },
     valid: {
       name: 'Valid',
       description: 'Is the input valid (show error otherwise)',
@@ -79,6 +84,19 @@ const Template: ComponentStoryFn<typeof DatacomInput> = (args) => (
 export const Simple = Template.bind({});
 Simple.args = {};
 
+export const DisabledNoContent = Template.bind({});
+DisabledNoContent.args = {
+  label: 'First name',
+  disabled: true,
+};
+
+export const DisabledWithContent = Template.bind({});
+DisabledWithContent.args = {
+  label: 'First name',
+  value: 'James',
+  disabled: true,
+};
+
 export const Overflow = Template.bind({});
 Overflow.args = {
   label: 'Overflow',
@@ -101,38 +119,45 @@ AlreadyInError.args = {
   valid: false,
 };
 
-export const PatternWithTitle = Template.bind({});
-PatternWithTitle.args = {
+export const PatternWithHelp = Template.bind({});
+PatternWithHelp.args = {
   label: 'Phone number',
   pattern: '^d*$',
+  size: 15,
+  maxlength: 12,
+  placeholder: 'Mobile or Home number',
   title: 'A phone number may only contain numbers (no spaces)',
+  help: 'Enter a phone number with numbers only',
   message: 'Please enter a valid phone number',
 };
 
 export const Composite = () => (
   <form>
-    <DatacomInput
-      tabIndex={1}
-      label="First name"
-      title="You first names (including middle)"
-      placeholder="First names"
-      required={true}
-      message="Please enter your first name"
-    />
-    <DatacomInput
-      tabIndex={2}
-      label="Surname"
-      title="Your family or surname"
-      placeholder="Surname"
-      required={true}
-      message="Please enter your surname"
-    />
-    <DatacomInput
-      tabIndex={3}
-      label="Telephone"
-      title="Enter a phone number with numbers only"
-      placeholder="Home or Mobile"
-      required={true}
-    />
+    <div style={{ width: '400px' }}>
+      <DatacomInput
+        tabIndex={1}
+        label="First name"
+        title="You first names (including middle)"
+        placeholder="First names"
+        required={true}
+        message="Please enter your first name"
+      />
+      <DatacomInput
+        tabIndex={2}
+        label="Surname"
+        title="Your family or surname"
+        placeholder="Surname"
+        required={true}
+        message="Please enter your surname"
+      />
+      <DatacomInput
+        tabIndex={3}
+        label="Telephone"
+        title="Enter a phone number with numbers only"
+        help="Enter a phone number with numbers only"
+        placeholder="Home or Mobile"
+        required={true}
+      />
+    </div>
   </form>
 );

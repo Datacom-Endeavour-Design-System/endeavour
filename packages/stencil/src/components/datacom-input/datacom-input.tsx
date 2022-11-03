@@ -6,6 +6,10 @@ export type DatacomInputType = 'text' | 'number' | 'password' | 'tel' | 'time' |
 
 /**
  * Datacom Input field
+ *
+ * The control is scoped rather than shadow so the input field can participate in a form submit.
+ *
+ * @see https://brandhub.datacom.com/d/fjZSq4WewHBg/components#/components/button
  */
 @Component({
   tag: 'datacom-input',
@@ -15,7 +19,9 @@ export type DatacomInputType = 'text' | 'number' | 'password' | 'tel' | 'time' |
 export class DatacomInput {
   private inputElement: HTMLInputElement;
 
-  /* HTML input properties */
+  /**
+   * HTML element input properties
+   */
   @Prop() name: string;
   @Prop({ mutable: true }) value?: string;
   @Prop() type: DatacomInputType = 'text';
@@ -37,17 +43,33 @@ export class DatacomInput {
   @Prop() inputmode?: string;
   @Prop() size?: number;
   @Prop() title: string;
-  @Prop() tabindex?: number;
 
-  /* Label properties */
-  @Prop() label: string;
+  /**
+   * Optional label for control.
+   * This can be omitted if the host element has a text children.
+   */
+  @Prop() label?: string;
 
-  /* Synthetic properties */
-  @Prop() message: string;
-  @Prop({ attribute: 'valid' }) isValid: boolean;
+  /**
+   * Error message to display in the case of input validity checks
+   * or explicitly with 'valid' property
+   */
+  @Prop() message?: string;
+  @Prop({ attribute: 'valid' }) isValid?: boolean;
 
-  /* Mutable component state which may trigger render */
+  /**
+   * Optional help text
+   */
+  @Prop() help?: string;
+
+  /**
+   * Error mutable state will re-render the control to display error message, icon and focus border
+   */
   @State() isInError = false;
+
+  /**
+   * Editing mutable state will re-render the control to display input element
+   */
   @State() isEditing = false;
 
   /**
@@ -64,42 +86,35 @@ export class DatacomInput {
   @Event({
     composed: true,
   })
-  changed: EventEmitter<string>;
+  private changed: EventEmitter<string>;
 
-  /* One-off generated unique id */
+  /**
+   * Random id used by label to associate with the input control.
+   *
+   * This is randomly generated as it cannot be coded to a known value as all instances
+   * on the page would have the same value.
+   */
   private inputId = randomString();
 
-  private doEdit(): void {
-    // Mutate control to display edit mode
-    this.isEditing = true;
-
-    // Delay sending focus until the element has rendered with the input visible.
-    setTimeout(() => this.inputElement.focus(), 0);
-  }
-
   /**
-   * Process click and focus on label
-   *
-   * @param event
-   * @returns
+   * Switch the control to edit mode if it is not already editing.
    */
-  @Listen('click', { capture: true })
-  onClick(/* event: MouseEvent */): void {
-    this.doEdit();
+  private doEdit(): void {
+    if (!this.isEditing && !this.disabled) {
+      // Mutate control to display edit mode
+      this.isEditing = true;
+
+      // Delay sending focus until the element has rendered with the input visible.
+      setTimeout(() => this.inputElement.focus(), 100);
+    }
   }
 
   /**
-   * Entering the input field switch to edit mode
-   *
+   * Entering the control switches to edit mode
    */
   @Listen('focus', { capture: true })
-  onFocus(event: FocusEvent): void {
-    const elem = event.target as HTMLElement;
-
-    // Only edit mode if focus is to the control.
-    if (elem.tagName.toLowerCase() === 'datacom-input') {
-      this.doEdit();
-    }
+  onFocus(/* event: FocusEvent */): void {
+    this.doEdit();
   }
 
   /**
@@ -112,7 +127,9 @@ export class DatacomInput {
   }
 
   /**
-   * Leaving the input field switches to view mode
+   * Leaving the input field:
+   * - switches to view mode
+   * - validates the control and displays error message
    */
   @Listen('blur', { capture: true })
   onBlur(event: FocusEvent): void {
@@ -120,7 +137,12 @@ export class DatacomInput {
 
     if (elem.tagName.toLowerCase() === 'input') {
       this.value = this.inputElement.value;
-      this.isEditing = false;
+
+      /**
+       * Delay moving to view mode so the tabbing action moves out of the
+       * control before enabling tabindex (view mode)
+       */
+      setTimeout(() => (this.isEditing = false), 10);
 
       /* Set internal error state */
       this.isInError = !this.inputElement.checkValidity();
@@ -138,7 +160,17 @@ export class DatacomInput {
   }
 
   render() {
+    /**
+     * The control is in edit mode if explicitly editing or there is a non-empty value
+     */
     const edit = this.isEditing || this.value?.length > 0;
+
+    /**
+     * When in edit mode, we disable tabindex within the control so that keyboard actions
+     * like tab and shift-tab move correctly to the next form control.
+     */
+    const tabindex = this.isEditing ? -1 : 0;
+
     const classes = {
       root: true,
       disabled: this.disabled,
@@ -148,11 +180,15 @@ export class DatacomInput {
       dirty: this.isDirty,
     };
 
+    /**
+     * Notes:
+     * - 'value' must be last property of input
+     */
     return (
-      <Host>
+      <Host tabIndex={tabindex}>
         <div class={classes}>
           <div class="label-wrap">
-            <label htmlFor={this.inputId}>
+            <label htmlFor={this.inputId} tabIndex={tabindex}>
               {this.label}
               <slot></slot>
             </label>
@@ -162,6 +198,7 @@ export class DatacomInput {
           <div class="input-wrap">
             <input
               ref={el => this.setInputElementRef(el)}
+              tabIndex={tabindex}
               id={this.inputId}
               type={this.type}
               name={this.name}
@@ -181,12 +218,17 @@ export class DatacomInput {
               formtarget={this.formtarget}
               pattern={this.pattern}
               inputMode={this.inputmode}
-              tabindex={this.tabindex}
               title={this.title}
+              disabled={this.disabled}
               value={this.value}
             ></input>
-            <p class="error-message">{this.message}</p>
+            <p tabIndex={-1} class="error-message">
+              {this.message}
+            </p>
           </div>
+          <aside tabIndex={-1} class="help">
+            {this.help}
+          </aside>
         </div>
       </Host>
     );

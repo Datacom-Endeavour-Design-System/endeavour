@@ -1,15 +1,17 @@
 :host {
   display: inline;
+  outline: none;
 }
 
 .root {
   display: inline-block;
   position: relative;
-  padding-bottom: 12px;
+  height: 72px;
+  margin-bottom: 12px;
 }
 
 .input-wrap {
-  display: inline-block;
+  display: block;
 }
 
 .label-wrap {
@@ -23,6 +25,7 @@ label {
   font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 16px;
+  outline: none;
 }
 
 input {
@@ -36,6 +39,19 @@ input {
   font-size: 16px;
   display: block;
   min-width: 270px;
+  max-width: 400px;
+  box-sizing: content-box;
+  outline: none;
+}
+
+aside {
+  color: var(--dc-greyscale-03);
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  margin-left: 16px;
+  outline: none;
 }
 
 input:not([value='']) {
@@ -48,11 +64,11 @@ input:not([value='']) {
   border-radius: 8px;
   line-height: 24px;
   padding: 14px 16px;
+  box-sizing: content-box;
 }
 
 .view .input-wrap {
   height: 0;
-  margin-top: -56px;
 }
 
 .view .label-wrap:hover {
@@ -133,25 +149,49 @@ input:not([value='']) {
   display: none;
 }
 
+/* Error state */
 .error-message {
-  visibility: hidden;
+  display: none;
   color: var(--dc-error-colour);
   font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 12px;
   padding: 4px 0 0 14px;
   white-space: pre-wrap;
-  display: inline-block;
   max-width: 270px;
   margin: 0px;
+  outline: none;
 }
 
-.error .error-message {
-  visibility: visible;
+.error .error-message:not(empty) {
+  display: block;
 }
 
 .error input::after {
   content: url('data:image/svg+xml,%20%20%20%20%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M10%2013.5C10%2012.125%208.875%2011%207.5%2011C6.09375%2011%205%2012.125%205%2013.5C5%2014.9062%206.09375%2016%207.5%2016C8.875%2016%2010%2014.9062%2010%2013.5ZM5.28125%200.8125L5.6875%209.3125C5.71875%209.6875%206.0625%2010%206.4375%2010H8.53125C8.90625%2010%209.25%209.6875%209.28125%209.3125L9.6875%200.8125C9.71875%200.375%209.375%200%208.9375%200H6.03125C5.59375%200%205.25%200.375%205.28125%200.8125Z%22%20fill%3D%22%23CF364E%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E');
   width: 16px;
   height: 16px;
+}
+
+.error aside {
+  display: none;
+}
+
+/* Disabled */
+.disabled .label-wrap,
+.disabled .label-wrap:hover {
+  border-color: var(--dc-greyscale-05);
+}
+
+.disabled label {
+  color: var(--dc-greyscale-04);
+}
+
+.disabled input {
+  color: var(--dc-greyscale-04);
+}
+
+.disabled input:hover,
+.disabled input:focus {
+  border-color: var(--dc-greyscale-05);
 }
