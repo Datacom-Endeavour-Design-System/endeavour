@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop, VNode } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
+import { Spinner } from '../../common/images/icons';
 import { randomString } from '../../utils';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
@@ -103,16 +104,15 @@ export class DatacomButton {
       imagePosition = 'left';
     }
 
+    /**
+     * Dynamically retrieve SVG functional component based on its name,
+     * or use image src if supplied.
+     */
     let image: VNode;
     if (this.icon?.length > 0) {
       image = getSvg(this.icon, { class: 'image' });
     } else if (this.src?.length > 0) {
       image = <img src={this.src} class="image"></img>;
-    }
-
-    let spinner;
-    if (this.loading) {
-      spinner = getSvg('spinner', { class: 'spinner' });
     }
 
     const classes = {
@@ -145,7 +145,7 @@ export class DatacomButton {
             {this.text}
             <slot></slot>
           </span>
-          {spinner}
+          {this.loading && <Spinner class="spinner" />}
         </button>
       </Host>
     );

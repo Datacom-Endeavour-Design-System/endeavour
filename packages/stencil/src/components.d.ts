@@ -56,6 +56,10 @@ export namespace Components {
         "label": string;
     }
     interface DatacomInput {
+        /**
+          * Show completed tick
+         */
+        "completed"?: boolean;
         "disabled"?: boolean;
         "form"?: string;
         "formaction"?: string;
@@ -70,13 +74,13 @@ export namespace Components {
         "inputmode"?: string;
         "isValid"?: boolean;
         /**
-          * Optional label for control.  This can be omitted if the host element has a text children.
+          * Optional label for control. This can be omitted if the host element has a text children.
          */
         "label"?: string;
         "max"?: number;
         "maxlength"?: number;
         /**
-          * Error message to display in the case of input validity checks  or explicitly with 'valid' property
+          * Error message to display in the case of input validity checks or explicitly with 'valid' property
          */
         "message"?: string;
         "min"?: number;
@@ -93,6 +97,10 @@ export namespace Components {
         "title": string;
         "type": DatacomInputType;
         "value"?: string;
+        /**
+          * Show waiting spinner
+         */
+        "waiting"?: boolean;
     }
     interface DatacomMenubar {
     }
@@ -221,6 +229,10 @@ declare namespace LocalJSX {
         "onToggle"?: (event: DatacomCheckboxCustomEvent<boolean>) => void;
     }
     interface DatacomInput {
+        /**
+          * Show completed tick
+         */
+        "completed"?: boolean;
         "disabled"?: boolean;
         "form"?: string;
         "formaction"?: string;
@@ -235,13 +247,13 @@ declare namespace LocalJSX {
         "inputmode"?: string;
         "isValid"?: boolean;
         /**
-          * Optional label for control.  This can be omitted if the host element has a text children.
+          * Optional label for control. This can be omitted if the host element has a text children.
          */
         "label"?: string;
         "max"?: number;
         "maxlength"?: number;
         /**
-          * Error message to display in the case of input validity checks  or explicitly with 'valid' property
+          * Error message to display in the case of input validity checks or explicitly with 'valid' property
          */
         "message"?: string;
         "min"?: number;
@@ -262,6 +274,10 @@ declare namespace LocalJSX {
         "title"?: string;
         "type"?: DatacomInputType;
         "value"?: string;
+        /**
+          * Show waiting spinner
+         */
+        "waiting"?: boolean;
     }
     interface DatacomMenubar {
     }

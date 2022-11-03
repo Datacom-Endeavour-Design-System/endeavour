@@ -195,3 +195,41 @@ input:not([value='']) {
 .disabled input:focus {
   border-color: var(--dc-greyscale-05);
 }
+
+/* Spinner */
+.spinner {
+  animation: rotate 2s linear infinite;
+  display: inline-block;
+  height: 24px;
+  position: absolute;
+  top: 15px;
+  left: calc(100% - 36px);
+}
+
+.spinner circle {
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+  stroke: var(--dc-primary-colour);
+  fill: none;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}

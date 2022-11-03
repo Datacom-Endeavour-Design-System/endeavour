@@ -69,11 +69,17 @@ export default {
       description: 'Disable button',
       type: { name: 'boolean' },
     },
+    waiting: {
+      name: 'Waiting',
+      description: 'Show waiting spinner',
+      type: { name: 'boolean' },
+    },
   },
   args: {
-    label: 'Input label',
+    label: 'First name',
     disabled: false,
     required: true,
+    message: 'Please enter a value',
   },
 } as Meta<typeof DatacomInput>;
 
@@ -99,8 +105,9 @@ DisabledWithContent.args = {
 
 export const Overflow = Template.bind({});
 Overflow.args = {
-  label: 'Overflow',
+  label: 'First name',
   title: 'Enter more than 15 characters and tab out to see scroll to start',
+  value: 'This is a really big name and does not fit into view',
   size: 15,
   maxlength: 50,
 };
@@ -108,14 +115,21 @@ Overflow.args = {
 export const WithValue = Template.bind({});
 WithValue.args = {
   title: 'This input already has a value',
-  label: 'With a value',
-  value: 'Default value',
+  label: 'First name',
+  value: 'James',
+};
+
+export const Waiting = Template.bind({});
+Waiting.args = {
+  label: 'Post code',
+  value: '0626',
+  waiting: true,
 };
 
 export const AlreadyInError = Template.bind({});
 AlreadyInError.args = {
-  message: 'This control is already in error',
-  label: 'In error',
+  message: 'Please enter your first name',
+  label: 'First name',
   valid: false,
 };
 

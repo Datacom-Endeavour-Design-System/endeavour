@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, State, Listen, Event, EventEmitter } from '@stencil/core';
 import { randomString } from '../../utils';
-import { Error } from '../../common/images/icons';
+import { Error, Spinner } from '../../common/images/icons';
 
 export type DatacomInputType = 'text' | 'number' | 'password' | 'tel' | 'time' | 'url' | 'week' | 'month' | 'email';
 
@@ -61,6 +61,16 @@ export class DatacomInput {
    * Optional help text
    */
   @Prop() help?: string;
+
+  /**
+   * Show waiting spinner
+   */
+  @Prop() waiting?: boolean;
+
+  /**
+   * Show completed tick
+   */
+  @Prop() completed?: boolean;
 
   /**
    * Error mutable state will re-render the control to display error message, icon and focus border
@@ -222,6 +232,7 @@ export class DatacomInput {
               disabled={this.disabled}
               value={this.value}
             ></input>
+            {this.waiting && edit && <Spinner class="spinner" />}
             <p tabIndex={-1} class="error-message">
               {this.message}
             </p>

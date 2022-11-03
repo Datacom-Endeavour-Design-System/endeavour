@@ -12,6 +12,7 @@ The control is scoped rather than shadow so the input field can participate in a
 
 | Property         | Attribute        | Description                                                                                       | Type                                                                                           | Default     |
 | ---------------- | ---------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| `completed`      | `completed`      | Show completed tick                                                                               | `boolean`                                                                                      | `undefined` |
 | `disabled`       | `disabled`       |                                                                                                   | `boolean`                                                                                      | `false`     |
 | `form`           | `form`           |                                                                                                   | `string`                                                                                       | `undefined` |
 | `formaction`     | `formaction`     |                                                                                                   | `string`                                                                                       | `undefined` |
@@ -37,6 +38,7 @@ The control is scoped rather than shadow so the input field can participate in a
 | `title`          | `title`          |                                                                                                   | `string`                                                                                       | `undefined` |
 | `type`           | `type`           |                                                                                                   | `"email" \| "month" \| "number" \| "password" \| "tel" \| "text" \| "time" \| "url" \| "week"` | `'text'`    |
 | `value`          | `value`          |                                                                                                   | `string`                                                                                       | `undefined` |
+| `waiting`        | `waiting`        | Show waiting spinner                                                                              | `boolean`                                                                                      | `undefined` |
 
 ## Events
 
