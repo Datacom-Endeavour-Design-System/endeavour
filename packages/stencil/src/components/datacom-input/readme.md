@@ -21,6 +21,7 @@ The control is scoped rather than shadow so the input field can participate in a
 | `formnovalidate` | `formnovalidate` |                                                                                                   | `boolean`                                                                                      | `false`     |
 | `formtarget`     | `formtarget`     |                                                                                                   | `string`                                                                                       | `undefined` |
 | `help`           | `help`           | Optional help text                                                                                | `string`                                                                                       | `undefined` |
+| `indicator`      | `indicator`      | Feedback indicator                                                                                | `"done" \| "none" \| "working"`                                                                | `'none'`    |
 | `inputmode`      | `inputmode`      |                                                                                                   | `string`                                                                                       | `undefined` |
 | `isValid`        | `valid`          |                                                                                                   | `boolean`                                                                                      | `undefined` |
 | `label`          | `label`          | Optional label for control. This can be omitted if the host element has a text children.          | `string`                                                                                       | `undefined` |
@@ -38,7 +39,6 @@ The control is scoped rather than shadow so the input field can participate in a
 | `title`          | `title`          |                                                                                                   | `string`                                                                                       | `undefined` |
 | `type`           | `type`           |                                                                                                   | `"email" \| "month" \| "number" \| "password" \| "tel" \| "text" \| "time" \| "url" \| "week"` | `'text'`    |
 | `value`          | `value`          |                                                                                                   | `string`                                                                                       | `undefined` |
-| `waiting`        | `waiting`        | Show waiting spinner                                                                              | `boolean`                                                                                      | `undefined` |
 
 ## Events
 

@@ -20,8 +20,8 @@
     <p>We're going to build a demo site using all our components...</p>
 
     <form method="get" action="submit">
-      <datacom-input id="name" required="true" name="firstname" placeholder="Enter first name" size="30" maxlength="50" help="Your first name" waiting="true">First name</datacom-input><br/>
-      <datacom-input id="phone" required="true" name="phone" pattern="^\d*$" message="Please enter phone number with numbers only" help="Mobile or home phone" placeholder="Phone number" size="20" maxlength="12" waiting="true">Phone number</datacom-input>
+      <datacom-input id="name" indicator="working" required="true" name="firstname" placeholder="Enter first name" size="30" maxlength="50" help="Your first name">First name</datacom-input><br/>
+      <datacom-input id="phone" indicator="done" required="true" name="phone" pattern="^\d*$" message="Please enter phone number with numbers only" help="Mobile or home phone" placeholder="Phone number" size="20" maxlength="12">Phone number</datacom-input>
 
       <div style="margin-top: 20px">
         <datacom-button type="submit" name="submit" value="go" type="submit" text="Submit"></datacom-button>

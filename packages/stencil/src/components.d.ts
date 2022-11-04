@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-button/datacom-button";
-import { DatacomInputType } from "./components/datacom-input/datacom-input";
+import { DatacomInputType, IndicatorType } from "./components/datacom-input/datacom-input";
 export namespace Components {
     interface DatacomButton {
         "autofocus": boolean;
@@ -71,6 +71,10 @@ export namespace Components {
           * Optional help text
          */
         "help"?: string;
+        /**
+          * Feedback indicator
+         */
+        "indicator"?: IndicatorType;
         "inputmode"?: string;
         "isValid"?: boolean;
         /**
@@ -97,10 +101,6 @@ export namespace Components {
         "title": string;
         "type": DatacomInputType;
         "value"?: string;
-        /**
-          * Show waiting spinner
-         */
-        "waiting"?: boolean;
     }
     interface DatacomMenubar {
     }
@@ -244,6 +244,10 @@ declare namespace LocalJSX {
           * Optional help text
          */
         "help"?: string;
+        /**
+          * Feedback indicator
+         */
+        "indicator"?: IndicatorType;
         "inputmode"?: string;
         "isValid"?: boolean;
         /**
@@ -274,10 +278,6 @@ declare namespace LocalJSX {
         "title"?: string;
         "type"?: DatacomInputType;
         "value"?: string;
-        /**
-          * Show waiting spinner
-         */
-        "waiting"?: boolean;
     }
     interface DatacomMenubar {
     }

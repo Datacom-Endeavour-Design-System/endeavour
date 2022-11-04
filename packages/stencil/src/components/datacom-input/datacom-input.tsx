@@ -1,8 +1,17 @@
 import { Component, Host, h, Prop, State, Listen, Event, EventEmitter } from '@stencil/core';
 import { randomString } from '../../utils';
-import { Error, Spinner } from '../../common/images/icons';
+import { Error, Spinner, Tick } from '../../common/images/icons';
 
+/**
+ * This control only accepts a subset of input types
+ */
 export type DatacomInputType = 'text' | 'number' | 'password' | 'tel' | 'time' | 'url' | 'week' | 'month' | 'email';
+
+/**
+ * Display indicator. This has an explicit 'none' so the indicator
+ * can be removed without having to remove the html attribute (or set it empty string).
+ */
+export type IndicatorType = 'none' | 'working' | 'done';
 
 /**
  * Datacom Input field
@@ -63,9 +72,9 @@ export class DatacomInput {
   @Prop() help?: string;
 
   /**
-   * Show waiting spinner
+   * Feedback indicator
    */
-  @Prop() waiting?: boolean;
+  @Prop() indicator?: IndicatorType = 'none';
 
   /**
    * Show completed tick
@@ -171,6 +180,14 @@ export class DatacomInput {
 
   render() {
     /**
+     * Validate enumerated props and warn
+     */
+    if (this.indicator !== undefined && !['working', 'done', 'none'].includes(this.indicator)) {
+      console.warn(`Feedback indicator ${this.indicator} is not valid. Setting to 'none'`);
+      this.indicator = 'none';
+    }
+
+    /**
      * The control is in edit mode if explicitly editing or there is a non-empty value
      */
     const edit = this.isEditing || this.value?.length > 0;
@@ -198,7 +215,7 @@ export class DatacomInput {
       <Host tabIndex={tabindex}>
         <div class={classes}>
           <div class="label-wrap">
-            <label htmlFor={this.inputId} tabIndex={tabindex}>
+            <label class="label" htmlFor={this.inputId} tabIndex={tabindex}>
               {this.label}
               <slot></slot>
             </label>
@@ -207,6 +224,7 @@ export class DatacomInput {
 
           <div class="input-wrap">
             <input
+              class="input"
               ref={el => this.setInputElementRef(el)}
               tabIndex={tabindex}
               id={this.inputId}
@@ -232,7 +250,8 @@ export class DatacomInput {
               disabled={this.disabled}
               value={this.value}
             ></input>
-            {this.waiting && edit && <Spinner class="spinner" />}
+            {this.indicator == 'working' && edit && <Spinner class="spinner feedback" />}
+            {this.indicator == 'done' && edit && <Tick class="tick feedback" />}
             <p tabIndex={-1} class="error-message">
               {this.message}
             </p>

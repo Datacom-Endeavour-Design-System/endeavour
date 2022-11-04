@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ComponentStoryFn, Meta } from '@storybook/react';
-import { DatacomInput } from '@datacom/endeavour-react';
+import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
 
 export default {
   title: 'Text Input',
@@ -145,11 +145,55 @@ PatternWithHelp.args = {
   message: 'Please enter a valid phone number',
 };
 
-export const Composite = () => (
+export const WithIndicators = () => {
+  const [indicator, setIndicator] = useState('none');
+  const [iterations, setIterations] = useState(0);
+
+  useEffect(() => {
+    if (indicator == 'none') {
+      setTimeout(() => setIndicator('working'), 1000);
+    } else if (indicator == 'working') {
+      setTimeout(() => {
+        setIndicator('done');
+        setIterations(iterations + 1);
+      }, 3000);
+    }
+  });
+
+  const disabled = indicator == 'none' || indicator == 'working';
+
+  return (
+    <>
+      <DatacomInput
+        label="First name"
+        title="You first names (including middle)"
+        placeholder="First names"
+        required={true}
+        value="William"
+        indicator={indicator}
+        message="Please enter your first name"
+      />
+      {iterations > 3 && (
+        <small>
+          {iterations} clicks and counting. Keep going for a high score.
+        </small>
+      )}
+      {iterations > 0 && (
+        <DatacomButton
+          disabled={disabled}
+          variant="primary"
+          onClick={() => setIndicator('none')}>
+          Again...
+        </DatacomButton>
+      )}
+    </>
+  );
+};
+
+export const VerticalForm = () => (
   <form>
     <div style={{ width: '400px' }}>
       <DatacomInput
-        tabIndex={1}
         label="First name"
         title="You first names (including middle)"
         placeholder="First names"
@@ -157,7 +201,6 @@ export const Composite = () => (
         message="Please enter your first name"
       />
       <DatacomInput
-        tabIndex={2}
         label="Surname"
         title="Your family or surname"
         placeholder="Surname"
@@ -165,7 +208,6 @@ export const Composite = () => (
         message="Please enter your surname"
       />
       <DatacomInput
-        tabIndex={3}
         label="Telephone"
         title="Enter a phone number with numbers only"
         help="Enter a phone number with numbers only"
