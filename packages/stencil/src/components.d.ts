@@ -57,10 +57,14 @@ export namespace Components {
     }
     interface DatacomInput {
         /**
-          * Show completed tick
+          * Automatically show error state if invalid on form submit
          */
-        "completed"?: boolean;
+        "autoValidate"?: boolean;
         "disabled"?: boolean;
+        /**
+          * Switch the control to edit mode if it is not already editing.
+         */
+        "edit": () => Promise<void>;
         "form"?: string;
         "formaction"?: string;
         "formenctype"?: string;
@@ -100,6 +104,15 @@ export namespace Components {
         "size"?: number;
         "title": string;
         "type": DatacomInputType;
+        /**
+          * Force validation on the form control to display any error messages
+          * @param opts
+          * @returns boolean
+         */
+        "validate": () => Promise<boolean>;
+        /**
+          * value submitted
+         */
         "value"?: string;
     }
     interface DatacomMenubar {
@@ -230,9 +243,9 @@ declare namespace LocalJSX {
     }
     interface DatacomInput {
         /**
-          * Show completed tick
+          * Automatically show error state if invalid on form submit
          */
-        "completed"?: boolean;
+        "autoValidate"?: boolean;
         "disabled"?: boolean;
         "form"?: string;
         "formaction"?: string;
@@ -277,6 +290,9 @@ declare namespace LocalJSX {
         "size"?: number;
         "title"?: string;
         "type"?: DatacomInputType;
+        /**
+          * value submitted
+         */
         "value"?: string;
     }
     interface DatacomMenubar {

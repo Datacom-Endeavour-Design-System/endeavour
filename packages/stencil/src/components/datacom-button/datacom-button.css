@@ -7,7 +7,7 @@
 
 /* Common CSS */
 .dc-button-btn {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -49,6 +49,7 @@
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
+  min-width: 110px;
 }
 
 .dc-button-size-small .dc-button-image {
@@ -62,6 +63,7 @@
   padding: 12px 24px;
   border-radius: 8px;
   font-size: 18px;
+  min-width: 150px;
 }
 
 .dc-button-size-large .dc-button-image {

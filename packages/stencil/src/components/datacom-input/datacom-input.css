@@ -2,8 +2,9 @@
 * For this scoped component we should use the namespace prefix of "dc-input"
 */
 :host {
-  display: inline;
+  display: inline-block;
   outline: none;
+  height: 85px;
 }
 
 .dc-input-root {
@@ -145,11 +146,10 @@
 }
 
 .dc-input-error .dc-input-error-icon {
+  position: absolute;
+  top: 18px;
+  left: calc(100% - 32px);
   display: block;
-}
-
-.dc-input-edit .dc-input-error-icon {
-  display: none;
 }
 
 /* Error state */

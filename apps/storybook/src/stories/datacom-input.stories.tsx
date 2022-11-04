@@ -186,30 +186,52 @@ export const WithIndicators = () => {
   );
 };
 
-export const VerticalForm = () => (
-  <form>
-    <div style={{ width: '400px' }}>
-      <DatacomInput
-        label="First name"
-        title="You first names (including middle)"
-        placeholder="First names"
-        required={true}
-        message="Please enter your first name"
-      />
-      <DatacomInput
-        label="Surname"
-        title="Your family or surname"
-        placeholder="Surname"
-        required={true}
-        message="Please enter your surname"
-      />
-      <DatacomInput
-        label="Telephone"
-        title="Enter a phone number with numbers only"
-        help="Enter a phone number with numbers only"
-        placeholder="Home or Mobile"
-        required={true}
-      />
-    </div>
-  </form>
-);
+export const VerticalForm = () => {
+  return (
+    <form>
+      <div style={{ width: '400px', marginBottom: '20px' }}>
+        <DatacomInput
+          label="First name(s)"
+          title="You first names (including middle)"
+          help="Enter your first names (inc. middle)"
+          placeholder="First names"
+          required={true}
+          message="Please enter your first name"
+        />
+
+        <DatacomInput
+          label="Surname"
+          title="Your family or surname"
+          placeholder="Surname"
+          help="Enter your family or surname"
+          required={true}
+          message="Please enter your surname"
+        />
+
+        <DatacomInput
+          label="Telephone"
+          title="Enter a phone number with numbers only"
+          help="Enter a phone number with numbers only"
+          message="Please enter a valid phone number"
+          placeholder="Home or Mobile"
+          pattern="^d*$"
+          required={true}
+        />
+
+        <DatacomInput
+          label="Email"
+          type="email"
+          title="Enter a email address"
+          help="Enter email address"
+          message="Please enter a valid email"
+          placeholder="Email address"
+          required={true}
+        />
+      </div>
+
+      <DatacomButton variant="primary" type="submit">
+        Submit
+      </DatacomButton>
+    </form>
+  );
+};

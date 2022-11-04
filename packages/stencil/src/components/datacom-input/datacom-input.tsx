@@ -1,6 +1,7 @@
-import { Component, Host, h, Prop, State, Listen, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Prop, State, Listen, Event, EventEmitter, Method } from '@stencil/core';
 import { randomString } from '../../utils';
 import { Error, Spinner, Tick } from '../../common/images/icons';
+import { FormControl } from '../form-control';
 
 /**
  * This control only accepts a subset of input types
@@ -25,8 +26,9 @@ export type IndicatorType = 'none' | 'working' | 'done';
   styleUrl: 'datacom-input.css',
   scoped: true,
 })
-export class DatacomInput {
+export class DatacomInput implements FormControl {
   private inputElement: HTMLInputElement;
+  private formElement: HTMLFormElement;
 
   /**
    * HTML element input properties
@@ -77,9 +79,9 @@ export class DatacomInput {
   @Prop() indicator?: IndicatorType = 'none';
 
   /**
-   * Show completed tick
+   * Automatically show error state if invalid on form submit
    */
-  @Prop() completed?: boolean;
+  @Prop() autoValidate? = true;
 
   /**
    * Error mutable state will re-render the control to display error message, icon and focus border
@@ -116,9 +118,29 @@ export class DatacomInput {
   private inputId = randomString();
 
   /**
+   * Force validation on the form control to display any error messages
+   *
+   * @param opts
+   *
+   * @returns boolean
+   */
+  @Method()
+  async validate(): Promise<boolean> {
+    this.isInError = !this.inputElement.checkValidity();
+
+    if (this.isInError) {
+      this.isDirty = true;
+      this.edit();
+    }
+
+    return this.isInError;
+  }
+
+  /**
    * Switch the control to edit mode if it is not already editing.
    */
-  private doEdit(): void {
+  @Method()
+  async edit(): Promise<void> {
     if (!this.isEditing && !this.disabled) {
       // Mutate control to display edit mode
       this.isEditing = true;
@@ -133,7 +155,7 @@ export class DatacomInput {
    */
   @Listen('focus', { capture: true })
   onFocus(/* event: FocusEvent */): void {
-    this.doEdit();
+    this.edit();
   }
 
   /**
@@ -143,6 +165,9 @@ export class DatacomInput {
   onInput(/* event: InputEvent */): void {
     this.isDirty = true;
     this.changed.emit(this.inputElement.value);
+    if (this.isInError) {
+      this.isInError = false;
+    }
   }
 
   /**
@@ -178,6 +203,47 @@ export class DatacomInput {
     this.inputElement = el;
   }
 
+  /**
+   * Watch for form submit and prevent if the input is invalid
+   *
+   * @param event
+   */
+  onFormSubmit = (event: SubmitEvent) => {
+    if (!this.inputElement.checkValidity()) {
+      /**
+       * Stop the form submit and show errors
+       */
+      event.preventDefault();
+      this.isDirty = true;
+      this.isEditing = true;
+      this.isInError = true;
+    }
+  };
+
+  /**
+   * When the component loads for the first time find the nearest form
+   * and watch for submit if autoValidate is true
+   */
+  componentDidLoad() {
+    if (this.autoValidate) {
+      this.formElement = this.inputElement.closest('form');
+
+      if (this.formElement !== undefined && this.formElement !== null) {
+        this.formElement.noValidate = true;
+        this.formElement.addEventListener('submit', this.onFormSubmit);
+      }
+    }
+  }
+
+  /**
+   * When removed from the DOM, remove any event listeners
+   */
+  disconnectedCallback() {
+    if (this.formElement !== undefined && this.formElement !== null) {
+      this.formElement.removeEventListener('submit', this.onFormSubmit);
+    }
+  }
+
   render() {
     /**
      * Validate enumerated props and warn
@@ -190,7 +256,7 @@ export class DatacomInput {
     /**
      * The control is in edit mode if explicitly editing or there is a non-empty value
      */
-    const edit = this.isEditing || this.value?.length > 0;
+    const edit = this.isEditing || this.value?.length > 0 || this.isDirty;
 
     /**
      * When in edit mode, we disable tabindex within the control so that keyboard actions
@@ -198,12 +264,18 @@ export class DatacomInput {
      */
     const tabindex = this.isEditing ? -1 : 0;
 
+    /**
+     * The control is in error if its state has change to error (isInError) and has
+     * been touched by the user (isDirty) or it is explicitly set as invalid (isInvalid)
+     */
+    const error = (this.isInError && this.isDirty) || this.isValid == false;
+
     const classes = {
       'dc-input-root': true,
       'dc-input-disabled': this.disabled,
       'dc-input-edit': edit,
       'dc-input-view': !edit,
-      'dc-input-error': (this.isInError && this.isDirty) || this.isValid == false,
+      'dc-input-error': error,
       'dc-input-dirty': this.isDirty,
     };
 
@@ -219,7 +291,6 @@ export class DatacomInput {
               {this.label}
               <slot></slot>
             </label>
-            <Error class="dc-input-error-icon" />
           </div>
 
           <div class="dc-input-input-wrap">
@@ -252,6 +323,7 @@ export class DatacomInput {
             ></input>
             {this.indicator == 'working' && edit && <Spinner class="dc-input-spinner dc-input-indicator" />}
             {this.indicator == 'done' && edit && <Tick class="dc-input-tick dc-input-indicator" />}
+            {error && <Error class="dc-input-error-icon" />}
             <p tabIndex={-1} class="dc-input-error-msg">
               {this.message}
             </p>

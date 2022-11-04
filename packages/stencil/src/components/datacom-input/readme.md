@@ -12,7 +12,7 @@ The control is scoped rather than shadow so the input field can participate in a
 
 | Property         | Attribute        | Description                                                                                       | Type                                                                                           | Default     |
 | ---------------- | ---------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ----------- |
-| `completed`      | `completed`      | Show completed tick                                                                               | `boolean`                                                                                      | `undefined` |
+| `autoValidate`   | `auto-validate`  | Automatically show error state if invalid on form submit                                          | `boolean`                                                                                      | `true`      |
 | `disabled`       | `disabled`       |                                                                                                   | `boolean`                                                                                      | `false`     |
 | `form`           | `form`           |                                                                                                   | `string`                                                                                       | `undefined` |
 | `formaction`     | `formaction`     |                                                                                                   | `string`                                                                                       | `undefined` |
@@ -38,13 +38,33 @@ The control is scoped rather than shadow so the input field can participate in a
 | `size`           | `size`           |                                                                                                   | `number`                                                                                       | `undefined` |
 | `title`          | `title`          |                                                                                                   | `string`                                                                                       | `undefined` |
 | `type`           | `type`           |                                                                                                   | `"email" \| "month" \| "number" \| "password" \| "tel" \| "text" \| "time" \| "url" \| "week"` | `'text'`    |
-| `value`          | `value`          |                                                                                                   | `string`                                                                                       | `undefined` |
+| `value`          | `value`          | value submitted                                                                                   | `string`                                                                                       | `undefined` |
 
 ## Events
 
 | Event     | Description                                                                                                                                | Type                  |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------- |
 | `changed` | Emit changed event when input changes. This relays up the 'input' event, but with the control's current value rather than the input value. | `CustomEvent<string>` |
+
+## Methods
+
+### `edit() => Promise<void>`
+
+Switch the control to edit mode if it is not already editing.
+
+#### Returns
+
+Type: `Promise<void>`
+
+### `validate(opts: ValidateOpts) => Promise<boolean>`
+
+Force validation on the form control to display any error messages
+
+#### Returns
+
+Type: `Promise<boolean>`
+
+boolean
 
 ---
 
