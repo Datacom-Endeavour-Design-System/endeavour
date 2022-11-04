@@ -69,10 +69,13 @@ export default {
       description: 'Disable button',
       type: { name: 'boolean' },
     },
-    waiting: {
-      name: 'Waiting',
-      description: 'Show waiting spinner',
-      type: { name: 'boolean' },
+    indicator: {
+      name: 'Indicator',
+      description: 'Feedback indicator in edit mode',
+      control: 'select',
+      defaultValue: 'none',
+      options: ['none', 'working', 'done'],
+      type: { name: 'string', required: false },
     },
   },
   args: {
@@ -117,13 +120,6 @@ WithValue.args = {
   title: 'This input already has a value',
   label: 'First name',
   value: 'James',
-};
-
-export const Waiting = Template.bind({});
-Waiting.args = {
-  label: 'Post code',
-  value: '0626',
-  waiting: true,
 };
 
 export const AlreadyInError = Template.bind({});

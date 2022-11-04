@@ -110,17 +110,18 @@ export class DatacomButton {
      */
     let image: VNode;
     if (this.icon?.length > 0) {
-      image = getSvg(this.icon, { class: 'image' });
+      image = getSvg(this.icon, { class: 'dc-button-image' });
     } else if (this.src?.length > 0) {
-      image = <img src={this.src} class="image"></img>;
+      image = <img src={this.src} class="dc-button-image"></img>;
     }
 
     const classes = {
-      disabled: this.disabled,
-      loading: this.loading,
-      [variant]: true,
-      [`size-${size}`]: true,
-      [`image-${imagePosition}`]: image && this.text?.length > 0,
+      'dc-button-btn': true,
+      'dc-button-disabled': this.disabled,
+      'dc-button-loading': this.loading,
+      [`dc-button-${variant}`]: true,
+      [`dc-button-size-${size}`]: true,
+      [`dc-button-image-${imagePosition}`]: image && this.text?.length > 0,
     };
 
     return (
@@ -141,11 +142,11 @@ export class DatacomButton {
           class={classes}
         >
           {image}
-          <span id={this.labelId} class="text">
+          <span id={this.labelId} class="dc-button-text">
             {this.text}
             <slot></slot>
           </span>
-          {this.loading && <Spinner class="spinner" />}
+          {this.loading && <Spinner class="dc-button-spinner" />}
         </button>
       </Host>
     );

@@ -199,12 +199,12 @@ export class DatacomInput {
     const tabindex = this.isEditing ? -1 : 0;
 
     const classes = {
-      root: true,
-      disabled: this.disabled,
-      edit: edit,
-      view: !edit,
-      error: (this.isInError && this.isDirty) || this.isValid == false,
-      dirty: this.isDirty,
+      'dc-input-root': true,
+      'dc-input-disabled': this.disabled,
+      'dc-input-edit': edit,
+      'dc-input-view': !edit,
+      'dc-input-error': (this.isInError && this.isDirty) || this.isValid == false,
+      'dc-input-dirty': this.isDirty,
     };
 
     /**
@@ -214,17 +214,17 @@ export class DatacomInput {
     return (
       <Host tabIndex={tabindex}>
         <div class={classes}>
-          <div class="label-wrap">
-            <label class="label" htmlFor={this.inputId} tabIndex={tabindex}>
+          <div class="dc-input-label-wrap">
+            <label class="dc-input-label" htmlFor={this.inputId} tabIndex={tabindex}>
               {this.label}
               <slot></slot>
             </label>
-            <Error class="error-icon" />
+            <Error class="dc-input-error-icon" />
           </div>
 
-          <div class="input-wrap">
+          <div class="dc-input-input-wrap">
             <input
-              class="input"
+              class="dc-input-input"
               ref={el => this.setInputElementRef(el)}
               tabIndex={tabindex}
               id={this.inputId}
@@ -250,13 +250,13 @@ export class DatacomInput {
               disabled={this.disabled}
               value={this.value}
             ></input>
-            {this.indicator == 'working' && edit && <Spinner class="spinner feedback" />}
-            {this.indicator == 'done' && edit && <Tick class="tick feedback" />}
-            <p tabIndex={-1} class="error-message">
+            {this.indicator == 'working' && edit && <Spinner class="dc-input-spinner dc-input-indicator" />}
+            {this.indicator == 'done' && edit && <Tick class="dc-input-tick dc-input-indicator" />}
+            <p tabIndex={-1} class="dc-input-error-msg">
               {this.message}
             </p>
           </div>
-          <aside tabIndex={-1} class="help">
+          <aside tabIndex={-1} class="dc-input-help">
             {this.help}
           </aside>
         </div>
