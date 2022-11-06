@@ -1,13 +1,14 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop ,Element} from '@stencil/core';
 export type RadioSize = 'standard' | 'small';
 export type RadioVariant = 'radio' | 'button';
 
 @Component({
   tag: 'datacom-radio',
   styleUrl: 'datacom-radio.css',
-  shadow: true,
+  scoped: true,
 })
 export class DatacomRadio {
+  @Element() el;
   @Prop() label: string;
   @Prop() variant: RadioVariant = 'radio';
   @Prop() size: RadioSize = 'standard';
@@ -15,15 +16,44 @@ export class DatacomRadio {
   @Prop() checked: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() required: boolean = false;
+  @Prop() name:string;
+  @Prop() inputId:string;
+ 
+
+
+
+
   @Prop() value: string;
   @Prop() autofocus: boolean = false;
+  @Prop() formmethod: string;
+  @Prop() form: string;
+  @Prop() formenctype: string;
+  @Prop() formaction: string;
+  @Prop() formtarget: string;
 
-  // @Event() toggle: EventEmitter<boolean>;
+ 
+//  @Event()
+// 
 
-  handleChange = () => {
+//   //    }
+
+//    let form: HTMLFormElement;
+//    if (this.form) {
+//      form = document.querySelector(this.form);
+//    } else {
+//      form = this.el.closest('form');
+//    }
+
+
+
+  handleChange = (e) => {
+    console.log(e.target.value);
     this.checked = !this.checked;
     // this.toggle.emit(this.checked)
   };
+  // getFocus() {
+  //   document.getElementById(this.inputId).focus();
+  // }
 
   render() {
     if (!['standard', 'small'].includes(this.size)) {
@@ -36,6 +66,7 @@ export class DatacomRadio {
 
     const classes = {
       disabled: this.disabled,
+      checked:this.checked,
       [this.variant]: true,
       [`size-${this.size}`]: true,
       [this.type]: true,
@@ -43,18 +74,26 @@ export class DatacomRadio {
 
     return (
       <Host>
+      
+        <div>
+        <label htmlfor={this.inputId} class={classes}>{this.label}
         <input
+      
           autofocus={this.autofocus}
-          class={classes}
-          name="datacom-radio"
+          name={this.name}
           type={this.type}
           checked={this.checked}
           onChange={this.handleChange}
           disabled={this.disabled}
           required={this.required}
           value={this.value}
+          id={this.inputId}
         />
-        <label class={`size-${this.size}`}>{this.label}</label>
+        <span class={`size-${this.size}`}></span>
+        </label>
+        </div>
+       
+     
       </Host>
     );
   }
