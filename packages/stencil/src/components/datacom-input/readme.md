@@ -56,7 +56,7 @@ Switch the control to edit mode if it is not already editing.
 
 Type: `Promise<void>`
 
-### `validate(opts: ValidateOpts) => Promise<boolean>`
+### `validate() => Promise<boolean>`
 
 Force validation on the form control to display any error messages
 

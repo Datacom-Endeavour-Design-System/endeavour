@@ -1,17 +1,21 @@
+export interface HTMLFormControl {
+  name?: string;
+  value?: string;
+  disabled?: boolean;
+  readonly?: boolean;
+  required?: boolean;
+  form?: string;
+  formaction?: string;
+  formenctype?: string;
+  formmethod?: string;
+  formnovalidate?: boolean;
+  formtarget?: string;
+}
+
 /**
  * Common interface for form controls
  */
-export interface FormControl {
-  /**
-   * name within form
-   */
-  name?: string;
-
-  /**
-   * value submitted
-   */
-  value?: string;
-
+export interface FormControl extends HTMLFormControl {
   /**
    * Assitance text
    */
@@ -29,10 +33,6 @@ export interface FormControl {
 
   /**
    * Force validation on the field. If validation fails then show error message.
-   *
-   * opts:
-   * * withEdit - place the control in edit mode
-   * * focus - focus edit on the field
    */
   validate(): Promise<boolean>;
 }

@@ -169,19 +169,22 @@ export const WithIndicators = () => {
         indicator={indicator}
         message="Please enter your first name"
       />
-      {iterations > 3 && (
-        <small>
-          {iterations} clicks and counting. Keep going for a high score.
-        </small>
-      )}
-      {iterations > 0 && (
-        <DatacomButton
-          disabled={disabled}
-          variant="primary"
-          onClick={() => setIndicator('none')}>
-          Again...
-        </DatacomButton>
-      )}
+
+      <div>
+        {iterations > 3 && (
+          <small>
+            {iterations} clicks and counting. Keep going for a high score.
+          </small>
+        )}
+        {iterations > 0 && (
+          <DatacomButton
+            disabled={disabled}
+            variant="primary"
+            onClick={() => setIndicator('none')}>
+            Again...
+          </DatacomButton>
+        )}
+      </div>
     </>
   );
 };
