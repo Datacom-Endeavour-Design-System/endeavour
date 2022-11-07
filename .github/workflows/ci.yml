@@ -70,7 +70,7 @@ jobs:
           command: npm run test:ci
   deploy-development:
     name: Deploy to development
-    if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || github.ref_name == 'develop' }}
     environment: 'development'
     needs: [build,test]
     runs-on: ubuntu-latest
