@@ -27,7 +27,7 @@ export class DatacomTabGroup {
      * If no tab is selected, then set the first as selected.
      */
     const selected = await Promise.all(tabs.map(t => t.isSelected()));
-    if (!selected.reduce((p, c) => p || c, false)) {
+    if (!selected.includes(true)) {
       await tabs[0].setSelected(true);
     }
   }

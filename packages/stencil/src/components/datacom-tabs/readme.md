@@ -1,4 +1,4 @@
-# datacom-tabgroup
+# Datacom Tabs
 
 <!-- Auto Generated Below -->
 

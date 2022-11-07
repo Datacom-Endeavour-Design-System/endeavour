@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { ComponentStoryFn, Meta } from '@storybook/react';
 import { DatacomCheckbox, useEventRef } from '@datacom/endeavour-react';
 
-export default false
-  ? ({
-      title: 'Checkbox',
-      component: DatacomCheckbox,
-    } as Meta<typeof DatacomCheckbox>)
-  : {};
+export default {
+  title: 'Checkbox',
+  component: DatacomCheckbox,
+} as Meta<typeof DatacomCheckbox>;
 
 const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => (
   <DatacomCheckbox {...args} />
