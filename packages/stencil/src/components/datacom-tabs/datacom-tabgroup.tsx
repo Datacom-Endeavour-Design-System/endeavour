@@ -1,15 +1,20 @@
-import { Component, h, Listen, Host, Element, Method } from '@stencil/core';
+import { Component, h, Listen, Host, Element, Method, Prop } from '@stencil/core';
 import { HTMLDatacomTabElement } from './datacom-tab';
 
 @Component({
   tag: 'datacom-tabgroup',
   styleUrl: 'datacom-tabgroup.css',
   shadow: true,
-  assetsDirs: ['assets'],
 })
 export class DatacomTabGroup {
   @Element()
   host: HTMLElement;
+
+  /**
+   * Explicitly set the height of the tab group. Tab content does not determine the maximum
+   * height of the tab control and must be explicitly set.
+   */
+  @Prop() height = '200px';
 
   /**
    * When the component is loaded, select the first tab is none is selected.
@@ -53,6 +58,24 @@ export class DatacomTabGroup {
     }
 
     await tabs[index].setSelected(true);
+  }
+
+  /**
+   * Return selected tab (zero index based)
+   *
+   * @returns number
+   */
+  @Method()
+  async selected(): Promise<number> {
+    const tabs = this.getTabs();
+
+    for (let i = 0; i < tabs.length; i++) {
+      if (await tabs[i].isSelected()) {
+        return i;
+      }
+    }
+
+    return -1;
   }
 
   /**
@@ -114,9 +137,13 @@ export class DatacomTabGroup {
   }
 
   render() {
+    const style = {
+      height: this.height,
+    };
+
     return (
       <Host>
-        <div class="tab-group">
+        <div class="tab-group" style={style}>
           <slot />
         </div>
       </Host>

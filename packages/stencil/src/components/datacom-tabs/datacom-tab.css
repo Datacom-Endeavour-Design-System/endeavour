@@ -1,4 +1,4 @@
-label {
+.tab-label {
   outline: none;
   display: inline-block;
   position: relative;
@@ -8,7 +8,7 @@ label {
   height: 48px;
 }
 
-label > span {
+.tab-label > .tab-text {
   font-size: 18px;
   font-family: var(--dc-primary-font);
   color: var(--dc-primary-text-color);
@@ -27,7 +27,7 @@ label > span {
   top: 0;
 }
 
-label:hover::after {
+.tab-label:hover::after {
   display: block;
   content: '';
   position: absolute;
@@ -38,12 +38,12 @@ label:hover::after {
   background-color: var(--dc-primary-colour);
 }
 
-label:focus {
+.tab-label:focus {
   padding: 0px;
   border: 4px solid var(--dc-primary-accent-colour);
 }
 
-label:focus::after {
+.tab-label:focus::after {
   display: none;
 }
 
@@ -52,29 +52,29 @@ label:focus::after {
   display: block;
 }
 
-.selected > label {
+.selected > .tab-label {
   border-top: 4px solid transparent;
   border-left: none;
   border-right: none;
   border-bottom: 4px solid var(--dc-primary-colour);
 }
 
-.selected > label span {
+.selected > .tab-label .tab-text {
   font-weight: 800;
 }
 
-.selected > label::after {
+.selected > .tab-label::after {
   display: none;
 }
 
-.disabled > label span {
+.disabled > .tab-label .tab-text {
   color: var(--dc-primary-disabled-colour);
 }
 
-.disabled > label::after {
+.disabled > .tab-label::after {
   display: none;
 }
 
-.disabled > label:focus {
+.disabled > .tab-label:focus {
   border: none;
 }

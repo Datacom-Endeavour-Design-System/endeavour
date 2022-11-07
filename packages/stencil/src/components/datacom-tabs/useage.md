@@ -1,7 +1,11 @@
 ## Web Component
 
+The datacom tab is constructed with a tab group and a tab, which contains the label and content.
+
+> Important: The tab group should have an explicit height setting as the content does not set the maximum height.
+
 ```html
-<datacom-tabgroup id="tabs" style="height: 30vh">
+<datacom-tabgroup id="tabs" height="300px">
   <datacom-tab label="Overview">
     <h1>Overview</h1>
     <p>
@@ -24,9 +28,10 @@
   </datacom-tab>
 </datacom-tabgroup>
 
-<datacom-button id="btn">Discover</datacom-button>
+<datacom-button id="select">Select last</datacom-button>
+<datacom-button id="selected">Selected</datacom-button>
 
-<!-- Programatically select a tab -->
+<!-- Interact programatically -->
 <script>
   function select(n) {
     const tabs = document.querySelector('#tabs');
@@ -35,9 +40,23 @@
     }
   }
 
-  const btn = document.querySelector('#btn');
-  if (btn) {
-    btn.addEventListener('click', () => select(3));
+  function selected() {
+    const tabs = document.querySelector('#tabs');
+    if (tabs) {
+      tabs.selected().then(n => window.alert(`${n} is selected`));
+    }
+  }
+
+  const selectBtn = document.querySelector('#select');
+  if (selectBtn) {
+    selectBtn.addEventListener('click', () => select(3));
+  }
+
+  const selectedBtn = document.querySelector('#selected');
+  if (selectedBtn) {
+    selectedBtn.addEventListener('click', () => selected());
   }
 </script>
 ```
+
+## React

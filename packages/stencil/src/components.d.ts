@@ -131,11 +131,20 @@ export namespace Components {
     }
     interface DatacomTabgroup {
         /**
+          * Explicitly set the height of the tab group. Tab content does not determine the maximum height of the tab control and must be explicitly set.
+         */
+        "height": string;
+        /**
           * Select a tab with focus (zero index based)
           * @param index
           * @returns void
          */
         "select": (index: number) => Promise<void>;
+        /**
+          * Return selected tab (zero index based)
+          * @returns number
+         */
+        "selected": () => Promise<number>;
     }
 }
 export interface DatacomCheckboxCustomEvent<T> extends CustomEvent<T> {
@@ -305,6 +314,10 @@ declare namespace LocalJSX {
         "selected"?: boolean;
     }
     interface DatacomTabgroup {
+        /**
+          * Explicitly set the height of the tab group. Tab content does not determine the maximum height of the tab control and must be explicitly set.
+         */
+        "height"?: string;
     }
     interface IntrinsicElements {
         "datacom-button": DatacomButton;

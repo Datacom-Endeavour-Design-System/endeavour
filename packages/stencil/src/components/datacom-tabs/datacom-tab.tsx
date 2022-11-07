@@ -67,6 +67,9 @@ export class DatacomTab {
   };
 
   render() {
+    /**
+     * A disabled tab cannot have focus
+     */
     const tabIndex = this.disabled == true ? -1 : 0;
 
     return (
@@ -78,8 +81,8 @@ export class DatacomTab {
             disabled: this.disabled,
           }}
         >
-          <label title={this.host.title} tabIndex={tabIndex} onClick={this.onClick} onKeyPress={this.onKeyPress} htmlFor={this.tabId}>
-            <span>{this.label}</span>
+          <label class="tab-label" title={this.host.title} tabIndex={tabIndex} onClick={this.onClick} onKeyPress={this.onKeyPress} htmlFor={this.tabId}>
+            <span class="tab-text">{this.label}</span>
           </label>
 
           <div class="content" id={this.tabId}>
