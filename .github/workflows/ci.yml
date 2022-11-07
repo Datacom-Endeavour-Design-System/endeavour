@@ -92,7 +92,7 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
   deploy-staging:
     name: Deploy staging
-    if: ${{ github.event_name == 'push' && github.ref_name == 'develop' }}
+    if: ${{ github.event_name == 'push' && (github.ref_name == 'develop' || github.ref_name == 'main') }}
     environment: 'staging'
     needs: [build,test]
     runs-on: ubuntu-latest
@@ -105,6 +105,7 @@ jobs:
       - name: Push to Cloudflare
         uses: cloudflare/pages-action@1
         with:
+          branch: develop
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: datacom-endeavour
@@ -125,6 +126,7 @@ jobs:
       - name: Push to Cloudflare
         uses: cloudflare/pages-action@1
         with:
+          branch: main
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: datacom-endeavour
