@@ -1,4 +1,5 @@
 export * from './globe';
+export * from './error';
 export * from './spinner';
 export * from './upload';
 export * from './up';
@@ -21,3 +22,4 @@ export * from './back-to-top';
 export * from './add';
 export * from './add-to-cart';
 export * from './search';
+export * from './tick';

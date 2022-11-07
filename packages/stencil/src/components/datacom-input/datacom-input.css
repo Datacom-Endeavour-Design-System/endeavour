@@ -1,0 +1,241 @@
+/**
+* For this scoped component we should use the namespace prefix of "dc-input"
+*/
+:host {
+  display: inline-block;
+  outline: none;
+  height: 85px;
+}
+
+.dc-input-root {
+  display: inline-block;
+  position: relative;
+  height: 72px;
+  margin-bottom: 12px;
+}
+
+.dc-input-input-wrap {
+  display: block;
+}
+
+.dc-input-label-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dc-input-label {
+  color: var(--dc-greyscale-03);
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 16px;
+  outline: none;
+}
+
+.dc-input-input {
+  border-radius: 8px;
+  line-height: 24px;
+  color: var(--dc-greyscale-03);
+  padding: 14px 16px;
+  outline: none;
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 16px;
+  display: block;
+  min-width: 270px;
+  max-width: 400px;
+  box-sizing: content-box;
+  outline: none;
+}
+
+.dc-input-help {
+  color: var(--dc-greyscale-03);
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  margin-left: 16px;
+  outline: none;
+}
+
+.dc-input-input:not([value='']) {
+  color: var(--dc-primary-text-color);
+}
+
+/* View mode */
+.dc-input-view .dc-input-label-wrap {
+  border: 1px solid var(--dc-greyscale-05);
+  border-radius: 8px;
+  line-height: 24px;
+  padding: 14px 16px;
+  box-sizing: content-box;
+}
+
+.dc-input-view .dc-input-input-wrap {
+  height: 0;
+}
+
+.dc-input-view .dc-input-label-wrap:hover {
+  border-color: var(--dc-primary-accent-colour);
+}
+
+.dc-input-view .dc-input-input-wrap {
+  visibility: hidden;
+}
+
+/* Edit mode */
+.dc-input-edit .dc-input-label {
+  border: 0px;
+  position: absolute;
+  padding: 0 2px;
+  margin: 0;
+  background-color: white;
+  animation: dc-input-label-animation 0.2s linear 0s forwards 1;
+}
+
+@keyframes dc-input-label-animation {
+  from {
+    font-size: 16px;
+    top: 12px;
+    left: 20px;
+  }
+
+  to {
+    font-size: 12px;
+    top: -6px;
+    left: 16px;
+  }
+}
+
+.dc-input-edit .dc-input-input-wrap {
+  height: auto;
+  margin-top: 0px;
+}
+
+.dc-input-edit .dc-input-input {
+  border: 1px solid var(--dc-greyscale-05);
+  animation: dc-input-fade-in 0.2s linear 0s forwards 1;
+}
+
+@keyframes dc-input-fade-in {
+  0% {
+    color: white;
+  }
+
+  90% {
+    color: var(--dc-primary-text-color);
+  }
+}
+
+.dc-input-edit .dc-input-input:focus {
+  border: 2px solid var(--dc-primary-colour);
+}
+
+.dc-input-edit .dc-input-input:hover {
+  border-color: var(--dc-primary-accent-colour);
+}
+
+/* Error state */
+.dc-input-error-icon {
+  display: none;
+}
+
+.dc-input-error .dc-input-label-wrap,
+.dc-input-error .dc-input-input {
+  border-color: var(--dc-error-colour) !important;
+}
+
+.dc-input-error .dc-input-error-icon {
+  position: absolute;
+  top: 18px;
+  left: calc(100% - 32px);
+  display: block;
+}
+
+/* Error state */
+.dc-input-error-msg {
+  display: none;
+  color: var(--dc-error-colour);
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 12px;
+  padding: 4px 0 0 14px;
+  white-space: pre-wrap;
+  max-width: 270px;
+  margin: 0px;
+  outline: none;
+}
+
+.dc-input-error .dc-input-error-msg:not(empty) {
+  display: block;
+}
+
+.dc-input-error .dc-input-input::after {
+  content: url('data:image/svg+xml,%20%20%20%20%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M10%2013.5C10%2012.125%208.875%2011%207.5%2011C6.09375%2011%205%2012.125%205%2013.5C5%2014.9062%206.09375%2016%207.5%2016C8.875%2016%2010%2014.9062%2010%2013.5ZM5.28125%200.8125L5.6875%209.3125C5.71875%209.6875%206.0625%2010%206.4375%2010H8.53125C8.90625%2010%209.25%209.6875%209.28125%209.3125L9.6875%200.8125C9.71875%200.375%209.375%200%208.9375%200H6.03125C5.59375%200%205.25%200.375%205.28125%200.8125Z%22%20fill%3D%22%23CF364E%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E');
+  width: 16px;
+  height: 16px;
+}
+
+.dc-input-error .dc-input-help {
+  display: none;
+}
+
+/* Disabled */
+.dc-input-disabled .dc-input-label-wrap,
+.dc-input-disabled .dc-input-label-wrap:hover {
+  border-color: var(--dc-greyscale-05);
+}
+
+.dc-input-disabled .dc-input-label {
+  color: var(--dc-greyscale-04);
+}
+
+.dc-input-disabled .dc-input-input {
+  color: var(--dc-greyscale-04);
+}
+
+.dc-input-disabled .dc-input-input:hover,
+.dc-input-disabled .dc-input-input:focus {
+  border-color: var(--dc-greyscale-05);
+}
+
+/* Feedback icons for working and done */
+.dc-input-indicator {
+  display: inline-block;
+  height: 24px;
+  position: absolute;
+  top: 15px;
+  left: calc(100% - 36px);
+}
+
+.dc-input-spinner {
+  animation: dc-input-spinner-rotate 2s linear infinite;
+}
+
+.dc-input-spinner circle {
+  stroke-linecap: round;
+  animation: dc-input-spinner-dash 1.5s ease-in-out infinite;
+  stroke: var(--dc-primary-colour);
+  fill: none;
+}
+
+@keyframes dc-input-spinner-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dc-input-spinner-dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
