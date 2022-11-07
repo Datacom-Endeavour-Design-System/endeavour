@@ -1,10 +1,12 @@
 import React from 'react';
 import { DatacomTabgroup, DatacomTab } from '@datacom/endeavour-react';
 
-export default {
-  title: 'Tabs',
-  component: DatacomTabgroup,
-};
+export default false
+  ? {
+      title: 'Tabs',
+      component: DatacomTabgroup,
+    }
+  : {};
 
 export const Tabs = () => {
   return (
