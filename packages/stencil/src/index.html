@@ -18,31 +18,6 @@
   <main>
     <h1>Welcome to Stencil</h1>
     <p>We're going to build a demo site using all our components...</p>
-
-    <form method="get" action="submit">
-      <datacom-input id="name" message="Please enter your name" required="true" name="firstname" placeholder="Enter first name" size="30" maxlength="50" help="Your first name">First name</datacom-input><br/>
-      <datacom-input id="phone" required="true" name="phone" pattern="^\d*$" message="Please enter phone number with numbers only" help="Mobile or home phone" placeholder="Phone number" size="20" maxlength="12">Phone number</datacom-input>
-
-      <div style="margin-top: 20px">
-        <datacom-button type="submit" name="submit" value="go" type="submit" text="Submit"></datacom-button>
-        <datacom-button onClick="editName()">Edit</datacom-button>
-        <datacom-button onClick="validateName()">Validate</datacom-button>
-      </div>
-
-
-      <script>
-        const name = document.querySelector('#name');
-        function editName() {
-          console.log('Editing name');
-          name.edit();
-        }
-
-        function validateName() {
-          name.validate();
-        }
-      </script>
-
-    </form>   
   </main>
 
   <footer>

@@ -110,21 +110,19 @@ export namespace Components {
           * @returns boolean
          */
         "validate": () => Promise<boolean>;
-        /**
-          * value submitted
-         */
         "value"?: string;
     }
     interface DatacomMenubar {
     }
     interface DatacomTab {
-        "enabled": boolean;
+        "disabled": boolean;
         /**
           * Is this tab currently selected
           * @returns boolean
          */
         "isSelected": () => Promise<boolean>;
         "label": string;
+        "selected"?: boolean;
         /**
           * Select this tab
           * @param value
@@ -132,6 +130,12 @@ export namespace Components {
         "setSelected": (value: boolean) => Promise<void>;
     }
     interface DatacomTabgroup {
+        /**
+          * Select a tab with focus (zero index based)
+          * @param index
+          * @returns void
+         */
+        "select": (index: number) => Promise<void>;
     }
 }
 export interface DatacomCheckboxCustomEvent<T> extends CustomEvent<T> {
@@ -290,17 +294,15 @@ declare namespace LocalJSX {
         "size"?: number;
         "title"?: string;
         "type"?: DatacomInputType;
-        /**
-          * value submitted
-         */
         "value"?: string;
     }
     interface DatacomMenubar {
     }
     interface DatacomTab {
-        "enabled"?: boolean;
+        "disabled"?: boolean;
         "label"?: string;
-        "onTabSelected"?: (event: DatacomTabCustomEvent<string>) => void;
+        "onSelected"?: (event: DatacomTabCustomEvent<string>) => void;
+        "selected"?: boolean;
     }
     interface DatacomTabgroup {
     }

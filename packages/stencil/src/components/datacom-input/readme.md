@@ -38,7 +38,7 @@ The control is scoped rather than shadow so the input field can participate in a
 | `size`           | `size`           |                                                                                                   | `number`                                                                                       | `undefined` |
 | `title`          | `title`          |                                                                                                   | `string`                                                                                       | `undefined` |
 | `type`           | `type`           |                                                                                                   | `"email" \| "month" \| "number" \| "password" \| "tel" \| "text" \| "time" \| "url" \| "week"` | `'text'`    |
-| `value`          | `value`          | value submitted                                                                                   | `string`                                                                                       | `undefined` |
+| `value`          | `value`          |                                                                                                   | `string`                                                                                       | `undefined` |
 
 ## Events
 

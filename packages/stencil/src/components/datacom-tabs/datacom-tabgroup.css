@@ -1,9 +1,9 @@
-.tab-group {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
+:host {
+  display: block;
 }
 
-site-tab {
-    display: block;
+.tab-group {
+  display: flex;
+  flex-direction: row;
+  position: relative;
 }

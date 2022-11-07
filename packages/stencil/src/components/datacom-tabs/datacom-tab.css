@@ -1,29 +1,80 @@
-.tab > .label {
-    display: inline-block;
-    padding: 8px;
-    line-height: 32px;    
-    margin-right: 4px;
-    min-width: 120px;
-    font-family: var(--dc-primary-font);
-    color: grey;
-    text-align: center;
+label {
+  outline: none;
+  display: inline-block;
+  position: relative;
+  min-width: 120px;
+  padding: 4px;
+  box-sizing: border-box;
+  height: 48px;
+}
+
+label > span {
+  font-size: 18px;
+  font-family: var(--dc-primary-font);
+  color: var(--dc-primary-text-color);
+  font-weight: 400;
+  line-height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .content {
-    position: absolute;
-    left: 0;
+  position: absolute;
+  display: none;
+  left: 0;
+  top: 0;
 }
 
-.tab > .content {
-    display: none;
+label:hover::after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: calc(100% - 4px);
+  right: calc(50% - 7px);
+  width: 14px;
+  height: 4px;
+  background-color: var(--dc-primary-colour);
 }
 
-.tab.selected > .content {
-    display: block;
+label:focus {
+  padding: 0px;
+  border: 4px solid var(--dc-primary-accent-colour);
 }
 
-.tab.selected > .label {
-    font-weight: 600;
-    color: black;
-    border-bottom: 3px solid var(--dc-button-background-enabled);
+label:focus::after {
+  display: none;
+}
+
+.selected > .content {
+  margin-top: 48px;
+  display: block;
+}
+
+.selected > label {
+  border-top: 4px solid transparent;
+  border-left: none;
+  border-right: none;
+  border-bottom: 4px solid var(--dc-primary-colour);
+}
+
+.selected > label span {
+  font-weight: 800;
+}
+
+.selected > label::after {
+  display: none;
+}
+
+.disabled > label span {
+  color: var(--dc-primary-disabled-colour);
+}
+
+.disabled > label::after {
+  display: none;
+}
+
+.disabled > label:focus {
+  border: none;
 }
