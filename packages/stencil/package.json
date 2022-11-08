@@ -29,9 +29,13 @@
     "@types/jest": "^27.5.2",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
+    "jest-config": "^29.3.0",
     "jest-dom": "^4.0.0",
     "puppeteer": "^10.4.0",
     "rollup-plugin-copy": "^3.4.0"
+  },
+  "jest": {
+    "root": "src"
   },
   "license": "MIT",
   "author": "endeavour@datacom.co.nz",
