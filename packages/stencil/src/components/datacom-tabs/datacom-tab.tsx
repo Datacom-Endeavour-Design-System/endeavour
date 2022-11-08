@@ -1,52 +1,88 @@
-import { Component, h, Prop, State, Method, Event, EventEmitter, Host } from '@stencil/core';
-
-interface DatacomTabElement {
-  setSelected(value: boolean): Promise<void>;
-  isSelected(): Promise<boolean>;
-}
+import { Component, h, Prop, Method, Event, EventEmitter, Host, Element } from '@stencil/core';
+import { randomString } from '../../utils';
 
 @Component({
   tag: 'datacom-tab',
   styleUrl: 'datacom-tab.css',
   shadow: true,
-  assetsDirs: ['assets']
+  assetsDirs: ['assets'],
 })
-export class DatacomTab implements DatacomTabElement {
-  @Prop() label: string = 'Not Set';
-  @Prop() enabled: boolean = true;
-  @State() selected: boolean = false;
+export class DatacomTab {
+  @Element() host: HTMLElement;
+  @Prop() label = 'Not Set';
+  @Prop() disabled: boolean;
+  @Prop({ mutable: true }) selected?: boolean;
+
+  private tabId = randomString();
 
   @Event({
-    composed: true
+    composed: true,
+    eventName: 'selected',
   })
   tabSelected: EventEmitter<string>;
 
+  /**
+   * Is this tab currently selected
+   *
+   * @returns boolean
+   */
   @Method()
-  async isSelected(): Promise<boolean> {
+  public async isSelected(): Promise<boolean> {
     return this.selected;
   }
 
+  /**
+   * Select this tab
+   *
+   * @param value
+   */
   @Method()
-  async setSelected(value: boolean): Promise<void> {
+  public async setSelected(value: boolean): Promise<void> {
     this.selected = value;
   }
 
-  handleSelect = () => {
-    this.tabSelected.emit(this.label.toLowerCase());
-  }
+  /**
+   * Emit an event on selection. The parent is responsible for selecting and deselecting.
+   */
+  onClick = () => {
+    if (this.disabled) {
+      return;
+    }
+    this.tabSelected.emit(this.tabId);
+  };
+
+  /**
+   * Pressing the enter or space key will select the tab.
+   *
+   * @param event
+   */
+  onKeyPress = (event: KeyboardEvent) => {
+    if (this.disabled) {
+      return;
+    }
+
+    if (event.key === 'Enter' || event.key === 'Return' || event.key == ' ') {
+      this.tabSelected.emit(this.tabId);
+    }
+  };
 
   render() {
+    const tabIndex = this.disabled == true ? -1 : 0;
+
     return (
-      <Host data-tab={this.label.toLowerCase()}>
-        <div class={{
-          'tab': true,
-          'selected': this.selected,
-          'disabled': !this.enabled
-        }}>
-          <label onClick={this.handleSelect} class="label">
-            {this.label}
+      <Host data-tab={this.tabId}>
+        <div
+          class={{
+            tab: true,
+            selected: this.selected && !this.disabled,
+            disabled: this.disabled,
+          }}
+        >
+          <label title={this.host.title} tabIndex={tabIndex} onClick={this.onClick} onKeyPress={this.onKeyPress} htmlFor={this.tabId}>
+            <span>{this.label}</span>
           </label>
-          <div class="content">
+
+          <div class="content" id={this.tabId}>
             <slot />
           </div>
         </div>
@@ -55,4 +91,4 @@ export class DatacomTab implements DatacomTabElement {
   }
 }
 
-export type HTMLDatacomTabElement = HTMLElement & DatacomTabElement;
+export type HTMLDatacomTabElement = HTMLElement & DatacomTab;

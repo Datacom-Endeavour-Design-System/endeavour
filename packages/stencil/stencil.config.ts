@@ -12,13 +12,13 @@ export const config: Config = {
       componentCorePackage: '@datacom/endeavour',
       proxiesFile: '../react/src/components/stencil-generated/index.ts',
       includeDefineCustomElements: true,
-    }),      
+    }),
     {
       type: 'dist',
       copy: [
         {
           src: 'global/*',
-        }
+        },
       ],
     },
     {
@@ -28,16 +28,15 @@ export const config: Config = {
       type: 'www',
       copy: [
         {
-          src: '**/*.{jpg,png,svg}',
+          src: 'assets',
+          dest: 'assets',
         },
-        {
-          src: '**/*.ttf',
-        },
-        {
-          src: '**/*.css',
-        }        
       ],
       serviceWorker: null,
+    },
+    {
+      type: 'docs-readme',
+      footer: `(c) Copyright Datacom New Zealand Limited ${new Date().getFullYear()}`,
     },
   ],
 };

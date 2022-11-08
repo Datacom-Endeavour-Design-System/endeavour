@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# TODO: add following rule to package.json:
+# "*.{js,jsx,ts,tsx}": "eslint --cache",
+npx lint-staged

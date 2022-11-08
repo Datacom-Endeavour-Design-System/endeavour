@@ -1,27 +1,239 @@
-button {
-  display: block;
+/**
+* For this scoped component we should use the namespace prefix of "dc-button"
+*/
+:host {
+  display: inline;
+}
+
+/* Common CSS */
+.dc-button-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--dc-font-family);
+  font-weight: 600;
+}
+
+.dc-button-text:empty {
+  display: none;
+}
+
+.dc-button-btn:hover {
+  cursor: pointer;
+}
+
+.dc-button-image-right {
+  flex-direction: row-reverse;
+}
+
+.dc-button-size-large.dc-button-image-left .dc-button-image {
+  padding-right: 12px;
+}
+
+.dc-button-size-large.dc-button-image-right .dc-button-image {
+  padding-left: 12px;
+}
+
+.dc-button-size-small.dc-button-image-left .dc-button-image {
+  padding-right: 8px;
+}
+
+.dc-button-size-small.dc-button-image-right .dc-button-image {
+  padding-left: 8px;
+}
+
+.dc-button-size-small {
+  height: 34px;
+  line-height: 18px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  min-width: 110px;
+}
+
+.dc-button-size-small .dc-button-image {
+  height: 16px;
+  width: 16px;
+}
+
+.dc-button-size-large {
   height: 48px;
   line-height: 24px;
-  background-color: var(--dc-button-background-enabled);
-  border: none;
-  color: var(--dc-button-text);
-  font-weight: 600;
-  font-size: var(--dc-button-font-size);
-  font-family: var(--dc-primary-font);  
   padding: 12px 24px;
   border-radius: 8px;
+  font-size: 18px;
+  min-width: 150px;
 }
 
-button:hover {
-  background-color: var(--dc-button-background-hover);
+.dc-button-size-large .dc-button-image {
+  height: 18px;
+  width: 18px;
 }
 
-button:disabled {
-  background-color: var(--dc-button-background-disabled);
+.dc-button-loading .dc-button-text {
+  visibility: hidden;
 }
 
-button:focus {
-  outline: 3px solid var(--dc-button-background-enabled);
+.dc-button-loading .dc-button-image {
+  visibility: hidden;
+}
+
+.dc-button-spinner {
+  animation: dc-button-rotate 2s linear infinite;
+  display: inline-block;
+  height: 36px;
+  position: absolute;
+}
+
+.dc-button-size-small .dc-button-spinner {
+  height: 16px;
+}
+
+.dc-button-spinner circle {
+  stroke-linecap: round;
+  animation: dc-button-dash 1.5s ease-in-out infinite;
+}
+
+@keyframes dc-button-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dc-button-dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+/* Primary */
+.dc-button-primary {
+  color: var(--dc-background-colour);
+  background-color: var(--dc-primary-colour);
+  border: none;
+}
+
+.dc-button-primary .dc-button-image path {
+  fill: var(--dc-background-colour);
+}
+
+.dc-button-primary:focus {
+  outline: 2px solid var(--dc-primary-colour);
   outline-offset: 1px;
 }
 
+.dc-button-primary:hover,
+.dc-button-primary:active {
+  background-color: var(--dc-primary-accent-colour);
+  outline: none;
+}
+
+.dc-button-primary:disabled {
+  background-color: var(--dc-primary-disabled-colour);
+}
+
+.dc-button-primary .dc-button-spinner circle {
+  stroke: var(--dc-background-colour);
+}
+
+.dc-button-primary:disabled .dc-button-spinner circle {
+  stroke: var(--dc-background-colour);
+}
+
+/* Secondary */
+.dc-button-secondary {
+  color: var(--dc-primary-colour);
+  background-color: var(--dc-background-colour);
+  border-color: var(--dc-primary-colour);
+  border-width: 2px;
+  border-style: solid;
+}
+
+.dc-button-secondary:focus {
+  outline: 2px solid var(--dc-primary-colour);
+  border-color: var(--dc-primary-colour);
+  color: var(--dc-primary-colour);
+  outline-offset: 1px;
+}
+
+.dc-button-secondary:hover,
+.dc-button-secondary:active {
+  color: var(--dc-primary-accent-colour);
+  border-color: var(--dc-primary-accent-colour);
+  background-color: var(--dc-background-accent-color);
+  outline: none;
+}
+
+.dc-button-secondary:disabled {
+  color: var(--dc-primary-disabled-colour);
+  border-color: var(--dc-primary-disabled-colour);
+}
+
+.dc-button-secondary .dc-button-image path {
+  fill: var(--dc-primary-colour);
+}
+
+.dc-button-secondary:disabled .dc-button-image path {
+  fill: var(--dc-primary-disabled-colour);
+}
+
+.dc-button-secondary .dc-button-spinner circle {
+  stroke: var(--dc-primary-colour);
+  fill: none;
+}
+
+.dc-button-secondary:disabled .dc-button-spinner circle {
+  stroke: var(--dc-primary-disabled-colour);
+}
+
+/* Ghost */
+.dc-button-ghost {
+  color: var(--dc-primary-colour);
+  background-color: var(--dc-background-colour);
+  border-width: 2px;
+  border: none;
+}
+
+.dc-button-ghost:focus {
+  outline: 2px solid var(--dc-primary-colour);
+  outline-offset: 1px;
+  color: var(--dc-primary-colour);
+}
+
+.dc-button-ghost:hover,
+.dc-button-ghost:active {
+  background-color: var(--dc-background-accent-color);
+  color: var(--dc-primary-accent-colour);
+  outline: none;
+}
+
+.dc-button-ghost:disabled {
+  color: var(--dc-primary-disabled-colour);
+}
+
+.dc-button-ghost .dc-button-image path {
+  fill: var(--dc-primary-colour);
+}
+
+.dc-button-ghost:disabled .dc-button-image path {
+  fill: var(--dc-primary-disabled-colour);
+}
+
+.dc-button-ghost .dc-button-spinner circle {
+  stroke: var(--dc-primary-colour);
+  fill: none;
+}
+
+.dc-button-ghost:disabled .dc-button-spinner circle {
+  stroke: var(--dc-primary-disabled-colour);
+}

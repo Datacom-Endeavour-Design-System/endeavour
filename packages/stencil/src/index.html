@@ -1,49 +1,28 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Datacom Web Components Demo</title>
-    <link rel="stylesheet" href="/build/datacom.css" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <script type="module" src="/build/datacom.esm.js"></script>
-    <script nomodule src="/build/datacom.js"></script>
-  </head>
 
-  <body>
-    <datacom-menubar></datacom-menubar>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Datacom Web Components Demo</title>
+  <link rel="stylesheet" href="/build/datacom.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script type="module" src="/build/datacom.esm.js"></script>
+  <script nomodule src="/build/datacom.js"></script>
+</head>
 
-    <main>
-      <datacom-tabgroup>
-        <datacom-tab label="Buttons">
-          <div>
-            <p>
-              <datacom-button text="Hello World!"></datacom-button>
-            </p>
+<body>
 
-            <p>
-              <datacom-button text="Disabled" disabled="true"></datacom-button>
-            </p>
-          </div>
-        </datacom-tab>
+  <datacom-menubar></datacom-menubar>
 
-        <datacom-tab label="Checkbox">
-          <div>
-            <form  action="submit">
-              <datacom-checkbox  type ="checkbox" label="Enabled" id="check" value="true" name="new" ></datacom-checkbox>
-      
-              
-              <input type="checkbox"  label="check" vaule="dd" name="gg"/>
-        
-                <button type="submit" name="submit" value="go"  text="Submit" > submit</button>
-            
-            </form>
-              
-          </div>
-        </datacom-tab>
-      </datacom-tabgroup>
-    </main>
+  <main>
+    <h1>Welcome to Stencil</h1>
+    <p>We're going to build a demo site using all our components...</p>
+  </main>
 
-    <footer></footer>
-  </body>
+  <footer>
+
+  </footer>
+</body>
+
 </html>

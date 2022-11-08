@@ -1,10 +1,19 @@
-# datacom-tabgroup
-
-
+# Datacom Tabs
 
 <!-- Auto Generated Below -->
 
+## Methods
 
-----------------------------------------------
+### `select(index: number) => Promise<void>`
 
-*Built with [StencilJS](https://stenciljs.com/)*
+Select a tab with focus (zero index based)
+
+#### Returns
+
+Type: `Promise<void>`
+
+void
+
+---
+
+_Built with [StencilJS](https://stenciljs.com/)_

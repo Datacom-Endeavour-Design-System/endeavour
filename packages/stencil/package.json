@@ -13,18 +13,24 @@
   "scripts": {
     "build": "stencil build --docs",
     "dev": "stencil build --docs --watch",
+    "lint": "eslint src",
+    "test:unit": "stencil test --spec",
+    "test:e2e": "stencil test --spec --e2e",
     "start": "stencil build --dev --watch --serve",
     "clean": "rimraf dist loader www",
-    "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^2.18.1"
+    "@stencil/core": "^2.19.1"
   },
   "devDependencies": {
+    "@stencil/eslint-plugin": "^0.4.0",
     "@stencil/react-output-target": "^0.3.1",
-    "puppeteer": "^10.0.0",
+    "@types/jest": "^27.5.2",
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
+    "jest-dom": "^4.0.0",
+    "puppeteer": "^10.4.0",
     "rollup-plugin-copy": "^3.4.0"
   },
   "license": "MIT",

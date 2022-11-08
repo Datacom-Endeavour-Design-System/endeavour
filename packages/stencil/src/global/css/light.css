@@ -1,30 +1,26 @@
+/**
+    Light theme. 
+
+    Convention follows dc-{control}-{variant}-{variable}
+    - Prefixed with dc
+    - Main variant or concatenated variants such as 'primary-small'
+    - Use css attribute names where possible
+*/
 :root {
-    --dc-primary-background: #ffffff;
-    --dc-button-background-enabled: #0055FF;
-    --dc-button-background-disabled: #999999;
-    --dc-button-background-hover: #003FBC;
-    --dc-button-text: #ffffff;
-    --dc-button-font-size: 18px;
-    --dc-primary-font: 'Montserrat';  
+  /* Global defaults */
+  --dc-background-colour: #ffffff;
+  --dc-background-accent-color: #f0f0f0;
+  --dc-font-family: 'Montserrat';
+  --dc-font-size: 18px;
+  --dc-primary-colour: #0055ff;
+  --dc-primary-accent-colour: #003fbc;
+  --dc-primary-disabled-colour: #999999;
+  --dc-error-colour: #cf364e;
+  --dc-greyscale-05: #dadada;
+  --ui-greyscale-04: #999999;
+  --dc-greyscale-03: #666666;
+  --dc-primary-text-color: #0a1839;
 
-  --dc-primary-background: #ffffff;
-  --dc-button-background-enabled: #0055ff;
-  --dc-button-background-disabled: #999999;
-  --dc-button-background-hover: #003fbc;
-  --dc-button-text: #ffffff;
-  --dc-button-font-size: 18px;
-  --dc-primary-font: Montserrat;
-  --dc-label-font-size:16px;
-
-  --dc-datacom-checkbox-background-enabled: #ffffff;
-  --dc-datacom-checkbox-background-selected:#0055FF;
-  --dc-checkbox-border-enabled: 1px solid #dadada;
-  --dc-checkbox-border-radius: 4px;
-  --dc-checkbox-border-hover: 1px solid #0055ff;
-  --dc-checkbox-checked-background: #0055ff;
-  --dc-checkbox-focus-border:3px solid #0055FF;
-  --dc-checkbox-background-disabled:#F0F0F0 ;
-  --dc-checkbox-border-disabled:1px solid #DADADA;
-  --dc-checkbox-error-border-color: 1px solid #CF364E;
- 
+  /* Buttons */
+  --dc-button-primary-text-colour: #ffffff;
 }

@@ -1,19 +1,31 @@
-import { format } from './utils';
+import { pascalToDashCase, randomString } from './utils';
 
-describe('format', () => {
-  it('returns empty string for no names defined', () => {
-    expect(format(undefined, undefined, undefined)).toEqual('');
+describe('pascal to dash case', () => {
+  it('splits two words', () => {
+    expect(pascalToDashCase('BigCat')).toEqual('big-cat');
   });
 
-  it('formats just first names', () => {
-    expect(format('Joseph', undefined, undefined)).toEqual('Joseph');
+  it('splits three words', () => {
+    expect(pascalToDashCase('BigRedCat')).toEqual('big-red-cat');
   });
 
-  it('formats first and last names', () => {
-    expect(format('Joseph', undefined, 'Publique')).toEqual('Joseph Publique');
+  it('does not split single word', () => {
+    expect(pascalToDashCase('Big')).toEqual('big');
+  });
+});
+
+describe('Random string Util', () => {
+  it('generates correct length word', () => {
+    expect(randomString(12)).toHaveLength(12);
   });
 
-  it('formats first, middle and last names', () => {
-    expect(format('Joseph', 'Quincy', 'Publique')).toEqual('Joseph Quincy Publique');
+  it('generates empty string for length zero', () => {
+    expect(randomString(0)).toHaveLength(0);
   });
+
+  it('generates empty string for negative length', () => {
+    expect(randomString(-9)).toHaveLength(0);
+  });
+
+  /* TODO test with crypto library */
 });

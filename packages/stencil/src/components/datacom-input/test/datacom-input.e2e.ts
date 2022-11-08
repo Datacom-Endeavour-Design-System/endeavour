@@ -1,11 +1,11 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-describe('datacom-button', () => {
+describe('datacom-input', () => {
   it('renders', async () => {
     const page = await newE2EPage();
-    await page.setContent('<datacom-button></datacom-button>');
+    await page.setContent('<datacom-input></datacom-input>');
 
-    const element = await page.find('datacom-button');
+    const element = await page.find('datacom-input');
     expect(element).toHaveClass('hydrated');
   });
 });
