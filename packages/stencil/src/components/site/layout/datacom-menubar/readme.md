@@ -1,10 +1,7 @@
 # datacom-menubar
 
-
-
 <!-- Auto Generated Below -->
 
+---
 
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*
+(c) Copyright Datacom New Zealand Limited 2022

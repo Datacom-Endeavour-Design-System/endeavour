@@ -16,4 +16,4 @@ void
 
 ---
 
-_Built with [StencilJS](https://stenciljs.com/)_
+(c) Copyright Datacom New Zealand Limited 2022

@@ -1,6 +1,9 @@
 import React from 'react';
 import { ComponentStoryFn } from '@storybook/react';
-import { DatacomCheckbox } from '@datacom/endeavour-react';
+import {
+  DatacomCheckbox,
+  DatacomCheckboxGroup,
+} from '@datacom/endeavour-react';
 
 export default {
   title: 'Checkbox',
@@ -39,9 +42,8 @@ export default {
   },
   arg: {
     label: 'Checkbox',
-    Checkboxtype: 'checkbox',
     size: 'standard',
-    type: DatacomCheckbox,
+    type: 'checkbox',
     required: false,
     disabled: false,
     checked: false,
@@ -52,8 +54,8 @@ const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => (
   <DatacomCheckbox {...args} />
 );
 
-export const standard = Template.bind({});
-standard.args = {
+export const Standard = Template.bind({});
+Standard.args = {
   label: 'Checkbox Item',
   size: 'standard',
   checked: false,
@@ -63,12 +65,13 @@ standard.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  label: 'Checkbox Item ',
+  label: 'Checkbox Item',
   size: 'standard',
   checked: false,
   disabled: true,
   required: false,
 };
+
 export const DisabledSelected = Template.bind({});
 DisabledSelected.args = {
   label: 'Checkbox Item',
@@ -78,8 +81,8 @@ DisabledSelected.args = {
   required: false,
 };
 
-export const small = Template.bind({});
-small.args = {
+export const Small = Template.bind({});
+Small.args = {
   label: 'Checkbox Item',
   size: 'small',
   checked: false,
@@ -87,42 +90,30 @@ small.args = {
   required: false,
 };
 
-export const VerticalGrouping = (args: any) => {
+export const Grouped = () => {
   return (
     <div>
-      <div>
-        <DatacomCheckbox id="check-1" label="CheckboxItem" {...args} />
-      </div>
-      <div style={{ gap: '24px' }}>
-        <DatacomCheckbox id="check-2" label="CheckboxItem" {...args} />
-      </div>
-      <div>
-        <DatacomCheckbox
-          id="check-3"
-          style={{ gap: '12px ' }}
-          label="checkboxItem"
-          {...args}
-        />
-      </div>
+      <DatacomCheckboxGroup>
+        <DatacomCheckbox>Parent checkbox</DatacomCheckbox>
+        <DatacomCheckbox>Child option 1</DatacomCheckbox>
+        <DatacomCheckbox>Child option 2</DatacomCheckbox>
+        <DatacomCheckbox>Child option 3</DatacomCheckbox>
+        <DatacomCheckbox>Child option 4</DatacomCheckbox>
+      </DatacomCheckboxGroup>
     </div>
   );
 };
-export const Error = (args: any) => {
+
+export const GroupedSmall = () => {
   return (
     <div>
-      <DatacomCheckbox
-        {...args}
-        required="true"
-        disabled="false"></DatacomCheckbox>
-      <small
-        style={{
-          color: '#cf364e',
-          font: '12px',
-          fontFamily: 'Montserrat',
-          display: 'block',
-        }}>
-        Error message
-      </small>
+      <DatacomCheckboxGroup>
+        <DatacomCheckbox size="small">Parent checkbox</DatacomCheckbox>
+        <DatacomCheckbox size="small">Child option 1</DatacomCheckbox>
+        <DatacomCheckbox size="small">Child option 2</DatacomCheckbox>
+        <DatacomCheckbox size="small">Child option 3</DatacomCheckbox>
+        <DatacomCheckbox size="small">Child option 4</DatacomCheckbox>
+      </DatacomCheckboxGroup>
     </div>
   );
 };
