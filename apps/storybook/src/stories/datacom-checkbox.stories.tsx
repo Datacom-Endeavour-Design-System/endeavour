@@ -13,7 +13,7 @@ export default {
       name: 'Label',
       defaultValue: 'Checkbox Item',
       description: 'checkbox label',
-      type: { label: 'string', required: true },
+      type: { label: 'string' },
     },
     size: {
       name: 'Size',
@@ -22,7 +22,7 @@ export default {
       control: 'select',
       defaultValue: 'standard',
       options: ['standard', 'small'],
-      type: { label: 'string', required: true },
+      type: { label: 'string' },
     },
     checked: {
       name: 'Selected',
@@ -43,7 +43,6 @@ export default {
   arg: {
     label: 'Checkbox',
     size: 'standard',
-    type: 'checkbox',
     required: false,
     disabled: false,
     checked: false,
