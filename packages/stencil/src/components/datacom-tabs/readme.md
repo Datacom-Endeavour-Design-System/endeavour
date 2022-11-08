@@ -2,13 +2,27 @@
 
 <!-- Auto Generated Below -->
 
-## Properties
-
-| Property | Attribute | Description                                                                                                                                  | Type     | Default   |
-| -------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
-| `height` | `height`  | Explicitly set the height of the tab group. Tab content does not determine the maximum height of the tab control and must be explicitly set. | `string` | `'200px'` |
-
 ## Methods
+
+### `disableTab(index: number) => Promise<void>`
+
+Disable tab
+
+#### Returns
+
+Type: `Promise<void>`
+
+void
+
+### `enableTab(index: number) => Promise<void>`
+
+Enable tab
+
+#### Returns
+
+Type: `Promise<void>`
+
+void
 
 ### `select(index: number) => Promise<void>`
 

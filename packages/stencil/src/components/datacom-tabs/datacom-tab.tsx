@@ -1,4 +1,4 @@
-import { Component, h, Prop, Method, Host, Element } from '@stencil/core';
+import { Component, h, Prop, Method, Host } from '@stencil/core';
 
 /**
  * The tab element describes the tab, but does not render the tab label.
