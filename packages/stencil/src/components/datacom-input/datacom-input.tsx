@@ -120,20 +120,26 @@ export class DatacomInput implements FormControl {
   /**
    * Force validation on the form control to display any error messages
    *
-   * @param opts
-   *
    * @returns boolean
    */
   @Method()
   async validate(): Promise<boolean> {
-    this.isInError = !this.inputElement.checkValidity();
+    this.isInError = !(await this.checkValidity());
 
     if (this.isInError) {
       this.isDirty = true;
-      this.edit();
+      await this.edit();
     }
 
     return this.isInError;
+  }
+
+  /**
+   * Check if the control is valid
+   */
+  @Method()
+  async checkValidity(): Promise<boolean> {
+    return this.inputElement.checkValidity();
   }
 
   /**

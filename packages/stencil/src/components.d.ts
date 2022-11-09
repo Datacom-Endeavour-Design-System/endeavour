@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-button/datacom-button";
-import { CheckboxSize, CheckboxType } from "./components/datacom-checkbox/datacom-checkbox";
+import { CheckboxSize } from "./components/datacom-checkbox/datacom-checkbox";
 import { DatacomInputType, IndicatorType } from "./components/datacom-input/datacom-input";
 export namespace Components {
     interface DatacomButton {
@@ -53,14 +53,28 @@ export namespace Components {
         "variant": ButtonVariant;
     }
     interface DatacomCheckbox {
+        /**
+          * Auto-validate and display error message on form submit
+         */
+        "autoValidate"?: boolean;
         "autocomplete"?: boolean;
         "autofocus": boolean;
+        /**
+          * Check if the control is valid
+         */
+        "checkValidity": () => Promise<boolean>;
         "checked": boolean;
         /**
           * True if the checkbox is a child and should be indented
          */
         "child": boolean;
         "disabled": boolean;
+        "form"?: string;
+        "formaction"?: string;
+        "formenctype"?: string;
+        "formmethod"?: string;
+        "formnovalidate"?: boolean;
+        "formtarget"?: string;
         /**
           * True if the checkbox is part of a group
          */
@@ -69,13 +83,34 @@ export namespace Components {
           * Index of the checkbox in the group
          */
         "index": number;
+        /**
+          * Checkbox label (right of tickbox)
+         */
         "label": string;
+        /**
+          * Custom error message if control is invalid
+         */
         "message": string;
         "name": string;
+        /**
+          * Standard form props
+         */
+        "readonly"?: boolean;
         "required": boolean;
+        /**
+          * Checkbox is either standard size (default) or small
+         */
         "size": CheckboxSize;
-        "type": CheckboxType;
-        "value": string;
+        /**
+          * Show control in unknown state (dash)
+         */
+        "unknown"?: boolean;
+        /**
+          * Force validation on the form control to display any error messages
+          * @returns boolean
+         */
+        "validate": () => Promise<boolean>;
+        "value"?: string;
     }
     interface DatacomCheckboxGroup {
     }
@@ -84,6 +119,10 @@ export namespace Components {
           * Automatically show error state if invalid on form submit
          */
         "autoValidate"?: boolean;
+        /**
+          * Check if the control is valid
+         */
+        "checkValidity": () => Promise<boolean>;
         "disabled"?: boolean;
         /**
           * Switch the control to edit mode if it is not already editing.
@@ -130,7 +169,6 @@ export namespace Components {
         "type": DatacomInputType;
         /**
           * Force validation on the form control to display any error messages
-          * @param opts
           * @returns boolean
          */
         "validate": () => Promise<boolean>;
@@ -272,6 +310,10 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariant;
     }
     interface DatacomCheckbox {
+        /**
+          * Auto-validate and display error message on form submit
+         */
+        "autoValidate"?: boolean;
         "autocomplete"?: boolean;
         "autofocus"?: boolean;
         "checked"?: boolean;
@@ -280,6 +322,12 @@ declare namespace LocalJSX {
          */
         "child"?: boolean;
         "disabled"?: boolean;
+        "form"?: string;
+        "formaction"?: string;
+        "formenctype"?: string;
+        "formmethod"?: string;
+        "formnovalidate"?: boolean;
+        "formtarget"?: string;
         /**
           * True if the checkbox is part of a group
          */
@@ -288,16 +336,32 @@ declare namespace LocalJSX {
           * Index of the checkbox in the group
          */
         "index"?: number;
+        /**
+          * Checkbox label (right of tickbox)
+         */
         "label"?: string;
+        /**
+          * Custom error message if control is invalid
+         */
         "message"?: string;
         "name"?: string;
         /**
           * Emit a changed event with the index number if the control changes state
          */
         "onChanged"?: (event: DatacomCheckboxCustomEvent<number>) => void;
+        /**
+          * Standard form props
+         */
+        "readonly"?: boolean;
         "required"?: boolean;
+        /**
+          * Checkbox is either standard size (default) or small
+         */
         "size"?: CheckboxSize;
-        "type"?: CheckboxType;
+        /**
+          * Show control in unknown state (dash)
+         */
+        "unknown"?: boolean;
         "value"?: string;
     }
     interface DatacomCheckboxGroup {

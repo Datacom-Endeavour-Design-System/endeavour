@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { ComponentStoryFn } from '@storybook/react';
 import {
   DatacomCheckbox,
   DatacomCheckboxGroup,
+  DatacomButton,
 } from '@datacom/endeavour-react';
 
 export default {
@@ -89,7 +90,7 @@ Small.args = {
   required: false,
 };
 
-export const Grouped = () => {
+export const GroupedStandard = () => {
   return (
     <div>
       <DatacomCheckboxGroup>
@@ -114,5 +115,33 @@ export const GroupedSmall = () => {
         <DatacomCheckbox size="small">Child option 4</DatacomCheckbox>
       </DatacomCheckboxGroup>
     </div>
+  );
+};
+
+export const FormGroup = () => {
+  const form = useRef<HTMLFormElement>();
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (event: SubmitEvent) => {
+    if (form.current.checkValidity()) {
+      setSubmitted(true);
+      event.preventDefault();
+    } else {
+      setSubmitted(false);
+    }
+  };
+
+  return (
+    <form method="post" ref={form} onSubmit={handleSubmit}>
+      <div>
+        <DatacomCheckbox required={true} message="Please agree to the terms">
+          I agree to terms and conditions
+        </DatacomCheckbox>
+
+        {submitted && <p>Form would have been submitted but was prevented</p>}
+      </div>
+      <hr />
+      <DatacomButton type="submit">Submit</DatacomButton>
+    </form>
   );
 };
