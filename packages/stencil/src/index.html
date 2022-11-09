@@ -18,6 +18,15 @@
   <main>
     <h1>Welcome to Stencil</h1>
     <p>We're going to build a demo site using all our components...</p>
+
+    <form>
+      <div>
+        <datacom-input auto-validate="true" name="firstname" required="true" placeholder="First name" message="First name is required"></datacom-input>
+        <datacom-input auto-validate="true" name="surname" required="true" placeholder="Surname name" message="Surname name is required"></datacom-input>
+      </div>
+      <hr/>
+      <datacom-button type="submit">Submit</datacom-button>
+    </form>
   </main>
 
   <footer>

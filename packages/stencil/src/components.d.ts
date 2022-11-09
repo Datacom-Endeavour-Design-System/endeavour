@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-button/datacom-button";
+import { CheckboxSize } from "./components/datacom-checkbox/datacom-checkbox";
 import { DatacomInputType, IndicatorType } from "./components/datacom-input/datacom-input";
 export namespace Components {
     interface DatacomButton {
@@ -52,14 +53,76 @@ export namespace Components {
         "variant": ButtonVariant;
     }
     interface DatacomCheckbox {
+        /**
+          * Auto-validate and display error message on form submit
+         */
+        "autoValidate"?: boolean;
+        "autocomplete"?: boolean;
+        "autofocus": boolean;
+        /**
+          * Check if the control is valid
+         */
+        "checkValidity": () => Promise<boolean>;
         "checked": boolean;
+        /**
+          * True if the checkbox is a child and should be indented
+         */
+        "child": boolean;
+        "disabled": boolean;
+        "form"?: string;
+        "formaction"?: string;
+        "formenctype"?: string;
+        "formmethod"?: string;
+        "formnovalidate"?: boolean;
+        "formtarget"?: string;
+        /**
+          * True if the checkbox is part of a group
+         */
+        "grouped": boolean;
+        /**
+          * Index of the checkbox in the group
+         */
+        "index": number;
+        /**
+          * Checkbox label (right of tickbox)
+         */
         "label": string;
+        /**
+          * Custom error message if control is invalid
+         */
+        "message": string;
+        "name": string;
+        /**
+          * Standard form props
+         */
+        "readonly"?: boolean;
+        "required": boolean;
+        /**
+          * Checkbox is either standard size (default) or small
+         */
+        "size": CheckboxSize;
+        /**
+          * Show control in unknown state (dash)
+         */
+        "unknown"?: boolean;
+        /**
+          * Force validation on the form control to display any error messages
+          * @returns boolean
+         */
+        "validate": () => Promise<boolean>;
+        "value"?: string;
+    }
+    interface DatacomCheckboxGroup {
     }
     interface DatacomInput {
         /**
           * Automatically show error state if invalid on form submit
          */
         "autoValidate"?: boolean;
+        /**
+          * Check if the control is valid
+         */
+        "checkValidity": () => Promise<boolean>;
         "disabled"?: boolean;
         /**
           * Switch the control to edit mode if it is not already editing.
@@ -106,7 +169,6 @@ export namespace Components {
         "type": DatacomInputType;
         /**
           * Force validation on the form control to display any error messages
-          * @param opts
           * @returns boolean
          */
         "validate": () => Promise<boolean>;
@@ -163,6 +225,12 @@ declare global {
         prototype: HTMLDatacomCheckboxElement;
         new (): HTMLDatacomCheckboxElement;
     };
+    interface HTMLDatacomCheckboxGroupElement extends Components.DatacomCheckboxGroup, HTMLStencilElement {
+    }
+    var HTMLDatacomCheckboxGroupElement: {
+        prototype: HTMLDatacomCheckboxGroupElement;
+        new (): HTMLDatacomCheckboxGroupElement;
+    };
     interface HTMLDatacomInputElement extends Components.DatacomInput, HTMLStencilElement {
     }
     var HTMLDatacomInputElement: {
@@ -190,6 +258,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "datacom-button": HTMLDatacomButtonElement;
         "datacom-checkbox": HTMLDatacomCheckboxElement;
+        "datacom-checkbox-group": HTMLDatacomCheckboxGroupElement;
         "datacom-input": HTMLDatacomInputElement;
         "datacom-menubar": HTMLDatacomMenubarElement;
         "datacom-tab": HTMLDatacomTabElement;
@@ -241,9 +310,61 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariant;
     }
     interface DatacomCheckbox {
+        /**
+          * Auto-validate and display error message on form submit
+         */
+        "autoValidate"?: boolean;
+        "autocomplete"?: boolean;
+        "autofocus"?: boolean;
         "checked"?: boolean;
+        /**
+          * True if the checkbox is a child and should be indented
+         */
+        "child"?: boolean;
+        "disabled"?: boolean;
+        "form"?: string;
+        "formaction"?: string;
+        "formenctype"?: string;
+        "formmethod"?: string;
+        "formnovalidate"?: boolean;
+        "formtarget"?: string;
+        /**
+          * True if the checkbox is part of a group
+         */
+        "grouped"?: boolean;
+        /**
+          * Index of the checkbox in the group
+         */
+        "index"?: number;
+        /**
+          * Checkbox label (right of tickbox)
+         */
         "label"?: string;
-        "onToggle"?: (event: DatacomCheckboxCustomEvent<boolean>) => void;
+        /**
+          * Custom error message if control is invalid
+         */
+        "message"?: string;
+        "name"?: string;
+        /**
+          * Emit a changed event with the index number if the control changes state
+         */
+        "onChanged"?: (event: DatacomCheckboxCustomEvent<number>) => void;
+        /**
+          * Standard form props
+         */
+        "readonly"?: boolean;
+        "required"?: boolean;
+        /**
+          * Checkbox is either standard size (default) or small
+         */
+        "size"?: CheckboxSize;
+        /**
+          * Show control in unknown state (dash)
+         */
+        "unknown"?: boolean;
+        "value"?: string;
+    }
+    interface DatacomCheckboxGroup {
     }
     interface DatacomInput {
         /**
@@ -309,6 +430,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "datacom-button": DatacomButton;
         "datacom-checkbox": DatacomCheckbox;
+        "datacom-checkbox-group": DatacomCheckboxGroup;
         "datacom-input": DatacomInput;
         "datacom-menubar": DatacomMenubar;
         "datacom-tab": DatacomTab;
@@ -321,6 +443,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "datacom-button": LocalJSX.DatacomButton & JSXBase.HTMLAttributes<HTMLDatacomButtonElement>;
             "datacom-checkbox": LocalJSX.DatacomCheckbox & JSXBase.HTMLAttributes<HTMLDatacomCheckboxElement>;
+            "datacom-checkbox-group": LocalJSX.DatacomCheckboxGroup & JSXBase.HTMLAttributes<HTMLDatacomCheckboxGroupElement>;
             "datacom-input": LocalJSX.DatacomInput & JSXBase.HTMLAttributes<HTMLDatacomInputElement>;
             "datacom-menubar": LocalJSX.DatacomMenubar & JSXBase.HTMLAttributes<HTMLDatacomMenubarElement>;
             "datacom-tab": LocalJSX.DatacomTab & JSXBase.HTMLAttributes<HTMLDatacomTabElement>;
