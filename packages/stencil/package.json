@@ -11,8 +11,8 @@
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/@datacom/endeavour/datacom.esm.js",
   "scripts": {
-    "build": "stencil build --docs",
-    "dev": "stencil build --docs --watch",
+    "build": "stencil build",
+    "docs": "stencil build --docs",
     "lint": "eslint src",
     "test:unit": "stencil test --spec",
     "test:e2e": "stencil test --spec --e2e",
