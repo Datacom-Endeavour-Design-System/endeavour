@@ -2,9 +2,8 @@
 * For this scoped component we should use the namespace prefix of "dc-input"
 */
 :host {
-  display: inline-block;
+  display: block;
   outline: none;
-  height: 85px;
 }
 
 .dc-input-root {
@@ -25,7 +24,7 @@
 }
 
 .dc-input-label {
-  color: var(--dc-greyscale-03);
+  color: var(--dc-primary-text-color);
   font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 16px;
@@ -39,13 +38,16 @@
   padding: 14px 16px;
   outline: none;
   font-family: var(--dc-font-family);
+  color: var(--dc-primary-text-color);
   font-weight: 400;
   font-size: 16px;
   display: block;
   min-width: 270px;
   max-width: 400px;
-  box-sizing: content-box;
-  outline: none;
+  box-sizing: border-box;
+  height: 52px;
+  caret-color: var(--dc-primary-colour);
+  text-overflow: ellipsis;
 }
 
 .dc-input-help {
@@ -55,11 +57,8 @@
   font-size: 12px;
   line-height: 16px;
   margin-left: 16px;
+  padding-top: 4px;
   outline: none;
-}
-
-.dc-input-input:not([value='']) {
-  color: var(--dc-primary-text-color);
 }
 
 /* View mode */
@@ -73,14 +72,6 @@
 
 .dc-input-view .dc-input-input-wrap {
   height: 0;
-}
-
-.dc-input-view .dc-input-label-wrap:hover {
-  border-color: var(--dc-primary-accent-colour);
-}
-
-.dc-input-view .dc-input-input-wrap {
-  visibility: hidden;
 }
 
 /* Edit mode */
@@ -127,12 +118,24 @@
   }
 }
 
-.dc-input-edit .dc-input-input:focus {
-  border: 2px solid var(--dc-primary-colour);
+.dc-input-view .dc-input-label-wrap:hover {
+  border-color: var(--dc-primary-accent-colour);
+}
+
+.dc-input-view .dc-input-input-wrap {
+  visibility: hidden;
 }
 
 .dc-input-edit .dc-input-input:hover {
   border-color: var(--dc-primary-accent-colour);
+}
+
+.dc-input-edit .dc-input-input:focus {
+  border: 2px solid var(--dc-primary-colour);
+}
+
+.dc-input-edit .dc-input-input:placeholder-shown {
+  color: var(--dc-greyscale-04);
 }
 
 /* Error state */
@@ -186,10 +189,7 @@
   border-color: var(--dc-greyscale-05);
 }
 
-.dc-input-disabled .dc-input-label {
-  color: var(--dc-greyscale-04);
-}
-
+.dc-input-disabled .dc-input-label,
 .dc-input-disabled .dc-input-input {
   color: var(--dc-greyscale-04);
 }

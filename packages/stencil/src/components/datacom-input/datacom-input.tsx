@@ -260,9 +260,9 @@ export class DatacomInput implements FormControl {
     }
 
     /**
-     * The control is in edit mode if explicitly editing or there is a non-empty value
+     * The control is in edit mode if explicitly editing or there is a non-empty value or explicitly in error
      */
-    const edit = this.isEditing || this.value?.length > 0 || this.isDirty;
+    const edit = this.isEditing || this.value?.length > 0 || this.isDirty || this.isValid == false;
 
     /**
      * When in edit mode, we disable tabindex within the control so that keyboard actions
