@@ -30,6 +30,11 @@ export default {
       description: 'Checked Checkbox',
       type: { name: 'boolean' },
     },
+    unknown: {
+      name: 'Unknown',
+      description: 'Show the field in an unknown state',
+      type: { name: 'boolean' },
+    },
     disabled: {
       name: 'Disabled',
       description: 'Disable Checkbox',
@@ -59,26 +64,6 @@ Standard.args = {
   label: 'Checkbox Item',
   size: 'standard',
   checked: false,
-  disabled: false,
-  required: false,
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Checkbox Item',
-  size: 'standard',
-  checked: false,
-  disabled: true,
-  required: false,
-};
-
-export const DisabledSelected = Template.bind({});
-DisabledSelected.args = {
-  label: 'Checkbox Item',
-  size: 'standard',
-  checked: true,
-  disabled: true,
-  required: false,
 };
 
 export const Small = Template.bind({});
@@ -86,8 +71,6 @@ Small.args = {
   label: 'Checkbox Item',
   size: 'small',
   checked: false,
-  disabled: false,
-  required: false,
 };
 
 export const GroupedStandard = () => {
@@ -118,7 +101,7 @@ export const GroupedSmall = () => {
   );
 };
 
-export const FormGroup = () => {
+export const FormValidation = () => {
   const form = useRef<HTMLFormElement>();
   const [submitted, setSubmitted] = useState(false);
 
