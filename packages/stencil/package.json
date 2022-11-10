@@ -13,7 +13,7 @@
   "scripts": {
     "build": "stencil build",
     "dev": "stencil build --watch",
-    "docs": "stencil build --docs",
+    "docs": "stencil build --config stencil.config-docs.ts --docs",
     "lint": "eslint src",
     "test:unit": "stencil test --spec",
     "test:e2e": "stencil test --spec --e2e",
