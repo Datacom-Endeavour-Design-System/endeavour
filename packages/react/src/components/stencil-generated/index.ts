@@ -16,6 +16,10 @@ export const DatacomCheckbox = /*@__PURE__*/ createReactComponent<
   JSX.DatacomCheckbox,
   HTMLDatacomCheckboxElement
 >('datacom-checkbox');
+export const DatacomCheckboxGroup = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomCheckboxGroup,
+  HTMLDatacomCheckboxGroupElement
+>('datacom-checkbox-group');
 export const DatacomInput = /*@__PURE__*/ createReactComponent<
   JSX.DatacomInput,
   HTMLDatacomInputElement

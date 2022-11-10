@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ComponentStoryFn, Meta } from '@storybook/react';
 import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
 
@@ -190,8 +190,20 @@ export const WithIndicators = () => {
 };
 
 export const VerticalForm = () => {
+  const form = useRef<HTMLFormElement>();
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (event: SubmitEvent) => {
+    if (form.current.checkValidity()) {
+      setSubmitted(true);
+      event.preventDefault();
+    } else {
+      setSubmitted(false);
+    }
+  };
+
   return (
-    <form>
+    <form method="post" ref={form} onSubmit={handleSubmit}>
       <div style={{ width: '400px', marginBottom: '20px' }}>
         <DatacomInput
           label="First name(s)"
@@ -217,7 +229,7 @@ export const VerticalForm = () => {
           help="Enter a phone number with numbers only"
           message="Please enter a valid phone number"
           placeholder="Home or Mobile"
-          pattern="^d*$"
+          pattern="^\d*$"
           required={true}
         />
 
@@ -230,8 +242,11 @@ export const VerticalForm = () => {
           placeholder="Email address"
           required={true}
         />
+
+        {submitted && <p>Form would have been submitted but was prevented</p>}
       </div>
 
+      <hr />
       <DatacomButton variant="primary" type="submit">
         Submit
       </DatacomButton>

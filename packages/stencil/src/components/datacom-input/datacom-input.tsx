@@ -120,20 +120,26 @@ export class DatacomInput implements FormControl {
   /**
    * Force validation on the form control to display any error messages
    *
-   * @param opts
-   *
    * @returns boolean
    */
   @Method()
   async validate(): Promise<boolean> {
-    this.isInError = !this.inputElement.checkValidity();
+    this.isInError = !(await this.checkValidity());
 
     if (this.isInError) {
       this.isDirty = true;
-      this.edit();
+      await this.edit();
     }
 
     return this.isInError;
+  }
+
+  /**
+   * Check if the control is valid
+   */
+  @Method()
+  async checkValidity(): Promise<boolean> {
+    return this.inputElement.checkValidity();
   }
 
   /**
@@ -254,9 +260,9 @@ export class DatacomInput implements FormControl {
     }
 
     /**
-     * The control is in edit mode if explicitly editing or there is a non-empty value
+     * The control is in edit mode if explicitly editing or there is a non-empty value or explicitly in error
      */
-    const edit = this.isEditing || this.value?.length > 0 || this.isDirty;
+    const edit = this.isEditing || this.value?.length > 0 || this.isDirty || this.isValid == false;
 
     /**
      * When in edit mode, we disable tabindex within the control so that keyboard actions

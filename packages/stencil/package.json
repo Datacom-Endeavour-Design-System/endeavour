@@ -11,8 +11,9 @@
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/@datacom/endeavour/datacom.esm.js",
   "scripts": {
-    "build": "stencil build --docs",
-    "dev": "stencil build --docs --watch",
+    "build": "stencil build",
+    "dev": "stencil build --watch",
+    "docs": "stencil build --docs",
     "lint": "eslint src",
     "test:unit": "stencil test --spec",
     "test:e2e": "stencil test --spec --e2e",
@@ -29,9 +30,13 @@
     "@types/jest": "^27.5.2",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
+    "jest-config": "^29.3.0",
     "jest-dom": "^4.0.0",
     "puppeteer": "^10.4.0",
     "rollup-plugin-copy": "^3.4.0"
+  },
+  "jest": {
+    "root": "src"
   },
   "license": "MIT",
   "author": "endeavour@datacom.co.nz",
