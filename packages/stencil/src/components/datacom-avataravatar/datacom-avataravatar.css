@@ -1,0 +1,43 @@
+:host {
+  display: block;
+}
+
+.avatar {
+  display: flex;
+  font-family: 'Montserrat';
+}
+
+.avatar-image img,
+.avatar-initial {
+  display: block;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0a1839;
+  color: #fff;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.avatar-initial {
+}
+
+.avatar-details {
+  margin-left: 12px;
+}
+
+.avatar-title {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.avatar-name {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}

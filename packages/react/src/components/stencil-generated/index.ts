@@ -8,8 +8,27 @@ import type { JSX } from '@datacom/endeavour';
 import { defineCustomElements } from '@datacom/endeavour/dist/loader';
 
 defineCustomElements();
-export const DatacomButton = /*@__PURE__*/createReactComponent<JSX.DatacomButton, HTMLDatacomButtonElement>('datacom-button');
-export const DatacomCheckbox = /*@__PURE__*/createReactComponent<JSX.DatacomCheckbox, HTMLDatacomCheckboxElement>('datacom-checkbox');
-export const DatacomMenubar = /*@__PURE__*/createReactComponent<JSX.DatacomMenubar, HTMLDatacomMenubarElement>('datacom-menubar');
-export const DatacomTab = /*@__PURE__*/createReactComponent<JSX.DatacomTab, HTMLDatacomTabElement>('datacom-tab');
-export const DatacomTabgroup = /*@__PURE__*/createReactComponent<JSX.DatacomTabgroup, HTMLDatacomTabgroupElement>('datacom-tabgroup');
+export const DatacomAvataravatar = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomAvataravatar,
+  HTMLDatacomAvataravatarElement
+>('datacom-avataravatar');
+export const DatacomButton = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomButton,
+  HTMLDatacomButtonElement
+>('datacom-button');
+export const DatacomCheckbox = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomCheckbox,
+  HTMLDatacomCheckboxElement
+>('datacom-checkbox');
+export const DatacomMenubar = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomMenubar,
+  HTMLDatacomMenubarElement
+>('datacom-menubar');
+export const DatacomTab = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomTab,
+  HTMLDatacomTabElement
+>('datacom-tab');
+export const DatacomTabgroup = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomTabgroup,
+  HTMLDatacomTabgroupElement
+>('datacom-tabgroup');
