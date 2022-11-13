@@ -1,5 +1,8 @@
-import { Component, Host, h, Prop, Element, EventEmitter, Event, VNode } from '@stencil/core';
+import { Component, Host, h, Prop, Element, EventEmitter, Event, VNode, State, Method } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
+import { randomString } from '../../utils';
+import { FormControl } from '../form-control';
+
 export type RadioSize = 'standard' | 'small';
 export type RadioVariant = 'radios' | 'buttons';
 export type ImagePosition = 'left' | 'right';
@@ -9,8 +12,8 @@ export type ImagePosition = 'left' | 'right';
   styleUrl: 'datacom-radio.css',
   scoped: true,
 })
-export class DatacomRadio {
-  @Element() el;
+export class DatacomRadio implements FormControl {
+  @Element() host: HTMLElement;
   @Prop() label: string;
   @Prop() variant: RadioVariant = 'radios';
   @Prop() size: RadioSize = 'standard';
@@ -20,13 +23,15 @@ export class DatacomRadio {
   @Prop() disabled = false;
   @Prop() required = false;
   @Prop() name: string;
-  @Prop() inputId: string;
   @Prop() src: string;
   @Prop() icon: string;
 
   @Prop() value: string;
   @Prop() autofocus = false;
+  @Prop() autocomplete?: boolean;
+  @Prop() readonly?: boolean;
   @Prop() formmethod: string;
+  @Prop() formnovalidate? = false;
   @Prop() form: string;
   @Prop() formenctype: string;
   @Prop() formaction: string;
@@ -35,12 +40,42 @@ export class DatacomRadio {
 
   //  @Event()
 
+  /**
+   * Auto-validate and display error message on form submit
+   */
+  @Prop() autoValidate?: boolean = true;
+  /**
+   * Unique input control id
+   */
+  private inputId = randomString();
+
+  /**
+   * Custom error message if control is invalid
+   */
+  @Prop() message: string;
+  @State() isInError = false;
+  private inputElement: HTMLInputElement;
+
   handleChange = e => {
     console.log(e.target.value);
     this.checked = true;
 
     // this.toggle.emit(this.checked)
   };
+  @Method()
+  async validate(): Promise<boolean> {
+    this.isInError = !(await this.checkValidity());
+
+    return this.isInError;
+  }
+
+  /**
+   * Check if the control is valid
+   */
+  @Method()
+  async checkValidity(): Promise<boolean> {
+    return this.inputElement.checkValidity();
+  }
 
   render() {
     // Shouldn't overwrite immutable properties so we must use local variables
@@ -56,15 +91,15 @@ export class DatacomRadio {
       this.variant = 'radios';
     }
     if (!['left', 'right'].includes(this.imagePosition)) {
-      console.log('Buttons group image position must be either left or right.');
+      console.log('radio group image position must be either left or right.');
       this.imagePosition = 'left';
     }
 
     let image: VNode;
     if (this.icon !== undefined && !this.checked) {
-      image = getSvg(this.icon, { class: 'image' });
+      image = getSvg(this.icon, { class: 'dc-radio-image' });
     } else if (this.src !== undefined) {
-      image = <img src={this.src} class="image"></img>;
+      image = <img src={this.src} class="dc-radio-image"></img>;
     }
 
     const classes = {
@@ -86,6 +121,7 @@ export class DatacomRadio {
             formaction={this.formaction}
             formtarget={this.formtarget}
             formenctype={this.formenctype}
+            formnovalidate={this.formnovalidate}
             name={this.name}
             type={this.type}
             checked={this.checked}

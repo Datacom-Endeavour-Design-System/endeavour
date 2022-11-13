@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Datacom Web Components Demo</title>
+    <link rel="stylesheet" href="/build/datacom.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script type="module" src="/build/datacom.esm.js"></script>
+    <script nomodule src="/build/datacom.js"></script>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-  <title>Datacom Web Components Demo</title>
-  <link rel="stylesheet" href="/build/datacom.css" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
-  <script type="module" src="/build/datacom.esm.js"></script>
-  <script nomodule src="/build/datacom.js"></script>
-</head>
+  <body>
+    <datacom-menubar></datacom-menubar>
 
-<body>
+    <main>
+      <h2>Welcome to Stencil</h2>
+      <p>We're going to build a demo site using all our components...</p>
+      <form action="submit">
+        <datacom-radio label="Radio small" id="radio1" value="choice1" name="choose" size="small"> </datacom-radio>
+        <datacom-radio label="Radio" id="radio1" value="choice2" name="choose" size="standard"> </datacom-radio>
 
-  <datacom-menubar></datacom-menubar>
+        <datacom-radio label="Radio" id="radio1" value="choice3" name="choose" variant="buttons" size="small"> </datacom-radio>
+        <datacom-radio label="Radio" id="radio1" value="choice4" name="choose" variant="buttons" icon="globe"> </datacom-radio>
+        <datacom-button type="submit" name="submit" value="enter" icon="globe">submit</datacom-button>
+      </form>
+    </main>
 
-  <main>
-    <h2>Welcome to Stencil</h2>
-    <p>We're going to build a demo site using all our components...</p>
-  </main>
-
-  <footer>
-
-  </footer>
-</body>
-
+    <footer></footer>
+  </body>
 </html>

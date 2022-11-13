@@ -178,23 +178,41 @@ export namespace Components {
     interface DatacomMenubar {
     }
     interface DatacomRadio {
+        /**
+          * Auto-validate and display error message on form submit
+         */
+        "autoValidate"?: boolean;
+        "autocomplete"?: boolean;
         "autofocus": boolean;
+        /**
+          * Check if the control is valid
+         */
+        "checkValidity": () => Promise<boolean>;
         "checked": boolean;
         "disabled": boolean;
         "form": string;
         "formaction": string;
         "formenctype": string;
         "formmethod": string;
+        "formnovalidate"?: boolean;
         "formtarget": string;
         "icon": string;
         "imagePosition": ImagePosition;
-        "inputId": string;
         "label": string;
+        /**
+          * Custom error message if control is invalid
+         */
+        "message": string;
         "name": string;
+        "readonly"?: boolean;
         "required": boolean;
         "size": RadioSize;
         "src": string;
         "type": string;
+        /**
+          * Force validation on the field. If validation fails then show error message.
+         */
+        "validate": () => Promise<boolean>;
         "value": string;
         "variant": RadioVariant;
     }
@@ -464,6 +482,11 @@ declare namespace LocalJSX {
     interface DatacomMenubar {
     }
     interface DatacomRadio {
+        /**
+          * Auto-validate and display error message on form submit
+         */
+        "autoValidate"?: boolean;
+        "autocomplete"?: boolean;
         "autofocus"?: boolean;
         "checked"?: boolean;
         "disabled"?: boolean;
@@ -471,13 +494,18 @@ declare namespace LocalJSX {
         "formaction"?: string;
         "formenctype"?: string;
         "formmethod"?: string;
+        "formnovalidate"?: boolean;
         "formtarget"?: string;
         "icon"?: string;
         "imagePosition"?: ImagePosition;
-        "inputId"?: string;
         "label"?: string;
+        /**
+          * Custom error message if control is invalid
+         */
+        "message"?: string;
         "name"?: string;
         "onChanged"?: (event: DatacomRadioCustomEvent<number>) => void;
+        "readonly"?: boolean;
         "required"?: boolean;
         "size"?: RadioSize;
         "src"?: string;

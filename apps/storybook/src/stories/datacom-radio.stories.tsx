@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStoryFn, Meta } from '@storybook/react';
+import { ComponentStoryFn } from '@storybook/react';
 import { DatacomRadio } from '@datacom/endeavour-react';
 
 export default {
@@ -16,7 +16,7 @@ export default {
       name: 'Variant',
       description: 'Radios is main Variant',
       control: 'select',
-      defaultValue: 'radios',
+      defaultValue: 'radio',
       options: ['radios', 'buttons'],
       type: { name: 'string', required: true },
     },
@@ -87,26 +87,49 @@ export default {
     required: true,
     disabled: false,
     checked: false,
-    'image-position': 'left',
-    icon: '',
+    // 'image-position': 'left',
+    // icon: '',
   },
 };
 
 const Template: ComponentStoryFn<typeof DatacomRadio> = (args) => (
   <DatacomRadio {...args} />
 );
-
+export const GroupRadio = () => {
+  return (
+    <div>
+      <DatacomRadio label="radio1" name="choose" value="choice1"></DatacomRadio>
+      <DatacomRadio label="radio2" name="choose" value="choice2"></DatacomRadio>
+    </div>
+  );
+};
+export const GroupButton = () => {
+  return (
+    <div>
+      <DatacomRadio
+        label="Button1"
+        name="choose"
+        value="choice1"
+        variant="buttons"></DatacomRadio>
+      <DatacomRadio
+        label="Button2"
+        name="choose"
+        value="choice2"
+        variant="buttons"></DatacomRadio>
+    </div>
+  );
+};
 export const RadioGroup = Template.bind({});
 RadioGroup.args = {
-  label: ' Radio button Item',
+  label: ' Radio Item',
   size: 'standard',
   disabled: false,
   checked: false,
-  'image-position': 'left',
 };
 export const buttonGroup = Template.bind({});
 buttonGroup.args = {
-  label: 'label',
+  variant: 'buttons',
+  label: 'Label',
   size: 'standard',
   disabled: false,
   checked: false,
