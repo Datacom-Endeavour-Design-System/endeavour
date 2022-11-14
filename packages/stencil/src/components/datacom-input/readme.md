@@ -48,6 +48,14 @@ The control is scoped rather than shadow so the input field can participate in a
 
 ## Methods
 
+### `checkValidity() => Promise<boolean>`
+
+Check if the control is valid
+
+#### Returns
+
+Type: `Promise<boolean>`
+
 ### `edit() => Promise<void>`
 
 Switch the control to edit mode if it is not already editing.
@@ -68,4 +76,4 @@ boolean
 
 ---
 
-_Built with [StencilJS](https://stenciljs.com/)_
+(c) Copyright Datacom New Zealand Limited 2022

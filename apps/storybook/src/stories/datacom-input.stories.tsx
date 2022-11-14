@@ -1,92 +1,90 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ComponentStoryFn, Meta } from '@storybook/react';
 import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
 
-export default false
-  ? ({
-      title: 'Text Input',
-      component: DatacomInput,
-      argTypes: {
-        label: {
-          name: 'Label',
-          defaultValue: 'Input label',
-          description: 'Input label',
-          type: { name: 'string', required: true },
-        },
-        value: {
-          name: 'Value',
-          description: 'Prepopulated input',
-          type: { name: 'string', required: false },
-        },
-        placeholder: {
-          name: 'Placeholder',
-          defaultValue: 'Enter a value',
-          description: 'Input placeholder prompt',
-          type: { name: 'string', required: false },
-        },
-        pattern: {
-          name: 'Pattern',
-          description: 'Validate the control using regular expression',
-          type: { name: 'string', required: false },
-        },
-        title: {
-          name: 'Title',
-          description: 'Hover title on the edit input',
-          type: { name: 'string', required: false },
-        },
-        message: {
-          name: 'Error Message',
-          description:
-            'Error if validation fails or explicitly set with "valid" property',
-          type: { name: 'string', required: false },
-        },
-        help: {
-          name: 'Help text',
-          description: 'Assistance instructions below input',
-          type: { name: 'string', required: false },
-        },
-        valid: {
-          name: 'Valid',
-          description: 'Is the input valid (show error otherwise)',
-          type: { name: 'boolean' },
-        },
-        required: {
-          name: 'Required',
-          description: 'Is the input required',
-          type: { name: 'boolean' },
-        },
-        size: {
-          name: 'Size',
-          description: 'Size of input control (characters)',
-          type: { name: 'number' },
-        },
-        maxlength: {
-          name: 'Max length',
-          description: 'Maximum number of characters',
-          type: { name: 'number' },
-        },
-        disabled: {
-          name: 'Disabled',
-          description: 'Disable button',
-          type: { name: 'boolean' },
-        },
-        indicator: {
-          name: 'Indicator',
-          description: 'Feedback indicator in edit mode',
-          control: 'select',
-          defaultValue: 'none',
-          options: ['none', 'working', 'done'],
-          type: { name: 'string', required: false },
-        },
-      },
-      args: {
-        label: 'First name',
-        disabled: false,
-        required: true,
-        message: 'Please enter a value',
-      },
-    } as Meta<typeof DatacomInput>)
-  : {};
+export default {
+  title: 'Text Input',
+  component: DatacomInput,
+  argTypes: {
+    label: {
+      name: 'Label',
+      defaultValue: 'Input label',
+      description: 'Input label',
+      type: { name: 'string', required: true },
+    },
+    value: {
+      name: 'Value',
+      description: 'Prepopulated input',
+      type: { name: 'string', required: false },
+    },
+    placeholder: {
+      name: 'Placeholder',
+      defaultValue: 'Enter a value',
+      description: 'Input placeholder prompt',
+      type: { name: 'string', required: false },
+    },
+    pattern: {
+      name: 'Pattern',
+      description: 'Validate the control using regular expression',
+      type: { name: 'string', required: false },
+    },
+    title: {
+      name: 'Title',
+      description: 'Hover title on the edit input',
+      type: { name: 'string', required: false },
+    },
+    message: {
+      name: 'Error Message',
+      description:
+        'Error if validation fails or explicitly set with "valid" property',
+      type: { name: 'string', required: false },
+    },
+    help: {
+      name: 'Help text',
+      description: 'Assistance instructions below input',
+      type: { name: 'string', required: false },
+    },
+    valid: {
+      name: 'Valid',
+      description: 'Is the input valid (show error otherwise)',
+      type: { name: 'boolean' },
+    },
+    required: {
+      name: 'Required',
+      description: 'Is the input required',
+      type: { name: 'boolean' },
+    },
+    size: {
+      name: 'Size',
+      description: 'Size of input control (characters)',
+      type: { name: 'number' },
+    },
+    maxlength: {
+      name: 'Max length',
+      description: 'Maximum number of characters',
+      type: { name: 'number' },
+    },
+    disabled: {
+      name: 'Disabled',
+      description: 'Disable button',
+      type: { name: 'boolean' },
+    },
+    indicator: {
+      name: 'Indicator',
+      description: 'Feedback indicator in edit mode',
+      control: 'select',
+      defaultValue: 'none',
+      options: ['none', 'working', 'done'],
+      type: { name: 'string', required: false },
+    },
+  },
+  args: {
+    label: 'First name',
+    disabled: false,
+    required: true,
+    message: 'Please enter a value',
+  },
+} as Meta<typeof DatacomInput>;
 
 const Template: ComponentStoryFn<typeof DatacomInput> = (args) => (
   <DatacomInput {...args} />
@@ -192,8 +190,20 @@ export const WithIndicators = () => {
 };
 
 export const VerticalForm = () => {
+  const form = useRef<HTMLFormElement>();
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (event: SubmitEvent) => {
+    if (form.current.checkValidity()) {
+      setSubmitted(true);
+      event.preventDefault();
+    } else {
+      setSubmitted(false);
+    }
+  };
+
   return (
-    <form>
+    <form method="post" ref={form} onSubmit={handleSubmit}>
       <div style={{ width: '400px', marginBottom: '20px' }}>
         <DatacomInput
           label="First name(s)"
@@ -219,7 +229,7 @@ export const VerticalForm = () => {
           help="Enter a phone number with numbers only"
           message="Please enter a valid phone number"
           placeholder="Home or Mobile"
-          pattern="^d*$"
+          pattern="^\d*$"
           required={true}
         />
 
@@ -232,8 +242,11 @@ export const VerticalForm = () => {
           placeholder="Email address"
           required={true}
         />
+
+        {submitted && <p>Form would have been submitted but was prevented</p>}
       </div>
 
+      <hr />
       <DatacomButton variant="primary" type="submit">
         Submit
       </DatacomButton>

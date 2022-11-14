@@ -152,3 +152,5 @@ export class DatacomButton {
     );
   }
 }
+
+export type HTMLDatacomButtonElement = HTMLElement & DatacomButton;

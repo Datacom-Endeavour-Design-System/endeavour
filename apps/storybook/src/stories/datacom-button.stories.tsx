@@ -15,6 +15,7 @@ export default {
       name: 'Variant',
       description: 'Main button variant. Defaults to primary if not set.',
       control: 'select',
+      defaultValue: 'primary',
       options: ['primary', 'secondary', 'ghost'],
       type: { name: 'string', required: true },
     },
@@ -23,12 +24,14 @@ export default {
       description:
         'Button size within variant. Defaults to standard if not set',
       control: 'select',
+      defaultValue: 'large',
       options: ['large', 'small'],
     },
     'image-position': {
       name: 'Image position',
       description: 'Image or icon position. Defaults to left if not set',
       control: 'select',
+      defaultValue: 'left',
       options: ['left', 'right'],
     },
     icon: {

@@ -1,8 +1,28 @@
-# datacom-tabgroup
+# Datacom Tabs
 
 <!-- Auto Generated Below -->
 
 ## Methods
+
+### `disableTab(index: number) => Promise<void>`
+
+Disable tab
+
+#### Returns
+
+Type: `Promise<void>`
+
+void
+
+### `enableTab(index: number) => Promise<void>`
+
+Enable tab
+
+#### Returns
+
+Type: `Promise<void>`
+
+void
 
 ### `select(index: number) => Promise<void>`
 
@@ -14,6 +34,16 @@ Type: `Promise<void>`
 
 void
 
+### `selected() => Promise<number>`
+
+Return selected tab (zero index based)
+
+#### Returns
+
+Type: `Promise<number>`
+
+number
+
 ---
 
-_Built with [StencilJS](https://stenciljs.com/)_
+(c) Copyright Datacom New Zealand Limited 2022

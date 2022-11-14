@@ -1,15 +1,24 @@
-import { Component, h, Listen, Host, Element, Method } from '@stencil/core';
+import { Component, h, Host, Element, Method, State } from '@stencil/core';
 import { HTMLDatacomTabElement } from './datacom-tab';
 
 @Component({
   tag: 'datacom-tabgroup',
   styleUrl: 'datacom-tabgroup.css',
   shadow: true,
-  assetsDirs: ['assets'],
 })
 export class DatacomTabGroup {
   @Element()
   host: HTMLElement;
+
+  /**
+   * Currently selected tab
+   */
+  @State() selectedTab: number;
+
+  /**
+   * Dummy state variable to force re-render when a datacom-tab is changed programatically.
+   */
+  @State() force = 0;
 
   /**
    * When the component is loaded, select the first tab is none is selected.
@@ -27,8 +36,8 @@ export class DatacomTabGroup {
      * If no tab is selected, then set the first as selected.
      */
     const selected = await Promise.all(tabs.map(t => t.isSelected()));
-    if (!selected.reduce((p, c) => p || c, false)) {
-      await tabs[0].setSelected(true);
+    if (!selected.includes(true)) {
+      await this.select(0);
     }
   }
 
@@ -43,8 +52,12 @@ export class DatacomTabGroup {
   async select(index: number): Promise<void> {
     const tabs = this.getTabs();
 
-    if (index > tabs.length || index < 0) {
+    if (index > tabs.length - 1 || index < 0) {
       console.warn(`Invalid tab index ${index}`);
+      return;
+    }
+
+    if (tabs[index].disabled) {
       return;
     }
 
@@ -52,7 +65,64 @@ export class DatacomTabGroup {
       await tabs[i].setSelected(false);
     }
 
+    /**
+     * Selecting the tab displays the content
+     */
     await tabs[index].setSelected(true);
+
+    /**
+     * Force a re-render using a stateful property
+     */
+    this.selectedTab = index;
+  }
+
+  /**
+   * Return selected tab (zero index based)
+   *
+   * @returns number
+   */
+  @Method()
+  async selected(): Promise<number> {
+    return this.selectedTab;
+  }
+
+  /**
+   * Disable tab
+   *
+   * @returns void
+   */
+  @Method()
+  async disableTab(index: number): Promise<void> {
+    const tab = this.getTab(index);
+    if (tab == undefined) {
+      return;
+    }
+
+    tab.disabled = true;
+
+    /**
+     * Force render
+     */
+    this.force++;
+  }
+
+  /**
+   * Enable tab
+   *
+   * @returns void
+   */
+  @Method()
+  async enableTab(index: number): Promise<void> {
+    const tab = this.getTab(index);
+    if (tab == undefined) {
+      return;
+    }
+    tab.disabled = false;
+
+    /**
+     * Force render
+     */
+    this.force++;
   }
 
   /**
@@ -73,6 +143,8 @@ export class DatacomTabGroup {
     }
   }
 
+  private tabs: HTMLDatacomTabElement[] = [];
+
   /**
    * Get a list of tab children
    *
@@ -83,40 +155,76 @@ export class DatacomTabGroup {
       return [];
     }
 
-    const items: HTMLDatacomTabElement[] = [];
+    if (this.tabs?.length > 0) {
+      return this.tabs;
+    }
 
     // Only get immediate children of tab group to permit nested tabs
-    this.host.querySelectorAll<HTMLDatacomTabElement>(':scope > datacom-tab').forEach(t => items.push(t));
+    this.host.querySelectorAll<HTMLDatacomTabElement>('datacom-tab').forEach(t => this.tabs.push(t));
 
-    return items;
+    return this.tabs;
+  }
+
+  private getTab(index: number): HTMLDatacomTabElement {
+    const tabs = this.getTabs();
+
+    if (index < 0 || index > this.tabs.length - 1) {
+      return undefined;
+    }
+
+    return tabs[index];
   }
 
   /**
-   * When a tab is selected then deselect the currently selected tab.
+   * Emit an event on selection. The parent is responsible for selecting and deselecting.
+   */
+  onClick = async (index: number) => {
+    await this.select(index);
+  };
+
+  /**
+   * Pressing the enter or space key will select the tab.
    *
    * @param event
    */
-  @Listen('selected')
-  async onTabSelected(event: CustomEvent<string>): Promise<void> {
-    const name = event.detail;
-    const tabs = this.getTabs();
-
-    for (let i = 0; i < tabs.length; i++) {
-      const tab = tabs[i];
-      const found = tab.getAttribute('data-tab');
-      await tab.setSelected(false);
-      if (found === name) {
-        await tab.setSelected(true);
-      }
+  onKeyPress = async (event: KeyboardEvent, index: number) => {
+    if (event.key === 'Enter' || event.key === 'Return' || event.key == ' ') {
+      await this.select(index);
     }
+  };
 
-    event.stopPropagation();
+  /**
+   * Generate a tab label per tab
+   *
+   * @param tab
+   * @param index
+   * @returns
+   */
+  private header(tab: HTMLDatacomTabElement, index?: number) {
+    const { disabled, selected, label } = tab;
+
+    const tabIndex = disabled == true ? -1 : 0;
+    const classes = {
+      'tab-label': true,
+      'selected': selected && !disabled,
+      'disabled': disabled,
+    };
+
+    return (
+      <label key={index} class={classes} title={tab.title} tabIndex={tabIndex} onClick={() => this.onClick(index)} onKeyPress={e => this.onKeyPress(e, index)}>
+        <span class="tab-text">{label}</span>
+      </label>
+    );
   }
 
   render() {
+    const tabs = this.getTabs();
+
     return (
       <Host>
         <div class="tab-group">
+          <div class="tab-bar">{tabs.map((t, ind) => this.header(t, ind))}</div>
+
           <slot />
         </div>
       </Host>

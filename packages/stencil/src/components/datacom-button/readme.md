@@ -32,4 +32,4 @@ The control is scoped rather than shadow so the input field can participate in a
 
 ---
 
-_Built with [StencilJS](https://stenciljs.com/)_
+(c) Copyright Datacom New Zealand Limited 2022

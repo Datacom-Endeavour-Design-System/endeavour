@@ -17,11 +17,6 @@ export interface HTMLFormControl {
  */
 export interface FormControl extends HTMLFormControl {
   /**
-   * Assitance text
-   */
-  help?: string;
-
-  /**
    * Validation error message
    */
   message?: string;
@@ -35,4 +30,9 @@ export interface FormControl extends HTMLFormControl {
    * Force validation on the field. If validation fails then show error message.
    */
   validate(): Promise<boolean>;
+
+  /**
+   * Check validity of the control
+   */
+  checkValidity(): Promise<boolean>;
 }
