@@ -1,0 +1,535 @@
+{
+  "timestamp": "2022-11-02T05:12:26",
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.19.1",
+    "typescriptVersion": "4.7.4"
+  },
+  "components": [
+    {
+      "filePath": "./src/components/datacom-button/datacom-button.tsx",
+      "encapsulation": "scoped",
+      "tag": "datacom-button",
+      "readme": "# datacom-button\r\n\r",
+      "docs": "Datacom styled button which extends HTML button. Custom attributes:\r\n\r\ntext = button label\r\nvariant = primary | secondar | ghost\r\nsize = large | small\r\nimage-position = left | right\r\nsrc = image url\r\nicon = svg icon name\r\nloading = true | false to show spinning icon\r\n\r\nThis button cannot exist within the shadow root as it sits outside\r\nthe DOM flow with regards to form submit.",
+      "docsTags": [
+        {
+          "name": "see",
+          "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "autofocus",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autofocus",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "mutable": false,
+          "attr": "form",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "formaction",
+          "type": "string",
+          "mutable": false,
+          "attr": "formaction",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "formenctype",
+          "type": "string",
+          "mutable": false,
+          "attr": "formenctype",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "formmethod",
+          "type": "string",
+          "mutable": false,
+          "attr": "formmethod",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "formtarget",
+          "type": "string",
+          "mutable": false,
+          "attr": "formtarget",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "imagePosition",
+          "type": "\"left\" | \"right\"",
+          "mutable": false,
+          "attr": "image-position",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'left'",
+          "values": [
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"large\" | \"small\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'large'",
+          "values": [
+            {
+              "value": "large",
+              "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "mutable": false,
+          "attr": "src",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "mutable": false,
+          "attr": "text",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'button'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"ghost\" | \"primary\" | \"secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'primary'",
+          "values": [
+            {
+              "value": "ghost",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "secondary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/datacom-checkbox/datacom-checkbox.tsx",
+      "encapsulation": "shadow",
+      "tag": "datacom-checkbox",
+      "readme": "# datacom-checkbox\r\n\r\n\r\n\r",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "checked",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "toggle",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/site/layout/datacom-menubar/datacom-menubar.tsx",
+      "encapsulation": "shadow",
+      "tag": "datacom-menubar",
+      "readme": "# datacom-menubar\r\n\r\n\r\n\r",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/datacom-tabs/datacom-tab.tsx",
+      "encapsulation": "shadow",
+      "tag": "datacom-tab",
+      "readme": "# datacom-tabgroup\r\n\r\n\r\n\r",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "enabled",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Not Set'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "isSelected",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": "boolean"
+          },
+          "signature": "isSelected() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Is this tab currently selected",
+          "docsTags": [
+            {
+              "name": "returns",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "name": "setSelected",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "setSelected(value: boolean) => Promise<void>",
+          "parameters": [],
+          "docs": "Select this tab",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "value"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "tabSelected",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/datacom-tabs/datacom-tabgroup.tsx",
+      "encapsulation": "shadow",
+      "tag": "datacom-tabgroup",
+      "readme": "# datacom-tabgroup\r\n\r\n\r\n\r",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [
+        {
+          "event": "tabSelected",
+          "capture": false,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    }
+  ]
+}

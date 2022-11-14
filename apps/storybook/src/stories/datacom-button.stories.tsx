@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { DatacomButton } from '@datacom/endeavour-react';
 
 export default {
@@ -8,77 +8,95 @@ export default {
   argTypes: {
     text: {
       name: 'Text',
-      defaultValue: 'Button text',
       description: 'Button text',
-      type: {name: 'string', required: true} 
+      type: { name: 'string', required: true },
     },
-    variant: { 
+    variant: {
       name: 'Variant',
       description: 'Main button variant. Defaults to primary if not set.',
-      control: 'select', 
-      defaultValue: 'primary',
-      options: ['primary', 'secondary', 'ghost'], 
-      type: {name: 'string', required: true} 
+      control: 'select',
+      options: ['primary', 'secondary', 'ghost'],
+      type: { name: 'string', required: true },
     },
-    size: { 
+    size: {
       name: 'Size',
-      description: 'Button size within variant. Defaults to standard if not set',
-      control: 'select', 
-      defaultValue: 'large',
-      options: ['large', 'small']
+      description:
+        'Button size within variant. Defaults to standard if not set',
+      control: 'select',
+      options: ['large', 'small'],
     },
-    'image-position': { 
-      name: 'Image position', 
+    'image-position': {
+      name: 'Image position',
       description: 'Image or icon position. Defaults to left if not set',
-      control: 'select', 
-      defaultValue: 'left',
-      options: ['left', 'right'] 
+      control: 'select',
+      options: ['left', 'right'],
     },
-    icon: { 
+    icon: {
       name: 'Icon',
       description: 'Display image icon from a set of pre-defined images',
-      control: 'select', 
-      options: ['', 'globe', 'upload', 'up', 'settings', 'search', 'remove', 
-            'refresh', 'menu', 'information', 'forward', 'filter', 'external-link', 
-            'download', 'down', 'copy', 'calendar', 'bookmark', 'back', 'back-to-top',
-            'add', 'add-to-cart'] 
+      control: 'select',
+      options: [
+        '',
+        'globe',
+        'upload',
+        'up',
+        'settings',
+        'search',
+        'remove',
+        'refresh',
+        'menu',
+        'information',
+        'forward',
+        'filter',
+        'external-link',
+        'download',
+        'down',
+        'copy',
+        'calendar',
+        'bookmark',
+        'back',
+        'back-to-top',
+        'add',
+        'add-to-cart',
+      ],
     },
     disabled: {
       name: 'Disabled',
       description: 'Disable button',
-      type: {name: 'boolean'} 
-    },    
+      type: { name: 'boolean' },
+    },
     loading: {
       name: 'Loading',
       description: 'Show loading spinner',
-      type: {name: 'boolean'} 
-    },     
+      type: { name: 'boolean' },
+    },
   },
   args: {
     text: 'Button text',
     variant: 'primary',
     size: 'large',
-    "image-position": 'left',
-    icon: "",
+    'image-position': 'left',
+    icon: '',
     loading: false,
-    disabled: false
-  }
+    disabled: false,
+  },
 } as Meta<typeof DatacomButton>;
 
-const Template: ComponentStoryFn<typeof DatacomButton> = (args) => <DatacomButton {...args} />;
+const Template: StoryFn<typeof DatacomButton> = (args) => (
+  <DatacomButton {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
-  variant: 'primary'
+  variant: 'primary',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  variant: 'secondary'
+  variant: 'secondary',
 };
 
 export const Ghost = Template.bind({});
 Ghost.args = {
-  variant: 'ghost'
+  variant: 'ghost',
 };
-

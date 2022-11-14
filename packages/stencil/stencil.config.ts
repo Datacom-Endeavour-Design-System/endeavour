@@ -12,13 +12,13 @@ export const config: Config = {
       componentCorePackage: '@datacom/endeavour',
       proxiesFile: '../react/src/components/stencil-generated/index.ts',
       includeDefineCustomElements: true,
-    }),      
+    }),
     {
       type: 'dist',
       copy: [
         {
           src: 'global/*',
-        }
+        },
       ],
     },
     {
@@ -29,10 +29,14 @@ export const config: Config = {
       copy: [
         {
           src: 'assets',
-          dest: 'assets'
-        }
+          dest: 'assets',
+        },
       ],
       serviceWorker: null,
+    },
+    {
+      type: 'docs-json',
+      file: 'src/docs.json',
     },
   ],
 };

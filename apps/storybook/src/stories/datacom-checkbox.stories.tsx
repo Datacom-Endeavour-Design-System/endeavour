@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ComponentStoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { DatacomCheckbox, useEventRef } from '@datacom/endeavour-react';
 
 export default false
@@ -9,7 +9,7 @@ export default false
     } as Meta<typeof DatacomCheckbox>)
   : {};
 
-const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => (
+const Template: StoryFn<typeof DatacomCheckbox> = (args) => (
   <DatacomCheckbox {...args} />
 );
 
