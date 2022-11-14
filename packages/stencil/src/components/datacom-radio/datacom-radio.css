@@ -167,22 +167,3 @@
 .dc-radio-image path {
   fill: black;
 }
-.image-right {
-  flex-direction: row-reverse;
-}
-
-.dc-radio-image.image-left {
-  padding-right: 12px;
-}
-
-.dc-radio-size-standard.image-right.image {
-  padding-left: 12px;
-}
-
-.dc-radio-size-small.image-left.image {
-  padding-right: 8px;
-}
-
-.dc-radio-size-small.image-right.image {
-  padding-left: 8px;
-}
