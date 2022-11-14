@@ -108,7 +108,7 @@ export class DatacomRadio implements FormControl {
       [`dc-radio-${variant}`]: true,
       [`dc-radio-size-${size}`]: true,
       [this.type]: true,
-      [`image-${this.imagePosition}`]: image && this.label?.length > 0,
+      // [`image-${this.imagePosition}`]: image && this.label?.length > 0,
     };
 
     return (
@@ -132,9 +132,13 @@ export class DatacomRadio implements FormControl {
             id={this.inputId}
             class={classes}
           />
+
           <label htmlfor={this.inputId} class="dc-radio-label">
-            {image}
-            {this.label}
+            <span class={`dc-radio-image-${this.imagePosition}`}>
+              {image}
+              {this.label}
+              <slot></slot>
+            </span>
           </label>
         </div>
       </Host>
