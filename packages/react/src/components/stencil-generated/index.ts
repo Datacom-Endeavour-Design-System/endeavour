@@ -20,6 +20,14 @@ export const DatacomCheckboxGroup = /*@__PURE__*/ createReactComponent<
   JSX.DatacomCheckboxGroup,
   HTMLDatacomCheckboxGroupElement
 >('datacom-checkbox-group');
+export const DatacomDropdown = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomDropdown,
+  HTMLDatacomDropdownElement
+>('datacom-dropdown');
+export const DatacomDropdownOption = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomDropdownOption,
+  HTMLDatacomDropdownOptionElement
+>('datacom-dropdown-option');
 export const DatacomInput = /*@__PURE__*/ createReactComponent<
   JSX.DatacomInput,
   HTMLDatacomInputElement

@@ -1,0 +1,57 @@
+:host {
+  display: block;
+}
+
+.dc-ddl-option {
+  margin: 0;
+  padding: 1px 0;
+  border-top: 1px solid var(--dc-greyscale-05);
+  padding: 2px;
+  outline: none;
+  height: 52px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.dc-ddl-option-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.dc-dll-option-label {
+  line-height: 24px;
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 16px;
+  padding-left: 4px;
+}
+
+.dc-ddl-option-hidden {
+  display: none;
+}
+
+.dc-ddl-option:hover {
+  background-color: var(--dc-greyscale-05);
+}
+
+.dc-ddl-option:focus {
+  border: 3px solid var(--dc-primary-colour);
+  padding: 0;
+}
+
+.dc-ddl-option-content {
+  padding-left: 16px;
+}
+
+.dc-ddl-option-image {
+  width: 16px;
+  height: 16px;
+}
+
+.dc-ddl-option-image path {
+  fill: var(--dc-primary-text-color);
+}
