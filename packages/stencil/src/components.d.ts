@@ -114,10 +114,6 @@ export namespace Components {
     }
     interface DatacomCheckboxGroup {
     }
-    interface DatacomDropdown {
-    }
-    interface DatacomDropdownOption {
-    }
     interface DatacomInput {
         /**
           * Automatically show error state if invalid on form submit
@@ -246,18 +242,6 @@ declare global {
         prototype: HTMLDatacomCheckboxGroupElement;
         new (): HTMLDatacomCheckboxGroupElement;
     };
-    interface HTMLDatacomDropdownElement extends Components.DatacomDropdown, HTMLStencilElement {
-    }
-    var HTMLDatacomDropdownElement: {
-        prototype: HTMLDatacomDropdownElement;
-        new (): HTMLDatacomDropdownElement;
-    };
-    interface HTMLDatacomDropdownOptionElement extends Components.DatacomDropdownOption, HTMLStencilElement {
-    }
-    var HTMLDatacomDropdownOptionElement: {
-        prototype: HTMLDatacomDropdownOptionElement;
-        new (): HTMLDatacomDropdownOptionElement;
-    };
     interface HTMLDatacomInputElement extends Components.DatacomInput, HTMLStencilElement {
     }
     var HTMLDatacomInputElement: {
@@ -286,8 +270,6 @@ declare global {
         "datacom-button": HTMLDatacomButtonElement;
         "datacom-checkbox": HTMLDatacomCheckboxElement;
         "datacom-checkbox-group": HTMLDatacomCheckboxGroupElement;
-        "datacom-dropdown": HTMLDatacomDropdownElement;
-        "datacom-dropdown-option": HTMLDatacomDropdownOptionElement;
         "datacom-input": HTMLDatacomInputElement;
         "datacom-menubar": HTMLDatacomMenubarElement;
         "datacom-tab": HTMLDatacomTabElement;
@@ -395,10 +377,6 @@ declare namespace LocalJSX {
     }
     interface DatacomCheckboxGroup {
     }
-    interface DatacomDropdown {
-    }
-    interface DatacomDropdownOption {
-    }
     interface DatacomInput {
         /**
           * Automatically show error state if invalid on form submit
@@ -463,8 +441,6 @@ declare namespace LocalJSX {
         "datacom-button": DatacomButton;
         "datacom-checkbox": DatacomCheckbox;
         "datacom-checkbox-group": DatacomCheckboxGroup;
-        "datacom-dropdown": DatacomDropdown;
-        "datacom-dropdown-option": DatacomDropdownOption;
         "datacom-input": DatacomInput;
         "datacom-menubar": DatacomMenubar;
         "datacom-tab": DatacomTab;
@@ -478,8 +454,6 @@ declare module "@stencil/core" {
             "datacom-button": LocalJSX.DatacomButton & JSXBase.HTMLAttributes<HTMLDatacomButtonElement>;
             "datacom-checkbox": LocalJSX.DatacomCheckbox & JSXBase.HTMLAttributes<HTMLDatacomCheckboxElement>;
             "datacom-checkbox-group": LocalJSX.DatacomCheckboxGroup & JSXBase.HTMLAttributes<HTMLDatacomCheckboxGroupElement>;
-            "datacom-dropdown": LocalJSX.DatacomDropdown & JSXBase.HTMLAttributes<HTMLDatacomDropdownElement>;
-            "datacom-dropdown-option": LocalJSX.DatacomDropdownOption & JSXBase.HTMLAttributes<HTMLDatacomDropdownOptionElement>;
             "datacom-input": LocalJSX.DatacomInput & JSXBase.HTMLAttributes<HTMLDatacomInputElement>;
             "datacom-menubar": LocalJSX.DatacomMenubar & JSXBase.HTMLAttributes<HTMLDatacomMenubarElement>;
             "datacom-tab": LocalJSX.DatacomTab & JSXBase.HTMLAttributes<HTMLDatacomTabElement>;
