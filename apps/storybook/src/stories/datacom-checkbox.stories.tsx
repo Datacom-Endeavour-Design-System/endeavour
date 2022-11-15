@@ -123,8 +123,10 @@ export const FormValidation = () => {
 
         {submitted && <p>Form would have been submitted but was prevented</p>}
       </div>
-      <hr />
-      <DatacomButton type="submit">Submit</DatacomButton>
+
+      <div>
+        <DatacomButton type="submit">Submit</DatacomButton>
+      </div>
     </form>
   );
 };

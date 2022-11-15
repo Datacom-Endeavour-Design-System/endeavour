@@ -3,7 +3,6 @@ import { reactOutputTarget as react } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'datacom',
-  globalStyle: 'src/global/css/light.css',
   extras: {
     experimentalImportInjection: true,
   },
@@ -33,6 +32,10 @@ export const config: Config = {
         },
       ],
       serviceWorker: null,
+    },
+    {
+      type: 'docs-readme',
+      footer: `(c) Copyright Datacom New Zealand Limited ${new Date().getFullYear()}`,
     },
   ],
 };
