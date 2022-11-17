@@ -1,0 +1,32 @@
+:host {
+  display: block;
+}
+ol {
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+ul {
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+
+.list-ordered {
+  font-size: 16px;
+  color: #0a1839;
+  list-style: decimal;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+.list-unordered {
+  list-style: disc outside none;
+}
+.list-lowercase {
+  list-style: lower-alpha;
+}
+.list-upercase {
+  list-style: upper-alpha;
+}
+.list-roman {
+  list-style: upper-roman;
+}

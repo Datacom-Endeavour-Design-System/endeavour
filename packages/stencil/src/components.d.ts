@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-button/datacom-button";
 import { CheckboxSize } from "./components/datacom-checkbox/datacom-checkbox";
 import { DatacomInputType, IndicatorType } from "./components/datacom-input/datacom-input";
+import { ListVariant, TypeList } from "./components/datacom-list/datacom-list";
 import { ImagePosition as ImagePosition1, RadioSize, RadioVariant } from "./components/datacom-radio/datacom-radio";
 export namespace Components {
     interface DatacomButton {
@@ -175,6 +176,12 @@ export namespace Components {
         "validate": () => Promise<boolean>;
         "value"?: string;
     }
+    interface DatacomLi {
+    }
+    interface DatacomList {
+        "type": TypeList;
+        "variant": ListVariant;
+    }
     interface DatacomMenubar {
     }
     interface DatacomRadio {
@@ -292,6 +299,18 @@ declare global {
         prototype: HTMLDatacomInputElement;
         new (): HTMLDatacomInputElement;
     };
+    interface HTMLDatacomLiElement extends Components.DatacomLi, HTMLStencilElement {
+    }
+    var HTMLDatacomLiElement: {
+        prototype: HTMLDatacomLiElement;
+        new (): HTMLDatacomLiElement;
+    };
+    interface HTMLDatacomListElement extends Components.DatacomList, HTMLStencilElement {
+    }
+    var HTMLDatacomListElement: {
+        prototype: HTMLDatacomListElement;
+        new (): HTMLDatacomListElement;
+    };
     interface HTMLDatacomMenubarElement extends Components.DatacomMenubar, HTMLStencilElement {
     }
     var HTMLDatacomMenubarElement: {
@@ -321,6 +340,8 @@ declare global {
         "datacom-checkbox": HTMLDatacomCheckboxElement;
         "datacom-checkbox-group": HTMLDatacomCheckboxGroupElement;
         "datacom-input": HTMLDatacomInputElement;
+        "datacom-li": HTMLDatacomLiElement;
+        "datacom-list": HTMLDatacomListElement;
         "datacom-menubar": HTMLDatacomMenubarElement;
         "datacom-radio": HTMLDatacomRadioElement;
         "datacom-tab": HTMLDatacomTabElement;
@@ -479,6 +500,12 @@ declare namespace LocalJSX {
         "type"?: DatacomInputType;
         "value"?: string;
     }
+    interface DatacomLi {
+    }
+    interface DatacomList {
+        "type"?: TypeList;
+        "variant"?: ListVariant;
+    }
     interface DatacomMenubar {
     }
     interface DatacomRadio {
@@ -525,6 +552,8 @@ declare namespace LocalJSX {
         "datacom-checkbox": DatacomCheckbox;
         "datacom-checkbox-group": DatacomCheckboxGroup;
         "datacom-input": DatacomInput;
+        "datacom-li": DatacomLi;
+        "datacom-list": DatacomList;
         "datacom-menubar": DatacomMenubar;
         "datacom-radio": DatacomRadio;
         "datacom-tab": DatacomTab;
@@ -539,6 +568,8 @@ declare module "@stencil/core" {
             "datacom-checkbox": LocalJSX.DatacomCheckbox & JSXBase.HTMLAttributes<HTMLDatacomCheckboxElement>;
             "datacom-checkbox-group": LocalJSX.DatacomCheckboxGroup & JSXBase.HTMLAttributes<HTMLDatacomCheckboxGroupElement>;
             "datacom-input": LocalJSX.DatacomInput & JSXBase.HTMLAttributes<HTMLDatacomInputElement>;
+            "datacom-li": LocalJSX.DatacomLi & JSXBase.HTMLAttributes<HTMLDatacomLiElement>;
+            "datacom-list": LocalJSX.DatacomList & JSXBase.HTMLAttributes<HTMLDatacomListElement>;
             "datacom-menubar": LocalJSX.DatacomMenubar & JSXBase.HTMLAttributes<HTMLDatacomMenubarElement>;
             "datacom-radio": LocalJSX.DatacomRadio & JSXBase.HTMLAttributes<HTMLDatacomRadioElement>;
             "datacom-tab": LocalJSX.DatacomTab & JSXBase.HTMLAttributes<HTMLDatacomTabElement>;

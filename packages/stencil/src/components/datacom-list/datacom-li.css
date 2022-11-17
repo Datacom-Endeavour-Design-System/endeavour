@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  line-height: 2px;
+}
+
+li {
+  line-height: 20px;
+  font-family: var(--dc-font-family);
+  color: var(--dc-primary-text-color);
+  font-style: normal;
+  font-size: 16px;
+  font-size: 400;
+}
+
+::marker {
+  font-size: 16px;
+  font-family: var(--dc-font-family);
+  font-size: 400;
+  line-height: 20px;
+  text-align: right;
+  color: var(--dc-primary-text-color);
+  position: absolute;
+  letter-spacing: -0.25px;
+}
