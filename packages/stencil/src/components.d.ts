@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-button/datacom-button";
 import { CheckboxSize } from "./components/datacom-checkbox/datacom-checkbox";
+import { DatacomDropDownVariantType } from "./components/datacom-dropdown/datacom-dropdown";
 import { DatacomInputType, IndicatorType } from "./components/datacom-input/datacom-input";
 export namespace Components {
     interface DatacomButton {
@@ -114,6 +115,59 @@ export namespace Components {
     }
     interface DatacomCheckboxGroup {
     }
+    interface DatacomDropdown {
+        /**
+          * Automatically show error state if invalid on form submit
+         */
+        "autoValidate"?: boolean;
+        /**
+          * Check if the control is valid
+         */
+        "checkValidity": () => Promise<boolean>;
+        "disabled"?: boolean;
+        "form"?: string;
+        /**
+          * Get a list of select values
+          * @returns string[]
+         */
+        "getSelected": () => Promise<string[]>;
+        /**
+          * Optional help text
+         */
+        "help"?: string;
+        "isValid"?: boolean;
+        /**
+          * Control label
+         */
+        "label": string;
+        /**
+          * Error message to display in the case of input validity checks or explicitly with 'valid' property
+         */
+        "message"?: string;
+        "multiple": boolean;
+        /**
+          * HTML element input properties
+         */
+        "name": string;
+        "placeholder"?: string;
+        "readonly"?: boolean;
+        "required"?: boolean;
+        /**
+          * Enable type ahead search for options.
+         */
+        "search": boolean;
+        "title": string;
+        /**
+          * Force validation on the form control to display any error messages
+          * @returns boolean
+         */
+        "validate": () => Promise<boolean>;
+        "value"?: string;
+        /**
+          * Drop down variant
+         */
+        "variant": DatacomDropDownVariantType;
+    }
     interface DatacomInput {
         /**
           * Automatically show error state if invalid on form submit
@@ -176,6 +230,44 @@ export namespace Components {
     }
     interface DatacomMenubar {
     }
+    interface DatacomOption {
+        /**
+          * Icon name
+         */
+        "icon"?: string;
+        /**
+          * Option id
+         */
+        "index": number;
+        /**
+          * Display label
+         */
+        "label": string;
+        /**
+          * Display type (mostly private) - list = display as item in drop down list (default) - standalone = display a standalone item outside of the list.
+         */
+        "mode": DropdownOptionMode;
+        /**
+          * Text for use in option search
+         */
+        "search"?: string;
+        /**
+          * True if the option is selected
+         */
+        "selected": boolean;
+        /**
+          * Icon source
+         */
+        "src"?: string;
+        /**
+          * Form submit value
+         */
+        "value": string;
+        /**
+          * Show the item
+         */
+        "visible": boolean;
+    }
     interface DatacomTab {
         "disabled": boolean;
         /**
@@ -223,6 +315,10 @@ export interface DatacomInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDatacomInputElement;
 }
+export interface DatacomOptionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDatacomOptionElement;
+}
 declare global {
     interface HTMLDatacomButtonElement extends Components.DatacomButton, HTMLStencilElement {
     }
@@ -242,6 +338,12 @@ declare global {
         prototype: HTMLDatacomCheckboxGroupElement;
         new (): HTMLDatacomCheckboxGroupElement;
     };
+    interface HTMLDatacomDropdownElement extends Components.DatacomDropdown, HTMLStencilElement {
+    }
+    var HTMLDatacomDropdownElement: {
+        prototype: HTMLDatacomDropdownElement;
+        new (): HTMLDatacomDropdownElement;
+    };
     interface HTMLDatacomInputElement extends Components.DatacomInput, HTMLStencilElement {
     }
     var HTMLDatacomInputElement: {
@@ -253,6 +355,12 @@ declare global {
     var HTMLDatacomMenubarElement: {
         prototype: HTMLDatacomMenubarElement;
         new (): HTMLDatacomMenubarElement;
+    };
+    interface HTMLDatacomOptionElement extends Components.DatacomOption, HTMLStencilElement {
+    }
+    var HTMLDatacomOptionElement: {
+        prototype: HTMLDatacomOptionElement;
+        new (): HTMLDatacomOptionElement;
     };
     interface HTMLDatacomTabElement extends Components.DatacomTab, HTMLStencilElement {
     }
@@ -270,8 +378,10 @@ declare global {
         "datacom-button": HTMLDatacomButtonElement;
         "datacom-checkbox": HTMLDatacomCheckboxElement;
         "datacom-checkbox-group": HTMLDatacomCheckboxGroupElement;
+        "datacom-dropdown": HTMLDatacomDropdownElement;
         "datacom-input": HTMLDatacomInputElement;
         "datacom-menubar": HTMLDatacomMenubarElement;
+        "datacom-option": HTMLDatacomOptionElement;
         "datacom-tab": HTMLDatacomTabElement;
         "datacom-tabgroup": HTMLDatacomTabgroupElement;
     }
@@ -377,6 +487,45 @@ declare namespace LocalJSX {
     }
     interface DatacomCheckboxGroup {
     }
+    interface DatacomDropdown {
+        /**
+          * Automatically show error state if invalid on form submit
+         */
+        "autoValidate"?: boolean;
+        "disabled"?: boolean;
+        "form"?: string;
+        /**
+          * Optional help text
+         */
+        "help"?: string;
+        "isValid"?: boolean;
+        /**
+          * Control label
+         */
+        "label"?: string;
+        /**
+          * Error message to display in the case of input validity checks or explicitly with 'valid' property
+         */
+        "message"?: string;
+        "multiple"?: boolean;
+        /**
+          * HTML element input properties
+         */
+        "name"?: string;
+        "placeholder"?: string;
+        "readonly"?: boolean;
+        "required"?: boolean;
+        /**
+          * Enable type ahead search for options.
+         */
+        "search"?: boolean;
+        "title"?: string;
+        "value"?: string;
+        /**
+          * Drop down variant
+         */
+        "variant"?: DatacomDropDownVariantType;
+    }
     interface DatacomInput {
         /**
           * Automatically show error state if invalid on form submit
@@ -430,6 +579,46 @@ declare namespace LocalJSX {
     }
     interface DatacomMenubar {
     }
+    interface DatacomOption {
+        /**
+          * Icon name
+         */
+        "icon"?: string;
+        /**
+          * Option id
+         */
+        "index"?: number;
+        /**
+          * Display label
+         */
+        "label"?: string;
+        /**
+          * Display type (mostly private) - list = display as item in drop down list (default) - standalone = display a standalone item outside of the list.
+         */
+        "mode"?: DropdownOptionMode;
+        "onDeselected"?: (event: DatacomOptionCustomEvent<number>) => void;
+        "onSelected"?: (event: DatacomOptionCustomEvent<number>) => void;
+        /**
+          * Text for use in option search
+         */
+        "search"?: string;
+        /**
+          * True if the option is selected
+         */
+        "selected"?: boolean;
+        /**
+          * Icon source
+         */
+        "src"?: string;
+        /**
+          * Form submit value
+         */
+        "value"?: string;
+        /**
+          * Show the item
+         */
+        "visible"?: boolean;
+    }
     interface DatacomTab {
         "disabled"?: boolean;
         "label"?: string;
@@ -441,8 +630,10 @@ declare namespace LocalJSX {
         "datacom-button": DatacomButton;
         "datacom-checkbox": DatacomCheckbox;
         "datacom-checkbox-group": DatacomCheckboxGroup;
+        "datacom-dropdown": DatacomDropdown;
         "datacom-input": DatacomInput;
         "datacom-menubar": DatacomMenubar;
+        "datacom-option": DatacomOption;
         "datacom-tab": DatacomTab;
         "datacom-tabgroup": DatacomTabgroup;
     }
@@ -454,8 +645,10 @@ declare module "@stencil/core" {
             "datacom-button": LocalJSX.DatacomButton & JSXBase.HTMLAttributes<HTMLDatacomButtonElement>;
             "datacom-checkbox": LocalJSX.DatacomCheckbox & JSXBase.HTMLAttributes<HTMLDatacomCheckboxElement>;
             "datacom-checkbox-group": LocalJSX.DatacomCheckboxGroup & JSXBase.HTMLAttributes<HTMLDatacomCheckboxGroupElement>;
+            "datacom-dropdown": LocalJSX.DatacomDropdown & JSXBase.HTMLAttributes<HTMLDatacomDropdownElement>;
             "datacom-input": LocalJSX.DatacomInput & JSXBase.HTMLAttributes<HTMLDatacomInputElement>;
             "datacom-menubar": LocalJSX.DatacomMenubar & JSXBase.HTMLAttributes<HTMLDatacomMenubarElement>;
+            "datacom-option": LocalJSX.DatacomOption & JSXBase.HTMLAttributes<HTMLDatacomOptionElement>;
             "datacom-tab": LocalJSX.DatacomTab & JSXBase.HTMLAttributes<HTMLDatacomTabElement>;
             "datacom-tabgroup": LocalJSX.DatacomTabgroup & JSXBase.HTMLAttributes<HTMLDatacomTabgroupElement>;
         }
