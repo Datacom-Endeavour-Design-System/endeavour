@@ -24,3 +24,4 @@ export * from './add-to-cart';
 export * from './search';
 export * from './tick';
 export * from './chevron';
+export * from './clear';
