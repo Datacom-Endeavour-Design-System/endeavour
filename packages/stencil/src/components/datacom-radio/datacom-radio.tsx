@@ -38,8 +38,6 @@ export class DatacomRadio implements FormControl {
   @Prop() formtarget: string;
   @Event() changed: EventEmitter<number>;
 
-  //  @Event()
-
   /**
    * Auto-validate and display error message on form submit
    */
@@ -60,7 +58,7 @@ export class DatacomRadio implements FormControl {
     console.log(e.target.value);
     this.checked = true;
 
-    // this.toggle.emit(this.checked)
+    // this.toggle.emit(this.checked);
   };
   @Method()
   async validate(): Promise<boolean> {
@@ -95,53 +93,90 @@ export class DatacomRadio implements FormControl {
       this.imagePosition = 'left';
     }
 
-    let image: VNode;
-    if (this.icon !== undefined && !this.checked) {
-      image = getSvg(this.icon, { class: 'dc-radio-image' });
-    } else if (this.src !== undefined) {
-      image = <img src={this.src} class="dc-radio-image"></img>;
+    {
+      let image: VNode;
+      if (this.icon != null && this.checked !== true) {
+        console.log('icon');
+        image = getSvg(this.icon, { class: 'dc-radio-image' });
+      } else if (this.src != null) {
+        image = <img src={this.src} class="dc-radio-image"></img>;
+        return;
+      }
+
+      const classes = {
+        'dc-radio-disabled': this.disabled,
+        'dc-radio-checked': this.checked,
+        [`dc-radio-${variant}`]: true,
+        [`dc-radio-size-${size}`]: true,
+        [this.type]: true,
+        // [`image-${this.imagePosition}`]: image && this.label?.length > 0,
+      };
+      if (this.variant == 'buttons') {
+        return (
+          <Host>
+            <div class="dc-radio-wraper">
+              <input
+                form={this.form}
+                autofocus={this.autofocus}
+                formmethod={this.formmethod}
+                formaction={this.formaction}
+                formtarget={this.formtarget}
+                formenctype={this.formenctype}
+                formnovalidate={this.formnovalidate}
+                name={this.name}
+                type={this.type}
+                checked={this.checked}
+                disabled={this.disabled}
+                required={this.required}
+                value={this.value}
+                id={this.inputId}
+                class={classes}
+                onChange={this.handleChange}
+              />
+
+              <label htmlfor={this.inputId} class="dc-radio-label">
+                <span class={`dc-radio-image-${this.imagePosition}`}>
+                  {image}
+                  {this.label}
+
+                  <slot></slot>
+                </span>
+              </label>
+            </div>
+          </Host>
+        );
+      } else {
+        return (
+          <Host>
+            <div class="dc-radio-wraper">
+              <input
+                form={this.form}
+                autofocus={this.autofocus}
+                formmethod={this.formmethod}
+                formaction={this.formaction}
+                formtarget={this.formtarget}
+                formenctype={this.formenctype}
+                formnovalidate={this.formnovalidate}
+                name={this.name}
+                type={this.type}
+                checked={this.checked}
+                disabled={this.disabled}
+                required={this.required}
+                value={this.value}
+                id={this.inputId}
+                class={classes}
+                onChange={this.handleChange}
+              />
+              <label htmlfor={this.inputId} class="dc-radio-label">
+                <span class={`dc-radio-image-${this.imagePosition}`}>
+                  {this.label}
+                  <slot></slot>
+                </span>
+              </label>
+            </div>
+          </Host>
+        );
+      }
     }
-
-    const classes = {
-      'dc-radio-disabled': this.disabled,
-      'dc-radio-checked': this.checked,
-      [`dc-radio-${variant}`]: true,
-      [`dc-radio-size-${size}`]: true,
-      [this.type]: true,
-      // [`image-${this.imagePosition}`]: image && this.label?.length > 0,
-    };
-
-    return (
-      <Host>
-        <div class="dc-radio-wraper">
-          <input
-            form={this.form}
-            autofocus={this.autofocus}
-            formmethod={this.formmethod}
-            formaction={this.formaction}
-            formtarget={this.formtarget}
-            formenctype={this.formenctype}
-            formnovalidate={this.formnovalidate}
-            name={this.name}
-            type={this.type}
-            checked={this.checked}
-            onChange={this.handleChange}
-            disabled={this.disabled}
-            required={this.required}
-            value={this.value}
-            id={this.inputId}
-            class={classes}
-          />
-
-          <label htmlfor={this.inputId} class="dc-radio-label">
-            <span class={`dc-radio-image-${this.imagePosition}`}>
-              {image}
-              {this.label}
-              <slot></slot>
-            </span>
-          </label>
-        </div>
-      </Host>
-    );
   }
 }

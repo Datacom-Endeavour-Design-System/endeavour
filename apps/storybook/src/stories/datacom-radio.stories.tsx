@@ -95,42 +95,59 @@ export default {
 const Template: ComponentStoryFn<typeof DatacomRadio> = (args) => (
   <DatacomRadio {...args} />
 );
-export const GroupRadio = () => {
-  return (
-    <div>
-      <DatacomRadio label="radio1" name="choose" value="choice1"></DatacomRadio>
-      <DatacomRadio label="radio2" name="choose" value="choice2"></DatacomRadio>
-    </div>
-  );
-};
-export const GroupButton = () => {
-  return (
-    <div>
-      <DatacomRadio
-        label="Button1"
-        name="choose"
-        value="choice1"
-        variant="buttons"></DatacomRadio>
-      <DatacomRadio
-        label="Button2"
-        name="choose"
-        value="choice2"
-        variant="buttons"></DatacomRadio>
-    </div>
-  );
-};
-export const RadioGroup = Template.bind({});
-RadioGroup.args = {
+
+export const Radio = Template.bind({});
+Radio.args = {
   label: ' Radio Item',
   size: 'standard',
   disabled: false,
   checked: false,
 };
-export const buttonGroup = Template.bind({});
-buttonGroup.args = {
+
+export const RadioGrouping = () => {
+  return (
+    <div style={{ paddingTop: '24px', gap: '16px' }}>
+      <DatacomRadio name="choose" value="choice1">
+        Radio1
+      </DatacomRadio>
+      <DatacomRadio name="choose" value="choice2">
+        Radio2
+      </DatacomRadio>
+      <DatacomRadio name="choose" value="choice3">
+        Radio3
+      </DatacomRadio>
+      <DatacomRadio name="choose" value="choice4">
+        Radio4
+      </DatacomRadio>
+    </div>
+  );
+};
+export const RadioButton = Template.bind({});
+RadioButton.args = {
   variant: 'buttons',
-  label: 'Label',
+  label: 'Radio Button',
   size: 'standard',
   disabled: false,
   checked: false,
+};
+export const RadioButtonGrouping = () => {
+  return (
+    <div style={{ display: 'flex', gap: '16px', paddingTop: '24px' }}>
+      <DatacomRadio
+        label=" Radio Button1"
+        name="choose"
+        value="choice1"
+        variant="buttons"></DatacomRadio>
+      <DatacomRadio
+        label="Radio Button2"
+        name="choose"
+        value="choice2"
+        variant="buttons"></DatacomRadio>
+      <DatacomRadio
+        label="Radio Button3"
+        name="choose"
+        value="choice3"
+        variant="buttons"></DatacomRadio>
+    </div>
+  );
 };
