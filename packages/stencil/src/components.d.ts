@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-button/datacom-button";
-import { CheckboxSize } from "./components/datacom-checkbox/datacom-checkbox";
+import { CheckboxSizeType } from "./components/datacom-checkbox/datacom-checkbox";
 import { DatacomDropDownVariantType } from "./components/datacom-dropdown/datacom-dropdown";
 import { DatacomInputType, IndicatorType } from "./components/datacom-input/datacom-input";
 export namespace Components {
@@ -99,10 +99,6 @@ export namespace Components {
         "readonly"?: boolean;
         "required": boolean;
         /**
-          * Checkbox is either standard size (default) or small
-         */
-        "size": CheckboxSize;
-        /**
           * Show control in unknown state (dash)
          */
         "unknown"?: boolean;
@@ -112,6 +108,10 @@ export namespace Components {
          */
         "validate": () => Promise<boolean>;
         "value"?: string;
+        /**
+          * Checkbox is either standard size (default) or small
+         */
+        "variant": CheckboxSizeType;
     }
     interface DatacomCheckboxGroup {
     }
@@ -476,14 +476,14 @@ declare namespace LocalJSX {
         "readonly"?: boolean;
         "required"?: boolean;
         /**
-          * Checkbox is either standard size (default) or small
-         */
-        "size"?: CheckboxSize;
-        /**
           * Show control in unknown state (dash)
          */
         "unknown"?: boolean;
         "value"?: string;
+        /**
+          * Checkbox is either standard size (default) or small
+         */
+        "variant"?: CheckboxSizeType;
     }
     interface DatacomCheckboxGroup {
     }

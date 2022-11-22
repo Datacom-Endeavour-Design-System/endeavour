@@ -19,31 +19,29 @@
     <h2>Welcome to Stencil</h2>
     <p>We're going to build a demo site using all our components...</p>
 
-    <style>
-      .ddl {
-        width: 350px;
-      }
-    </style>
+    <form method="get" action="submit">
+      <datacom-checkbox name="agree" value="yes" required="true" message="Please confirm you agree">Agree to terms and
+        conditions</datacom-checkbox>
 
-    <form action="/submit" method="get">
-      <div>
-        <datacom-dropdown class="ddl" name="country" label="Country" required="true" message="Please select a country"
-          multiple="false">
-          <datacom-option src="https://flagcdn.com/nz.svg" value="NZ" label="New Zealand"></datacom-option>
-          <datacom-option src="https://flagcdn.com/au.svg" value="AU" label="Australia"></datacom-option>
-          <datacom-option src="https://flagcdn.com/ki.svg" value="KI"
-            label="Independent and Sovereign Republic of Kiribati"></datacom-option>
-          <datacom-option src="https://flagcdn.com/gb.svg" search="Great Britan | England | Wales | Scotland" value="GB"
-            label="Great Britan"></datacom-option>
-          <datacom-option src="https://flagcdn.com/fr.svg" value="FR" label="France"></datacom-option>
-          <datacom-option src="https://flagcdn.com/it.svg" value="IT" label="Italy"></datacom-option>
-          <datacom-option src="https://flagcdn.com/es.svg" value="ES" label="Spain"></datacom-option>
-          <datacom-option src="https://flagcdn.com/ua.svg" value="EA" label="Ukraine"></datacom-option>
-        </datacom-dropdown>
-      </div>
+      <datacom-checkbox variant="small" name="agree" value="yes" required="true" message="Please confirm you agree">
+        Agree to terms and conditions</datacom-checkbox>
 
-      <div>
-        <button type="submit">Submit</button>
+
+      <datacom-checkbox-group>
+        <datacom-checkbox variant="small">Parent checkbox</datacom-checkbox>
+        <datacom-checkbox variant="small">Child option 1</datacom-checkbox>
+        <datacom-checkbox variant="small">Child option 2</datacom-checkbox>
+        <datacom-checkbox variant="small">Child option 3</datacom-checkbox>
+        <datacom-checkbox variant="small">Child option 4</datacom-checkbox>
+      </datacom-checkbox-group>
+
+      <datacom-checkbox-group>
+        <datacom-checkbox>Parent checkbox</datacom-checkbox>
+        <datacom-checkbox>Child option 1</datacom-checkbox>
+        <datacom-checkbox>Child option 2</datacom-checkbox>
+        <datacom-checkbox>Child option 3</datacom-checkbox>
+        <datacom-checkbox>Child option 4</datacom-checkbox>
+      </datacom-checkbox-group>
       </div>
     </form>
   </main>

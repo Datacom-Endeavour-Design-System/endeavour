@@ -14,7 +14,8 @@
 }
 
 .dc-checkbox-input {
-  outline: 1px solid transparent;
+  outline: 3px solid transparent;
+  outline-offset: 1px;
   border: 1px solid var(--dc-greyscale-05);
   appearance: none;
   box-sizing: border-box;
@@ -50,16 +51,15 @@
 
 .dc-checkbox-size-small .dc-checkbox-label {
   font-size: 14px;
-  line-height: 18px;
   padding-left: 8px;
 }
 
 .dc-checkbox-size-standard.dc-checkbox-child {
-  margin-left: 36px;
+  margin-left: 37px;
 }
 
 .dc-checkbox-size-small.dc-checkbox-child {
-  margin-left: 32px;
+  margin-left: 29px;
 }
 
 .dc-checkbox-input:checked {
@@ -68,7 +68,6 @@
   background-size: 14px;
   background-position: center;
   background-repeat: no-repeat;
-  border: none;
 }
 
 .dc-checkbox-size-small .dc-checkbox-input:checked {
@@ -77,14 +76,13 @@
   background-repeat: no-repeat;
 }
 
-.dc-checkbox-input:hover:enabled {
-  border: 1px solid var(--dc-primary-accent-colour);
+.dc-checkbox-input:focus-visible {
+  outline: 3px solid var(--dc-primary-colour);
 }
 
-.dc-checkbox-input:focus {
-  outline: 3px solid var(--dc-primary-colour);
-  border-radius: 4px;
-  border: 1px solid var(--dc-greyscale-05);
+.dc-checkbox-input:hover:enabled {
+  border: 1px solid var(--dc-primary-accent-colour);
+  cursor: pointer;
 }
 
 .dc-checkbox-input:disabled {
@@ -121,7 +119,7 @@
   content: '';
   width: 14px;
   height: 2px;
-  margin: 0 0 1px 5px;
+  margin: 0 0 1px 4px;
   background-color: var(--dc-background-colour);
 }
 
@@ -130,6 +128,6 @@
   content: '';
   width: 12px;
   height: 2px;
-  margin: 0 0 3px 4px;
+  margin: 0 0 3px 3px;
   background-color: var(--dc-background-colour);
 }
