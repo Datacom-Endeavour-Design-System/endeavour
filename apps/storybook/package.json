@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "@datacom/endeavour": "*",
-    "@datacom/endeavour-react": "*"
+    "@datacom/endeavour-react": "*",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
