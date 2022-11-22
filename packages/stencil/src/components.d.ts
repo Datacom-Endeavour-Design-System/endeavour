@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-button/datacom-button";
 import { CheckboxSize } from "./components/datacom-checkbox/datacom-checkbox";
 import { DatacomInputType, IndicatorType } from "./components/datacom-input/datacom-input";
+import { ItemStyle } from "./components/datacom-list/datacom-li";
 import { ListVariant, TypeList } from "./components/datacom-list/datacom-list";
 import { ImagePosition as ImagePosition1, RadioSize, RadioVariant } from "./components/datacom-radio/datacom-radio";
 export namespace Components {
@@ -177,6 +178,7 @@ export namespace Components {
         "value"?: string;
     }
     interface DatacomLi {
+        "variantItem": ItemStyle;
     }
     interface DatacomList {
         "type": TypeList;
@@ -501,6 +503,7 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface DatacomLi {
+        "variantItem"?: ItemStyle;
     }
     interface DatacomList {
         "type"?: TypeList;

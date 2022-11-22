@@ -17,6 +17,7 @@ export class DatacomList {
       [`list-${this.variant}`]: true,
       [`list-${this.type}`]: true,
     };
+
     const ListElement = this.variant === 'ordered' ? 'ol' : 'ul';
     return (
       <Host>

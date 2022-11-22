@@ -1,17 +1,16 @@
 :host {
   display: block;
-  line-height: 2px;
 }
 
 li {
-  line-height: 20px;
   font-family: var(--dc-font-family);
   color: var(--dc-primary-text-color);
   font-style: normal;
   font-size: 16px;
   font-size: 400;
+  padding-left: 8px;
+  line-height: 24px;
 }
-
 ::marker {
   font-size: 16px;
   font-family: var(--dc-font-family);
@@ -21,4 +20,10 @@ li {
   color: var(--dc-primary-text-color);
   position: absolute;
   letter-spacing: -0.25px;
+}
+
+.Item-heading {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
 }
