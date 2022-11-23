@@ -57,11 +57,17 @@
   border: 1px solid var(--dc-primary-colour);
   border-radius: 12px;
 }
+
 .dc-radio-radios:focus {
   outline: 3px solid var(--dc-primary-colour);
   border-radius: 12px;
   border: 1px solid var(--dc-greyscale-05);
+  outline-offset: 1px;
 }
+.dc-radio-radios:focus:not(:focus-visible) {
+  outline: none;
+}
+
 .dc-radio-radios:checked {
   border: 3px solid var(--dc-background-colour);
   background: var(--dc-primary-colour);
@@ -94,31 +100,27 @@
 }
 
 .dc-radio-buttons + label {
-  padding-top: 24px;
   border: 2px solid #dadada;
   display: flex;
-  border-radius: 8px;
   background-color: var(--dc-background-colour);
   font-family: var(--dc-font-family);
   font-weight: 500;
   align-items: center;
   margin-left: 12px;
+  border-radius: 8px;
 }
 .dc-radio-buttons.dc-radio-size-standard + label {
   height: 48px;
   font-size: 16px;
   padding-left: 16px;
   padding-right: 16px;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  border-radius: 8px;
 }
 .dc-radio-buttons.dc-radio-size-small + label {
   height: 34px;
   font-size: 14px;
   padding-left: 12px;
   padding-right: 12px;
-  padding-top: 8px;
-  padding-bottom: 8px;
 }
 .dc-radio-image {
   display: inline-flex;
@@ -131,15 +133,21 @@
   outline: 3px solid #0055ff;
   border-radius: 12px;
   border: 1px solid #dadada;
+  outline-offset: 1px;
+}
+.dc-radio-buttons:focus:not(:focus-visible) + label {
+  outline: none;
 }
 
 .dc-radio-buttons:hover:enabled + label {
   background: #f0f0f0;
   cursor: pointer;
+  border-radius: 8px;
 }
 .dc-radio-disabled.dc-radio-buttons + label {
   border: 2px solid var(--dc-greyscale-05);
   color: #999999;
+  border-radius: 8px;
 }
 
 .dc-radio-buttons:checked + label {
@@ -154,6 +162,7 @@
   text-align: center;
   border: 2px solid var(--dc-greyscale-05);
   padding-left: 45px !important;
+  border-radius: 8px;
   outline: none;
 }
 
@@ -170,6 +179,7 @@
   text-align: center;
   border: 2px solid var(--dc-greyscale-05);
   padding-left: 45px !important;
+  border-radius: 8px;
 }
 
 .dc-radio-label .dc-radio-image {

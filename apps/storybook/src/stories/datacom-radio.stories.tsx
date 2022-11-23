@@ -82,7 +82,7 @@ export default {
   },
   args: {
     variant: 'radios',
-    label: 'Label',
+    label: 'Radio item',
     size: 'standard',
     required: true,
     disabled: false,
@@ -98,7 +98,7 @@ const Template: ComponentStoryFn<typeof DatacomRadio> = (args) => (
 
 export const Radio = Template.bind({});
 Radio.args = {
-  label: ' Radio Item',
+  label: ' Radio item',
   size: 'standard',
   disabled: false,
   checked: false,
@@ -108,16 +108,16 @@ export const RadioGrouping = () => {
   return (
     <div style={{ paddingTop: '24px', gap: '16px' }}>
       <DatacomRadio name="choose" value="choice1">
-        Radio1
+        Radio item 1
       </DatacomRadio>
       <DatacomRadio name="choose" value="choice2">
-        Radio2
+        Radio item 2
       </DatacomRadio>
       <DatacomRadio name="choose" value="choice3">
-        Radio3
+        Radio item 3
       </DatacomRadio>
       <DatacomRadio name="choose" value="choice4">
-        Radio4
+        Radio item 4
       </DatacomRadio>
     </div>
   );
@@ -125,7 +125,7 @@ export const RadioGrouping = () => {
 export const RadioButton = Template.bind({});
 RadioButton.args = {
   variant: 'buttons',
-  label: 'Radio Button',
+  label: 'Radio button',
   size: 'standard',
   disabled: false,
   checked: false,
@@ -134,17 +134,17 @@ export const RadioButtonGrouping = () => {
   return (
     <div style={{ display: 'flex', gap: '16px', paddingTop: '24px' }}>
       <DatacomRadio
-        label=" Radio Button1"
+        label=" Radio button 1"
         name="choose"
         value="choice1"
         variant="buttons"></DatacomRadio>
       <DatacomRadio
-        label="Radio Button2"
+        label="Radio button 2"
         name="choose"
         value="choice2"
         variant="buttons"></DatacomRadio>
       <DatacomRadio
-        label="Radio Button3"
+        label="Radio button 3"
         name="choose"
         value="choice3"
         variant="buttons"></DatacomRadio>
