@@ -109,7 +109,6 @@ export class DatacomRadio implements FormControl {
         [`dc-radio-${variant}`]: true,
         [`dc-radio-size-${size}`]: true,
         [this.type]: true,
-        // [`image-${this.imagePosition}`]: image && this.label?.length > 0,
       };
       if (this.variant == 'buttons') {
         return (

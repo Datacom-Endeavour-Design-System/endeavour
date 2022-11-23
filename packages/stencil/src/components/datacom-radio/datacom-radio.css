@@ -8,7 +8,6 @@
   justify-content: flex-start;
   min-width: 100px;
   /* height: 40px;  */
-  cursor: pointer;
   white-space: nowrap;
   padding-top: 16px;
 }
@@ -73,6 +72,7 @@
   background: var(--dc-primary-colour);
   box-shadow: 0 0 0 1px var(--dc-primary-colour);
   outline: none;
+  transition: opacity 0.0005s ease-in-out;
 }
 
 .dc-radio-radios:disabled {
@@ -143,6 +143,7 @@
   background: #f0f0f0;
   cursor: pointer;
   border-radius: 8px;
+  border: 2px solid var(--dc-greyscale-05);
 }
 .dc-radio-disabled.dc-radio-buttons + label {
   border: 2px solid var(--dc-greyscale-05);
@@ -175,7 +176,7 @@
   background-repeat: no-repeat;
   line-height: 12px;
   background-position-x: 12%;
-  color: var(--dc-greyscale-05);
+  color: var(--dc-background-colour);
   text-align: center;
   border: 2px solid var(--dc-greyscale-05);
   padding-left: 45px !important;
