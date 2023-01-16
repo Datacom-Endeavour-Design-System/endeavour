@@ -50,7 +50,7 @@
   font-weight: 800;
 }
 
-.tab-label.selected:after {
+.tab-label.selected::after {
   display: block;
   content: '';
   position: absolute;
@@ -58,7 +58,7 @@
   height: 4px;
   border-radius: 10px;
   background-color: var(--dc-primary-colour);
-  animation: selected-animation 0.2s linear 0s forwards 1;
+  animation: selected-animation 0.1s linear 0s forwards 1;
 }
 
 @keyframes selected-animation {
@@ -73,7 +73,7 @@
   }
 }
 
-.tab-label:hover:not(:focus):after {
+.tab-label:hover:not(:focus)::after {
   display: block;
   content: '';
   position: absolute;
@@ -89,7 +89,7 @@
   color: var(--dc-primary-disabled-colour);
 }
 
-.tab-label.disabled::after {
+.tab-label:hover.disabled::after {
   display: none;
 }
 
