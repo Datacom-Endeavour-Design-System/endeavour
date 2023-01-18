@@ -9,13 +9,24 @@ export default {
     label: {
       name: 'Label',
       defaultValue: 'Option',
-      description: 'Dropdown lable',
+      description: 'Dropdown label',
       type: { label: 'string' },
     },
-    multiple: {
-      name: 'Multiple',
-      description: 'Multiple items may be selected',
-      type: { name: 'boolean' },
+    variant: {
+      name: 'Variant',
+      description: 'Dropdown variant. Defaults to single if not set.',
+      control: 'select',
+      defaultValue: 'single',
+      options: ['single', 'combo'],
+      type: { name: 'string', required: true },
+    },
+    size: {
+      name: 'Size',
+      description: 'Dropdown width. Defaults to large if not set.',
+      control: 'select',
+      defaultValue: 'large',
+      options: ['small', 'large'],
+      type: { name: 'string', required: true },
     },
     disabled: {
       name: 'Disabled',
@@ -27,15 +38,17 @@ export default {
       description: 'Required Field',
       type: { name: 'boolean' },
     },
-  },
-  arg: {
-    label: 'Country',
-    multiple: false,
+    message: {
+      name: 'Message',
+      defaultValue: 'Please select an option',
+      description: 'Hover instruction text',
+      type: { label: 'string' },
+    },
   },
 };
 
-const Template: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
-  <DatacomDropdown {...args} style={{ width: '350px' }}>
+const CountryTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
+  <DatacomDropdown {...args}>
     <DatacomOption
       src="https://flagcdn.com/nz.svg"
       value="NZ"
@@ -68,8 +81,24 @@ const Template: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
   </DatacomDropdown>
 );
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const WithImages = CountryTemplate.bind({});
+WithImages.args = {
   label: 'Country',
-  multiple: false,
+  message: 'Please select a country',
+};
+
+const SimpleTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
+  <DatacomDropdown {...args}>
+    <DatacomOption value="1" label="Option 1"></DatacomOption>
+    <DatacomOption value="2" label="Option 2"></DatacomOption>
+    <DatacomOption value="3" label="Option 3"></DatacomOption>
+    <DatacomOption value="4" label="Option 4"></DatacomOption>
+    <DatacomOption value="5" label="Option 5"></DatacomOption>
+  </DatacomDropdown>
+);
+
+export const Simple = SimpleTemplate.bind({});
+Simple.args = {
+  label: 'Options',
+  size: 'small',
 };

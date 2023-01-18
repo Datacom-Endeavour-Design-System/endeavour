@@ -144,7 +144,6 @@ export namespace Components {
           * Error message to display in the case of input validity checks or explicitly with 'valid' property
          */
         "message"?: string;
-        "multiple": boolean;
         /**
           * HTML element input properties
          */
@@ -156,6 +155,10 @@ export namespace Components {
           * Enable type ahead search for options.
          */
         "search": boolean;
+        /**
+          * Drop down size
+         */
+        "size": DropdownSize;
         "title": string;
         /**
           * Force validation on the form control to display any error messages
@@ -507,7 +510,6 @@ declare namespace LocalJSX {
           * Error message to display in the case of input validity checks or explicitly with 'valid' property
          */
         "message"?: string;
-        "multiple"?: boolean;
         /**
           * HTML element input properties
          */
@@ -519,6 +521,10 @@ declare namespace LocalJSX {
           * Enable type ahead search for options.
          */
         "search"?: boolean;
+        /**
+          * Drop down size
+         */
+        "size"?: DropdownSize;
         "title"?: string;
         "value"?: string;
         /**
