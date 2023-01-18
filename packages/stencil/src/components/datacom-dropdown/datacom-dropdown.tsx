@@ -1,10 +1,11 @@
-import { Component, Host, h, Prop, State, Method, Element, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, State, Method, Element, Listen, Fragment } from '@stencil/core';
 import { randomString } from '../../utils';
 import { FormControl } from '../form-control';
 import { DatacomDropdownOptionElement } from './datacom-dropdown-option';
 import { Chevron, Clear } from '../../common/images/icons';
 
-export type DatacomDropDownVariantType = 'single' | 'multiple';
+export type DatacomDropDownVariantType = 'select' | 'combo';
+type DropdownSize = 'small' | 'large';
 
 /**
  * HTML Select component with styled options.
@@ -29,12 +30,16 @@ export class DatacomDropdown implements FormControl {
   @Prop() required? = false;
   @Prop() form?: string;
   @Prop() title: string;
-  @Prop() multiple = false;
 
   /**
    * Drop down variant
    */
-  @Prop() variant: DatacomDropDownVariantType = 'single';
+  @Prop() variant: DatacomDropDownVariantType = 'select';
+
+  /**
+   * Drop down size
+   */
+  @Prop() size: DropdownSize = 'large';
 
   /**
    * Enable type ahead search for options.
@@ -256,7 +261,11 @@ export class DatacomDropdown implements FormControl {
   private close() {
     this.isOpen = false;
     this.clearFilter();
-    this.searchInputElement.value = '';
+
+    if (this.searchInputElement !== undefined) {
+      this.searchInputElement.value = '';
+    }
+
     if (this.selected.length > 0) {
       this.isInError = false;
     }
@@ -271,7 +280,9 @@ export class DatacomDropdown implements FormControl {
     }
 
     this.isOpen = true;
-    setTimeout(() => this.searchInputElement.focus(), 100);
+    if (this.searchInputElement !== undefined) {
+      setTimeout(() => this.searchInputElement.focus(), 100);
+    }
   }
 
   /**
@@ -291,7 +302,7 @@ export class DatacomDropdown implements FormControl {
     }
 
     if (withToggle) {
-      if (this.multiple) {
+      if (this.variant == 'combo') {
         if (option.selected) {
           this.selected = this.selected.filter(k => k !== index);
           option.selected = false;
@@ -323,8 +334,8 @@ export class DatacomDropdown implements FormControl {
       this.selectElement.appendChild(node);
     });
 
-    // Close the drop down if not in multi-select mode
-    if (!this.multiple) {
+    // Close the drop down if just single select mode
+    if (this.variant == 'select') {
       this.close();
     }
   }
@@ -357,12 +368,14 @@ export class DatacomDropdown implements FormControl {
    * Handle any click events outside the control and close the dropdown.
    */
   @Listen('click', { target: 'document' })
-  handleOutsideClick(/* event: MouseEvent */) {
+  handleOutsideClick(event: MouseEvent) {
     if (this.disabled) {
       return;
     }
 
-    this.close();
+    if (!this.host.contains(event.target as Node)) {
+      this.close();
+    }
   }
 
   /**
@@ -390,12 +403,6 @@ export class DatacomDropdown implements FormControl {
     } else if (!this.isOpen) {
       this.open();
     }
-
-    /**
-     * Stop propagation so click event doesn't bubble up and be used
-     * by outside click handler.
-     */
-    event.stopPropagation();
   };
 
   /**
@@ -512,16 +519,23 @@ export class DatacomDropdown implements FormControl {
   }
 
   /**
-   * Render selected option as either a clone of the selected option or as a
-   * summary where multiple select is enabled.
+   * Render view control
    *
-   * @returns VNode
+   * @returns JSX Fragment
    */
-  private renderSelectedOption() {
-    let child;
+  private renderViewControl() {
+    let selectedContent;
+    let clearBtn;
 
-    if (this.selected.length > 1) {
-      child = <pre>{this.selected.length}</pre>;
+    if (this.variant == 'combo') {
+      if (this.selected.length > 0) {
+        selectedContent = <pre>{this.selected.length}</pre>;
+        clearBtn = (
+          <span onClick={this.handleClear} class="dc-ddl-clear-btn">
+            <Clear class="dc-ddl-clear-icon" />
+          </span>
+        );
+      }
     } else if (this.selected.length == 1) {
       const selected = this.getOption(this.selected[0]);
       const props = {
@@ -533,17 +547,90 @@ export class DatacomDropdown implements FormControl {
         tabIndex: -1,
       };
 
-      child = <datacom-option {...props}></datacom-option>;
+      selectedContent = <datacom-option {...props}></datacom-option>;
     }
 
     return (
-      <span class="dc-ddl-selected-option" tabIndex={-1}>
-        {child}
-      </span>
+      <Fragment>
+        <label class="dc-ddl-label" htmlFor={this.inputId} tabIndex={-1}>
+          {this.label}
+        </label>
+
+        <span class="dc-ddl-selected-option" tabIndex={-1}>
+          {selectedContent}
+        </span>
+
+        <div class="dc-ddl-view-btns dc-ddl-buttons">
+          {clearBtn}
+          <span class="dc-ddl-open-btn">
+            <Chevron class="dc-ddl-chevron-down" />
+          </span>
+        </div>
+      </Fragment>
     );
   }
 
+  /**
+   * Render a dropdown list with search input for simple select, or
+   * a combo droplist with a selection summary
+   *
+   * @returns JSX Fragment
+   */
+  renderDropdown() {
+    if (this.variant == 'combo') {
+      return (
+        <Fragment>
+          <div class="dc-ddl-list-area">
+            {this.selected.length == 0 && <div class="dc-ddl-combo-placeholder">Select item(s)</div>}
+            {this.selected.length > 0 && (
+              <div class="dc-ddl-combo-count">
+                <pre>{this.selected.length}</pre>&nbsp;selected
+              </div>
+            )}
+
+            <div class="dc-ddl-list-btns dc-ddl-buttons">
+              <span onClick={this.handleClear} class="dc-ddl-clear-btn">
+                <Clear class="dc-ddl-clear-icon" />
+              </span>
+
+              <span class="dc-ddl-close-btn">
+                <Chevron class="dc-ddl-chevron-up" />
+              </span>
+            </div>
+          </div>
+
+          <div class="dc-ddl-options" tabindex={-1}>
+            <slot></slot>
+          </div>
+        </Fragment>
+      );
+    } else {
+      return (
+        <Fragment>
+          <div class="dc-ddl-list-area">
+            <input class="dc-ddl-input" type="text" tabIndex={0} placeholder={this.placeholder} onKeyUp={this.handleInputEntry} ref={el => this.setInputElementRef(el)}></input>
+
+            <div class="dc-ddl-list-btns dc-ddl-buttons">
+              <span class="dc-ddl-close-btn">
+                <Chevron class="dc-ddl-chevron-up" />
+              </span>
+            </div>
+          </div>
+
+          <div class="dc-ddl-options" tabindex={-1}>
+            <slot></slot>
+          </div>
+        </Fragment>
+      );
+    }
+  }
+
   render() {
+    if (!['select', 'combo'].includes(this.variant)) {
+      console.warn(`Variant ${this.variant} is not valid. Defaulting to 'select'`);
+      this.variant = 'select';
+    }
+
     /**
      * When in edit mode, we disable tabindex within the control so that keyboard actions
      * like tab and shift-tab move correctly to the next form control.
@@ -568,40 +655,23 @@ export class DatacomDropdown implements FormControl {
       'dc-ddl-view': !selected,
       'dc-ddl-selected': selected,
       'dc-ddl-error': error,
+      [`dc-ddl-size-${this.size}`]: true,
       'dc-ddl': true,
     };
 
     return (
       <Host>
         <div class={classes} onClick={this.handleClick} onKeyUp={this.handleKeyUp}>
-          <div class="dc-ddl-label-wrap" tabIndex={0}>
-            <label class="dc-ddl-label" htmlFor={this.inputId} tabIndex={-1}>
-              {this.label}
-            </label>
-            {this.renderSelectedOption()}
-            <span class="dc-ddl-buttons">
-              <span onClick={this.handleClear} class="dc-ddl-clear-btn">
-                <Clear class="dc-ddl-clear-icon" />
-              </span>
-              <span class="dc-ddl-open-btn">
-                <Chevron class="dc-ddl-chevron-down" />
-              </span>
-            </span>
+          <div class="dc-ddl-control" tabIndex={0}>
+            {this.renderViewControl()}
           </div>
+
           <p tabIndex={-1} class="dc-ddl-error-msg">
             {this.message}
           </p>
 
-          <div class="dc-ddl-list" onClick={this.handleClick} tabIndex={-1}>
-            <input class="dc-ddl-input" type="text" tabIndex={0} placeholder={this.placeholder} onKeyUp={this.handleInputEntry} ref={el => this.setInputElementRef(el)}></input>
-
-            <div class="dc-ddl-options" tabindex={-1}>
-              <slot></slot>
-            </div>
-
-            <span class="dc-ddl-close-btn">
-              <Chevron class="dc-ddl-chevron-up" />
-            </span>
+          <div class="dc-ddl-list" tabIndex={-1}>
+            {this.renderDropdown()}
           </div>
         </div>
 

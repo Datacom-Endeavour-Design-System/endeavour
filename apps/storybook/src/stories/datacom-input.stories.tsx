@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ComponentStoryFn, Meta } from '@storybook/react';
 import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
+import styled from '@emotion/styled';
 
 export default {
   title: 'Text Input',
@@ -86,9 +87,17 @@ export default {
   },
 } as Meta<typeof DatacomInput>;
 
-const Template: ComponentStoryFn<typeof DatacomInput> = (args) => (
-  <DatacomInput {...args} />
-);
+const Template: ComponentStoryFn<typeof DatacomInput> = (args) => {
+  const Panel = styled.div`
+    width: 300px;
+  `;
+
+  return (
+    <Panel>
+      <DatacomInput {...args} />
+    </Panel>
+  );
+};
 
 export const Simple = Template.bind({});
 Simple.args = {};
@@ -202,9 +211,17 @@ export const VerticalForm = () => {
     }
   };
 
+  const Panel = styled.div`
+    width: 300px;
+    margin-bottom: 30px;
+    datacom-input {
+      margin-bottom: 12px;
+    }
+  `;
+
   return (
     <form method="post" ref={form} onSubmit={handleSubmit}>
-      <div style={{ width: '400px', marginBottom: '20px' }}>
+      <Panel>
         <DatacomInput
           label="First name(s)"
           title="You first names (including middle)"
@@ -244,12 +261,13 @@ export const VerticalForm = () => {
         />
 
         {submitted && <p>Form would have been submitted but was prevented</p>}
-      </div>
+      </Panel>
 
-      <hr />
-      <DatacomButton variant="primary" type="submit">
-        Submit
-      </DatacomButton>
+      <div>
+        <DatacomButton variant="primary" type="submit">
+          Submit
+        </DatacomButton>
+      </div>
     </form>
   );
 };

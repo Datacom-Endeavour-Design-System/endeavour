@@ -2,7 +2,7 @@ import { Component, h, Prop, Host, Event, EventEmitter, Method, Element, State }
 import { randomString } from '../../utils';
 import { FormControl } from '../form-control';
 
-export type CheckboxSize = 'standard' | 'small';
+export type CheckboxSizeType = 'standard' | 'small';
 
 @Component({
   tag: 'datacom-checkbox',
@@ -33,7 +33,7 @@ export class DatacomCheckbox implements FormControl {
   /**
    * Checkbox is either standard size (default) or small
    */
-  @Prop() size: CheckboxSize = 'standard';
+  @Prop() variant: CheckboxSizeType = 'standard';
 
   /**
    * Show control in unknown state (dash)
@@ -48,7 +48,7 @@ export class DatacomCheckbox implements FormControl {
   /**
    * Auto-validate and display error message on form submit
    */
-  @Prop() autoValidate?: boolean = true;
+  @Prop({ attribute: 'autovalidate' }) autoValidate?: boolean = true;
 
   /**
    * Custom error message if control is invalid
@@ -175,9 +175,9 @@ export class DatacomCheckbox implements FormControl {
   }
 
   render() {
-    if (!['standard', 'small'].includes(this.size)) {
+    if (!['standard', 'small'].includes(this.variant)) {
       console.warn('Check size must be either standard or small.');
-      this.size = 'standard';
+      this.variant = 'standard';
     }
 
     const classes = {
@@ -186,7 +186,7 @@ export class DatacomCheckbox implements FormControl {
       'dc-checkbox-error': this.isInError,
       'dc-checkbox-unknown': this.unknown,
       'dc-checkbox-disabled': this.disabled,
-      [`dc-checkbox-size-${this.size}`]: true,
+      [`dc-checkbox-size-${this.variant}`]: true,
     };
 
     return (

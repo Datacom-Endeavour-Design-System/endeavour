@@ -4,7 +4,6 @@
 
 .dc-ddl-option {
   margin: 0;
-  padding: 1px 0;
   border-top: 1px solid var(--dc-greyscale-05);
   padding: 2px;
   outline: none;
@@ -29,7 +28,6 @@
   font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 16px;
-  padding-left: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -60,6 +58,7 @@
 .dc-ddl-option-image {
   height: 16px;
   overflow: hidden;
+  padding-right: 12px;
 }
 
 .dc-ddl-option-image path {
