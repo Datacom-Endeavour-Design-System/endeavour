@@ -59,8 +59,6 @@ export class DatacomRadio implements FormControl {
   handleChange = e => {
     console.log(e.target.value);
     this.checked = true;
-
-    // this.toggle.emit(this.checked)
   };
   @Method()
   async validate(): Promise<boolean> {
@@ -82,7 +80,7 @@ export class DatacomRadio implements FormControl {
 
     const variant = this.variant;
     const size = this.size;
-    //let imagePosition = this.imagePosition;
+
     if (!['standard', 'small'].includes(size)) {
       throw Error('Check size must be either standard or small.');
     }
@@ -108,12 +106,11 @@ export class DatacomRadio implements FormControl {
       [`dc-radio-${variant}`]: true,
       [`dc-radio-size-${size}`]: true,
       [this.type]: true,
-      // [`image-${this.imagePosition}`]: image && this.label?.length > 0,
     };
 
     return (
       <Host>
-        <div class="dc-radio-wraper">
+        <div class="dc-radio-wrapper">
           <input
             form={this.form}
             autofocus={this.autofocus}

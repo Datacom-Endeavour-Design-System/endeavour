@@ -1,10 +1,12 @@
 :host {
   display: block;
 }
+
 ol {
   margin-bottom: 2px;
   margin-top: 2px;
 }
+
 ul {
   margin-bottom: 2px;
   margin-top: 2px;
@@ -15,19 +17,20 @@ ul {
   color: #0a1839;
   list-style: decimal;
   font-weight: 400;
-  /* line-height: 24px; */
 }
 
 .list-unordered {
   list-style: disc outside none;
-  /* line-height: 24px; */
 }
+
 .list-lowercase {
   list-style: lower-alpha;
 }
+
 .list-upercase {
   list-style: upper-alpha;
 }
+
 .list-roman {
   list-style: upper-roman;
 }
