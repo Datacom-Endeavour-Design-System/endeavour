@@ -1,0 +1,104 @@
+:host {
+  display: block;
+  outline: none;
+}
+
+/* .dc-textarea-root {
+    display: block;
+    position: relative;
+    height: 128px;
+    min-width:300px;
+    max-width: 600px;
+   
+  } */
+
+.dc-textarea-wrap {
+  display: block;
+  box-sizing: border-box;
+  background-color: var(--dc-background-colour);
+  outline: none;
+  height: 128px;
+  width: 272px;
+}
+.dc-textarea-label {
+  display: block;
+  color: var(--dc-primary-text-color);
+  font-family: var(--dc-font-family);
+
+  font-weight: 400;
+  font-size: 16px;
+  outline: none;
+  transform-origin: top left;
+  transform: translateY(1.77em);
+  transition: all 0.3s;
+  width: 52px;
+}
+
+.dc-textarea {
+  box-shadow: none;
+  background-color: var(--dc-background-colour);
+  height: 98px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  line-height: 24px;
+  outline: none;
+  border: 1px solid var(--dc-greyscale-05);
+  font-family: var(--dc-font-family);
+  color: var(--dc-greyscale-03);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: -0.16px;
+  caret-color: var(--dc-primary-colour);
+  text-overflow: ellipsis;
+}
+
+.dc-textarea-helper {
+  color: var(--dc-greyscale-03);
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 26px;
+  margin-left: 8px;
+  padding: 4px;
+}
+.dc-textarea-view .dc-textarea-label {
+  padding-left: 10px;
+}
+.dc-textarea-view .dc-textarea-wrap {
+  outline: none;
+  height: 128px;
+  width: 272px;
+}
+
+.dc-textarea-edit .dc-textarea-label {
+  background-color: rgb(233, 220, 220);
+
+  top: 22px;
+  margin: 0px;
+  transform: translateY(0, 2.1em) scale(0.9);
+}
+
+.dc-counter {
+  display: none;
+}
+
+.dc-textarea-edit .dc-counter {
+  display: block;
+  background-color: #d8d4d4;
+  margin-left: 200px;
+  margin-right: 100px;
+  background-color: white;
+  transform-origin: top right;
+  transform: translate(0, 10px) scale(1);
+}
+/* .dc-textarea:focus  {
+    border: 2px solid blue;
+    
+  }  */
+.dc-textarea:focus .dc-textarea-label {
+  background-color: white;
+}
+
+.dc-textarea:focus + .dc-counter {
+  color: black;
+}

@@ -14,22 +14,32 @@
     <datacom-menubar></datacom-menubar>
 
     <main>
-      <h2>Welcome to Stencil</h2>
+      <!--/* <h2>Welcome to Stencil</h2>
       <p>We're going to build a demo site using all our components...</p>
       <form action="submit">
         <datacom-radio label="Radio small" id="radio1" value="choice1" name="choose" size="small"> </datacom-radio>
         <datacom-radio label="Radio" id="radio1" value="choice2" name="choose" size="standard"> </datacom-radio>
 
-        <datacom-radio label="Radio" id="radio1" value="choice3" name="choose" variant="buttons" size="small" disabled="true"> </datacom-radio>
-        <datacom-radio label="Radio" id="radio1" value="choice2" name="choose" variant="buttons"> </datacom-radio>
-        <datacom-radio label="Radio" id="radio1" value="choice4" name="choose" variant="buttons" icon="globe" image-position="left"> </datacom-radio>
-      </form>
-      <div>
-        <datacom-radio label="Radio small" id="radio1" value="choice1" name="choose" size="small"></datacom-radio>
-      </div>
-      <div>
-        <datacom-radio label="Radio small" id="radio1" value="choice1" name="choose" size="small"></datacom-radio>
-      </div>
+        <datacom-radio label="Radio" id="radio1" value="choice3" name="choose" variant="buttons" size="small"> </datacom-radio>
+        <datacom-radio label="Radio" id="radio1" value="choice4" name="choose" variant="buttons" icon="globe" image-position="right"> </datacom-radio>
+        <datacom-button type="submit" name="submit" value="enter" icon="globe" image-position="left" text="submit"></datacom-button>
+      </form> */-->
+      
+          
+  <main>
+    <h2>Welcome to Stencil</h2>
+    <p>We're going to build a demo site using all our components...</p>
+
+    <form action="/submit" method="get">
+    <div>
+    <datacom-input auto-validate="true" name="surname" required="true" placeholder="Surname name" message="Surname name is required">Surname</datacom-input>
+      <datacom-textarea   rows= "6" cols="23" name="textarea" help="Help text" placeholder=" Example here" message="this required" auto-validate="true">Label</datacom-textarea>
+      
+        <datacom-button type="submit">Submit</button>
+    
+    </form>
+  </main>
+
     </main>
 
     <footer></footer>

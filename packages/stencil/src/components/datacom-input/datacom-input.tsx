@@ -277,12 +277,12 @@ export class DatacomInput implements FormControl {
     const error = (this.isInError && this.isDirty) || this.isValid == false;
 
     const classes = {
-      'dc-input-root': true,
-      'dc-input-disabled': this.disabled,
-      'dc-input-edit': edit,
-      'dc-input-view': !edit,
-      'dc-input-error': error,
-      'dc-input-dirty': this.isDirty,
+      'dc-text-root': true,
+      'dc-text-disabled': this.disabled,
+      'dc-text-edit': edit,
+      'dc-text-view': !edit,
+      'dc-text-error': error,
+      'dc-text-dirty': this.isDirty,
     };
 
     /**
@@ -292,16 +292,16 @@ export class DatacomInput implements FormControl {
     return (
       <Host tabIndex={tabindex}>
         <div class={classes}>
-          <div class="dc-input-label-wrap">
-            <label class="dc-input-label" htmlFor={this.inputId} tabIndex={tabindex}>
+          <div class="dc-text-label-wrap">
+            <label class="dc-text-label" htmlFor={this.inputId} tabIndex={tabindex}>
               {this.label}
               <slot></slot>
             </label>
           </div>
 
-          <div class="dc-input-input-wrap">
+          <div class="dc-text-input-wrap">
             <input
-              class="dc-input-input"
+              class="dc-text-input"
               ref={el => this.setInputElementRef(el)}
               tabIndex={tabindex}
               id={this.inputId}
@@ -327,14 +327,14 @@ export class DatacomInput implements FormControl {
               disabled={this.disabled}
               value={this.value}
             ></input>
-            {this.indicator == 'working' && edit && <Spinner class="dc-input-spinner dc-input-indicator" />}
-            {this.indicator == 'done' && edit && <Tick class="dc-input-tick dc-input-indicator" />}
-            {error && <Error class="dc-input-error-icon" />}
-            <p tabIndex={-1} class="dc-input-error-msg">
+            {this.indicator == 'working' && edit && <Spinner class="dc-text-spinner dc-text-indicator" />}
+            {this.indicator == 'done' && edit && <Tick class="dc-text-tick dc-text-indicator" />}
+            {error && <Error class="dc-text-error-icon" />}
+            <p tabIndex={-1} class="dc-text-error-msg">
               {this.message}
             </p>
           </div>
-          <aside tabIndex={-1} class="dc-input-help">
+          <aside tabIndex={-1} class="dc-text-help">
             {this.help}
           </aside>
         </div>
