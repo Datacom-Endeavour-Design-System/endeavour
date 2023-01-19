@@ -113,7 +113,7 @@ export class DatacomRadio implements FormControl {
       if (this.variant == 'buttons') {
         return (
           <Host>
-            <div class="dc-radio-wraper">
+            <div class="dc-radio-wrapper">
               <input
                 form={this.form}
                 autofocus={this.autofocus}
@@ -147,7 +147,7 @@ export class DatacomRadio implements FormControl {
       } else {
         return (
           <Host>
-            <div class="dc-radio-wraper">
+            <div class="dc-radio-wrapper">
               <input
                 form={this.form}
                 autofocus={this.autofocus}

@@ -1,13 +1,12 @@
 :host {
   display: block;
 }
-.dc-radio-wraper {
+.dc-radio-wrapper {
   /* main containter  */
   display: flex;
   align-items: center;
   justify-content: flex-start;
   min-width: 100px;
-  /* height: 40px;  */
   white-space: nowrap;
   padding-top: 16px;
 }
@@ -76,16 +75,16 @@
 }
 
 .dc-radio-radios:disabled {
-  background-color: #f0f0f0;
+  background-color: var(--dc-background-accent-color);
   border: 1px solid var(--dc-greyscale-05);
 }
 .dc-radio-disabled + label {
   color: var(--dc-greyscale-03);
 }
 .dc-radio-disabled.dc-radio-radios:checked {
-  border: 3px solid #f0f0f0;
+  border: 3px solid var(--dc-background-accent-color);
   background: var(--dc-greyscale-04);
-  box-shadow: 0 0 0 1px #dadada;
+  box-shadow: 0 0 0 1px var(--dc-greyscale-05);
 }
 /* main containter  */
 
@@ -100,7 +99,7 @@
 }
 
 .dc-radio-buttons + label {
-  border: 2px solid #dadada;
+  border: 2px solid var(--dc-greyscale-05);
   display: flex;
   background-color: var(--dc-background-colour);
   font-family: var(--dc-font-family);
@@ -109,6 +108,7 @@
   margin-left: 12px;
   border-radius: 8px;
 }
+
 .dc-radio-buttons.dc-radio-size-standard + label {
   height: 48px;
   font-size: 16px;
@@ -116,12 +116,14 @@
   padding-right: 16px;
   border-radius: 8px;
 }
+
 .dc-radio-buttons.dc-radio-size-small + label {
   height: 34px;
   font-size: 14px;
   padding-left: 12px;
   padding-right: 12px;
 }
+
 .dc-radio-image {
   display: inline-flex;
   height: 18px;
@@ -130,21 +132,23 @@
 }
 
 .dc-radio-buttons:focus + label {
-  outline: 3px solid #0055ff;
+  outline: 3px solid var(--dc-primary-colour);
   border-radius: 12px;
-  border: 1px solid #dadada;
+  border: 1px solid var(--dc-greyscale-05);
   outline-offset: 1px;
 }
+
 .dc-radio-buttons:focus:not(:focus-visible) + label {
   outline: none;
 }
 
 .dc-radio-buttons:hover:enabled + label {
-  background: #f0f0f0;
+  background: var(--dc-grayscale-06);
   cursor: pointer;
   border-radius: 8px;
   border: 2px solid var(--dc-greyscale-05);
 }
+
 .dc-radio-disabled.dc-radio-buttons + label {
   border: 2px solid var(--dc-greyscale-05);
   color: #999999;
@@ -192,13 +196,16 @@
 .dc-radio-image path {
   fill: var(--dc-primary-text-color);
 }
+
 .dc-radio-image-right {
   display: flex;
   flex-direction: row-reverse;
 }
+
 .dc-radio-image-left .dc-radio-image {
   padding-right: 12px;
 }
+
 .dc-radio-image-right .dc-radio-image {
   padding-left: 12px;
 }
