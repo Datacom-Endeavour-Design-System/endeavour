@@ -11,6 +11,7 @@ import { DatacomDropDownVariantType } from "./components/datacom-dropdown/dataco
 import { DatacomInputType, IndicatorType } from "./components/datacom-input/datacom-input";
 import { ItemStyle } from "./components/datacom-list/datacom-li";
 import { ListVariant, TypeList } from "./components/datacom-list/datacom-list";
+import { ImagePosition as ImagePosition1, RadioSize, RadioVariant } from "./components/datacom-radio/datacom-radio";
 export namespace Components {
     interface DatacomButton {
         "autofocus": boolean;
@@ -280,6 +281,45 @@ export namespace Components {
          */
         "visible": boolean;
     }
+    interface DatacomRadio {
+        /**
+          * Auto-validate and display error message on form submit
+         */
+        "autoValidate"?: boolean;
+        "autocomplete"?: boolean;
+        "autofocus": boolean;
+        /**
+          * Check if the control is valid
+         */
+        "checkValidity": () => Promise<boolean>;
+        "checked": boolean;
+        "disabled": boolean;
+        "form": string;
+        "formaction": string;
+        "formenctype": string;
+        "formmethod": string;
+        "formnovalidate"?: boolean;
+        "formtarget": string;
+        "icon": string;
+        "imagePosition": ImagePosition;
+        "label": string;
+        /**
+          * Custom error message if control is invalid
+         */
+        "message": string;
+        "name": string;
+        "readonly"?: boolean;
+        "required": boolean;
+        "size": RadioSize;
+        "src": string;
+        "type": string;
+        /**
+          * Force validation on the field. If validation fails then show error message.
+         */
+        "validate": () => Promise<boolean>;
+        "value": string;
+        "variant": RadioVariant;
+    }
     interface DatacomTab {
         "disabled": boolean;
         /**
@@ -330,6 +370,10 @@ export interface DatacomInputCustomEvent<T> extends CustomEvent<T> {
 export interface DatacomOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDatacomOptionElement;
+}
+export interface DatacomRadioCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDatacomRadioElement;
 }
 declare global {
     interface HTMLDatacomButtonElement extends Components.DatacomButton, HTMLStencilElement {
@@ -386,6 +430,12 @@ declare global {
         prototype: HTMLDatacomOptionElement;
         new (): HTMLDatacomOptionElement;
     };
+    interface HTMLDatacomRadioElement extends Components.DatacomRadio, HTMLStencilElement {
+    }
+    var HTMLDatacomRadioElement: {
+        prototype: HTMLDatacomRadioElement;
+        new (): HTMLDatacomRadioElement;
+    };
     interface HTMLDatacomTabElement extends Components.DatacomTab, HTMLStencilElement {
     }
     var HTMLDatacomTabElement: {
@@ -408,6 +458,7 @@ declare global {
         "datacom-list": HTMLDatacomListElement;
         "datacom-menubar": HTMLDatacomMenubarElement;
         "datacom-option": HTMLDatacomOptionElement;
+        "datacom-radio": HTMLDatacomRadioElement;
         "datacom-tab": HTMLDatacomTabElement;
         "datacom-tabgroup": HTMLDatacomTabgroupElement;
     }
@@ -655,6 +706,38 @@ declare namespace LocalJSX {
          */
         "visible"?: boolean;
     }
+    interface DatacomRadio {
+        /**
+          * Auto-validate and display error message on form submit
+         */
+        "autoValidate"?: boolean;
+        "autocomplete"?: boolean;
+        "autofocus"?: boolean;
+        "checked"?: boolean;
+        "disabled"?: boolean;
+        "form"?: string;
+        "formaction"?: string;
+        "formenctype"?: string;
+        "formmethod"?: string;
+        "formnovalidate"?: boolean;
+        "formtarget"?: string;
+        "icon"?: string;
+        "imagePosition"?: ImagePosition;
+        "label"?: string;
+        /**
+          * Custom error message if control is invalid
+         */
+        "message"?: string;
+        "name"?: string;
+        "onChanged"?: (event: DatacomRadioCustomEvent<number>) => void;
+        "readonly"?: boolean;
+        "required"?: boolean;
+        "size"?: RadioSize;
+        "src"?: string;
+        "type"?: string;
+        "value"?: string;
+        "variant"?: RadioVariant;
+    }
     interface DatacomTab {
         "disabled"?: boolean;
         "label"?: string;
@@ -672,6 +755,7 @@ declare namespace LocalJSX {
         "datacom-list": DatacomList;
         "datacom-menubar": DatacomMenubar;
         "datacom-option": DatacomOption;
+        "datacom-radio": DatacomRadio;
         "datacom-tab": DatacomTab;
         "datacom-tabgroup": DatacomTabgroup;
     }
@@ -689,6 +773,7 @@ declare module "@stencil/core" {
             "datacom-list": LocalJSX.DatacomList & JSXBase.HTMLAttributes<HTMLDatacomListElement>;
             "datacom-menubar": LocalJSX.DatacomMenubar & JSXBase.HTMLAttributes<HTMLDatacomMenubarElement>;
             "datacom-option": LocalJSX.DatacomOption & JSXBase.HTMLAttributes<HTMLDatacomOptionElement>;
+            "datacom-radio": LocalJSX.DatacomRadio & JSXBase.HTMLAttributes<HTMLDatacomRadioElement>;
             "datacom-tab": LocalJSX.DatacomTab & JSXBase.HTMLAttributes<HTMLDatacomTabElement>;
             "datacom-tabgroup": LocalJSX.DatacomTabgroup & JSXBase.HTMLAttributes<HTMLDatacomTabgroupElement>;
         }
