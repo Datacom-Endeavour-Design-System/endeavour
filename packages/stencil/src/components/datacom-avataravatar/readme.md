@@ -4,11 +4,13 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type     | Default     |
-| ----------- | ------------ | ----------- | -------- | ----------- |
-| `FirstName` | `first-name` |             | `string` | `undefined` |
-| `LastName`  | `last-name`  |             | `string` | `undefined` |
-| `Src`       | `src`        |             | `string` | `undefined` |
+| Property      | Attribute      | Description | Type     | Default     |
+| ------------- | -------------- | ----------- | -------- | ----------- |
+| `companyName` | `company-name` |             | `string` | `undefined` |
+| `firstName`   | `first-name`   |             | `string` | `undefined` |
+| `jobTitle`    | `job-title`    |             | `string` | `undefined` |
+| `lastName`    | `last-name`    |             | `string` | `undefined` |
+| `src`         | `src`          |             | `string` | `undefined` |
 
 ---
 

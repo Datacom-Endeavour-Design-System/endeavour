@@ -7,6 +7,13 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-button/datacom-button";
 export namespace Components {
+    interface DatacomAvataravatar {
+        "companyName": string;
+        "firstName": string;
+        "jobTitle": string;
+        "lastName": string;
+        "src": string;
+    }
     interface DatacomButton {
         "autofocus": boolean;
         "disabled": boolean;
@@ -58,6 +65,12 @@ export interface DatacomTabCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDatacomTabElement;
 }
 declare global {
+    interface HTMLDatacomAvataravatarElement extends Components.DatacomAvataravatar, HTMLStencilElement {
+    }
+    var HTMLDatacomAvataravatarElement: {
+        prototype: HTMLDatacomAvataravatarElement;
+        new (): HTMLDatacomAvataravatarElement;
+    };
     interface HTMLDatacomButtonElement extends Components.DatacomButton, HTMLStencilElement {
     }
     var HTMLDatacomButtonElement: {
@@ -89,6 +102,7 @@ declare global {
         new (): HTMLDatacomTabgroupElement;
     };
     interface HTMLElementTagNameMap {
+        "datacom-avataravatar": HTMLDatacomAvataravatarElement;
         "datacom-button": HTMLDatacomButtonElement;
         "datacom-checkbox": HTMLDatacomCheckboxElement;
         "datacom-menubar": HTMLDatacomMenubarElement;
@@ -97,6 +111,13 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface DatacomAvataravatar {
+        "companyName"?: string;
+        "firstName"?: string;
+        "jobTitle"?: string;
+        "lastName"?: string;
+        "src"?: string;
+    }
     interface DatacomButton {
         "autofocus"?: boolean;
         "disabled"?: boolean;
@@ -131,6 +152,7 @@ declare namespace LocalJSX {
     interface DatacomTabgroup {
     }
     interface IntrinsicElements {
+        "datacom-avataravatar": DatacomAvataravatar;
         "datacom-button": DatacomButton;
         "datacom-checkbox": DatacomCheckbox;
         "datacom-menubar": DatacomMenubar;
@@ -142,6 +164,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "datacom-avataravatar": LocalJSX.DatacomAvataravatar & JSXBase.HTMLAttributes<HTMLDatacomAvataravatarElement>;
             "datacom-button": LocalJSX.DatacomButton & JSXBase.HTMLAttributes<HTMLDatacomButtonElement>;
             "datacom-checkbox": LocalJSX.DatacomCheckbox & JSXBase.HTMLAttributes<HTMLDatacomCheckboxElement>;
             "datacom-menubar": LocalJSX.DatacomMenubar & JSXBase.HTMLAttributes<HTMLDatacomMenubarElement>;

@@ -7,21 +7,23 @@ import { Component, Host, Prop, h } from '@stencil/core';
 })
 export class DatacomAvataravatar {
   /* Custom properties */
-  @Prop() FirstName: string;
-  @Prop() LastName: string;
-  @Prop() Src: string;
+  @Prop() firstName: string;
+  @Prop() lastName: string;
+  @Prop() jobTitle: string;
+  @Prop() companyName: string;
+  @Prop() src: string;
 
   render() {
-    let Image;
+    let avtImage;
     let F;
     let L;
 
-    if (this.Src?.length > 0) {
-      Image = <img src={this.Src} />;
+    if (this.src?.length > 0) {
+      avtImage = <img src={this.src} />;
     } else {
-      F = this.FirstName.split('');
-      L = this.LastName.split('');
-      Image = (
+      F = this.firstName.split('');
+      L = this.lastName.split('');
+      avtImage = (
         <div class="avatar-initial">
           {F[0]}
           {L[0]}
@@ -32,12 +34,14 @@ export class DatacomAvataravatar {
     return (
       <Host>
         <div class="avatar">
-          <div class="avatar-image">{Image}</div>
+          <div class="avatar-image">{avtImage}</div>
           <div class="avatar-details">
             <div class="avatar-name">
-              {this.FirstName} {this.LastName}
+              {this.firstName} {this.lastName}
             </div>
-            <div class="avatar-title">Job title, Company name</div>
+            <div class="avatar-title">
+              {this.jobTitle}, {this.companyName}
+            </div>
           </div>
         </div>
       </Host>
