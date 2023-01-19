@@ -22,6 +22,7 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 400px;
+  padding-left: 16px;
 }
 
 .dc-ddl-option-label {
@@ -49,10 +50,6 @@
 .dc-ddl-option:focus {
   border: 3px solid var(--dc-primary-colour);
   padding: 0;
-}
-
-.dc-ddl-option-content {
-  padding-left: 16px;
 }
 
 .dc-ddl-option-image {

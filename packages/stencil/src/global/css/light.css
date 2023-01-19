@@ -1,5 +1,5 @@
 /**
-    Light theme. 
+    Light theme.
 
     Convention follows dc-{control}-{variant}-{variable}
     - Prefixed with dc
@@ -10,7 +10,7 @@
   /* Global defaults */
   --dc-background-colour: #ffffff;
   --dc-background-accent-color: #f0f0f0;
-  --dc-font-family: 'Montserrat';
+  --dc-font-family: "Montserrat";
   --dc-font-size: 18px;
   --dc-primary-colour: #0055ff;
   --dc-primary-accent-colour: #003fbc;

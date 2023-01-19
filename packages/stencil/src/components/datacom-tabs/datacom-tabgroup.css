@@ -52,7 +52,7 @@
 
 .tab-label.selected::after {
   display: block;
-  content: '';
+  content: "";
   position: absolute;
   top: calc(100% - 4px);
   height: 4px;
@@ -75,7 +75,7 @@
 
 .tab-label:hover:not(:focus)::after {
   display: block;
-  content: '';
+  content: "";
   position: absolute;
   top: calc(100% - 4px);
   right: calc(50% - 6px);
