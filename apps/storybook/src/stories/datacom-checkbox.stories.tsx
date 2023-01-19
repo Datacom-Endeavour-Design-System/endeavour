@@ -16,8 +16,8 @@ export default {
       description: 'checkbox label',
       type: { label: 'string' },
     },
-    size: {
-      name: 'Size',
+    variant: {
+      name: 'Variant',
       description:
         'checkbox size within variant. Defaults to standard if not set',
       control: 'select',
@@ -47,8 +47,8 @@ export default {
     },
   },
   arg: {
-    label: 'Checkbox',
-    size: 'standard',
+    label: 'Checkbox Item',
+    variant: 'standard',
     required: false,
     disabled: false,
     checked: false,
@@ -62,40 +62,38 @@ const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => (
 export const Standard = Template.bind({});
 Standard.args = {
   label: 'Checkbox Item',
-  size: 'standard',
+  variant: 'standard',
   checked: false,
 };
 
 export const Small = Template.bind({});
 Small.args = {
   label: 'Checkbox Item',
-  size: 'small',
+  variant: 'small',
   checked: false,
 };
 
-export const GroupedStandard = () => {
-  return (
-    <div>
-      <DatacomCheckboxGroup>
-        <DatacomCheckbox>Parent checkbox</DatacomCheckbox>
-        <DatacomCheckbox>Child option 1</DatacomCheckbox>
-        <DatacomCheckbox>Child option 2</DatacomCheckbox>
-        <DatacomCheckbox>Child option 3</DatacomCheckbox>
-        <DatacomCheckbox>Child option 4</DatacomCheckbox>
-      </DatacomCheckboxGroup>
-    </div>
-  );
-};
+export const Grouped = (props) => {
+  const { variant, disabled } = props;
 
-export const GroupedSmall = () => {
   return (
     <div>
       <DatacomCheckboxGroup>
-        <DatacomCheckbox size="small">Parent checkbox</DatacomCheckbox>
-        <DatacomCheckbox size="small">Child option 1</DatacomCheckbox>
-        <DatacomCheckbox size="small">Child option 2</DatacomCheckbox>
-        <DatacomCheckbox size="small">Child option 3</DatacomCheckbox>
-        <DatacomCheckbox size="small">Child option 4</DatacomCheckbox>
+        <DatacomCheckbox variant={variant} disabled={disabled}>
+          Parent checkbox
+        </DatacomCheckbox>
+        <DatacomCheckbox variant={variant} disabled={disabled}>
+          Child option 1
+        </DatacomCheckbox>
+        <DatacomCheckbox variant={variant} disabled={disabled}>
+          Child option 2
+        </DatacomCheckbox>
+        <DatacomCheckbox variant={variant} disabled={disabled}>
+          Child option 3
+        </DatacomCheckbox>
+        <DatacomCheckbox variant={variant} disabled={disabled}>
+          Child option 4
+        </DatacomCheckbox>
       </DatacomCheckboxGroup>
     </div>
   );
@@ -123,8 +121,10 @@ export const FormValidation = () => {
 
         {submitted && <p>Form would have been submitted but was prevented</p>}
       </div>
-      <hr />
-      <DatacomButton type="submit">Submit</DatacomButton>
+
+      <div style={{ 'margin-top': '24px' }}>
+        <DatacomButton type="submit">Submit</DatacomButton>
+      </div>
     </form>
   );
 };

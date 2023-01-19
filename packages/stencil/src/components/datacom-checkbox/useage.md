@@ -8,10 +8,9 @@ Auto validate and show error message if form fails validation:
 
 ```html
 <form method="get" action="submit">
-  <datacom-checkbox auto-validate="true" name="agree" value="yes" required="true" message="Please confirm you agree">Agree to terms and conditions</datacom-checkbox>
+  <datacom-checkbox autovalidate="true" name="agree" value="yes" required="true" message="Please confirm you agree">Agree to terms and conditions</datacom-checkbox>
 
   <div>
-    <hr />
     <datacom-button name="submit" value="btn" type="submit">Submit</datacom-button>
   </div>
 </form>

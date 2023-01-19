@@ -1,0 +1,97 @@
+:host {
+  display: block;
+}
+
+.dc-ddl-option {
+  margin: 0;
+  border-top: 1px solid var(--dc-greyscale-05);
+  padding: 2px;
+  outline: none;
+  height: 52px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: var(--dc-background-colour);
+}
+
+.dc-ddl-option-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
+}
+
+.dc-ddl-option-label {
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dc-ddl-option-hidden {
+  display: none;
+}
+
+.dc-ddl-option:hover {
+  background-color: var(--dc-greyscale-05);
+  color: var(--dc-primary-text-color);
+}
+
+.dc-ddl-option-selected:hover svg path {
+  fill: var(--dc-background-colour);
+}
+
+.dc-ddl-option:focus {
+  border: 3px solid var(--dc-primary-colour);
+  padding: 0;
+}
+
+.dc-ddl-option-content {
+  padding-left: 16px;
+}
+
+.dc-ddl-option-image {
+  height: 16px;
+  overflow: hidden;
+  padding-right: 12px;
+}
+
+.dc-ddl-option-image path {
+  fill: var(--dc-primary-text-color);
+}
+
+/* Standalone mode */
+.dc-ddl-option-mode-standalone.dc-ddl-option {
+  border: none;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.dc-ddl-option-mode-standalone .dc-ddl-option-content {
+  margin: 0;
+  padding: 0;
+}
+
+.dc-ddl-option-mode-standalone.dc-ddl-option:hover {
+  background: transparent;
+}
+
+.dc-ddl-option-mode-standalone.dc-ddl-option:focus {
+  border: none;
+}
+
+/* Selected */
+.dc-ddl-option-selected {
+  background-color: var(--dc-primary-colour);
+  color: var(--dc-background-colour);
+}
+
+.dc-ddl-option-selected svg path {
+  fill: var(--dc-background-colour);
+}
