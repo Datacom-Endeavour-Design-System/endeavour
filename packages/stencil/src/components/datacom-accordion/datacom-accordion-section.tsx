@@ -34,7 +34,7 @@ export class DatacomAccordionSection {
     return (
       <Host>
         <div class={mainElementClasses}>
-          <button type="button" aria-expanded={this.expanded} class="dc-accordion-section-heading" onClick={this.onHeaderClick}>
+          <button type="button" aria-expanded={this.expanded ? 'true' : 'false'} class="dc-accordion-section-heading" onClick={this.onHeaderClick}>
             <div class="dc-accordion-section-heading-content">
               <div class="dc-accordion-section-heading-text">{this.label}</div>
               {this.chevronIcon}
