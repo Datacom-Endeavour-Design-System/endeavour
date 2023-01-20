@@ -1,0 +1,72 @@
+:host {
+  display: inline;
+}
+
+/* Default styles */
+.dc-accordion-section {
+  border-radius: 10px;
+  box-shadow: 0 5px 4px 0 rgba(0 0 0 30%);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--dc-font-family);
+  overflow: hidden;
+}
+
+.dc-accordion-section-heading {
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 500;
+  padding: 20px 20px 0;
+}
+
+.dc-accordion-section-heading-content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.dc-accordion-section-chevron {
+  width: 25px;
+}
+
+.dc-accordion-section-chevron path {
+  fill: var(--dc-primary-text-color);
+}
+
+.dc-accordion-section-content {
+  display: none;
+  padding: 20px;
+}
+
+/* Hover state styles */
+.dc-accordion-section-heading:hover {
+  background-color: var(--dc-greyscale-05);
+}
+
+/* Expanded state styles */
+.expand .dc-accordion-section-heading-content {
+  border-bottom: 1px solid var(--dc-greyscale-05);
+}
+
+.expand .dc-accordion-section-chevron {
+  transform: rotate(180deg);
+}
+
+.expand .dc-accordion-section-content {
+  display: flex;
+}
+
+/* Disabled state styles */
+.disabled .dc-accordion-section-heading:hover {
+  background-color: white;
+  cursor: default;
+}
+
+.disabled .dc-accordion-section-heading-content {
+  color: var(--dc-greyscale-05);
+}
+
+.disabled .dc-accordion-section-chevron path {
+  fill: var(--dc-greyscale-05);
+}
