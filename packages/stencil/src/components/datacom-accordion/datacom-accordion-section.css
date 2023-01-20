@@ -53,6 +53,7 @@
 /* Focus state styles */
 .dc-accordion-section-heading:focus {
   outline: 3px solid var(--dc-primary-colour);
+  z-index: 1;
 }
 
 /* Expanded state styles */
