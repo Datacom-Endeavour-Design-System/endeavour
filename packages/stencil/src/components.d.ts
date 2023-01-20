@@ -314,7 +314,8 @@ export namespace Components {
         "src": string;
         "type": string;
         /**
-          * Force validation on the field. If validation fails then show error message.
+          * Check if control is valid (for form submit)
+          * @returns Promise of validity
          */
         "validate": () => Promise<boolean>;
         "value": string;

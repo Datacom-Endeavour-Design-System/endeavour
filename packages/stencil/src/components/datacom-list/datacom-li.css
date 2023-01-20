@@ -7,9 +7,12 @@ li {
   color: var(--dc-primary-text-color);
   font-style: normal;
   font-size: 16px;
-  font-size: 400;
   padding-left: 8px;
   line-height: 24px;
+}
+
+li + * {
+  color: red;
 }
 
 ::marker {

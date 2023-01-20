@@ -54,12 +54,15 @@ export class DatacomRadio implements FormControl {
   @State() isInError = false;
   private inputElement: HTMLInputElement;
 
-  handleChange = e => {
-    console.log(e.target.value);
+  handleChange = () => {
     this.checked = true;
-
-    // this.toggle.emit(this.checked);
   };
+
+  /**
+   * Check if control is valid (for form submit)
+   *
+   * @returns Promise of validity
+   */
   @Method()
   async validate(): Promise<boolean> {
     this.isInError = !(await this.checkValidity());
@@ -96,7 +99,6 @@ export class DatacomRadio implements FormControl {
     {
       let image: VNode;
       if (this.icon != null && this.checked !== true) {
-        console.log('icon');
         image = getSvg(this.icon, { class: 'dc-radio-image' });
       } else if (this.src != null) {
         image = <img src={this.src} class="dc-radio-image"></img>;
