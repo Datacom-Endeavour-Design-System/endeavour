@@ -369,6 +369,7 @@ export namespace Components {
          */
         "checkValidity": () => Promise<boolean>;
         "cols": number;
+        "counter"?: number;
         "disabled"?: boolean;
         "edit": () => Promise<void>;
         "form"?: string;
@@ -384,6 +385,7 @@ export namespace Components {
         "inputAutofocus"?: boolean;
         "isValid"?: boolean;
         "label"?: string;
+        "maxlength"?: number;
         /**
           * Error message to display in the case of validity checks or explicitly with 'valid' property
          */
@@ -401,6 +403,7 @@ export namespace Components {
           * Force validation on the field. If validation fails then show error message.
          */
         "validate": () => Promise<boolean>;
+        "value": string;
     }
 }
 export interface DatacomCheckboxCustomEvent<T> extends CustomEvent<T> {
@@ -807,6 +810,7 @@ declare namespace LocalJSX {
         "autoValidate"?: boolean;
         "autocorrect"?: boolean;
         "cols"?: number;
+        "counter"?: number;
         "disabled"?: boolean;
         "form"?: string;
         "formaction"?: string;
@@ -821,6 +825,7 @@ declare namespace LocalJSX {
         "inputAutofocus"?: boolean;
         "isValid"?: boolean;
         "label"?: string;
+        "maxlength"?: number;
         /**
           * Error message to display in the case of validity checks or explicitly with 'valid' property
          */
@@ -835,6 +840,7 @@ declare namespace LocalJSX {
         "readonly"?: boolean;
         "required"?: boolean;
         "rows"?: number;
+        "value"?: string;
     }
     interface IntrinsicElements {
         "datacom-button": DatacomButton;

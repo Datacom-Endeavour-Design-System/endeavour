@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop, State, Listen, Method, Event, EventEmitter } from '@stencil/core';
+import { Error } from '../../common/images/icons';
 import { randomString } from '../../utils';
 import { FormControl } from '../form-control';
 /**
@@ -28,7 +29,7 @@ export class DatacomTextarea implements FormControl {
   @Prop() cols: number;
   @Prop() placeholder?: string;
   @Prop() disabled? = false;
-  @State() maxlength?: number = 100;
+  @Prop() maxlength?: number = 100;
   @Prop() minlength?: number;
   @Prop() readonly? = false;
   @Prop() required? = false;
@@ -41,9 +42,9 @@ export class DatacomTextarea implements FormControl {
   @Prop() label?: string;
   @Prop() inputAutofocus?: boolean;
   @Prop() autocorrect: boolean = false;
-  @State() counter: number;
+  @Prop() counter?: number = 0;
 
-  @State() value: string;
+  @Prop() value: string;
 
   /**
    * The component is 'dirty' if it has been touched by user input
@@ -131,21 +132,21 @@ export class DatacomTextarea implements FormControl {
   @Listen('blur', { capture: true })
   onBlur(event: any): void {
     this.isEditing = false;
-    // const elem = event.target as HTMLElement;
+    const elem = event.target as HTMLElement;
 
-    // if (elem.tagName.toLowerCase() === 'input') {
-    //   this.value = this.textElement.value;
+    if (elem.tagName.toLowerCase() === 'input') {
+      this.value = this.textElement.value;
 
-    //   /**
-    //    * Delay moving to view mode so the tabbing action moves out of the
-    //    * control before enabling tabindex (view mode)
-    //    */
-    //   setTimeout(() => (this.isEditing = false), 10);
+      //   /**
+      //    * Delay moving to view mode so the tabbing action moves out of the
+      //    * control before enabling tabindex (view mode)
+      //    */
+      setTimeout(() => (this.isEditing = false), 10);
 
-    //   /* Set internal error state */
-    //   this.isInError = !this.textElement.checkValidity();
-    //   this.textElement.scroll({ left: 0 });
-    // }
+      /* Set internal error state */
+      this.isInError = !this.textElement.checkValidity();
+      this.textElement.scroll({ left: 0 });
+    }
   }
 
   @Listen('input', { capture: true })
@@ -200,7 +201,7 @@ export class DatacomTextarea implements FormControl {
     const tabindex = this.isEditing ? -1 : 0;
     const error = (this.isInError && this.isDirty) || this.isValid == false;
     const classes = {
-      'dc-textarea-root': true,
+      // 'dc-textarea-root': true,
       'dc-textarea-disabled': this.disabled,
       'dc-textarea-error': error,
       'dc-textarea-edit': edit,
@@ -208,7 +209,7 @@ export class DatacomTextarea implements FormControl {
       'dc-text-dirty': this.isDirty,
     };
 
-    console.log(this.help);
+    console.log(error);
 
     return (
       <Host tabIndex={tabindex}>
@@ -217,7 +218,7 @@ export class DatacomTextarea implements FormControl {
             {this.label}
             <slot></slot>
           </label>
-          <div class="dc-counter">
+          <div class="dc-textarea-counter">
             {this.counter}/ {this.maxlength}
           </div>
           <div class="dc-textarea-wrap">
@@ -239,11 +240,12 @@ export class DatacomTextarea implements FormControl {
               maxlength={this.maxlength}
               value={this.value}
             ></textarea>
+            {error && <Error class="dc-textarea-error-icon" />}
             <p tabIndex={-1} class="dc-textarea-error-msg">
               {this.message}
             </p>
           </div>
-          <aside class="dc-textarea-helper">{this.help}</aside>
+          <aside class="dc-textarea-help">{this.help}</aside>
         </div>
       </Host>
     );

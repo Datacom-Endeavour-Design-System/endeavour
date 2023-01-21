@@ -1,16 +1,9 @@
 :host {
   display: block;
   outline: none;
+  width: 300px;
+  position: relative;
 }
-
-/* .dc-textarea-root {
-    display: block;
-    position: relative;
-    height: 128px;
-    min-width:300px;
-    max-width: 600px;
-   
-  } */
 
 .dc-textarea-wrap {
   display: block;
@@ -20,11 +13,11 @@
   height: 128px;
   width: 272px;
 }
+
 .dc-textarea-label {
   display: block;
   color: var(--dc-primary-text-color);
   font-family: var(--dc-font-family);
-
   font-weight: 400;
   font-size: 16px;
   outline: none;
@@ -52,53 +45,132 @@
   text-overflow: ellipsis;
 }
 
-.dc-textarea-helper {
+.dc-textarea-help {
   color: var(--dc-greyscale-03);
   font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 12px;
-  line-height: 26px;
-  margin-left: 8px;
-  padding: 4px;
+  line-height: 16px;
+  margin-left: 16px;
+  padding-top: 4px;
+  outline: none;
 }
+/* view control */
+
 .dc-textarea-view .dc-textarea-label {
   padding-left: 10px;
 }
+
 .dc-textarea-view .dc-textarea-wrap {
   outline: none;
   height: 128px;
   width: 272px;
 }
 
-.dc-textarea-edit .dc-textarea-label {
-  background-color: rgb(233, 220, 220);
-
-  top: 22px;
-  margin: 0px;
-  transform: translateY(0, 2.1em) scale(0.9);
+.dc-textarea-view .dc-textarea:hover {
+  border-color: var(--dc-primary-accent-colour);
 }
 
-.dc-counter {
+.dc-textarea-view .dc-textarea::placeholder {
+  color: transparent;
+}
+
+/* edit control */
+
+.dc-textarea-edit .dc-textarea-label {
+  background-color: white;
+  width: 33px;
+  height: 16px;
+  top: 28px;
+  font-size: 12px;
+  left: 453px;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-left: 8px;
+  transform-origin: top left;
+  transform: translateY(0, 2.1em) scale(2);
+}
+/* Character counter */
+.dc-textarea-counter {
+  display: none;
+  color: var(--dc-primary-text-color);
+  font-family: var(--dc-font-family);
+  margin-left: 160px;
+  margin-right: 200px;
+  font-size: 12px;
+  width: 45px;
+  height: 16px;
+  text-align: right;
+  opacity: 1;
+}
+
+.dc-textarea-edit .dc-textarea-counter {
+  display: block;
+  background-color: white;
+  transform-origin: top right;
+  transform: translate(0, 9px) scale(1);
+  z-index: 1;
+}
+
+/* Error state */
+.dc-textarea-error-icon {
+  display: none;
+}
+.dc-textarea-error .dc-textarea-error-icon {
+  position: absolute;
+  transform: translate(200px, -110px) scale(1);
+  display: block;
+}
+
+.dc-textarea-error .dc-textarea {
+  border: 2px solid var(--dc-error-colour) !important;
+}
+.dc-textarea-error-msg {
+  display: none;
+  color: var(--dc-error-colour);
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 12px;
+  padding: 4px 0 0 14px;
+  white-space: pre-wrap;
+  max-width: 270px;
+  margin: 0px;
+  outline: none;
+}
+
+.dc-textarea-error .dc-textarea-error-msg {
+  display: block;
+}
+
+.dc-textarea-error-msg {
+  color: var(--dc-error-colour);
+  font-family: var(--dc-font-family);
+}
+
+.dc-textarea-error .dc-textarea::after {
+  content: url('data:image/svg+xml,%20%20%20%20%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M10%2013.5C10%2012.125%208.875%2011%207.5%2011C6.09375%2011%205%2012.125%205%2013.5C5%2014.9062%206.09375%2016%207.5%2016C8.875%2016%2010%2014.9062%2010%2013.5ZM5.28125%200.8125L5.6875%209.3125C5.71875%209.6875%206.0625%2010%206.4375%2010H8.53125C8.90625%2010%209.25%209.6875%209.28125%209.3125L9.6875%200.8125C9.71875%200.375%209.375%200%208.9375%200H6.03125C5.59375%200%205.25%200.375%205.28125%200.8125Z%22%20fill%3D%22%23CF364E%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E');
+  width: 16px;
+  height: 16px;
+}
+
+.dc-textarea-error .dc-textarea-help {
   display: none;
 }
 
-.dc-textarea-edit .dc-counter {
-  display: block;
-  background-color: #d8d4d4;
-  margin-left: 200px;
-  margin-right: 100px;
-  background-color: white;
-  transform-origin: top right;
-  transform: translate(0, 10px) scale(1);
+.dc-textarea-edit .dc-textarea:focus {
+  border: 2px solid var(--dc-primary-colour);
 }
-/* .dc-textarea:focus  {
-    border: 2px solid blue;
-    
-  }  */
-.dc-textarea:focus .dc-textarea-label {
-  background-color: white;
+/* Disabled */
+.dc-textarae-disabled .dc-textarea-label,
+.dc-textarea-disabled .dc-textarea-label:hover {
+  border-color: var(--dc-greyscale-05);
+}
+.dc-textarea-disabled .dc-textarea-label,
+.dc-textarea-disabled .dc-textarea {
+  color: var(--dc-greyscale-04);
 }
 
-.dc-textarea:focus + .dc-counter {
-  color: black;
+.dc-textarea-disabled .dc-textarea:hover,
+.dc-textarea-disabled .dc-textarea:focus {
+  border-color: var(--dc-greyscale-05);
 }
