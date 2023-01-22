@@ -1,26 +1,70 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen } from '@stencil/core';
+import { HTMLDatacomAccordionElement } from './datacom-accordion';
 
 /**
- * Accordion element represents the wrapping element around a set of
- * AccordionSection elements.
+ * AccordionGroup element represents the wrapping element around a set of
+ * Accordion element(s).
  */
 @Component({
   tag: 'datacom-accordion-group',
   styleUrl: 'datacom-accordion-group.css',
   shadow: true,
 })
-export class DatacomAccordion {
-  // @Prop() initiallyexpanded?: boolean;
-  // @Prop() disabled = false;
-  // @Prop() label: string;
+export class DatacomAccordionGroup {
+  @Element() host: HTMLElement;
 
-  // @State() expanded = (this.initiallyexpanded && !this.disabled) || false;
+  @Prop() multipleSectionsOpen?: boolean = false;
 
-  // onHeaderClick = () => {
-  //   if (!this.disabled) {
-  //     this.expanded = !this.expanded;
-  //   }
-  // };
+  /**
+   * List of children accordion items
+   */
+  private children: HTMLDatacomAccordionElement[] = [];
+
+  /**
+   * Gets a list of all immediate children of this group element
+   *
+   * @returns List of accordion elements
+   */
+  private getChildren(): HTMLDatacomAccordionElement[] {
+    if (this.host == undefined) {
+      return [];
+    }
+
+    if (this.children?.length > 0) {
+      return this.children;
+    }
+
+    // Only get immediate children of tab group to permit nested tabs
+    this.host.querySelectorAll<HTMLDatacomAccordionElement>('datacom-accordion').forEach(t => this.children.push(t));
+
+    return this.children;
+  }
+
+  @Listen('itemClicked', { capture: true })
+  onItemClicked(event: CustomEvent<number>) {
+    const indexClicked = event.detail;
+    const children = this.getChildren();
+
+    children.forEach((item, index) => {
+      if (index == indexClicked) {
+        item.expanded = !item.expanded;
+      } else {
+        item.expanded = false;
+      }
+    });
+
+    event.stopPropagation();
+  }
+
+  // On load of group element, set index properties on children elements
+  componentWillLoad() {
+    const children = this.getChildren();
+
+    for (let i = 0; i < children.length; i++) {
+      children[i].index = i;
+    }
+  }
+
   render() {
     // const mainElementClasses = {
     //   'dc-accordion': true,

@@ -1,26 +1,45 @@
-import { Component, Host, h, Prop, State } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Method } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 
 /**
- * AccordionSection element represents single collapsable section in an accordion
+ * Accordion element represents single collapsable section in an accordion
  */
 @Component({
   tag: 'datacom-accordion',
   styleUrl: 'datacom-accordion.css',
   shadow: true,
 })
-export class DatacomAccordionSection {
-  @Prop() initiallyexpanded?: boolean;
+export class DatacomAccordion {
+  @Prop({ mutable: true }) expanded: boolean;
+  @Prop() index: number;
   @Prop() disabled = false;
   @Prop() label: string;
 
-  @State() expanded = (this.initiallyexpanded && !this.disabled) || false;
+  @Event() itemClicked: EventEmitter<number>;
 
-  onHeaderClick = () => {
+  onLabelClick = () => {
     if (!this.disabled) {
-      this.expanded = !this.expanded;
+      this.itemClicked.emit(this.index);
     }
   };
+
+  /**
+   * Function returns whether or not this accordion is currently expanded.
+   */
+  @Method()
+  async isExpanded(): Promise<boolean> {
+    return this.expanded;
+  }
+
+  /**
+   * Function sets the expanded state of this individual accordion item.
+   *
+   * @param expanded
+   */
+  @Method()
+  async setExpanded(expanded: boolean): Promise<void> {
+    this.expanded = expanded;
+  }
 
   chevronIcon = getSvg('chevron', { class: 'dc-accordion-chevron' });
 
@@ -34,7 +53,7 @@ export class DatacomAccordionSection {
     return (
       <Host>
         <div class={mainElementClasses}>
-          <button type="button" aria-expanded={this.expanded ? 'true' : 'false'} class="dc-accordion-heading" onClick={this.onHeaderClick}>
+          <button type="button" aria-expanded={this.expanded ? 'true' : 'false'} class="dc-accordion-heading" onClick={this.onLabelClick} disabled={this.disabled}>
             <div class="dc-accordion-heading-content">
               <div class="dc-accordion-heading-text">{this.label}</div>
               {this.chevronIcon}
@@ -49,4 +68,4 @@ export class DatacomAccordionSection {
   }
 }
 
-export type HTMLDatacomAccordionSectionElement = HTMLElement & DatacomAccordionSection;
+export type HTMLDatacomAccordionElement = HTMLElement & DatacomAccordion;

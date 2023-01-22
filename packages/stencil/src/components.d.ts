@@ -14,10 +14,21 @@ import { ListVariant, TypeList } from "./components/datacom-list/datacom-list";
 export namespace Components {
     interface DatacomAccordion {
         "disabled": boolean;
-        "initiallyexpanded"?: boolean;
+        "expanded": boolean;
+        "index": number;
+        /**
+          * Function returns whether or not this accordion is currently expanded.
+         */
+        "isExpanded": () => Promise<boolean>;
         "label": string;
+        /**
+          * Function sets the expanded state of this individual accordion item.
+          * @param expanded
+         */
+        "setExpanded": (expanded: boolean) => Promise<void>;
     }
     interface DatacomAccordionGroup {
+        "multipleSectionsOpen"?: boolean;
     }
     interface DatacomButton {
         "autofocus": boolean;
@@ -326,6 +337,10 @@ export namespace Components {
         "selected": () => Promise<number>;
     }
 }
+export interface DatacomAccordionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDatacomAccordionElement;
+}
 export interface DatacomCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDatacomCheckboxElement;
@@ -436,10 +451,13 @@ declare global {
 declare namespace LocalJSX {
     interface DatacomAccordion {
         "disabled"?: boolean;
-        "initiallyexpanded"?: boolean;
+        "expanded"?: boolean;
+        "index"?: number;
         "label"?: string;
+        "onItemClicked"?: (event: DatacomAccordionCustomEvent<number>) => void;
     }
     interface DatacomAccordionGroup {
+        "multipleSectionsOpen"?: boolean;
     }
     interface DatacomButton {
         "autofocus"?: boolean;
