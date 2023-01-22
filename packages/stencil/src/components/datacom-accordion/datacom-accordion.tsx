@@ -5,8 +5,8 @@ import { getSvg } from '../../common/images/icon-provider';
  * AccordionSection element represents single collapsable section in an accordion
  */
 @Component({
-  tag: 'datacom-accordion-section',
-  styleUrl: 'datacom-accordion-section.css',
+  tag: 'datacom-accordion',
+  styleUrl: 'datacom-accordion.css',
   shadow: true,
 })
 export class DatacomAccordionSection {
@@ -22,11 +22,11 @@ export class DatacomAccordionSection {
     }
   };
 
-  chevronIcon = getSvg('chevron', { class: 'dc-accordion-section-chevron' });
+  chevronIcon = getSvg('chevron', { class: 'dc-accordion-chevron' });
 
   render() {
     const mainElementClasses = {
-      'dc-accordion-section': true,
+      'dc-accordion': true,
       'expand': this.expanded,
       'disabled': this.disabled,
     };
@@ -34,13 +34,13 @@ export class DatacomAccordionSection {
     return (
       <Host>
         <div class={mainElementClasses}>
-          <button type="button" aria-expanded={this.expanded ? 'true' : 'false'} class="dc-accordion-section-heading" onClick={this.onHeaderClick}>
-            <div class="dc-accordion-section-heading-content">
-              <div class="dc-accordion-section-heading-text">{this.label}</div>
+          <button type="button" aria-expanded={this.expanded ? 'true' : 'false'} class="dc-accordion-heading" onClick={this.onHeaderClick}>
+            <div class="dc-accordion-heading-content">
+              <div class="dc-accordion-heading-text">{this.label}</div>
               {this.chevronIcon}
             </div>
           </button>
-          <div class="dc-accordion-section-content">
+          <div class="dc-accordion-content">
             <slot></slot>
           </div>
         </div>

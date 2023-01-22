@@ -4,14 +4,14 @@
 }
 
 /* Default styles */
-.dc-accordion-section {
+.dc-accordion {
   border-radius: var(--section-border-radius);
   box-shadow: 0 3px 6px #00000029;
   display: flex;
   flex-direction: column;
 }
 
-.dc-accordion-section-heading {
+.dc-accordion-heading {
   background-color: var(--dc-background-colour);
   border: 0;
   border-radius: var(--section-border-radius);
@@ -23,22 +23,22 @@
   padding: var(--section-padding) var(--section-padding) 0;
 }
 
-.dc-accordion-section-heading-content {
+.dc-accordion-heading-content {
   align-items: center;
   display: flex;
   justify-content: space-between;
   padding-bottom: var(--section-padding);
 }
 
-.dc-accordion-section-chevron {
+.dc-accordion-chevron {
   width: 24px;
 }
 
-.dc-accordion-section-chevron path {
+.dc-accordion-chevron path {
   fill: var(--dc-primary-text-color);
 }
 
-.dc-accordion-section-content {
+.dc-accordion-content {
   color: var(--dc-primary-text-color);
   display: none;
   font-family: var(--dc-font-family);
@@ -46,43 +46,43 @@
 }
 
 /* Hover state styles */
-.dc-accordion-section-heading:hover {
+.dc-accordion-heading:hover {
   background-color: var(--dc-grayscale-06);
 }
 
 /* Focus state styles */
-.dc-accordion-section-heading:focus {
+.dc-accordion-heading:focus {
   outline: 3px solid var(--dc-primary-colour);
   z-index: 1;
 }
 
 /* Expanded state styles */
-.expand .dc-accordion-section-heading {
+.expand .dc-accordion-heading {
   border-radius: var(--section-border-radius) var(--section-border-radius) 0 0;
 }
 
-.expand .dc-accordion-section-heading-content {
+.expand .dc-accordion-heading-content {
   border-bottom: 1px solid var(--dc-greyscale-05);
 }
 
-.expand .dc-accordion-section-chevron {
+.expand .dc-accordion-chevron {
   transform: rotate(180deg);
 }
 
-.expand .dc-accordion-section-content {
+.expand .dc-accordion-content {
   display: flex;
 }
 
 /* Disabled state styles */
-.disabled .dc-accordion-section-heading:hover {
+.disabled .dc-accordion-heading:hover {
   background-color: var(--dc-background-colour);
   cursor: default;
 }
 
-.disabled .dc-accordion-section-heading-content {
+.disabled .dc-accordion-heading-content {
   color: var(--dc-greyscale-05);
 }
 
-.disabled .dc-accordion-section-chevron path {
+.disabled .dc-accordion-chevron path {
   fill: var(--dc-greyscale-05);
 }

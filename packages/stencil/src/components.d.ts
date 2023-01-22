@@ -12,10 +12,12 @@ import { DatacomInputType, IndicatorType } from "./components/datacom-input/data
 import { ItemStyle } from "./components/datacom-list/datacom-li";
 import { ListVariant, TypeList } from "./components/datacom-list/datacom-list";
 export namespace Components {
-    interface DatacomAccordionSection {
+    interface DatacomAccordion {
         "disabled": boolean;
         "initiallyexpanded"?: boolean;
         "label": string;
+    }
+    interface DatacomAccordionGroup {
     }
     interface DatacomButton {
         "autofocus": boolean;
@@ -337,11 +339,17 @@ export interface DatacomOptionCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDatacomOptionElement;
 }
 declare global {
-    interface HTMLDatacomAccordionSectionElement extends Components.DatacomAccordionSection, HTMLStencilElement {
+    interface HTMLDatacomAccordionElement extends Components.DatacomAccordion, HTMLStencilElement {
     }
-    var HTMLDatacomAccordionSectionElement: {
-        prototype: HTMLDatacomAccordionSectionElement;
-        new (): HTMLDatacomAccordionSectionElement;
+    var HTMLDatacomAccordionElement: {
+        prototype: HTMLDatacomAccordionElement;
+        new (): HTMLDatacomAccordionElement;
+    };
+    interface HTMLDatacomAccordionGroupElement extends Components.DatacomAccordionGroup, HTMLStencilElement {
+    }
+    var HTMLDatacomAccordionGroupElement: {
+        prototype: HTMLDatacomAccordionGroupElement;
+        new (): HTMLDatacomAccordionGroupElement;
     };
     interface HTMLDatacomButtonElement extends Components.DatacomButton, HTMLStencilElement {
     }
@@ -410,7 +418,8 @@ declare global {
         new (): HTMLDatacomTabgroupElement;
     };
     interface HTMLElementTagNameMap {
-        "datacom-accordion-section": HTMLDatacomAccordionSectionElement;
+        "datacom-accordion": HTMLDatacomAccordionElement;
+        "datacom-accordion-group": HTMLDatacomAccordionGroupElement;
         "datacom-button": HTMLDatacomButtonElement;
         "datacom-checkbox": HTMLDatacomCheckboxElement;
         "datacom-checkbox-group": HTMLDatacomCheckboxGroupElement;
@@ -425,10 +434,12 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface DatacomAccordionSection {
+    interface DatacomAccordion {
         "disabled"?: boolean;
         "initiallyexpanded"?: boolean;
         "label"?: string;
+    }
+    interface DatacomAccordionGroup {
     }
     interface DatacomButton {
         "autofocus"?: boolean;
@@ -680,7 +691,8 @@ declare namespace LocalJSX {
     interface DatacomTabgroup {
     }
     interface IntrinsicElements {
-        "datacom-accordion-section": DatacomAccordionSection;
+        "datacom-accordion": DatacomAccordion;
+        "datacom-accordion-group": DatacomAccordionGroup;
         "datacom-button": DatacomButton;
         "datacom-checkbox": DatacomCheckbox;
         "datacom-checkbox-group": DatacomCheckboxGroup;
@@ -698,7 +710,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "datacom-accordion-section": LocalJSX.DatacomAccordionSection & JSXBase.HTMLAttributes<HTMLDatacomAccordionSectionElement>;
+            "datacom-accordion": LocalJSX.DatacomAccordion & JSXBase.HTMLAttributes<HTMLDatacomAccordionElement>;
+            "datacom-accordion-group": LocalJSX.DatacomAccordionGroup & JSXBase.HTMLAttributes<HTMLDatacomAccordionGroupElement>;
             "datacom-button": LocalJSX.DatacomButton & JSXBase.HTMLAttributes<HTMLDatacomButtonElement>;
             "datacom-checkbox": LocalJSX.DatacomCheckbox & JSXBase.HTMLAttributes<HTMLDatacomCheckboxElement>;
             "datacom-checkbox-group": LocalJSX.DatacomCheckboxGroup & JSXBase.HTMLAttributes<HTMLDatacomCheckboxGroupElement>;
