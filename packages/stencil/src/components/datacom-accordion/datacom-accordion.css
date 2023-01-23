@@ -17,9 +17,15 @@
   color: var(--dc-primary-text-color);
   cursor: pointer;
   font-family: var(--dc-font-family);
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 500;
   padding: var(--accordion-padding) var(--accordion-padding) 0;
+}
+
+@media (min-width: 501px) {
+  .dc-accordion-heading {
+    font-size: 24px;
+  }
 }
 
 .dc-accordion-heading-content {
