@@ -1,3 +1,5 @@
+@import url("../../global/css/breakpoints.css");
+
 :host {
   --accordion-border-radius: 10px;
   --accordion-padding: 24px;
@@ -22,7 +24,7 @@
   padding: var(--accordion-padding) var(--accordion-padding) 0;
 }
 
-@media (min-width: 501px) {
+@media (--breakpoint-tablet) {
   .dc-accordion-heading {
     font-size: 24px;
   }
