@@ -1,33 +1,32 @@
 :host {
-  --section-border-radius: 10px;
-  --section-padding: 24px;
+  --accordion-border-radius: 10px;
+  --accordion-padding: 24px;
 }
 
 /* Default styles */
 .dc-accordion {
-  border-radius: var(--section-border-radius);
-  box-shadow: 0 3px 6px #00000029;
+  box-shadow: 0 2px 6px #00000029;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .dc-accordion-heading {
   background-color: var(--dc-background-colour);
   border: 0;
-  border-radius: var(--section-border-radius);
   color: var(--dc-primary-text-color);
   cursor: pointer;
   font-family: var(--dc-font-family);
   font-size: 24px;
   font-weight: 500;
-  padding: var(--section-padding) var(--section-padding) 0;
+  padding: var(--accordion-padding) var(--accordion-padding) 0;
 }
 
 .dc-accordion-heading-content {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding-bottom: var(--section-padding);
+  padding-bottom: var(--accordion-padding);
 }
 
 .dc-accordion-chevron {
@@ -42,7 +41,7 @@
   color: var(--dc-primary-text-color);
   display: none;
   font-family: var(--dc-font-family);
-  padding: var(--section-padding);
+  padding: var(--accordion-padding);
 }
 
 /* Hover state styles */
@@ -57,10 +56,6 @@
 }
 
 /* Expanded state styles */
-.expand .dc-accordion-heading {
-  border-radius: var(--section-border-radius) var(--section-border-radius) 0 0;
-}
-
 .expand .dc-accordion-heading-content {
   border-bottom: 1px solid var(--dc-greyscale-05);
 }
@@ -85,4 +80,22 @@
 
 .disabled .dc-accordion-chevron path {
   fill: var(--dc-greyscale-05);
+}
+
+/* Styles to render correct border-radius when multiple accordion items are present */
+:host(:first-child) .dc-accordion,
+:host(:first-child) .dc-accordion-heading {
+  border-top-left-radius: var(--accordion-border-radius);
+  border-top-right-radius: var(--accordion-border-radius);
+}
+
+:host(:last-child) .dc-accordion,
+:host(:last-child) .dc-accordion-heading {
+  border-bottom-left-radius: var(--accordion-border-radius);
+  border-bottom-right-radius: var(--accordion-border-radius);
+}
+
+:host(:last-child) .expand .dc-accordion-heading {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }

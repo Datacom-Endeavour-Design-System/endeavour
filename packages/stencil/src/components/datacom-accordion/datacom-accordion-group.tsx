@@ -34,7 +34,6 @@ export class DatacomAccordionGroup {
       return this.children;
     }
 
-    // Only get immediate children of tab group to permit nested tabs
     this.host.querySelectorAll<HTMLDatacomAccordionElement>('datacom-accordion').forEach(t => this.children.push(t));
 
     return this.children;
@@ -66,15 +65,11 @@ export class DatacomAccordionGroup {
   }
 
   render() {
-    // const mainElementClasses = {
-    //   'dc-accordion': true,
-    //   'expand': this.expanded,
-    //   'disabled': this.disabled,
-    // };
-
     return (
       <Host>
-        <slot></slot>
+        <div class="dc-accordion-group">
+          <slot></slot>
+        </div>
       </Host>
     );
   }
