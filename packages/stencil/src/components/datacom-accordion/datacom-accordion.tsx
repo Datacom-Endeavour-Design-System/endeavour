@@ -10,9 +10,9 @@ import { getSvg } from '../../common/images/icon-provider';
   shadow: true,
 })
 export class DatacomAccordion {
+  @Prop() disabled = false;
   @Prop({ mutable: true }) expanded: boolean;
   @Prop() index: number;
-  @Prop() disabled = false;
   @Prop() label: string;
 
   @Event() itemClicked: EventEmitter<number>;
