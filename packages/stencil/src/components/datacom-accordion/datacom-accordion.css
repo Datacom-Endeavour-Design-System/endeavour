@@ -63,6 +63,24 @@
   z-index: 1;
 }
 
+/* Styles to render correct border-radius when multiple accordion items are present */
+:host(:first-child) .dc-accordion,
+:host(:first-child) .dc-accordion-heading {
+  border-top-left-radius: var(--accordion-border-radius);
+  border-top-right-radius: var(--accordion-border-radius);
+}
+
+:host(:last-child) .dc-accordion,
+:host(:last-child) .dc-accordion-heading {
+  border-bottom-left-radius: var(--accordion-border-radius);
+  border-bottom-right-radius: var(--accordion-border-radius);
+}
+
+:host(:last-child) .expand .dc-accordion-heading {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 /* Expanded state styles */
 .expand .dc-accordion-heading-content {
   border-bottom: 1px solid var(--dc-greyscale-05);
@@ -88,22 +106,4 @@
 
 .disabled .dc-accordion-chevron path {
   fill: var(--dc-greyscale-05);
-}
-
-/* Styles to render correct border-radius when multiple accordion items are present */
-:host(:first-child) .dc-accordion,
-:host(:first-child) .dc-accordion-heading {
-  border-top-left-radius: var(--accordion-border-radius);
-  border-top-right-radius: var(--accordion-border-radius);
-}
-
-:host(:last-child) .dc-accordion,
-:host(:last-child) .dc-accordion-heading {
-  border-bottom-left-radius: var(--accordion-border-radius);
-  border-bottom-right-radius: var(--accordion-border-radius);
-}
-
-:host(:last-child) .expand .dc-accordion-heading {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
 }
