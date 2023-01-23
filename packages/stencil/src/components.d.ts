@@ -28,7 +28,7 @@ export namespace Components {
         "setExpanded": (expanded: boolean) => Promise<void>;
     }
     interface DatacomAccordionGroup {
-        "multipleSectionsOpen"?: boolean;
+        "allowMultiExpand"?: boolean;
     }
     interface DatacomButton {
         "autofocus": boolean;
@@ -457,7 +457,7 @@ declare namespace LocalJSX {
         "onItemClicked"?: (event: DatacomAccordionCustomEvent<number>) => void;
     }
     interface DatacomAccordionGroup {
-        "multipleSectionsOpen"?: boolean;
+        "allowMultiExpand"?: boolean;
     }
     interface DatacomButton {
         "autofocus"?: boolean;

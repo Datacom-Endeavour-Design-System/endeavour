@@ -13,7 +13,7 @@ import { HTMLDatacomAccordionElement } from './datacom-accordion';
 export class DatacomAccordionGroup {
   @Element() host: HTMLElement;
 
-  @Prop() multipleSectionsOpen?: boolean = false;
+  @Prop() allowMultiExpand?: boolean = false;
 
   /**
    * List of children accordion items
@@ -47,7 +47,7 @@ export class DatacomAccordionGroup {
     children.forEach((item, index) => {
       if (index == indexClicked) {
         item.expanded = !item.expanded;
-      } else {
+      } else if (!this.allowMultiExpand) {
         item.expanded = false;
       }
     });
