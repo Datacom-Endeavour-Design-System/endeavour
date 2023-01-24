@@ -1,0 +1,95 @@
+:host {
+  --switch-height: 24px;
+  --switch-width: 48px;
+  --thumb-dimension: 14px;
+  --thumb-border: 1px;
+  --thumb-offset: 4px;
+}
+
+/* Default styles */
+.dc-toggle {
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--dc-font-family);
+}
+
+.dc-toggle-switch {
+  background: var(--dc-background-colour);
+  border: 1px solid var(--dc-greyscale-05);
+  border-radius: var(--switch-height);
+  display: inline-block;
+  height: var(--switch-height);
+  position: relative;
+  transition: background 0.25s, border-color 0.25s;
+  vertical-align: middle;
+  width: var(--switch-width);
+}
+
+.dc-toggle-switch::before {
+  background-color: var(--dc-background-colour);
+  border: var(--thumb-border) solid var(--dc-primary-colour);
+  border-radius: var(--thumb-dimension);
+  content: "";
+  height: var(--thumb-dimension);
+  left: var(--thumb-offset);
+  position: absolute;
+  top: var(--thumb-offset);
+  transition: left 0.25s;
+  width: var(--thumb-dimension);
+}
+
+.dc-toggle-input:checked + .dc-toggle-switch {
+  background: var(--dc-primary-colour);
+  border-color: var(--dc-primary-colour);
+}
+
+.dc-toggle-input:checked + .dc-toggle-switch::before {
+  left: calc(var(--switch-width) - var(--thumb-offset) - var(--thumb-dimension) - 2 * var(--thumb-border));
+}
+
+/* Hover state styles */
+.dc-toggle-switch:hover::before {
+  border-color: var(--dc-primary-accent-colour);
+}
+
+.dc-toggle-input:checked + .dc-toggle-switch:hover {
+  background: var(--dc-primary-accent-colour);
+}
+
+.dc-toggle-input:focus-visible + .dc-toggle-switch {
+  outline: 3px solid var(--dc-primary-colour);
+}
+
+.dc-toggle-input {
+  position: absolute;
+  opacity: 0;
+}
+
+.dc-toggle-label {
+  padding-left: 12px;
+}
+
+/* "Label on left" styles */
+.dc-toggle-label-on-left {
+  padding-left: 0;
+  padding-right: 12px;
+}
+
+/* Small variant styles */
+.dc-toggle-small {
+  font-size: 14px;
+
+  --switch-height: 20px;
+  --switch-width: 40px;
+  --thumb-dimension: 12px;
+  --thumb-border: 1px;
+  --thumb-offset: 3px;
+}
+
+.dc-toggle-small .dc-toggle-label {
+  padding-left: 10px;
+}
+
+.dc-toggle-small .dc-toggle-label-on-left {
+  padding-right: 10px;
+}
