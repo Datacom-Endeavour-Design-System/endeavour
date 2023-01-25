@@ -9,11 +9,6 @@ export type ToggleSizeType = 'standard' | 'small';
 })
 export class DatacomToggle {
   /**
-   * Checkbox label (right of tickbox)
-   */
-  @Prop() label: string;
-
-  /**
    * True if label is on the right of element
    */
   @Prop() labelOnLeft = false;
@@ -26,17 +21,24 @@ export class DatacomToggle {
   /**
    * True if the toggle element is initially toggled on.
    */
-  @Prop() toggled = false;
+  @Prop({ mutable: true }) toggled = false;
 
   /**
    * Checkbox is either standard size (default) or small
    */
   @Prop() variant: ToggleSizeType = 'standard';
 
+  /**
+   * Function to handle when the toggle state has changed
+   */
+  onToggleChange = () => {
+    this.toggled = !this.toggled;
+  };
+
   renderToggleElement = () => {
     return (
       <Fragment>
-        <input class="dc-toggle-input" type="checkbox" disabled={this.disabled} />
+        <input class="dc-toggle-input" type="checkbox" disabled={this.disabled} checked={this.toggled} onChange={this.onToggleChange} />
         <div class="dc-toggle-switch" />
       </Fragment>
     );
@@ -55,10 +57,9 @@ export class DatacomToggle {
 
     const labelClasses = {
       'dc-toggle-label': true,
+      'dc-toggle-label-disabled': this.disabled,
       'dc-toggle-label-on-left': this.labelOnLeft,
     };
-
-    // htmlFor={this.inputId}
 
     return (
       <Host>
@@ -74,4 +75,4 @@ export class DatacomToggle {
   }
 }
 
-export type HTMLDatacomCheckboxElement = HTMLElement & DatacomToggle;
+export type HTMLDatacomToggleElement = HTMLElement & DatacomToggle;

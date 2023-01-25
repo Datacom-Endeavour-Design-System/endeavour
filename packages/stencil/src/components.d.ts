@@ -366,10 +366,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Checkbox label (right of tickbox)
-         */
-        "label": string;
-        /**
           * True if label is on the right of element
          */
         "labelOnLeft": boolean;
@@ -781,10 +777,6 @@ declare namespace LocalJSX {
           * True if the toggle element must be disabled
          */
         "disabled"?: boolean;
-        /**
-          * Checkbox label (right of tickbox)
-         */
-        "label"?: string;
         /**
           * True if label is on the right of element
          */
