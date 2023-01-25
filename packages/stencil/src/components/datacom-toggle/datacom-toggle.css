@@ -68,6 +68,7 @@
 /* Focus state styles */
 .dc-toggle-input:focus-visible + .dc-toggle-switch {
   outline: 3px solid var(--dc-primary-colour);
+  outline-offset: 2px;
 }
 
 /* Disabled state styles */
