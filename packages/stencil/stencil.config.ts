@@ -1,5 +1,7 @@
 import { Config } from '@stencil/core';
+import { postcss } from '@stencil/postcss';
 import { reactOutputTarget as react } from '@stencil/react-output-target';
+import postcssCustomMedia from 'postcss-custom-media';
 
 export const config: Config = {
   namespace: 'datacom',
@@ -7,6 +9,11 @@ export const config: Config = {
   extras: {
     experimentalImportInjection: true,
   },
+  plugins: [
+    postcss({
+      plugins: [postcssCustomMedia()],
+    }),
+  ],
   outputTargets: [
     react({
       componentCorePackage: '@datacom/endeavour',
