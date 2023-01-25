@@ -47,6 +47,15 @@
   left: calc(var(--switch-width) - var(--thumb-offset) - var(--thumb-dimension) - 2 * var(--thumb-border));
 }
 
+.dc-toggle-input {
+  position: absolute;
+  opacity: 0;
+}
+
+.dc-toggle-label {
+  padding-left: 12px;
+}
+
 /* Hover state styles */
 .dc-toggle-switch:hover::before {
   border-color: var(--dc-primary-accent-colour);
@@ -56,17 +65,28 @@
   background: var(--dc-primary-accent-colour);
 }
 
+/* Focus state styles */
 .dc-toggle-input:focus-visible + .dc-toggle-switch {
   outline: 3px solid var(--dc-primary-colour);
 }
 
-.dc-toggle-input {
-  position: absolute;
-  opacity: 0;
+/* Disabled state styles */
+.dc-toggle-input:disabled + .dc-toggle-switch::before {
+  background-color: var(--dc-grayscale-06);
+  border-color: var(--dc-greyscale-05);
 }
 
-.dc-toggle-label {
-  padding-left: 12px;
+.dc-toggle-input:checked:disabled + .dc-toggle-switch {
+  border-color: var(--dc-greyscale-04);
+  background-color: var(--dc-greyscale-04);
+}
+
+.dc-toggle-input:checked:disabled + .dc-toggle-switch::before {
+  border-color: var(--dc-greyscale-04);
+}
+
+.dc-toggle-label-disabled {
+  color: var(--dc-greyscale-04);
 }
 
 /* "Label on left" styles */
