@@ -1,9 +1,98 @@
-.tab-group {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
+:host {
+  display: block;
 }
 
-site-tab {
-    display: block;
+.tab-label {
+  outline: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-width: 120px;
+  box-sizing: border-box;
+  height: 64px;
+}
+
+.tab-text {
+  font-size: 18px;
+  font-family: var(--dc-font-family);
+  color: var(--dc-primary-text-color);
+  font-weight: 400;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 300px;
+  white-space: nowrap;
+}
+
+.tag-group {
+  margin-bottom: 48px;
+  display: block;
+}
+
+.tab-bar {
+  border-bottom: 1px solid var(--dc-greyscale-05);
+}
+
+.tab-label:focus-visible {
+  border: 3px solid var(--dc-primary-colour);
+}
+
+.tab-label:focus-visible::after {
+  display: none;
+}
+
+.tab-label.selected {
+  border: none;
+}
+
+.tab-label.selected .tab-text {
+  font-weight: 800;
+}
+
+.tab-label.selected::after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: calc(100% - 4px);
+  height: 4px;
+  border-radius: 10px;
+  background-color: var(--dc-primary-colour);
+  animation: selected-animation 0.1s linear 0s forwards 1;
+}
+
+@keyframes selected-animation {
+  from {
+    right: calc(50% - 6px);
+    width: 12px;
+  }
+
+  to {
+    right: 0;
+    width: 100%;
+  }
+}
+
+.tab-label:hover:not(:focus)::after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: calc(100% - 4px);
+  right: calc(50% - 6px);
+  width: 12px;
+  height: 4px;
+  border-radius: 10px;
+  background-color: var(--dc-primary-colour);
+}
+
+.tab-label.disabled .tab-text {
+  color: var(--dc-primary-disabled-colour);
+}
+
+.tab-label:hover.disabled::after {
+  display: none;
+}
+
+.tab-label.disabled:focus {
+  border: none;
 }

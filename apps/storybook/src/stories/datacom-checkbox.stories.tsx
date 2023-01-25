@@ -1,34 +1,111 @@
-import React, { useState } from 'react';
-import { ComponentStoryFn, Meta } from '@storybook/react';
-import { DatacomCheckbox, useEventRef } from '@datacom/endeavour-react';
+import React, { useRef, useState } from 'react';
+import { ComponentStoryFn } from '@storybook/react';
+import {
+  DatacomCheckbox,
+  DatacomCheckboxGroup,
+  DatacomButton,
+} from '@datacom/endeavour-react';
 
 export default {
   title: 'Checkbox',
   component: DatacomCheckbox,
-} as Meta<typeof DatacomCheckbox>;
+  argTypes: {
+    label: {
+      name: 'Label',
+      defaultValue: 'Checkbox Item',
+      description: 'checkbox label',
+      type: { label: 'string' },
+    },
+    variant: {
+      name: 'Variant',
+      description:
+        'checkbox size within variant. Defaults to standard if not set',
+      control: 'select',
+      defaultValue: 'standard',
+      options: ['standard', 'small'],
+      type: { label: 'string' },
+    },
+    checked: {
+      name: 'Selected',
+      description: 'Checked Checkbox',
+      type: { name: 'boolean' },
+    },
+    unknown: {
+      name: 'Unknown',
+      description: 'Show the field in an unknown state',
+      type: { name: 'boolean' },
+    },
+    disabled: {
+      name: 'Disabled',
+      description: 'Disable Checkbox',
+      type: { name: 'boolean' },
+    },
+    required: {
+      name: 'Required',
+      description: 'Required Field',
+      type: { name: 'boolean' },
+    },
+  },
+  arg: {
+    label: 'Checkbox Item',
+    variant: 'standard',
+    required: false,
+    disabled: false,
+    checked: false,
+  },
+};
 
 const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => (
   <DatacomCheckbox {...args} />
 );
 
-export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Tick Me!',
+export const Single = Template.bind({});
+Single.args = {
+  label: 'Checkbox Item',
+  variant: 'standard',
+  checked: false,
 };
 
-const CheckboxWrapperToggle: React.FC = () => {
-  const [toggled, setToggled] = useState(false);
-
-  const ref = useEventRef<HTMLDatacomCheckboxElement>('toggle', (e: Event) => {
-    setToggled((e as CustomEvent<boolean>).detail);
-  });
-
+export const Grouped = (props) => {
   return (
     <div>
-      <DatacomCheckbox label="With toggle" ref={ref} />
-      {toggled && <p>You clicked the checkbox!</p>}
+      <DatacomCheckboxGroup>
+        <DatacomCheckbox {...props}>Parent checkbox</DatacomCheckbox>
+        <DatacomCheckbox {...props}>Child option 1</DatacomCheckbox>
+        <DatacomCheckbox {...props}>Child option 2</DatacomCheckbox>
+        <DatacomCheckbox {...props}>Child option 3</DatacomCheckbox>
+        <DatacomCheckbox {...props}>Child option 4</DatacomCheckbox>
+      </DatacomCheckboxGroup>
     </div>
   );
 };
 
-export const Toggle = () => <CheckboxWrapperToggle />;
+export const FormValidation = () => {
+  const form = useRef<HTMLFormElement>();
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (event: SubmitEvent) => {
+    if (form.current.checkValidity()) {
+      setSubmitted(true);
+      event.preventDefault();
+    } else {
+      setSubmitted(false);
+    }
+  };
+
+  return (
+    <form method="post" ref={form} onSubmit={handleSubmit}>
+      <div>
+        <DatacomCheckbox required={true} message="Please agree to the terms">
+          I agree to terms and conditions
+        </DatacomCheckbox>
+
+        {submitted && <p>Form would have been submitted but was prevented</p>}
+      </div>
+
+      <div style={{ 'margin-top': '24px' }}>
+        <DatacomButton type="submit">Submit</DatacomButton>
+      </div>
+    </form>
+  );
+};

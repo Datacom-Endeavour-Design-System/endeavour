@@ -1,29 +1,23 @@
-import { Component, h, Prop, State, Method, Event, EventEmitter, Host } from '@stencil/core';
+import { Component, h, Prop, Method, Host } from '@stencil/core';
 
-interface DatacomTabElement {
-  setSelected(value: boolean): Promise<void>;
-  isSelected(): Promise<boolean>;
-}
-
+/**
+ * The tab element describes the tab, but does not render the tab label.
+ *
+ * @see DatacomTabGroup
+ */
 @Component({
   tag: 'datacom-tab',
   styleUrl: 'datacom-tab.css',
   shadow: true,
-  assetsDirs: ['assets']
 })
-export class DatacomTab implements DatacomTabElement {
+export class DatacomTab {
   @Prop() label = 'Not Set';
-  @Prop() enabled = true;
-  @State() selected = false;
-
-  @Event({
-    composed: true
-  })
-  tabSelected: EventEmitter<string>;
+  @Prop({ mutable: true }) disabled: boolean;
+  @Prop({ mutable: true }) selected?: boolean;
 
   /**
    * Is this tab currently selected
-   * 
+   *
    * @returns boolean
    */
   @Method()
@@ -33,36 +27,28 @@ export class DatacomTab implements DatacomTabElement {
 
   /**
    * Select this tab
-   * 
-   * @param value 
+   *
+   * @param value
    */
   @Method()
   public async setSelected(value: boolean): Promise<void> {
     this.selected = value;
   }
 
-  handleSelect = () => {
-    this.tabSelected.emit(this.label.toLowerCase());
-  }
-
   render() {
     return (
-      <Host data-tab={this.label.toLowerCase()}>
-        <div class={{
-          'tab': true,
-          'selected': this.selected,
-          'disabled': !this.enabled
-        }}>
-          <label onClick={this.handleSelect} class="label">
-            {this.label}
-          </label>
-          <div class="content">
-            <slot />
-          </div>
+      <Host>
+        <div
+          class={{
+            'tab-content': true,
+            'selected': this.selected,
+          }}
+        >
+          <slot />
         </div>
       </Host>
     );
   }
 }
 
-export type HTMLDatacomTabElement = HTMLElement & DatacomTabElement;
+export type HTMLDatacomTabElement = HTMLElement & DatacomTab;

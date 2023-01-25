@@ -1,29 +1,11 @@
-.tab > .label {
-    display: inline-block;
-    padding: 8px;
-    line-height: 32px;    
-    margin-right: 4px;
-    min-width: 120px;
-    font-family: var(--dc-primary-font);
-    color: grey;
-    text-align: center;
+:host {
+  display: block;
 }
 
-.content {
-    position: absolute;
-    left: 0;
+.tab-content {
+  display: none;
 }
 
-.tab > .content {
-    display: none;
-}
-
-.tab.selected > .content {
-    display: block;
-}
-
-.tab.selected > .label {
-    font-weight: 600;
-    color: black;
-    border-bottom: 3px solid var(--dc-button-background-enabled);
+.tab-content.selected {
+  display: block;
 }

@@ -1,34 +1,30 @@
 .menu-wrap {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .menu-bar {
-    padding-left: 10vw;
-    padding-right: 10vw;
-    display: flex;
-    align-items: center;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-    display: inline-block;
+  display: inline-block;
 }
 
 .logo img {
-    width: 128px;
-    height: 24px;
-}
-
-.navigation {
-    
+  width: 128px;
+  height: 24px;
 }
 
 .navigation ul {
-    display: inline-block;
-    list-style-type: none;
+  display: inline-block;
+  list-style-type: none;
 }
 
-.navigation ul>li {
-    display: inline;
-    padding-left: 2rem;
-    font-family: var(--dc-primary-font);  
+.navigation ul > li {
+  display: inline;
+  padding-left: 2rem;
+  font-family: var(--dc-primary-font);
 }

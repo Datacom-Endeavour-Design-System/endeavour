@@ -1,5 +1,7 @@
-import { Component, Host, h, Prop, Element, VNode } from '@stencil/core';
+import { Component, Host, h, Prop, VNode } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
+import { Spinner } from '../../common/images/icons';
+import { randomString } from '../../utils';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'large' | 'small';
@@ -7,18 +9,9 @@ export type ImagePosition = 'left' | 'right';
 export type ButtonType = 'button' | 'submit' | 'reset';
 
 /**
- * Datacom styled button which extends HTML button. Custom attributes:
+ * Datacom styled button which extends HTML button.
  *
- * text = button label
- * variant = primary | secondar | ghost
- * size = large | small
- * image-position = left | right
- * src = image url
- * icon = svg icon name
- * loading = true | false to show spinning icon
- *
- * This button cannot exist within the shadow root as it sits outside
- * the DOM flow with regards to form submit.
+ * The control is scoped rather than shadow so the input field can participate in a form submit.
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
  */
@@ -28,18 +21,9 @@ export type ButtonType = 'button' | 'submit' | 'reset';
   scoped: true,
 })
 export class DatacomButton {
-  @Element() el: HTMLElement;
-
-  /* Custom properties */
-  @Prop() text: string;
-  @Prop() variant: ButtonVariant = 'primary';
-  @Prop() size: ButtonSize = 'large';
-  @Prop({ attribute: 'image-position' }) imagePosition: ImagePosition = 'left';
-  @Prop() src: string;
-  @Prop() icon: string;
-  @Prop() loading: boolean;
-
-  /* Pass through button properties */
+  /**
+   * HTML button element properties
+   */
   @Prop() disabled = false;
   @Prop() autofocus: boolean;
   @Prop() type = 'button';
@@ -51,8 +35,56 @@ export class DatacomButton {
   @Prop() formaction: string;
   @Prop() formtarget: string;
 
+  /**
+   * Button text content. If not present use component children
+   */
+  @Prop() text?: string;
+
+  /**
+   * Button variant:
+   * - primary
+   * - seconday
+   * - ghost
+   */
+  @Prop() variant: ButtonVariant = 'primary';
+
+  /**
+   * Button size:
+   * - large
+   * - small
+   */
+  @Prop() size: ButtonSize = 'large';
+
+  /**
+   * Image position:
+   * - left
+   * - right
+   */
+  @Prop({ attribute: 'image-position' }) imagePosition: ImagePosition = 'left';
+
+  /**
+   * Image source as either relative or obsolute URI
+   */
+  @Prop() src: string;
+
+  /**
+   * Name of built-in icon named using dash case. E.g. "back-to-top"
+   */
+  @Prop() icon: string;
+
+  /**
+   * If true, show loading icon
+   */
+  @Prop() loading: boolean;
+
+  /**
+   * Generated ids for label accessibility
+   */
+  private labelId = randomString();
+  private buttonId = randomString();
+
   render() {
-    // Cannot overwrite immutable properties so we must use local variables
+    // Shouldn't overwrite immutable properties so we must use local variables
     let variant = this.variant;
     let size = this.size;
     let imagePosition = this.imagePosition;
@@ -72,29 +104,30 @@ export class DatacomButton {
       imagePosition = 'left';
     }
 
+    /**
+     * Dynamically retrieve SVG functional component based on its name,
+     * or use image src if supplied.
+     */
     let image: VNode;
     if (this.icon?.length > 0) {
-      image = getSvg(this.icon, { class: 'image' });
+      image = getSvg(this.icon, { class: 'dc-button-image' });
     } else if (this.src?.length > 0) {
-      image = <img src={this.src} class="image"></img>;
-    }
-
-    let spinner;
-    if (this.loading) {
-      spinner = getSvg('spinner', { class: 'spinner' });
+      image = <img src={this.src} class="dc-button-image"></img>;
     }
 
     const classes = {
-      disabled: this.disabled,
-      loading: this.loading,
-      [variant]: true,
-      [`size-${size}`]: true,
-      [`image-${imagePosition}`]: image && this.text?.length > 0,
+      'dc-button-btn': true,
+      'dc-button-disabled': this.disabled,
+      'dc-button-loading': this.loading,
+      [`dc-button-${variant}`]: true,
+      [`dc-button-size-${size}`]: true,
+      [`dc-button-image-${imagePosition}`]: image && this.text?.length > 0,
     };
 
     return (
       <Host>
         <button
+          id={this.buttonId}
           type={this.type}
           form={this.form}
           name={this.name}
@@ -104,17 +137,20 @@ export class DatacomButton {
           formtarget={this.formtarget}
           formenctype={this.formenctype}
           autoFocus={this.autofocus}
-          aria-labelledby="button-text"
+          aria-labelledby={this.labelId}
           disabled={this.disabled}
           class={classes}
         >
           {image}
-          <span id="button-text" class="text">
+          <span id={this.labelId} class="dc-button-text">
             {this.text}
+            <slot></slot>
           </span>
-          {spinner}
+          {this.loading && <Spinner class="dc-button-spinner" />}
         </button>
       </Host>
     );
   }
 }
+
+export type HTMLDatacomButtonElement = HTMLElement & DatacomButton;
