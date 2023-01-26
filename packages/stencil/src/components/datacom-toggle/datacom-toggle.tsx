@@ -9,6 +9,11 @@ export type ToggleSizeType = 'standard' | 'small';
 })
 export class DatacomToggle {
   /**
+   * Label of the toggle element
+   */
+  @Prop() label;
+
+  /**
    * True if label is on the right of element
    */
   @Prop() labelOnLeft = false;
@@ -66,9 +71,7 @@ export class DatacomToggle {
         <div class="dc-toggle-wrapper">
           <label class={classes}>
             {!this.labelOnLeft && this.renderToggleElement()}
-            <span class={labelClasses}>
-              <slot />
-            </span>
+            {this.label && <span class={labelClasses}>{this.label}</span>}
             {this.labelOnLeft && this.renderToggleElement()}
           </label>
         </div>

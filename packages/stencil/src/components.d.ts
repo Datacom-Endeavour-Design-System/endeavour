@@ -384,6 +384,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Label of the toggle element
+         */
+        "label": any;
+        /**
           * True if label is on the right of element
          */
         "labelOnLeft": boolean;
@@ -823,6 +827,10 @@ declare namespace LocalJSX {
           * True if the toggle element must be disabled
          */
         "disabled"?: boolean;
+        /**
+          * Label of the toggle element
+         */
+        "label"?: any;
         /**
           * True if label is on the right of element
          */
