@@ -79,6 +79,7 @@ export default {
         'add-to-cart',
       ],
     },
+    Options: { name: 'options' },
   },
   args: {
     variant: 'radios',

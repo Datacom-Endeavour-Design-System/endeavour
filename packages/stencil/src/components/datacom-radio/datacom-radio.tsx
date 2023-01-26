@@ -178,8 +178,6 @@ export class DatacomRadio implements FormControl {
                   <span class={`dc-radio-image-${this.imagePosition}`}>
                     {image}
                     {this.label}
-
-                    <slot></slot>
                   </span>
                 </label>
               </div>
@@ -192,6 +190,7 @@ export class DatacomRadio implements FormControl {
             <div class="dc-ta-vertical-layout">
               <div class="dc-radio-wrapper">
                 <input
+                  ref={el => this.setInputElementRef(el)}
                   form={this.form}
                   autofocus={this.autofocus}
                   formmethod={this.formmethod}
@@ -208,8 +207,9 @@ export class DatacomRadio implements FormControl {
                   id={this.inputId}
                   class={classes}
                   onChange={this.handleChange}
+                  tabIndex={0}
                 />
-                <label htmlfor={this.inputId} class="dc-radio-label">
+                <label tabIndex={-1} htmlfor={this.inputId} class="dc-radio-label">
                   <span class={`dc-radio-image-${this.imagePosition}`}>
                     {this.label}
                     <slot></slot>
