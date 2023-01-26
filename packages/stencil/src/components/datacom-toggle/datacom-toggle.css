@@ -43,15 +43,6 @@
   width: var(--thumb-dimension);
 }
 
-.dc-toggle-input:checked + .dc-toggle-switch {
-  background: var(--dc-primary-colour);
-  border-color: var(--dc-primary-colour);
-}
-
-.dc-toggle-input:checked + .dc-toggle-switch::before {
-  left: calc(var(--switch-width) - var(--thumb-offset) - var(--thumb-dimension) - 2 * var(--thumb-border));
-}
-
 .dc-toggle-input {
   position: absolute;
   opacity: 0;
@@ -61,19 +52,29 @@
   padding-left: 12px;
 }
 
+/* Focus state styles */
+.dc-toggle-input:focus-visible + .dc-toggle-switch {
+  outline: 3px solid var(--dc-primary-colour);
+  outline-offset: 2px;
+}
+
 /* Hover state styles */
 .dc-toggle-switch:hover::before {
   border-color: var(--dc-primary-accent-colour);
 }
 
-.dc-toggle-input:checked + .dc-toggle-switch:hover {
-  background: var(--dc-primary-accent-colour);
+/* Checked state styles */
+.dc-toggle-input:checked + .dc-toggle-switch {
+  background: var(--dc-primary-colour);
+  border-color: var(--dc-primary-colour);
 }
 
-/* Focus state styles */
-.dc-toggle-input:focus-visible + .dc-toggle-switch {
-  outline: 3px solid var(--dc-primary-colour);
-  outline-offset: 2px;
+.dc-toggle-input:checked + .dc-toggle-switch::before {
+  left: calc(var(--switch-width) - var(--thumb-offset) - var(--thumb-dimension) - 2 * var(--thumb-border));
+}
+
+.dc-toggle-input:checked + .dc-toggle-switch:hover {
+  background: var(--dc-primary-accent-colour);
 }
 
 /* Disabled state styles */
@@ -91,18 +92,18 @@
   border-color: var(--dc-greyscale-04);
 }
 
-.dc-toggle-label-disabled {
+.disabled {
   color: var(--dc-greyscale-04);
 }
 
 /* "Label on left" styles */
-.dc-toggle-label-on-left {
+.label-on-left {
   padding-left: 0;
   padding-right: 12px;
 }
 
 /* Small variant styles */
-.dc-toggle-small {
+.small {
   font-size: 14px;
 
   --switch-height: 20px;
@@ -112,10 +113,10 @@
   --thumb-offset: 3px;
 }
 
-.dc-toggle-small .dc-toggle-label {
+.small .dc-toggle-label {
   padding-left: 10px;
 }
 
-.dc-toggle-small .dc-toggle-label-on-left {
+.small .label-on-left {
   padding-right: 10px;
 }

@@ -52,13 +52,13 @@ export class DatacomToggle {
 
     const classes = {
       'dc-toggle': true,
-      'dc-toggle-small': this.variant === 'small',
+      'small': this.variant === 'small',
     };
 
     const labelClasses = {
       'dc-toggle-label': true,
-      'dc-toggle-label-disabled': this.disabled,
-      'dc-toggle-label-on-left': this.labelOnLeft,
+      'disabled': this.disabled,
+      'label-on-left': this.labelOnLeft,
     };
 
     return (
