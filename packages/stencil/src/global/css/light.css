@@ -19,7 +19,7 @@
   --dc-secondary-text-color: #002470;
 
   /* Typography */
-  --dc-font-family: "Montserrat";
+  --dc-font-family: montserrat, sans-serif;
 
   /* Body */
   --dc-body-text-height: 24px;

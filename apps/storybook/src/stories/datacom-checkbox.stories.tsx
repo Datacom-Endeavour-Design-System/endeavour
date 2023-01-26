@@ -67,6 +67,8 @@ Single.args = {
 };
 
 export const Grouped = (props) => {
+  delete props.label;
+
   return (
     <div>
       <DatacomCheckboxGroup>
