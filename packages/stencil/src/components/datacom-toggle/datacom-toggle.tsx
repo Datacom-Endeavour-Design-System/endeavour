@@ -1,4 +1,4 @@
-import { Component, h, Prop, Host, Fragment, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, Host, Event, EventEmitter } from '@stencil/core';
 
 export type ToggleSizeType = 'standard' | 'small';
 
@@ -46,13 +46,19 @@ export class DatacomToggle {
     this.toggled = !this.toggled;
   };
 
-  renderToggleElement = () => {
-    return (
-      <Fragment>
-        <input class="dc-toggle-input" type="checkbox" disabled={this.disabled} checked={this.toggled} onChange={this.onToggleChange} />
-        <div class="dc-toggle-switch" />
-      </Fragment>
-    );
+  /**
+   * Function for rendering the label of the toggle element
+   *
+   * @returns label content in the form of a span element
+   */
+  renderLabelElement = () => {
+    const labelClasses = {
+      'dc-toggle-label': true,
+      'disabled': this.disabled,
+      'label-on-left': this.labelOnLeft,
+    };
+
+    return <span class={labelClasses}>{this.label}</span>;
   };
 
   render() {
@@ -66,19 +72,14 @@ export class DatacomToggle {
       'small': this.variant === 'small',
     };
 
-    const labelClasses = {
-      'dc-toggle-label': true,
-      'disabled': this.disabled,
-      'label-on-left': this.labelOnLeft,
-    };
-
     return (
       <Host>
         <div class="dc-toggle-wrapper">
           <label class={classes}>
-            {!this.labelOnLeft && this.renderToggleElement()}
-            {this.label && <span class={labelClasses}>{this.label}</span>}
-            {this.labelOnLeft && this.renderToggleElement()}
+            {this.labelOnLeft && this.renderLabelElement()}
+            <input class="dc-toggle-input" type="checkbox" disabled={this.disabled} checked={this.toggled} onChange={this.onToggleChange} />
+            <div class="dc-toggle-switch" />
+            {!this.labelOnLeft && this.renderLabelElement()}
           </label>
         </div>
       </Host>
