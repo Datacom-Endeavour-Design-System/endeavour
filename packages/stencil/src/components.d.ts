@@ -12,7 +12,6 @@ import { DatacomInputType, IndicatorType } from "./components/datacom-input/data
 import { ItemStyle } from "./components/datacom-list/datacom-li";
 import { ListVariant, TypeList } from "./components/datacom-list/datacom-list";
 import { ImagePosition as ImagePosition1, RadioSize, RadioVariant } from "./components/datacom-radio/datacom-radio";
-import { ToggleSizeType } from "./components/datacom-toggle/datacom-toggle";
 export namespace Components {
     interface DatacomAccordion {
         "disabled": boolean;
@@ -378,28 +377,6 @@ export namespace Components {
          */
         "selected": () => Promise<number>;
     }
-    interface DatacomToggle {
-        /**
-          * True if the toggle element must be disabled
-         */
-        "disabled": boolean;
-        /**
-          * Label of the toggle element
-         */
-        "label": any;
-        /**
-          * True if label is on the right of element
-         */
-        "labelOnLeft": boolean;
-        /**
-          * True if the toggle element is initially toggled on.
-         */
-        "toggled": boolean;
-        /**
-          * Checkbox is either standard size (default) or small
-         */
-        "variant": ToggleSizeType;
-    }
 }
 export interface DatacomAccordionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -506,12 +483,6 @@ declare global {
         prototype: HTMLDatacomTabgroupElement;
         new (): HTMLDatacomTabgroupElement;
     };
-    interface HTMLDatacomToggleElement extends Components.DatacomToggle, HTMLStencilElement {
-    }
-    var HTMLDatacomToggleElement: {
-        prototype: HTMLDatacomToggleElement;
-        new (): HTMLDatacomToggleElement;
-    };
     interface HTMLElementTagNameMap {
         "datacom-accordion": HTMLDatacomAccordionElement;
         "datacom-accordion-group": HTMLDatacomAccordionGroupElement;
@@ -527,7 +498,6 @@ declare global {
         "datacom-radio": HTMLDatacomRadioElement;
         "datacom-tab": HTMLDatacomTabElement;
         "datacom-tabgroup": HTMLDatacomTabgroupElement;
-        "datacom-toggle": HTMLDatacomToggleElement;
     }
 }
 declare namespace LocalJSX {
@@ -822,28 +792,6 @@ declare namespace LocalJSX {
     }
     interface DatacomTabgroup {
     }
-    interface DatacomToggle {
-        /**
-          * True if the toggle element must be disabled
-         */
-        "disabled"?: boolean;
-        /**
-          * Label of the toggle element
-         */
-        "label"?: any;
-        /**
-          * True if label is on the right of element
-         */
-        "labelOnLeft"?: boolean;
-        /**
-          * True if the toggle element is initially toggled on.
-         */
-        "toggled"?: boolean;
-        /**
-          * Checkbox is either standard size (default) or small
-         */
-        "variant"?: ToggleSizeType;
-    }
     interface IntrinsicElements {
         "datacom-accordion": DatacomAccordion;
         "datacom-accordion-group": DatacomAccordionGroup;
@@ -859,7 +807,6 @@ declare namespace LocalJSX {
         "datacom-radio": DatacomRadio;
         "datacom-tab": DatacomTab;
         "datacom-tabgroup": DatacomTabgroup;
-        "datacom-toggle": DatacomToggle;
     }
 }
 export { LocalJSX as JSX };
@@ -880,7 +827,6 @@ declare module "@stencil/core" {
             "datacom-radio": LocalJSX.DatacomRadio & JSXBase.HTMLAttributes<HTMLDatacomRadioElement>;
             "datacom-tab": LocalJSX.DatacomTab & JSXBase.HTMLAttributes<HTMLDatacomTabElement>;
             "datacom-tabgroup": LocalJSX.DatacomTabgroup & JSXBase.HTMLAttributes<HTMLDatacomTabgroupElement>;
-            "datacom-toggle": LocalJSX.DatacomToggle & JSXBase.HTMLAttributes<HTMLDatacomToggleElement>;
         }
     }
 }
