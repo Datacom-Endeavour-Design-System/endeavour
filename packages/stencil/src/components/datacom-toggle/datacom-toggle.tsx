@@ -63,13 +63,15 @@ export class DatacomToggle {
 
     return (
       <Host>
-        <label class={classes}>
-          {!this.labelOnLeft && this.renderToggleElement()}
-          <span class={labelClasses}>
-            <slot />
-          </span>
-          {this.labelOnLeft && this.renderToggleElement()}
-        </label>
+        <div class="dc-toggle-wrapper">
+          <label class={classes}>
+            {!this.labelOnLeft && this.renderToggleElement()}
+            <span class={labelClasses}>
+              <slot />
+            </span>
+            {this.labelOnLeft && this.renderToggleElement()}
+          </label>
+        </div>
       </Host>
     );
   }

@@ -7,9 +7,14 @@
 }
 
 /* Default styles */
+.dc-toggle-wrapper {
+  display: block;
+}
+
 .dc-toggle {
+  align-items: center;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
   font-family: var(--dc-font-family);
 }
 
