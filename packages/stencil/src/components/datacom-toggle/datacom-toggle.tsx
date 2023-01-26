@@ -1,4 +1,4 @@
-import { Component, h, Prop, Host, Fragment } from '@stencil/core';
+import { Component, h, Prop, Host, Fragment, Event, EventEmitter } from '@stencil/core';
 
 export type ToggleSizeType = 'standard' | 'small';
 
@@ -34,9 +34,15 @@ export class DatacomToggle {
   @Prop() variant: ToggleSizeType = 'standard';
 
   /**
+   * Event emitter to let external components know when the toggle element state has changed
+   */
+  @Event() toggleChanged: EventEmitter<boolean>;
+
+  /**
    * Function to handle when the toggle state has changed
    */
   onToggleChange = () => {
+    this.toggleChanged.emit(!this.toggled);
     this.toggled = !this.toggled;
   };
 
