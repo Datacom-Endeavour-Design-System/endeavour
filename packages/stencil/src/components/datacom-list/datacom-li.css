@@ -2,8 +2,11 @@
   display: block;
 }
 
-li {
+:host * {
   font-family: var(--dc-font-family);
+}
+
+li {
   color: var(--dc-primary-text-color);
   font-style: normal;
   font-size: 16px;

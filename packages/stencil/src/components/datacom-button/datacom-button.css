@@ -5,13 +5,16 @@
   display: inline;
 }
 
+:host * {
+  font-family: var(--dc-font-family);
+}
+
 /* Common CSS */
 .dc-button-btn {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-family: var(--dc-font-family);
   font-weight: 600;
 }
 
