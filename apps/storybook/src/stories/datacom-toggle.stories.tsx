@@ -27,7 +27,7 @@ export default {
     },
     label: {
       name: 'Label',
-      defaultValue: 'Section Label',
+      defaultValue: 'Label',
       description: 'Label for accordion section.',
       type: { label: 'string' },
     },
