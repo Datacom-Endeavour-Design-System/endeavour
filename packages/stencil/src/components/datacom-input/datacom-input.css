@@ -6,6 +6,12 @@
   outline: none;
 }
 
+:host * {
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 16px;
+}
+
 .dc-text-root {
   display: block;
   position: relative;
@@ -28,9 +34,6 @@
 
 .dc-text-label {
   color: var(--dc-primary-text-color);
-  font-family: var(--dc-font-family);
-  font-weight: 400;
-  font-size: 16px;
   outline: none;
 }
 
@@ -39,7 +42,6 @@
   line-height: 24px;
   padding: 14px 16px;
   outline: none;
-  font-family: var(--dc-font-family);
   color: var(--dc-primary-text-color);
   font-weight: 400;
   font-size: 16px;
@@ -53,7 +55,6 @@
 
 .dc-text-help {
   color: var(--dc-greyscale-03);
-  font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
@@ -202,7 +203,6 @@
 .dc-text-error-msg {
   display: none;
   color: var(--dc-error-colour);
-  font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 12px;
   padding: 4px 0 0 14px;

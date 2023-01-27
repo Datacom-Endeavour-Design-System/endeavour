@@ -1,5 +1,8 @@
 :host {
   display: block;
+}
+
+:host * {
   font-family: var(--dc-font-family);
   font-weight: 400;
 }
