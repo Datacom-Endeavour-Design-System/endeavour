@@ -59,41 +59,22 @@ const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => (
   <DatacomCheckbox {...args} />
 );
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Single = Template.bind({});
+Single.args = {
   label: 'Checkbox Item',
   variant: 'standard',
   checked: false,
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  label: 'Checkbox Item',
-  variant: 'small',
-  checked: false,
-};
-
 export const Grouped = (props) => {
-  const { variant, disabled } = props;
-
   return (
     <div>
       <DatacomCheckboxGroup>
-        <DatacomCheckbox variant={variant} disabled={disabled}>
-          Parent checkbox
-        </DatacomCheckbox>
-        <DatacomCheckbox variant={variant} disabled={disabled}>
-          Child option 1
-        </DatacomCheckbox>
-        <DatacomCheckbox variant={variant} disabled={disabled}>
-          Child option 2
-        </DatacomCheckbox>
-        <DatacomCheckbox variant={variant} disabled={disabled}>
-          Child option 3
-        </DatacomCheckbox>
-        <DatacomCheckbox variant={variant} disabled={disabled}>
-          Child option 4
-        </DatacomCheckbox>
+        <DatacomCheckbox {...props}>Parent checkbox</DatacomCheckbox>
+        <DatacomCheckbox {...props}>Child option 1</DatacomCheckbox>
+        <DatacomCheckbox {...props}>Child option 2</DatacomCheckbox>
+        <DatacomCheckbox {...props}>Child option 3</DatacomCheckbox>
+        <DatacomCheckbox {...props}>Child option 4</DatacomCheckbox>
       </DatacomCheckboxGroup>
     </div>
   );

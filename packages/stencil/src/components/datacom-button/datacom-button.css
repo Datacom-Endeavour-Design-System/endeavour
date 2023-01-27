@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--dc-font-family);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .dc-button-text:empty {

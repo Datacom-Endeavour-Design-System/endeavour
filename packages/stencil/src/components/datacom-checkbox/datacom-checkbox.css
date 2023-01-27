@@ -68,6 +68,7 @@
   background-size: 14px;
   background-position: center;
   background-repeat: no-repeat;
+  border-color: var(--dc-primary-colour);
 }
 
 .dc-checkbox-size-small .dc-checkbox-input:checked {
