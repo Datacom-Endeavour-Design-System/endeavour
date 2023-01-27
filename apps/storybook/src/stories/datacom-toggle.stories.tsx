@@ -11,11 +11,14 @@ export default {
       description: 'If true, disables the toggle element.',
       type: { name: 'boolean' },
     },
-    labelOnLeft: {
-      name: 'Label on left',
+    labelPosition: {
+      name: 'Label Position',
       description:
         'If true, label will be rendered on the left of the toggle element.',
-      type: { name: 'boolean' },
+      control: 'select',
+      defaultValue: 'right',
+      options: ['left', 'right'],
+      type: { name: 'string', required: true },
     },
     toggled: {
       name: 'Toggled',
@@ -40,14 +43,14 @@ export default {
 };
 
 const Template: ComponentStoryFn<typeof DatacomToggle> = (args) => {
-  const { disabled, label, labelOnLeft, toggled, variant } = args;
+  const { disabled, label, labelPosition, toggled, variant } = args;
 
   return (
     <DatacomToggle
       label={label}
       disabled={disabled}
       toggled={toggled}
-      labelOnLeft={labelOnLeft}
+      labelPosition={labelPosition}
       variant={variant}
     />
   );
@@ -57,6 +60,5 @@ export const Toggle = Template.bind({});
 Toggle.args = {
   disabled: false,
   label: 'Label',
-  labelOnLeft: false,
   toggled: false,
 };

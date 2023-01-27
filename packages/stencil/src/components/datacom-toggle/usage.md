@@ -25,10 +25,10 @@ If no variant prop is passed (or an invalid value is inserted), the default stan
 <datacom-toggle label="Label content goes here" variant="small"></datacom-toggle>
 ```
 
-label-on-left - This property changes the position of the label to the left of the toggle element.
+labelPosition - This property changes the position of the label of the toggle element (default is on the right).
 
 ```html
-<datacom-toggle label="Label content goes here" label-on-left></datacom-toggle>
+<datacom-toggle label="Label content goes here" label-position="left"></datacom-toggle>
 ```
 
 disabled - If true, disables the toggle element and stops it from being interactable.

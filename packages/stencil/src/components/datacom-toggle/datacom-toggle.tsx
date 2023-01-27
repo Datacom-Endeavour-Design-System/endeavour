@@ -1,6 +1,7 @@
 import { Component, h, Prop, Host, Event, EventEmitter } from '@stencil/core';
 
 export type ToggleSizeType = 'standard' | 'small';
+export type LabelPositionType = 'left' | 'right';
 
 @Component({
   tag: 'datacom-toggle',
@@ -14,9 +15,9 @@ export class DatacomToggle {
   @Prop() label;
 
   /**
-   * True if label is on the right of element
+   * Sets whether the label is rendered on the left or right (default) of the toggle element
    */
-  @Prop() labelOnLeft = false;
+  @Prop() labelPosition: LabelPositionType = 'right';
 
   /**
    * True if the toggle element must be disabled
@@ -29,7 +30,7 @@ export class DatacomToggle {
   @Prop({ mutable: true }) toggled = false;
 
   /**
-   * Checkbox is either standard size (default) or small
+   * Toggle element is either standard size (default) or small
    */
   @Prop() variant: ToggleSizeType = 'standard';
 
@@ -55,7 +56,7 @@ export class DatacomToggle {
     const labelClasses = {
       'dc-toggle-label': true,
       'disabled': this.disabled,
-      'label-on-left': this.labelOnLeft,
+      'label-on-left': this.labelPosition == 'left',
     };
 
     return <span class={labelClasses}>{this.label}</span>;
@@ -76,10 +77,10 @@ export class DatacomToggle {
       <Host>
         <div class="dc-toggle-wrapper">
           <label class={classes}>
-            {this.labelOnLeft && this.renderLabelElement()}
+            {this.labelPosition == 'left' && this.renderLabelElement()}
             <input class="dc-toggle-input" type="checkbox" disabled={this.disabled} checked={this.toggled} onChange={this.onToggleChange} />
             <div class="dc-toggle-switch" />
-            {!this.labelOnLeft && this.renderLabelElement()}
+            {this.labelPosition == 'right' && this.renderLabelElement()}
           </label>
         </div>
       </Host>
