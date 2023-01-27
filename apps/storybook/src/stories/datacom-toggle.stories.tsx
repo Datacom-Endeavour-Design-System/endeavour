@@ -28,7 +28,7 @@ export default {
     label: {
       name: 'Label',
       defaultValue: 'Label',
-      description: 'Label for accordion section.',
+      description: 'Label for toggle element.',
       type: { label: 'string' },
     },
     variant: {
