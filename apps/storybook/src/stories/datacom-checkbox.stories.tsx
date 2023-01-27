@@ -67,16 +67,16 @@ Single.args = {
 };
 
 export const Grouped = (props) => {
-  delete props.label;
+  const custom = (({ label, ...object }) => object)(props);
 
   return (
     <div>
       <DatacomCheckboxGroup>
-        <DatacomCheckbox {...props}>Parent checkbox</DatacomCheckbox>
-        <DatacomCheckbox {...props}>Child option 1</DatacomCheckbox>
-        <DatacomCheckbox {...props}>Child option 2</DatacomCheckbox>
-        <DatacomCheckbox {...props}>Child option 3</DatacomCheckbox>
-        <DatacomCheckbox {...props}>Child option 4</DatacomCheckbox>
+        <DatacomCheckbox {...custom}>Parent checkbox</DatacomCheckbox>
+        <DatacomCheckbox {...custom}>Child option 1</DatacomCheckbox>
+        <DatacomCheckbox {...custom}>Child option 2</DatacomCheckbox>
+        <DatacomCheckbox {...custom}>Child option 3</DatacomCheckbox>
+        <DatacomCheckbox {...custom}>Child option 4</DatacomCheckbox>
       </DatacomCheckboxGroup>
     </div>
   );
