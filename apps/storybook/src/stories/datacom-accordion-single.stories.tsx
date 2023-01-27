@@ -55,4 +55,5 @@ export const SingleSection = SingleSectionTemplate.bind({});
 SingleSection.args = {
   disabled: false,
   expanded: true,
+  label: 'Section Label',
 };
