@@ -1,6 +1,10 @@
 import React, { Fragment } from 'react';
 import { ComponentStoryFn } from '@storybook/react';
-import { DatacomRadio } from '@datacom/endeavour-react';
+import {
+  DatacomRadio,
+  DatacomRadioGroup,
+  DatacomButton,
+} from '@datacom/endeavour-react';
 
 export default {
   title: 'Radio',
@@ -20,6 +24,7 @@ export default {
       options: ['radios', 'buttons'],
       type: { name: 'string', required: true },
     },
+
     size: {
       name: 'Size',
       description: 'Radio size within variant. Defaults to standard if not set',
@@ -38,6 +43,7 @@ export default {
       description: 'Disable Radio',
       type: { name: 'boolean' },
     },
+
     required: {
       name: 'Required',
       description: 'Required Field',
@@ -108,20 +114,42 @@ export const Grouped = (args) => {
     <Fragment>
       <DatacomRadio {...args} name="choose" value="choice1">
         {' '}
-        1
       </DatacomRadio>
       <DatacomRadio {...args} name="choose" value="choice2">
         {' '}
-        2
       </DatacomRadio>
       <DatacomRadio {...args} name="choose" value="choice3">
         {' '}
-        3
       </DatacomRadio>
       <DatacomRadio {...args} name="choose" value="choice4">
         {' '}
-        4
       </DatacomRadio>
     </Fragment>
+  );
+};
+export const RadioButtonGroup = (args) => {
+  return (
+    <DatacomRadioGroup>
+      <DatacomRadio
+        {...args}
+        name="choose"
+        value="choice1"
+        variant="bar"></DatacomRadio>
+      <DatacomRadio
+        {...args}
+        name="choose"
+        value="choice2"
+        variant="bar"></DatacomRadio>
+      <DatacomRadio
+        {...args}
+        name="choose"
+        value="choice3"
+        variant="bar"></DatacomRadio>
+      <DatacomRadio
+        {...args}
+        name="choose"
+        value="choice4"
+        variant="bar"></DatacomRadio>
+    </DatacomRadioGroup>
   );
 };

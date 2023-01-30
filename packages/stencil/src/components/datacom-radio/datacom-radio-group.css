@@ -1,0 +1,6 @@
+.dc-horizontal-layout {
+  display: flex;
+}
+.dc-vertical-layout {
+  display: block;
+}

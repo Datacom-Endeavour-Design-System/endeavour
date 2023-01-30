@@ -4,7 +4,7 @@ import { randomString } from '../../utils';
 import { FormControl } from '../form-control';
 
 export type RadioSize = 'standard' | 'small';
-export type RadioVariant = 'radios' | 'buttons';
+export type RadioVariant = 'radios' | 'buttons' | 'bar';
 export type ImagePosition = 'left' | 'right';
 
 @Component({
@@ -122,7 +122,7 @@ export class DatacomRadio implements FormControl {
     if (!['standard', 'small'].includes(size)) {
       throw Error('Check size must be either standard or small.');
     }
-    if (!['radios', 'buttons'].includes(variant)) {
+    if (!['radios', 'buttons', 'bar'].includes(variant)) {
       console.log('radio variant must be either radio or buttons.');
       this.variant = 'radios';
     }
@@ -148,43 +148,8 @@ export class DatacomRadio implements FormControl {
         [`dc-radio-size-${size}`]: true,
         [this.type]: true,
       };
-      if (this.variant == 'buttons') {
-        return (
-          <Fragment>
-            <div class="dc-ta-horizontal-layout">
-              <div class="dc-radio-wrapper">
-                <input
-                  ref={el => this.setInputElementRef(el)}
-                  form={this.form}
-                  autofocus={this.autofocus}
-                  formmethod={this.formmethod}
-                  formaction={this.formaction}
-                  formtarget={this.formtarget}
-                  formenctype={this.formenctype}
-                  formnovalidate={this.formnovalidate}
-                  name={this.name}
-                  type={this.type}
-                  checked={this.checked}
-                  disabled={this.disabled}
-                  required={this.required}
-                  value={this.value}
-                  id={this.inputId}
-                  class={classes}
-                  onChange={this.handleChange}
-                  tabIndex={0}
-                />
 
-                <label tabIndex={-1} htmlFor={this.inputId} class="dc-radio-label">
-                  <span class={`dc-radio-image-${this.imagePosition}`}>
-                    {image}
-                    {this.label}
-                  </span>
-                </label>
-              </div>
-            </div>
-          </Fragment>
-        );
-      } else {
+      if (this.variant === 'radios') {
         return (
           <Fragment>
             <div class="dc-ta-vertical-layout">
@@ -215,6 +180,42 @@ export class DatacomRadio implements FormControl {
                     <slot></slot>
                   </span>
                 </label>
+              </div>
+            </div>
+          </Fragment>
+        );
+      } else {
+        return (
+          <Fragment>
+            <div class="dc-ta-horizontal-layout">
+              <div class="dc-radio-wrapper">
+                <input
+                  ref={el => this.setInputElementRef(el)}
+                  form={this.form}
+                  tabIndex={0}
+                  autofocus={this.autofocus}
+                  formmethod={this.formmethod}
+                  formaction={this.formaction}
+                  formtarget={this.formtarget}
+                  formenctype={this.formenctype}
+                  formnovalidate={this.formnovalidate}
+                  name={this.name}
+                  type={this.type}
+                  checked={this.checked}
+                  disabled={this.disabled}
+                  required={this.required}
+                  value={this.value}
+                  id={this.inputId}
+                  class={classes}
+                  onChange={this.handleChange}
+                />
+                <label tabIndex={0} htmlFor={this.inputId} class="dc-radio-label">
+                  <span class={`dc-radio-image-${this.imagePosition}`}>
+                    {image}
+                    {this.label}
+                  </span>
+                </label>
+                <slot></slot>
               </div>
             </div>
           </Fragment>

@@ -11,7 +11,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-width: 100px;
   white-space: nowrap;
   padding-top: 16px;
 }
@@ -38,7 +37,7 @@
   height: 20px;
 }
 
-/* label */
+/* label for radio */
 .dc-radio-label {
   font-family: var(--dc-font-family);
   font-style: normal;
@@ -101,17 +100,17 @@
   box-shadow: 0 0 0 1px var(--dc-greyscale-05);
 }
 
-/* main containter  */
-
+/* defalut radio button  */
+/* For combo variant */
+.dc-radio-bar,
 .dc-radio-buttons {
   position: absolute;
   cursor: pointer;
-  flex-direction: row;
+  /* flex-direction: row; */
   opacity: 0;
-  width: 100px;
-  height: 60px;
   overflow: hidden;
 }
+/* defualt combo */
 
 .dc-radio-buttons + label {
   border: 2px solid var(--dc-greyscale-05);
@@ -120,25 +119,26 @@
   font-family: var(--dc-font-family);
   font-weight: 500;
   align-items: center;
-  margin-left: 12px;
   border-radius: 8px;
+  margin-left: 12px;
 }
-
+/* for standar size button and bar*/
+.dc-radio-bar.dc-radio-size-standard + label,
 .dc-radio-buttons.dc-radio-size-standard + label {
   height: 48px;
   font-size: 16px;
   padding-left: 16px;
   padding-right: 16px;
-  border-radius: 8px;
 }
-
+/* for small size button and bar */
+.dc-radio-bar.dc-radio-size-small + label,
 .dc-radio-buttons.dc-radio-size-small + label {
   height: 34px;
   font-size: 14px;
   padding-left: 12px;
   padding-right: 12px;
 }
-
+/* image dispaly  */
 .dc-radio-image {
   display: inline-flex;
   height: 18px;
@@ -148,26 +148,23 @@
 
 .dc-radio-buttons:focus + label {
   outline: 3px solid var(--dc-primary-colour);
-  border-radius: 12px;
   border: 1px solid var(--dc-greyscale-05);
   outline-offset: 1px;
 }
-
+/* focus style */
 .dc-radio-buttons:focus:not(:focus-visible) + label {
   outline: none;
 }
-
+/* hover style for Radiobutton */
 .dc-radio-buttons:hover:enabled + label {
   background: var(--dc-grayscale-06);
   cursor: pointer;
-  border-radius: 8px;
   border: 2px solid var(--dc-greyscale-05);
 }
-
+/* disable style */
 .dc-radio-disabled.dc-radio-buttons + label {
   border: 2px solid var(--dc-greyscale-05);
-  color: #999999;
-  border-radius: 8px;
+  color: var(--dc-greyscale-04);
 }
 
 .dc-radio-buttons:checked + label {
@@ -182,7 +179,6 @@
   text-align: center;
   border: 2px solid var(--dc-greyscale-05);
   padding-left: 45px !important;
-  border-radius: 8px;
   outline: none;
 }
 .dc-radio-buttons:checked + label .dc-radio-image {
@@ -202,7 +198,6 @@
   text-align: center;
   border: 2px solid var(--dc-greyscale-05);
   padding-left: 45px !important;
-  border-radius: 8px;
 }
 
 .dc-radio-label .dc-radio-image {
@@ -226,4 +221,85 @@
 
 .dc-radio-image-right .dc-radio-image {
   padding-left: 12px;
+}
+
+/* For combo variant */
+.dc-radio-bar {
+  position: absolute;
+  cursor: pointer;
+
+  opacity: 0;
+  overflow: hidden;
+}
+/* label styling for combo variant*/
+.dc-radio-bar + .dc-radio-label {
+  border: 1px solid var(--dc-greyscale-05);
+  display: flex;
+  background-color: var(--dc-background-colour);
+  font-family: var(--dc-font-family);
+  font-weight: 500;
+  align-items: center;
+}
+
+/* hover  */
+.dc-radio-bar:hover + .dc-radio-label {
+  background: var(--dc-grayscale-06);
+  cursor: pointer;
+  border: 1px solid var(--dc-greyscale-05);
+}
+/* disable */
+.dc-radio-disabled.dc-radio-bar + label {
+  border: 2px solid var(--dc-greyscale-05);
+  color: var(--dc-greyscale-04);
+}
+
+.dc-radio-bar:checked + label .dc-radio-image {
+  display: none;
+}
+
+.dc-radio-bar:focus + label {
+  border: 3px solid var(--dc-primary-colour);
+  outline-offset: 2px;
+  gap: 4px;
+}
+.dc-radio-bar:not(:focus-visible) + label {
+  outline: none;
+}
+
+.dc-radio-bar:checked + label {
+  background-color: var(--dc-primary-colour);
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='14' height='11' viewBox='0 0 14 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.922 0.373439L4.17153 9.12391L1.07793 6.03031C0.931494 5.88388 0.694057 5.88388 0.547588 6.03031L0.194057 6.38385C0.0476191 6.53028 0.0476191 6.76772 0.194057 6.91419L3.90637 10.6265C4.05281 10.7729 4.29024 10.7729 4.43671 10.6265L13.8059 1.25735C13.9523 1.11091 13.9523 0.87347 13.8059 0.727002L13.4523 0.373439C13.3059 0.227001 13.0684 0.227001 12.922 0.373439Z' fill='white'/%3E%3C/svg%3E");
+  background-size: 16px;
+  background-position: left;
+  background-repeat: no-repeat;
+  line-height: 12px;
+  background-position-x: 12%;
+  color: var(--dc-background-colour);
+  text-align: center;
+  border: 2px solid var(--dc-greyscale-05);
+  padding-left: 45px !important;
+  outline: none;
+}
+
+.dc-radio-bar:checked:hover + label {
+  background-color: var(--dc-primary-accent-colour);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='14' height='11' viewBox='0 0 14 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.922 0.373439L4.17153 9.12391L1.07793 6.03031C0.931494 5.88388 0.694057 5.88388 0.547588 6.03031L0.194057 6.38385C0.0476191 6.53028 0.0476191 6.76772 0.194057 6.91419L3.90637 10.6265C4.05281 10.7729 4.29024 10.7729 4.43671 10.6265L13.8059 1.25735C13.9523 1.11091 13.9523 0.87347 13.8059 0.727002L13.4523 0.373439C13.3059 0.227001 13.0684 0.227001 12.922 0.373439Z' fill='white'/%3E%3C/svg%3E");
+  background-size: 16px;
+  background-position: left;
+  background-repeat: no-repeat;
+  line-height: 12px;
+  background-position-x: 12%;
+  color: var(--dc-background-colour);
+  text-align: center;
+  border: 2px solid var(--dc-greyscale-05);
+  padding-left: 45px !important;
+}
+:host(:first-child) .dc-radio-bar + label {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+:host(:last-child) .dc-radio-bar + label {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
