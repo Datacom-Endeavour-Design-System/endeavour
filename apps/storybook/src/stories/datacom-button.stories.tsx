@@ -89,17 +89,7 @@ const Template: StoryFn<typeof DatacomButton> = (args) => (
   <DatacomButton {...args} />
 );
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Button = Template.bind({});
+Button.args = {
   variant: 'primary',
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  variant: 'secondary',
-};
-
-export const Ghost = Template.bind({});
-Ghost.args = {
-  variant: 'ghost',
 };

@@ -1,0 +1,268 @@
+:host {
+  display: block;
+  height: 72px;
+  min-width: 270px;
+  max-width: 400px;
+}
+
+:host * {
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* Base styles */
+.dc-ddl {
+  display: block;
+  position: relative;
+}
+
+.dc-ddl-input {
+  height: 52px;
+  border: none;
+  outline: none;
+  margin: 1px;
+  box-sizing: border-box;
+  caret-color: var(--dc-primary-colour);
+}
+
+.dc-ddl-input:placeholder-shown {
+  color: var(--dc-greyscale-04);
+}
+
+.dc-ddl-select {
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.dc-ddl-control {
+  height: 52px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  outline: 3px solid transparent;
+  border: 1px solid var(--dc-greyscale-05);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.dc-ddl-label {
+  display: inline-block;
+  padding: 0 2px;
+  color: var(--dc-greyscale-03);
+}
+
+.dc-ddl-list {
+  display: none;
+  border: 2px solid var(--dc-primary-colour);
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 1px 0;
+}
+
+.dc-ddl-size-small {
+  width: 270px;
+}
+
+.dc-ddl-size-large {
+  width: 400px;
+}
+
+.dc-ddl-list-area {
+  display: flex;
+  height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.dc-ddl-combo-placeholder {
+  line-height: 52px;
+  display: block;
+  color: var(--dc-greyscale-03);
+  font-size: 16px;
+}
+
+.dc-ddl-combo-count {
+  color: var(--dc-primary-text-color);
+  font-size: 16px;
+}
+
+.dc-ddl-combo-count pre {
+  display: inline-block;
+  font-weight: 600;
+  font-family: var(--dc-font-family);
+  color: var(--dc-primary-text-color);
+}
+
+.dc-ddl-options {
+  min-height: 52px;
+  max-height: 208px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  outline: none;
+  box-sizing: border-box;
+  background-color: var(--dc-background-colour);
+}
+
+.dc-ddl-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.dc-ddl-chevron-down {
+  width: 16px;
+  height: 10px;
+}
+
+.dc-ddl-clear-btn {
+  display: none;
+  margin-right: 24px;
+}
+
+.dc-ddl-clear-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.dc-ddl-open-btn {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+
+.dc-ddl-chevron-up {
+  width: 16px;
+  height: 10px;
+  transform: rotate(180deg);
+}
+
+.dc-ddl-selected-option pre {
+  font-weight: 600;
+  font-family: var(--dc-font-family);
+  font-size: 16px;
+}
+
+.dc-ddl-selected-option pre::after {
+  content: " selected";
+  font-weight: 400;
+}
+
+/* Error state */
+.dc-ddl-error-msg {
+  display: none;
+  color: var(--dc-error-colour);
+  font-size: 12px;
+  padding: 4px 0 0 14px;
+  white-space: pre-wrap;
+  margin: 0;
+  outline: none;
+}
+
+.dc-ddl-error .dc-ddl-control {
+  border: 1px solid var(--dc-error-colour);
+}
+
+.dc-ddl-error .dc-ddl-error-msg:not(:empty) {
+  display: block;
+}
+
+/* Hover states */
+.dc-ddl-view .dc-ddl-control:hover,
+.dc-ddl-selected .dc-ddl-control:hover {
+  border: 1px solid var(--dc-primary-accent-colour);
+}
+
+.dc-ddl-view .dc-ddl-control:focus,
+.dc-ddl-selected .dc-ddl-control:focus {
+  outline: 3px solid var(--dc-primary-colour);
+}
+
+.dc-ddl-open .dc-ddl-control:focus {
+  outline: none;
+}
+
+/* Selected mode */
+.dc-ddl-selected .dc-ddl-label {
+  border: 0;
+  position: absolute;
+  margin: 0;
+  background-color: white;
+  font-size: 12px;
+  top: -6px;
+  left: 16px;
+}
+
+.dc-ddl-selected .dc-ddl-control {
+  border: 1px solid var(--dc-greyscale-05);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.dc-ddl-selected .dc-ddl-clear-btn {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.dc-ddl-selected-option {
+  width: 80%;
+}
+
+/* Open mode */
+.dc-ddl-open .dc-ddl-list {
+  display: block;
+}
+
+.dc-ddl-open .dc-ddl-selected-option {
+  display: none;
+}
+
+.dc-ddl-open .dc-ddl-label {
+  border: 0;
+  position: absolute;
+  margin: 0;
+  background-color: white;
+  animation: dc-ddl-label-animation 0.2s linear 0s forwards 1;
+  z-index: 20;
+}
+
+@keyframes dc-ddl-label-animation {
+  from {
+    font-size: 16px;
+    top: 12px;
+    left: 20px;
+  }
+
+  to {
+    font-size: 12px;
+    top: -6px;
+    left: 16px;
+  }
+}
+
+.dc-ddl-open .dc-ddl-view-btns {
+  display: none;
+}
+
+.dc-ddl-open .dc-ddl-control {
+  border: 1px solid transparent;
+  margin: 0;
+  padding: 0;
+}
+
+/* Disabled */
+.dc-ddl-disabled .dc-ddl-label {
+  color: var(--dc-greyscale-04);
+}
+
+.dc-ddl-disabled .dc-ddl-view-btns svg path {
+  fill: var(--dc-greyscale-04);
+}
