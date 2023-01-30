@@ -49,6 +49,7 @@
   color: var(--dc-primary-text-color);
   display: none;
   font-family: var(--dc-font-family);
+  font-size: 16px;
   padding: var(--accordion-padding);
 }
 
