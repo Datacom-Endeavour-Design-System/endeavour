@@ -23,7 +23,6 @@ export class DatacomTextarea implements FormControl {
    * HTML element textarea properties
    *
    */
-
   @Prop() name: string;
   @Prop() rows: number;
   @Prop() cols: number;
@@ -41,7 +40,7 @@ export class DatacomTextarea implements FormControl {
   @Prop() formtarget?: string;
   @Prop() label?: string;
   @Prop() inputAutofocus?: boolean;
-  @Prop() autocorrect: boolean = false;
+  @Prop() autocorrect = false;
   @Prop() counter?: number = 0;
 
   @Prop() value: string;
@@ -61,13 +60,13 @@ export class DatacomTextarea implements FormControl {
    */
   @Prop() message?: string;
   @Prop({ attribute: 'valid' }) isValid?: boolean;
+
   /**
    * Random id used by label to associate with the input control.
    *
    * This is randomly generated as it cannot be coded to a known value as all instances
    * on the page would have the same value.
    */
-
   private inputId = randomString();
   /**
    * Optional help text
@@ -83,10 +82,12 @@ export class DatacomTextarea implements FormControl {
    * Error mutable state will re-render the control to display error message,  focus border
    */
   @State() isInError = false;
+
   @Event({
     composed: true,
   })
   private changed: EventEmitter<string>;
+
   /**
    * Editing mutable state will re-render the control to display input element
    */
@@ -100,6 +101,11 @@ export class DatacomTextarea implements FormControl {
     this.textElement = el;
   }
 
+  /**
+   * Force validation on the form control to display any error messages
+   *
+   * @returns boolean
+   */
   @Method()
   async validate(): Promise<boolean> {
     this.isInError = !(await this.checkValidity());
@@ -111,10 +117,18 @@ export class DatacomTextarea implements FormControl {
 
     return this.isInError;
   }
+
+  /**
+   * Check if the control is valid
+   */
   @Method()
   async checkValidity(): Promise<boolean> {
     return this.textElement.checkValidity();
   }
+
+  /**
+   * Sets edit state for element
+   */
   @Method()
   async edit(): Promise<void> {
     if (!this.isEditing && !this.disabled) {
@@ -125,10 +139,12 @@ export class DatacomTextarea implements FormControl {
       setTimeout(() => this.textElement.focus(), 100);
     }
   }
+
   @Listen('focus', { capture: true })
   onFocus(/* event: FocusEvent */): void {
     this.edit();
   }
+
   @Listen('blur', { capture: true })
   onBlur(event: any): void {
     this.isEditing = false;
@@ -137,10 +153,10 @@ export class DatacomTextarea implements FormControl {
     if (elem.tagName.toLowerCase() === 'input') {
       this.value = this.textElement.value;
 
-      //   /**
-      //    * Delay moving to view mode so the tabbing action moves out of the
-      //    * control before enabling tabindex (view mode)
-      //    */
+      /**
+       * Delay moving to view mode so the tabbing action moves out of the
+       * control before enabling tabindex (view mode)
+       */
       setTimeout(() => (this.isEditing = false), 10);
 
       /* Set internal error state */
@@ -150,13 +166,15 @@ export class DatacomTextarea implements FormControl {
   }
 
   @Listen('input', { capture: true })
-  onInput(/*event:InputEvent*/): void {
+  onInput(): void {
     this.isDirty = true;
     this.changed.emit(this.textElement.value);
     if (this.isInError) {
       this.isInError = false;
     }
+    this.counter = this.textElement.value.length;
   }
+
   onFormSubmit = (event: SubmitEvent) => {
     if (!this.textElement.checkValidity()) {
       /**
@@ -169,6 +187,7 @@ export class DatacomTextarea implements FormControl {
       this.isDirty = true;
     }
   };
+
   componentDidLoad() {
     if (this.autoValidate) {
       this.formElement = this.textElement.closest('form');
@@ -179,29 +198,22 @@ export class DatacomTextarea implements FormControl {
       }
     }
   }
+
   disconnectedCallback() {
     if (this.formElement !== undefined && this.formElement !== null) {
       this.formElement.removeEventListener('submit', this.onFormSubmit);
     }
   }
 
-  handleInput(event: any) {
-    this.value = event.target.value;
-    this.counter = this.value.length;
-  }
-
   render() {
     /* When in edit mode, we disable tabindex within the control so that keyboard actions
      * like tab and shift-tab move correctly to the next form control.
-
-
      */
     const edit = this.isEditing || this.value?.length > 0 || this.isDirty || this.isValid == false;
 
     const tabindex = this.isEditing ? -1 : 0;
     const error = (this.isInError && this.isDirty) || this.isValid == false;
     const classes = {
-      // 'dc-textarea-root': true,
       'dc-textarea-disabled': this.disabled,
       'dc-textarea-error': error,
       'dc-textarea-edit': edit,
@@ -209,14 +221,11 @@ export class DatacomTextarea implements FormControl {
       'dc-text-dirty': this.isDirty,
     };
 
-    console.log(error);
-
     return (
       <Host tabIndex={tabindex}>
         <div class={classes}>
           <label class="dc-textarea-label" htmlFor={this.inputId} tabIndex={tabindex}>
             {this.label}
-            <slot></slot>
           </label>
           <div class="dc-textarea-counter">
             {this.counter}/ {this.maxlength}
@@ -236,7 +245,6 @@ export class DatacomTextarea implements FormControl {
               cols={this.cols}
               form={this.form}
               disabled={this.disabled}
-              onInput={(event: any) => this.handleInput(event)}
               maxlength={this.maxlength}
               value={this.value}
             ></textarea>
