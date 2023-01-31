@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { ComponentStoryFn } from '@storybook/react';
 import { DatacomRadio } from '@datacom/endeavour-react';
 
@@ -87,8 +87,6 @@ export default {
     required: true,
     disabled: false,
     checked: false,
-    // 'image-position': 'left',
-    // icon: '',
   },
 };
 
@@ -104,50 +102,25 @@ Radio.args = {
   checked: false,
 };
 
-export const RadioGrouping = () => {
+export const Grouped = (args) => {
   return (
-    <div style={{ paddingTop: '24px', gap: '16px' }}>
-      <DatacomRadio name="choose" value="choice1">
-        Radio item 1
+    <Fragment>
+      <DatacomRadio {...args} name="choose" value="choice1">
+        {' '}
+        1
       </DatacomRadio>
-      <DatacomRadio name="choose" value="choice2">
-        Radio item 2
+      <DatacomRadio {...args} name="choose" value="choice2">
+        {' '}
+        2
       </DatacomRadio>
-      <DatacomRadio name="choose" value="choice3">
-        Radio item 3
+      <DatacomRadio {...args} name="choose" value="choice3">
+        {' '}
+        3
       </DatacomRadio>
-      <DatacomRadio name="choose" value="choice4">
-        Radio item 4
+      <DatacomRadio {...args} name="choose" value="choice4">
+        {' '}
+        4
       </DatacomRadio>
-    </div>
-  );
-};
-export const RadioButton = Template.bind({});
-RadioButton.args = {
-  variant: 'buttons',
-  label: 'Radio button',
-  size: 'standard',
-  disabled: false,
-  checked: false,
-};
-export const RadioButtonGrouping = () => {
-  return (
-    <div style={{ display: 'flex', gap: '16px', paddingTop: '24px' }}>
-      <DatacomRadio
-        label=" Radio button 1"
-        name="choose"
-        value="choice1"
-        variant="buttons"></DatacomRadio>
-      <DatacomRadio
-        label="Radio button 2"
-        name="choose"
-        value="choice2"
-        variant="buttons"></DatacomRadio>
-      <DatacomRadio
-        label="Radio button 3"
-        name="choose"
-        value="choice3"
-        variant="buttons"></DatacomRadio>
-    </div>
+    </Fragment>
   );
 };

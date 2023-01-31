@@ -1,0 +1,13 @@
+{
+  "extends": "stylelint-config-standard",
+  "defaultSeverity": "error",
+  "rules": {
+    "color-hex-length": "long",
+    "no-descending-specificity": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ]
+  }
+}

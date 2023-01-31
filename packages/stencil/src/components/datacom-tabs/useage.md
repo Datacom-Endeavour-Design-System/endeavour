@@ -74,7 +74,6 @@ The datacom tab is constructed with a tab group and a tab, which contains the la
   function enable() {
     const tabs = document.querySelector('#tabs');
     if (tabs) {
-      console.log('xxxx');
       tabs.enableTab(2);
     }
   }

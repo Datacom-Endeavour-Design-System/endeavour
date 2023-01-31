@@ -55,6 +55,7 @@
   padding-top: 4px;
   outline: none;
 }
+
 /* view control */
 
 .dc-textarea-view .dc-textarea-label {
@@ -90,6 +91,7 @@
   transform-origin: top left;
   transform: translateY(0, 2.1em) scale(2);
 }
+
 /* Character counter */
 .dc-textarea-counter {
   display: none;
@@ -116,6 +118,7 @@
 .dc-textarea-error-icon {
   display: none;
 }
+
 .dc-textarea-error .dc-textarea-error-icon {
   position: absolute;
   transform: translate(200px, -110px) scale(1);
@@ -125,6 +128,7 @@
 .dc-textarea-error .dc-textarea {
   border: 2px solid var(--dc-error-colour) !important;
 }
+
 .dc-textarea-error-msg {
   display: none;
   color: var(--dc-error-colour);
@@ -134,7 +138,7 @@
   padding: 4px 0 0 14px;
   white-space: pre-wrap;
   max-width: 270px;
-  margin: 0px;
+  margin: 0;
   outline: none;
 }
 
@@ -142,13 +146,8 @@
   display: block;
 }
 
-.dc-textarea-error-msg {
-  color: var(--dc-error-colour);
-  font-family: var(--dc-font-family);
-}
-
 .dc-textarea-error .dc-textarea::after {
-  content: url('data:image/svg+xml,%20%20%20%20%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M10%2013.5C10%2012.125%208.875%2011%207.5%2011C6.09375%2011%205%2012.125%205%2013.5C5%2014.9062%206.09375%2016%207.5%2016C8.875%2016%2010%2014.9062%2010%2013.5ZM5.28125%200.8125L5.6875%209.3125C5.71875%209.6875%206.0625%2010%206.4375%2010H8.53125C8.90625%2010%209.25%209.6875%209.28125%209.3125L9.6875%200.8125C9.71875%200.375%209.375%200%208.9375%200H6.03125C5.59375%200%205.25%200.375%205.28125%200.8125Z%22%20fill%3D%22%23CF364E%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E');
+  content: url("data:image/svg+xml,%20%20%20%20%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M10%2013.5C10%2012.125%208.875%2011%207.5%2011C6.09375%2011%205%2012.125%205%2013.5C5%2014.9062%206.09375%2016%207.5%2016C8.875%2016%2010%2014.9062%2010%2013.5ZM5.28125%200.8125L5.6875%209.3125C5.71875%209.6875%206.0625%2010%206.4375%2010H8.53125C8.90625%2010%209.25%209.6875%209.28125%209.3125L9.6875%200.8125C9.71875%200.375%209.375%200%208.9375%200H6.03125C5.59375%200%205.25%200.375%205.28125%200.8125Z%22%20fill%3D%22%23CF364E%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E");
   width: 16px;
   height: 16px;
 }
@@ -160,11 +159,13 @@
 .dc-textarea-edit .dc-textarea:focus {
   border: 2px solid var(--dc-primary-colour);
 }
+
 /* Disabled */
 .dc-textarae-disabled .dc-textarea-label,
 .dc-textarea-disabled .dc-textarea-label:hover {
   border-color: var(--dc-greyscale-05);
 }
+
 .dc-textarea-disabled .dc-textarea-label,
 .dc-textarea-disabled .dc-textarea {
   color: var(--dc-greyscale-04);
