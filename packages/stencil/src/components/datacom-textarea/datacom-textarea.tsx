@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Listen, Method, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Prop, State, Listen, Method, Event, EventEmitter, Fragment } from '@stencil/core';
 import { Error } from '../../common/images/icons';
 import { randomString } from '../../utils';
 import { FormControl } from '../form-control';
@@ -214,6 +214,7 @@ export class DatacomTextarea implements FormControl {
     const tabindex = this.isEditing ? -1 : 0;
     const error = (this.isInError && this.isDirty) || this.isValid == false;
     const classes = {
+      'dc-textarea': true,
       'dc-textarea-disabled': this.disabled,
       'dc-textarea-error': error,
       'dc-textarea-edit': edit,
@@ -228,11 +229,11 @@ export class DatacomTextarea implements FormControl {
             {this.label}
           </label>
           <div class="dc-textarea-counter">
-            {this.counter}/ {this.maxlength}
+            {this.counter}/{this.maxlength}
           </div>
           <div class="dc-textarea-wrap">
             <textarea
-              class="dc-textarea"
+              class="dc-textarea-input"
               ref={el => this.setTextElementRef(el)}
               tabIndex={tabindex}
               id={this.inputId}
@@ -248,12 +249,16 @@ export class DatacomTextarea implements FormControl {
               maxlength={this.maxlength}
               value={this.value}
             ></textarea>
-            {error && <Error class="dc-textarea-error-icon" />}
-            <p tabIndex={-1} class="dc-textarea-error-msg">
-              {this.message}
-            </p>
+            {error && (
+              <Fragment>
+                <Error class="dc-textarea-error-icon" />
+                <p tabIndex={-1} class="dc-textarea-error-msg">
+                  {this.message}
+                </p>
+              </Fragment>
+            )}
           </div>
-          <aside class="dc-textarea-help">{this.help}</aside>
+          {this.help && <aside class="dc-textarea-help">{this.help}</aside>}
         </div>
       </Host>
     );
