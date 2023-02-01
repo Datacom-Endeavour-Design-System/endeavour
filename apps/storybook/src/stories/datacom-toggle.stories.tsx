@@ -6,11 +6,17 @@ export default {
   title: 'Toggle',
   component: DatacomToggle,
   argTypes: {
+    name: {
+      name: 'Name',
+      defaultValue: 'Toggle',
+      description: 'HTML "name" attribute for toggle element.',
+      type: { name: 'string' },
+    },
     label: {
       name: 'Label',
       defaultValue: 'Label',
       description: 'Label for toggle element.',
-      type: { label: 'string' },
+      type: { name: 'string' },
     },
     variant: {
       name: 'Variant',
@@ -43,10 +49,11 @@ export default {
 };
 
 const Template: ComponentStoryFn<typeof DatacomToggle> = (args) => {
-  const { disabled, label, labelPosition, toggled, variant } = args;
+  const { disabled, label, labelPosition, name, toggled, variant } = args;
 
   return (
     <DatacomToggle
+      name={name}
       label={label}
       disabled={disabled}
       toggled={toggled}
@@ -58,6 +65,7 @@ const Template: ComponentStoryFn<typeof DatacomToggle> = (args) => {
 
 export const Toggle = Template.bind({});
 Toggle.args = {
+  name: 'Toggle',
   label: 'Label',
   variant: 'standard',
   toggled: false,
