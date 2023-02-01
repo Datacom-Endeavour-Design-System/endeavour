@@ -6,25 +6,6 @@ export default {
   title: 'Toggle',
   component: DatacomToggle,
   argTypes: {
-    disabled: {
-      name: 'Disabled',
-      description: 'If true, disables the toggle element.',
-      type: { name: 'boolean' },
-    },
-    labelPosition: {
-      name: 'Label Position',
-      description:
-        'If true, label will be rendered on the left of the toggle element.',
-      control: 'select',
-      defaultValue: 'right',
-      options: ['left', 'right'],
-      type: { name: 'string', required: true },
-    },
-    toggled: {
-      name: 'Toggled',
-      description: 'If true, toggle element will be toggled on initial load.',
-      type: { name: 'boolean' },
-    },
     label: {
       name: 'Label',
       defaultValue: 'Label',
@@ -38,6 +19,25 @@ export default {
       defaultValue: 'standard',
       options: ['standard', 'small'],
       type: { name: 'string', required: true },
+    },
+    toggled: {
+      name: 'Toggled',
+      description: 'If true, toggle element will be toggled on initial load.',
+      type: { name: 'boolean' },
+    },
+    labelPosition: {
+      name: 'Label Position',
+      description:
+        'If true, label will be rendered on the left of the toggle element.',
+      control: 'select',
+      defaultValue: 'right',
+      options: ['left', 'right'],
+      type: { name: 'string', required: true },
+    },
+    disabled: {
+      name: 'Disabled',
+      description: 'If true, disables the toggle element.',
+      type: { name: 'boolean' },
     },
   },
 };
@@ -58,7 +58,9 @@ const Template: ComponentStoryFn<typeof DatacomToggle> = (args) => {
 
 export const Toggle = Template.bind({});
 Toggle.args = {
-  disabled: false,
   label: 'Label',
+  variant: 'standard',
   toggled: false,
+  labelPosition: 'right',
+  disabled: false,
 };
