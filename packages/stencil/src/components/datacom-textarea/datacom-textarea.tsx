@@ -41,7 +41,6 @@ export class DatacomTextarea implements FormControl {
   @Prop() label?: string;
   @Prop() inputAutofocus?: boolean;
   @Prop() autocorrect = false;
-  @Prop() counter?: number = 0;
 
   @Prop() value: string;
 
@@ -82,6 +81,8 @@ export class DatacomTextarea implements FormControl {
    * Error mutable state will re-render the control to display error message,  focus border
    */
   @State() isInError = false;
+
+  @State() counter = 0;
 
   @Event({
     composed: true,
@@ -258,7 +259,7 @@ export class DatacomTextarea implements FormControl {
               </Fragment>
             )}
           </div>
-          {this.help && <aside class="dc-textarea-help">{this.help}</aside>}
+          {this.help && <div class="dc-textarea-help">{this.help}</div>}
         </div>
       </Host>
     );
