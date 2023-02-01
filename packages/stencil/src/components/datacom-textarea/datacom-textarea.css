@@ -98,7 +98,8 @@
 .dc-textarea-error .dc-textarea-error-icon {
   display: block;
   position: absolute;
-  transform: translate(200px, -110px) scale(1);
+  right: 8px;
+  top: 16px;
 }
 
 .dc-textarea-error .dc-textarea-input {
