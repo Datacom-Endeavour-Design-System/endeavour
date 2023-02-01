@@ -1,15 +1,14 @@
 :host {
-  display: block;
-  outline: none;
-  position: relative;
+  --default-border-size: 1px;
+  --min-textarea-height: 128px;
+  --min-textarea-width: 272px;
+  --textarea-padding: 16px;
 }
 
 .dc-textarea {
   background-color: var(--dc-background-colour);
   display: inline-block;
   position: relative;
-  min-height: 128px;
-  min-width: 272px;
 }
 
 .dc-textarea-label {
@@ -20,29 +19,33 @@
   font-weight: 400;
   font-size: 16px;
   margin-left: 12px;
-  outline: none;
   padding: 0 4px;
   position: absolute;
-  top: 16px;
+  top: 14px;
   transition: all 0.3s;
 }
 
+.dc-textarea-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
 .dc-textarea-input {
-  box-shadow: none;
   background-color: var(--dc-background-colour);
-  height: 98px;
-  padding: 14px 16px;
+  border: var(--default-border-size) solid var(--dc-greyscale-05);
   border-radius: 8px;
-  line-height: 24px;
-  outline: none;
-  border: 1px solid var(--dc-greyscale-05);
+  box-shadow: none;
+  caret-color: var(--dc-primary-text-color);
+  color: var(--dc-primary-text-color);
   font-family: var(--dc-font-family);
-  color: var(--dc-greyscale-03);
-  font-weight: 400;
   font-size: 16px;
+  font-weight: 400;
   letter-spacing: -0.16px;
-  caret-color: var(--dc-primary-colour);
-  text-overflow: ellipsis;
+  line-height: 24px;
+  outline: 0;
+  padding: 16px;
+  height: calc(var(--min-textarea-height) - 2 * var(--default-border-size) - 2 * var(--textarea-padding));
+  width: calc(var(--min-textarea-width) - 2 * var(--default-border-size) - 2 * var(--textarea-padding));
 }
 
 .dc-textarea-help {
@@ -53,14 +56,9 @@
   line-height: 16px;
   margin-left: 16px;
   padding-top: 4px;
-  outline: none;
 }
 
 /* View control */
-.dc-textarea-view .dc-textarea-wrap {
-  outline: none;
-}
-
 .dc-textarea-view .dc-textarea-input:hover {
   border-color: var(--dc-primary-accent-colour);
 }
@@ -98,9 +96,9 @@
 }
 
 .dc-textarea-error .dc-textarea-error-icon {
+  display: block;
   position: absolute;
   transform: translate(200px, -110px) scale(1);
-  display: block;
 }
 
 .dc-textarea-error .dc-textarea-input {
@@ -117,7 +115,6 @@
   white-space: pre-wrap;
   max-width: 270px;
   margin: 0;
-  outline: none;
 }
 
 .dc-textarea-error .dc-textarea-error-msg {
@@ -126,8 +123,8 @@
 
 .dc-textarea-error .dc-textarea-input::after {
   content: url("data:image/svg+xml,%20%20%20%20%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M10%2013.5C10%2012.125%208.875%2011%207.5%2011C6.09375%2011%205%2012.125%205%2013.5C5%2014.9062%206.09375%2016%207.5%2016C8.875%2016%2010%2014.9062%2010%2013.5ZM5.28125%200.8125L5.6875%209.3125C5.71875%209.6875%206.0625%2010%206.4375%2010H8.53125C8.90625%2010%209.25%209.6875%209.28125%209.3125L9.6875%200.8125C9.71875%200.375%209.375%200%208.9375%200H6.03125C5.59375%200%205.25%200.375%205.28125%200.8125Z%22%20fill%3D%22%23CF364E%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E");
-  width: 16px;
   height: 16px;
+  width: 16px;
 }
 
 .dc-textarea-error .dc-textarea-help {
