@@ -8,6 +8,14 @@ import type { JSX } from '@datacom/endeavour';
 import { defineCustomElements } from '@datacom/endeavour/dist/loader';
 
 defineCustomElements();
+export const DatacomAccordion = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomAccordion,
+  HTMLDatacomAccordionElement
+>('datacom-accordion');
+export const DatacomAccordionGroup = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomAccordionGroup,
+  HTMLDatacomAccordionGroupElement
+>('datacom-accordion-group');
 export const DatacomButton = /*@__PURE__*/ createReactComponent<
   JSX.DatacomButton,
   HTMLDatacomButtonElement
