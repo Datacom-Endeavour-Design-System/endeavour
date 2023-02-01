@@ -2,6 +2,10 @@
   display: block;
 }
 
+:host * {
+  font-family: var(--dc-font-family);
+}
+
 .dc-ddl-option {
   margin: 0;
   border-top: 1px solid var(--dc-greyscale-05);
@@ -22,10 +26,10 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 400px;
+  padding-left: 16px;
 }
 
 .dc-ddl-option-label {
-  font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 16px;
   white-space: nowrap;
@@ -49,10 +53,6 @@
 .dc-ddl-option:focus {
   border: 3px solid var(--dc-primary-colour);
   padding: 0;
-}
-
-.dc-ddl-option-content {
-  padding-left: 16px;
 }
 
 .dc-ddl-option-image {

@@ -13,7 +13,7 @@ export class DatacomLi {
 
   render() {
     const classes = {
-      [`Item-${this.variantItem}`]: true,
+      [`item-${this.variantItem}`]: true,
     };
 
     return (

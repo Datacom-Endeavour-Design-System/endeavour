@@ -45,7 +45,6 @@ export default {
       description: 'Disable Radio',
       type: { name: 'boolean' },
     },
-
     required: {
       name: 'Required',
       description: 'Required Field',

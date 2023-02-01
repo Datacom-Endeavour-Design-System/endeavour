@@ -2,19 +2,26 @@
   display: block;
 }
 
-li {
+:host * {
   font-family: var(--dc-font-family);
+}
+
+li {
   color: var(--dc-primary-text-color);
   font-style: normal;
   font-size: 16px;
-  font-size: 400;
   padding-left: 8px;
   line-height: 24px;
 }
+
+li + * {
+  color: red;
+}
+
 ::marker {
-  font-size: 16px;
   font-family: var(--dc-font-family);
-  font-size: 400;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 20px;
   text-align: right;
   color: var(--dc-primary-text-color);
