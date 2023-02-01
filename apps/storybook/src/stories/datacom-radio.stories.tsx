@@ -5,6 +5,8 @@ import {
   DatacomRadioGroup,
   DatacomButton,
 } from '@datacom/endeavour-react';
+import { State } from 'packages/stencil/dist/types/stencil-public-runtime';
+import { props } from 'cypress/types/bluebird';
 
 export default {
   title: 'Radio',
@@ -22,7 +24,7 @@ export default {
       control: 'select',
       defaultValue: 'radio',
       options: ['radios', 'buttons'],
-      type: { name: 'string', required: true },
+      type: { name: 'string' },
     },
 
     size: {
@@ -134,22 +136,18 @@ export const RadioButtonGroup = (args) => {
         {...args}
         name="choose"
         value="choice1"
-        variant="bar"></DatacomRadio>
-      <DatacomRadio
-        {...args}
-        name="choose"
-        value="choice2"
-        variant="bar"></DatacomRadio>
+        variant="grouped"></DatacomRadio>
+      <DatacomRadio {...args} name="choose" value="choice2"></DatacomRadio>
       <DatacomRadio
         {...args}
         name="choose"
         value="choice3"
-        variant="bar"></DatacomRadio>
+        variant="grouped"></DatacomRadio>
       <DatacomRadio
         {...args}
         name="choose"
         value="choice4"
-        variant="bar"></DatacomRadio>
+        variant="grouped"></DatacomRadio>
     </DatacomRadioGroup>
   );
 };

@@ -310,6 +310,7 @@ export namespace Components {
         "name": string;
         "readonly"?: boolean;
         "required": boolean;
+        "setGrouped": (grouped: boolean) => Promise<boolean>;
         "size": RadioSize;
         "src": string;
         "type": string;
@@ -321,6 +322,7 @@ export namespace Components {
         "variant": RadioVariant;
     }
     interface DatacomRadioGroup {
+        "child": boolean;
         "horizontal": boolean;
     }
     interface DatacomTab {
@@ -749,6 +751,7 @@ declare namespace LocalJSX {
         "variant"?: RadioVariant;
     }
     interface DatacomRadioGroup {
+        "child"?: boolean;
         "horizontal"?: boolean;
     }
     interface DatacomTab {

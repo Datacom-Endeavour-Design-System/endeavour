@@ -1,10 +1,11 @@
-import { Component, Fragment, h, Prop, Element, EventEmitter, Event, VNode, State, Method } from '@stencil/core';
+import { Component, h, Prop, Element, EventEmitter, Event, VNode, State, Method, Host } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 import { randomString } from '../../utils';
 import { FormControl } from '../form-control';
 
 export type RadioSize = 'standard' | 'small';
-export type RadioVariant = 'radios' | 'buttons' | 'bar';
+export type RadioVariant = 'radios' | 'buttons' | 'grouped';
+
 export type ImagePosition = 'left' | 'right';
 
 @Component({
@@ -38,6 +39,7 @@ export class DatacomRadio implements FormControl {
   @Prop() formtarget: string;
   @Event() changed: EventEmitter<number>;
   private formElement: HTMLFormElement;
+  @State() grouped = false;
 
   /**
    * Auto-validate and display error message on form submit
@@ -55,12 +57,22 @@ export class DatacomRadio implements FormControl {
   @State() isInError = false;
   private inputElement: HTMLInputElement;
 
-  handleChange = e => {
-    console.log(e.target.value);
-    this.checked = true;
+  handleChange = () => {
+    console.log('handlechange', this.checked);
 
-    // this.toggle.emit(this.checked);
+    this.checked = true;
   };
+
+  // * control use for radio button group   */
+  @Method()
+  async setGrouped(grouped: boolean): Promise<boolean> {
+    this.grouped = grouped;
+    if ((this.grouped = true)) {
+      this.variant = 'grouped';
+    }
+    return this.grouped;
+  }
+
   @Method()
   async validate(): Promise<boolean> {
     this.isInError = !(await this.checkValidity());
@@ -122,7 +134,7 @@ export class DatacomRadio implements FormControl {
     if (!['standard', 'small'].includes(size)) {
       throw Error('Check size must be either standard or small.');
     }
-    if (!['radios', 'buttons', 'bar'].includes(variant)) {
+    if (!['radios', 'buttons'].includes(variant)) {
       console.log('radio variant must be either radio or buttons.');
       this.variant = 'radios';
     }
@@ -139,22 +151,23 @@ export class DatacomRadio implements FormControl {
         image = <img src={this.src} class="dc-radio-image"></img>;
         return;
       }
-      console.log(image);
 
       const classes = {
+        'dc-radio-grouped': this.grouped,
         'dc-radio-disabled': this.disabled,
         'dc-radio-checked': this.checked,
         [`dc-radio-${variant}`]: true,
         [`dc-radio-size-${size}`]: true,
-        [this.type]: true,
+        // [this.type]: true,
       };
 
-      if (this.variant === 'radios') {
+      {
         return (
-          <Fragment>
-            <div class="dc-ta-vertical-layout">
+          <Host>
+            <div class={classes}>
               <div class="dc-radio-wrapper">
                 <input
+                  class="dc-radio-input"
                   ref={el => this.setInputElementRef(el)}
                   form={this.form}
                   autofocus={this.autofocus}
@@ -170,55 +183,19 @@ export class DatacomRadio implements FormControl {
                   required={this.required}
                   value={this.value}
                   id={this.inputId}
-                  class={classes}
                   onChange={this.handleChange}
                   tabIndex={0}
                 />
-                <label tabIndex={-1} htmlfor={this.inputId} class="dc-radio-label">
-                  <span class={`dc-radio-image-${this.imagePosition}`}>
+                <label tabIndex={0} htmlFor={this.inputId} class="dc-radio-label">
+                  <span tabIndex={-1} class={`dc-radio-image-${this.imagePosition}`}>
+                    {image}
                     {this.label}
                     <slot></slot>
                   </span>
                 </label>
               </div>
             </div>
-          </Fragment>
-        );
-      } else {
-        return (
-          <Fragment>
-            <div class="dc-ta-horizontal-layout">
-              <div class="dc-radio-wrapper">
-                <input
-                  ref={el => this.setInputElementRef(el)}
-                  form={this.form}
-                  tabIndex={0}
-                  autofocus={this.autofocus}
-                  formmethod={this.formmethod}
-                  formaction={this.formaction}
-                  formtarget={this.formtarget}
-                  formenctype={this.formenctype}
-                  formnovalidate={this.formnovalidate}
-                  name={this.name}
-                  type={this.type}
-                  checked={this.checked}
-                  disabled={this.disabled}
-                  required={this.required}
-                  value={this.value}
-                  id={this.inputId}
-                  class={classes}
-                  onChange={this.handleChange}
-                />
-                <label tabIndex={0} htmlFor={this.inputId} class="dc-radio-label">
-                  <span class={`dc-radio-image-${this.imagePosition}`}>
-                    {image}
-                    {this.label}
-                  </span>
-                </label>
-                <slot></slot>
-              </div>
-            </div>
-          </Fragment>
+          </Host>
         );
       }
     }
