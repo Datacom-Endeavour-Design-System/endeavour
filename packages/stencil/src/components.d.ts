@@ -377,53 +377,6 @@ export namespace Components {
          */
         "selected": () => Promise<number>;
     }
-    interface DatacomTextarea {
-        /**
-          * Automatically show error state if invalid on form submit
-         */
-        "autoValidate"?: boolean;
-        "autocorrect": boolean;
-        /**
-          * Check validity of the control
-         */
-        "checkValidity": () => Promise<boolean>;
-        "cols": number;
-        "counter"?: number;
-        "disabled"?: boolean;
-        "edit": () => Promise<void>;
-        "form"?: string;
-        "formaction"?: string;
-        "formenctype"?: string;
-        "formmethod"?: string;
-        "formnovalidate"?: boolean;
-        "formtarget"?: string;
-        /**
-          * Optional help text
-         */
-        "help"?: string;
-        "inputAutofocus"?: boolean;
-        "isValid"?: boolean;
-        "label"?: string;
-        "maxlength"?: number;
-        /**
-          * Error message to display in the case of validity checks or explicitly with 'valid' property
-         */
-        "message"?: string;
-        "minlength"?: number;
-        /**
-          * HTML element textarea properties
-         */
-        "name": string;
-        "placeholder"?: string;
-        "readonly"?: boolean;
-        "required"?: boolean;
-        "rows": number;
-        /**
-          * Force validation on the field. If validation fails then show error message.
-         */
-        "validate": () => Promise<boolean>;
-        "value": string;
-    }
 }
 export interface DatacomAccordionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -444,10 +397,6 @@ export interface DatacomOptionCustomEvent<T> extends CustomEvent<T> {
 export interface DatacomRadioCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDatacomRadioElement;
-}
-export interface DatacomTextareaCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLDatacomTextareaElement;
 }
 declare global {
     interface HTMLDatacomAccordionElement extends Components.DatacomAccordion, HTMLStencilElement {
@@ -534,12 +483,6 @@ declare global {
         prototype: HTMLDatacomTabgroupElement;
         new (): HTMLDatacomTabgroupElement;
     };
-    interface HTMLDatacomTextareaElement extends Components.DatacomTextarea, HTMLStencilElement {
-    }
-    var HTMLDatacomTextareaElement: {
-        prototype: HTMLDatacomTextareaElement;
-        new (): HTMLDatacomTextareaElement;
-    };
     interface HTMLElementTagNameMap {
         "datacom-accordion": HTMLDatacomAccordionElement;
         "datacom-accordion-group": HTMLDatacomAccordionGroupElement;
@@ -555,7 +498,6 @@ declare global {
         "datacom-radio": HTMLDatacomRadioElement;
         "datacom-tab": HTMLDatacomTabElement;
         "datacom-tabgroup": HTMLDatacomTabgroupElement;
-        "datacom-textarea": HTMLDatacomTextareaElement;
     }
 }
 declare namespace LocalJSX {
@@ -850,45 +792,6 @@ declare namespace LocalJSX {
     }
     interface DatacomTabgroup {
     }
-    interface DatacomTextarea {
-        /**
-          * Automatically show error state if invalid on form submit
-         */
-        "autoValidate"?: boolean;
-        "autocorrect"?: boolean;
-        "cols"?: number;
-        "counter"?: number;
-        "disabled"?: boolean;
-        "form"?: string;
-        "formaction"?: string;
-        "formenctype"?: string;
-        "formmethod"?: string;
-        "formnovalidate"?: boolean;
-        "formtarget"?: string;
-        /**
-          * Optional help text
-         */
-        "help"?: string;
-        "inputAutofocus"?: boolean;
-        "isValid"?: boolean;
-        "label"?: string;
-        "maxlength"?: number;
-        /**
-          * Error message to display in the case of validity checks or explicitly with 'valid' property
-         */
-        "message"?: string;
-        "minlength"?: number;
-        /**
-          * HTML element textarea properties
-         */
-        "name"?: string;
-        "onChanged"?: (event: DatacomTextareaCustomEvent<string>) => void;
-        "placeholder"?: string;
-        "readonly"?: boolean;
-        "required"?: boolean;
-        "rows"?: number;
-        "value"?: string;
-    }
     interface IntrinsicElements {
         "datacom-accordion": DatacomAccordion;
         "datacom-accordion-group": DatacomAccordionGroup;
@@ -904,7 +807,6 @@ declare namespace LocalJSX {
         "datacom-radio": DatacomRadio;
         "datacom-tab": DatacomTab;
         "datacom-tabgroup": DatacomTabgroup;
-        "datacom-textarea": DatacomTextarea;
     }
 }
 export { LocalJSX as JSX };
@@ -925,7 +827,6 @@ declare module "@stencil/core" {
             "datacom-radio": LocalJSX.DatacomRadio & JSXBase.HTMLAttributes<HTMLDatacomRadioElement>;
             "datacom-tab": LocalJSX.DatacomTab & JSXBase.HTMLAttributes<HTMLDatacomTabElement>;
             "datacom-tabgroup": LocalJSX.DatacomTabgroup & JSXBase.HTMLAttributes<HTMLDatacomTabgroupElement>;
-            "datacom-textarea": LocalJSX.DatacomTextarea & JSXBase.HTMLAttributes<HTMLDatacomTextareaElement>;
         }
     }
 }
