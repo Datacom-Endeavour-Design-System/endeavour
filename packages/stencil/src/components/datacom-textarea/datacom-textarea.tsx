@@ -51,8 +51,6 @@ export class DatacomTextarea implements FormControl {
    */
   private isDirty = false;
 
-  // @Prop({ mutable: true }) value?: string | number | null = '';
-  // @Prop() resize?: 'unset' | 'none' | 'vertical' | 'horizontal';
   /**
    * Error message to display in the case of validity checks
    * or explicitly with 'valid' property
