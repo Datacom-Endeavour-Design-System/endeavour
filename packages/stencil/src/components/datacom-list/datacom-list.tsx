@@ -11,13 +11,11 @@ export type TypeList = 'numbers' | 'lowercase' | 'upercase' | 'roman';
 export class DatacomList {
   @Prop() variant: ListVariant = 'ordered';
   @Prop() type: TypeList = 'numbers';
-
   render() {
     const classes = {
       [`list-${this.variant}`]: true,
       [`list-${this.type}`]: true,
     };
-
     const ListElement = this.variant === 'ordered' ? 'ol' : 'ul';
     return (
       <Host>

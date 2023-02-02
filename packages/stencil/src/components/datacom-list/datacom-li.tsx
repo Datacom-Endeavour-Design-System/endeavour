@@ -1,6 +1,8 @@
 import { Component, Host, h, Element, Prop } from '@stencil/core';
 export type ItemStyle = 'item' | 'heading';
-// adding style for list item inside  paragraph  and  as heading for paragraph
+/**
+ * Heading variant for list inside of paragraph.
+ */
 
 @Component({
   tag: 'datacom-li',
@@ -10,12 +12,10 @@ export type ItemStyle = 'item' | 'heading';
 export class DatacomLi {
   @Element() el: HTMLElement;
   @Prop() variantItem: ItemStyle = 'item';
-
   render() {
     const classes = {
       [`Item-${this.variantItem}`]: true,
     };
-
     return (
       <Host>
         <li class={classes}>
