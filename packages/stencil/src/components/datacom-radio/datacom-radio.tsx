@@ -4,7 +4,7 @@ import { randomString } from '../../utils';
 import { FormControl } from '../form-control';
 
 export type RadioSize = 'standard' | 'small';
-export type RadioVariant = 'radios' | 'buttons' | 'grouped';
+export type RadioVariant = 'radio' | 'button';
 
 export type ImagePosition = 'left' | 'right';
 
@@ -16,7 +16,7 @@ export type ImagePosition = 'left' | 'right';
 export class DatacomRadio implements FormControl {
   @Element() host: HTMLElement;
   @Prop() label: string;
-  @Prop() variant: RadioVariant = 'radios';
+  @Prop() variant: RadioVariant = 'radio';
   @Prop() size: RadioSize = 'standard';
   @Prop({ attribute: 'image-position' }) imagePosition: ImagePosition = 'left';
   @Prop() type = 'radio';
@@ -58,28 +58,21 @@ export class DatacomRadio implements FormControl {
   private inputElement: HTMLInputElement;
 
   handleChange = () => {
-    console.log('handlechange', this.checked);
-
     this.checked = true;
   };
-
-  // * control use for radio button group   */
+  /**
+   * control use for radio button group   */
   @Method()
   async setGrouped(grouped: boolean): Promise<boolean> {
     this.grouped = grouped;
-    if ((this.grouped = true)) {
-      this.variant = 'grouped';
-    }
     return this.grouped;
   }
 
   @Method()
   async validate(): Promise<boolean> {
     this.isInError = !(await this.checkValidity());
-
     return this.isInError;
   }
-
   /**
    * Check if the control is valid
    */
@@ -90,7 +83,6 @@ export class DatacomRadio implements FormControl {
   onFormSubmit = async (event: SubmitEvent) => {
     if (!(await this.checkValidity())) {
       this.isInError = true;
-
       /**
        * Stop the form submit and show errors
        */
@@ -112,7 +104,6 @@ export class DatacomRadio implements FormControl {
       }
     }
   }
-
   /**
    * When removed from the DOM, remove any event listeners
    */
@@ -130,13 +121,13 @@ export class DatacomRadio implements FormControl {
 
     const variant = this.variant;
     const size = this.size;
-    //let imagePosition = this.imagePosition;
+
     if (!['standard', 'small'].includes(size)) {
       throw Error('Check size must be either standard or small.');
     }
-    if (!['radios', 'buttons'].includes(variant)) {
+    if (!['radio', 'button'].includes(variant)) {
       console.log('radio variant must be either radio or buttons.');
-      this.variant = 'radios';
+      this.variant = 'radio';
     }
     if (!['left', 'right'].includes(this.imagePosition)) {
       console.log('radio group image position must be either left or right.');
@@ -158,9 +149,7 @@ export class DatacomRadio implements FormControl {
         'dc-radio-checked': this.checked,
         [`dc-radio-${variant}`]: true,
         [`dc-radio-size-${size}`]: true,
-        // [this.type]: true,
       };
-
       {
         return (
           <Host>
@@ -188,7 +177,7 @@ export class DatacomRadio implements FormControl {
                 />
                 <label tabIndex={0} htmlFor={this.inputId} class="dc-radio-label">
                   <span tabIndex={-1} class={`dc-radio-image-${this.imagePosition}`}>
-                    {image}
+                    {this.variant !== 'radio' && image}
                     {this.label}
                     <slot></slot>
                   </span>

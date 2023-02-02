@@ -56,6 +56,10 @@ export const DatacomRadio = /*@__PURE__*/ createReactComponent<
   JSX.DatacomRadio,
   HTMLDatacomRadioElement
 >('datacom-radio');
+export const DatacomRadioGroup = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomRadioGroup,
+  HTMLDatacomRadioGroupElement
+>('datacom-radio-group');
 export const DatacomTab = /*@__PURE__*/ createReactComponent<
   JSX.DatacomTab,
   HTMLDatacomTabElement
@@ -64,3 +68,7 @@ export const DatacomTabgroup = /*@__PURE__*/ createReactComponent<
   JSX.DatacomTabgroup,
   HTMLDatacomTabgroupElement
 >('datacom-tabgroup');
+export const DatacomToggle = /*@__PURE__*/ createReactComponent<
+  JSX.DatacomToggle,
+  HTMLDatacomToggleElement
+>('datacom-toggle');

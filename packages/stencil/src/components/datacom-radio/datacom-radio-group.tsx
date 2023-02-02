@@ -16,7 +16,6 @@ export class DatacomRadioGroup {
   /**
    * Gets a list of all immediate children of this group element
    *
-
    */
   private getChildren(): HTMLDatacomRadioElement[] {
     if (this.host == undefined) {
