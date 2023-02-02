@@ -67,14 +67,12 @@
   outline-offset: 1px;
 }
 
-.dc-radio-radio .dc-radio-label:focus-visible {
+.dc-radio-radio .dc-radio-input:focus:not(:focus-visible) {
   outline: none;
 }
 
-.dc-radio-buttons .dc-radio-label:focus-visible {
-  outline: 3px solid var(--dc-primary-colour);
-  border: 1px solid var(--dc-greyscale-05);
-  outline-offset: 1px;
+.dc-radio-radio .dc-radio-label:focus-visible {
+  outline: none;
 }
 
 .dc-radio-radio .dc-radio-input:checked {
@@ -149,7 +147,13 @@
   padding-top: 2px;
 }
 
-/* Focus style */
+/* Focus style for button */
+.dc-radio-button .dc-radio-label:focus-visible {
+  outline: 3px solid var(--dc-primary-colour);
+  border: 1px solid var(--dc-greyscale-05);
+  outline-offset: 1px;
+}
+
 .dc-radio-button .dc-radio-input:focus:not(:focus-visible) + label {
   outline: none;
 }
@@ -222,6 +226,13 @@
 
 .dc-radio-image-right .dc-radio-image {
   padding-left: 12px;
+}
+
+/* Focus style for grouped */
+.dc-radio-grouped.dc-radio-button .dc-radio-label:focus-visible {
+  outline: 3px solid var(--dc-primary-colour);
+  border: 1px solid var(--dc-greyscale-05);
+  outline-offset: -3px;
 }
 
 :host(:first-child) .dc-radio-grouped .dc-radio-input + label {
