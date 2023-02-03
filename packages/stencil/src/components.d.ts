@@ -102,6 +102,10 @@ export namespace Components {
          */
         "grouped": boolean;
         /**
+          * Show control in indeterminate state (dash)
+         */
+        "indeterminate"?: boolean;
+        /**
           * Index of the checkbox in the group
          */
         "index": number;
@@ -119,10 +123,6 @@ export namespace Components {
          */
         "readonly"?: boolean;
         "required": boolean;
-        /**
-          * Show control in unknown state (dash)
-         */
-        "unknown"?: boolean;
         /**
           * Force validation on the form control to display any error messages
           * @returns boolean
@@ -578,6 +578,10 @@ declare namespace LocalJSX {
          */
         "grouped"?: boolean;
         /**
+          * Show control in indeterminate state (dash)
+         */
+        "indeterminate"?: boolean;
+        /**
           * Index of the checkbox in the group
          */
         "index"?: number;
@@ -599,10 +603,6 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         "required"?: boolean;
-        /**
-          * Show control in unknown state (dash)
-         */
-        "unknown"?: boolean;
         "value"?: string;
         /**
           * Checkbox is either standard size (default) or small

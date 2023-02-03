@@ -51,6 +51,7 @@
   caret-color: var(--dc-primary-colour);
   text-overflow: ellipsis;
   width: 100%;
+  background-color: white;
 }
 
 .dc-text-help {
@@ -108,7 +109,7 @@
 
 /* View mode */
 .dc-text-view .dc-text-label-wrap {
-  border: 2px solid var(--dc-greyscale-05);
+  border: 1px solid var(--dc-greyscale-05);
   border-radius: 8px;
   line-height: 24px;
   padding: 14px 16px;
@@ -128,7 +129,7 @@
   position: absolute;
   padding: 0 2px;
   margin: 0;
-  background-color: white;
+  background-color: var(--dc-background-colour);
   animation: dc-text-label-animation 0.2s linear 0s forwards 1;
 }
 
@@ -234,7 +235,11 @@
 
 .dc-text-disabled .dc-text-label,
 .dc-text-disabled .dc-text-input {
-  color: var(--dc-greyscale-04);
+  /*
+    Important is required as animation leaves the text color as primary which
+    occurs after disable.
+  */
+  color: var(--dc-greyscale-04) !important;
 }
 
 .dc-text-disabled .dc-text-input:hover,
