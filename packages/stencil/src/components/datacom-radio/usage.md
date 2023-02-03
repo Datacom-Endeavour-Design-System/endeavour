@@ -1,4 +1,4 @@
-# Datacom Radio Useage
+# Datacom Radio Usage
 
 ```html
 <form action="submit">
