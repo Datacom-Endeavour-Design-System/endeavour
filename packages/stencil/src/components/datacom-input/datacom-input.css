@@ -129,7 +129,7 @@
   position: absolute;
   padding: 0 2px;
   margin: 0;
-  background-color: white;
+  background-color: var(--dc-background-colour);
   animation: dc-text-label-animation 0.2s linear 0s forwards 1;
 }
 
