@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Prop } from '@stencil/core';
+import { Component, Host, h, Element } from '@stencil/core';
 import { HTMLDatacomRadioElement } from './datacom-radio';
 
 @Component({
@@ -8,11 +8,9 @@ import { HTMLDatacomRadioElement } from './datacom-radio';
 })
 export class DatacomRadioGroup {
   @Element() host: HTMLElement;
-  @Prop() child: boolean;
-  /*  for variant display layout  when wrap with group radio component  */
-  @Prop() horizontal = true;
 
   private children: HTMLDatacomRadioElement[] = [];
+
   /**
    * Gets a list of all immediate children of this group element
    *
@@ -31,14 +29,10 @@ export class DatacomRadioGroup {
     return this.children;
   }
 
-  componentWillLoad() {
+  async componentDidLoad() {
     const children = this.getChildren();
-    if (children.length <= 1) {
-      return;
-    }
-    for (let i = 0; i < children.length; i++) {
-      children[i].setGrouped(true);
-    }
+
+    await Promise.all(children.map(c => c.setGrouped(true)));
   }
 
   render() {

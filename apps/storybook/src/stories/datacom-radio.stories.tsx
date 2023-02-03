@@ -5,6 +5,7 @@ import {
   DatacomRadioGroup,
   DatacomButton,
 } from '@datacom/endeavour-react';
+
 export default {
   title: 'Radio',
   component: DatacomRadio,
@@ -23,7 +24,6 @@ export default {
       options: ['radio', 'button'],
       type: { name: 'string' },
     },
-
     size: {
       name: 'Size',
       description: 'Radio size within variant. Defaults to standard if not set',
@@ -110,43 +110,63 @@ Radio.args = {
 export const Grouped = (args) => {
   return (
     <Fragment>
-      <DatacomRadio {...args} name="choose" value="choice1">
+      <DatacomRadio
+        {...args}
+        label="Radio item 1"
+        name="choose"
+        value="choice1">
         {' '}
       </DatacomRadio>
-      <DatacomRadio {...args} name="choose" value="choice2">
+      <DatacomRadio
+        {...args}
+        label="Radio item 2"
+        name="choose"
+        value="choice2">
         {' '}
       </DatacomRadio>
-      <DatacomRadio {...args} name="choose" value="choice3">
+      <DatacomRadio
+        {...args}
+        label="Radio item 3"
+        name="choose"
+        value="choice3">
         {' '}
       </DatacomRadio>
-      <DatacomRadio {...args} name="choose" value="choice4">
+      <DatacomRadio
+        {...args}
+        label="Radio item 4"
+        name="choose"
+        value="choice4">
         {' '}
       </DatacomRadio>
     </Fragment>
   );
 };
+
 export const RadioButtonGroup = (args) => {
   return (
     <DatacomRadioGroup>
       <DatacomRadio
         {...args}
-        size="standard"
         variant="button"
+        label="Radio item 1"
         name="choose"
         value="choice1"></DatacomRadio>
       <DatacomRadio
         {...args}
         name="choose"
+        label="Radio item 2"
         value="choice2"
         variant="button"></DatacomRadio>
       <DatacomRadio
         {...args}
         name="choose"
+        label="Radio item 3"
         value="choice3"
         variant="button"></DatacomRadio>
       <DatacomRadio
         {...args}
         name="choose"
+        label="Radio item 4"
         value="choice4"
         variant="button"></DatacomRadio>
     </DatacomRadioGroup>
