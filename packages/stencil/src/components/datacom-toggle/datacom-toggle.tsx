@@ -10,9 +10,14 @@ export type LabelPositionType = 'left' | 'right';
 })
 export class DatacomToggle {
   /**
+   * Name attribute of the toggle element
+   */
+  @Prop() name: string;
+
+  /**
    * Label of the toggle element
    */
-  @Prop() label;
+  @Prop() label: string;
 
   /**
    * Sets whether the label is rendered on the left or right (default) of the toggle element
@@ -78,7 +83,7 @@ export class DatacomToggle {
         <div class="dc-toggle-wrapper">
           <label class={classes}>
             {this.labelPosition == 'left' && this.renderLabelElement()}
-            <input class="dc-toggle-input" type="checkbox" disabled={this.disabled} checked={this.toggled} onChange={this.onToggleChange} />
+            <input name={this.name} class="dc-toggle-input" type="checkbox" disabled={this.disabled} checked={this.toggled} onChange={this.onToggleChange} />
             <div class="dc-toggle-switch" />
             {this.labelPosition == 'right' && this.renderLabelElement()}
           </label>
