@@ -38,7 +38,7 @@ export class DatacomCheckboxGroup {
    * Listen for changes on the children checkbox components
    * - If the parent (first item) changes then set the children to the same state
    * - If a child changes, then set the parent state when all the children have the same state
-   * - If not all the children do not have the same state then show the parent as "unknown"
+   * - If not all the children do not have the same state then show the parent as "indeterminate"
    *
    * @param event
    */
@@ -67,12 +67,12 @@ export class DatacomCheckboxGroup {
         .reduce((c, p) => p + c, 0);
 
       if (combined > 0 && combined != children.length - 1) {
-        /* Show parent in unknown state */
-        parent.unknown = true;
+        /* Show parent in indeterminate state */
+        parent.indeterminate = true;
         parent.checked = false;
       } else {
         /* Show parent child combined state */
-        parent.unknown = false;
+        parent.indeterminate = false;
         parent.checked = combined !== 0;
       }
     }

@@ -5,6 +5,7 @@ import {
   DatacomCheckboxGroup,
   DatacomButton,
 } from '@datacom/endeavour-react';
+import styled from '@emotion/styled';
 
 export default {
   title: 'Checkbox',
@@ -30,9 +31,9 @@ export default {
       description: 'Checked Checkbox',
       type: { name: 'boolean' },
     },
-    unknown: {
-      name: 'Unknown',
-      description: 'Show the field in an unknown state',
+    indeterminate: {
+      name: 'Indeterminate',
+      description: 'Show the field in an indeterminate state',
       type: { name: 'boolean' },
     },
     disabled: {
@@ -95,6 +96,10 @@ export const FormValidation = () => {
     }
   };
 
+  const ButtonPanel = styled.div`
+    margin-top: 24px;
+  `;
+
   return (
     <form method="post" ref={form} onSubmit={handleSubmit}>
       <div>
@@ -105,9 +110,9 @@ export const FormValidation = () => {
         {submitted && <p>Form would have been submitted but was prevented</p>}
       </div>
 
-      <div style={{ 'margin-top': '24px' }}>
+      <ButtonPanel>
         <DatacomButton type="submit">Submit</DatacomButton>
-      </div>
+      </ButtonPanel>
     </form>
   );
 };

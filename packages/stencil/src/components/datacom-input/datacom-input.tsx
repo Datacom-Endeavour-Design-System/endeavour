@@ -276,6 +276,8 @@ export class DatacomInput implements FormControl {
      */
     const error = (this.isInError && this.isDirty) || this.isValid == false;
 
+    const showIndicator = edit && !this.isInError;
+
     const classes = {
       'dc-text-root': true,
       'dc-text-disabled': this.disabled,
@@ -327,8 +329,8 @@ export class DatacomInput implements FormControl {
               disabled={this.disabled}
               value={this.value}
             ></input>
-            {this.indicator == 'working' && edit && <Spinner class="dc-text-spinner dc-text-indicator" />}
-            {this.indicator == 'done' && edit && <Tick class="dc-text-tick dc-text-indicator" />}
+            {this.indicator == 'working' && showIndicator && <Spinner class="dc-text-spinner dc-text-indicator" />}
+            {this.indicator == 'done' && showIndicator && <Tick class="dc-text-tick dc-text-indicator" />}
             {error && <Error class="dc-text-error-icon" />}
             <p tabIndex={-1} class="dc-text-error-msg">
               {this.message}
