@@ -46,7 +46,7 @@ export default {
       type: { name: 'string', required: false },
     },
     valid: {
-      name: 'Valid',
+      name: 'Is Valid',
       description: 'Is the input valid (show error otherwise)',
       type: { name: 'boolean' },
     },
@@ -99,56 +99,8 @@ const Template: ComponentStoryFn<typeof DatacomInput> = (args) => {
   );
 };
 
-export const Simple = Template.bind({});
-Simple.args = {};
-
-export const DisabledNoContent = Template.bind({});
-DisabledNoContent.args = {
-  label: 'First name',
-  disabled: true,
-};
-
-export const DisabledWithContent = Template.bind({});
-DisabledWithContent.args = {
-  label: 'First name',
-  value: 'James',
-  disabled: true,
-};
-
-export const Overflow = Template.bind({});
-Overflow.args = {
-  label: 'First name',
-  title: 'Enter more than 15 characters and tab out to see scroll to start',
-  value: 'This is a really big name and does not fit into view',
-  size: 15,
-  maxlength: 50,
-};
-
-export const WithValue = Template.bind({});
-WithValue.args = {
-  title: 'This input already has a value',
-  label: 'First name',
-  value: 'James',
-};
-
-export const AlreadyInError = Template.bind({});
-AlreadyInError.args = {
-  message: 'Please enter your first name',
-  label: 'First name',
-  valid: false,
-};
-
-export const PatternWithHelp = Template.bind({});
-PatternWithHelp.args = {
-  label: 'Phone number',
-  pattern: '^d*$',
-  size: 15,
-  maxlength: 12,
-  placeholder: 'Mobile or Home number',
-  title: 'A phone number may only contain numbers (no spaces)',
-  help: 'Enter a phone number with numbers only',
-  message: 'Please enter a valid phone number',
-};
+export const TextInput = Template.bind({});
+TextInput.args = {};
 
 export const WithIndicators = () => {
   const [indicator, setIndicator] = useState('none');

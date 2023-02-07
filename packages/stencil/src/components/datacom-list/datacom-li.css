@@ -1,7 +1,9 @@
 :host {
   display: block;
+
   --li-padding: 8px;
 }
+
 :host * {
   font-family: var(--dc-font-family);
   color: var(--dc-primary-text-color);

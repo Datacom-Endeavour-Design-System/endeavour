@@ -1,5 +1,8 @@
 :host {
   display: block;
+}
+
+:host * {
   font-family: var(--dc-font-family);
   font-weight: 400;
 }
@@ -68,6 +71,7 @@
   background-size: 14px;
   background-position: center;
   background-repeat: no-repeat;
+  border-color: var(--dc-primary-colour);
 }
 
 .dc-checkbox-size-small .dc-checkbox-input:checked {
@@ -116,7 +120,7 @@
 
 .dc-checkbox-unknown.dc-checkbox-size-standard .dc-checkbox-input::after {
   display: inline-block;
-  content: '';
+  content: "";
   width: 14px;
   height: 2px;
   margin: 0 0 1px 4px;
@@ -125,7 +129,7 @@
 
 .dc-checkbox-unknown.dc-checkbox-size-small .dc-checkbox-input::after {
   display: inline-block;
-  content: '';
+  content: "";
   width: 12px;
   height: 2px;
   margin: 0 0 3px 3px;

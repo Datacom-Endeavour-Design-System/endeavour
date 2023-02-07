@@ -1,3 +1,5 @@
 describe('datacom-dropdown', () => {
-  it('renders', async () => {});
+  it('renders', async () => {
+    return true;
+  });
 });
