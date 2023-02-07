@@ -2,8 +2,9 @@
   display: inline-block;
 
   --tag-border-width: 1px;
-  --tag-height: 26px;
   --tag-color: var(--dc-secondary-text-color);
+  --tag-height: 26px;
+  --tag-vertical-padding: 4px;
 }
 
 /* Default styles */
@@ -17,8 +18,14 @@
   flex-direction: row;
   font-family: var(--dc-font-family);
   font-size: 14px;
-  height: calc(var(--tag-height) - 2 * var(--tag-border-width));
-  padding: 4px 8px;
+  height:
+    calc(
+      var(--tag-height)
+      - 2 * var(--tag-border-width)
+      - 2 * var(--tag-vertical-padding)
+    );
+  letter-spacing: -0.2px;
+  padding: var(--tag-vertical-padding) 8px;
 }
 
 .dc-content-tag:hover {
