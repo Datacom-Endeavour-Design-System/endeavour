@@ -9,7 +9,6 @@ import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-b
 import { CheckboxSizeType } from "./components/datacom-checkbox/datacom-checkbox";
 import { DatacomDropDownVariantType } from "./components/datacom-dropdown/datacom-dropdown";
 import { DatacomInputType, IndicatorType } from "./components/datacom-input/datacom-input";
-import { ItemStyle } from "./components/datacom-list/datacom-li";
 import { ListVariant, TypeList } from "./components/datacom-list/datacom-list";
 export namespace Components {
     interface DatacomButton {
@@ -234,9 +233,15 @@ export namespace Components {
         "value"?: string;
     }
     interface DatacomLi {
-        "variantItem": ItemStyle;
+        /**
+          * Heading  for list inside of paragraph.
+         */
+        "heading": false;
     }
     interface DatacomList {
+        /**
+          * type used for ordered list style.
+         */
         "type": TypeList;
         "variant": ListVariant;
     }
@@ -607,9 +612,15 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface DatacomLi {
-        "variantItem"?: ItemStyle;
+        /**
+          * Heading  for list inside of paragraph.
+         */
+        "heading"?: false;
     }
     interface DatacomList {
+        /**
+          * type used for ordered list style.
+         */
         "type"?: TypeList;
         "variant"?: ListVariant;
     }
