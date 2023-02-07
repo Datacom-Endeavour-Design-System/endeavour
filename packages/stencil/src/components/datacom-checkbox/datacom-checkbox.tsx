@@ -36,9 +36,9 @@ export class DatacomCheckbox implements FormControl {
   @Prop() variant: CheckboxSizeType = 'standard';
 
   /**
-   * Show control in unknown state (dash)
+   * Show control in indeterminate state (dash)
    */
-  @Prop({ mutable: true }) unknown?: boolean = false;
+  @Prop({ mutable: true }) indeterminate?: boolean = false;
 
   /**
    * Checkbox label (right of tickbox)
@@ -100,7 +100,7 @@ export class DatacomCheckbox implements FormControl {
    */
   onChange = () => {
     this.checked = !this.checked;
-    this.unknown = false;
+    this.indeterminate = false;
     this.isInError = false;
     this.changed.emit(this.index);
   };
@@ -184,10 +184,12 @@ export class DatacomCheckbox implements FormControl {
       'dc-checkbox-grouped': this.grouped,
       'dc-checkbox-child': this.child,
       'dc-checkbox-error': this.isInError,
-      'dc-checkbox-unknown': this.unknown,
+      'dc-checkbox-indeterminate': this.indeterminate,
       'dc-checkbox-disabled': this.disabled,
       [`dc-checkbox-size-${this.variant}`]: true,
     };
+
+    const checked = this.checked && !this.indeterminate;
 
     return (
       <Host>
@@ -200,7 +202,7 @@ export class DatacomCheckbox implements FormControl {
               autofocus={this.autofocus}
               name={this.name}
               type="checkbox"
-              checked={this.checked}
+              checked={checked}
               onChange={this.onChange}
               disabled={this.disabled}
               required={this.required}

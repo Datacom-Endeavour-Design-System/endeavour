@@ -2,6 +2,10 @@
   display: block;
 }
 
+:host * {
+  font-family: var(--dc-font-family);
+}
+
 .dc-ddl-option {
   margin: 0;
   border-top: 1px solid var(--dc-greyscale-05);
@@ -26,7 +30,6 @@
 }
 
 .dc-ddl-option-label {
-  font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 16px;
   white-space: nowrap;
