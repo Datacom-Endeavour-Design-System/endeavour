@@ -1,7 +1,5 @@
 :host {
   display: block;
-
-  --li-padding: 8px;
 }
 
 :host * {
@@ -9,7 +7,7 @@
   color: var(--dc-primary-text-color);
   font-style: normal;
   font-size: 16px;
-  padding-left: var(--li-padding);
+  padding-left: 8px;
   line-height: 24px;
 }
 

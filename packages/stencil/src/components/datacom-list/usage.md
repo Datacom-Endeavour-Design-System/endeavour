@@ -1,8 +1,8 @@
 # list Usage
 
 -List composed of two components : 'datacom-list' and 'datacom-li'.
--List have two main variant ordered and unordered.
--Ordered list type is numbered by default but it can be changed by using type (lowercase, roman,upercase ).
+-List has two main variants ordered and unordered.
+-Ordered list type is numbered by default but it can be changed by using type (lowercase, roman,uppercase ).
 -'datacom-list'- wrapping element around 'datacom-li'.
 -Example
 

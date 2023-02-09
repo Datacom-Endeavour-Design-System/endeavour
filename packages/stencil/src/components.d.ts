@@ -9,7 +9,6 @@ import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-b
 import { CheckboxSizeType } from "./components/datacom-checkbox/datacom-checkbox";
 import { DatacomDropDownVariantType } from "./components/datacom-dropdown/datacom-dropdown";
 import { DatacomInputType, IndicatorType } from "./components/datacom-input/datacom-input";
-import { ItemStyle } from "./components/datacom-list/datacom-li";
 import { ListVariant, TypeList } from "./components/datacom-list/datacom-list";
 import { ImagePosition as ImagePosition1, RadioSize, RadioVariant } from "./components/datacom-radio/datacom-radio";
 import { LabelPositionType, ToggleSizeType } from "./components/datacom-toggle/datacom-toggle";
@@ -254,9 +253,15 @@ export namespace Components {
         "value"?: string;
     }
     interface DatacomLi {
-        "variantItem": ItemStyle;
+        /**
+          * Heading  for list inside of paragraph.
+         */
+        "heading": false;
     }
     interface DatacomList {
+        /**
+          * type used for ordered list style.
+         */
         "type": TypeList;
         "variant": ListVariant;
     }
@@ -391,11 +396,15 @@ export namespace Components {
         /**
           * Label of the toggle element
          */
-        "label": any;
+        "label": string;
         /**
           * Sets whether the label is rendered on the left or right (default) of the toggle element
          */
         "labelPosition": LabelPositionType;
+        /**
+          * Name attribute of the toggle element
+         */
+        "name": string;
         /**
           * True if the toggle element is initially toggled on.
          */
@@ -751,9 +760,15 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface DatacomLi {
-        "variantItem"?: ItemStyle;
+        /**
+          * Heading  for list inside of paragraph.
+         */
+        "heading"?: false;
     }
     interface DatacomList {
+        /**
+          * type used for ordered list style.
+         */
         "type"?: TypeList;
         "variant"?: ListVariant;
     }
@@ -848,11 +863,15 @@ declare namespace LocalJSX {
         /**
           * Label of the toggle element
          */
-        "label"?: any;
+        "label"?: string;
         /**
           * Sets whether the label is rendered on the left or right (default) of the toggle element
          */
         "labelPosition"?: LabelPositionType;
+        /**
+          * Name attribute of the toggle element
+         */
+        "name"?: string;
         /**
           * Event emitter to let external components know when the toggle element state has changed
          */

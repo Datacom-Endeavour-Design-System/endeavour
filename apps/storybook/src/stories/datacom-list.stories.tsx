@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStoryFn } from '@storybook/react';
 import { DatacomLi, DatacomList } from '@datacom/endeavour-react';
+import styled from '@emotion/styled';
 export default {
   title: 'List',
   component: DatacomList,
@@ -17,11 +18,11 @@ export default {
     type: {
       name: 'Type',
       description: 'List type  is default  numbers if not set',
-      options: ['numbers', 'lowercase', 'upercase', 'roman'],
+      options: ['numbers', 'lowercase', 'uppercase', 'roman'],
     },
     heading: {
       name: 'Heading',
-      description: 'For heading style of list inside paragrap',
+      description: 'For heading style of list inside paragraph',
       type: { name: 'boolean' },
     },
   },
@@ -30,6 +31,16 @@ export default {
     heading: false,
   },
 };
+const P = styled.p`
+  font-family: Montserrat;
+  font-size: 16px;
+  weight: 400;
+  color: #0a1839;
+  padding-bottom: 12px;
+  padding-left: 6px;
+  margin: 0;
+`;
+
 const Template: ComponentStoryFn<typeof DatacomList> = (args) => (
   <DatacomList {...args}>
     <DatacomLi> List content item 1</DatacomLi>
@@ -41,6 +52,7 @@ export const OrderedList = Template.bind({});
 OrderedList.args = {
   variant: 'ordered',
 };
+
 export const UnorderedList = Template.bind({});
 UnorderedList.args = {
   variant: 'unordered',
@@ -64,6 +76,7 @@ export const OrderedListWithNestedItems = () => {
     </div>
   );
 };
+
 export const UnorderedListWithNestedItems = () => {
   return (
     <div>
@@ -82,6 +95,7 @@ export const UnorderedListWithNestedItems = () => {
     </div>
   );
 };
+
 export const OrderedListWithNestedUnorderedItems = () => {
   return (
     <div>
@@ -100,6 +114,7 @@ export const OrderedListWithNestedUnorderedItems = () => {
     </div>
   );
 };
+
 export const UnorderedListWithNestedOrderedItems = () => {
   return (
     <div>
@@ -121,90 +136,40 @@ export const UnorderedListWithNestedOrderedItems = () => {
 
 export const StandaloneOrderedList = (args) => {
   return (
-    <div style={{ marginTop: '24px' }}>
+    <div>
       <DatacomList variant="ordered" {...args}>
         <DatacomLi {...args} heading={true}>
           List content item
         </DatacomLi>
-        <p
-          style={{
-            fontFamily: 'Montserrat',
-            marginLeft: '8px',
-            marginTop: '0px',
-            marginBottom: '12px',
-          }}>
-          Lorem ipsum dolor sit amet
-        </p>
+        <P>Lorem ipsum dolor sit amet</P>
         <DatacomLi {...args} heading={true}>
           List content item
         </DatacomLi>
-        <p
-          style={{
-            fontFamily: 'Montserrat',
-
-            marginLeft: '8px',
-            marginTop: '0px',
-            marginBottom: '12px',
-          }}>
-          Lorem ipsum dolor sit amet
-        </p>
+        <P>Lorem ipsum dolor sit amet</P>
         <DatacomLi {...args} heading={true}>
           List content item
         </DatacomLi>
-        <p
-          style={{
-            fontFamily: 'Montserrat',
-            marginLeft: '8px',
-            marginTop: '0px',
-            marginBottom: '12px',
-          }}>
-          Lorem ipsum dolor sit amet
-        </p>
+        <P>Lorem ipsum dolor sit amet</P>
       </DatacomList>
     </div>
   );
 };
 export const StandaloneUnorderedList = (args) => {
   return (
-    <div style={{ marginTop: '24px' }}>
+    <div>
       <DatacomList {...args} variant="Unordered">
         <DatacomLi {...args} heading={true}>
           List content item
         </DatacomLi>
-        <p
-          style={{
-            fontFamily: 'Montserrat',
-
-            marginLeft: '8px',
-            marginTop: '0px',
-            marginBottom: '12px',
-          }}>
-          Lorem ipsum dolor sit amet
-        </p>
+        <P>Lorem ipsum dolor sit amet</P>
         <DatacomLi {...args} heading={true}>
           List content item
         </DatacomLi>
-        <p
-          style={{
-            fontFamily: 'Montserrat',
-            marginLeft: '8px',
-            marginTop: '0px',
-            marginBottom: '12px',
-          }}>
-          Lorem ipsum dolor sit amet
-        </p>
+        <P>Lorem ipsum dolor sit amet</P>
         <DatacomLi {...args} heading={true}>
           List content item
         </DatacomLi>
-        <p
-          style={{
-            fontFamily: 'Montserrat',
-            marginLeft: '8px',
-            marginTop: '0px',
-            marginBottom: '12px',
-          }}>
-          Lorem ipsum dolor sit amet
-        </p>
+        <P>Lorem ipsum dolor sit amet</P>
       </DatacomList>
     </div>
   );
