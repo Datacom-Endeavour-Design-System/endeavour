@@ -10,4 +10,7 @@ module.exports = {
     options: {},
   },
   staticDirs: ['../static'],
+  docs: {
+    autodocs: true,
+  },
 };

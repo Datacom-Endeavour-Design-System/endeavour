@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Methods
 
 ### `disableTab(index: number) => Promise<void>`
@@ -44,6 +45,7 @@ Type: `Promise<number>`
 
 number
 
----
 
-(c) Copyright Datacom New Zealand Limited 2022
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

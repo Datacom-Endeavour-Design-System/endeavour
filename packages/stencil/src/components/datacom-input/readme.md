@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Overview
 
 Datacom Input field
@@ -40,11 +41,13 @@ The control is scoped rather than shadow so the input field can participate in a
 | `type`           | `type`           |                                                                                                   | `"email" \| "month" \| "number" \| "password" \| "tel" \| "text" \| "time" \| "url" \| "week"` | `'text'`    |
 | `value`          | `value`          |                                                                                                   | `string`                                                                                       | `undefined` |
 
+
 ## Events
 
 | Event     | Description                                                                                                                                | Type                  |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------- |
 | `changed` | Emit changed event when input changes. This relays up the 'input' event, but with the control's current value rather than the input value. | `CustomEvent<string>` |
+
 
 ## Methods
 
@@ -56,6 +59,8 @@ Check if the control is valid
 
 Type: `Promise<boolean>`
 
+
+
 ### `edit() => Promise<void>`
 
 Switch the control to edit mode if it is not already editing.
@@ -63,6 +68,8 @@ Switch the control to edit mode if it is not already editing.
 #### Returns
 
 Type: `Promise<void>`
+
+
 
 ### `validate() => Promise<boolean>`
 
@@ -74,6 +81,7 @@ Type: `Promise<boolean>`
 
 boolean
 
----
 
-(c) Copyright Datacom New Zealand Limited 2022
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

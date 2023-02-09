@@ -21,7 +21,7 @@ const P = styled.p`
   color: #0a1839;
 `;
 
-export const Tabs = () => {
+export const Tabs: StoryObj = () => {
   return (
     <>
       <DatacomTabgroup>

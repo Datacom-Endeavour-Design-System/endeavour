@@ -2,23 +2,12 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Overview
 
 Datacom styled button which extends HTML button.
 
 The control is scoped rather than shadow so the input field can participate in a form submit.
-
-## Overview
-
-Datacom styled button which extends HTML button. Custom attributes:
-
-text = button label
-variant = primary | secondar | ghost
-size = large | small
-image-position = left | right
-src = image url
-icon = svg icon name
-loading = true | false to show spinning icon
 
 ## Properties
 
@@ -42,6 +31,7 @@ loading = true | false to show spinning icon
 | `value`         | `value`          |                                                                 | `string`                              | `undefined` |
 | `variant`       | `variant`        | Button variant: - primary - seconday - ghost                    | `"ghost" \| "primary" \| "secondary"` | `'primary'` |
 
----
 
-(c) Copyright Datacom New Zealand Limited 2022
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

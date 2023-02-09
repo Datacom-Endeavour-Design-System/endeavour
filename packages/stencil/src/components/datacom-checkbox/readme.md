@@ -1,7 +1,10 @@
 # datacom-checkbox
 
+Blarg blargh blag
+
 <!-- Auto Generated Below -->
 
----
 
-(c) Copyright Datacom New Zealand Limited 2022
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

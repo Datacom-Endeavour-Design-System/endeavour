@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-11-02T05:12:26",
+  "timestamp": "2023-02-09T00:30:54",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.1",
@@ -7,11 +7,177 @@
   },
   "components": [
     {
+      "filePath": "./src/components/datacom-accordion/datacom-accordion.tsx",
+      "encapsulation": "shadow",
+      "tag": "datacom-accordion",
+      "readme": "# datacom-accordion-group\n\nBLarg foo bah humbugsum.\n",
+      "docs": "Accordion element represents single collapsable section in an accordion",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "expanded",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "expanded",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "index",
+          "type": "number",
+          "mutable": false,
+          "attr": "index",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "isExpanded",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": ""
+          },
+          "signature": "isExpanded() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Function returns whether or not this accordion is currently expanded.",
+          "docsTags": []
+        },
+        {
+          "name": "setExpanded",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "setExpanded(expanded: boolean) => Promise<void>",
+          "parameters": [],
+          "docs": "Function sets the expanded state of this individual accordion item.",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "expanded"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "itemClicked",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/datacom-accordion/datacom-accordion-group.tsx",
+      "encapsulation": "shadow",
+      "tag": "datacom-accordion-group",
+      "readme": "# datacom-accordion-group\n\nBLarg foo bah humbugsum.\n",
+      "docs": "AccordionGroup element represents the wrapping element around a set of\nAccordion element(s).",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "allowMultiExpand",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "allow-multi-expand",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [
+        {
+          "event": "itemClicked",
+          "capture": true,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
       "filePath": "./src/components/datacom-button/datacom-button.tsx",
       "encapsulation": "scoped",
       "tag": "datacom-button",
       "readme": "# datacom-button\r\n\r",
-      "docs": "Datacom styled button which extends HTML button. Custom attributes:\r\n\r\ntext = button label\r\nvariant = primary | secondar | ghost\r\nsize = large | small\r\nimage-position = left | right\r\nsrc = image url\r\nicon = svg icon name\r\nloading = true | false to show spinning icon\r\n\r\nThis button cannot exist within the shadow root as it sits outside\r\nthe DOM flow with regards to form submit.",
+      "docs": "Datacom styled button which extends HTML button.\r\n\r\nThe control is scoped rather than shadow so the input field can participate in a form submit.",
       "docsTags": [
         {
           "name": "see",
@@ -42,7 +208,7 @@
           "mutable": false,
           "attr": "disabled",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "HTML button element properties",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -139,7 +305,7 @@
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Name of built-in icon named using dash case. E.g. \"back-to-top\"",
           "docsTags": [],
           "values": [
             {
@@ -155,7 +321,7 @@
           "mutable": false,
           "attr": "image-position",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Image position:\r\n- left\r\n- right",
           "docsTags": [],
           "default": "'left'",
           "values": [
@@ -177,7 +343,7 @@
           "mutable": false,
           "attr": "loading",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "If true, show loading icon",
           "docsTags": [],
           "values": [
             {
@@ -209,7 +375,7 @@
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Button size:\r\n- large\r\n- small",
           "docsTags": [],
           "default": "'large'",
           "values": [
@@ -231,7 +397,7 @@
           "mutable": false,
           "attr": "src",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Image source as either relative or obsolute URI",
           "docsTags": [],
           "values": [
             {
@@ -247,14 +413,14 @@
           "mutable": false,
           "attr": "text",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Button text content. If not present use component children",
           "docsTags": [],
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -296,7 +462,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Button variant:\r\n- primary\r\n- seconday\r\n- ghost",
           "docsTags": [],
           "default": "'primary'",
           "values": [
@@ -329,17 +495,66 @@
     },
     {
       "filePath": "./src/components/datacom-checkbox/datacom-checkbox.tsx",
-      "encapsulation": "shadow",
+      "encapsulation": "scoped",
       "tag": "datacom-checkbox",
-      "readme": "# datacom-checkbox\r\n\r\n\r\n\r",
-      "docs": "",
+      "readme": "# datacom-checkbox\r\n\r\nBlarg blargh blag\r\n\r",
+      "docs": "Blarg blargh blag",
       "docsTags": [],
       "usage": {},
       "props": [
         {
-          "name": "checked",
+          "name": "autoValidate",
           "type": "boolean",
           "mutable": false,
+          "attr": "autovalidate",
+          "reflectToAttr": false,
+          "docs": "Auto-validate and display error message on form submit",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "autocomplete",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autocomplete",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "autofocus",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autofocus",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "checked",
+          "type": "boolean",
+          "mutable": true,
           "attr": "checked",
           "reflectToAttr": false,
           "docs": "",
@@ -348,6 +563,1869 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "child",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "child",
+          "reflectToAttr": false,
+          "docs": "True if the checkbox is a child and should be indented",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "mutable": false,
+          "attr": "form",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "formaction",
+          "type": "string",
+          "mutable": false,
+          "attr": "formaction",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "formenctype",
+          "type": "string",
+          "mutable": false,
+          "attr": "formenctype",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "formmethod",
+          "type": "string",
+          "mutable": false,
+          "attr": "formmethod",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "formnovalidate",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "formnovalidate",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "formtarget",
+          "type": "string",
+          "mutable": false,
+          "attr": "formtarget",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "grouped",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "grouped",
+          "reflectToAttr": false,
+          "docs": "True if the checkbox is part of a group",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "index",
+          "type": "number",
+          "mutable": false,
+          "attr": "index",
+          "reflectToAttr": false,
+          "docs": "Index of the checkbox in the group",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Checkbox label (right of tickbox)",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "mutable": false,
+          "attr": "message",
+          "reflectToAttr": false,
+          "docs": "Custom error message if control is invalid",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "Standard form props",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "unknown",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "unknown",
+          "reflectToAttr": false,
+          "docs": "Show control in unknown state (dash)",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"small\" | \"standard\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Checkbox is either standard size (default) or small",
+          "docsTags": [],
+          "default": "'standard'",
+          "values": [
+            {
+              "value": "small",
+              "type": "string"
+            },
+            {
+              "value": "standard",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "checkValidity",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": ""
+          },
+          "signature": "checkValidity() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Check if the control is valid",
+          "docsTags": []
+        },
+        {
+          "name": "validate",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": "boolean"
+          },
+          "signature": "validate() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Force validation on the form control to display any error messages",
+          "docsTags": [
+            {
+              "name": "returns",
+              "text": "boolean"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "changed",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emit a changed event with the index number if the control changes state",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/datacom-checkbox/datacom-checkbox-group.tsx",
+      "encapsulation": "scoped",
+      "tag": "datacom-checkbox-group",
+      "readme": "# datacom-checkbox\r\n\r\nBlarg blargh blag\r\n\r",
+      "docs": "Blarg blargh blag",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [
+        {
+          "event": "changed",
+          "capture": true,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/datacom-dropdown/datacom-dropdown.tsx",
+      "encapsulation": "scoped",
+      "tag": "datacom-dropdown",
+      "readme": "# datacom-dropdown-option\r\n\r",
+      "docs": "HTML Select component with styled options.\n\nThe multiple select option unlike the standard select is within the drop down.\nMultiple items are selected with simple click rather than requiring ctrl+click",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "autoValidate",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autovalidate",
+          "reflectToAttr": false,
+          "docs": "Automatically show error state if invalid on form submit",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "mutable": false,
+          "attr": "form",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "help",
+          "type": "string",
+          "mutable": false,
+          "attr": "help",
+          "reflectToAttr": false,
+          "docs": "Optional help text",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "isValid",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "valid",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Control label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "mutable": false,
+          "attr": "message",
+          "reflectToAttr": false,
+          "docs": "Error message to display in the case of input validity checks\nor explicitly with 'valid' property",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": false,
+          "docs": "HTML element input properties",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Select item...'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "search",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "search",
+          "reflectToAttr": false,
+          "docs": "Enable type ahead search for options.",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"large\" | \"small\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Drop down size",
+          "docsTags": [],
+          "default": "'large'",
+          "values": [
+            {
+              "value": "large",
+              "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "mutable": false,
+          "attr": "title",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"combo\" | \"select\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Drop down variant",
+          "docsTags": [],
+          "default": "'select'",
+          "values": [
+            {
+              "value": "combo",
+              "type": "string"
+            },
+            {
+              "value": "select",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "checkValidity",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": ""
+          },
+          "signature": "checkValidity() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Check if the control is valid",
+          "docsTags": []
+        },
+        {
+          "name": "getSelected",
+          "returns": {
+            "type": "Promise<string[]>",
+            "docs": "string[]"
+          },
+          "signature": "getSelected() => Promise<string[]>",
+          "parameters": [],
+          "docs": "Get a list of select values",
+          "docsTags": [
+            {
+              "name": "returns",
+              "text": "string[]"
+            }
+          ]
+        },
+        {
+          "name": "validate",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": "boolean"
+          },
+          "signature": "validate() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Force validation on the form control to display any error messages",
+          "docsTags": [
+            {
+              "name": "returns",
+              "text": "boolean"
+            }
+          ]
+        }
+      ],
+      "events": [],
+      "listeners": [
+        {
+          "event": "selected",
+          "capture": true,
+          "passive": false
+        },
+        {
+          "event": "deselected",
+          "capture": true,
+          "passive": false
+        },
+        {
+          "event": "click",
+          "target": "document",
+          "capture": false,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "datacom-option"
+      ],
+      "dependencyGraph": {
+        "datacom-dropdown": [
+          "datacom-option"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/datacom-input/datacom-input.tsx",
+      "encapsulation": "scoped",
+      "tag": "datacom-input",
+      "readme": "# datacom-input\r\n\r",
+      "docs": "Datacom Input field\n\nThe control is scoped rather than shadow so the input field can participate in a form submit.",
+      "docsTags": [
+        {
+          "name": "see",
+          "text": "https://brandhub.datacom.com/d/fjZSq4WewHBg/components#/components/button"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "autoValidate",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "auto-validate",
+          "reflectToAttr": false,
+          "docs": "Automatically show error state if invalid on form submit",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "mutable": false,
+          "attr": "form",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "formaction",
+          "type": "string",
+          "mutable": false,
+          "attr": "formaction",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "formenctype",
+          "type": "string",
+          "mutable": false,
+          "attr": "formenctype",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "formmethod",
+          "type": "string",
+          "mutable": false,
+          "attr": "formmethod",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "formnovalidate",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "formnovalidate",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "formtarget",
+          "type": "string",
+          "mutable": false,
+          "attr": "formtarget",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "help",
+          "type": "string",
+          "mutable": false,
+          "attr": "help",
+          "reflectToAttr": false,
+          "docs": "Optional help text",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "indicator",
+          "type": "\"done\" | \"none\" | \"working\"",
+          "mutable": false,
+          "attr": "indicator",
+          "reflectToAttr": false,
+          "docs": "Feedback indicator",
+          "docsTags": [],
+          "default": "'none'",
+          "values": [
+            {
+              "value": "done",
+              "type": "string"
+            },
+            {
+              "value": "none",
+              "type": "string"
+            },
+            {
+              "value": "working",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "inputmode",
+          "type": "string",
+          "mutable": false,
+          "attr": "inputmode",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "isValid",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "valid",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Optional label for control.\nThis can be omitted if the host element has a text children.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "mutable": false,
+          "attr": "max",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "maxlength",
+          "type": "number",
+          "mutable": false,
+          "attr": "maxlength",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "mutable": false,
+          "attr": "message",
+          "reflectToAttr": false,
+          "docs": "Error message to display in the case of input validity checks\nor explicitly with 'valid' property",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "mutable": false,
+          "attr": "min",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "minlength",
+          "type": "number",
+          "mutable": false,
+          "attr": "minlength",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": false,
+          "docs": "HTML element input properties",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "pattern",
+          "type": "string",
+          "mutable": false,
+          "attr": "pattern",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "mutable": false,
+          "attr": "title",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "\"email\" | \"month\" | \"number\" | \"password\" | \"tel\" | \"text\" | \"time\" | \"url\" | \"week\"",
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'text'",
+          "values": [
+            {
+              "value": "email",
+              "type": "string"
+            },
+            {
+              "value": "month",
+              "type": "string"
+            },
+            {
+              "value": "number",
+              "type": "string"
+            },
+            {
+              "value": "password",
+              "type": "string"
+            },
+            {
+              "value": "tel",
+              "type": "string"
+            },
+            {
+              "value": "text",
+              "type": "string"
+            },
+            {
+              "value": "time",
+              "type": "string"
+            },
+            {
+              "value": "url",
+              "type": "string"
+            },
+            {
+              "value": "week",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "checkValidity",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": ""
+          },
+          "signature": "checkValidity() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Check if the control is valid",
+          "docsTags": []
+        },
+        {
+          "name": "edit",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "edit() => Promise<void>",
+          "parameters": [],
+          "docs": "Switch the control to edit mode if it is not already editing.",
+          "docsTags": []
+        },
+        {
+          "name": "validate",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": "boolean"
+          },
+          "signature": "validate() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Force validation on the form control to display any error messages",
+          "docsTags": [
+            {
+              "name": "returns",
+              "text": "boolean"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "changed",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emit changed event when input changes. This relays up the 'input' event, but with\nthe control's current value rather than the input value.",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "focus",
+          "capture": true,
+          "passive": false
+        },
+        {
+          "event": "input",
+          "capture": true,
+          "passive": false
+        },
+        {
+          "event": "blur",
+          "capture": true,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/datacom-list/datacom-li.tsx",
+      "encapsulation": "shadow",
+      "tag": "datacom-li",
+      "readme": "# datacom-list\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "variantItem",
+          "type": "\"heading\" | \"item\"",
+          "mutable": false,
+          "attr": "variant-item",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'item'",
+          "values": [
+            {
+              "value": "heading",
+              "type": "string"
+            },
+            {
+              "value": "item",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/datacom-list/datacom-list.tsx",
+      "encapsulation": "shadow",
+      "tag": "datacom-list",
+      "readme": "# datacom-list\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "type",
+          "type": "\"lowercase\" | \"numbers\" | \"roman\" | \"upercase\"",
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'numbers'",
+          "values": [
+            {
+              "value": "lowercase",
+              "type": "string"
+            },
+            {
+              "value": "numbers",
+              "type": "string"
+            },
+            {
+              "value": "roman",
+              "type": "string"
+            },
+            {
+              "value": "upercase",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"ordered\" | \"unordered\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'ordered'",
+          "values": [
+            {
+              "value": "ordered",
+              "type": "string"
+            },
+            {
+              "value": "unordered",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/site/layout/datacom-menubar/datacom-menubar.tsx",
+      "encapsulation": "shadow",
+      "tag": "datacom-menubar",
+      "readme": "# datacom-menubar\r\n\r",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/datacom-dropdown/datacom-dropdown-option.tsx",
+      "encapsulation": "shadow",
+      "tag": "datacom-option",
+      "readme": "# datacom-dropdown-option\r\n\r",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "index",
+          "type": "number",
+          "mutable": false,
+          "attr": "index",
+          "reflectToAttr": false,
+          "docs": "Option id",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Display label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "mode",
+          "type": "\"list\" | \"standalone\"",
+          "mutable": false,
+          "attr": "mode",
+          "reflectToAttr": false,
+          "docs": "Display type (mostly private)\n- list = display as item in drop down list (default)\n- standalone = display a standalone item outside of the list.",
+          "docsTags": [],
+          "default": "'list'",
+          "values": [
+            {
+              "value": "list",
+              "type": "string"
+            },
+            {
+              "value": "standalone",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "search",
+          "type": "string",
+          "mutable": false,
+          "attr": "search",
+          "reflectToAttr": false,
+          "docs": "Text for use in option search",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "True if the option is selected",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "mutable": false,
+          "attr": "src",
+          "reflectToAttr": false,
+          "docs": "Icon source",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Form submit value",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "visible",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "visible",
+          "reflectToAttr": false,
+          "docs": "Show the item",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "deselected",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        },
+        {
+          "event": "selected",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "datacom-dropdown"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "datacom-dropdown": [
+          "datacom-option"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/datacom-radio/datacom-radio.tsx",
+      "encapsulation": "scoped",
+      "tag": "datacom-radio",
+      "readme": "# datacom-radio\r\n\r",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "autoValidate",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "auto-validate",
+          "reflectToAttr": false,
+          "docs": "Auto-validate and display error message on form submit",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "autocomplete",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autocomplete",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "autofocus",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autofocus",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "checked",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "checked",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "mutable": false,
+          "attr": "form",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "formaction",
+          "type": "string",
+          "mutable": false,
+          "attr": "formaction",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "formenctype",
+          "type": "string",
+          "mutable": false,
+          "attr": "formenctype",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "formmethod",
+          "type": "string",
+          "mutable": false,
+          "attr": "formmethod",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "formnovalidate",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "formnovalidate",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "formtarget",
+          "type": "string",
+          "mutable": false,
+          "attr": "formtarget",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "imagePosition",
+          "type": "\"left\" | \"right\"",
+          "mutable": false,
+          "attr": "image-position",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'left'",
+          "values": [
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
             }
           ],
           "optional": false,
@@ -368,13 +2446,199 @@
           ],
           "optional": false,
           "required": false
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "mutable": false,
+          "attr": "message",
+          "reflectToAttr": false,
+          "docs": "Custom error message if control is invalid",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"small\" | \"standard\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'standard'",
+          "values": [
+            {
+              "value": "small",
+              "type": "string"
+            },
+            {
+              "value": "standard",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "mutable": false,
+          "attr": "src",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'radio'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"buttons\" | \"radios\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'radios'",
+          "values": [
+            {
+              "value": "buttons",
+              "type": "string"
+            },
+            {
+              "value": "radios",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "checkValidity",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": ""
+          },
+          "signature": "checkValidity() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Check if the control is valid",
+          "docsTags": []
+        },
+        {
+          "name": "validate",
+          "returns": {
+            "type": "Promise<boolean>",
+            "docs": "Promise of validity"
+          },
+          "signature": "validate() => Promise<boolean>",
+          "parameters": [],
+          "docs": "Check if control is valid (for form submit)",
+          "docsTags": [
+            {
+              "name": "returns",
+              "text": "Promise of validity"
+            }
+          ]
+        }
+      ],
       "events": [
         {
-          "event": "toggle",
-          "detail": "boolean",
+          "event": "changed",
+          "detail": "number",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -391,42 +2655,27 @@
       "dependencyGraph": {}
     },
     {
-      "filePath": "./src/components/site/layout/datacom-menubar/datacom-menubar.tsx",
-      "encapsulation": "shadow",
-      "tag": "datacom-menubar",
-      "readme": "# datacom-menubar\r\n\r\n\r\n\r",
-      "docs": "",
-      "docsTags": [],
-      "usage": {},
-      "props": [],
-      "methods": [],
-      "events": [],
-      "listeners": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
-    },
-    {
       "filePath": "./src/components/datacom-tabs/datacom-tab.tsx",
       "encapsulation": "shadow",
       "tag": "datacom-tab",
-      "readme": "# datacom-tabgroup\r\n\r\n\r\n\r",
-      "docs": "",
-      "docsTags": [],
+      "readme": "# Datacom Tabs\r\n\r",
+      "docs": "The tab element describes the tab, but does not render the tab label.",
+      "docsTags": [
+        {
+          "name": "see",
+          "text": "DatacomTabGroup"
+        }
+      ],
       "usage": {},
       "props": [
         {
-          "name": "enabled",
+          "name": "disabled",
           "type": "boolean",
-          "mutable": false,
-          "attr": "enabled",
+          "mutable": true,
+          "attr": "disabled",
           "reflectToAttr": false,
           "docs": "",
           "docsTags": [],
-          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -450,6 +2699,22 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
           "required": false
         }
       ],
@@ -487,17 +2752,7 @@
           ]
         }
       ],
-      "events": [
-        {
-          "event": "tabSelected",
-          "detail": "string",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "",
-          "docsTags": []
-        }
-      ],
+      "events": [],
       "listeners": [],
       "styles": [],
       "slots": [],
@@ -510,20 +2765,83 @@
       "filePath": "./src/components/datacom-tabs/datacom-tabgroup.tsx",
       "encapsulation": "shadow",
       "tag": "datacom-tabgroup",
-      "readme": "# datacom-tabgroup\r\n\r\n\r\n\r",
+      "readme": "# Datacom Tabs\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},
       "props": [],
-      "methods": [],
-      "events": [],
-      "listeners": [
+      "methods": [
         {
-          "event": "tabSelected",
-          "capture": false,
-          "passive": false
+          "name": "disableTab",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": "void"
+          },
+          "signature": "disableTab(index: number) => Promise<void>",
+          "parameters": [],
+          "docs": "Disable tab",
+          "docsTags": [
+            {
+              "name": "returns",
+              "text": "void"
+            }
+          ]
+        },
+        {
+          "name": "enableTab",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": "void"
+          },
+          "signature": "enableTab(index: number) => Promise<void>",
+          "parameters": [],
+          "docs": "Enable tab",
+          "docsTags": [
+            {
+              "name": "returns",
+              "text": "void"
+            }
+          ]
+        },
+        {
+          "name": "select",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": "void"
+          },
+          "signature": "select(index: number) => Promise<void>",
+          "parameters": [],
+          "docs": "Select a tab with focus (zero index based)",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "index"
+            },
+            {
+              "name": "returns",
+              "text": "void"
+            }
+          ]
+        },
+        {
+          "name": "selected",
+          "returns": {
+            "type": "Promise<number>",
+            "docs": "number"
+          },
+          "signature": "selected() => Promise<number>",
+          "parameters": [],
+          "docs": "Return selected tab (zero index based)",
+          "docsTags": [
+            {
+              "name": "returns",
+              "text": "number"
+            }
+          ]
         }
       ],
+      "events": [],
+      "listeners": [],
       "styles": [],
       "slots": [],
       "parts": [],
