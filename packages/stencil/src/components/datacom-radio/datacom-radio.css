@@ -1,40 +1,37 @@
 :host {
-  display: block;
+  display: inline;
 }
 
 .dc-radio-wrapper {
-  /* main containter  */
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-width: 100px;
   white-space: nowrap;
   padding-top: 16px;
+  outline: none;
 }
 
-/* radio Container  */
-.dc-radio-radios {
+/* Radio  */
+.dc-radio-radio .dc-radio-input {
   border: 1px solid var(--dc-greyscale-05);
-  appearance: none;
-  box-sizing: border-box;
   border-radius: 12px;
   background-color: var(--dc-background-colour);
-  line-height: 20px;
+  appearance: none;
 }
 
-/* Standard radio */
-.dc-radio-radios.dc-radio-size-standard {
+/* Standard radio variant */
+.dc-radio-radio.dc-radio-size-standard .dc-radio-input {
   width: 24px;
   height: 24px;
 }
 
 /* Small radio */
-.dc-radio-radios.dc-radio-size-small {
+.dc-radio-radio.dc-radio-size-small .dc-radio-input {
   width: 20px;
   height: 20px;
 }
 
-/* label */
+/* Label  */
 .dc-radio-label {
   font-family: var(--dc-font-family);
   font-style: normal;
@@ -49,32 +46,36 @@
 }
 
 /* Label with standard radio */
-.dc-radio-size-standard + label {
+.dc-radio-size-standard .dc-radio-label {
   font-size: 16px;
 }
 
 /* Label with small radio */
-.dc-radio-size-small + label {
+.dc-radio-size-small .dc-radio-label {
   font-size: 14px;
 }
 
-.dc-radio-radios:hover {
+.dc-radio-radio .dc-radio-input:hover {
   border: 1px solid var(--dc-primary-colour);
   border-radius: 12px;
 }
 
-.dc-radio-radios:focus {
+.dc-radio-radio .dc-radio-input:focus {
   outline: 3px solid var(--dc-primary-colour);
   border-radius: 12px;
   border: 1px solid var(--dc-greyscale-05);
   outline-offset: 1px;
 }
 
-.dc-radio-radios:focus:not(:focus-visible) {
+.dc-radio-radio .dc-radio-input:focus:not(:focus-visible) {
   outline: none;
 }
 
-.dc-radio-radios:checked {
+.dc-radio-radio .dc-radio-label:focus-visible {
+  outline: none;
+}
+
+.dc-radio-radio .dc-radio-input:checked {
   border: 3px solid var(--dc-background-colour);
   background: var(--dc-primary-colour);
   box-shadow: 0 0 0 1px var(--dc-primary-colour);
@@ -82,53 +83,57 @@
   transition: opacity 0.0005s ease-in-out;
 }
 
-.dc-radio-radios:disabled {
+.dc-radio-radio .dc-radio-input:disabled {
   background-color: var(--dc-background-accent-color);
   border: 1px solid var(--dc-greyscale-05);
 }
 
-.dc-radio-disabled + label {
+.dc-radio-disabled .dc-radio-label {
   color: var(--dc-greyscale-03);
 }
 
-.dc-radio-disabled.dc-radio-radios:checked {
+.dc-radio-disabled.dc-radio-radio .dc-radio-input:checked {
   border: 3px solid var(--dc-background-accent-color);
   background: var(--dc-greyscale-04);
   box-shadow: 0 0 0 1px var(--dc-greyscale-05);
 }
 
-/* main containter  */
-
-.dc-radio-buttons {
+/*  radio button  */
+.dc-radio-button .dc-radio-input {
   position: absolute;
   cursor: pointer;
-  flex-direction: row;
-  opacity: 0;
-  width: 100px;
-  height: 60px;
+  display: none;
   overflow: hidden;
 }
 
-.dc-radio-buttons + label {
+/* Add button variant style */
+.dc-radio-button .dc-radio-input + label {
   border: 2px solid var(--dc-greyscale-05);
   display: flex;
   background-color: var(--dc-background-colour);
   font-family: var(--dc-font-family);
   font-weight: 500;
   align-items: center;
-  margin-left: 12px;
   border-radius: 8px;
+  margin-right: 12px;
 }
 
-.dc-radio-buttons.dc-radio-size-standard + label {
+/* For grouped style   */
+.dc-radio-grouped .dc-radio-input + label {
+  border: 1px solid var(--dc-greyscale-05);
+  margin-right: 0;
+}
+
+/* For standard button variant */
+.dc-radio-button.dc-radio-size-standard .dc-radio-input + label {
   height: 48px;
   font-size: 16px;
   padding-left: 16px;
   padding-right: 16px;
-  border-radius: 8px;
 }
 
-.dc-radio-buttons.dc-radio-size-small + label {
+/* For small  button variant  */
+.dc-radio-button.dc-radio-size-small .dc-radio-input + label {
   height: 34px;
   font-size: 14px;
   padding-left: 12px;
@@ -142,31 +147,31 @@
   padding-top: 2px;
 }
 
-.dc-radio-buttons:focus + label {
+/* Focus style for button */
+.dc-radio-button .dc-radio-label:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
-  border-radius: 12px;
   border: 1px solid var(--dc-greyscale-05);
   outline-offset: 1px;
 }
 
-.dc-radio-buttons:focus:not(:focus-visible) + label {
+.dc-radio-button .dc-radio-input:focus:not(:focus-visible) + label {
   outline: none;
 }
 
-.dc-radio-buttons:hover:enabled + label {
+/* Hover style for  button variant */
+.dc-radio-button .dc-radio-input:hover + label {
   background: var(--dc-grayscale-06);
   cursor: pointer;
-  border-radius: 8px;
-  border: 2px solid var(--dc-greyscale-05);
 }
 
-.dc-radio-disabled.dc-radio-buttons + label {
+/* Disable style button variant */
+.dc-radio-disabled.dc-radio-button .dc-radio-input + label {
   border: 2px solid var(--dc-greyscale-05);
-  color: #999999;
-  border-radius: 8px;
+  color: var(--dc-greyscale-04);
 }
 
-.dc-radio-buttons:checked + label {
+/* Checked state */
+.dc-radio-button .dc-radio-input:checked + label {
   background-color: var(--dc-primary-colour);
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='14' height='11' viewBox='0 0 14 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.922 0.373439L4.17153 9.12391L1.07793 6.03031C0.931494 5.88388 0.694057 5.88388 0.547588 6.03031L0.194057 6.38385C0.0476191 6.53028 0.0476191 6.76772 0.194057 6.91419L3.90637 10.6265C4.05281 10.7729 4.29024 10.7729 4.43671 10.6265L13.8059 1.25735C13.9523 1.11091 13.9523 0.87347 13.8059 0.727002L13.4523 0.373439C13.3059 0.227001 13.0684 0.227001 12.922 0.373439Z' fill='white'/%3E%3C/svg%3E");
   background-size: 16px;
@@ -178,11 +183,14 @@
   text-align: center;
   border: 2px solid var(--dc-greyscale-05);
   padding-left: 45px !important;
-  border-radius: 8px;
   outline: none;
 }
 
-.dc-radio-buttons:checked:hover + label {
+.dc-radio-button .dc-radio-input:checked + label .dc-radio-image {
+  display: none;
+}
+
+.dc-radio-button .dc-radio-input:checked:hover + label {
   background-color: var(--dc-primary-accent-colour);
   cursor: pointer;
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='14' height='11' viewBox='0 0 14 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.922 0.373439L4.17153 9.12391L1.07793 6.03031C0.931494 5.88388 0.694057 5.88388 0.547588 6.03031L0.194057 6.38385C0.0476191 6.53028 0.0476191 6.76772 0.194057 6.91419L3.90637 10.6265C4.05281 10.7729 4.29024 10.7729 4.43671 10.6265L13.8059 1.25735C13.9523 1.11091 13.9523 0.87347 13.8059 0.727002L13.4523 0.373439C13.3059 0.227001 13.0684 0.227001 12.922 0.373439Z' fill='white'/%3E%3C/svg%3E");
@@ -195,7 +203,6 @@
   text-align: center;
   border: 2px solid var(--dc-greyscale-05);
   padding-left: 45px !important;
-  border-radius: 8px;
 }
 
 .dc-radio-label .dc-radio-image {
@@ -219,4 +226,31 @@
 
 .dc-radio-image-right .dc-radio-image {
   padding-left: 12px;
+}
+
+/* Focus style for grouped */
+.dc-radio-grouped.dc-radio-button .dc-radio-label:focus-visible {
+  outline: 3px solid var(--dc-primary-colour);
+  border: 1px solid var(--dc-greyscale-05);
+  outline-offset: -3px;
+}
+
+:host(:first-child) .dc-radio-grouped .dc-radio-input + label {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+:host:not(:first-child) .dc-radio-grouped .dc-radio-input + label {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+:host(:last-child) .dc-radio-grouped .dc-radio-input + label {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+:host:not(:last-child) .dc-radio-grouped .dc-radio-input + label {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }

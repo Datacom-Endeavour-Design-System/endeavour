@@ -83,18 +83,19 @@ export default {
     label: 'First name',
     disabled: false,
     required: true,
-    message: 'Please enter a value',
+    placeholder: 'Enter your first name',
+    message: 'First name is required',
   },
 } as Meta<typeof DatacomInput>;
 
-const Template: ComponentStoryFn<typeof DatacomInput> = (args) => {
+const Template: ComponentStoryFn<typeof DatacomInput> = (props) => {
   const Panel = styled.div`
     width: 300px;
   `;
 
   return (
     <Panel>
-      <DatacomInput {...args} />
+      <DatacomInput {...props} />
     </Panel>
   );
 };
