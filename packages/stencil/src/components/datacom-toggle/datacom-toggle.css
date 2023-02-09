@@ -84,6 +84,7 @@
 
 .dc-toggle-input:checked + .dc-toggle-switch:hover {
   background: var(--dc-primary-accent-colour);
+  border-color: var(--dc-primary-accent-colour);
 }
 
 /* Disabled state styles */
@@ -120,13 +121,4 @@
   --thumb-dimension: 12px;
   --thumb-border: 1px;
   --thumb-offset: 2px;
-}
-
-.small .dc-toggle-label {
-  padding-left: 10px;
-}
-
-.small .label-on-left {
-  padding-left: 0;
-  padding-right: 10px;
 }
