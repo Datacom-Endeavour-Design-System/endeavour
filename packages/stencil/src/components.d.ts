@@ -32,6 +32,20 @@ export namespace Components {
     interface DatacomAccordionGroup {
         "allowMultiExpand"?: boolean;
     }
+    interface DatacomAvatar {
+        "companyName": string;
+        "firstName": string;
+        "jobTitle": string;
+        "lastName": string;
+        "src": string;
+    }
+    interface DatacomAvataravatar {
+        "companyName": string;
+        "firstName": string;
+        "jobTitle": string;
+        "lastName": string;
+        "src": string;
+    }
     interface DatacomButton {
         "autofocus": boolean;
         /**
@@ -391,11 +405,15 @@ export namespace Components {
         /**
           * Label of the toggle element
          */
-        "label": any;
+        "label": string;
         /**
           * Sets whether the label is rendered on the left or right (default) of the toggle element
          */
         "labelPosition": LabelPositionType;
+        /**
+          * Name attribute of the toggle element
+         */
+        "name": string;
         /**
           * True if the toggle element is initially toggled on.
          */
@@ -442,6 +460,18 @@ declare global {
     var HTMLDatacomAccordionGroupElement: {
         prototype: HTMLDatacomAccordionGroupElement;
         new (): HTMLDatacomAccordionGroupElement;
+    };
+    interface HTMLDatacomAvatarElement extends Components.DatacomAvatar, HTMLStencilElement {
+    }
+    var HTMLDatacomAvatarElement: {
+        prototype: HTMLDatacomAvatarElement;
+        new (): HTMLDatacomAvatarElement;
+    };
+    interface HTMLDatacomAvataravatarElement extends Components.DatacomAvataravatar, HTMLStencilElement {
+    }
+    var HTMLDatacomAvataravatarElement: {
+        prototype: HTMLDatacomAvataravatarElement;
+        new (): HTMLDatacomAvataravatarElement;
     };
     interface HTMLDatacomButtonElement extends Components.DatacomButton, HTMLStencilElement {
     }
@@ -530,6 +560,8 @@ declare global {
     interface HTMLElementTagNameMap {
         "datacom-accordion": HTMLDatacomAccordionElement;
         "datacom-accordion-group": HTMLDatacomAccordionGroupElement;
+        "datacom-avatar": HTMLDatacomAvatarElement;
+        "datacom-avataravatar": HTMLDatacomAvataravatarElement;
         "datacom-button": HTMLDatacomButtonElement;
         "datacom-checkbox": HTMLDatacomCheckboxElement;
         "datacom-checkbox-group": HTMLDatacomCheckboxGroupElement;
@@ -556,6 +588,20 @@ declare namespace LocalJSX {
     }
     interface DatacomAccordionGroup {
         "allowMultiExpand"?: boolean;
+    }
+    interface DatacomAvatar {
+        "companyName"?: string;
+        "firstName"?: string;
+        "jobTitle"?: string;
+        "lastName"?: string;
+        "src"?: string;
+    }
+    interface DatacomAvataravatar {
+        "companyName"?: string;
+        "firstName"?: string;
+        "jobTitle"?: string;
+        "lastName"?: string;
+        "src"?: string;
     }
     interface DatacomButton {
         "autofocus"?: boolean;
@@ -848,11 +894,15 @@ declare namespace LocalJSX {
         /**
           * Label of the toggle element
          */
-        "label"?: any;
+        "label"?: string;
         /**
           * Sets whether the label is rendered on the left or right (default) of the toggle element
          */
         "labelPosition"?: LabelPositionType;
+        /**
+          * Name attribute of the toggle element
+         */
+        "name"?: string;
         /**
           * Event emitter to let external components know when the toggle element state has changed
          */
@@ -869,6 +919,8 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "datacom-accordion": DatacomAccordion;
         "datacom-accordion-group": DatacomAccordionGroup;
+        "datacom-avatar": DatacomAvatar;
+        "datacom-avataravatar": DatacomAvataravatar;
         "datacom-button": DatacomButton;
         "datacom-checkbox": DatacomCheckbox;
         "datacom-checkbox-group": DatacomCheckboxGroup;
@@ -891,6 +943,8 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "datacom-accordion": LocalJSX.DatacomAccordion & JSXBase.HTMLAttributes<HTMLDatacomAccordionElement>;
             "datacom-accordion-group": LocalJSX.DatacomAccordionGroup & JSXBase.HTMLAttributes<HTMLDatacomAccordionGroupElement>;
+            "datacom-avatar": LocalJSX.DatacomAvatar & JSXBase.HTMLAttributes<HTMLDatacomAvatarElement>;
+            "datacom-avataravatar": LocalJSX.DatacomAvataravatar & JSXBase.HTMLAttributes<HTMLDatacomAvataravatarElement>;
             "datacom-button": LocalJSX.DatacomButton & JSXBase.HTMLAttributes<HTMLDatacomButtonElement>;
             "datacom-checkbox": LocalJSX.DatacomCheckbox & JSXBase.HTMLAttributes<HTMLDatacomCheckboxElement>;
             "datacom-checkbox-group": LocalJSX.DatacomCheckboxGroup & JSXBase.HTMLAttributes<HTMLDatacomCheckboxGroupElement>;

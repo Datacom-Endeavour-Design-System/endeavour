@@ -1,39 +1,29 @@
 import React from 'react';
 import { ComponentStoryFn, Meta } from '@storybook/react';
-import { DatacomAvataravatar } from '@datacom/endeavour-react';
+import { DatacomAvatar } from '@datacom/endeavour-react';
 
 export default {
   title: 'Avatar',
-  component: DatacomAvataravatar,
+  component: DatacomAvatar,
   argTypes: {
     firstName: {
       name: 'First Name',
-      defaultValue: 'First Name',
-      description: 'Button text',
       type: { name: 'string', required: true },
     },
     lastName: {
       name: 'Last Name',
-      defaultValue: 'Button text',
-      description: 'Button text',
       type: { name: 'string', required: true },
     },
     src: {
       name: 'Image Source',
-      defaultValue: 'Button text',
-      description: 'Button text',
       type: { name: 'string', required: true },
     },
     jobTitle: {
       name: 'Job title',
-      defaultValue: 'Button text',
-      description: 'Button text',
       type: { name: 'string', required: true },
     },
     companyName: {
       name: 'Company Name',
-      defaultValue: 'Button text',
-      description: 'Button text',
       type: { name: 'string', required: true },
     },
   },
@@ -44,17 +34,17 @@ export default {
     jobTitle: 'Job title',
     companyName: 'Datacom',
   },
-} as Meta<typeof DatacomAvataravatar>;
+} as Meta<typeof DatacomAvatar>;
 
-const Template: ComponentStoryFn<typeof DatacomAvataravatar> = (args) => (
-  <DatacomAvataravatar {...args} />
+const Template: ComponentStoryFn<typeof DatacomAvatar> = (args) => (
+  <DatacomAvatar {...args} />
 );
 
 export const Primary = Template.bind({});
 Primary.args = {
-  firstName: 'Yukti',
-  lastName: 'Dogra',
-  jobTitle: 'Teachinal Lead',
+  firstName: 'Sally',
+  lastName: 'Mei',
+  jobTitle: 'UX/UI Designer',
   companyName: 'Datacom',
   src: 'https://datacom.com/content/dam/images/datacom-people/datacom-employees-formal/PeterNelson_Portrait_1500x1000px.jpg/_jcr_content/renditions/cq5dam.thumbnail.319.319.png',
 };

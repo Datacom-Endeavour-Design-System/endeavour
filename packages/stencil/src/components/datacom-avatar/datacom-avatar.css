@@ -4,26 +4,22 @@
 
 .avatar {
   display: flex;
-  font-family: 'Montserrat';
+  font-family: var(--dc-font-family);
 }
 
 .avatar-image img,
 .avatar-initial {
-  display: block;
   height: 48px;
   width: 48px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0a1839;
-  color: #fff;
+  background: var(--dc-primary-text-color);
+  color: var(--dc-colour-white);
   font-weight: 400;
   font-size: 18px;
   line-height: 28px;
-}
-
-.avatar-initial {
 }
 
 .avatar-details {

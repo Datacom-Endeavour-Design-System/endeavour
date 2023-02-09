@@ -1,11 +1,11 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
-  tag: 'datacom-avataravatar',
-  styleUrl: 'datacom-avataravatar.css',
+  tag: 'datacom-avatar',
+  styleUrl: 'datacom-avatar.css',
   shadow: true,
 })
-export class DatacomAvataravatar {
+export class DatacomAvatar {
   /* Custom properties */
   @Prop() firstName: string;
   @Prop() lastName: string;
@@ -14,19 +14,15 @@ export class DatacomAvataravatar {
   @Prop() src: string;
 
   render() {
-    let avtImage;
-    let F;
-    let L;
+    let avatarImage;
 
     if (this.src?.length > 0) {
-      avtImage = <img src={this.src} />;
+      avatarImage = <img src={this.src} />;
     } else {
-      F = this.firstName.split('');
-      L = this.lastName.split('');
-      avtImage = (
+      avatarImage = (
         <div class="avatar-initial">
-          {F[0]}
-          {L[0]}
+          {this.firstName.substring(0, 1)}
+          {this.lastName.substring(0, 1)}
         </div>
       );
     }
@@ -34,7 +30,7 @@ export class DatacomAvataravatar {
     return (
       <Host>
         <div class="avatar">
-          <div class="avatar-image">{avtImage}</div>
+          <div class="avatar-image">{avatarImage}</div>
           <div class="avatar-details">
             <div class="avatar-name">
               {this.firstName} {this.lastName}
