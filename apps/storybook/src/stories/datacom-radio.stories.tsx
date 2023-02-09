@@ -1,10 +1,6 @@
 import React, { Fragment } from 'react';
 import { ComponentStoryFn } from '@storybook/react';
-import {
-  DatacomRadio,
-  DatacomRadioGroup,
-  DatacomButton,
-} from '@datacom/endeavour-react';
+import { DatacomRadio, DatacomRadioGroup } from '@datacom/endeavour-react';
 
 export default {
   title: 'Radio',
@@ -107,11 +103,12 @@ Radio.args = {
   checked: false,
 };
 
-export const Grouped = (args) => {
+export const RadioGrouping = (args) => {
   return (
     <Fragment>
       <DatacomRadio
         {...args}
+        variant="radio"
         label="Radio item 1"
         name="choose"
         value="choice1">
@@ -119,6 +116,7 @@ export const Grouped = (args) => {
       </DatacomRadio>
       <DatacomRadio
         {...args}
+        variant="radio"
         label="Radio item 2"
         name="choose"
         value="choice2">
@@ -126,6 +124,7 @@ export const Grouped = (args) => {
       </DatacomRadio>
       <DatacomRadio
         {...args}
+        variant="radio"
         label="Radio item 3"
         name="choose"
         value="choice3">
@@ -133,6 +132,7 @@ export const Grouped = (args) => {
       </DatacomRadio>
       <DatacomRadio
         {...args}
+        variant="radio"
         label="Radio item 4"
         name="choose"
         value="choice4">
@@ -142,7 +142,47 @@ export const Grouped = (args) => {
   );
 };
 
-export const RadioButtonGroup = (args) => {
+export const RadioButton = Template.bind({});
+RadioButton.args = {
+  variant: 'button',
+  label: 'Radio button',
+  size: 'standard',
+  disabled: false,
+  checked: false,
+};
+
+export const RadioButtonGrouping = (args) => {
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <DatacomRadio
+        {...args}
+        label=" Radio button 1"
+        name="choose"
+        value="choice1"
+        variant="button">
+        {' '}
+      </DatacomRadio>
+      <DatacomRadio
+        {...args}
+        label="Radio button 2"
+        name="choose"
+        value="choice2"
+        variant="button">
+        {' '}
+      </DatacomRadio>
+      <DatacomRadio
+        {...args}
+        label="Radio button 3"
+        name="choose"
+        value="choice3"
+        variant="button">
+        {' '}
+      </DatacomRadio>
+    </div>
+  );
+};
+
+export const RadioSelectionGroup = (args) => {
   return (
     <DatacomRadioGroup>
       <DatacomRadio
