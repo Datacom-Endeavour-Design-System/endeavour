@@ -37,7 +37,7 @@ const P = styled.p`
   weight: 400;
   color: #0a1839;
   padding-bottom: 12px;
-  padding-left: 6px;
+  padding-left: 8px;
   margin: 0;
 `;
 
