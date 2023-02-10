@@ -2,7 +2,6 @@ import React from 'react';
 import { ComponentStoryFn } from '@storybook/react';
 import { DatacomLi, DatacomList } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
-
 export default {
   title: 'List',
   component: DatacomList,
@@ -18,58 +17,160 @@ export default {
     },
     type: {
       name: 'Type',
-      control: 'select',
-      defaultValue: 'numbers',
       description: 'List type  is default  numbers if not set',
-      options: ['numbers', 'lowercase', 'upercase', 'roman'],
+      options: ['numbers', 'lowercase', 'uppercase', 'roman'],
+    },
+    heading: {
+      name: 'Heading',
+      description: 'For heading style of list inside paragraph',
+      type: { name: 'boolean' },
     },
   },
-  arg: {
+  args: {
     variant: 'ordered',
+    heading: false,
   },
 };
+const P = styled.p`
+  font-family: Montserrat;
+  font-size: 16px;
+  weight: 400;
+  color: #0a1839;
+  padding-bottom: 12px;
+  padding-left: 6px;
+  margin: 0;
+`;
+
 const Template: ComponentStoryFn<typeof DatacomList> = (args) => (
   <DatacomList {...args}>
-    <DatacomLi> List item 1</DatacomLi>
-    <DatacomLi> List item 2 </DatacomLi>
-    <DatacomLi> List item 3</DatacomLi>
+    <DatacomLi> List content item 1</DatacomLi>
+    <DatacomLi> List content item 2 </DatacomLi>
+    <DatacomLi> List content item 3</DatacomLi>
   </DatacomList>
 );
-export const Simple = Template.bind({});
-Simple.args = {
+export const OrderedList = Template.bind({});
+OrderedList.args = {
   variant: 'ordered',
 };
 
-export const Nested = (args) => {
+export const UnorderedList = Template.bind({});
+UnorderedList.args = {
+  variant: 'unordered',
+};
+
+export const OrderedListWithNestedItems = () => {
   return (
     <div>
-      <DatacomList {...args}>
-        <DatacomLi>List item 1</DatacomLi>
+      <DatacomList>
+        <DatacomLi>List content item</DatacomLi>
         <DatacomLi>
-          List item 2
-          <DatacomList {...args}>
-            <DatacomLi>Nested item 1</DatacomLi>
-            <DatacomLi>Nested item 2</DatacomLi>
-            <DatacomLi>Nested item 3</DatacomLi>
+          List content item
+          <DatacomList type="lowercase">
+            <DatacomLi>List content item</DatacomLi>
+            <DatacomLi>List content item</DatacomLi>
+            <DatacomLi>List content item</DatacomLi>
           </DatacomList>
         </DatacomLi>
-        <DatacomLi>List item 3</DatacomLi>
+        <DatacomLi>List content item</DatacomLi>
       </DatacomList>
     </div>
   );
 };
 
-export const WithContent = (args) => {
+export const UnorderedListWithNestedItems = () => {
   return (
-    <DatacomList {...args}>
-      <DatacomLi variantItem="heading">List content item</DatacomLi>
-      <p>Lorem ipsum dolor sit amet</p>
+    <div>
+      <DatacomList variant="unordered">
+        <DatacomLi>List content item</DatacomLi>
+        <DatacomLi>
+          List content item
+          <DatacomList variant="unordered">
+            <DatacomLi>List content item</DatacomLi>
+            <DatacomLi>List content item</DatacomLi>
+            <DatacomLi>List content item</DatacomLi>
+          </DatacomList>
+        </DatacomLi>
+        <DatacomLi>List content item</DatacomLi>
+      </DatacomList>
+    </div>
+  );
+};
 
-      <DatacomLi variantItem="heading">List content item</DatacomLi>
-      <p>Lorem ipsum dolor sit amet</p>
+export const OrderedListWithNestedUnorderedItems = () => {
+  return (
+    <div>
+      <DatacomList>
+        <DatacomLi>List content item</DatacomLi>
+        <DatacomLi>
+          List content item
+          <DatacomList variant="unordered">
+            <DatacomLi>List content item</DatacomLi>
+            <DatacomLi>List content item</DatacomLi>
+            <DatacomLi>List content item</DatacomLi>
+          </DatacomList>
+        </DatacomLi>
+        <DatacomLi>List content item</DatacomLi>
+      </DatacomList>
+    </div>
+  );
+};
 
-      <DatacomLi variantItem="heading">List content item</DatacomLi>
-      <p>Lorem ipsum dolor sit amet</p>
-    </DatacomList>
+export const UnorderedListWithNestedOrderedItems = () => {
+  return (
+    <div>
+      <DatacomList variant="unordered">
+        <DatacomLi>List content item</DatacomLi>
+        <DatacomLi>
+          List content item
+          <DatacomList>
+            <DatacomLi>List content item</DatacomLi>
+            <DatacomLi>List content item</DatacomLi>
+            <DatacomLi>List content item</DatacomLi>
+          </DatacomList>
+        </DatacomLi>
+        <DatacomLi>List content item</DatacomLi>
+      </DatacomList>
+    </div>
+  );
+};
+
+export const StandaloneOrderedList = (args) => {
+  return (
+    <div>
+      <DatacomList variant="ordered" {...args}>
+        <DatacomLi {...args} heading={true}>
+          List content item
+        </DatacomLi>
+        <P>Lorem ipsum dolor sit amet</P>
+        <DatacomLi {...args} heading={true}>
+          List content item
+        </DatacomLi>
+        <P>Lorem ipsum dolor sit amet</P>
+        <DatacomLi {...args} heading={true}>
+          List content item
+        </DatacomLi>
+        <P>Lorem ipsum dolor sit amet</P>
+      </DatacomList>
+    </div>
+  );
+};
+export const StandaloneUnorderedList = (args) => {
+  return (
+    <div>
+      <DatacomList {...args} variant="Unordered">
+        <DatacomLi {...args} heading={true}>
+          List content item
+        </DatacomLi>
+        <P>Lorem ipsum dolor sit amet</P>
+        <DatacomLi {...args} heading={true}>
+          List content item
+        </DatacomLi>
+        <P>Lorem ipsum dolor sit amet</P>
+        <DatacomLi {...args} heading={true}>
+          List content item
+        </DatacomLi>
+        <P>Lorem ipsum dolor sit amet</P>
+      </DatacomList>
+    </div>
   );
 };
