@@ -111,7 +111,8 @@ export const RadioGrouping = (args) => {
         variant="radio"
         label="Radio item 1"
         name="choose"
-        value="choice1">
+        value="choice1"
+        style={{ 'padding-bottom': '12px' }}>
         {' '}
       </DatacomRadio>
       <DatacomRadio
@@ -119,7 +120,8 @@ export const RadioGrouping = (args) => {
         variant="radio"
         label="Radio item 2"
         name="choose"
-        value="choice2">
+        value="choice2"
+        style={{ 'padding-bottom': '12px' }}>
         {' '}
       </DatacomRadio>
       <DatacomRadio
@@ -127,7 +129,8 @@ export const RadioGrouping = (args) => {
         variant="radio"
         label="Radio item 3"
         name="choose"
-        value="choice3">
+        value="choice3"
+        style={{ 'padding-bottom': '12px' }}>
         {' '}
       </DatacomRadio>
       <DatacomRadio
@@ -182,7 +185,7 @@ export const RadioButtonGrouping = (args) => {
   );
 };
 
-export const RadioSelectionGroup = (args) => {
+export const RadioGroupButton = (args) => {
   return (
     <DatacomRadioGroup>
       <DatacomRadio
