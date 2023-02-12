@@ -113,6 +113,7 @@
 .dc-radio-button .dc-radio-input + label {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   box-sizing: border-box;
   border: 2px solid var(--dc-greyscale-05);
   background-color: var(--dc-background-colour);
