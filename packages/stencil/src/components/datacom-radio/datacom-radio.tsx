@@ -182,10 +182,10 @@ export class DatacomRadio implements FormControl {
             />
             <label tabIndex={0} htmlFor={this.inputId} class="dc-radio-label">
               <span tabIndex={-1} class={`dc-radio-image-${imagePosition}`}>
-                {variant !== 'radio' && image}
                 {this.label}
-                <slot></slot>
+                {variant !== 'radio' && image}
               </span>
+              <slot></slot>
             </label>
           </div>
         </div>
