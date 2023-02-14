@@ -29,11 +29,11 @@
   text-decoration: none;
 }
 
-.dc-content-tag:hover {
+a.dc-content-tag:hover {
   background-color: var(--dc-background-accent-color);
 }
 
-/* "Event" and "Product Sale" color setting */
+/* "Event" and "Product Promo" color setting */
 .event,
 .product-promo {
   --tag-color: #e60060;
@@ -47,7 +47,10 @@
   font-weight: 700;
 }
 
-.product-highlight:hover,
-.product-promo:hover {
-  background-color: var(--tag-color);
+a.product-highlight:hover {
+  background-color: var(--dc-primary-accent-colour);
+}
+
+a.product-promo:hover {
+  background-color: #eb337f;
 }
