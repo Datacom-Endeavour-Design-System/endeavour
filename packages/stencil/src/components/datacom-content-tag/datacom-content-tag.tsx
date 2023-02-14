@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 
-export type ContentTagVariant = 'article' | 'event' | 'productpromo' | 'productsale';
+export type ContentTagVariant = 'article' | 'event' | 'product-highlight' | 'product-promo';
 
 /**
  * Content Tag elements are used to label, categorize and organize other UI objects using keywords that describe the items.
@@ -18,8 +18,8 @@ export class DatacomContentTag {
     const mainElementClasses = {
       'dc-content-tag': true,
       'event': this.variant === 'event',
-      'product-promo': this.variant === 'productpromo',
-      'product-sale': this.variant === 'productsale',
+      'product-highlight': this.variant === 'product-highlight',
+      'product-promo': this.variant === 'product-promo',
     };
 
     return (

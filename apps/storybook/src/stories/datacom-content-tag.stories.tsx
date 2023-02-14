@@ -22,12 +22,12 @@ export default {
         labels: {
           article: 'Article',
           event: 'Event',
-          productpromo: 'Product - Promo',
-          productsale: 'Product - Sale',
+          'product-highlight': 'Product - Highlight',
+          'product-promo': 'Product - Promo',
         },
       },
       defaultValue: 'article',
-      options: ['article', 'event', 'productpromo', 'productsale'],
+      options: ['article', 'event', 'product-highlight', 'product-promo'],
       type: { name: 'string' },
     },
     url: {

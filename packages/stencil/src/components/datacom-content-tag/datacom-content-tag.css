@@ -2,7 +2,7 @@
   display: inline-block;
 
   --tag-border-width: 1px;
-  --tag-color: var(--dc-secondary-text-color);
+  --tag-color: var(--dc-primary-text-color);
   --tag-height: 26px;
   --tag-vertical-padding: 4px;
 }
@@ -35,19 +35,19 @@
 
 /* "Event" and "Product Sale" color setting */
 .event,
-.product-sale {
+.product-promo {
   --tag-color: #e60060;
 }
 
 /* "Product" styles */
-.product-promo,
-.product-sale {
+.product-highlight,
+.product-promo {
   background-color: var(--tag-color);
   color: var(--dc-background-colour);
   font-weight: 700;
 }
 
-.product-promo:hover,
-.product-sale:hover {
+.product-highlight:hover,
+.product-promo:hover {
   background-color: var(--tag-color);
 }
