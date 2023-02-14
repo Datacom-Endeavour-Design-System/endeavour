@@ -17,27 +17,26 @@ export default {
     variant: {
       name: 'Variant',
       description: "Content tag variant. Defaults to 'article' if not set.",
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          article: 'Article',
+          event: 'Event',
+          productpromo: 'Product - Promo',
+          productsale: 'Product - Sale',
+        },
+      },
       defaultValue: 'article',
-      options: ['article', 'event'],
+      options: ['article', 'event', 'productpromo', 'productsale'],
       type: { name: 'string' },
-    },
-    solid: {
-      name: 'Product Style',
-      description: 'If true, sets a solid style on the content tag.',
-      type: { name: 'boolean' },
     },
   },
 };
 
 const Template: StoryFn<ContentTagProps & { label: string }> = (args) => {
-  const { label, solid, variant } = args;
+  const { label, variant } = args;
 
-  return (
-    <DatacomContentTag solid={solid} variant={variant}>
-      {label}
-    </DatacomContentTag>
-  );
+  return <DatacomContentTag variant={variant}>{label}</DatacomContentTag>;
 };
 
 export const ContentTag = Template.bind({});

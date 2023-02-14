@@ -32,18 +32,21 @@
   background-color: var(--dc-background-accent-color);
 }
 
-/* "Event" styles */
-.event {
+/* "Event" and "Product Sale" color setting */
+.event,
+.product-sale {
   --tag-color: #e60060;
 }
 
-/* "Solid" styles */
-.solid {
+/* "Product" styles */
+.product-promo,
+.product-sale {
   background-color: var(--tag-color);
   color: var(--dc-background-colour);
   font-weight: 700;
 }
 
-.solid:hover {
+.product-promo:hover,
+.product-sale:hover {
   background-color: var(--tag-color);
 }
