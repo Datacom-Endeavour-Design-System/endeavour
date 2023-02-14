@@ -44,7 +44,7 @@ a.dc-content-tag:hover {
 .product-promo {
   background-color: var(--tag-color);
   color: var(--dc-background-colour);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 a.product-highlight:hover {
