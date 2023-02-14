@@ -12,6 +12,7 @@ export type ContentTagVariant = 'article' | 'event' | 'productpromo' | 'products
 })
 export class DatacomContentTag {
   @Prop() variant: ContentTagVariant = 'article';
+  @Prop() url: string;
 
   render() {
     const mainElementClasses = {
@@ -23,9 +24,15 @@ export class DatacomContentTag {
 
     return (
       <Host>
-        <div class={mainElementClasses}>
-          <slot></slot>
-        </div>
+        {!!this.url ? (
+          <a class={mainElementClasses} href={this.url}>
+            <slot></slot>
+          </a>
+        ) : (
+          <div class={mainElementClasses}>
+            <slot></slot>
+          </div>
+        )}
       </Host>
     );
   }

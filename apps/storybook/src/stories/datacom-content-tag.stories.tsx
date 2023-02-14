@@ -30,13 +30,24 @@ export default {
       options: ['article', 'event', 'productpromo', 'productsale'],
       type: { name: 'string' },
     },
+    url: {
+      name: 'URL',
+      defaultValue: 'https://datacom.com',
+      description:
+        'URL that content tag should link to. Omitting a url will change the tag into a non-interactable div element',
+      type: { name: 'string' },
+    },
   },
 };
 
 const Template: StoryFn<ContentTagProps & { label: string }> = (args) => {
-  const { label, variant } = args;
+  const { label, url, variant } = args;
 
-  return <DatacomContentTag variant={variant}>{label}</DatacomContentTag>;
+  return (
+    <DatacomContentTag variant={variant} url={url}>
+      {label}
+    </DatacomContentTag>
+  );
 };
 
 export const ContentTag = Template.bind({});

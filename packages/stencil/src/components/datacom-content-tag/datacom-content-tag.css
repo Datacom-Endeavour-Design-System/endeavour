@@ -26,6 +26,7 @@
     );
   letter-spacing: -0.2px;
   padding: var(--tag-vertical-padding) 8px;
+  text-decoration: none;
 }
 
 .dc-content-tag:hover {
