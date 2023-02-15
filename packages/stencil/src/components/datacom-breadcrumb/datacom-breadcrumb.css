@@ -1,0 +1,53 @@
+:host {
+  display: inline-block;
+}
+
+.dc-breadcrumb {
+  align-items: center;
+  height: 18px;
+  font-family: var(--dc-font-family);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.002em;
+  padding-left: 8px;
+}
+
+.dc-breadcrumb-item {
+  text-decoration: none;
+  padding-right: 8px;
+  color: var(--dc-primary-colour);
+}
+
+.dc-breadcrumb-icon {
+  width: 6px;
+  height: 10px;
+}
+
+.dc-breadcrumb-icon path {
+  fill: var(--dc-greyscale-04);
+}
+
+.dc-breadcrumb .dc-breadcrumb-item:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dc-breadcrumb:focus-visible {
+  outline: none;
+}
+
+.dc-breadcrumb .dc-breadcrumb-item:focus-visible {
+  outline: none;
+  text-decoration: 3px solid  underline;
+}
+
+.dc-selected .dc-breadcrumb-item {
+  color: var(--dc-primary-text-color);
+}
+
+.dc-selected .dc-breadcrumb-item:hover {
+  text-decoration: none;
+  cursor: auto;
+}
