@@ -17,24 +17,34 @@ export default {
     variant: {
       name: 'Variant',
       description: "Content tag variant. Defaults to 'article' if not set.",
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          article: 'Article',
+          event: 'Event',
+          'product-highlight': 'Product - Highlight',
+          'product-promo': 'Product - Promo',
+        },
+      },
       defaultValue: 'article',
-      options: ['article', 'event'],
+      options: ['article', 'event', 'product-highlight', 'product-promo'],
       type: { name: 'string' },
     },
-    solid: {
-      name: 'Product Style',
-      description: 'If true, sets a solid style on the content tag.',
-      type: { name: 'boolean' },
+    url: {
+      name: 'URL',
+      defaultValue: 'https://datacom.com',
+      description:
+        'URL that content tag should link to. Omitting a url will change the tag into a non-interactable div element',
+      type: { name: 'string' },
     },
   },
 };
 
 const Template: StoryFn<ContentTagProps & { label: string }> = (args) => {
-  const { label, solid, variant } = args;
+  const { label, url, variant } = args;
 
   return (
-    <DatacomContentTag solid={solid} variant={variant}>
+    <DatacomContentTag variant={variant} url={url}>
       {label}
     </DatacomContentTag>
   );
