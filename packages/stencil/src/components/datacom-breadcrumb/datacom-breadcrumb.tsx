@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Method } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 /**
  * Breadcrumb element represents  navigation
@@ -13,21 +13,11 @@ export class DatacomBreadcrumb {
   @Prop() link?: string;
   @Prop() text: string;
   @Prop() index: number;
-  @Prop({ mutable: true }) selected: boolean;
-  @Event() itemClicked: EventEmitter<number>;
+  @Prop() selected = false;
 
   onClickHandler = () => {
-    this.itemClicked.emit(this.index);
     this.selected = true;
   };
-
-  /**
-   *  Function sets the select state of this breadcrumb item.
-   */
-  @Method()
-  async setSelected(selected: boolean): Promise<void> {
-    this.selected = selected;
-  }
 
   NavIcon = getSvg('drill-down', { class: 'dc-breadcrumb-icon' });
 
