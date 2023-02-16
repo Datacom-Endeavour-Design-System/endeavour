@@ -63,6 +63,7 @@
   border-radius: 12px;
 }
 
+/* Focus state */
 .dc-radio-radio .dc-radio-input:focus:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
   border-radius: 12px;
@@ -70,16 +71,8 @@
   outline-offset: 1px;
 }
 
-.dc-radio-radio .dc-radio-input:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.dc-radio-radio .dc-radio-label:focus-visible {
-  outline: none;
-}
-
 .dc-radio-radio .dc-radio-input:checked {
-  border: 3px solid var(--dc-background-colour);
+  border: 4px solid var(--dc-background-colour);
   background: var(--dc-primary-colour);
   box-shadow: 0 0 0 1px var(--dc-primary-colour);
   outline: none;
@@ -105,7 +98,7 @@
 .dc-radio-button .dc-radio-input {
   position: absolute;
   cursor: pointer;
-  display: none;
+  opacity: 0;
   overflow: hidden;
 }
 
@@ -149,16 +142,19 @@
   align-items: center;
 }
 
-/* Focus style for button */
-.dc-radio-button .dc-radio-label:focus-visible {
+/* focus for button */
+.dc-radio-button .dc-radio-input:focus:focus-visible + label {
   outline: 3px solid var(--dc-primary-colour);
   border: 1px solid var(--dc-greyscale-05);
   outline-offset: 1px;
 }
 
-/* focus */
-.dc-radio-button .dc-radio-input:focus:not(:focus-visible) + label {
-  outline: none;
+/* Focus style for grouped */
+.dc-radio-button.dc-radio-grouped .dc-radio-input:focus-visible + label {
+  outline-offset: 1px;
+  outline: 3px solid var(--dc-primary-colour);
+  border: 1px solid var(--dc-greyscale-05);
+  z-index: 1;
 }
 
 /* Hover style for  button variant */
@@ -180,7 +176,7 @@
   background-size: 16px;
   background-position: left;
   background-repeat: no-repeat;
-  background-position-x: 12%;
+  background-position-x: 10%;
   color: var(--dc-background-colour);
   text-align: center;
   border: 2px solid var(--dc-greyscale-05);
@@ -199,7 +195,7 @@
   background-size: 16px;
   background-position: left;
   background-repeat: no-repeat;
-  background-position-x: 12%;
+  background-position-x: 10%;
   color: var(--dc-background-colour);
   text-align: center;
   border: 2px solid var(--dc-greyscale-05);
@@ -237,13 +233,6 @@
 .dc-radio-grouped .dc-radio-input + label {
   border: 1px solid var(--dc-greyscale-05);
   margin-right: 0;
-}
-
-/* Focus style for grouped */
-.dc-radio-grouped.dc-radio-button .dc-radio-label:focus-visible {
-  outline: 3px solid var(--dc-primary-colour);
-  border: 1px solid var(--dc-greyscale-05);
-  outline-offset: -3px;
 }
 
 :host(:first-child) .dc-radio-grouped .dc-radio-input + label {
