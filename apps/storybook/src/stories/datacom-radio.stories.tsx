@@ -112,6 +112,7 @@ export const RadioGrouping = (args) => {
         label="Radio item 1"
         name="choose"
         value="choice1"
+        checked="true"
         style={{ 'padding-bottom': '12px' }}>
         {' '}
       </DatacomRadio>
@@ -160,6 +161,7 @@ export const RadioButtonGrouping = (args) => {
       <DatacomRadio
         {...args}
         label=" Radio button 1"
+        checked="true"
         name="choose"
         value="choice1"
         variant="button">
@@ -191,6 +193,7 @@ export const RadioGroupButton = (args) => {
       <DatacomRadio
         {...args}
         variant="button"
+        checked
         label="Radio item 1"
         name="choose"
         value="choice1"></DatacomRadio>
