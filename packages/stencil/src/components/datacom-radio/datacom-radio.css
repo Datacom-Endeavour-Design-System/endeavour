@@ -63,11 +63,15 @@
   border-radius: 12px;
 }
 
-.dc-radio-radio .dc-radio-input:focus-visible {
+.dc-radio-radio .dc-radio-input:focus:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
   border-radius: 12px;
   border: 1px solid var(--dc-greyscale-05);
   outline-offset: 1px;
+}
+
+.dc-radio-radio .dc-radio-input:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .dc-radio-radio .dc-radio-label:focus-visible {

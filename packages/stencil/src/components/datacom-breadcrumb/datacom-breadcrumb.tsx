@@ -10,34 +10,28 @@ import { getSvg } from '../../common/images/icon-provider';
   shadow: true,
 })
 export class DatacomBreadcrumb {
-  @Prop() link?: string;
+  @Prop() url?: string;
   @Prop() text: string;
-  @Prop() index: number;
-  @Prop() selected = false;
-
-  onClickHandler = () => {
-    this.selected = true;
-  };
 
   NavIcon = getSvg('drill-down', { class: 'dc-breadcrumb-icon' });
 
   render() {
-    const classes = {
-      'dc-breadcrumb': true,
-      'dc-selected': this.selected || this.link == null,
-    };
-
     return (
       <Host>
-        <div class={classes}>
-          <nav aria-selected={this.selected} onClick={this.onClickHandler}>
-            <a href={this.link} class="dc-breadcrumb-item">
-              {this.text} <slot></slot>
+        {!!this.url ? (
+          <div>
+            <a href={this.url} class="dc-breadcrumb">
+              {this.text}
+              <slot></slot> {this.NavIcon}
             </a>
-            {this.NavIcon}
             <slot></slot>
-          </nav>
-        </div>
+          </div>
+        ) : (
+          <div class="dc-current">
+            {this.text}
+            <slot></slot>
+          </div>
+        )}
       </Host>
     );
   }

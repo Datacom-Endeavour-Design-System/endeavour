@@ -1,17 +1,13 @@
 # Breadcrumb Usage
 ## Web component
-Breadcrumb is composed of two different web components: 'datacom-breadcrumb-group' and 'datacom-breadcrumb'
-
-- 'datacom-breadcrumb-group' - Wrapping element around several breadcrumb instances.
-- 'datacom-breadcrumb' - The individual section of an breadcrumb.
-
+Breadcrumb has one component 'datacom-breadcrumb'
 
 ```html 
-    <datacom-breadcrumb-group>
+   <div>
     <datacom-breadcrumb link="https://datacom.com/nz/en/discover?&page=2"  >Breadcrumb1  </datacom-breadcrumb>
     <datacom-breadcrumb link="https://datacom.com/nz/en/discover"  >Breadcrumb2  </datacom-breadcrumb>
-   <datacom-breadcrumb selected >Breadcrumb3</datacom-breadcrumb>
-   </datacom-breadcrumb-group>
+     <datacom-breadcrumb >Breadcrumb2  </datacom-breadcrumb>
+   </div>
 ``` 
 Individual component usage 
    ```html

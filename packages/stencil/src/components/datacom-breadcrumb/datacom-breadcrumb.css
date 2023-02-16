@@ -2,7 +2,7 @@
   display: inline-block;
 }
 
-.dc-breadcrumb {
+:host * {
   align-items: center;
   height: 18px;
   font-family: var(--dc-font-family);
@@ -10,17 +10,17 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
-  letter-spacing: -0.002em;
-  padding-left: 8px;
+  letter-spacing: 0.01px;
 }
 
-.dc-breadcrumb-item {
+.dc-breadcrumb {
   text-decoration: none;
   padding-right: 8px;
   color: var(--dc-primary-colour);
 }
 
 .dc-breadcrumb-icon {
+  padding-left: 8px;
   width: 6px;
   height: 10px;
 }
@@ -29,7 +29,7 @@
   fill: var(--dc-greyscale-04);
 }
 
-.dc-breadcrumb .dc-breadcrumb-item:hover {
+.dc-breadcrumb:hover {
   text-decoration: underline;
   cursor: pointer;
   color: var(--dc-primary-accent-colour);
@@ -37,18 +37,17 @@
 
 .dc-breadcrumb:focus-visible {
   outline: none;
-}
-
-.dc-breadcrumb .dc-breadcrumb-item:focus-visible {
-  outline: none;
   text-decoration: 3px solid  underline;
 }
 
-.dc-selected .dc-breadcrumb-item {
+.dc-current {
   color: var(--dc-primary-text-color);
 }
 
-.dc-selected .dc-breadcrumb-item:hover {
-  text-decoration: none;
-  cursor: auto;
+:host(:last-child) .dc-breadcrumb-icon {
+  visibility: hidden;
+}
+
+:host(:first-child) .dc-breadcrumb-icon {
+  visibility: visible;
 }
