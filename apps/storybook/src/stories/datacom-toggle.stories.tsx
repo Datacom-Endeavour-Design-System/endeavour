@@ -6,9 +6,29 @@ export default {
   title: 'Toggle',
   component: DatacomToggle,
   argTypes: {
-    disabled: {
-      name: 'Disabled',
-      description: 'If true, disables the toggle element.',
+    name: {
+      name: 'Name',
+      defaultValue: 'Toggle',
+      description: 'HTML "name" attribute for toggle element.',
+      type: { name: 'string' },
+    },
+    label: {
+      name: 'Label',
+      defaultValue: 'Label',
+      description: 'Label for toggle element.',
+      type: { name: 'string' },
+    },
+    variant: {
+      name: 'Variant',
+      description: "Toggle size variant. Defaults to 'standard' if not set.",
+      control: 'select',
+      defaultValue: 'standard',
+      options: ['standard', 'small'],
+      type: { name: 'string', required: true },
+    },
+    toggled: {
+      name: 'Toggled',
+      description: 'If true, toggle element will be toggled on initial load.',
       type: { name: 'boolean' },
     },
     labelPosition: {
@@ -20,33 +40,20 @@ export default {
       options: ['left', 'right'],
       type: { name: 'string', required: true },
     },
-    toggled: {
-      name: 'Toggled',
-      description: 'If true, toggle element will be toggled on initial load.',
+    disabled: {
+      name: 'Disabled',
+      description: 'If true, disables the toggle element.',
       type: { name: 'boolean' },
-    },
-    label: {
-      name: 'Label',
-      defaultValue: 'Label',
-      description: 'Label for toggle element.',
-      type: { label: 'string' },
-    },
-    variant: {
-      name: 'Variant',
-      description: "Toggle size variant. Defaults to 'standard' if not set.",
-      control: 'select',
-      defaultValue: 'standard',
-      options: ['standard', 'small'],
-      type: { name: 'string', required: true },
     },
   },
 };
 
 const Template: ComponentStoryFn<typeof DatacomToggle> = (args) => {
-  const { disabled, label, labelPosition, toggled, variant } = args;
+  const { disabled, label, labelPosition, name, toggled, variant } = args;
 
   return (
     <DatacomToggle
+      name={name}
       label={label}
       disabled={disabled}
       toggled={toggled}
@@ -58,7 +65,10 @@ const Template: ComponentStoryFn<typeof DatacomToggle> = (args) => {
 
 export const Toggle = Template.bind({});
 Toggle.args = {
-  disabled: false,
+  name: 'Toggle',
   label: 'Label',
+  variant: 'standard',
   toggled: false,
+  labelPosition: 'right',
+  disabled: false,
 };

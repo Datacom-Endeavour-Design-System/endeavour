@@ -4,9 +4,6 @@
 
 :host * {
   font-family: var(--dc-font-family);
-}
-
-li {
   color: var(--dc-primary-text-color);
   font-style: normal;
   font-size: 16px;
@@ -14,23 +11,18 @@ li {
   line-height: 24px;
 }
 
-li + * {
-  color: red;
+.dc-li-item {
+  font-weight: 400;
 }
 
-::marker {
-  font-family: var(--dc-font-family);
-  font-size: 16px;
-  font-weight: 400;
+li::marker {
+  font-size: 400;
   line-height: 20px;
   text-align: right;
-  color: var(--dc-primary-text-color);
   position: absolute;
   letter-spacing: -0.25px;
 }
 
-.item-heading {
-  font-size: 16px;
+.dc-li-heading {
   font-weight: 700;
-  line-height: 24px;
 }

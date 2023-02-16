@@ -1,5 +1,8 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 
+/**
+ * DatacomList has two variants ordered(ol) and unordered(ul).
+ */
 export type ListVariant = 'ordered' | 'unordered';
 export type TypeList = 'numbers' | 'lowercase' | 'upercase' | 'roman';
 
@@ -10,12 +13,15 @@ export type TypeList = 'numbers' | 'lowercase' | 'upercase' | 'roman';
 })
 export class DatacomList {
   @Prop() variant: ListVariant = 'ordered';
+  /**
+   * type used for ordered list style.
+   */
   @Prop() type: TypeList = 'numbers';
 
   render() {
     const classes = {
-      [`list-${this.variant}`]: true,
-      [`list-${this.type}`]: true,
+      [`dc-list-${this.variant}`]: true,
+      [`dc-list-${this.type}`]: true,
     };
 
     const ListElement = this.variant === 'ordered' ? 'ol' : 'ul';

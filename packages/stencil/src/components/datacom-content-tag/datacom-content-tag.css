@@ -1,0 +1,56 @@
+:host {
+  display: inline-block;
+
+  --tag-border-width: 1px;
+  --tag-color: var(--dc-primary-text-color);
+  --tag-height: 26px;
+  --tag-vertical-padding: 4px;
+}
+
+/* Default styles */
+.dc-content-tag {
+  align-items: center;
+  background-color: var(--dc-background-colour);
+  border: var(--tag-border-width) solid var(--tag-color);
+  border-radius: 4px;
+  color: var(--tag-color);
+  display: flex;
+  flex-direction: row;
+  font-family: var(--dc-font-family);
+  font-size: 14px;
+  height:
+    calc(
+      var(--tag-height)
+      - 2 * var(--tag-border-width)
+      - 2 * var(--tag-vertical-padding)
+    );
+  letter-spacing: -0.2px;
+  padding: var(--tag-vertical-padding) 8px;
+  text-decoration: none;
+}
+
+a.dc-content-tag:hover {
+  background-color: var(--dc-background-accent-color);
+}
+
+/* "Event" and "Product Promo" color setting */
+.event,
+.product-promo {
+  --tag-color: #e60060;
+}
+
+/* "Product" styles */
+.product-highlight,
+.product-promo {
+  background-color: var(--tag-color);
+  color: var(--dc-background-colour);
+  font-weight: 600;
+}
+
+a.product-highlight:hover {
+  background-color: var(--dc-primary-accent-colour);
+}
+
+a.product-promo:hover {
+  background-color: #eb337f;
+}
