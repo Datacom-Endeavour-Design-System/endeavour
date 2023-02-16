@@ -31,10 +31,12 @@ export const Breadcrumb = Template.bind({});
 export const BreadcrumbGrouped = () => {
   return (
     <div style={{ display: 'inline-block' }}>
-      <DatacomBreadcrumb url="https://datacom.com">Home</DatacomBreadcrumb>
-      <DatacomBreadcrumb url="/nz/co">Breadcrumb 1</DatacomBreadcrumb>
-      <DatacomBreadcrumb url="/nz/co">Breadcrumb 2</DatacomBreadcrumb>
-      <DatacomBreadcrumb url="/nz/co">Breadcrumb 3</DatacomBreadcrumb>
+      <DatacomBreadcrumb
+        url="https://datacom.com"
+        text="Home"></DatacomBreadcrumb>
+      <DatacomBreadcrumb url="/nz/co" text="Breadcrumb 1"></DatacomBreadcrumb>
+      <DatacomBreadcrumb url="/nz/co" text="Breadcrumb 2"></DatacomBreadcrumb>
+      <DatacomBreadcrumb url="/nz/co" text="Breadcrumb 3"></DatacomBreadcrumb>
     </div>
   );
 };
