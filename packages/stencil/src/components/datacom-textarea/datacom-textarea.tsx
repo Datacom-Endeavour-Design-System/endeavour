@@ -222,9 +222,9 @@ export class DatacomTextarea implements FormControl {
     };
 
     return (
-      <Host tabIndex={tabindex}>
+      <Host>
         <div class={classes}>
-          <label class="dc-textarea-label" htmlFor={this.inputId} tabIndex={tabindex}>
+          <label class="dc-textarea-label" htmlFor={this.inputId} tabIndex={-1}>
             {this.label}
           </label>
           <div class="dc-textarea-counter">
