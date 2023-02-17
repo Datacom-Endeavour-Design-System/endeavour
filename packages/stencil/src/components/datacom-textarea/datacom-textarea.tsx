@@ -257,7 +257,7 @@ export class DatacomTextarea implements FormControl {
               </Fragment>
             )}
           </div>
-          {this.help && <div class="dc-textarea-help">{this.help}</div>}
+          {this.help && !error && <div class="dc-textarea-help">{this.help}</div>}
         </div>
       </Host>
     );
