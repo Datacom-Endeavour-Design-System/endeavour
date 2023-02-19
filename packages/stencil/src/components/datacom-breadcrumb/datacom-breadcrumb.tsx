@@ -26,6 +26,7 @@ export class DatacomBreadcrumb {
         ) : (
           <div class="dc-current">
             <slot></slot>
+            {this.NavIcon}
           </div>
         )}
       </Host>
