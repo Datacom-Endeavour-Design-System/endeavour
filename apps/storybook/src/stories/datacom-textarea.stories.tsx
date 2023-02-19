@@ -74,7 +74,7 @@ WithError.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  label: 'Disabled',
+  label: 'Label',
   disabled: true,
 };
 
