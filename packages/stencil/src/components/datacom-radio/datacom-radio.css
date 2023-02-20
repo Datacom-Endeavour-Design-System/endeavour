@@ -67,12 +67,11 @@
 .dc-radio-radio .dc-radio-input:focus:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
   border-radius: 12px;
-  border: 1px solid var(--dc-greyscale-05);
   outline-offset: 1px;
 }
 
 .dc-radio-radio .dc-radio-input:checked {
-  border: 4px solid var(--dc-background-colour);
+  border: 3px solid var(--dc-background-colour);
   background: var(--dc-primary-colour);
   box-shadow: 0 0 0 1px var(--dc-primary-colour);
   outline: none;
