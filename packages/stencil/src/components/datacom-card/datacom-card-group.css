@@ -1,0 +1,7 @@
+:host {
+  display: inline;
+}
+
+.dc-card-group {
+  display: flex;
+}
