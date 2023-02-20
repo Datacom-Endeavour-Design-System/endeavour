@@ -10,7 +10,6 @@ export type CardVariant = 'content' | 'product' | 'selection';
 @Component({
   tag: 'datacom-card',
   styleUrl: 'datacom-card.css',
-  shadow: true,
 })
 export class DatacomCard {
   render() {

@@ -12,10 +12,6 @@
   min-height: 200px;
 }
 
-:host(:not(:last-child)) .dc-card {
-  margin-right: 20px;
-}
-
 .dc-card-media {
   background-color: #e5f1ff;
   border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;

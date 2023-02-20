@@ -1,6 +1,7 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 
 export type CardVariant = 'content' | 'product' | 'selection';
+export type NumberOfItemsPerRow = 3 | 4;
 
 /**
  * Cards components are used to display content and actions about a
@@ -13,9 +14,12 @@ export type CardVariant = 'content' | 'product' | 'selection';
   shadow: true,
 })
 export class DatacomCardGroup {
+  @Prop() itemsPerRow?: NumberOfItemsPerRow = 3;
+
   render() {
     const mainElementClasses = {
       'dc-card-group': true,
+      'four-items': this.itemsPerRow === 4,
     };
 
     return (

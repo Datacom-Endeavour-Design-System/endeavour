@@ -1,7 +1,27 @@
+@import url("../../global/css/breakpoints.css");
+
 :host {
   display: inline;
 }
 
 .dc-card-group {
-  display: flex;
+  column-gap: 48px;
+  display: grid;
+  row-gap: 48px;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-card-group {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (--breakpoint-desktop) {
+  .dc-card-group {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .dc-card-group.four-items {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
