@@ -39,6 +39,7 @@
   border: var(--default-border-size) solid var(--dc-greyscale-05);
   border-radius: 8px;
   box-shadow: none;
+  box-sizing: border-box;
   caret-color: var(--dc-primary-text-color);
   color: var(--dc-primary-text-color);
   font-family: var(--dc-font-family);
@@ -48,8 +49,8 @@
   line-height: 24px;
   outline: 0;
   padding: var(--textarea-padding-v) var(--textarea-padding-h);
-  height: calc(var(--min-textarea-height) - 2 * var(--default-border-size) - 2 * var(--textarea-padding-v));
-  width: calc(var(--min-textarea-width) - 2 * var(--default-border-size) - 2 * var(--textarea-padding-h));
+  height: var(--min-textarea-height);
+  width: var(--min-textarea-width);
 }
 
 .dc-textarea-help {
