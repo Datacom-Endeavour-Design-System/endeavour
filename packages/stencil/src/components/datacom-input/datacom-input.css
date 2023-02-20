@@ -16,7 +16,7 @@
   display: block;
   position: relative;
   height: 72px;
-  min-width: 270px;
+  min-width: 272px;
   max-width: 400px;
 }
 
@@ -208,7 +208,7 @@
   font-size: 12px;
   padding: 4px 0 0 14px;
   white-space: pre-wrap;
-  max-width: 270px;
+  max-width: 272px;
   margin: 0;
   outline: none;
 }

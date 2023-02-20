@@ -90,7 +90,7 @@ export default {
 
 const Template: ComponentStoryFn<typeof DatacomInput> = (props) => {
   const Panel = styled.div`
-    width: 300px;
+    width: 272px;
   `;
 
   return (
