@@ -120,17 +120,23 @@ export const WithIndicators = () => {
 
   const disabled = indicator == 'none' || indicator == 'working';
 
+  const Panel = styled.div`
+    width: 272px;
+  `;
+
   return (
     <>
-      <DatacomInput
-        label="First name"
-        title="You first names (including middle)"
-        placeholder="First names"
-        required={true}
-        value="William"
-        indicator={indicator}
-        message="Please enter your first name"
-      />
+      <Panel>
+        <DatacomInput
+          label="First name"
+          title="You first names (including middle)"
+          placeholder="First names"
+          required={true}
+          value="William"
+          indicator={indicator}
+          message="Please enter your first name"
+        />
+      </Panel>
 
       <div>
         {iterations > 3 && (
@@ -165,7 +171,7 @@ export const VerticalForm = () => {
   };
 
   const Panel = styled.div`
-    width: 300px;
+    width: 272px;
     margin-bottom: 30px;
     datacom-input {
       margin-bottom: 12px;
