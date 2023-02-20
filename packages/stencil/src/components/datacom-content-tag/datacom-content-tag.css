@@ -1,6 +1,8 @@
 :host {
   display: inline-block;
 
+  --highlight-hover-color: var(--dc-primary-accent-colour);
+  --promo-hover-color: #eb337f;
   --tag-border-width: 1px;
   --tag-color: var(--dc-primary-text-color);
   --tag-height: 26px;
@@ -33,24 +35,31 @@ a.dc-content-tag:hover {
   background-color: var(--dc-background-accent-color);
 }
 
-/* "Event" and "Product Promo" color setting */
+/* Color setting for other variants */
 .event,
 .product-promo {
   --tag-color: #e60060;
+}
+
+.product-highlight {
+  --tag-color: var(--dc-secondary-text-color);
 }
 
 /* "Product" styles */
 .product-highlight,
 .product-promo {
   background-color: var(--tag-color);
+  border-color: var(--tag-color);
   color: var(--dc-background-colour);
   font-weight: 600;
 }
 
 a.product-highlight:hover {
-  background-color: var(--dc-primary-accent-colour);
+  background-color: var(--highlight-hover-color);
+  border-color: var(--highlight-hover-color);
 }
 
 a.product-promo:hover {
-  background-color: #eb337f;
+  background-color: var(--promo-hover-color);
+  border-color: var(--promo-hover-color);
 }
