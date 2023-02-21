@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 export type CardVariant = 'content' | 'product' | 'selection';
 
@@ -8,10 +8,13 @@ export type CardVariant = 'content' | 'product' | 'selection';
  * to more details.
  */
 @Component({
-  tag: 'datacom-card',
-  styleUrl: 'datacom-card.css',
+  tag: 'datacom-content-card',
+  styleUrl: 'datacom-content-card.css',
 })
 export class DatacomCard {
+  @Prop() date;
+  @Prop() title;
+
   render() {
     const mainElementClasses = {
       'dc-card': true,
@@ -20,15 +23,17 @@ export class DatacomCard {
     return (
       <Host>
         <div class={mainElementClasses}>
-          <div class="dc-card-media"></div>
+          <div class="dc-card-media">
+            <div class="dc-card-tags">
+              <slot name="tags" />
+            </div>
+          </div>
           <div class="dc-card-content-wrapper">
             <div class="dc-card-content">
-              <div class="dc-card-date">00-00-2022</div>
-              <div class="dc-card-heading">How to: Lorem Ipsum</div>
+              <div class="dc-card-date">{this.date}</div>
+              <div class="dc-card-heading">{this.title}</div>
               <div class="dc-card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+                <slot />
               </div>
             </div>
             <div class="dc-card-actions">
