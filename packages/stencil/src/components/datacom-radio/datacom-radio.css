@@ -67,7 +67,7 @@
 .dc-radio-radio .dc-radio-input:focus:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
   border-radius: 12px;
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
 
 .dc-radio-radio .dc-radio-input:checked {
@@ -79,7 +79,7 @@
 }
 
 .dc-radio-radio .dc-radio-input:disabled {
-  background-color: var(--dc-background-accent-color);
+  background-color: var(--dc-grayscale-06);
   border: 1px solid var(--dc-greyscale-05);
 }
 
@@ -164,7 +164,6 @@
 
 /* Disable style button variant */
 .dc-radio-disabled.dc-radio-button .dc-radio-input + label {
-  border: 2px solid var(--dc-greyscale-05);
   color: var(--dc-greyscale-04);
 }
 
@@ -178,16 +177,11 @@
   background-position-x: 10%;
   color: var(--dc-background-colour);
   text-align: center;
-  border: 2px solid var(--dc-greyscale-05);
   padding-left: 45px !important;
   outline: none;
 }
 
-.dc-radio-button .dc-radio-input:checked + label .dc-radio-image {
-  display: none;
-}
-
-.dc-radio-button .dc-radio-input:checked:hover + label {
+.dc-radio-button .dc-radio-input:checked:hover:not(:disabled) + label {
   background-color: var(--dc-primary-accent-colour);
   cursor: pointer;
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='14' height='11' viewBox='0 0 14 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.922 0.373439L4.17153 9.12391L1.07793 6.03031C0.931494 5.88388 0.694057 5.88388 0.547588 6.03031L0.194057 6.38385C0.0476191 6.53028 0.0476191 6.76772 0.194057 6.91419L3.90637 10.6265C4.05281 10.7729 4.29024 10.7729 4.43671 10.6265L13.8059 1.25735C13.9523 1.11091 13.9523 0.87347 13.8059 0.727002L13.4523 0.373439C13.3059 0.227001 13.0684 0.227001 12.922 0.373439Z' fill='white'/%3E%3C/svg%3E");
@@ -197,8 +191,15 @@
   background-position-x: 10%;
   color: var(--dc-background-colour);
   text-align: center;
-  border: 2px solid var(--dc-greyscale-05);
   padding-left: 45px !important;
+}
+
+.dc-radio-disabled.dc-radio-button .dc-radio-input:checked + label {
+  background-color: var(--dc-primary-disabled-colour);
+}
+
+.dc-radio-button .dc-radio-input:checked + label .dc-radio-image {
+  display: none;
 }
 
 .dc-radio-image path {
