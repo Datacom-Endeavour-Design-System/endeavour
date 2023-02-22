@@ -15,6 +15,8 @@ export type CardVariant = 'content' | 'product' | 'selection';
 export class DatacomCard {
   @Prop() date;
   @Prop() title;
+  @Prop() ctaText;
+  @Prop() url;
 
   render() {
     const mainElementClasses = {
@@ -39,7 +41,7 @@ export class DatacomCard {
             </div>
             <div class="dc-card-actions">
               <datacom-button variant="secondary" size="small">
-                Learn more
+                {this.ctaText}
               </datacom-button>
             </div>
           </div>
