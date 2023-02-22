@@ -238,6 +238,7 @@
 :host(:first-child) .dc-radio-grouped .dc-radio-input + label {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+  border-right: 0;
 }
 
 :host:not(:first-child) .dc-radio-grouped .dc-radio-input + label {
@@ -253,4 +254,5 @@
 :host:not(:last-child) .dc-radio-grouped .dc-radio-input + label {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  border-right: 0;
 }
