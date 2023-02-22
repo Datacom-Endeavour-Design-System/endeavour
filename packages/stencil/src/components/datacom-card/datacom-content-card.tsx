@@ -19,6 +19,12 @@ export class DatacomCard {
   @Prop() title: string;
   @Prop() url: string;
 
+  onCtaClick = () => {
+    if (!!this.url) {
+      location.href = this.url;
+    }
+  };
+
   render() {
     const mainElementClasses = {
       'dc-card': true,
@@ -42,7 +48,7 @@ export class DatacomCard {
               </div>
             </div>
             <div class="dc-card-actions">
-              <datacom-button variant="secondary" size="small">
+              <datacom-button variant="secondary" size="small" onClick={this.onCtaClick}>
                 {this.ctaText}
               </datacom-button>
             </div>
