@@ -11,7 +11,8 @@ import { Component, Host, h, Prop } from '@stencil/core';
 })
 export class DatacomDisplayCard {
   @Prop() url?: string;
-  @Prop() link: string;
+  @Prop() title: string;
+  @Prop() details: string;
 
   render() {
     const classes = {
@@ -20,9 +21,12 @@ export class DatacomDisplayCard {
     return (
       <Host>
         <div class={classes}>
-          <div class="dc-image-card">
-            {this.link}
-            <div></div>
+          <div class="dc-display-card-image">
+            <div class="dc-display-card-heading">{this.title}</div>
+            <div class="dc-display-card-text">{this.details}</div>
+            <a href={this.url}>
+              <slot></slot>
+            </a>
           </div>
         </div>
       </Host>
