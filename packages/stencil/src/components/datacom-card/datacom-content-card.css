@@ -9,8 +9,9 @@
   min-height: 200px;
 }
 
-.dc-card-media {
+.dc-card-media-wrapper {
   background-color: #e5f1ff;
+  display: flex;
   border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
   height: 240px;
   position: relative;
@@ -23,6 +24,13 @@
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.dc-card-image {
+  background-position: center;
+  background-size: cover;
+  height: 240px;
+  width: 100%;
 }
 
 ::slotted([slot="tags"]) {

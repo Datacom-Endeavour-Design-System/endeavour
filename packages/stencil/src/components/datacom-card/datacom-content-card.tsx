@@ -13,10 +13,11 @@ export type CardVariant = 'content' | 'product' | 'selection';
   shadow: true,
 })
 export class DatacomCard {
-  @Prop() date;
-  @Prop() title;
-  @Prop() ctaText;
-  @Prop() url;
+  @Prop() ctaText: string;
+  @Prop() date: string;
+  @Prop() imageUrl: string;
+  @Prop() title: string;
+  @Prop() url: string;
 
   render() {
     const mainElementClasses = {
@@ -26,10 +27,11 @@ export class DatacomCard {
     return (
       <Host>
         <div class={mainElementClasses}>
-          <div class="dc-card-media">
+          <div class="dc-card-media-wrapper">
             <div class="dc-card-tags">
               <slot name="tags" />
             </div>
+            <div class="dc-card-image" style={{ backgroundImage: 'url(' + this.imageUrl + ')' }} />
           </div>
           <div class="dc-card-content-wrapper">
             <div class="dc-card-content">
