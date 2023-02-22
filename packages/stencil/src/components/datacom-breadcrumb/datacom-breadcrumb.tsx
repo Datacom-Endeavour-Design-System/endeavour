@@ -18,11 +18,9 @@ export class DatacomBreadcrumb {
     return (
       <Host>
         {!!this.url ? (
-          <div>
-            <a href={this.url} class="dc-breadcrumb">
-              <slot></slot> {this.NavIcon}
-            </a>
-          </div>
+          <a href={this.url} class="dc-breadcrumb">
+            <slot></slot> {this.NavIcon}
+          </a>
         ) : (
           <div class="dc-current">
             <slot></slot>
