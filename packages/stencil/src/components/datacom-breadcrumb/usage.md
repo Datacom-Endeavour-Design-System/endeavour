@@ -4,8 +4,13 @@ Breadcrumb has one component 'datacom-breadcrumb'
 ### Properties - datacom-breadcrumb
 
 -url for passing link of other page. Styled with 'dc- breadcrumb' class.
+-Component  is render separator (>) only when it is wrap with 'div' .
+-Component is not render  the separator (>) for the last child. 
+-Component is render different style for no-url.
 ```html
+   <div>
    <datacom-breadcrumb url="https://datacom.com/nz/en/discover" > Breadcrumb </datcom-breadcrumb>
+   </div>
     
    ```
    ```html 
