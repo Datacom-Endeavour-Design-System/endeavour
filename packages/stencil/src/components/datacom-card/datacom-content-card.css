@@ -1,7 +1,4 @@
 :host {
-  display: inline;
-  flex-grow: 1;
-
   --card-border-radius: 8px;
 }
 
@@ -16,6 +13,20 @@
   background-color: #e5f1ff;
   border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
   height: 240px;
+  position: relative;
+}
+
+.dc-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+::slotted([slot="tags"]) {
+  margin: 8px 8px 0 0;
 }
 
 .dc-card-content-wrapper {

@@ -10,6 +10,7 @@ export type CardVariant = 'content' | 'product' | 'selection';
 @Component({
   tag: 'datacom-content-card',
   styleUrl: 'datacom-content-card.css',
+  shadow: true,
 })
 export class DatacomCard {
   @Prop() date;
