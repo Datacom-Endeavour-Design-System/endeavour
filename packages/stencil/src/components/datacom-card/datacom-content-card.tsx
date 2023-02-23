@@ -1,4 +1,5 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { getSvg } from '../../common/images/icon-provider';
 
 export type CardVariant = 'content' | 'product' | 'selection';
 
@@ -15,9 +16,16 @@ export type CardVariant = 'content' | 'product' | 'selection';
 export class DatacomCard {
   @Prop() ctaText: string;
   @Prop() date: string;
+  @Prop() icon: string;
   @Prop() imageUrl: string;
   @Prop() title: string;
   @Prop() url: string;
+
+  @Event() actionIconClicked: EventEmitter<string>;
+
+  onActionIconClick = () => {
+    this.actionIconClicked.emit(this.icon);
+  };
 
   onCtaClick = () => {
     if (!!this.url) {
@@ -51,6 +59,11 @@ export class DatacomCard {
               <datacom-button variant="secondary" size="small" onClick={this.onCtaClick}>
                 {this.ctaText}
               </datacom-button>
+              {this.icon?.length > 0 && (
+                <button class="dc-card-action-icon-button" onClick={this.onActionIconClick}>
+                  {getSvg(this.icon, { class: 'dc-card-action-icon' })}
+                </button>
+              )}
             </div>
           </div>
         </div>

@@ -83,3 +83,23 @@
   margin-bottom: 24px;
   overflow: hidden;
 }
+
+.dc-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dc-card-action-icon-button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.dc-card-action-icon {
+  height: 24px;
+  width: 24px;
+}
+
+.dc-card-action-icon path {
+  fill: var(--dc-primary-colour);
+}
