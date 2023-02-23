@@ -38,7 +38,7 @@
   transition: transform 0.25s ease-out;
 }
 
-a.dc-text:hover::before {
+.dc-text:hover::before {
   width: 100%;
   transform: scaleX(1);
   transform-origin: bottom left;
@@ -46,7 +46,7 @@ a.dc-text:hover::before {
   background-color: var(--dc-primary-accent-colour);
 }
 
-a.dc-text:hover {
+.dc-text:hover {
   color: var(--dc-primary-accent-colour);
 }
 
