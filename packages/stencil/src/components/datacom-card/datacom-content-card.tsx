@@ -27,20 +27,10 @@ export class DatacomCard {
     this.actionIconClicked.emit(this.icon);
   };
 
-  onCtaClick = () => {
-    if (!!this.url) {
-      location.href = this.url;
-    }
-  };
-
   render() {
-    const mainElementClasses = {
-      'dc-card': true,
-    };
-
     return (
       <Host>
-        <div class={mainElementClasses}>
+        <div class="dc-card">
           <div class="dc-card-media-wrapper">
             <div class="dc-card-tags">
               <slot name="tags" />
@@ -56,7 +46,7 @@ export class DatacomCard {
               </div>
             </div>
             <div class="dc-card-actions">
-              <datacom-button variant="secondary" size="small" onClick={this.onCtaClick}>
+              <datacom-button variant="secondary" size="small" url={this.url}>
                 {this.ctaText}
               </datacom-button>
               {this.icon?.length > 0 && (
