@@ -53,6 +53,10 @@
   width: var(--min-textarea-width);
 }
 
+.dc-textarea-input::placeholder {
+  color: var(--dc-greyscale-04);
+}
+
 .dc-textarea-help {
   color: var(--dc-greyscale-03);
   font-family: var(--dc-font-family);
@@ -108,7 +112,8 @@
   color: var(--dc-greyscale-04);
 }
 
-.dc-textarea-disabled .dc-textarea-input {
+.dc-textarea-disabled .dc-textarea-input,
+.dc-textarea-disabled .dc-textarea-counter {
   color: var(--dc-greyscale-04);
 }
 
