@@ -1,6 +1,5 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 
-export type CardVariant = 'content' | 'product' | 'selection';
 export type NumberOfItemsPerRow = 3 | 4;
 
 /**
