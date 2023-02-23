@@ -42,7 +42,7 @@ export class DatacomCard {
           <div class="dc-card-content-wrapper">
             <div class="dc-card-content">
               <div class="dc-card-date">{this.date}</div>
-              <div class="dc-card-heading">{this.title}</div>
+              <div class="dc-card-title">{this.title}</div>
               <div class="dc-card-text">
                 <slot />
               </div>

@@ -1,3 +1,5 @@
+@import url("../../global/css/breakpoints.css");
+
 :host {
   --card-border-radius: 8px;
 }
@@ -5,14 +7,15 @@
 .dc-card {
   border-radius: var(--card-border-radius);
   box-shadow: 0 3px 6px #00000029;
+  display: flex;
+  flex-direction: column;
   font-family: var(--dc-font-family);
-  min-height: 200px;
+  height: 100%;
 }
 
 .dc-card-media-wrapper {
   background-color: #e5f1ff;
   display: flex;
-  border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
   height: 240px;
   position: relative;
 }
@@ -29,6 +32,7 @@
 .dc-card-image {
   background-position: center;
   background-size: cover;
+  border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
   height: 240px;
   width: 100%;
 }
@@ -38,7 +42,14 @@
 }
 
 .dc-card-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   padding: 24px;
+}
+
+.dc-card-content {
+  flex-grow: 1;
 }
 
 .dc-card-date {
@@ -47,12 +58,19 @@
   margin-bottom: 12px;
 }
 
-.dc-card-heading {
-  font-size: var(--dc-heading5-size);
+.dc-card-title {
+  font-size: 18px;
   font-weight: var(--dc-heading5-weight);
   letter-spacing: var(--dc-heading5-spacing);
-  line-height: var(--dc-heading5-height);
+  line-height: 24px;
   margin-bottom: 12px;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-card-title {
+    font-size: var(--dc-heading5-size);
+    line-height: var(--dc-heading5-height);
+  }
 }
 
 .dc-card-text {
