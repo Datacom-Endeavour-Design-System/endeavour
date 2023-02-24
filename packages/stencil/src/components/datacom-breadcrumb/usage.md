@@ -17,7 +17,7 @@ Breadcrumb has one component: 'datacom-breadcrumb'
 ```
 ### Properties - datacom-breadcrumb
 
-url-This is the url to the page where breadcrumb link redirects to.
-separator- This is prop which is used to show Icon(>) alongside breadcrumb text.
+-url-This is the url to the page where breadcrumb link redirects to.
+-If no url is provided, the component will be rendered as plain text.
+-separator- This is prop which is used to show Icon(>) alongside breadcrumb text.
 
-"If no url is provided, the component will be rendered as plain text."
