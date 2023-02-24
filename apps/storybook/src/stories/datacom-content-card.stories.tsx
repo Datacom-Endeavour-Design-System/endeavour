@@ -1,6 +1,7 @@
 import React from 'react';
 import { StoryFn } from '@storybook/react';
 import {
+  DatacomCardGroup,
   DatacomContentCard,
   DatacomContentTag,
 } from '@datacom/endeavour-react';
@@ -10,7 +11,7 @@ type ContentCardProps = React.ComponentProps<typeof DatacomContentCard>;
 
 export default {
   title: 'Card',
-  component: DatacomContentTag,
+  component: DatacomContentCard,
   argTypes: {
     date: {
       name: 'Date',
@@ -94,6 +95,7 @@ const Template: StoryFn<
 > = (args) => {
   const { ctaText, date, description, icon, imageUrl, tagText, title, url } =
     args;
+
   const Wrapper = styled.div`
     max-width: 400px;
   `;
@@ -117,3 +119,53 @@ const Template: StoryFn<
 };
 
 export const ContentCard = Template.bind({});
+
+export const ContentCardGroup = () => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ maxWidth: '1400px' }}>
+        <DatacomCardGroup>
+          <DatacomContentCard
+            date="00-00-2022"
+            title="Card 1"
+            ctaText="Learn more"
+            icon="download"
+            imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
+            <DatacomContentTag slot="tags">
+              Professional Services
+            </DatacomContentTag>
+            <DatacomContentTag slot="tags">Articles</DatacomContentTag>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+          </DatacomContentCard>
+          <DatacomContentCard
+            date="00-00-2022"
+            title="Card 2"
+            ctaText="Learn more"
+            imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
+            <DatacomContentTag slot="tags">Articles</DatacomContentTag>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+          </DatacomContentCard>
+          <DatacomContentCard
+            date="00-00-2022"
+            title="Card 3"
+            ctaText="Learn more"
+            imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
+            <DatacomContentTag slot="tags">Articles</DatacomContentTag>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </DatacomContentCard>
+        </DatacomCardGroup>
+      </div>
+    </div>
+  );
+};
