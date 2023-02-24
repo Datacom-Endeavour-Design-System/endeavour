@@ -49,6 +49,7 @@
 }
 
 .dc-card-content {
+  color: var(--dc-primary-text-color);
   flex-grow: 1;
 }
 
