@@ -70,11 +70,3 @@
   display: flex;
   color: var(--dc-primary-text-color);
 }
-
-:host(:last-child) .dc-breadcrumb-icon {
-  visibility: hidden;
-}
-
-:host(:first-child) .dc-breadcrumb-icon {
-  visibility: visible;
-}
