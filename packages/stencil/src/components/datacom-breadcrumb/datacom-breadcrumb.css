@@ -17,7 +17,37 @@
   display: flex;
   text-decoration: none;
   padding-right: 8px;
+}
+
+.dc-text {
+  text-decoration: none;
   color: var(--dc-primary-colour);
+  display: inline-block;
+  position: relative;
+}
+
+.dc-text::before {
+  content: " ";
+  position: absolute;
+  transform: scaleX(0);
+  width: 0;
+  height: 1px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: transform 0.25s ease-out;
+}
+
+.dc-text:hover::before {
+  width: 100%;
+  transform: scaleX(1);
+  transform-origin: bottom left;
+  cursor: pointer;
+  background-color: var(--dc-primary-accent-colour);
+}
+
+.dc-text:hover {
+  color: var(--dc-primary-accent-colour);
 }
 
 .dc-breadcrumb-icon {
@@ -30,25 +60,13 @@
   fill: var(--dc-greyscale-04);
 }
 
-.dc-breadcrumb:hover {
-  text-decoration: underline;
-  cursor: pointer;
-  color: var(--dc-primary-accent-colour);
-}
-
-.dc-breadcrumb:focus-visible {
+.dc-text:focus-visible {
   outline: none;
+  text-underline-offset: 3px;
   text-decoration: 3px solid  underline;
 }
 
 .dc-current {
+  display: flex;
   color: var(--dc-primary-text-color);
-}
-
-:host(:last-child) .dc-breadcrumb-icon {
-  visibility: hidden;
-}
-
-:host(:first-child) .dc-breadcrumb-icon {
-  visibility: visible;
 }

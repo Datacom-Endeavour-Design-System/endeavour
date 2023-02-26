@@ -11,6 +11,7 @@ import { getSvg } from '../../common/images/icon-provider';
 })
 export class DatacomBreadcrumb {
   @Prop() url?: string;
+  @Prop() separator?: boolean = false;
 
   NavIcon = getSvg('drill-down', { class: 'dc-breadcrumb-icon' });
 
@@ -18,15 +19,16 @@ export class DatacomBreadcrumb {
     return (
       <Host>
         {!!this.url ? (
-          <div>
-            <a href={this.url} class="dc-breadcrumb">
-              <slot></slot> {this.NavIcon}
+          <div class="dc-breadcrumb">
+            <a href={this.url} class="dc-text">
+              <slot></slot>
             </a>
+            {this.separator && this.NavIcon}
           </div>
         ) : (
           <div class="dc-current">
             <slot></slot>
-            {this.NavIcon}
+            {this.separator && this.NavIcon}
           </div>
         )}
       </Host>

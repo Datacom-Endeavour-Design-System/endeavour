@@ -17,16 +17,26 @@ export default {
 
 const Template: ComponentStoryFn<typeof DatacomBreadcrumb> = (args) => {
   const { url } = args;
-  return <DatacomBreadcrumb url={url}>Breadcrumb</DatacomBreadcrumb>;
+  return (
+    <DatacomBreadcrumb url={url} separator>
+      Breadcrumb
+    </DatacomBreadcrumb>
+  );
 };
 export const Breadcrumb = Template.bind({});
 
 export const BreadcrumbGrouped = () => {
   return (
     <div style={{ display: 'inline-block' }}>
-      <DatacomBreadcrumb url="https://datacom.com">Home</DatacomBreadcrumb>
-      <DatacomBreadcrumb url="/nz/co">Breadcrumb 1</DatacomBreadcrumb>
-      <DatacomBreadcrumb url="/nz/co">Breadcrumb 2</DatacomBreadcrumb>
+      <DatacomBreadcrumb url="https://datacom.com" separator>
+        Home
+      </DatacomBreadcrumb>
+      <DatacomBreadcrumb url="/nz/co" separator>
+        Breadcrumb 1
+      </DatacomBreadcrumb>
+      <DatacomBreadcrumb url="/nz/co" separator>
+        Breadcrumb 2
+      </DatacomBreadcrumb>
       <DatacomBreadcrumb url="/nz/co">Breadcrumb 3</DatacomBreadcrumb>
     </div>
   );
