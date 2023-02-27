@@ -12,11 +12,11 @@ import { getSvg } from '../../common/images/icon-provider';
   shadow: true,
 })
 export class DatacomCard {
+  @Prop() cardTitle: string;
   @Prop() ctaText: string;
   @Prop() date: string;
   @Prop() icon: string;
   @Prop() imageUrl: string;
-  @Prop() title: string;
   @Prop() url: string;
 
   @Event() actionIconClicked: EventEmitter<string>;
@@ -38,7 +38,7 @@ export class DatacomCard {
           <div class="dc-card-content-wrapper">
             <div class="dc-card-content">
               <div class="dc-card-date">{this.date}</div>
-              <div class="dc-card-title">{this.title}</div>
+              <div class="dc-card-title">{this.cardTitle}</div>
               <div class="dc-card-text">
                 <slot />
               </div>

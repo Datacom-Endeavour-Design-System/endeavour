@@ -14,13 +14,13 @@ Additionally, the cards should be placed within a `<datacom-card-group>`, which 
 
 ```html
 <datacom-card-group>
-  <datacom-content-card date="00-00-2022" title="Card 1" cta-text="Learn more" url="/test">
+  <datacom-content-card date="00-00-2022" card-title="Card 1" cta-text="Learn more" url="/test">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </datacom-content-card>
-  <datacom-content-card date="00-00-2022" title="Card 2" cta-text="Learn more" url="/test">
+  <datacom-content-card date="00-00-2022" card-title="Card 2" cta-text="Learn more" url="/test">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </datacom-content-card>
-  <datacom-content-card date="00-00-2022" title="Card 3" cta-text="Learn more" url="/test">
+  <datacom-content-card date="00-00-2022" card-title="Card 3" cta-text="Learn more" url="/test">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </datacom-content-card>
 </datacom-card-group>
@@ -40,7 +40,7 @@ The component takes in various properties to control the content within the card
 - url - This sets the url that the CTA element will link to.
 
 ```html
-<datacom-content-card date="00-00-2022" title="Card 1" cta-text="Learn more" icon="download" image-url="https://imageurl.com" url="https://redirect.url">
+<datacom-content-card date="00-00-2022" card-title="Card 1" cta-text="Learn more" icon="download" image-url="https://imageurl.com" url="https://redirect.url">
   ...
 </datacom-content-card>
 ```

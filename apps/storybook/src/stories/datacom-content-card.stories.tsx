@@ -107,7 +107,7 @@ const Template: StoryFn<
         date={date}
         icon={icon}
         imageUrl={imageUrl}
-        title={title}
+        cardTitle={title}
         url={url}>
         {tagText && (
           <DatacomContentTag slot="tags">{tagText}</DatacomContentTag>
@@ -127,7 +127,7 @@ export const ContentCardGroup = () => {
         <DatacomCardGroup>
           <DatacomContentCard
             date="00-00-2022"
-            title="Card 1"
+            cardTitle="Card 1"
             ctaText="Learn more"
             icon="download"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
@@ -144,7 +144,7 @@ export const ContentCardGroup = () => {
           </DatacomContentCard>
           <DatacomContentCard
             date="00-00-2022"
-            title="Card 2"
+            cardTitle="Card 2"
             ctaText="Learn more"
             imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
             <DatacomContentTag slot="tags">Articles</DatacomContentTag>
@@ -157,7 +157,7 @@ export const ContentCardGroup = () => {
           </DatacomContentCard>
           <DatacomContentCard
             date="00-00-2022"
-            title="Card 3"
+            cardTitle="Card 3"
             ctaText="Learn more"
             imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
             <DatacomContentTag slot="tags">Articles</DatacomContentTag>
