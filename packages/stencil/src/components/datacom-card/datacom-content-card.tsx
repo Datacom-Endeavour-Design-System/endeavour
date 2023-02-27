@@ -1,8 +1,6 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 
-export type CardVariant = 'content' | 'product' | 'selection';
-
 /**
  * Cards components are used to display content and actions about a
  * single subject, providing at-a-glance information and easy access
