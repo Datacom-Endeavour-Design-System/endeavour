@@ -1,0 +1,121 @@
+@import url("../../global/css/breakpoints.css");
+
+:host {
+  --card-border-radius: 8px;
+}
+
+.dc-card {
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 3px 6px #00000029;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--dc-font-family);
+  height: 100%;
+  width: 100%;
+}
+
+.dc-card-media-wrapper {
+  background-color: #e5f1ff;
+  display: flex;
+  height: 240px;
+  position: relative;
+}
+
+.dc-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.dc-card-image {
+  background-position: center;
+  background-size: cover;
+  border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+  height: 240px;
+  width: 100%;
+}
+
+::slotted([slot="tags"]) {
+  margin: 8px 8px 0 0;
+}
+
+.dc-card-content-wrapper {
+  color: var(--dc-primary-text-color);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 24px;
+}
+
+.dc-card-title-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.dc-card-title {
+  font-size: 18px;
+  font-weight: var(--dc-heading5-weight);
+  letter-spacing: var(--dc-heading5-spacing);
+  line-height: 24px;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-card-title {
+    font-size: var(--dc-heading5-size);
+    line-height: var(--dc-heading5-height);
+  }
+}
+
+.dc-card-expand {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.dc-card-chevron {
+  width: 24px;
+}
+
+.dc-card-chevron path {
+  fill: var(--dc-primary-text-color);
+}
+
+.dc-card-options {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+::slotted([slot="options"]) {
+  margin-right: 8px;
+}
+
+.dc-card .dc-button-btn.sc-datacom-button {
+  min-width: 100%;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-card .dc-button-btn.sc-datacom-button {
+    min-width: 137px;
+  }
+}
+
+.dc-card-description {
+  font-size: 16px;
+  letter-spacing: -0.2px;
+  line-height: 24px;
+  margin-top: 24px;
+  border-top: 1px solid var(--dc-greyscale-05);
+  padding-top: 24px;
+}
+
+/* Expanded state styles */
+.expand .dc-card-chevron {
+  transform: rotate(180deg);
+}
