@@ -2,6 +2,7 @@
 
 :host {
   --card-border-radius: 8px;
+  --card-options-margin: 16px;
 }
 
 .dc-card {
@@ -85,21 +86,31 @@
   fill: var(--dc-primary-text-color);
 }
 
+.dc-card-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.dc-card-options-wrapper {
+  flex-grow: 1;
+  margin-bottom: 24px;
+}
+
 .dc-card-options {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: -18px;
-  margin-right: -18px;
+  margin-bottom: calc(-1 * var(--card-options-margin));
+  margin-right: calc(-1 * var(--card-options-margin));
 }
 
 ::slotted([slot="options"]) {
-  margin-right: 18px;
-  margin-bottom: 18px;
+  margin-right: var(--card-options-margin);
+  margin-bottom: var(--card-options-margin);
 }
 
 .dc-card .dc-button-btn.sc-datacom-button {
-  margin-top: 24px;
   min-width: 100%;
 }
 
