@@ -17,12 +17,12 @@ export class DatacomAvatar {
     let avatarImage;
 
     if (this.src?.length > 0) {
-      avatarImage = <img src={this.src} />;
+      avatarImage = <img alt="Employee Image" src={this.src} />;
     } else {
       avatarImage = (
         <div class="avatar-initial">
-          {this.firstName.substring(0, 1)}
-          {this.lastName.substring(0, 1)}
+          {this.firstName?.substring(0, 1)}
+          {this.lastName?.substring(0, 1)}
         </div>
       );
     }

@@ -7,9 +7,9 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant, ImagePosition } from "./components/datacom-button/datacom-button";
 import { CheckboxSizeType } from "./components/datacom-checkbox/datacom-checkbox";
+import { ContentTagVariant } from "./components/datacom-content-tag/datacom-content-tag";
 import { DatacomDropDownVariantType } from "./components/datacom-dropdown/datacom-dropdown";
 import { DatacomInputType, IndicatorType } from "./components/datacom-input/datacom-input";
-import { ItemStyle } from "./components/datacom-list/datacom-li";
 import { ListVariant, TypeList } from "./components/datacom-list/datacom-list";
 import { ImagePosition as ImagePosition1, RadioSize, RadioVariant } from "./components/datacom-radio/datacom-radio";
 import { LabelPositionType, ToggleSizeType } from "./components/datacom-toggle/datacom-toggle";
@@ -33,13 +33,6 @@ export namespace Components {
         "allowMultiExpand"?: boolean;
     }
     interface DatacomAvatar {
-        "companyName": string;
-        "firstName": string;
-        "jobTitle": string;
-        "lastName": string;
-        "src": string;
-    }
-    interface DatacomAvataravatar {
         "companyName": string;
         "firstName": string;
         "jobTitle": string;
@@ -150,6 +143,10 @@ export namespace Components {
         "variant": CheckboxSizeType;
     }
     interface DatacomCheckboxGroup {
+    }
+    interface DatacomContentTag {
+        "solid": boolean;
+        "variant": ContentTagVariant;
     }
     interface DatacomDropdown {
         /**
@@ -268,9 +265,15 @@ export namespace Components {
         "value"?: string;
     }
     interface DatacomLi {
-        "variantItem": ItemStyle;
+        /**
+          * Heading  for list inside of paragraph.
+         */
+        "heading": false;
     }
     interface DatacomList {
+        /**
+          * type used for ordered list style.
+         */
         "type": TypeList;
         "variant": ListVariant;
     }
@@ -397,6 +400,56 @@ export namespace Components {
          */
         "selected": () => Promise<number>;
     }
+    interface DatacomTextarea {
+        /**
+          * Automatically show error state if invalid on form submit
+         */
+        "autoValidate"?: boolean;
+        "autocorrect": boolean;
+        /**
+          * Check if the control is valid
+         */
+        "checkValidity": () => Promise<boolean>;
+        "cols": number;
+        "disabled"?: boolean;
+        /**
+          * Sets edit state for element
+         */
+        "edit": () => Promise<void>;
+        "form"?: string;
+        "formaction"?: string;
+        "formenctype"?: string;
+        "formmethod"?: string;
+        "formnovalidate"?: boolean;
+        "formtarget"?: string;
+        /**
+          * Optional help text
+         */
+        "help"?: string;
+        "inputAutofocus"?: boolean;
+        "isValid"?: boolean;
+        "label"?: string;
+        "maxlength"?: number;
+        /**
+          * Error message to display in the case of validity checks or explicitly with 'valid' property
+         */
+        "message"?: string;
+        "minlength"?: number;
+        /**
+          * HTML element textarea properties
+         */
+        "name": string;
+        "placeholder"?: string;
+        "readonly"?: boolean;
+        "required"?: boolean;
+        "rows": number;
+        /**
+          * Force validation on the form control to display any error messages
+          * @returns boolean
+         */
+        "validate": () => Promise<boolean>;
+        "value": string;
+    }
     interface DatacomToggle {
         /**
           * True if the toggle element must be disabled
@@ -444,6 +497,10 @@ export interface DatacomRadioCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDatacomRadioElement;
 }
+export interface DatacomTextareaCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDatacomTextareaElement;
+}
 export interface DatacomToggleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDatacomToggleElement;
@@ -467,12 +524,6 @@ declare global {
         prototype: HTMLDatacomAvatarElement;
         new (): HTMLDatacomAvatarElement;
     };
-    interface HTMLDatacomAvataravatarElement extends Components.DatacomAvataravatar, HTMLStencilElement {
-    }
-    var HTMLDatacomAvataravatarElement: {
-        prototype: HTMLDatacomAvataravatarElement;
-        new (): HTMLDatacomAvataravatarElement;
-    };
     interface HTMLDatacomButtonElement extends Components.DatacomButton, HTMLStencilElement {
     }
     var HTMLDatacomButtonElement: {
@@ -490,6 +541,12 @@ declare global {
     var HTMLDatacomCheckboxGroupElement: {
         prototype: HTMLDatacomCheckboxGroupElement;
         new (): HTMLDatacomCheckboxGroupElement;
+    };
+    interface HTMLDatacomContentTagElement extends Components.DatacomContentTag, HTMLStencilElement {
+    }
+    var HTMLDatacomContentTagElement: {
+        prototype: HTMLDatacomContentTagElement;
+        new (): HTMLDatacomContentTagElement;
     };
     interface HTMLDatacomDropdownElement extends Components.DatacomDropdown, HTMLStencilElement {
     }
@@ -551,6 +608,12 @@ declare global {
         prototype: HTMLDatacomTabgroupElement;
         new (): HTMLDatacomTabgroupElement;
     };
+    interface HTMLDatacomTextareaElement extends Components.DatacomTextarea, HTMLStencilElement {
+    }
+    var HTMLDatacomTextareaElement: {
+        prototype: HTMLDatacomTextareaElement;
+        new (): HTMLDatacomTextareaElement;
+    };
     interface HTMLDatacomToggleElement extends Components.DatacomToggle, HTMLStencilElement {
     }
     var HTMLDatacomToggleElement: {
@@ -561,10 +624,10 @@ declare global {
         "datacom-accordion": HTMLDatacomAccordionElement;
         "datacom-accordion-group": HTMLDatacomAccordionGroupElement;
         "datacom-avatar": HTMLDatacomAvatarElement;
-        "datacom-avataravatar": HTMLDatacomAvataravatarElement;
         "datacom-button": HTMLDatacomButtonElement;
         "datacom-checkbox": HTMLDatacomCheckboxElement;
         "datacom-checkbox-group": HTMLDatacomCheckboxGroupElement;
+        "datacom-content-tag": HTMLDatacomContentTagElement;
         "datacom-dropdown": HTMLDatacomDropdownElement;
         "datacom-input": HTMLDatacomInputElement;
         "datacom-li": HTMLDatacomLiElement;
@@ -575,6 +638,7 @@ declare global {
         "datacom-radio-group": HTMLDatacomRadioGroupElement;
         "datacom-tab": HTMLDatacomTabElement;
         "datacom-tabgroup": HTMLDatacomTabgroupElement;
+        "datacom-textarea": HTMLDatacomTextareaElement;
         "datacom-toggle": HTMLDatacomToggleElement;
     }
 }
@@ -590,13 +654,6 @@ declare namespace LocalJSX {
         "allowMultiExpand"?: boolean;
     }
     interface DatacomAvatar {
-        "companyName"?: string;
-        "firstName"?: string;
-        "jobTitle"?: string;
-        "lastName"?: string;
-        "src"?: string;
-    }
-    interface DatacomAvataravatar {
         "companyName"?: string;
         "firstName"?: string;
         "jobTitle"?: string;
@@ -703,6 +760,10 @@ declare namespace LocalJSX {
     }
     interface DatacomCheckboxGroup {
     }
+    interface DatacomContentTag {
+        "solid"?: boolean;
+        "variant"?: ContentTagVariant;
+    }
     interface DatacomDropdown {
         /**
           * Automatically show error state if invalid on form submit
@@ -797,9 +858,15 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface DatacomLi {
-        "variantItem"?: ItemStyle;
+        /**
+          * Heading  for list inside of paragraph.
+         */
+        "heading"?: false;
     }
     interface DatacomList {
+        /**
+          * type used for ordered list style.
+         */
         "type"?: TypeList;
         "variant"?: ListVariant;
     }
@@ -886,6 +953,44 @@ declare namespace LocalJSX {
     }
     interface DatacomTabgroup {
     }
+    interface DatacomTextarea {
+        /**
+          * Automatically show error state if invalid on form submit
+         */
+        "autoValidate"?: boolean;
+        "autocorrect"?: boolean;
+        "cols"?: number;
+        "disabled"?: boolean;
+        "form"?: string;
+        "formaction"?: string;
+        "formenctype"?: string;
+        "formmethod"?: string;
+        "formnovalidate"?: boolean;
+        "formtarget"?: string;
+        /**
+          * Optional help text
+         */
+        "help"?: string;
+        "inputAutofocus"?: boolean;
+        "isValid"?: boolean;
+        "label"?: string;
+        "maxlength"?: number;
+        /**
+          * Error message to display in the case of validity checks or explicitly with 'valid' property
+         */
+        "message"?: string;
+        "minlength"?: number;
+        /**
+          * HTML element textarea properties
+         */
+        "name"?: string;
+        "onChanged"?: (event: DatacomTextareaCustomEvent<string>) => void;
+        "placeholder"?: string;
+        "readonly"?: boolean;
+        "required"?: boolean;
+        "rows"?: number;
+        "value"?: string;
+    }
     interface DatacomToggle {
         /**
           * True if the toggle element must be disabled
@@ -920,10 +1025,10 @@ declare namespace LocalJSX {
         "datacom-accordion": DatacomAccordion;
         "datacom-accordion-group": DatacomAccordionGroup;
         "datacom-avatar": DatacomAvatar;
-        "datacom-avataravatar": DatacomAvataravatar;
         "datacom-button": DatacomButton;
         "datacom-checkbox": DatacomCheckbox;
         "datacom-checkbox-group": DatacomCheckboxGroup;
+        "datacom-content-tag": DatacomContentTag;
         "datacom-dropdown": DatacomDropdown;
         "datacom-input": DatacomInput;
         "datacom-li": DatacomLi;
@@ -934,6 +1039,7 @@ declare namespace LocalJSX {
         "datacom-radio-group": DatacomRadioGroup;
         "datacom-tab": DatacomTab;
         "datacom-tabgroup": DatacomTabgroup;
+        "datacom-textarea": DatacomTextarea;
         "datacom-toggle": DatacomToggle;
     }
 }
@@ -944,10 +1050,10 @@ declare module "@stencil/core" {
             "datacom-accordion": LocalJSX.DatacomAccordion & JSXBase.HTMLAttributes<HTMLDatacomAccordionElement>;
             "datacom-accordion-group": LocalJSX.DatacomAccordionGroup & JSXBase.HTMLAttributes<HTMLDatacomAccordionGroupElement>;
             "datacom-avatar": LocalJSX.DatacomAvatar & JSXBase.HTMLAttributes<HTMLDatacomAvatarElement>;
-            "datacom-avataravatar": LocalJSX.DatacomAvataravatar & JSXBase.HTMLAttributes<HTMLDatacomAvataravatarElement>;
             "datacom-button": LocalJSX.DatacomButton & JSXBase.HTMLAttributes<HTMLDatacomButtonElement>;
             "datacom-checkbox": LocalJSX.DatacomCheckbox & JSXBase.HTMLAttributes<HTMLDatacomCheckboxElement>;
             "datacom-checkbox-group": LocalJSX.DatacomCheckboxGroup & JSXBase.HTMLAttributes<HTMLDatacomCheckboxGroupElement>;
+            "datacom-content-tag": LocalJSX.DatacomContentTag & JSXBase.HTMLAttributes<HTMLDatacomContentTagElement>;
             "datacom-dropdown": LocalJSX.DatacomDropdown & JSXBase.HTMLAttributes<HTMLDatacomDropdownElement>;
             "datacom-input": LocalJSX.DatacomInput & JSXBase.HTMLAttributes<HTMLDatacomInputElement>;
             "datacom-li": LocalJSX.DatacomLi & JSXBase.HTMLAttributes<HTMLDatacomLiElement>;
@@ -958,6 +1064,7 @@ declare module "@stencil/core" {
             "datacom-radio-group": LocalJSX.DatacomRadioGroup & JSXBase.HTMLAttributes<HTMLDatacomRadioGroupElement>;
             "datacom-tab": LocalJSX.DatacomTab & JSXBase.HTMLAttributes<HTMLDatacomTabElement>;
             "datacom-tabgroup": LocalJSX.DatacomTabgroup & JSXBase.HTMLAttributes<HTMLDatacomTabgroupElement>;
+            "datacom-textarea": LocalJSX.DatacomTextarea & JSXBase.HTMLAttributes<HTMLDatacomTextareaElement>;
             "datacom-toggle": LocalJSX.DatacomToggle & JSXBase.HTMLAttributes<HTMLDatacomToggleElement>;
         }
     }
