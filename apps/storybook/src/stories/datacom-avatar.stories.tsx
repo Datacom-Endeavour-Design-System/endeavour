@@ -18,6 +18,10 @@ export default {
       name: 'Image Source',
       type: { name: 'string', required: true },
     },
+    alt: {
+      name: 'Alt Text for Image',
+      type: { name: 'string', required: false },
+    },
     jobTitle: {
       name: 'Job title',
       type: { name: 'string', required: true },
@@ -31,6 +35,7 @@ export default {
     firstName: 'First Name',
     lastName: 'Last Name',
     src: 'Src',
+    alt: 'Alternate Text',
     jobTitle: 'Job title',
     companyName: 'Datacom',
   },

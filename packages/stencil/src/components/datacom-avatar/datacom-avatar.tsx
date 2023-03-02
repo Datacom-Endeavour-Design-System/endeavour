@@ -12,12 +12,13 @@ export class DatacomAvatar {
   @Prop() jobTitle: string;
   @Prop() companyName: string;
   @Prop() src: string;
+  @Prop() alt: string;
 
   render() {
     let avatarImage;
 
     if (this.src?.length > 0) {
-      avatarImage = <img alt="Employee Image" src={this.src} />;
+      avatarImage = <img alt={this.alt} src={this.src} />;
     } else {
       avatarImage = (
         <div class="avatar-initial">
