@@ -118,12 +118,16 @@ export class DatacomSelectionCard {
                 {this.ctaText}
               </datacom-button>
             </form>
-            {this.expanded && (
-              <div class="dc-card-description">
-                <slot />
-              </div>
-            )}
           </div>
+          {this.expanded && (
+            <div class="dc-card-description-wrapper">
+              <div class="dc-card-description">
+                <div class="dc-card-description-text">
+                  <slot />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </Host>
     );
