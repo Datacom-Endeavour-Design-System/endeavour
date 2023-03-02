@@ -8,5 +8,5 @@ The component can be rendered as shown below, where the label content is passed 
 The below html has the value for the 4 required properties. It will render the avatar component as design in the design system guide. 
 
 ```html
-<datacom-toggle firstName="Sally" lastName="Mei"  jobTitle="UX/UI Designer" companyName="Datacom"></datacom-toggle>
+<datacom-avatar firstName="Sally" lastName="Mei"  jobTitle="UX/UI Designer" companyName="Datacom"></datacom-avatar>
 ```
