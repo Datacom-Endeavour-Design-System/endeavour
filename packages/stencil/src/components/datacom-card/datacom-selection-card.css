@@ -80,6 +80,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  margin-left: 12px;
 }
 
 .dc-card-chevron {
