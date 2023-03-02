@@ -4,7 +4,7 @@
   --card-border-radius: 8px;
   --card-box-shadow: 0 3px 6px #00000029;
   --card-content-padding: 24px;
-  --card-description-height: 170px;
+  --card-description-height: 122px;
   --card-options-margin: 16px;
 }
 
@@ -127,8 +127,8 @@
 
 @media (--breakpoint-tablet) {
   .dc-card-description-wrapper {
-    bottom: calc(-1 * var(--card-description-height));
-    height: var(--card-description-height);
+    bottom: 0;
+    height: 0;
     position: absolute;
     z-index: 1;
   }
