@@ -1,0 +1,104 @@
+@import url("../../global/css/breakpoints.css");
+
+:host {
+  --border-display-radius: 8px;
+  --display-card-height: 400px;
+}
+
+.dc-display-card-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-display-radius);
+  position: relative;
+}
+
+.dc-display-card-media {
+  display: flex;
+  height: var(--display-card-height);
+  width: 100%;
+  background-color: #0a1839b3;
+  border-radius: var(--border-display-radius);
+}
+
+.dc-display-card-image {
+  display: flex;
+  position: absolute;
+  background-position: center center;
+  height: var(--display-card-height);
+  width: 100%;
+  border-radius: var(--border-display-radius);
+  background-size: cover;
+  z-index: -1;
+}
+
+.dc-display-card-content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  padding: 32px;
+  color: var(--dc-background-colour);
+  font-family: var(--dc-font-family);
+  padding-top: calc(var(--display-card-height)/2);
+  justify-content: end;
+}
+
+.dc-display-content {
+  flex-grow: 1;
+}
+
+.dc-display-card-heading {
+  font-weight: var(--dc-heading5-weight);
+  font-size: var(--dc-heading5-size);
+  line-height: 32px;
+  text-shadow: 0 3px 6px #00000065;
+  margin-bottom: 12px;
+}
+
+.dc-display-card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-shadow: 0 3px 6px #00000065;
+  margin-bottom: 16px;
+}
+
+@media (--breakpoint-desktop) {
+  .dc-display-card-heading {
+    font-size: var(--dc-heading4-size);
+    line-height: 40px;
+    margin-bottom: 14px;
+  }
+
+  .dc-display-card-content {
+    padding: 48px;
+    padding-top: calc(var(--display-card-height)/2);
+  }
+}
+
+.dc-display-card-link {
+  color: var(--dc-background-colour);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.dc-display-card-wrapper:hover .dc-display-card-media {
+  background-color: #003fbcb3;
+}
+
+.dc-display-card-wrapper:hover .dc-display-card-link {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.dc-display-card-wrapper:focus {
+  outline: 3px solid var(--dc-primary-colour);
+  outline-offset: 2px;
+}
