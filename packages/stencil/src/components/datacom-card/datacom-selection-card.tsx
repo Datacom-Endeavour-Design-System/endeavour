@@ -122,6 +122,7 @@ export class DatacomSelectionCard {
             </form>
           </div>
           <div class="dc-card-description-wrapper">
+            <div class="dc-card-divider" />
             <div class="dc-card-description">
               <div class="dc-card-description-text">
                 <slot />
