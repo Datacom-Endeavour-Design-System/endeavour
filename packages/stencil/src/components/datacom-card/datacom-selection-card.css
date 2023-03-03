@@ -5,7 +5,7 @@
   --card-box-shadow: 0 3px 6px #00000029;
   --card-content-padding: 24px;
   --card-description-height: 122px;
-  --card-options-margin: 16px;
+  --card-options-margin: 12px;
 }
 
 .dc-card {
@@ -56,7 +56,6 @@
 }
 
 .dc-card-title-wrapper {
-  align-items: center;
   display: flex;
   justify-content: space-between;
   margin-bottom: 24px;
@@ -73,6 +72,18 @@
   .dc-card-title {
     font-size: var(--dc-heading5-size);
     line-height: var(--dc-heading5-height);
+  }
+}
+
+.dc-card-expand-wrapper {
+  align-items: center;
+  display: flex;
+  height: 24px;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-card-expand-wrapper {
+    height: var(--dc-heading5-height);
   }
 }
 
@@ -135,13 +146,18 @@
 }
 
 .dc-card-description {
-  box-shadow: var(--card-box-shadow);
   background-color: var(--dc-background-colour);
   border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
   border-top: 1px solid var(--dc-greyscale-05);
   display: flex;
-  max-height: var(--card-description-height);
   padding: var(--card-content-padding) 0;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-card-description {
+    box-shadow: var(--card-box-shadow);
+    max-height: var(--card-description-height);
+  }
 }
 
 .dc-card-description-text {
@@ -153,9 +169,11 @@
 }
 
 /* Expanded state styles */
-.expand.dc-card {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+@media (--breakpoint-tablet) {
+  .expand.dc-card {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 
 .expand .dc-card-chevron {

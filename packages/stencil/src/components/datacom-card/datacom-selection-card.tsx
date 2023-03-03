@@ -104,9 +104,11 @@ export class DatacomSelectionCard {
           <div class="dc-card-content-wrapper">
             <div class="dc-card-title-wrapper">
               <div class="dc-card-title">{this.cardTitle}</div>
-              <button class="dc-card-expand" onClick={this.onExpandClick}>
-                {chevronIcon}
-              </button>
+              <div class="dc-card-expand-wrapper">
+                <button class="dc-card-expand" onClick={this.onExpandClick}>
+                  {chevronIcon}
+                </button>
+              </div>
             </div>
             <form class="dc-card-form">
               <div class="dc-card-options-wrapper">
