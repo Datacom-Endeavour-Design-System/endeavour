@@ -136,10 +136,14 @@
   }
 }
 
+.dc-card-description-wrapper {
+  display: none;
+}
+
 @media (--breakpoint-tablet) {
   .dc-card-description-wrapper {
-    bottom: 0;
-    height: 0;
+    bottom: calc(-1 * (var(--card-description-height) + 2 * var(--card-content-padding)));
+    height: calc(var(--card-description-height) + 2 * var(--card-content-padding));
     position: absolute;
     z-index: 1;
   }
@@ -178,4 +182,8 @@
 
 .expand .dc-card-chevron {
   transform: rotate(180deg);
+}
+
+.expand .dc-card-description-wrapper {
+  display: block;
 }

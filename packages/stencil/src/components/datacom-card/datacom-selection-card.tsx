@@ -121,15 +121,13 @@ export class DatacomSelectionCard {
               </datacom-button>
             </form>
           </div>
-          {this.expanded && (
-            <div class="dc-card-description-wrapper">
-              <div class="dc-card-description">
-                <div class="dc-card-description-text">
-                  <slot />
-                </div>
+          <div class="dc-card-description-wrapper">
+            <div class="dc-card-description">
+              <div class="dc-card-description-text">
+                <slot />
               </div>
             </div>
-          )}
+          </div>
         </div>
       </Host>
     );
