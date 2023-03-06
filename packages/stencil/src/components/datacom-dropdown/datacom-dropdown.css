@@ -1,8 +1,6 @@
 :host {
   display: block;
   height: 72px;
-  min-width: 272px;
-  max-width: 400px;
 }
 
 :host * {
@@ -15,6 +13,8 @@
 .dc-ddl {
   display: block;
   position: relative;
+  min-width: 272px;
+  max-width: 400px;
 }
 
 .dc-ddl-input {
@@ -74,11 +74,7 @@
 }
 
 .dc-ddl-size-small {
-  width: 270px;
-}
-
-.dc-ddl-size-large {
-  width: 400px;
+  width: 272px;
 }
 
 .dc-ddl-list-area {
