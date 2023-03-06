@@ -1,0 +1,59 @@
+:host {
+  display: inline-block;
+}
+
+:host * {
+  font-family: var(--dc-font-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--dc-primary-text-color);
+  padding-right: 8px;
+  vertical-align: middle;
+}
+
+.dc-loader-size-small .dc-loader-default {
+  height: 12px;
+}
+
+.dc-loader-size-large .dc-loader-default {
+  height: 60px;
+}
+
+.dc-loader-spinner circle {
+  stroke-linecap: round;
+  stroke: var(--dc-primary-colour);
+  fill: none;
+  animation: dc-loader-spinner-dash 0.8s ease-in-out infinite;
+}
+
+@keyframes dc-loader-spinner-dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+.dc-loader-primary .dc-loader-spinner circle {
+  stroke: var(--dc-background-colour);
+}
+
+.dc-loader-success,
+.dc-loader-error {
+  height: 16px;
+}
+
+.dc-loader-success-mark path {
+  animation: dc-loader-success-dash 1.5s ease-in-out infinite;
+}
