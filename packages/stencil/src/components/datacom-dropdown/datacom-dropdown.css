@@ -196,7 +196,7 @@
   border: 0;
   position: absolute;
   margin: 0;
-  background-color: white;
+  background-color: var(--dc-background-colour);
   font-size: 12px;
   top: -6px;
   left: 16px;
@@ -231,7 +231,7 @@
   border: 0;
   position: absolute;
   margin: 0;
-  background-color: white;
+  background-color: var(--dc-background-colour);
   animation: dc-ddl-label-animation 0.2s linear 0s forwards 1;
   z-index: 20;
 }
@@ -261,10 +261,19 @@
 }
 
 /* Disabled */
-.dc-ddl-disabled .dc-ddl-label {
+.dc-ddl-disabled .dc-ddl-label,
+.dc-ddl-disabled .dc-ddl-selected-option {
   color: var(--dc-greyscale-04);
 }
 
 .dc-ddl-disabled .dc-ddl-view-btns svg path {
   fill: var(--dc-greyscale-04);
+}
+
+.dc-ddl-disabled .dc-ddl-control:hover {
+  border: 1px solid var(--dc-greyscale-05);
+}
+
+.dc-ddl-disabled .dc-ddl-control:focus {
+  outline: none;
 }

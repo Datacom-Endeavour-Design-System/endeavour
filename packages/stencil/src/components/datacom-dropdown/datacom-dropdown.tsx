@@ -24,7 +24,7 @@ export class DatacomDropdown implements FormControl {
    */
   @Prop() name: string;
   @Prop({ mutable: true }) value?: string;
-  @Prop() placeholder?: string = 'Select item...';
+  @Prop() placeholder?: string = 'Select item(s)';
   @Prop() disabled? = false;
   @Prop() readonly? = false;
   @Prop() required? = false;
@@ -662,7 +662,7 @@ export class DatacomDropdown implements FormControl {
     return (
       <Host>
         <div class={classes} onClick={this.handleClick} onKeyUp={this.handleKeyUp}>
-          <div class="dc-ddl-control" tabIndex={0}>
+          <div class="dc-ddl-control" tabIndex={!this.disabled ? 0 : -1}>
             {this.renderViewControl()}
           </div>
 
