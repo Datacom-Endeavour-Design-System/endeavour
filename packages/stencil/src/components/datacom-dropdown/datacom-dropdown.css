@@ -132,8 +132,10 @@
   height: 16px;
 }
 
-.dc-ddl-open-btn {
-  display: inline-block;
+.dc-ddl-open-btn,
+.dc-ddl-close-btn {
+  display: flex;
+  align-items: center;
   width: 16px;
   height: 16px;
 }
