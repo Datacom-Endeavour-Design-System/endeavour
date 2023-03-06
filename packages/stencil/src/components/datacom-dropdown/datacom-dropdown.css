@@ -70,6 +70,7 @@
   left: 0;
   z-index: 10;
   padding: 1px 0;
+  width: 100%;
 }
 
 .dc-ddl-size-small {
