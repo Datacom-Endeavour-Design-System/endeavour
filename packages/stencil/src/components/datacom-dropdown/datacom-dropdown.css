@@ -1,7 +1,7 @@
 :host {
   display: block;
   height: 72px;
-  min-width: 270px;
+  min-width: 272px;
   max-width: 400px;
 }
 
@@ -50,9 +50,15 @@
 }
 
 .dc-ddl-label {
-  display: inline-block;
-  padding: 0 2px;
+  background-color: var(--dc-background-colour);
+  border: 0;
   color: var(--dc-greyscale-03);
+  display: inline-block;
+  margin: 0;
+  padding: 0 2px;
+  position: absolute;
+  top: 14px;
+  transition: all 0.3s;
 }
 
 .dc-ddl-list {
@@ -193,13 +199,10 @@
 
 /* Selected mode */
 .dc-ddl-selected .dc-ddl-label {
-  border: 0;
-  position: absolute;
-  margin: 0;
-  background-color: var(--dc-background-colour);
   font-size: 12px;
   top: -6px;
   left: 16px;
+  z-index: 20;
 }
 
 .dc-ddl-selected .dc-ddl-control {
@@ -228,26 +231,10 @@
 }
 
 .dc-ddl-open .dc-ddl-label {
-  border: 0;
-  position: absolute;
-  margin: 0;
-  background-color: var(--dc-background-colour);
-  animation: dc-ddl-label-animation 0.2s linear 0s forwards 1;
+  font-size: 12px;
+  top: -6px;
+  left: 16px;
   z-index: 20;
-}
-
-@keyframes dc-ddl-label-animation {
-  from {
-    font-size: 16px;
-    top: 12px;
-    left: 20px;
-  }
-
-  to {
-    font-size: 12px;
-    top: -6px;
-    left: 16px;
-  }
 }
 
 .dc-ddl-open .dc-ddl-view-btns {
