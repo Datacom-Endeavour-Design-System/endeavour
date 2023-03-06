@@ -42,7 +42,7 @@
 }
 
 .dc-ddl-option:hover {
-  background-color: var(--dc-greyscale-05);
+  background-color: var(--dc-grayscale-06);
   color: var(--dc-primary-text-color);
 }
 
