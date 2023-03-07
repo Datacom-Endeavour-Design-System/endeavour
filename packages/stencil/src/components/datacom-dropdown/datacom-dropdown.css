@@ -116,6 +116,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
+  margin-left: auto;
 }
 
 .dc-ddl-chevron-down {
@@ -125,6 +126,10 @@
 
 .dc-ddl-clear-btn {
   display: none;
+  margin-right: 24px;
+}
+
+.dc-ddl-clear-filter-btn {
   margin-right: 24px;
 }
 

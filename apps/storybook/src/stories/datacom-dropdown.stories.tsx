@@ -14,10 +14,10 @@ export default {
     },
     variant: {
       name: 'Variant',
-      description: 'Dropdown variant. Defaults to single if not set.',
+      description: 'Dropdown variant. Defaults to standard if not set.',
       control: 'select',
-      defaultValue: 'single',
-      options: ['single', 'combo'],
+      defaultValue: 'standard',
+      options: ['standard', 'multi', 'combobox'],
       type: { name: 'string', required: true },
     },
     disabled: {
@@ -58,9 +58,9 @@ const CountryTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
     />
     <DatacomOption
       src="https://flagcdn.com/gb.svg"
-      search="Great Britan | England | Wales | Scotland"
+      search="Great Britain | England | Wales | Scotland"
       value="GB"
-      label="Great Britan"
+      label="Great Britain"
     />
     <DatacomOption src="https://flagcdn.com/fr.svg" value="FR" label="France" />
     <DatacomOption src="https://flagcdn.com/it.svg" value="IT" label="Italy" />

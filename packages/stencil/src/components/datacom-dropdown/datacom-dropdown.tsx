@@ -4,7 +4,7 @@ import { FormControl } from '../form-control';
 import { DatacomDropdownOptionElement } from './datacom-dropdown-option';
 import { Chevron, Clear } from '../../common/images/icons';
 
-export type DatacomDropDownVariantType = 'select' | 'combo';
+export type DatacomDropDownVariantType = 'standard' | 'multi' | 'combobox';
 
 /**
  * HTML Select component with styled options.
@@ -33,7 +33,7 @@ export class DatacomDropdown implements FormControl {
   /**
    * Drop down variant
    */
-  @Prop() variant: DatacomDropDownVariantType = 'select';
+  @Prop() variant: DatacomDropDownVariantType = 'standard';
 
   /**
    * Enable type ahead search for options.
@@ -296,7 +296,7 @@ export class DatacomDropdown implements FormControl {
     }
 
     if (withToggle) {
-      if (this.variant == 'combo') {
+      if (this.variant == 'multi') {
         if (option.selected) {
           this.selected = this.selected.filter(k => k !== index);
           option.selected = false;
@@ -329,7 +329,7 @@ export class DatacomDropdown implements FormControl {
     });
 
     // Close the drop down if just single select mode
-    if (this.variant == 'select') {
+    if (this.variant !== 'multi') {
       this.close();
     }
   }
@@ -461,6 +461,26 @@ export class DatacomDropdown implements FormControl {
   };
 
   /**
+   * Handle filter clear event
+   *
+   * @param event
+   * @returns
+   */
+  handleFilterClear = (event: MouseEvent) => {
+    if (this.disabled) {
+      return;
+    }
+
+    this.clearFilter();
+
+    if (this.searchInputElement !== undefined) {
+      this.searchInputElement.value = '';
+    }
+
+    event.stopPropagation();
+  };
+
+  /**
    * *** Component lifecycle methods ***
    */
 
@@ -521,7 +541,7 @@ export class DatacomDropdown implements FormControl {
     let selectedContent;
     let clearBtn;
 
-    if (this.variant == 'combo') {
+    if (this.variant == 'multi') {
       if (this.selected.length > 0) {
         selectedContent = <pre>{this.selected.length}</pre>;
         clearBtn = (
@@ -571,58 +591,46 @@ export class DatacomDropdown implements FormControl {
    * @returns JSX Fragment
    */
   renderDropdown() {
-    if (this.variant == 'combo') {
-      return (
-        <Fragment>
-          <div class="dc-ddl-list-area">
-            {this.selected.length == 0 && <div class="dc-ddl-combo-placeholder">Select item(s)</div>}
-            {this.selected.length > 0 && (
-              <div class="dc-ddl-combo-count">
-                <pre>{this.selected.length}</pre>&nbsp;selected
-              </div>
-            )}
-
-            <div class="dc-ddl-list-btns dc-ddl-buttons">
+    return (
+      <Fragment>
+        <div class="dc-ddl-list-area">
+          {this.variant === 'multi' && this.selected.length == 0 && <div class="dc-ddl-combo-placeholder">Select item(s)</div>}
+          {this.variant === 'multi' && this.selected.length > 0 && (
+            <div class="dc-ddl-combo-count">
+              <pre>{this.selected.length}</pre>&nbsp;selected
+            </div>
+          )}
+          {this.variant === 'combobox' && (
+            <input class="dc-ddl-input" type="text" tabIndex={0} placeholder={this.placeholder} onKeyUp={this.handleInputEntry} ref={el => this.setInputElementRef(el)}></input>
+          )}
+          <div class="dc-ddl-list-btns dc-ddl-buttons">
+            {this.variant === 'multi' && (
               <span onClick={this.handleClear} class="dc-ddl-clear-btn">
                 <Clear class="dc-ddl-clear-icon" />
               </span>
-
-              <span class="dc-ddl-close-btn">
-                <Chevron class="dc-ddl-chevron-up" />
+            )}
+            {this.variant === 'combobox' && (
+              <span onClick={this.handleFilterClear} class="dc-ddl-clear-filter-btn">
+                <Clear class="dc-ddl-clear-icon" />
               </span>
-            </div>
+            )}
+            <span class="dc-ddl-close-btn">
+              <Chevron class="dc-ddl-chevron-up" />
+            </span>
           </div>
+        </div>
 
-          <div class="dc-ddl-options" tabindex={-1}>
-            <slot></slot>
-          </div>
-        </Fragment>
-      );
-    } else {
-      return (
-        <Fragment>
-          <div class="dc-ddl-list-area">
-            <input class="dc-ddl-input" type="text" tabIndex={0} placeholder={this.placeholder} onKeyUp={this.handleInputEntry} ref={el => this.setInputElementRef(el)}></input>
-
-            <div class="dc-ddl-list-btns dc-ddl-buttons">
-              <span class="dc-ddl-close-btn">
-                <Chevron class="dc-ddl-chevron-up" />
-              </span>
-            </div>
-          </div>
-
-          <div class="dc-ddl-options" tabindex={-1}>
-            <slot></slot>
-          </div>
-        </Fragment>
-      );
-    }
+        <div class="dc-ddl-options" tabindex={-1}>
+          <slot></slot>
+        </div>
+      </Fragment>
+    );
   }
 
   render() {
-    if (!['select', 'combo'].includes(this.variant)) {
-      console.warn(`Variant ${this.variant} is not valid. Defaulting to 'select'`);
-      this.variant = 'select';
+    if (!['standard', 'multi', 'combobox'].includes(this.variant)) {
+      console.warn(`Variant ${this.variant} is not valid. Defaulting to 'standard'`);
+      this.variant = 'standard';
     }
 
     /**
