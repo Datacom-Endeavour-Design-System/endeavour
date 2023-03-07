@@ -80,6 +80,7 @@ export class DatacomSelectionCard {
     children.forEach(option => {
       option.name = this.cardTitle + ' options';
       option.size = 'small';
+      option.variant = 'button';
     });
   }
 
