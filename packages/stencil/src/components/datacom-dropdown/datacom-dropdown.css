@@ -74,8 +74,8 @@
   top: 0;
   left: 0;
   z-index: 10;
-  padding-bottom: 8px;
   width: 100%;
+  overflow: hidden;
 }
 
 .dc-ddl-list-area {
