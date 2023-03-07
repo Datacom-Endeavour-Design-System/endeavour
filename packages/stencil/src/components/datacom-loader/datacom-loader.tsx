@@ -2,7 +2,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
 import { Error, Spinner, CheckCircle } from '../../common/images/icons';
 
 export type LoaderSize = 'large' | 'small';
-export type LoadingType = 'default' | 'error' | 'success';
+export type LoadingType = 'none' | 'default' | 'error' | 'success';
 
 /**
  *  elements are used to notify users when performing computation or retrieving data.
@@ -16,13 +16,12 @@ export type LoadingType = 'default' | 'error' | 'success';
 export class DatacomLoader {
   @Prop() size: LoaderSize = 'small';
   @Prop() loading: LoadingType = 'default';
-  @Prop() primary: boolean;
 
   render() {
     const Classes = {
       [`dc-loader-size-${this.size}`]: true,
-      'dc-loader-primary': this.primary,
     };
+
     return (
       <Host>
         <div class={Classes}>

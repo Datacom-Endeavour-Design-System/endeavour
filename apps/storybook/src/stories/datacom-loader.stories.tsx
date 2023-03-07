@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StoryFn } from '@storybook/react';
 import { DatacomLoader, DatacomButton } from '@datacom/endeavour-react';
+import styled from '@emotion/styled';
 
 type LoaderProps = React.ComponentProps<typeof DatacomLoader>;
 export default {
@@ -20,7 +21,7 @@ export default {
       defaultValue: 'default',
       control: 'select',
       description: 'Loading status is default if it is not set',
-      options: ['default', 'error', 'success'],
+      options: ['default', 'none', 'error', 'success'],
     },
 
     size: {
@@ -45,11 +46,46 @@ Loader.args = {
 export const InlineLoader = (args) => {
   return <DatacomLoader {...args}> Loading message</DatacomLoader>;
 };
+export const WithLoadingStatus = () => {
+  const [loading, setLoading] = useState('none');
+  const [message, setMessage] = useState('loading..');
 
-export const InButton = (args) => {
+  useEffect(() => {
+    if (loading == 'default') {
+      setTimeout(() => {
+        setLoading('success');
+        setMessage('loading is complete.');
+      }, 1000);
+    } else if (loading == 'none') {
+      setTimeout(() => {
+        setLoading('default');
+        setMessage('loading..');
+      }, 2000);
+    }
+  });
+
+  const ClickHandler = () => {
+    setLoading('default');
+    setMessage('loading..');
+  };
+  const disabled = loading == 'default';
+  const Wrapper = styled.div`
+    width: 272px;
+  `;
   return (
-    <DatacomButton type="submit" size="small">
-      <DatacomLoader primary {...args} loading="default" />
-    </DatacomButton>
+    <>
+      <Wrapper>
+        <DatacomLoader loading={loading}> {message}</DatacomLoader>
+      </Wrapper>
+      <div>
+        <br></br>
+        <DatacomButton
+          disabled={disabled}
+          variant="primary"
+          onClick={ClickHandler}>
+          Start loading
+        </DatacomButton>
+      </div>
+    </>
   );
 };

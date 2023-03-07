@@ -45,10 +45,6 @@
   }
 }
 
-.dc-loader-primary .dc-loader-spinner circle {
-  stroke: var(--dc-background-colour);
-}
-
 .dc-loader-success,
 .dc-loader-error {
   height: 16px;
