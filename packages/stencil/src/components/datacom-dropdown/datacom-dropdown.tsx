@@ -36,11 +36,6 @@ export class DatacomDropdown implements FormControl {
   @Prop() variant: DatacomDropDownVariantType = 'standard';
 
   /**
-   * Enable type ahead search for options.
-   */
-  @Prop() search = true;
-
-  /**
    * Control label
    */
   @Prop() label: string;
@@ -71,6 +66,11 @@ export class DatacomDropdown implements FormControl {
    * Is the drop down list displayed
    */
   @State() isOpen = false;
+
+  /**
+   * Controls visibility of filter clear button for 'combobox' variant
+   */
+  @State() showFilterClear = false;
 
   /**
    * Host element
@@ -381,9 +381,9 @@ export class DatacomDropdown implements FormControl {
       return;
     }
 
-    if (this.search) {
-      this.filter(this.searchInputElement.value);
-    }
+    this.showFilterClear = this.searchInputElement.value.length > 0;
+
+    this.filter(this.searchInputElement.value);
   };
 
   /**
@@ -609,7 +609,7 @@ export class DatacomDropdown implements FormControl {
                 <Clear class="dc-ddl-clear-icon" />
               </span>
             )}
-            {this.variant === 'combobox' && (
+            {this.variant === 'combobox' && this.showFilterClear && (
               <span onClick={this.handleFilterClear} class="dc-ddl-clear-filter-btn">
                 <Clear class="dc-ddl-clear-icon" />
               </span>

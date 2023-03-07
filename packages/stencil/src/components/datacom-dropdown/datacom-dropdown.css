@@ -132,8 +132,9 @@
 }
 
 .dc-ddl-clear-filter-btn {
-  margin-right: 24px;
   cursor: pointer;
+  height: 16px;
+  margin-right: 24px;
 }
 
 .dc-ddl-clear-icon {
