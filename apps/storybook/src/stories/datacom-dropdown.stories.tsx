@@ -8,7 +8,7 @@ export default {
   argTypes: {
     label: {
       name: 'Label',
-      defaultValue: 'Option',
+      defaultValue: 'Options',
       description: 'Dropdown label',
       type: { label: 'string' },
     },
@@ -18,14 +18,6 @@ export default {
       control: 'select',
       defaultValue: 'single',
       options: ['single', 'combo'],
-      type: { name: 'string', required: true },
-    },
-    size: {
-      name: 'Size',
-      description: 'Dropdown width. Defaults to large if not set.',
-      control: 'select',
-      defaultValue: 'large',
-      options: ['small', 'large'],
       type: { name: 'string', required: true },
     },
     disabled: {
@@ -98,7 +90,3 @@ const SimpleTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
 );
 
 export const Simple = SimpleTemplate.bind({});
-Simple.args = {
-  label: 'Options',
-  size: 'small',
-};

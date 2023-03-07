@@ -5,7 +5,6 @@ import { DatacomDropdownOptionElement } from './datacom-dropdown-option';
 import { Chevron, Clear } from '../../common/images/icons';
 
 export type DatacomDropDownVariantType = 'select' | 'combo';
-type DropdownSize = 'small' | 'large';
 
 /**
  * HTML Select component with styled options.
@@ -35,11 +34,6 @@ export class DatacomDropdown implements FormControl {
    * Drop down variant
    */
   @Prop() variant: DatacomDropDownVariantType = 'select';
-
-  /**
-   * Drop down size
-   */
-  @Prop() size: DropdownSize = 'large';
 
   /**
    * Enable type ahead search for options.
@@ -655,7 +649,6 @@ export class DatacomDropdown implements FormControl {
       'dc-ddl-view': !selected,
       'dc-ddl-selected': selected,
       'dc-ddl-error': error,
-      [`dc-ddl-size-${this.size}`]: true,
       'dc-ddl': true,
     };
 
