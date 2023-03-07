@@ -79,6 +79,7 @@ export class DatacomSelectionCard {
     const children = this.getRadioComponents();
     children.forEach(option => {
       option.name = this.cardTitle + ' options';
+      option.size = 'small';
     });
   }
 
