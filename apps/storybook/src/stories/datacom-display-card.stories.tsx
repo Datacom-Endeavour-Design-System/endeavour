@@ -5,6 +5,7 @@ import {
   DatacomDisplayCard,
 } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
+
 export default {
   title: 'DisplayCard',
   component: DatacomDisplayCard,
@@ -15,7 +16,6 @@ export default {
       description: 'Text of title displayed.',
       type: { name: 'string' },
     },
-
     ctaText: {
       name: 'Text',
       defaultValue: 'Learn more',
@@ -51,6 +51,7 @@ const Template: ComponentStoryFn<typeof DatacomDisplayCard> = (args) => {
     </Div>
   );
 };
+
 export const DisplayCard = Template.bind({});
 DisplayCard.args = {};
 

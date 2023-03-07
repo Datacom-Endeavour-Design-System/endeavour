@@ -7,12 +7,9 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class DatacomDisplayCardGroup {
   render() {
-    const Classes = {
-      'dc-display-card-group': true,
-    };
     return (
       <Host>
-        <div class={Classes}>
+        <div class="dc-display-card-group">
           <slot></slot>
         </div>
       </Host>

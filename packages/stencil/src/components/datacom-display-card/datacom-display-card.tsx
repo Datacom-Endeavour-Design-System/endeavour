@@ -18,7 +18,7 @@ export class DatacomDisplayCard {
   render() {
     return (
       <Host>
-        <div class="dc-display-card-wrapper" tabIndex={1}>
+        <div class="dc-display-card-wrapper" tabIndex={0}>
           <div class="dc-display-card-media">
             <div class="dc-display-card-image" style={{ backgroundImage: 'url(' + this.imageUrl + ')' }} />
             <div class="dc-display-card-content">
