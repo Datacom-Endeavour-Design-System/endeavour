@@ -125,7 +125,7 @@ export class DatacomSelectionCard {
             <div class="dc-card-divider" />
             <div class="dc-card-description">
               <div class="dc-card-description-text">
-                <slot />
+                <slot name="description" />
               </div>
             </div>
           </div>

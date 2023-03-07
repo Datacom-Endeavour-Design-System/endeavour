@@ -112,7 +112,7 @@ const Template: StoryFn<
         {tagText && (
           <DatacomContentTag slot="tags">{tagText}</DatacomContentTag>
         )}
-        {description}
+        <span slot="description">{description}</span>
       </DatacomContentCard>
     </Wrapper>
   );
@@ -135,12 +135,15 @@ export const ContentCardGroup = () => {
               Professional Services
             </DatacomContentTag>
             <DatacomContentTag slot="tags">Articles</DatacomContentTag>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi.
+            </span>
           </DatacomContentCard>
           <DatacomContentCard
             date="00-00-2022"
@@ -148,12 +151,15 @@ export const ContentCardGroup = () => {
             ctaText="Learn more"
             imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
             <DatacomContentTag slot="tags">Articles</DatacomContentTag>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi.
+            </span>
           </DatacomContentCard>
           <DatacomContentCard
             date="00-00-2022"
@@ -161,8 +167,10 @@ export const ContentCardGroup = () => {
             ctaText="Learn more"
             imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
             <DatacomContentTag slot="tags">Articles</DatacomContentTag>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </span>
           </DatacomContentCard>
         </DatacomCardGroup>
       </div>

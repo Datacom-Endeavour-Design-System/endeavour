@@ -40,7 +40,7 @@ export class DatacomCard {
               <div class="dc-card-date">{this.date}</div>
               <div class="dc-card-title">{this.cardTitle}</div>
               <div class="dc-card-text">
-                <slot />
+                <slot name="description" />
               </div>
             </div>
             <div class="dc-card-actions">

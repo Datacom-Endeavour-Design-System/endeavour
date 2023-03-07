@@ -47,14 +47,16 @@ The component takes in various properties to control the content within the card
 
 ### Slots
 
-In addition to the properties, the component also has slots to support some of its content.
+In addition to the properties, the component also has named slots to configure some of its content.
 
 #### Description
 
-To add the text into the card's description, simply place it within `<datacom-content-card>` element.
+To add the text into the card's description, simply place it within an element with a defined slot value of "description".
 
 ```html
-<datacom-content-card>Card description content goes here</datacom-content-card>
+<datacom-content-card>
+  <span slot="description">Card description content goes here</span>
+</datacom-content-card>
 ```
 
 #### Content Tags
