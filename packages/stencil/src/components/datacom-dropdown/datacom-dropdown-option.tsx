@@ -126,7 +126,7 @@ export class DatacomDropdownOption {
       <Host data-index={this.index}>
         <div class={classes} tabIndex={0} onClick={this.handleClick} onKeyUp={this.handleKeyUp}>
           <label class="dc-ddl-option-content" title={this.label}>
-            {image && image}
+            {image && <span class="dc-ddl-option-icon">{image}</span>}
             <span class="dc-ddl-option-label">
               {this.label}
               <slot></slot>

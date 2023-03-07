@@ -56,10 +56,14 @@
   padding: 0;
 }
 
+.dc-ddl-option-icon {
+  display: flex;
+  padding-right: 12px;
+}
+
 .dc-ddl-option-image {
   height: 16px;
   overflow: hidden;
-  padding-right: 12px;
 }
 
 .dc-ddl-option-image path {

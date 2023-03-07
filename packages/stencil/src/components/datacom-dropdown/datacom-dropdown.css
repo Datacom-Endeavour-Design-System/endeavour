@@ -245,7 +245,7 @@
 }
 
 .dc-ddl-disabled .dc-ddl-control:hover {
-  border: 1px solid var(--dc-greyscale-05);
+  border-color: var(--dc-greyscale-05);
 }
 
 .dc-ddl-disabled .dc-ddl-control:focus {
