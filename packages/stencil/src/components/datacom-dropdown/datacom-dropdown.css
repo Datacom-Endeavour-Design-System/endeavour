@@ -65,6 +65,7 @@
 
 .dc-ddl-list {
   display: none;
+  background-color: var(--dc-background-colour);
   border: 2px solid var(--dc-primary-colour);
   border-radius: 8px;
   position: absolute;
@@ -127,10 +128,12 @@
 .dc-ddl-clear-btn {
   display: none;
   margin-right: 24px;
+  cursor: pointer;
 }
 
 .dc-ddl-clear-filter-btn {
   margin-right: 24px;
+  cursor: pointer;
 }
 
 .dc-ddl-clear-icon {

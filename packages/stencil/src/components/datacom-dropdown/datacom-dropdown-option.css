@@ -27,6 +27,7 @@
   width: 100%;
   max-width: 400px;
   padding-left: 16px;
+  cursor: pointer;
 }
 
 .dc-ddl-option-label {
