@@ -1,58 +1,9 @@
 @import url("../../global/css/breakpoints.css");
+@import url("./datacom-card.css");
 
 :host {
-  --border-radius: 8px;
-  --box-shadow: 0 3px 6px #00000029;
-  --content-padding: 24px;
   --description-height: 122px;
   --options-margin: 12px;
-}
-
-.dc-card {
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  display: flex;
-  flex-direction: column;
-  font-family: var(--dc-font-family);
-  height: 100%;
-  position: relative;
-  width: 100%;
-}
-
-.dc-card-media-wrapper {
-  background-color: #e5f1ff;
-  display: flex;
-  height: 240px;
-  position: relative;
-}
-
-.dc-card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: end;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.dc-card-image {
-  background-position: center;
-  background-size: cover;
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
-  height: 240px;
-  width: 100%;
-}
-
-::slotted([slot="tags"]) {
-  margin: 8px 8px 0 0;
-}
-
-.dc-card-content-wrapper {
-  color: var(--dc-primary-text-color);
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: var(--content-padding);
 }
 
 .dc-card-title-wrapper {

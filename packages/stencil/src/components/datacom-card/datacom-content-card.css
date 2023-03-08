@@ -1,52 +1,5 @@
 @import url("../../global/css/breakpoints.css");
-
-:host {
-  --card-border-radius: 8px;
-}
-
-.dc-card {
-  border-radius: var(--card-border-radius);
-  box-shadow: 0 3px 6px #00000029;
-  display: flex;
-  flex-direction: column;
-  font-family: var(--dc-font-family);
-  height: 100%;
-}
-
-.dc-card-media-wrapper {
-  background-color: #e5f1ff;
-  display: flex;
-  height: 240px;
-  position: relative;
-}
-
-.dc-card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: end;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.dc-card-image {
-  background-position: center;
-  background-size: cover;
-  border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
-  height: 240px;
-  width: 100%;
-}
-
-::slotted([slot="tags"]) {
-  margin: 8px 8px 0 0;
-}
-
-.dc-card-content-wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 24px;
-}
+@import url("./datacom-card.css");
 
 .dc-card-content {
   color: var(--dc-primary-text-color);
