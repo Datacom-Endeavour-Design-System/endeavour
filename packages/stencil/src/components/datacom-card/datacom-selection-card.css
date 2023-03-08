@@ -152,6 +152,7 @@
 
 .dc-card-description-wrapper {
   display: none;
+  width: 100%;
 }
 
 @media (--breakpoint-tablet) {
