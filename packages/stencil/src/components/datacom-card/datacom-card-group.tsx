@@ -3,9 +3,9 @@ import { Component, Host, Prop, h } from '@stencil/core';
 export type NumberOfItemsPerRow = 3 | 4;
 
 /**
- * Cards components are used to display content and actions about a
- * single subject, providing at-a-glance information and easy access
- * to more details.
+ * Card Group components are used to hold a number of card
+ * components and handles the responsiveness of how the cards
+ * wrap on smaller screens.
  */
 @Component({
   tag: 'datacom-card-group',

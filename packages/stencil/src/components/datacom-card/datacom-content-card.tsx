@@ -5,6 +5,10 @@ import { getSvg } from '../../common/images/icon-provider';
  * Cards components are used to display content and actions about a
  * single subject, providing at-a-glance information and easy access
  * to more details.
+ *
+ * This card variant should be used to display an article or customer
+ * story overview, designed to accommodate more supporting text and a
+ * related call to action.
  */
 @Component({
   tag: 'datacom-content-card',

@@ -5,6 +5,9 @@ import { getSvg } from '../../common/images/icon-provider';
  * Cards components are used to display content and actions about a
  * single subject, providing at-a-glance information and easy access
  * to more details.
+ *
+ * Selection cards are components used for displaying a set of options
+ * relating to a subject that requires users to choose a single option.
  */
 @Component({
   tag: 'datacom-selection-card',
