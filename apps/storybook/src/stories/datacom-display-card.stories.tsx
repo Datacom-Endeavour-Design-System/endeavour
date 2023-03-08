@@ -7,7 +7,7 @@ import {
 import styled from '@emotion/styled';
 
 export default {
-  title: 'DisplayCard',
+  title: 'Display Card',
   component: DatacomDisplayCard,
   argTypes: {
     heading: {
