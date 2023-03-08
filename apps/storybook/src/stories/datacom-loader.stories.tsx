@@ -16,7 +16,7 @@ export default {
       type: { name: 'string' },
     },
     loadingStatus: {
-      name: 'Loading',
+      name: 'LoadingStatus',
       defaultValue: 'default',
       control: 'select',
       description: 'Loading status is default if it is not set',
