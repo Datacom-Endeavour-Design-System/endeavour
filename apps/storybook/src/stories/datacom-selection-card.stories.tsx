@@ -2,22 +2,17 @@ import React from 'react';
 import { StoryFn } from '@storybook/react';
 import {
   DatacomCardGroup,
-  DatacomContentCard,
+  DatacomSelectionCard,
   DatacomContentTag,
+  DatacomRadio,
 } from '@datacom/endeavour-react';
 
-type ContentCardProps = React.ComponentProps<typeof DatacomContentCard>;
+type SelectionCardProps = React.ComponentProps<typeof DatacomSelectionCard>;
 
 export default {
   title: 'Card',
-  component: DatacomContentCard,
+  component: DatacomSelectionCard,
   argTypes: {
-    date: {
-      name: 'Date',
-      defaultValue: '00-00-2022',
-      description: 'Text of date displayed.',
-      type: { name: 'string' },
-    },
     title: {
       name: 'Title',
       defaultValue: 'Title',
@@ -56,82 +51,48 @@ export default {
       description: 'Image URL to be displayed at top of card.',
       type: { name: 'string' },
     },
-    icon: {
-      name: 'Icon',
-      description: 'Display action icon from a set of pre-defined images',
-      control: 'select',
-      options: [
-        '',
-        'globe',
-        'upload',
-        'up',
-        'settings',
-        'search',
-        'remove',
-        'refresh',
-        'menu',
-        'information',
-        'forward',
-        'filter',
-        'external-link',
-        'download',
-        'down',
-        'copy',
-        'calendar',
-        'bookmark',
-        'back',
-        'back-to-top',
-        'add',
-        'add-to-cart',
-      ],
-      type: { name: 'string' },
-    },
   },
 };
 
 const Template: StoryFn<
-  ContentCardProps & { description: string; tagText: string }
+  SelectionCardProps & { description: string; tagText: string }
 > = (args) => {
-  const { ctaText, date, description, icon, imageUrl, tagText, title, url } =
-    args;
+  const { ctaText, description, imageUrl, tagText, title } = args;
 
   return (
     <div style={{ height: 600 }}>
       <div style={{ maxWidth: 400 }}>
-        <DatacomContentCard
+        <DatacomSelectionCard
           ctaText={ctaText}
-          date={date}
-          icon={icon}
           imageUrl={imageUrl}
-          cardTitle={title}
-          url={url}>
+          cardTitle={title}>
+          <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
+          <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
+          <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
           {tagText && (
             <DatacomContentTag slot="tags">{tagText}</DatacomContentTag>
           )}
           <span slot="description">{description}</span>
-        </DatacomContentCard>
+        </DatacomSelectionCard>
       </div>
     </div>
   );
 };
 
-export const ContentCard = Template.bind({});
+export const SelectionCard = Template.bind({});
 
-export const ContentCardGroup = () => {
+export const SelectionCardGroup = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: 600 }}>
       <div style={{ maxWidth: 1400, width: '100%' }}>
         <DatacomCardGroup>
-          <DatacomContentCard
-            date="00-00-2022"
+          <DatacomSelectionCard
             cardTitle="Card 1"
-            ctaText="Learn more"
-            icon="download"
+            ctaText="Next"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
-            <DatacomContentTag slot="tags">
-              Professional Services
-            </DatacomContentTag>
-            <DatacomContentTag slot="tags">Articles</DatacomContentTag>
+            <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
+            <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
+            <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -141,13 +102,14 @@ export const ContentCardGroup = () => {
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
               nisi.
             </span>
-          </DatacomContentCard>
-          <DatacomContentCard
-            date="00-00-2022"
+          </DatacomSelectionCard>
+          <DatacomSelectionCard
             cardTitle="Card 2"
-            ctaText="Learn more"
+            ctaText="Next"
             imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
-            <DatacomContentTag slot="tags">Articles</DatacomContentTag>
+            <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
+            <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
+            <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -157,18 +119,19 @@ export const ContentCardGroup = () => {
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
               nisi.
             </span>
-          </DatacomContentCard>
-          <DatacomContentCard
-            date="00-00-2022"
+          </DatacomSelectionCard>
+          <DatacomSelectionCard
             cardTitle="Card 3"
-            ctaText="Learn more"
+            ctaText="Next"
             imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
-            <DatacomContentTag slot="tags">Articles</DatacomContentTag>
+            <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
+            <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
+            <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </span>
-          </DatacomContentCard>
+          </DatacomSelectionCard>
         </DatacomCardGroup>
       </div>
     </div>
