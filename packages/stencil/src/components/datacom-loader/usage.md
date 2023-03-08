@@ -16,7 +16,7 @@
  ```
  
 ```html
- <datacom-loader loading='error'></datacom-loader>
+ <datacom-loader loading-status='error'>Loading message</datacom-loader>
 
  ```
 ```html
@@ -24,4 +24,4 @@
 
  ### Properties
  -size: It sets the size of spinner and default size is small.
- -loading: This prop indicates the loading status and render the icon respectively. 
+ -loadingStatus: This prop indicates the loading status and render the icon respectively. 

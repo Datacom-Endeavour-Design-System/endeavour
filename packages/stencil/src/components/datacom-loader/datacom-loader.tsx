@@ -2,10 +2,10 @@ import { Component, Host, h, Prop } from '@stencil/core';
 import { Error, Spinner, CheckCircle } from '../../common/images/icons';
 
 export type LoaderSize = 'large' | 'small';
-export type LoadingType = 'none' | 'default' | 'error' | 'success';
+export type LoadingStatusType = 'none' | 'default' | 'error' | 'success';
 
 /**
- *  elements are used to notify users when performing computation or retrieving data.
+ *   Loader elements are used to notify users when performing computation or retrieving data.
  */
 
 @Component({
@@ -15,7 +15,7 @@ export type LoadingType = 'none' | 'default' | 'error' | 'success';
 })
 export class DatacomLoader {
   @Prop() size: LoaderSize = 'small';
-  @Prop() loading: LoadingType = 'default';
+  @Prop() loadingStatus: LoadingStatusType = 'default';
 
   render() {
     const Classes = {
@@ -25,9 +25,9 @@ export class DatacomLoader {
     return (
       <Host>
         <div class={Classes}>
-          {this.loading == 'default' && <Spinner class="dc-loader-spinner dc-loader-default" />}
-          {this.loading == 'success' && <CheckCircle class="dc-loader-success-mark dc-loader-success" />}
-          {this.loading == 'error' && <Error class=" dc-loader-error-icon dc-loader-error" />}
+          {this.loadingStatus == 'default' && <Spinner class="dc-loader-spinner dc-loader-default" />}
+          {this.loadingStatus == 'success' && <CheckCircle class="dc-loader-success-mark dc-loader-success" />}
+          {this.loadingStatus == 'error' && <Error class=" dc-loader-error-icon dc-loader-error" />}
           <slot></slot>
         </div>
       </Host>

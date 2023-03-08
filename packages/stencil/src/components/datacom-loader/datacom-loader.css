@@ -49,7 +49,3 @@
 .dc-loader-error {
   height: 16px;
 }
-
-.dc-loader-success-mark path {
-  animation: dc-loader-success-dash 1.5s ease-in-out infinite;
-}
