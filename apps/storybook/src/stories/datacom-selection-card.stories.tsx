@@ -38,12 +38,6 @@ export default {
       description: 'Text within the CTA element.',
       type: { name: 'string' },
     },
-    url: {
-      name: 'URL',
-      defaultValue: 'https://datacom.com',
-      description: 'URL that CTA should link to.',
-      type: { name: 'string' },
-    },
     imageUrl: {
       name: 'Image URL',
       defaultValue:
