@@ -1,10 +1,12 @@
 import React from 'react';
-import { ComponentStoryFn } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import {
   DatacomDisplayCardGroup,
   DatacomDisplayCard,
 } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
+
+type DisplayCardProps = React.ComponentProps<typeof DatacomDisplayCard>;
 
 export default {
   title: 'Display Card',
@@ -16,8 +18,15 @@ export default {
       description: 'Text of title displayed.',
       type: { name: 'string' },
     },
+    description: {
+      name: 'Description',
+      defaultValue:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
+      description: 'Description of display card.',
+      type: { name: 'string' },
+    },
     ctaText: {
-      name: 'Text',
+      name: 'CTA Text',
       defaultValue: 'Learn more',
       type: { name: 'string' },
     },
@@ -41,13 +50,13 @@ const Div = styled.div`
   max-width: 600px;
 `;
 
-const Template: ComponentStoryFn<typeof DatacomDisplayCard> = (args) => {
+const Template: StoryFn<DisplayCardProps & { description: string }> = (
+  args
+) => {
+  const { description } = args;
   return (
     <Div>
-      <DatacomDisplayCard {...args}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </DatacomDisplayCard>
+      <DatacomDisplayCard {...args}>{description}</DatacomDisplayCard>
     </Div>
   );
 };
@@ -55,18 +64,27 @@ const Template: ComponentStoryFn<typeof DatacomDisplayCard> = (args) => {
 export const DisplayCard = Template.bind({});
 DisplayCard.args = {};
 
-export const DisplayCardGroup = (args: any) => {
+export const DisplayCardGroup = () => {
   return (
     <div style={{ minWidth: '1200' }}>
       <DatacomDisplayCardGroup>
-        <DatacomDisplayCard {...args}>
-          {' '}
+        <DatacomDisplayCard
+          heading="Title"
+          imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
+          ctaText="Learn more"
+          url="https://datacom.com">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi.
         </DatacomDisplayCard>
-        <DatacomDisplayCard {...args}>
+        <DatacomDisplayCard
+          heading="Title"
+          imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
+          ctaText="Learn more"
+          url="https://datacom.com">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi.
         </DatacomDisplayCard>
       </DatacomDisplayCardGroup>
     </div>
