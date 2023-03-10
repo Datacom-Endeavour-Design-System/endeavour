@@ -50,18 +50,21 @@
   border: 1px solid var(--dc-greyscale-05);
   border-radius: 8px;
   padding: 14px 16px;
+  cursor: pointer;
 }
 
 .dc-ddl-label {
   background-color: var(--dc-background-colour);
   border: 0;
-  color: var(--dc-greyscale-03);
+  color: var(--dc-primary-text-color);
   display: inline-block;
+  line-height: 22px;
   margin: 0;
   padding: 0 2px;
   position: absolute;
   top: 14px;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .dc-ddl-list {
@@ -190,6 +193,7 @@
   font-size: 12px;
   top: -6px;
   left: 16px;
+  line-height: 16px;
 }
 
 .dc-ddl-selected .dc-ddl-control {
@@ -221,6 +225,7 @@
   font-size: 12px;
   top: -6px;
   left: 16px;
+  line-height: 16px;
   z-index: 20;
 }
 
