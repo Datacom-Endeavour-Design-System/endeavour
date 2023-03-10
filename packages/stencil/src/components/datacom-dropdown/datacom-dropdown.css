@@ -148,6 +148,10 @@
   height: 16px;
 }
 
+.dc-ddl-clear-icon path {
+  fill: var(--dc-primary-text-color);
+}
+
 .dc-ddl-open-btn,
 .dc-ddl-close-btn {
   display: flex;
