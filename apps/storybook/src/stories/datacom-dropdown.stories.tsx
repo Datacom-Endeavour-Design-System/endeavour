@@ -106,6 +106,6 @@ const SimpleTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
 
 export const Simple = SimpleTemplate.bind({});
 Simple.args = {
-  label: 'Options',
+  label: 'Label',
   message: 'Please select an option',
 };
