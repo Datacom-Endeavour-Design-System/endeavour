@@ -63,7 +63,9 @@
 
 .dc-ddl-option-image {
   height: 16px;
+  object-fit: contain;
   overflow: hidden;
+  width: 16px;
 }
 
 .dc-ddl-option-image path {
