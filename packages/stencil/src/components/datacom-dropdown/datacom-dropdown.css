@@ -182,6 +182,7 @@
 .dc-ddl-view .dc-ddl-control:focus,
 .dc-ddl-selected .dc-ddl-control:focus {
   outline: 3px solid var(--dc-primary-colour);
+  outline-offset: 1px;
 }
 
 .dc-ddl-open .dc-ddl-control:focus {
