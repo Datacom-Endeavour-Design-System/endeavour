@@ -58,9 +58,10 @@
   border: 0;
   color: var(--dc-primary-text-color);
   display: inline-block;
+  left: 12px;
   line-height: 22px;
   margin: 0;
-  padding: 0 2px;
+  padding: 0 4px;
   position: absolute;
   top: 14px;
   transition: all 0.3s;
@@ -86,7 +87,7 @@
   height: 52px;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 15px;
 }
 
 .dc-ddl-combo-placeholder {
@@ -197,7 +198,6 @@
 .dc-ddl-selected .dc-ddl-label {
   font-size: 12px;
   top: -6px;
-  left: 16px;
   line-height: 16px;
 }
 
@@ -229,7 +229,6 @@
 .dc-ddl-open .dc-ddl-label {
   font-size: 12px;
   top: -6px;
-  left: 16px;
   line-height: 16px;
   z-index: 20;
 }
