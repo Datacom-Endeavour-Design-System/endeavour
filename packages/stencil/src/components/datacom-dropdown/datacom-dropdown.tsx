@@ -594,7 +594,7 @@ export class DatacomDropdown implements FormControl {
     return (
       <Fragment>
         <div class="dc-ddl-list-area">
-          {this.variant === 'multi' && this.selected.length == 0 && <div class="dc-ddl-combo-placeholder">Select item(s)</div>}
+          {this.variant === 'multi' && this.selected.length == 0 && <div class="dc-ddl-combo-placeholder">{this.placeholder}</div>}
           {this.variant === 'multi' && this.selected.length > 0 && (
             <div class="dc-ddl-combo-count">
               <pre>{this.selected.length}</pre>&nbsp;selected

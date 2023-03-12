@@ -50,18 +50,22 @@
   border: 1px solid var(--dc-greyscale-05);
   border-radius: 8px;
   padding: 14px 16px;
+  cursor: pointer;
 }
 
 .dc-ddl-label {
   background-color: var(--dc-background-colour);
   border: 0;
-  color: var(--dc-greyscale-03);
+  color: var(--dc-primary-text-color);
   display: inline-block;
+  left: 12px;
+  line-height: 22px;
   margin: 0;
-  padding: 0 2px;
+  padding: 0 4px;
   position: absolute;
   top: 14px;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .dc-ddl-list {
@@ -83,7 +87,7 @@
   height: 52px;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 15px;
 }
 
 .dc-ddl-combo-placeholder {
@@ -145,6 +149,10 @@
   height: 16px;
 }
 
+.dc-ddl-clear-icon path {
+  fill: var(--dc-primary-text-color);
+}
+
 .dc-ddl-open-btn,
 .dc-ddl-close-btn {
   display: flex;
@@ -179,6 +187,7 @@
 .dc-ddl-view .dc-ddl-control:focus,
 .dc-ddl-selected .dc-ddl-control:focus {
   outline: 3px solid var(--dc-primary-colour);
+  outline-offset: 1px;
 }
 
 .dc-ddl-open .dc-ddl-control:focus {
@@ -189,7 +198,7 @@
 .dc-ddl-selected .dc-ddl-label {
   font-size: 12px;
   top: -6px;
-  left: 16px;
+  line-height: 16px;
 }
 
 .dc-ddl-selected .dc-ddl-control {
@@ -220,7 +229,7 @@
 .dc-ddl-open .dc-ddl-label {
   font-size: 12px;
   top: -6px;
-  left: 16px;
+  line-height: 16px;
   z-index: 20;
 }
 

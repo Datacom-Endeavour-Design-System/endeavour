@@ -10,7 +10,7 @@ export default {
       name: 'Label',
       defaultValue: 'Options',
       description: 'Dropdown label',
-      type: { label: 'string' },
+      type: { name: 'string' },
     },
     variant: {
       name: 'Variant',
@@ -19,6 +19,13 @@ export default {
       defaultValue: 'standard',
       options: ['standard', 'multi', 'combobox'],
       type: { name: 'string', required: true },
+    },
+    placeholder: {
+      name: 'Placeholder',
+      description:
+        'Placeholder text placed in search field of combobox variant.',
+      defaultValue: 'Placeholder',
+      type: { name: 'string' },
     },
     disabled: {
       name: 'Disabled',
@@ -33,7 +40,7 @@ export default {
     message: {
       name: 'Message',
       description: 'Hover instruction text',
-      type: { label: 'string' },
+      type: { name: 'string' },
     },
   },
 };
@@ -90,6 +97,7 @@ export const WithImages = CountryTemplate.bind({});
 WithImages.args = {
   label: 'Country',
   message: 'Please select a country',
+  placeholder: 'Select Item(s)',
 };
 
 const SimpleTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
@@ -106,6 +114,7 @@ const SimpleTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
 
 export const Simple = SimpleTemplate.bind({});
 Simple.args = {
-  label: 'Options',
+  label: 'Label',
   message: 'Please select an option',
+  placeholder: 'Placeholder',
 };
