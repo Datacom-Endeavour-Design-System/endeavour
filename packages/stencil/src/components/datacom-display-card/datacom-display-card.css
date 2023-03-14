@@ -98,11 +98,33 @@
 }
 
 .dc-display-card-wrapper:hover .dc-display-card-link {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  cursor: pointer;
 }
 
 .dc-display-card-wrapper:focus {
   outline: 3px solid var(--dc-primary-colour);
   outline-offset: 2px;
+}
+
+.dc-display-card-cta-text {
+  display: inline-block;
+  position: relative;
+}
+
+.dc-display-card-cta-text::before {
+  content: " ";
+  position: absolute;
+  transform: scaleX(0);
+  width: 0;
+  height: 1px;
+  left: 0;
+  bottom: 0;
+  transition: transform 0.25s ease-out;
+}
+
+.dc-display-card-wrapper:hover .dc-display-card-cta-text::before {
+  width: 100%;
+  transform: scaleX(1);
+  transform-origin: bottom left;
+  background-color: var(--dc-background-colour);
 }
