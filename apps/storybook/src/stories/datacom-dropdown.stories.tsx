@@ -97,7 +97,7 @@ export const WithImages = CountryTemplate.bind({});
 WithImages.args = {
   label: 'Country',
   message: 'Please select a country',
-  placeholder: 'Select Item(s)',
+  placeholder: 'Select your country',
 };
 
 const SimpleTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
