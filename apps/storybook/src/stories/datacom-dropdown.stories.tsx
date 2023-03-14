@@ -98,6 +98,7 @@ WithImages.args = {
   label: 'Country',
   message: 'Please select a country',
   placeholder: 'Select Item(s)',
+  variant: 'combobox',
 };
 
 const SimpleTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
@@ -117,4 +118,5 @@ Simple.args = {
   label: 'Label',
   message: 'Please select an option',
   placeholder: 'Placeholder',
+  variant: 'standard',
 };
