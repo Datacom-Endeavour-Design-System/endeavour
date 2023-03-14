@@ -19,7 +19,7 @@ export class DatacomLink {
   @Prop() icon?: string;
   @Prop() size: LinkSize = 'large';
   @Prop() disabled: boolean;
-  @Prop({ attribute: 'image-position' }) imagePosition: ImagePosition = 'left';
+  @Prop() imagePosition: ImagePosition = 'left';
 
   render() {
     let image: VNode;

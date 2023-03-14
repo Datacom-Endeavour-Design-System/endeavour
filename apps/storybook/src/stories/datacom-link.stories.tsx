@@ -35,8 +35,8 @@ export default {
       options: ['standalone', 'inline', 'stacked'],
       type: { name: 'string' },
     },
-    'image-position': {
-      name: 'Image position',
+    imagePosition: {
+      name: 'Image Position',
       description: 'Image or icon position. Defaults to left if not set',
       control: 'select',
       defaultValue: 'left',
