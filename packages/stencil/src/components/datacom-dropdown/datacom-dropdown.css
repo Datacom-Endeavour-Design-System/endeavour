@@ -184,13 +184,13 @@
   border: 1px solid var(--dc-primary-accent-colour);
 }
 
-.dc-ddl-view .dc-ddl-control:focus,
-.dc-ddl-selected .dc-ddl-control:focus {
+.dc-ddl-view .dc-ddl-control:focus-visible,
+.dc-ddl-selected .dc-ddl-control:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
   outline-offset: 1px;
 }
 
-.dc-ddl-open .dc-ddl-control:focus {
+.dc-ddl-open .dc-ddl-control:focus-visible {
   outline: none;
 }
 
@@ -257,7 +257,7 @@
   border-color: var(--dc-greyscale-05);
 }
 
-.dc-ddl-disabled .dc-ddl-control:focus {
+.dc-ddl-disabled .dc-ddl-control:focus-visible {
   outline: none;
 }
 
