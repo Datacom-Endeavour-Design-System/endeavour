@@ -69,17 +69,18 @@
 }
 
 .dc-ddl-list {
-  display: none;
   background-color: var(--dc-background-colour);
   border: 2px solid var(--dc-primary-colour);
   border-radius: 8px;
   box-sizing: border-box;
+  display: none;
+  left: 0;
+  overflow: hidden;
+  padding-bottom: 4px;
   position: absolute;
   top: 0;
-  left: 0;
-  z-index: 10;
   width: 100%;
-  overflow: hidden;
+  z-index: 10;
 }
 
 .dc-ddl-list-area {
