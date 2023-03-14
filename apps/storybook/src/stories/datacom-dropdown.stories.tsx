@@ -108,9 +108,6 @@ const SimpleTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
       <DatacomOption value="3" label="Option 3"></DatacomOption>
       <DatacomOption value="4" label="Option 4"></DatacomOption>
       <DatacomOption value="5" label="Option 5"></DatacomOption>
-      <DatacomOption value="6" label="Option 6"></DatacomOption>
-      <DatacomOption value="7" label="Option 7"></DatacomOption>
-      <DatacomOption value="8" label="Option 8"></DatacomOption>
     </DatacomDropdown>
   </div>
 );
