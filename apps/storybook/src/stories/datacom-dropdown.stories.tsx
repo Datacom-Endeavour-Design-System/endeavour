@@ -49,44 +49,44 @@ const CountryTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
   <div style={{ maxWidth: 272 }}>
     <DatacomDropdown {...args}>
       <DatacomOption
-        src="https://flagcdn.com/nz.svg"
+        src="/images/dropdown-example-flags/new-zealand.png"
         value="NZ"
         label="New Zealand"
       />
       <DatacomOption
-        src="https://flagcdn.com/au.svg"
+        src="/images/dropdown-example-flags/australia.png"
         value="AU"
         label="Australia"
       />
       <DatacomOption
-        src="https://flagcdn.com/ki.svg"
+        src="/images/dropdown-example-flags/kiribati.png"
         value="KI"
         label="Independent and Sovereign Republic of Kiribati"
       />
       <DatacomOption
-        src="https://flagcdn.com/gb.svg"
+        src="/images/dropdown-example-flags/great-britain.png"
         search="Great Britain | England | Wales | Scotland"
         value="GB"
         label="Great Britain"
       />
       <DatacomOption
-        src="https://flagcdn.com/fr.svg"
+        src="/images/dropdown-example-flags/france.png"
         value="FR"
         label="France"
       />
       <DatacomOption
-        src="https://flagcdn.com/it.svg"
+        src="/images/dropdown-example-flags/italy.png"
         value="IT"
         label="Italy"
       />
       <DatacomOption
-        src="https://flagcdn.com/es.svg"
+        src="/images/dropdown-example-flags/spain.png"
         value="ES"
         label="Spain"
       />
       <DatacomOption
-        src="https://flagcdn.com/ua.svg"
-        value="EA"
+        src="/images/dropdown-example-flags/ukraine.png"
+        value="UA"
         label="Ukraine"
       />
     </DatacomDropdown>
