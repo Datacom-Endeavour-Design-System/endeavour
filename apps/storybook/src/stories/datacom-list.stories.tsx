@@ -17,18 +17,19 @@ export default {
     },
     type: {
       name: 'Type',
+      control: 'select',
       description: 'List type  is default  numbers if not set',
       options: ['numbers', 'lowercase', 'uppercase', 'roman'],
     },
     heading: {
       name: 'Heading',
       description: 'For heading style of list inside paragraph',
-      type: { name: 'boolean' },
+      defaultValue: 'List content item',
+      type: { name: 'string' },
     },
   },
   args: {
     variant: 'ordered',
-    heading: false,
   },
 };
 const P = styled.p`
@@ -135,41 +136,37 @@ export const UnorderedListWithNestedOrderedItems = () => {
 };
 
 export const StandaloneOrderedList = (args) => {
+  const { heading } = args;
   return (
     <div>
       <DatacomList variant="ordered" {...args}>
-        <DatacomLi {...args} heading={true}>
-          List content item
+        <DatacomLi {...args} heading={heading}>
+          <P>Lorem ipsum dolor sit amet</P>
         </DatacomLi>
-        <P>Lorem ipsum dolor sit amet</P>
-        <DatacomLi {...args} heading={true}>
-          List content item
+        <DatacomLi {...args} heading={heading}>
+          <P>Lorem ipsum dolor sit amet</P>
         </DatacomLi>
-        <P>Lorem ipsum dolor sit amet</P>
-        <DatacomLi {...args} heading={true}>
-          List content item
+        <DatacomLi {...args} heading={heading}>
+          <P>Lorem ipsum dolor sit amet</P>
         </DatacomLi>
-        <P>Lorem ipsum dolor sit amet</P>
       </DatacomList>
     </div>
   );
 };
 export const StandaloneUnorderedList = (args) => {
+  const { heading } = args;
   return (
     <div>
       <DatacomList {...args} variant="Unordered">
-        <DatacomLi {...args} heading={true}>
-          List content item
+        <DatacomLi {...args} heading={heading}>
+          <P>Lorem ipsum dolor sit amet</P>
         </DatacomLi>
-        <P>Lorem ipsum dolor sit amet</P>
-        <DatacomLi {...args} heading={true}>
-          List content item
+        <DatacomLi {...args} heading={heading}>
+          <P>Lorem ipsum dolor sit amet</P>
         </DatacomLi>
-        <P>Lorem ipsum dolor sit amet</P>
-        <DatacomLi {...args} heading={true}>
-          List content item
+        <DatacomLi {...args} heading={heading}>
+          <P>Lorem ipsum dolor sit amet</P>
         </DatacomLi>
-        <P>Lorem ipsum dolor sit amet</P>
       </DatacomList>
     </div>
   );

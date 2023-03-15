@@ -15,7 +15,8 @@
   font-weight: 400;
 }
 
-li::marker {
+.dc-li-item::marker {
+  display: none;
   font-size: 400;
   line-height: 20px;
   text-align: right;
@@ -24,5 +25,9 @@ li::marker {
 }
 
 .dc-li-heading {
+  font-weight: 700;
+}
+
+.dc-li-marker::marker {
   font-weight: 700;
 }

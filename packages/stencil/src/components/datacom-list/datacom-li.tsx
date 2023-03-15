@@ -11,17 +11,18 @@ export class DatacomLi {
   /**
    * Heading  for list inside of paragraph.
    */
-  @Prop() heading: false;
+  @Prop() heading?: string;
 
   render() {
-    const classes = {
-      'dc-li-heading': this.heading,
+    const Classes = {
       'dc-li-item': true,
+      'dc-li-marker': this.heading?.length > 0,
     };
 
     return (
       <Host>
-        <li class={classes}>
+        <li class={Classes}>
+          {this.heading?.length > 0 && <span class="dc-li-heading">{this.heading}</span>}
           <slot></slot>
         </li>
       </Host>
