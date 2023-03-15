@@ -214,6 +214,7 @@
 }
 
 .dc-ddl-selected-option {
+  color: var(--dc-primary-text-color);
   width: 80%;
 }
 
