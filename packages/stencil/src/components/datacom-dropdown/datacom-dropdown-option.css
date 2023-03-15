@@ -7,6 +7,7 @@
 }
 
 .dc-ddl-option {
+  color: var(--dc-primary-text-color);
   margin: 0;
   border-top: 1px solid var(--dc-greyscale-05);
   padding: 2px 3px 3px;
@@ -31,7 +32,6 @@
 }
 
 .dc-ddl-option-label {
-  color: var(--dc-primary-text-color);
   font-weight: 400;
   font-size: 16px;
   white-space: nowrap;
