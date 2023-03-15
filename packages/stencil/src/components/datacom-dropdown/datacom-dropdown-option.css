@@ -31,6 +31,7 @@
 }
 
 .dc-ddl-option-label {
+  color: var(--dc-primary-text-color);
   font-weight: 400;
   font-size: 16px;
   white-space: nowrap;
