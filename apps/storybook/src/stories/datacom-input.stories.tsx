@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ComponentStoryFn, Meta } from '@storybook/react';
 import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
+import { IndicatorType } from 'packages/stencil/dist/types/components/datacom-input/datacom-input';
 
 export default {
   title: 'Text Input',
@@ -80,11 +81,11 @@ export default {
     },
   },
   args: {
-    label: 'First name',
+    label: 'Label',
     disabled: false,
     required: true,
-    placeholder: 'Enter your first name',
-    message: 'First name is required',
+    placeholder: 'Example text',
+    message: 'Error message',
   },
 } as Meta<typeof DatacomInput>;
 
@@ -133,7 +134,7 @@ export const WithIndicators = () => {
           placeholder="First names"
           required={true}
           value="William"
-          indicator={indicator}
+          indicator={indicator as IndicatorType}
           message="Please enter your first name"
         />
       </Panel>
