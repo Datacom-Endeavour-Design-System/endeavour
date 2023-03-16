@@ -233,7 +233,7 @@ export class DatacomDropdown implements FormControl {
    * @returns
    */
   private filter(find: string) {
-    if (find?.length < 3) {
+    if (find?.length === 0) {
       if (this.isFiltering) {
         this.clearFilter();
       }
