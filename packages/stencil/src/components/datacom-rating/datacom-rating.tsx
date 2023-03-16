@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, getAssetPath, State } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, getAssetPath, State, Fragment } from '@stencil/core';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'large' | 'small';
@@ -21,8 +21,8 @@ export class DatacomRating {
 
   @Event() ratingChanged: EventEmitter<number>;
 
-  private starEmptyImgSrc = getAssetPath(`/assets/images/rating/rating-star-empty.svg`);
-  private starFullImgSrc = getAssetPath(`/assets/images/rating/rating-star-full.svg`);
+  private starEmptyImgSrc = getAssetPath(`/assets/images/rating/rating-star-empty.png`);
+  private starFullImgSrc = getAssetPath(`/assets/images/rating/rating-star-full.png`);
 
   private onRatingSelected = (value: number) => () => {
     this.selectedRating = value;
@@ -31,12 +31,16 @@ export class DatacomRating {
   };
 
   private renderRatingInput = (value: number) => {
+    const inputId = `rating${value}`;
     return (
-      <label class="dc-rating-label">
-        <input class="dc-rating-input" type="radio" name="rating" value={value} onChange={this.onRatingSelected(value)} />
-        <img class="dc-rating-star empty" src={this.starEmptyImgSrc} />
-        <img class="dc-rating-star full" src={this.starFullImgSrc} />
-      </label>
+      <Fragment>
+        <input class="dc-rating-input" type="radio" name="rating" value={value} id={inputId} onChange={this.onRatingSelected(value)} />
+        <label class="dc-rating-label" htmlFor={inputId}>
+          <img class="dc-rating-star empty" src={this.starEmptyImgSrc} />
+          <img class="dc-rating-star full" src={this.starFullImgSrc} />
+          <span class="dc-rating-input-label">{value} stars</span>
+        </label>
+      </Fragment>
     );
   };
 
