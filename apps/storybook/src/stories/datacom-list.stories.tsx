@@ -130,10 +130,10 @@ export const StandaloneOrderedList = (args) => {
   return (
     <div>
       <DatacomList variant="ordered" {...args}>
-        <DatacomLi {...args} heading={heading} style={{ marginBottom: '12px' }}>
+        <DatacomLi {...args} heading={heading}>
           Lorem ipsum dolor sit amet
         </DatacomLi>
-        <DatacomLi {...args} heading={heading} style={{ marginBottom: '12px' }}>
+        <DatacomLi {...args} heading={heading}>
           Lorem ipsum dolor sit amet
         </DatacomLi>
         <DatacomLi {...args} heading={heading}>
@@ -148,10 +148,10 @@ export const StandaloneUnorderedList = (args) => {
   return (
     <div>
       <DatacomList {...args} variant="Unordered">
-        <DatacomLi {...args} heading={heading} style={{ marginBottom: '12px' }}>
+        <DatacomLi {...args} heading={heading}>
           Lorem ipsum dolor sit ame
         </DatacomLi>
-        <DatacomLi {...args} heading={heading} style={{ marginBottom: '12px' }}>
+        <DatacomLi {...args} heading={heading}>
           Lorem ipsum dolor sit amet
         </DatacomLi>
         <DatacomLi {...args} heading={heading}>
