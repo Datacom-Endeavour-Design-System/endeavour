@@ -179,7 +179,7 @@
   border: 2px solid var(--dc-primary-colour);
 }
 
-.dc-text-edit .dc-text-input:placeholder-shown {
+.dc-text-edit .dc-text-input::placeholder {
   color: var(--dc-greyscale-04);
 }
 
