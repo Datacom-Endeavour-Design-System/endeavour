@@ -9,7 +9,7 @@ export class DatacomLi {
   @Element() el: HTMLElement;
 
   /**
-   * Heading  for list inside of paragraph.
+   * Heading Prop for list with paragraph.
    */
   @Prop() heading?: string;
 
@@ -23,7 +23,9 @@ export class DatacomLi {
       <Host>
         <li class={Classes}>
           {this.heading?.length > 0 && <span class="dc-li-heading">{this.heading}</span>}
-          <slot></slot>
+          <div>
+            <slot></slot>
+          </div>
         </li>
       </Host>
     );

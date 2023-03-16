@@ -1,11 +1,10 @@
 import React from 'react';
 import { ComponentStoryFn } from '@storybook/react';
 import { DatacomLi, DatacomList } from '@datacom/endeavour-react';
-import styled from '@emotion/styled';
+
 export default {
   title: 'List',
   component: DatacomList,
-
   argTypes: {
     variant: {
       name: 'Variant',
@@ -32,15 +31,6 @@ export default {
     variant: 'ordered',
   },
 };
-const P = styled.p`
-  font-family: Montserrat;
-  font-size: 16px;
-  weight: 400;
-  color: #0a1839;
-  padding-bottom: 12px;
-  padding-left: 8px;
-  margin: 0;
-`;
 
 const Template: ComponentStoryFn<typeof DatacomList> = (args) => (
   <DatacomList {...args}>
@@ -140,14 +130,14 @@ export const StandaloneOrderedList = (args) => {
   return (
     <div>
       <DatacomList variant="ordered" {...args}>
-        <DatacomLi {...args} heading={heading}>
-          <P>Lorem ipsum dolor sit amet</P>
+        <DatacomLi {...args} heading={heading} style={{ marginBottom: '12px' }}>
+          Lorem ipsum dolor sit amet
+        </DatacomLi>
+        <DatacomLi {...args} heading={heading} style={{ marginBottom: '12px' }}>
+          Lorem ipsum dolor sit amet
         </DatacomLi>
         <DatacomLi {...args} heading={heading}>
-          <P>Lorem ipsum dolor sit amet</P>
-        </DatacomLi>
-        <DatacomLi {...args} heading={heading}>
-          <P>Lorem ipsum dolor sit amet</P>
+          Lorem ipsum dolor sit amet
         </DatacomLi>
       </DatacomList>
     </div>
@@ -158,14 +148,14 @@ export const StandaloneUnorderedList = (args) => {
   return (
     <div>
       <DatacomList {...args} variant="Unordered">
-        <DatacomLi {...args} heading={heading}>
-          <P>Lorem ipsum dolor sit amet</P>
+        <DatacomLi {...args} heading={heading} style={{ marginBottom: '12px' }}>
+          Lorem ipsum dolor sit ame
+        </DatacomLi>
+        <DatacomLi {...args} heading={heading} style={{ marginBottom: '12px' }}>
+          Lorem ipsum dolor sit amet
         </DatacomLi>
         <DatacomLi {...args} heading={heading}>
-          <P>Lorem ipsum dolor sit amet</P>
-        </DatacomLi>
-        <DatacomLi {...args} heading={heading}>
-          <P>Lorem ipsum dolor sit amet</P>
+          Lorem ipsum dolor sit amet
         </DatacomLi>
       </DatacomList>
     </div>

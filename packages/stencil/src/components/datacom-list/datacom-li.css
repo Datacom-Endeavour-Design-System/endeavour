@@ -15,17 +15,9 @@
   font-weight: 400;
 }
 
-.dc-li-item::marker {
-  display: none;
-  font-size: 400;
-  line-height: 20px;
-  text-align: right;
-  position: absolute;
-  letter-spacing: -0.25px;
-}
-
 .dc-li-heading {
   font-weight: 700;
+  margin: 0;
 }
 
 .dc-li-marker::marker {

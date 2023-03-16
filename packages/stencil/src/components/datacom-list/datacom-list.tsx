@@ -20,21 +20,16 @@ export class DatacomList {
 
   render() {
     const classes = {
-      'dc-list-ordered': true,
-      [`dc-list-${this.type}`]: true,
+      [`dc-list-${this.variant}`]: true,
+      [`dc-list-${this.type}`]: this.variant === 'ordered',
     };
 
+    const ListElement = this.variant === 'ordered' ? 'ol' : 'ul';
     return (
       <Host>
-        {this.variant == 'ordered' ? (
-          <ol class={classes}>
-            <slot></slot>
-          </ol>
-        ) : (
-          <ul class="dc-list-unordered">
-            <slot></slot>
-          </ul>
-        )}
+        <ListElement class={classes}>
+          <slot></slot>
+        </ListElement>
       </Host>
     );
   }
