@@ -127,6 +127,10 @@
   margin-left: auto;
 }
 
+.dc-ddl-list-btns {
+  padding-bottom: 2px;
+}
+
 .dc-ddl-chevron-down {
   width: 16px;
   height: 10px;
