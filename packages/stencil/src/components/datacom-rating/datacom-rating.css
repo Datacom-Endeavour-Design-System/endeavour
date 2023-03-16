@@ -1,0 +1,55 @@
+.dc-rating {
+  display: flex;
+}
+
+.dc-rating-inputs {
+  display: flex;
+}
+
+.dc-rating-label {
+  cursor: pointer;
+  position: relative;
+}
+
+.dc-rating-input {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dc-rating-star {
+  width: 24px;
+  height: 23px;
+}
+
+.empty {
+  display: block;
+}
+
+.full {
+  display: none;
+}
+
+.dc-rating-display {
+  display: flex;
+  position: relative;
+}
+
+.dc-rating-display-empty-stars {
+  display: flex;
+}
+
+.dc-rating-display-full-stars {
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+}
+
+/* Hover states */
+.dc-rating-label:hover .empty {
+  display: none;
+}
+
+.dc-rating-label:hover .full {
+  display: block;
+}
