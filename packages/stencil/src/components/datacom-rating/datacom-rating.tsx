@@ -1,9 +1,6 @@
 import { Component, Host, h, Prop, Event, EventEmitter, getAssetPath, State, Fragment } from '@stencil/core';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
-export type ButtonSize = 'large' | 'small';
-export type ImagePosition = 'left' | 'right';
-export type ButtonType = 'button' | 'submit' | 'reset';
+export type RatingSizeType = 'standard' | 'large';
 
 /**
  * Rating element is used to either display a rating
@@ -16,6 +13,7 @@ export type ButtonType = 'button' | 'submit' | 'reset';
 })
 export class DatacomRating {
   @Prop() label;
+  @Prop() size: RatingSizeType = 'standard';
   @Prop() ratingValue = 0;
   @Prop() readonly = false;
 
@@ -85,9 +83,14 @@ export class DatacomRating {
   };
 
   render() {
+    const mainClasses = {
+      'dc-rating': true,
+      'large': this.size === 'large',
+    };
+
     return (
       <Host>
-        <div class="dc-rating">
+        <div class={mainClasses}>
           {this.readonly ? this.renderRatingDisplay() : this.renderRatingInputs()}
           {this.label && <div class="dc-rating-label">{this.label}</div>}
         </div>

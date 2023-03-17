@@ -1,6 +1,10 @@
 :host {
-  --star-height: 23px;
-  --star-width: 24px;
+  display: block;
+
+  --star-height: 15px;
+  --star-height-large: 23px;
+  --star-width: 16px;
+  --star-width-large: 24px;
 }
 
 .dc-rating {
@@ -18,7 +22,8 @@
   width: var(--star-width);
 }
 
-.dc-rating-input-label:not(:last-child) {
+.dc-rating-inputs .dc-rating-input-label:not(:last-child),
+.dc-rating-display .dc-rating-star:not(:last-child) {
   margin-right: 4px;
 }
 
@@ -107,4 +112,11 @@
   letter-spacing: -0.2px;
   line-height: 18px;
   margin-left: 8px;
+}
+
+/* Small size variant */
+.large .dc-rating-input-label,
+.large .dc-rating-star {
+  height: var(--star-height-large);
+  width: var(--star-width-large);
 }
