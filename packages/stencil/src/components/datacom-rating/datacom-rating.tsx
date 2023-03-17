@@ -36,8 +36,8 @@ export class DatacomRating {
       <Fragment>
         <input class="dc-rating-input" type="radio" name="rating" value={value} id={inputId} onChange={this.onRatingSelected(value)} />
         <label class="dc-rating-label" htmlFor={inputId}>
-          <img class="dc-rating-star empty" src={this.starEmptyImgSrc} />
-          <img class="dc-rating-star full" src={this.starFullImgSrc} />
+          <img class="dc-rating-star" src={this.starEmptyImgSrc} />
+          <img class="dc-rating-star full-star" src={this.starFullImgSrc} />
           <span class="dc-rating-input-label">{value} stars</span>
         </label>
       </Fragment>

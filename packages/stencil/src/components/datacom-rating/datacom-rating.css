@@ -12,8 +12,10 @@
 }
 
 .dc-rating-input {
-  position: fixed;
+  margin: 0;
   opacity: 0;
+  padding: 0;
+  position: absolute;
   pointer-events: none;
 }
 
@@ -22,12 +24,15 @@
   height: 23px;
 }
 
-.empty {
-  display: block;
+.dc-rating-star:not(:last-child) {
+  margin-right: 4px;
 }
 
-.full {
-  display: none;
+.full-star {
+  display: block;
+  left: 0;
+  position: absolute;
+  top: 0;
 }
 
 .dc-rating-display {
@@ -45,11 +50,42 @@
   position: absolute;
 }
 
-/* Hover states */
-.dc-rating-label:hover .empty {
-  display: none;
+/* Checked states */
+.dc-rating-input:checked ~ .dc-rating-label .full-star {
+  opacity: 0;
 }
 
-.dc-rating-label:hover .full {
-  display: block;
+.dc-rating-input:checked + .dc-rating-label .full-star {
+  opacity: 1;
+}
+
+.dc-rating-input:focus-visible + .dc-rating-label .full-star {
+  border-radius: 4px;
+  outline: 1px solid var(--dc-primary-colour);
+  outline-offset: 1px;
+}
+
+/* Hover states */
+
+/*
+ * '!important' keywords used to enforce hover styles,
+ * even if above checked styles are present
+ */
+.dc-rating-inputs:hover .full-star {
+  opacity: 1 !important;
+}
+
+.dc-rating-label:hover ~ .dc-rating-label .full-star {
+  opacity: 0 !important;
+}
+
+/* Input label should only be visible to screen readers */
+.dc-rating-input-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  border: 0;
 }
