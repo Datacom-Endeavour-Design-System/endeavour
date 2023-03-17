@@ -12,8 +12,10 @@ export type ButtonType = 'button' | 'submit' | 'reset';
 @Component({
   tag: 'datacom-rating',
   styleUrl: 'datacom-rating.css',
+  shadow: true,
 })
 export class DatacomRating {
+  @Prop() label;
   @Prop() ratingValue = 0;
   @Prop() readonly = false;
 
@@ -24,36 +26,45 @@ export class DatacomRating {
   private starEmptyImgSrc = getAssetPath(`/assets/images/rating/rating-star-empty.png`);
   private starFullImgSrc = getAssetPath(`/assets/images/rating/rating-star-full.png`);
 
+  /**
+   * Event handler for when rating is changed.
+   * @returns Input elements for rating.
+   */
   private onRatingSelected = (value: number) => () => {
     this.selectedRating = value;
     this.ratingChanged.emit(value);
     console.log('Rating selected: ', value);
   };
 
-  private renderRatingInput = (value: number) => {
-    const inputId = `rating${value}`;
-    return (
-      <Fragment>
-        <input class="dc-rating-input" type="radio" name="rating" value={value} id={inputId} onChange={this.onRatingSelected(value)} />
-        <label class="dc-rating-label" htmlFor={inputId}>
-          <img class="dc-rating-star" src={this.starEmptyImgSrc} />
-          <img class="dc-rating-star full-star" src={this.starFullImgSrc} />
-          <span class="dc-rating-input-label">{value} stars</span>
-        </label>
-      </Fragment>
-    );
-  };
-
+  /**
+   * Renders rating input elements for when component takes user input.
+   * @returns Input elements for rating.
+   */
   private renderRatingInputs = () => {
     const elementList = [];
 
     for (let i = 1; i < 6; i++) {
-      elementList.push(this.renderRatingInput(i));
+      const inputId = `rating${i}`;
+
+      elementList.push(
+        <Fragment>
+          <input class="dc-rating-input" type="radio" name="rating" value={i} id={inputId} onChange={this.onRatingSelected(i)} />
+          <label class="dc-rating-input-label" htmlFor={inputId}>
+            <img class="dc-rating-star" src={this.starEmptyImgSrc} />
+            <img class="dc-rating-star full-star" src={this.starFullImgSrc} />
+            <span class="dc-rating-sr-label">{i} stars</span>
+          </label>
+        </Fragment>,
+      );
     }
 
     return <div class="dc-rating-inputs">{elementList}</div>;
   };
 
+  /**
+   * Renders rating display elements when component is readonly.
+   * @returns Display elements for rating.
+   */
   private renderRatingDisplay = () => {
     const emptyStars = [];
     const fullStars = [];
@@ -76,7 +87,10 @@ export class DatacomRating {
   render() {
     return (
       <Host>
-        <div class="dc-rating">{this.readonly ? this.renderRatingDisplay() : this.renderRatingInputs()}</div>
+        <div class="dc-rating">
+          {this.readonly ? this.renderRatingDisplay() : this.renderRatingInputs()}
+          {this.label && <div class="dc-rating-label">{this.label}</div>}
+        </div>
       </Host>
     );
   }

@@ -1,3 +1,8 @@
+:host {
+  --star-height: 23px;
+  --star-width: 24px;
+}
+
 .dc-rating {
   display: flex;
 }
@@ -6,9 +11,15 @@
   display: flex;
 }
 
-.dc-rating-label {
+.dc-rating-input-label {
   cursor: pointer;
+  height: var(--star-height);
   position: relative;
+  width: var(--star-width);
+}
+
+.dc-rating-input-label:not(:last-child) {
+  margin-right: 4px;
 }
 
 .dc-rating-input {
@@ -20,12 +31,8 @@
 }
 
 .dc-rating-star {
-  width: 24px;
-  height: 23px;
-}
-
-.dc-rating-star:not(:last-child) {
-  margin-right: 4px;
+  height: var(--star-height);
+  width: var(--star-width);
 }
 
 .full-star {
@@ -51,15 +58,16 @@
 }
 
 /* Checked states */
-.dc-rating-input:checked ~ .dc-rating-label .full-star {
+.dc-rating-input:checked ~ .dc-rating-input-label .full-star {
   opacity: 0;
 }
 
-.dc-rating-input:checked + .dc-rating-label .full-star {
+.dc-rating-input:checked + .dc-rating-input-label .full-star {
   opacity: 1;
 }
 
-.dc-rating-input:focus-visible + .dc-rating-label .full-star {
+/* Focus state */
+.dc-rating-input:focus-visible + .dc-rating-input-label .full-star {
   border-radius: 4px;
   outline: 1px solid var(--dc-primary-colour);
   outline-offset: 1px;
@@ -75,12 +83,12 @@
   opacity: 1 !important;
 }
 
-.dc-rating-label:hover ~ .dc-rating-label .full-star {
+.dc-rating-input-label:hover ~ .dc-rating-input-label .full-star {
   opacity: 0 !important;
 }
 
 /* Input label should only be visible to screen readers */
-.dc-rating-input-label {
+.dc-rating-sr-label {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -88,4 +96,15 @@
   margin: -1px;
   overflow: hidden;
   border: 0;
+}
+
+.dc-rating-label {
+  align-items: center;
+  color: var(--dc-primary-text-color);
+  display: flex;
+  font-family: var(--dc-font-family);
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  line-height: 18px;
+  margin-left: 8px;
 }
