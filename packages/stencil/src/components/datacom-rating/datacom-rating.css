@@ -1,6 +1,4 @@
 :host {
-  display: block;
-
   --star-height: 15px;
   --star-height-large: 23px;
   --star-width: 16px;
