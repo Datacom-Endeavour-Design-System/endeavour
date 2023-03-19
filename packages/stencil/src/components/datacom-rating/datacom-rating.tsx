@@ -26,7 +26,6 @@ export class DatacomRating {
 
   /**
    * Event handler for when rating is changed.
-   * @returns Input elements for rating.
    */
   private onRatingSelected = (value: number) => () => {
     this.selectedRating = value;
