@@ -29,7 +29,6 @@ export class DatacomRating {
   private onRatingSelected = (value: number) => () => {
     this.selectedRating = value;
     this.ratingChanged.emit(value);
-    console.log('Rating selected: ', value);
   };
 
   /**
@@ -78,16 +77,18 @@ export class DatacomRating {
         </div>,
       );
 
+      // Must calculate percentage of visible with based on ratingValue prop.
+
+      // Initially assume star will be full width.
       let visibleStarWidth = 100;
       if (i > this.ratingValue) {
-        const difference = i - this.ratingValue;
-        if (difference > 1) {
+        if (i - this.ratingValue > 1) {
+          // Set width to zero if star value is greater than ratingValue...
           visibleStarWidth = 0;
         } else {
+          // ...else calculate visible percentage width needed for star.
           visibleStarWidth = (this.ratingValue - (i - 1)) * 100;
         }
-        console.log('ratingValue: ', this.ratingValue);
-        console.log('visibleStarWidth: ', visibleStarWidth);
       }
 
       fullStars.push(
