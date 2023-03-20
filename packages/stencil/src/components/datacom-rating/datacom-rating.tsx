@@ -57,7 +57,12 @@ export class DatacomRating {
       );
     }
 
-    return <div class="dc-rating-inputs">{elementList}</div>;
+    const inputsClasses = {
+      'dc-rating-inputs': true,
+      'initial-state': this.selectedRating === 0,
+    };
+
+    return <div class={inputsClasses}>{elementList}</div>;
   };
 
   /**
