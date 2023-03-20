@@ -2,10 +2,15 @@
   display: block;
 }
 
+:host * {
+  font-family: var(--dc-font-family);
+}
+
 .dc-ddl-option {
+  color: var(--dc-primary-text-color);
   margin: 0;
   border-top: 1px solid var(--dc-greyscale-05);
-  padding: 2px;
+  padding: 2px 3px 3px;
   outline: none;
   height: 52px;
   cursor: pointer;
@@ -22,10 +27,11 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 400px;
+  padding-left: 12px;
+  cursor: pointer;
 }
 
 .dc-ddl-option-label {
-  font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 16px;
   white-space: nowrap;
@@ -38,7 +44,7 @@
 }
 
 .dc-ddl-option:hover {
-  background-color: var(--dc-greyscale-05);
+  background-color: var(--dc-grayscale-06);
   color: var(--dc-primary-text-color);
 }
 
@@ -46,19 +52,21 @@
   fill: var(--dc-background-colour);
 }
 
-.dc-ddl-option:focus {
+.dc-ddl-option:focus-visible {
   border: 3px solid var(--dc-primary-colour);
   padding: 0;
 }
 
-.dc-ddl-option-content {
-  padding-left: 16px;
+.dc-ddl-option-icon {
+  display: flex;
+  padding-right: 12px;
 }
 
 .dc-ddl-option-image {
   height: 16px;
+  object-fit: contain;
   overflow: hidden;
-  padding-right: 12px;
+  width: 16px;
 }
 
 .dc-ddl-option-image path {
@@ -82,7 +90,7 @@
   background: transparent;
 }
 
-.dc-ddl-option-mode-standalone.dc-ddl-option:focus {
+.dc-ddl-option-mode-standalone.dc-ddl-option:focus-visible {
   border: none;
 }
 

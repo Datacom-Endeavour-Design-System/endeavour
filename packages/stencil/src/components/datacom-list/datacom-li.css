@@ -1,0 +1,28 @@
+:host {
+  display: block;
+}
+
+:host * {
+  font-family: var(--dc-font-family);
+  color: var(--dc-primary-text-color);
+  font-style: normal;
+  font-size: 16px;
+  padding-left: 8px;
+  line-height: 24px;
+}
+
+.dc-li-item {
+  font-weight: 400;
+}
+
+.dc-li-heading {
+  font-weight: 700;
+}
+
+.dc-li-marker::marker {
+  font-weight: 700;
+}
+
+.dc-li-item.dc-li-marker {
+  margin-bottom: 12px;
+}

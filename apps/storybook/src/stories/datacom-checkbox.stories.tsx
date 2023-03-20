@@ -5,6 +5,7 @@ import {
   DatacomCheckboxGroup,
   DatacomButton,
 } from '@datacom/endeavour-react';
+import styled from '@emotion/styled';
 
 export default {
   title: 'Checkbox',
@@ -30,9 +31,9 @@ export default {
       description: 'Checked Checkbox',
       type: { name: 'boolean' },
     },
-    unknown: {
-      name: 'Unknown',
-      description: 'Show the field in an unknown state',
+    indeterminate: {
+      name: 'Indeterminate',
+      description: 'Show the field in an indeterminate state',
       type: { name: 'boolean' },
     },
     disabled: {
@@ -59,41 +60,24 @@ const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => (
   <DatacomCheckbox {...args} />
 );
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Single = Template.bind({});
+Single.args = {
   label: 'Checkbox Item',
   variant: 'standard',
   checked: false,
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  label: 'Checkbox Item',
-  variant: 'small',
-  checked: false,
-};
-
 export const Grouped = (props) => {
-  const { variant, disabled } = props;
+  const custom = (({ label, ...object }) => object)(props);
 
   return (
     <div>
       <DatacomCheckboxGroup>
-        <DatacomCheckbox variant={variant} disabled={disabled}>
-          Parent checkbox
-        </DatacomCheckbox>
-        <DatacomCheckbox variant={variant} disabled={disabled}>
-          Child option 1
-        </DatacomCheckbox>
-        <DatacomCheckbox variant={variant} disabled={disabled}>
-          Child option 2
-        </DatacomCheckbox>
-        <DatacomCheckbox variant={variant} disabled={disabled}>
-          Child option 3
-        </DatacomCheckbox>
-        <DatacomCheckbox variant={variant} disabled={disabled}>
-          Child option 4
-        </DatacomCheckbox>
+        <DatacomCheckbox {...custom}>Parent checkbox</DatacomCheckbox>
+        <DatacomCheckbox {...custom}>Child option 1</DatacomCheckbox>
+        <DatacomCheckbox {...custom}>Child option 2</DatacomCheckbox>
+        <DatacomCheckbox {...custom}>Child option 3</DatacomCheckbox>
+        <DatacomCheckbox {...custom}>Child option 4</DatacomCheckbox>
       </DatacomCheckboxGroup>
     </div>
   );
@@ -112,6 +96,10 @@ export const FormValidation = () => {
     }
   };
 
+  const ButtonPanel = styled.div`
+    margin-top: 24px;
+  `;
+
   return (
     <form method="post" ref={form} onSubmit={handleSubmit}>
       <div>
@@ -122,9 +110,9 @@ export const FormValidation = () => {
         {submitted && <p>Form would have been submitted but was prevented</p>}
       </div>
 
-      <div style={{ 'margin-top': '24px' }}>
+      <ButtonPanel>
         <DatacomButton type="submit">Submit</DatacomButton>
-      </div>
+      </ButtonPanel>
     </form>
   );
 };
