@@ -22,13 +22,13 @@
   color: var(--dc-primary-colour);
 }
 
-.dc-link-size-large {
+.dc-link-size-standard {
   font-size: 18px;
   letter-spacing: -0.5px;
-  line-height: 22px;
+  line-height: 24px;
 }
 
-.dc-link-size-small {
+.dc-link-size-footer {
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.2px;
@@ -37,18 +37,19 @@
 .dc-link-icon {
   display: inline-flex;
   align-self: center;
+  padding-bottom: 4px;
 }
 
 .dc-link-icon path {
   fill: var(--dc-primary-colour);
 }
 
-.dc-link-size-large .dc-link-icon {
+.dc-link-size-standard .dc-link-icon {
   width: 18px;
   height: 18px;
 }
 
-.dc-link-size-small .dc-link-icon {
+.dc-link-size-footer .dc-link-icon {
   width: 14px;
   height: 14px;
 }
@@ -63,11 +64,11 @@
 }
 
 .dc-link-image-left .dc-link-icon {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 .dc-link-image-right .dc-link-icon {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 .dc-link:visited {
@@ -148,13 +149,24 @@
 /* inline variant */
 .dc-link-inline {
   font-size: 16px;
+  line-height: 22px;
   color: var(--dc-primary-colour);
   border-bottom: 1px solid var(--dc-primary-colour);
+}
+
+.dc-link-inline.dc-link-size-footer {
+  font-size: 14px;
+  line-height: 18px;
 }
 
 .dc-link-inline .dc-link-icon {
   width: 16px;
   height: 16px;
+}
+
+.dc-link-inline.dc-link-size-footer .dc-link-icon {
+  width: 14px;
+  height: 14px;
 }
 
 .dc-link.dc-link-inline:visited {

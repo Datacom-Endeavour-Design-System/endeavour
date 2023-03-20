@@ -9,16 +9,9 @@ export default {
   component: DatacomLink,
   argTypes: {
     label: {
-      name: 'Cta Text',
+      name: 'Label',
       defaultValue: 'Learn more',
       type: { name: 'string' },
-    },
-    size: {
-      name: 'Size',
-      description: 'Link size within variant.Defaults to large if not set',
-      control: 'select',
-      defaultValue: 'large',
-      options: ['large', 'small'],
     },
     variant: {
       name: 'Variant',
@@ -34,6 +27,19 @@ export default {
       defaultValue: 'standalone',
       options: ['standalone', 'inline', 'stacked'],
       type: { name: 'string' },
+    },
+    size: {
+      name: 'Size',
+      description: 'Link size within variant.Defaults to large if not set',
+      control: {
+        type: 'select',
+        labels: {
+          standard: 'Standard',
+          footer: 'Footer',
+        },
+      },
+      defaultValue: 'standard',
+      options: ['standard', 'footer'],
     },
     imagePosition: {
       name: 'Image Position',
@@ -73,7 +79,7 @@ export default {
     },
     url: {
       name: 'URL',
-      defaultValue: 'https://datacom.com',
+      defaultValue: 'https://datacom.com/nz/en',
       description: ' should be add link to. ',
       type: { name: 'string', required: true },
     },
@@ -86,13 +92,15 @@ export default {
 };
 
 const Template: StoryFn<LinkProps & { label: string }> = (args) => {
-  const { label, url, variant, icon, imagePosition } = args;
+  const { label, url, variant, icon, imagePosition, size, disabled } = args;
   return (
     <DatacomLink
       variant={variant}
+      size={size}
       url={url}
       icon={icon}
-      imagePosition={imagePosition}>
+      imagePosition={imagePosition}
+      disabled={disabled}>
       {label}
     </DatacomLink>
   );
@@ -105,27 +113,24 @@ LinkWithIcon.args = {
   icon: 'globe',
 };
 
-export const stackedLink = (args) => {
-  const { label, url, variant, icon, imagePosition } = args;
+export const stackedLinks = () => {
   return (
     <div>
       <DatacomLink
         variant="stacked"
-        url={url}
-        icon={icon}
-        imagePosition={imagePosition}
-        {...args}
+        url="https://www.datacom.com/nz/en"
+        icon="forward"
+        imagePosition="right"
         style={{ paddingBottom: '12px' }}>
-        {label}
+        Learn more
       </DatacomLink>
       <DatacomLink
         variant="stacked"
-        url={url}
-        icon={icon}
-        imagePosition={imagePosition}
-        {...args}
+        url="https://www.datacom.com/nz/en/search"
+        icon="settings"
+        imagePosition="right"
         style={{ paddingBottom: '12px' }}>
-        {label}
+        Account settings
       </DatacomLink>
     </div>
   );

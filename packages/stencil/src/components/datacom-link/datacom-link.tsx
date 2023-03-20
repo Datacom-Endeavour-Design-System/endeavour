@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, VNode } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 
 export type LinkVariant = 'standalone' | 'stacked' | 'inline';
-export type LinkSize = 'large' | 'small';
+export type LinkSize = 'standard' | 'footer';
 export type ImagePosition = 'left' | 'right';
 
 /**
@@ -17,7 +17,7 @@ export class DatacomLink {
   @Prop() variant: LinkVariant = 'standalone';
   @Prop() url: string;
   @Prop() icon?: string;
-  @Prop() size: LinkSize = 'large';
+  @Prop() size: LinkSize = 'standard';
   @Prop() disabled: boolean;
   @Prop() imagePosition: ImagePosition = 'left';
 
