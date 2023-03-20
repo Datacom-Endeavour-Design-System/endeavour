@@ -38,6 +38,11 @@
   width: var(--star-width);
 }
 
+.dc-rating-star svg {
+  height: var(--star-height);
+  width: var(--star-width);
+}
+
 .full-star {
   display: block;
   left: 0;
@@ -52,10 +57,12 @@
 
 .dc-rating-display-empty-stars {
   display: flex;
+  height: var(--star-height);
 }
 
 .dc-rating-display-full-stars {
   display: flex;
+  height: var(--star-height);
   overflow: hidden;
   position: absolute;
 }
@@ -117,4 +124,14 @@
 .large .dc-rating-star {
   height: var(--star-height-large);
   width: var(--star-width-large);
+}
+
+.large .dc-rating-star svg {
+  height: var(--star-height-large);
+  width: var(--star-width-large);
+}
+
+.large .dc-rating-display-empty-stars,
+.large .dc-rating-display-full-stars {
+  height: var(--star-height-large);
 }

@@ -1,4 +1,6 @@
-import { Component, Host, h, Prop, Event, EventEmitter, getAssetPath, State, Fragment } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, State, Fragment } from '@stencil/core';
+import { RatingStarEmpty } from './icons/rating-star-empty';
+import { RatingStarFull } from './icons/rating-star-full';
 
 export type RatingSizeType = 'standard' | 'large';
 
@@ -20,9 +22,6 @@ export class DatacomRating {
   @State() selectedRating = 0;
 
   @Event() ratingChanged: EventEmitter<number>;
-
-  private starEmptyImgSrc = getAssetPath(`/assets/images/rating/rating-star-empty.png`);
-  private starFullImgSrc = getAssetPath(`/assets/images/rating/rating-star-full.png`);
 
   /**
    * Event handler for when rating is changed.
@@ -47,8 +46,12 @@ export class DatacomRating {
         <Fragment>
           <input class="dc-rating-input" type="radio" name="rating" value={i} id={inputId} onChange={this.onRatingSelected(i)} />
           <label class="dc-rating-input-label" htmlFor={inputId}>
-            <img class="dc-rating-star" src={this.starEmptyImgSrc} />
-            <img class="dc-rating-star full-star" src={this.starFullImgSrc} />
+            <div class="dc-rating-star">
+              <RatingStarEmpty />
+            </div>
+            <div class="dc-rating-star full-star">
+              <RatingStarFull />
+            </div>
             <span class="dc-rating-sr-label">{i} stars</span>
           </label>
         </Fragment>,
@@ -67,8 +70,16 @@ export class DatacomRating {
     const fullStars = [];
 
     for (let i = 1; i < 6; i++) {
-      emptyStars.push(<img class="dc-rating-star" src={this.starEmptyImgSrc} />);
-      fullStars.push(<img class="dc-rating-star" src={this.starFullImgSrc} />);
+      emptyStars.push(
+        <div class="dc-rating-star">
+          <RatingStarEmpty />
+        </div>,
+      );
+      fullStars.push(
+        <div class="dc-rating-star">
+          <RatingStarFull />
+        </div>,
+      );
     }
 
     return (
