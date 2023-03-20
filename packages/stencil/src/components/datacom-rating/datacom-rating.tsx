@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, State, Fragment } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, State, Fragment, Method } from '@stencil/core';
 import { RatingStarEmpty } from './icons/rating-star-empty';
 import { RatingStarFull } from './icons/rating-star-full';
 
@@ -22,6 +22,14 @@ export class DatacomRating {
   @State() selectedRating = 0;
 
   @Event() ratingChanged: EventEmitter<number>;
+
+  /**
+   * Retrive rating currently selected in component
+   */
+  @Method()
+  async getSelectedRating() {
+    return this.selectedRating;
+  }
 
   /**
    * Event handler for when rating is changed.
