@@ -7,7 +7,7 @@ import {
 } from '@datacom/endeavour-react';
 
 export default {
-  title: 'Dropdown List',
+  title: 'Dropdown',
   component: DatacomDropdown,
   argTypes: {
     label: {
