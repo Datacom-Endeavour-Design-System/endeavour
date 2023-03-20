@@ -71,13 +71,30 @@ export class DatacomRating {
 
     for (let i = 1; i < 6; i++) {
       emptyStars.push(
-        <div class="dc-rating-star">
-          <RatingStarEmpty />
+        <div class="dc-rating-star-wrapper">
+          <div class="dc-rating-star">
+            <RatingStarEmpty />
+          </div>
         </div>,
       );
+
+      let visibleStarWidth = 100;
+      if (i > this.ratingValue) {
+        const difference = i - this.ratingValue;
+        if (difference > 1) {
+          visibleStarWidth = 0;
+        } else {
+          visibleStarWidth = (this.ratingValue - (i - 1)) * 100;
+        }
+        console.log('ratingValue: ', this.ratingValue);
+        console.log('visibleStarWidth: ', visibleStarWidth);
+      }
+
       fullStars.push(
-        <div class="dc-rating-star">
-          <RatingStarFull />
+        <div class="dc-rating-star-wrapper">
+          <div class="dc-rating-star" style={{ width: `${visibleStarWidth}%` }}>
+            <RatingStarFull />
+          </div>
         </div>,
       );
     }
@@ -85,9 +102,7 @@ export class DatacomRating {
     return (
       <div class="dc-rating-display">
         <div class="dc-rating-display-empty-stars">{emptyStars}</div>
-        <div class="dc-rating-display-full-stars" style={{ width: `${this.ratingValue * 20}%` }}>
-          {fullStars}
-        </div>
+        <div class="dc-rating-display-full-stars">{fullStars}</div>
       </div>
     );
   };
