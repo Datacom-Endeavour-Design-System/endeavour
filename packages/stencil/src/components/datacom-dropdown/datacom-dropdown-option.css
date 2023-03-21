@@ -7,6 +7,7 @@
 }
 
 .dc-ddl-option {
+  color: var(--dc-primary-text-color);
   margin: 0;
   border-top: 1px solid var(--dc-greyscale-05);
   padding: 2px 3px 3px;
@@ -51,7 +52,7 @@
   fill: var(--dc-background-colour);
 }
 
-.dc-ddl-option:focus {
+.dc-ddl-option:focus-visible {
   border: 3px solid var(--dc-primary-colour);
   padding: 0;
 }
@@ -89,7 +90,7 @@
   background: transparent;
 }
 
-.dc-ddl-option-mode-standalone.dc-ddl-option:focus {
+.dc-ddl-option-mode-standalone.dc-ddl-option:focus-visible {
   border: none;
 }
 

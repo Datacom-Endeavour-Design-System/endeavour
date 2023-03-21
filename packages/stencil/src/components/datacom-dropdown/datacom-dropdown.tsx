@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Method, Element, Listen, Fragment } from '@stencil/core';
+import { Component, Host, h, Prop, State, Method, Element, Listen, Fragment, Event, EventEmitter } from '@stencil/core';
 import { randomString } from '../../utils';
 import { FormControl } from '../form-control';
 import { DatacomDropdownOptionElement } from './datacom-dropdown-option';
@@ -56,6 +56,11 @@ export class DatacomDropdown implements FormControl {
    * Automatically show error state if invalid on form submit
    */
   @Prop({ attribute: 'autovalidate' }) autoValidate? = true;
+
+  /**
+   * Event for when select option has been changed
+   */
+  @Event() changed: EventEmitter<string[]>;
 
   /**
    * Error mutable state will re-render the control to display error message, icon and focus border
@@ -228,7 +233,7 @@ export class DatacomDropdown implements FormControl {
    * @returns
    */
   private filter(find: string) {
-    if (find?.length < 3) {
+    if (find?.length === 0) {
       if (this.isFiltering) {
         this.clearFilter();
       }
@@ -327,6 +332,9 @@ export class DatacomDropdown implements FormControl {
       node.selected = true;
       this.selectElement.appendChild(node);
     });
+
+    // Emit event to notify change in selection
+    this.changed.emit(this.selected.map(ind => this.getOption(ind).value));
 
     // Close the drop down if just single select mode
     if (this.variant !== 'multi') {
@@ -681,3 +689,5 @@ export class DatacomDropdown implements FormControl {
     );
   }
 }
+
+export type HTMLDatacomDropdownElement = HTMLElement & DatacomDropdown;

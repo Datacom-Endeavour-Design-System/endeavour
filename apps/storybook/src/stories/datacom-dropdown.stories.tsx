@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { ComponentStoryFn } from '@storybook/react';
-import { DatacomDropdown, DatacomOption } from '@datacom/endeavour-react';
+import {
+  DatacomButton,
+  DatacomDropdown,
+  DatacomOption,
+} from '@datacom/endeavour-react';
 
 export default {
-  title: 'Dropdown List',
+  title: 'Dropdown',
   component: DatacomDropdown,
   argTypes: {
     label: {
@@ -23,13 +27,13 @@ export default {
     placeholder: {
       name: 'Placeholder',
       description:
-        'Placeholder text placed in search field of combobox variant.',
+        'Placeholder text placed in search field of combobox & multi variant.',
       defaultValue: 'Placeholder',
       type: { name: 'string' },
     },
     disabled: {
       name: 'Disabled',
-      description: 'Disable Dropdown',
+      description: 'Controls disable state of dropdown',
       type: { name: 'boolean' },
     },
     isValid: {
@@ -38,8 +42,8 @@ export default {
       type: { name: 'boolean' },
     },
     message: {
-      name: 'Message',
-      description: 'Hover instruction text',
+      name: 'Error Message',
+      description: 'Error message displayed in error state.',
       type: { name: 'string' },
     },
   },
@@ -49,44 +53,44 @@ const CountryTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
   <div style={{ maxWidth: 272 }}>
     <DatacomDropdown {...args}>
       <DatacomOption
-        src="https://flagcdn.com/nz.svg"
+        src="/images/dropdown-example-flags/new-zealand.png"
         value="NZ"
         label="New Zealand"
       />
       <DatacomOption
-        src="https://flagcdn.com/au.svg"
+        src="/images/dropdown-example-flags/australia.png"
         value="AU"
         label="Australia"
       />
       <DatacomOption
-        src="https://flagcdn.com/ki.svg"
+        src="/images/dropdown-example-flags/kiribati.png"
         value="KI"
         label="Independent and Sovereign Republic of Kiribati"
       />
       <DatacomOption
-        src="https://flagcdn.com/gb.svg"
+        src="/images/dropdown-example-flags/great-britain.png"
         search="Great Britain | England | Wales | Scotland"
         value="GB"
         label="Great Britain"
       />
       <DatacomOption
-        src="https://flagcdn.com/fr.svg"
+        src="/images/dropdown-example-flags/france.png"
         value="FR"
         label="France"
       />
       <DatacomOption
-        src="https://flagcdn.com/it.svg"
+        src="/images/dropdown-example-flags/italy.png"
         value="IT"
         label="Italy"
       />
       <DatacomOption
-        src="https://flagcdn.com/es.svg"
+        src="/images/dropdown-example-flags/spain.png"
         value="ES"
         label="Spain"
       />
       <DatacomOption
-        src="https://flagcdn.com/ua.svg"
-        value="EA"
+        src="/images/dropdown-example-flags/ukraine.png"
+        value="UA"
         label="Ukraine"
       />
     </DatacomDropdown>
@@ -97,7 +101,7 @@ export const WithImages = CountryTemplate.bind({});
 WithImages.args = {
   label: 'Country',
   message: 'Please select a country',
-  placeholder: 'Select Item(s)',
+  placeholder: 'Select your country',
 };
 
 const SimpleTemplate: ComponentStoryFn<typeof DatacomDropdown> = (args) => (
@@ -117,4 +121,96 @@ Simple.args = {
   label: 'Label',
   message: 'Please select an option',
   placeholder: 'Placeholder',
+};
+
+export const FormSubmission = () => {
+  const formRef = useRef<HTMLFormElement>();
+  const dropdownRef = useRef<HTMLDatacomDropdownElement>();
+  const [submitted, setSubmitted] = useState(false);
+  const [selectedValue, setSelectedValue] = useState([]);
+  const [hasError, setHasError] = useState(false);
+
+  const handleSubmit = (event: SubmitEvent) => {
+    event.preventDefault();
+
+    if (selectedValue.length > 0) {
+      setHasError(false);
+      setSubmitted(true);
+    } else {
+      setHasError(true);
+      setSubmitted(false);
+    }
+  };
+
+  const onDropdownChange = (event: CustomEvent) => {
+    const value = event.detail as string[];
+    setSelectedValue(value);
+    setHasError(value.length === 0);
+  };
+
+  return (
+    <form
+      method="post"
+      ref={formRef}
+      onSubmit={handleSubmit}
+      style={{ maxWidth: 272 }}>
+      <DatacomDropdown
+        ref={dropdownRef}
+        onChanged={onDropdownChange}
+        isValid={!hasError}
+        label="Country"
+        message="Please select a country"
+        placeholder="Select your country">
+        <DatacomOption
+          src="/images/dropdown-example-flags/new-zealand.png"
+          value="NZ"
+          label="New Zealand"
+        />
+        <DatacomOption
+          src="/images/dropdown-example-flags/australia.png"
+          value="AU"
+          label="Australia"
+        />
+        <DatacomOption
+          src="/images/dropdown-example-flags/kiribati.png"
+          value="KI"
+          label="Independent and Sovereign Republic of Kiribati"
+        />
+        <DatacomOption
+          src="/images/dropdown-example-flags/great-britain.png"
+          search="Great Britain | England | Wales | Scotland"
+          value="GB"
+          label="Great Britain"
+        />
+        <DatacomOption
+          src="/images/dropdown-example-flags/france.png"
+          value="FR"
+          label="France"
+        />
+        <DatacomOption
+          src="/images/dropdown-example-flags/italy.png"
+          value="IT"
+          label="Italy"
+        />
+        <DatacomOption
+          src="/images/dropdown-example-flags/spain.png"
+          value="ES"
+          label="Spain"
+        />
+        <DatacomOption
+          src="/images/dropdown-example-flags/ukraine.png"
+          value="UA"
+          label="Ukraine"
+        />
+      </DatacomDropdown>
+      <br />
+      {submitted && <p>Form would have been submitted but was prevented</p>}
+      <DatacomButton
+        variant="primary"
+        type="submit"
+        style={{ marginTop: '24px' }}>
+        Submit
+      </DatacomButton>
+    </form>
+  );
 };
