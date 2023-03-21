@@ -1,6 +1,7 @@
 import React from 'react';
 import { StoryFn } from '@storybook/react';
-import { DatacomLoader, DatacomButton } from '@datacom/endeavour-react';
+import { DatacomLoader } from '@datacom/endeavour-react';
+import { LoaderSize } from 'packages/stencil/dist/types/components/datacom-loader/datacom-loader';
 
 type LoaderProps = React.ComponentProps<typeof DatacomLoader>;
 
@@ -19,7 +20,7 @@ export default {
 };
 const Template: StoryFn<LoaderProps> = (args) => {
   const { size } = args;
-  return <DatacomLoader size={size}></DatacomLoader>;
+  return <DatacomLoader size={size as LoaderSize}></DatacomLoader>;
 };
 
 export const Loader = Template.bind({});

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StoryFn } from '@storybook/react';
 import { DatacomLoader, DatacomButton } from '@datacom/endeavour-react';
+import { LoadingStatusType } from 'packages/stencil/dist/types/components/datacom-loader/datacom-loader';
 import styled from '@emotion/styled';
 
 type LoaderProps = React.ComponentProps<typeof DatacomLoader>;
@@ -21,18 +22,18 @@ export default {
       control: 'select',
       description: 'Loading status is default if it is not set',
       options: ['default', 'none', 'error', 'success'],
+      type: { name: 'string' },
     },
   },
 };
 
-const Template: StoryFn<LoaderProps> = (args) => {
-  return <DatacomLoader></DatacomLoader>;
-};
-
-export const InlineLoader = (args) => {
+const Template: StoryFn<LoaderProps & { label: string }> = (args) => {
   const { label } = args;
+
   return <DatacomLoader {...args}>{label}</DatacomLoader>;
 };
+
+export const InlineLoader = Template.bind({});
 
 export const WithLoadingStatus = () => {
   const [loadingStatus, setLoadingStatus] = useState('none');
@@ -65,7 +66,10 @@ export const WithLoadingStatus = () => {
   return (
     <>
       <Wrapper>
-        <DatacomLoader loadingStatus={loadingStatus}> {message}</DatacomLoader>
+        <DatacomLoader loadingStatus={loadingStatus as LoadingStatusType}>
+          {' '}
+          {message}
+        </DatacomLoader>
       </Wrapper>
       <div>
         <br></br>
