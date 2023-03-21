@@ -36,8 +36,8 @@ export default {
   },
 };
 
-const SimpleTemplate: ComponentStoryFn<typeof DatacomRating> = (args) => (
+const RatingTemplate: ComponentStoryFn<typeof DatacomRating> = (args) => (
   <DatacomRating {...args}></DatacomRating>
 );
 
-export const Simple = SimpleTemplate.bind({});
+export const Rating = RatingTemplate.bind({});
