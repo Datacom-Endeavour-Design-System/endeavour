@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StoryFn } from '@storybook/react';
 import { DatacomLoader, DatacomButton } from '@datacom/endeavour-react';
-import { LoadingStatusType } from 'packages/stencil/dist/types/components/datacom-loader/datacom-loader';
 import styled from '@emotion/styled';
 
 type LoaderProps = React.ComponentProps<typeof DatacomLoader>;
+type LoadingStatusType = 'default' | 'none' | 'error' | 'success';
 
 export default {
   title: 'Loader',
@@ -36,7 +36,7 @@ const Template: StoryFn<LoaderProps & { label: string }> = (args) => {
 export const InlineLoader = Template.bind({});
 
 export const WithLoadingStatus = () => {
-  const [loadingStatus, setLoadingStatus] = useState('none');
+  const [loadingStatus, setLoadingStatus] = useState<LoadingStatusType>('none');
   const [message, setMessage] = useState('loading..');
 
   useEffect(() => {
@@ -66,10 +66,7 @@ export const WithLoadingStatus = () => {
   return (
     <>
       <Wrapper>
-        <DatacomLoader loadingStatus={loadingStatus as LoadingStatusType}>
-          {' '}
-          {message}
-        </DatacomLoader>
+        <DatacomLoader loadingStatus={loadingStatus}>{message}</DatacomLoader>
       </Wrapper>
       <div>
         <br></br>

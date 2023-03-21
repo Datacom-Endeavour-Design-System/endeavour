@@ -1,9 +1,9 @@
 import React from 'react';
 import { StoryFn } from '@storybook/react';
 import { DatacomLoader } from '@datacom/endeavour-react';
-import { LoaderSize } from 'packages/stencil/dist/types/components/datacom-loader/datacom-loader';
 
 type LoaderProps = React.ComponentProps<typeof DatacomLoader>;
+type LoaderSize = 'large' | 'small';
 
 export default {
   title: 'Loader',
@@ -14,7 +14,7 @@ export default {
       defaultValue: 'small',
       description: 'Loader size is small if it is not set.',
       control: 'select',
-      options: ['large', 'small'],
+      options: ['small', 'large'],
     },
   },
 };
