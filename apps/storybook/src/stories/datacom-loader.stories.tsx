@@ -16,36 +16,21 @@ export default {
       type: { name: 'string' },
     },
     loadingStatus: {
-      name: 'LoadingStatus',
+      name: 'Loading Status',
       defaultValue: 'default',
       control: 'select',
       description: 'Loading status is default if it is not set',
       options: ['default', 'none', 'error', 'success'],
     },
-    size: {
-      name: 'Size',
-      defaultValue: 'small',
-      description: 'Loader size is small if it is not set.',
-      control: 'select',
-      options: ['large', 'small'],
-    },
   },
 };
 
 const Template: StoryFn<LoaderProps> = (args) => {
-  const { loadingStatus, size } = args;
-
-  return <DatacomLoader loadingStatus="default" size={size}></DatacomLoader>;
-};
-
-export const Loader = Template.bind({});
-Loader.args = {
-  loadingStatus: 'default',
+  return <DatacomLoader></DatacomLoader>;
 };
 
 export const InlineLoader = (args) => {
   const { label } = args;
-
   return <DatacomLoader {...args}>{label}</DatacomLoader>;
 };
 
@@ -77,7 +62,6 @@ export const WithLoadingStatus = () => {
   const Wrapper = styled.div`
     width: 272px;
   `;
-
   return (
     <>
       <Wrapper>

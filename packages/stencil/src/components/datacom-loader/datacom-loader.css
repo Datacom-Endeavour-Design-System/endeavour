@@ -1,31 +1,51 @@
 :host {
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
 
-:host * {
+.dc-loader-text {
+  display: inline-flex;
+  padding-left: 8px;
   font-family: var(--dc-font-family);
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
   color: var(--dc-primary-text-color);
-  padding-right: 8px;
-  vertical-align: middle;
+  position: relative;
 }
 
-.dc-loader-size-small .dc-loader-default {
-  height: 12px;
+.dc-loader-spinner.dc-loader-default {
+  display: flex;
+  height: 16px;
+  width: 16px;
 }
 
 .dc-loader-size-large .dc-loader-default {
-  height: 60px;
+  height: 80px;
+  width: 80px;
+}
+
+.dc-loader-spinner {
+  display: inline-block;
+  animation: dc-loader-rotate 1s linear infinite;
 }
 
 .dc-loader-spinner circle {
   stroke-linecap: round;
   stroke: var(--dc-primary-colour);
   fill: none;
-  animation: dc-loader-spinner-dash 0.8s ease-in-out infinite;
+  animation: dc-loader-spinner-dash 1.5s ease-in-out infinite;
+}
+
+@keyframes dc-loader-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes dc-loader-spinner-dash {
@@ -35,17 +55,19 @@
   }
 
   50% {
-    stroke-dasharray: 90, 150;
+    stroke-dasharray: 50, 150;
     stroke-dashoffset: -35;
   }
 
   100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -124;
+    stroke-dasharray: 50, 150;
+    stroke-dashoffset: -120;
   }
 }
 
 .dc-loader-success,
 .dc-loader-error {
+  display: flex;
   height: 16px;
+  width: 16px;
 }

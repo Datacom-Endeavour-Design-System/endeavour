@@ -28,6 +28,8 @@ export class DatacomLoader {
           {this.loadingStatus == 'default' && <Spinner class="dc-loader-spinner dc-loader-default" />}
           {this.loadingStatus == 'success' && <CheckCircle class="dc-loader-success-mark dc-loader-success" />}
           {this.loadingStatus == 'error' && <Error class=" dc-loader-error-icon dc-loader-error" />}
+        </div>
+        <div class="dc-loader-text">
           <slot></slot>
         </div>
       </Host>
