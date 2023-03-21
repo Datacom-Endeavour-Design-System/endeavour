@@ -31,6 +31,7 @@ export default {
       description:
         'Rating value to be displayed. Only used when readonly property is set to true',
       type: { name: 'number' },
+      if: { arg: 'readonly' },
     },
   },
 };
