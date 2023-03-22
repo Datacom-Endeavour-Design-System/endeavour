@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ComponentStoryFn, Meta } from '@storybook/react';
 import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
-import { IndicatorType } from 'packages/stencil/dist/types/components/datacom-input/datacom-input';
+
+type IndicatorType = 'none' | 'working' | 'done';
 
 export default {
   title: 'Text Input',
@@ -105,7 +106,7 @@ export const TextInput = Template.bind({});
 TextInput.args = {};
 
 export const WithIndicators = () => {
-  const [indicator, setIndicator] = useState('none');
+  const [indicator, setIndicator] = useState<IndicatorType>('none');
   const [iterations, setIterations] = useState(0);
 
   useEffect(() => {
@@ -134,7 +135,7 @@ export const WithIndicators = () => {
           placeholder="First names"
           required={true}
           value="William"
-          indicator={indicator as IndicatorType}
+          indicator={indicator}
           message="Please enter your first name"
         />
       </Panel>
