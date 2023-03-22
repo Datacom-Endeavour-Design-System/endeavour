@@ -20,26 +20,14 @@ export default {
         type: 'select',
         labels: {
           standalone: 'Standalone',
+          footer: 'Footer',
           inline: 'Inline',
           stacked: 'Stacked',
         },
       },
       defaultValue: 'standalone',
-      options: ['standalone', 'inline', 'stacked'],
+      options: ['standalone', 'inline', 'stacked', 'footer'],
       type: { name: 'string' },
-    },
-    size: {
-      name: 'Size',
-      description: 'Link size within variant.Defaults to large if not set',
-      control: {
-        type: 'select',
-        labels: {
-          standard: 'Standard',
-          footer: 'Footer',
-        },
-      },
-      defaultValue: 'standard',
-      options: ['standard', 'footer'],
     },
     imagePosition: {
       name: 'Image Position',
@@ -79,7 +67,7 @@ export default {
     },
     url: {
       name: 'URL',
-      defaultValue: 'https://datacom.com/nz/en',
+      defaultValue: '#',
       description: ' should be add link to. ',
       type: { name: 'string', required: true },
     },
@@ -92,11 +80,10 @@ export default {
 };
 
 const Template: StoryFn<LinkProps & { label: string }> = (args) => {
-  const { label, url, variant, icon, imagePosition, size, disabled } = args;
+  const { label, url, variant, icon, imagePosition, disabled } = args;
   return (
     <DatacomLink
       variant={variant}
-      size={size}
       url={url}
       icon={icon}
       imagePosition={imagePosition}

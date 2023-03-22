@@ -26,7 +26,6 @@ The link is a single component. The links can be used as individual elements, bl
 
 - url: This sets the url that the element will link to.
 - variant: This property handles the color and style.Default variant is standalone.
-- size: It sets the size of text and icon.Default size is large.
 - disabled: This prop is used to stop being interactive.
 - icon: This sets the svg icon along with link text. 
 - imagePosition: It changes the icon position with link element.Default is left.
