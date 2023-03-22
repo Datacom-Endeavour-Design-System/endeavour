@@ -21,8 +21,8 @@
   width: var(--star-width);
 }
 
-.dc-rating-inputs .dc-rating-input-label:not(:last-child),
-.dc-rating-display .dc-rating-star-wrapper:not(:last-child) {
+.dc-rating-input-label:not(:last-child),
+.dc-rating-star-wrapper:not(:last-child) {
   padding-right: 4px;
 }
 
