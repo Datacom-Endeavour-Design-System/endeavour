@@ -24,21 +24,22 @@
   display: block;
 }
 
-.dc-text-label-wrap {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  height: 52px;
-  justify-content: space-between;
-}
-
 .dc-text-label {
+  background-color: var(--dc-background-colour);
   color: var(--dc-primary-text-color);
+  left: 12px;
+  line-height: 22px;
+  margin: 0;
   outline: none;
+  padding: 0 4px;
+  position: absolute;
+  top: 15px;
+  transition: all 0.3s;
 }
 
 .dc-text-input {
   background-color: var(--dc-background-colour);
+  border: 1px solid var(--dc-greyscale-05);
   border-radius: 8px;
   box-sizing: border-box;
   caret-color: var(--dc-primary-colour);
@@ -52,6 +53,14 @@
   padding: 14px 16px;
   text-overflow: ellipsis;
   width: 100%;
+}
+
+.dc-text-input:hover {
+  border-color: var(--dc-primary-accent-colour);
+}
+
+.dc-text-input::placeholder {
+  color: transparent;
 }
 
 .dc-text-help {
@@ -107,68 +116,11 @@
   }
 }
 
-/* View mode */
-.dc-text-view .dc-text-label-wrap {
-  border: 1px solid var(--dc-greyscale-05);
-  border-radius: 8px;
-  line-height: 24px;
-  padding: 14px 16px;
-}
-
-.dc-text-view .dc-text-input-wrap {
-  height: 0;
-  visibility: hidden;
-}
-
-.dc-text-view .dc-text-label-wrap:hover {
-  border-color: var(--dc-primary-accent-colour);
-}
-
 /* Edit mode */
 .dc-text-edit .dc-text-label {
-  animation: dc-text-label-animation 0.2s linear 0s forwards 1;
-  background-color: var(--dc-background-colour);
-  margin: 0;
-  padding: 0 2px;
-  position: absolute;
-}
-
-@keyframes dc-text-label-animation {
-  from {
-    left: 20px;
-    font-size: 16px;
-    top: 12px;
-  }
-
-  to {
-    left: 16px;
-    font-size: 12px;
-    top: -6px;
-  }
-}
-
-.dc-text-edit .dc-text-label-wrap {
-  height: 0;
-}
-
-.dc-text-edit .dc-text-input-wrap {
-  height: auto;
-  margin-top: 0;
-}
-
-.dc-text-edit .dc-text-input {
-  animation: dc-text-fade-in 0.2s linear 0s forwards 1;
-  border: 2px solid var(--dc-greyscale-05);
-}
-
-@keyframes dc-text-fade-in {
-  0% {
-    color: white;
-  }
-
-  100% {
-    color: var(--dc-primary-text-color);
-  }
+  font-size: 12px;
+  line-height: 16px;
+  top: -6px;
 }
 
 .dc-text-edit .dc-text-input:hover {
@@ -177,6 +129,7 @@
 
 .dc-text-edit .dc-text-input:focus {
   border: 2px solid var(--dc-primary-colour);
+  padding: 13px 15px;
 }
 
 .dc-text-edit .dc-text-input::placeholder {
@@ -188,9 +141,10 @@
   display: none;
 }
 
-.dc-text-error .dc-text-label-wrap,
-.dc-text-error .dc-text-input {
-  border-color: var(--dc-error-colour) !important;
+.dc-text-error .dc-text-input,
+.dc-text-error .dc-text-input:hover,
+.dc-text-error .dc-text-input:focus {
+  border-color: var(--dc-error-colour);
 }
 
 .dc-text-error .dc-text-error-icon {
@@ -200,7 +154,6 @@
   top: 18px;
 }
 
-/* Error state */
 .dc-text-error-msg {
   color: var(--dc-error-colour);
   display: none;
@@ -228,18 +181,14 @@
 }
 
 /* Disabled */
-.dc-text-disabled .dc-text-label-wrap,
-.dc-text-disabled .dc-text-label-wrap:hover {
+.dc-text-disabled .dc-text-input,
+.dc-text-disabled .dc-text-input:hover {
   border-color: var(--dc-greyscale-05);
 }
 
 .dc-text-disabled .dc-text-label,
 .dc-text-disabled .dc-text-input {
-  /*
-    Important is required as animation leaves the text color as primary which
-    occurs after disable.
-  */
-  color: var(--dc-greyscale-04) !important;
+  color: var(--dc-greyscale-04);
 }
 
 .dc-text-disabled .dc-text-input:hover,
