@@ -10,6 +10,7 @@ all variants of the card component.
 }
 
 .dc-card {
+  background-color: var(--dc-background-colour);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   display: flex;
