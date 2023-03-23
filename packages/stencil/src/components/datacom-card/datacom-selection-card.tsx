@@ -131,7 +131,7 @@ export class DatacomSelectionCard {
                 </div>
               )}
               {this.ctaText && (
-                <datacom-button variant="secondary" size="small" type="submit" onClick={this.onSubmitClick}>
+                <datacom-button class="dc-cta" variant="secondary" size="small" type="submit" onClick={this.onSubmitClick}>
                   {this.ctaText}
                 </datacom-button>
               )}
