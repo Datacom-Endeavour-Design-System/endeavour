@@ -23,6 +23,8 @@ export class DatacomSelectionCard {
 
   @State() expanded = false;
   @State() optionSelected: string;
+  @State() hasOptionSlotElements = false;
+  @State() hasDescriptionSlotElements = false;
 
   @Event() submitClicked: EventEmitter<string>;
 
@@ -85,6 +87,9 @@ export class DatacomSelectionCard {
       option.size = 'small';
       option.variant = 'button';
     });
+
+    this.hasOptionSlotElements = !!this.host.querySelector('[slot="options"]');
+    this.hasDescriptionSlotElements = !!this.host.querySelector('[slot="description"]');
   }
 
   render() {
@@ -108,32 +113,40 @@ export class DatacomSelectionCard {
           )}
           <div class="dc-card-content-wrapper">
             <div class="dc-card-title-wrapper">
-              <div class="dc-card-title">{this.cardTitle}</div>
-              <div class="dc-card-expand-wrapper">
-                <button class="dc-card-expand" onClick={this.onExpandClick}>
-                  {chevronIcon}
-                </button>
-              </div>
+              {this.cardTitle && <div class="dc-card-title">{this.cardTitle}</div>}
+              {this.hasDescriptionSlotElements && (
+                <div class="dc-card-expand-wrapper">
+                  <button class="dc-card-expand" onClick={this.onExpandClick}>
+                    {chevronIcon}
+                  </button>
+                </div>
+              )}
             </div>
             <form class="dc-card-form">
-              <div class="dc-card-options-wrapper">
-                <div class="dc-card-options">
-                  <slot name="options" />
+              {this.hasOptionSlotElements && (
+                <div class="dc-card-options-wrapper">
+                  <div class="dc-card-options">
+                    <slot name="options" />
+                  </div>
                 </div>
-              </div>
-              <datacom-button variant="secondary" size="small" type="submit" onClick={this.onSubmitClick}>
-                {this.ctaText}
-              </datacom-button>
+              )}
+              {this.ctaText && (
+                <datacom-button variant="secondary" size="small" type="submit" onClick={this.onSubmitClick}>
+                  {this.ctaText}
+                </datacom-button>
+              )}
             </form>
           </div>
-          <div class="dc-card-description-wrapper">
-            <div class="dc-card-divider" />
-            <div class="dc-card-description">
-              <div class="dc-card-description-text">
-                <slot name="description" />
+          {this.hasDescriptionSlotElements && (
+            <div class="dc-card-description-wrapper">
+              <div class="dc-card-divider" />
+              <div class="dc-card-description">
+                <div class="dc-card-description-text">
+                  <slot name="description" />
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </Host>
     );
