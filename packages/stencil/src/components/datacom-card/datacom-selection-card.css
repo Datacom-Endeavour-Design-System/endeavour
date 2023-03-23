@@ -83,7 +83,7 @@
 
 @media (--breakpoint-tablet) {
   .dc-card .dc-button-btn.sc-datacom-button {
-    min-width: 137px;
+    min-width: auto;
   }
 }
 
