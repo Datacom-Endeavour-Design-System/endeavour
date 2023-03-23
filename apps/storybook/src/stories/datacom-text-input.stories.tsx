@@ -159,7 +159,7 @@ export const WithIndicators = () => {
   );
 };
 
-export const VerticalForm = () => {
+export const FormSubmission = () => {
   const form = useRef<HTMLFormElement>();
   const [submitted, setSubmitted] = useState(false);
 
