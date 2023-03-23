@@ -97,7 +97,7 @@ const Template: StoryFn<
 
   return (
     <div style={{ height: 600 }}>
-      <div style={{ maxWidth: 400 }}>
+      <div style={{ maxWidth: 386 }}>
         <DatacomContentCard
           ctaText={ctaText}
           date={date}
