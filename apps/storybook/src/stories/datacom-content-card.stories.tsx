@@ -106,7 +106,9 @@ const Template: StoryFn<
           cardTitle={title}
           url={url}>
           {tagText && (
-            <DatacomContentTag slot="tags">{tagText}</DatacomContentTag>
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              {tagText}
+            </DatacomContentTag>
           )}
           <span slot="description">{description}</span>
         </DatacomContentCard>
@@ -131,7 +133,9 @@ export const ContentCardGroup = () => {
             <DatacomContentTag url="https://datacom.com" slot="tags">
               Professional Services
             </DatacomContentTag>
-            <DatacomContentTag slot="tags">Articles</DatacomContentTag>
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Articles
+            </DatacomContentTag>
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -147,7 +151,9 @@ export const ContentCardGroup = () => {
             cardTitle="Card 2"
             ctaText="Learn more"
             imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
-            <DatacomContentTag slot="tags">Articles</DatacomContentTag>
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Articles
+            </DatacomContentTag>
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -163,7 +169,9 @@ export const ContentCardGroup = () => {
             cardTitle="Card 3"
             ctaText="Learn more"
             imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
-            <DatacomContentTag slot="tags">Articles</DatacomContentTag>
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Articles
+            </DatacomContentTag>
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
