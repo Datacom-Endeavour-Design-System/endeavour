@@ -122,7 +122,7 @@ export const ContentCard = Template.bind({});
 export const ContentCardGroup = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: 600 }}>
-      <div style={{ maxWidth: 1400, width: '100%' }}>
+      <div style={{ maxWidth: 1254, width: '100%' }}>
         <DatacomCardGroup>
           <DatacomContentCard
             date="00-00-2022"
@@ -175,6 +175,61 @@ export const ContentCardGroup = () => {
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </span>
+          </DatacomContentCard>
+          <DatacomContentCard
+            date="00-00-2022"
+            cardTitle="Card 4"
+            ctaText="Learn more"
+            icon="download"
+            imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Articles
+            </DatacomContentTag>
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi.
+            </span>
+          </DatacomContentCard>
+          <DatacomContentCard
+            date="00-00-2022"
+            cardTitle="Card 5"
+            ctaText="Learn more"
+            imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Articles
+            </DatacomContentTag>
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi.
+            </span>
+          </DatacomContentCard>
+          <DatacomContentCard
+            date="00-00-2022"
+            cardTitle="Card 6"
+            ctaText="Learn more"
+            imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Articles
+            </DatacomContentTag>
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi.
             </span>
           </DatacomContentCard>
         </DatacomCardGroup>

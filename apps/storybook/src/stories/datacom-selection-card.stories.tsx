@@ -78,7 +78,7 @@ export const SelectionCard = Template.bind({});
 export const SelectionCardGroup = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: 600 }}>
-      <div style={{ maxWidth: 1400, width: '100%' }}>
+      <div style={{ maxWidth: 1254, width: '100%' }}>
         <DatacomCardGroup>
           <DatacomSelectionCard
             cardTitle="Card 1"
@@ -124,6 +124,57 @@ export const SelectionCardGroup = () => {
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </span>
+          </DatacomSelectionCard>
+          <DatacomSelectionCard
+            cardTitle="Card 4"
+            ctaText="Next"
+            imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
+            <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
+            <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
+            <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi.
+            </span>
+          </DatacomSelectionCard>
+          <DatacomSelectionCard
+            cardTitle="Card 5"
+            ctaText="Next"
+            imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
+            <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
+            <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
+            <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi.
+            </span>
+          </DatacomSelectionCard>
+          <DatacomSelectionCard
+            cardTitle="Card 6"
+            ctaText="Next"
+            imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
+            <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
+            <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
+            <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi.
             </span>
           </DatacomSelectionCard>
         </DatacomCardGroup>
