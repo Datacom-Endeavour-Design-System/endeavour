@@ -18,6 +18,13 @@ export default {
       description: 'Label for text area element',
       type: { name: 'string', required: true },
     },
+    placeholder: {
+      name: 'Placeholder',
+      defaultValue: 'Example text',
+      description:
+        'Placeholder text that is displayed when the text area is focused',
+      type: { name: 'string' },
+    },
     value: {
       name: 'Value',
       description: 'Prepopulated input value',
@@ -74,7 +81,7 @@ WithError.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  label: 'Disabled',
+  label: 'Label',
   disabled: true,
 };
 
@@ -99,6 +106,7 @@ export const FormSubmission = () => {
           required
           autoValidate
           message="Please enter value"
+          placeholder="Example text"
           label="Label"></DatacomTextarea>
       </div>
       <br />
