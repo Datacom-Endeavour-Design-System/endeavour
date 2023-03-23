@@ -34,7 +34,7 @@ export default {
     },
     ctaText: {
       name: 'CTA Label',
-      defaultValue: 'Label',
+      defaultValue: 'Button text',
       description: 'Text within the CTA element.',
       type: { name: 'string' },
     },

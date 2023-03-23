@@ -39,7 +39,7 @@ export default {
     },
     ctaText: {
       name: 'CTA Label',
-      defaultValue: 'Label',
+      defaultValue: 'Button text',
       description: 'Text within the CTA element.',
       type: { name: 'string' },
     },
@@ -128,7 +128,7 @@ export const ContentCardGroup = () => {
             ctaText="Learn more"
             icon="download"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
-            <DatacomContentTag slot="tags">
+            <DatacomContentTag url="https://datacom.com" slot="tags">
               Professional Services
             </DatacomContentTag>
             <DatacomContentTag slot="tags">Articles</DatacomContentTag>
