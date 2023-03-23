@@ -2,8 +2,12 @@
 @import url("./datacom-card.css");
 
 :host {
-  --description-height: 122px;
+  --description-height: 170px;
   --options-margin: 12px;
+}
+
+:host * {
+  box-sizing: border-box;
 }
 
 .dc-card-title-wrapper {
@@ -119,8 +123,9 @@
 .dc-card-description {
   background-color: var(--dc-background-colour);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
+  box-sizing: content-box;
   display: flex;
-  padding: var(--content-padding) 0;
+  overflow: hidden;
 }
 
 @media (--breakpoint-tablet) {
@@ -134,7 +139,7 @@
   font-size: 16px;
   letter-spacing: -0.2px;
   line-height: 24px;
-  padding: 0 var(--content-padding);
+  padding: var(--content-padding);
   overflow-y: auto;
 }
 
