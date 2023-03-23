@@ -110,7 +110,7 @@ const Template: StoryFn<
               {tagText}
             </DatacomContentTag>
           )}
-          <span slot="description">{description}</span>
+          {description && <span slot="description">{description}</span>}
         </DatacomContentCard>
       </div>
     </div>
