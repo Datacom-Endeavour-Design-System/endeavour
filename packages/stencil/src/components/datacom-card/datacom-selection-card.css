@@ -82,16 +82,16 @@
   margin-bottom: var(--options-margin);
 }
 
-.dc-cta {
+.dc-card-cta {
   margin-top: auto;
 }
 
-.dc-cta .dc-button-btn.sc-datacom-button {
+.dc-card-cta .dc-button-btn.sc-datacom-button {
   min-width: 100%;
 }
 
 @media (--breakpoint-tablet) {
-  .dc-cta .dc-button-btn.sc-datacom-button {
+  .dc-card-cta .dc-button-btn.sc-datacom-button {
     min-width: auto;
   }
 }
