@@ -21,7 +21,7 @@ export default {
       defaultValue: 'default',
       control: 'select',
       description: 'Loading status is default if it is not set',
-      options: ['default', 'none', 'error', 'success'],
+      options: ['default', 'error', 'success'],
       type: { name: 'string' },
     },
   },
