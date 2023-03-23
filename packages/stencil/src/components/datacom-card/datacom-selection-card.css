@@ -46,6 +46,7 @@
 }
 
 .dc-card-chevron {
+  transition: all 0.3s;
   width: 24px;
 }
 
