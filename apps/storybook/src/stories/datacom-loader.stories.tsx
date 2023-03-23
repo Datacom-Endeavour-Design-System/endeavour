@@ -12,7 +12,7 @@ export default {
   argTypes: {
     label: {
       name: 'Label',
-      defaultValue: 'Loading message',
+      defaultValue: 'Loader status message',
       description: 'Label for loading status.',
       type: { name: 'string' },
     },
