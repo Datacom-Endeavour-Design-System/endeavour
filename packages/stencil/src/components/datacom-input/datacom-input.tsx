@@ -282,7 +282,6 @@ export class DatacomInput implements FormControl {
       'dc-text-root': true,
       'dc-text-disabled': this.disabled,
       'dc-text-edit': edit,
-      'dc-text-view': !edit,
       'dc-text-error': error,
       'dc-text-dirty': this.isDirty,
     };
@@ -294,13 +293,10 @@ export class DatacomInput implements FormControl {
     return (
       <Host tabIndex={tabindex}>
         <div class={classes}>
-          <div class="dc-text-label-wrap">
-            <label class="dc-text-label" htmlFor={this.inputId} tabIndex={tabindex}>
-              {this.label}
-              <slot></slot>
-            </label>
-          </div>
-
+          <label class="dc-text-label" htmlFor={this.inputId} tabIndex={tabindex}>
+            {this.label}
+            <slot></slot>
+          </label>
           <div class="dc-text-input-wrap">
             <input
               class="dc-text-input"
@@ -328,7 +324,7 @@ export class DatacomInput implements FormControl {
               title={this.title}
               disabled={this.disabled}
               value={this.value}
-            ></input>
+            />
             {this.indicator == 'working' && showIndicator && <Spinner class="dc-text-spinner dc-text-indicator" />}
             {this.indicator == 'done' && showIndicator && <Tick class="dc-text-tick dc-text-indicator" />}
             {error && <Error class="dc-text-error-icon" />}
