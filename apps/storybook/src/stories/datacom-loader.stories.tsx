@@ -4,7 +4,7 @@ import { DatacomLoader, DatacomButton } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
 
 type LoaderProps = React.ComponentProps<typeof DatacomLoader>;
-type LoadingStatusType = 'default' | 'none' | 'error' | 'success';
+type LoadingStatusType = 'default' | 'error' | 'success';
 
 export default {
   title: 'Loader',
@@ -36,7 +36,8 @@ const Template: StoryFn<LoaderProps & { label: string }> = (args) => {
 export const InlineLoader = Template.bind({});
 
 export const WithLoadingStatus = () => {
-  const [loadingStatus, setLoadingStatus] = useState<LoadingStatusType>('none');
+  const [loadingStatus, setLoadingStatus] =
+    useState<LoadingStatusType>('default');
   const [message, setMessage] = useState('loading..');
 
   useEffect(() => {
@@ -45,7 +46,7 @@ export const WithLoadingStatus = () => {
         setLoadingStatus('success');
         setMessage('loading is complete.');
       }, 1000);
-    } else if (loadingStatus == 'none') {
+    } else if (loadingStatus == null) {
       setTimeout(() => {
         setLoadingStatus('default');
         setMessage('loading..');

@@ -2,7 +2,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
 import { Error, Spinner, CheckCircle } from '../../common/images/icons';
 
 export type LoaderSize = 'large' | 'small';
-export type LoadingStatusType = 'none' | 'default' | 'error' | 'success';
+export type LoadingStatusType = 'default' | 'error' | 'success';
 
 /**
  *   Loader elements are used to notify users when performing computation or retrieving data.
