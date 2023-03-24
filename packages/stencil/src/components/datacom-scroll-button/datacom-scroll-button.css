@@ -1,0 +1,46 @@
+@import url("../../global/css/breakpoints.css");
+
+:host {
+  --dc-scroll-btn-color: #0055ff;
+}
+
+.dc-scroll-btn {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 24px;
+  border: 2px solid var(--dc-scroll-btn-color);
+  background-color: var(--dc-background-colour);
+  text-decoration: none;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-scroll-btn {
+    height: 48px;
+    width: 48px;
+  }
+}
+
+.dc-scroll-btn-chevron {
+  width: 16px;
+  height: 16px;
+  display: flex;
+}
+
+.dc-scroll-btn:hover {
+  background-color: var(--dc-scroll-btn-color);
+}
+
+.dc-scroll-btn:hover .dc-scroll-btn-chevron path {
+  fill: var(--dc-background-colour);
+}
+
+a.dc-scroll-btn:focus {
+  outline: 3px solid var(--dc-scroll-btn-color);
+  border-radius: 100px;
+  outline-offset: 1px;
+}
