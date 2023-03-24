@@ -13,18 +13,7 @@
 }
 
 .dc-card-title {
-  font-size: 18px;
-  font-weight: var(--dc-heading5-weight);
-  letter-spacing: var(--dc-heading5-spacing);
-  line-height: 24px;
   margin-bottom: 12px;
-}
-
-@media (--breakpoint-tablet) {
-  .dc-card-title {
-    font-size: var(--dc-heading5-size);
-    line-height: var(--dc-heading5-height);
-  }
 }
 
 .dc-card-text {

@@ -1,3 +1,5 @@
+@import url("../../global/css/breakpoints.css");
+
 /*
 This file contains variables and classes that are common across
 all variants of the card component.
@@ -54,4 +56,23 @@ all variants of the card component.
   flex-direction: column;
   flex-grow: 1;
   padding: var(--content-padding);
+}
+
+.dc-card-title {
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  font-size: 18px;
+  font-weight: var(--dc-heading5-weight);
+  letter-spacing: var(--dc-heading5-spacing);
+  line-height: 24px;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-card-title {
+    font-size: var(--dc-heading5-size);
+    line-height: var(--dc-heading5-height);
+  }
 }
