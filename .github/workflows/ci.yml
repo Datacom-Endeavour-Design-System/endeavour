@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   build-unstable:
-    name: Build Unstable
+    name: Build unstable
     runs-on: ubuntu-latest
     environment: 'development'
     steps:
@@ -42,7 +42,8 @@ jobs:
           name: storybook-static-unstable
           path: apps/storybook/storybook-static
   build-stable:
-    name: Build Core
+    name: Build stable
+    if: ${{ github.ref_name == 'main' || github.ref_name == 'develop' }}
     runs-on: ubuntu-latest
     environment: 'staging'
     steps:
