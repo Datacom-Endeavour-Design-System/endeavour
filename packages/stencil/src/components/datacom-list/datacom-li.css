@@ -15,14 +15,14 @@
   font-weight: 400;
 }
 
-li::marker {
-  font-size: 400;
-  line-height: 20px;
-  text-align: right;
-  position: absolute;
-  letter-spacing: -0.25px;
-}
-
 .dc-li-heading {
   font-weight: 700;
+}
+
+.dc-li-marker::marker {
+  font-weight: 700;
+}
+
+.dc-li-item.dc-li-marker {
+  margin-bottom: 12px;
 }

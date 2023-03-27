@@ -7,8 +7,9 @@
     "clean": "rimraf dist storybook-static",
     "dev": "npm run start",
     "lint": "eslint src",
-    "start": "storybook dev -p 6006",
+    "start": "cross-env STORYBOOK_STORIES=unstable storybook dev -p 6006",
     "package": "storybook build && node ./scripts/cleanup.js",
+    "package:unstable": "cross-env STORYBOOK_STORIES=unstable storybook build && node ./scripts/cleanup.js",
     "test": "cypress open --component",
     "test:ci": "cypress run --component --config video=false"
   },
