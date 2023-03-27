@@ -166,7 +166,7 @@ jobs:
     name: Deploy production
     if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
     environment: 'production'
-    needs: [build-stable, test, deploy-staging]
+    needs: [deploy-staging]
     runs-on: ubuntu-latest
     steps:
       - name: Retrieve build
