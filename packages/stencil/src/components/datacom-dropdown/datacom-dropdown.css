@@ -20,7 +20,7 @@
 }
 
 .dc-ddl-input {
-  height: 52px;
+  height: 49px;
   border: none;
   outline: none;
   margin: 1px;
@@ -30,7 +30,7 @@
 }
 
 .dc-ddl-input::placeholder {
-  color: var(--dc-greyscale-03);
+  color: var(--dc-greyscale-04);
 }
 
 .dc-ddl-select {
@@ -50,46 +50,51 @@
   border: 1px solid var(--dc-greyscale-05);
   border-radius: 8px;
   padding: 14px 16px;
+  cursor: pointer;
 }
 
 .dc-ddl-label {
   background-color: var(--dc-background-colour);
   border: 0;
-  color: var(--dc-greyscale-03);
+  color: var(--dc-primary-text-color);
   display: inline-block;
+  left: 12px;
+  line-height: 22px;
   margin: 0;
-  padding: 0 2px;
+  padding: 0 4px;
   position: absolute;
   top: 14px;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .dc-ddl-list {
-  display: none;
   background-color: var(--dc-background-colour);
   border: 2px solid var(--dc-primary-colour);
   border-radius: 8px;
   box-sizing: border-box;
+  display: none;
+  left: 0;
+  overflow: hidden;
+  padding-bottom: 4px;
   position: absolute;
   top: 0;
-  left: 0;
-  z-index: 10;
   width: 100%;
-  overflow: hidden;
+  z-index: 10;
 }
 
 .dc-ddl-list-area {
   display: flex;
-  height: 52px;
+  height: 49px;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 15px;
 }
 
 .dc-ddl-combo-placeholder {
   line-height: 52px;
   display: block;
-  color: var(--dc-greyscale-03);
+  color: var(--dc-greyscale-04);
   font-size: 16px;
 }
 
@@ -113,7 +118,6 @@
   outline: none;
   box-sizing: border-box;
   background-color: var(--dc-background-colour);
-  border-radius: 0 0 8px 8px;
 }
 
 .dc-ddl-buttons {
@@ -121,6 +125,10 @@
   justify-content: flex-end;
   align-items: flex-start;
   margin-left: auto;
+}
+
+.dc-ddl-list-btns {
+  padding-bottom: 2px;
 }
 
 .dc-ddl-chevron-down {
@@ -143,6 +151,10 @@
 .dc-ddl-clear-icon {
   width: 16px;
   height: 16px;
+}
+
+.dc-ddl-clear-icon path {
+  fill: var(--dc-primary-text-color);
 }
 
 .dc-ddl-open-btn,
@@ -176,12 +188,13 @@
   border: 1px solid var(--dc-primary-accent-colour);
 }
 
-.dc-ddl-view .dc-ddl-control:focus,
-.dc-ddl-selected .dc-ddl-control:focus {
+.dc-ddl-view .dc-ddl-control:focus-visible,
+.dc-ddl-selected .dc-ddl-control:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
+  outline-offset: 1px;
 }
 
-.dc-ddl-open .dc-ddl-control:focus {
+.dc-ddl-open .dc-ddl-control:focus-visible {
   outline: none;
 }
 
@@ -189,7 +202,7 @@
 .dc-ddl-selected .dc-ddl-label {
   font-size: 12px;
   top: -6px;
-  left: 16px;
+  line-height: 16px;
 }
 
 .dc-ddl-selected .dc-ddl-control {
@@ -205,6 +218,7 @@
 }
 
 .dc-ddl-selected-option {
+  color: var(--dc-primary-text-color);
   width: 80%;
 }
 
@@ -220,7 +234,7 @@
 .dc-ddl-open .dc-ddl-label {
   font-size: 12px;
   top: -6px;
-  left: 16px;
+  line-height: 16px;
   z-index: 20;
 }
 
@@ -248,7 +262,7 @@
   border-color: var(--dc-greyscale-05);
 }
 
-.dc-ddl-disabled .dc-ddl-control:focus {
+.dc-ddl-disabled .dc-ddl-control:focus-visible {
   outline: none;
 }
 

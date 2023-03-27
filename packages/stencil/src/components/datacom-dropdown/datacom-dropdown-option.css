@@ -7,9 +7,10 @@
 }
 
 .dc-ddl-option {
+  color: var(--dc-primary-text-color);
   margin: 0;
   border-top: 1px solid var(--dc-greyscale-05);
-  padding: 2px;
+  padding: 2px 3px 3px;
   outline: none;
   height: 52px;
   cursor: pointer;
@@ -26,7 +27,7 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 400px;
-  padding-left: 16px;
+  padding-left: 12px;
   cursor: pointer;
 }
 
@@ -51,7 +52,7 @@
   fill: var(--dc-background-colour);
 }
 
-.dc-ddl-option:focus {
+.dc-ddl-option:focus-visible {
   border: 3px solid var(--dc-primary-colour);
   padding: 0;
 }
@@ -63,7 +64,9 @@
 
 .dc-ddl-option-image {
   height: 16px;
+  object-fit: contain;
   overflow: hidden;
+  width: 16px;
 }
 
 .dc-ddl-option-image path {
@@ -87,7 +90,7 @@
   background: transparent;
 }
 
-.dc-ddl-option-mode-standalone.dc-ddl-option:focus {
+.dc-ddl-option-mode-standalone.dc-ddl-option:focus-visible {
   border: none;
 }
 
