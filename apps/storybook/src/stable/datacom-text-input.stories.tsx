@@ -3,6 +3,8 @@ import { ComponentStoryFn, Meta } from '@storybook/react';
 import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
 
+type IndicatorType = 'none' | 'working' | 'done';
+
 export default {
   title: 'Text Input',
   component: DatacomInput,
@@ -80,17 +82,17 @@ export default {
     },
   },
   args: {
-    label: 'First name',
+    label: 'Label',
     disabled: false,
     required: true,
-    placeholder: 'Enter your first name',
-    message: 'First name is required',
+    placeholder: 'Example text',
+    message: 'Error message',
   },
 } as Meta<typeof DatacomInput>;
 
 const Template: ComponentStoryFn<typeof DatacomInput> = (props) => {
   const Panel = styled.div`
-    width: 300px;
+    width: 272px;
   `;
 
   return (
@@ -104,7 +106,7 @@ export const TextInput = Template.bind({});
 TextInput.args = {};
 
 export const WithIndicators = () => {
-  const [indicator, setIndicator] = useState('none');
+  const [indicator, setIndicator] = useState<IndicatorType>('none');
   const [iterations, setIterations] = useState(0);
 
   useEffect(() => {
@@ -120,17 +122,23 @@ export const WithIndicators = () => {
 
   const disabled = indicator == 'none' || indicator == 'working';
 
+  const Panel = styled.div`
+    width: 272px;
+  `;
+
   return (
     <>
-      <DatacomInput
-        label="First name"
-        title="You first names (including middle)"
-        placeholder="First names"
-        required={true}
-        value="William"
-        indicator={indicator}
-        message="Please enter your first name"
-      />
+      <Panel>
+        <DatacomInput
+          label="First name"
+          title="You first names (including middle)"
+          placeholder="First names"
+          required={true}
+          value="William"
+          indicator={indicator}
+          message="Please enter your first name"
+        />
+      </Panel>
 
       <div>
         {iterations > 3 && (
@@ -151,7 +159,7 @@ export const WithIndicators = () => {
   );
 };
 
-export const VerticalForm = () => {
+export const FormSubmission = () => {
   const form = useRef<HTMLFormElement>();
   const [submitted, setSubmitted] = useState(false);
 
@@ -165,7 +173,7 @@ export const VerticalForm = () => {
   };
 
   const Panel = styled.div`
-    width: 300px;
+    width: 272px;
     margin-bottom: 30px;
     datacom-input {
       margin-bottom: 12px;

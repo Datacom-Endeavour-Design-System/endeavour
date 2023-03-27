@@ -1,8 +1,10 @@
 :host {
   display: inline-block;
 
+  --highlight-hover-color: var(--dc-primary-accent-colour);
+  --promo-hover-color: #eb337f;
   --tag-border-width: 1px;
-  --tag-color: var(--dc-secondary-text-color);
+  --tag-color: var(--dc-primary-text-color);
   --tag-height: 26px;
   --tag-vertical-padding: 4px;
 }
@@ -26,24 +28,38 @@
     );
   letter-spacing: -0.2px;
   padding: var(--tag-vertical-padding) 8px;
+  text-decoration: none;
 }
 
-.dc-content-tag:hover {
+a.dc-content-tag:hover {
   background-color: var(--dc-background-accent-color);
 }
 
-/* "Event" styles */
-.event {
+/* Color setting for other variants */
+.event,
+.product-promo {
   --tag-color: #e60060;
 }
 
-/* "Solid" styles */
-.solid {
-  background-color: var(--tag-color);
-  color: var(--dc-background-colour);
-  font-weight: 700;
+.product-highlight {
+  --tag-color: var(--dc-secondary-text-color);
 }
 
-.solid:hover {
+/* "Product" styles */
+.product-highlight,
+.product-promo {
   background-color: var(--tag-color);
+  border-color: var(--tag-color);
+  color: var(--dc-background-colour);
+  font-weight: 600;
+}
+
+a.product-highlight:hover {
+  background-color: var(--highlight-hover-color);
+  border-color: var(--highlight-hover-color);
+}
+
+a.product-promo:hover {
+  background-color: var(--promo-hover-color);
+  border-color: var(--promo-hover-color);
 }
