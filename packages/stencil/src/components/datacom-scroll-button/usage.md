@@ -6,7 +6,6 @@ It provides an indication that is more content below.
 
 ```html
 <datacom-scroll-button url='#bottom' cta-title='scroll down'></datacom-scroll-button>
-
 ```
 
 ### Properties
