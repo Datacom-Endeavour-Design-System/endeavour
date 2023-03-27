@@ -32,6 +32,7 @@
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
     "concurrently": "^7.5.0",
+    "cross-env": "^7.0.3",
     "cypress": "^10.11.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
@@ -59,5 +60,8 @@
       "prettier --write"
     ],
     "*.css": "stylelint"
+  },
+  "dependencies": {
+    "esbuild": "^0.17.12"
   }
 }
