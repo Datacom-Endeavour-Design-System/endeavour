@@ -8,14 +8,18 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  STORYBOOK_STORIES: ${{ vars.STORYBOOK_STORIES }}
+
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build
+  build-unstable:
+    name: Build Unstable
     runs-on: ubuntu-latest
+    environment: 'development'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -35,7 +39,32 @@ jobs:
       - name: Store build
         uses: actions/upload-artifact@v3
         with:
-          name: storybook-static
+          name: storybook-static-unstable
+          path: apps/storybook/storybook-static
+  build-stable:
+    name: Build Core
+    runs-on: ubuntu-latest
+    environment: 'staging'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+      - name: Use nx-set-sha
+        uses: nrwl/nx-set-shas@v3
+      - name: Install
+        run: npm ci
+      - name: Package
+        run: npm run package
+      - name: Store build
+        uses: actions/upload-artifact@v3
+        with:
+          name: storybook-static-stable
           path: apps/storybook/storybook-static
   test:
     name: Test
@@ -72,14 +101,14 @@ jobs:
   deploy-preview:
     name: Preview deploy
     if: ${{ github.ref_name != 'main' && github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
-    environment: 'develop'
-    needs: [build,test]
+    environment: 'development'
+    needs: [build-unstable, test]
     runs-on: ubuntu-latest
     steps:
       - name: Retrieve build
         uses: actions/download-artifact@v3
         with:
-          name: storybook-static
+          name: storybook-static-unstable
           path: apps/storybook/storybook-static
       - name: Push to Cloudflare
         uses: cloudflare/pages-action@1
@@ -92,15 +121,15 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
   deploy-develop:
     name: Deploy develop
-    if: ${{ github.event_name == 'push' && (github.ref_name == 'develop' || github.ref_name == 'main') }}
-    environment: 'develop'
-    needs: [build,test]
+    if: ${{ github.event_name == 'push' && github.ref_name == 'develop'}}
+    environment: 'development'
+    needs: [build-unstable, test]
     runs-on: ubuntu-latest
     steps:
       - name: Retrieve build
         uses: actions/download-artifact@v3
         with:
-          name: storybook-static
+          name: storybook-static-unstable
           path: apps/storybook/storybook-static
       - name: Push to Cloudflare
         uses: cloudflare/pages-action@1
@@ -113,15 +142,15 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
   deploy-staging:
     name: Deploy staging
-    if: ${{ github.event_name == 'push' && (github.ref_name == 'develop' || github.ref_name == 'main') }}
+    if: ${{ github.event_name == 'push' && github.ref_name == 'develop' }}
     environment: 'staging'
-    needs: [build,test]
+    needs: [build-stable, test]
     runs-on: ubuntu-latest
     steps:
       - name: Retrieve build
         uses: actions/download-artifact@v3
         with:
-          name: storybook-static
+          name: storybook-static-stable
           path: apps/storybook/storybook-static
       - name: Push to Cloudflare
         uses: cloudflare/pages-action@1
@@ -136,7 +165,7 @@ jobs:
     name: Deploy production
     if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
     environment: 'production'
-    needs: [build,test,deploy-staging]
+    needs: [build-stable, test, deploy-staging]
     runs-on: ubuntu-latest
     steps:
       - name: Retrieve build
