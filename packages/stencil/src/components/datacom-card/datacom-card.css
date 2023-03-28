@@ -25,7 +25,6 @@ all variants of the card component.
 
 .dc-card-media-wrapper {
   display: flex;
-  height: 240px;
   position: relative;
 }
 
@@ -33,14 +32,18 @@ all variants of the card component.
   display: flex;
   flex-wrap: wrap;
   justify-content: end;
+  width: 100%;
+}
+
+.with-image {
   position: absolute;
   right: 0;
   top: 0;
 }
 
 .dc-card-image {
-  background-position: center;
-  background-size: cover;
+  object-position: center;
+  object-fit: cover;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
   height: 240px;
   width: 100%;

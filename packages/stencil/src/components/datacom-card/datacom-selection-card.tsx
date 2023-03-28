@@ -103,17 +103,20 @@ export class DatacomSelectionCard {
       'expand': this.expanded,
     };
 
+    const tagClasses = {
+      'dc-card-tags': true,
+      'with-image': this.imageUrl?.length > 0,
+    };
+
     return (
       <Host>
         <div class={mainClasses}>
-          {this.imageUrl && (
-            <div class="dc-card-media-wrapper">
-              <div class="dc-card-tags">
-                <slot name="tags" />
-              </div>
-              <div class="dc-card-image" style={{ backgroundImage: 'url(' + this.imageUrl + ')' }} />
+          <div class="dc-card-media-wrapper">
+            <div class={tagClasses}>
+              <slot name="tags" />
             </div>
-          )}
+            {this.imageUrl && <img class="dc-card-image" src={this.imageUrl} />}
+          </div>
           <div class="dc-card-content-wrapper">
             <div class="dc-card-title-wrapper">
               {this.cardTitle && <div class="dc-card-title">{this.cardTitle}</div>}
