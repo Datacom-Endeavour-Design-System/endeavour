@@ -103,20 +103,20 @@ LinkWithIcon.args = {
 export const stackedLinks = () => {
   return (
     <div>
-      <DatacomLink
-        variant="stacked"
-        url="https://www.datacom.com/nz/en"
-        icon="forward"
-        imagePosition="right"
-        style={{ paddingBottom: '12px' }}>
-        Learn more
-      </DatacomLink>
+      <div style={{ paddingBottom: '12px' }}>
+        <DatacomLink
+          variant="stacked"
+          url="https://www.datacom.com/nz/en"
+          icon="forward"
+          imagePosition="right">
+          Learn more
+        </DatacomLink>
+      </div>
       <DatacomLink
         variant="stacked"
         url="https://www.datacom.com/nz/en/search"
         icon="settings"
-        imagePosition="right"
-        style={{ paddingBottom: '12px' }}>
+        imagePosition="right">
         Account settings
       </DatacomLink>
     </div>
