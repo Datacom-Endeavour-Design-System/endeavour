@@ -34,11 +34,8 @@ export class DatacomCard {
   };
 
   /**
-   * Lifecycle function which applies shared name value to
-   * radio components, establishing them as a radio group.
-   *
-   * Also checks for presence of slotted elements (info
-   * needed for conditionally rendering said elements.)
+   * Lifecycle function which checks for presence of slotted elements
+   * (info needed for conditionally rendering said elements.)
    */
   async componentWillLoad(): Promise<void> {
     this.hasDescriptionSlotElements = !!this.host.querySelector('[slot="description"]');
