@@ -5,6 +5,12 @@
 .avatar {
   display: flex;
   font-family: var(--dc-font-family);
+  color: var(--dc-primary-text-color);
+}
+
+.avatar a {
+  color: var(--dc-primary-text-color);
+  text-decoration: none;
 }
 
 .avatar-image img,

@@ -13,6 +13,7 @@ export class DatacomAvatar {
   @Prop() companyName: string;
   @Prop() src: string;
   @Prop() alt: string;
+  @Prop() url: string;
 
   render() {
     let avatarImage;
@@ -31,13 +32,21 @@ export class DatacomAvatar {
     return (
       <Host>
         <div class="avatar">
-          <div class="avatar-image">{avatarImage}</div>
+          <div class="avatar-image">
+            <a href={this.url}>{avatarImage}</a>
+          </div>
           <div class="avatar-details">
             <div class="avatar-name">
-              {this.firstName} {this.lastName}
+              <a href={this.url}>
+                {' '}
+                {this.firstName} {this.lastName}{' '}
+              </a>
             </div>
             <div class="avatar-title">
-              {this.jobTitle}, {this.companyName}
+              <a href={this.url}>
+                {' '}
+                {this.jobTitle}, {this.companyName}{' '}
+              </a>
             </div>
           </div>
         </div>

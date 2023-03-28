@@ -14,14 +14,6 @@ export default {
       name: 'Last Name',
       type: { name: 'string', required: true },
     },
-    src: {
-      name: 'Image Source',
-      type: { name: 'string', required: true },
-    },
-    alt: {
-      name: 'Alt Text for Image',
-      type: { name: 'string', required: false },
-    },
     jobTitle: {
       name: 'Job title',
       type: { name: 'string', required: true },
@@ -30,14 +22,31 @@ export default {
       name: 'Company Name',
       type: { name: 'string', required: true },
     },
+    src: {
+      name: 'Image Source',
+      type: { name: 'string', required: false },
+    },
+    alt: {
+      name: 'Alt Text for Image',
+      type: { name: 'string', required: false },
+      if: { arg: 'src', truthy: true },
+    },
+    url: {
+      name: 'URL',
+      defaultValue: 'https://datacom.com',
+      description:
+        'URL that content tag should link to. Omitting a url will change the tag into a non-interactable div element',
+      type: { name: 'string' },
+    },
   },
   args: {
     firstName: 'First Name',
     lastName: 'Last Name',
-    src: 'Src',
-    alt: 'Alternate Text',
     jobTitle: 'Job title',
     companyName: 'Datacom',
+    src: '',
+    alt: 'Alternate Texts',
+    url: 'https://datacom.com',
   },
 } as Meta<typeof DatacomAvatar>;
 
@@ -45,20 +54,11 @@ const Template: ComponentStoryFn<typeof DatacomAvatar> = (args) => (
   <DatacomAvatar {...args} />
 );
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Avatar = Template.bind({});
+Avatar.args = {
   firstName: 'Sally',
   lastName: 'Mei',
   jobTitle: 'UX/UI Designer',
   companyName: 'Datacom',
-  src: 'https://datacom.com/content/dam/images/datacom-people/datacom-employees-formal/PeterNelson_Portrait_1500x1000px.jpg/_jcr_content/renditions/cq5dam.thumbnail.319.319.png',
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  firstName: 'Taylor',
-  lastName: 'Newton',
-  jobTitle: 'Lead UX',
-  companyName: 'Datacom',
-  src: '',
+  src: 'https://www.w3schools.com/howto/img_avatar2.png',
 };
