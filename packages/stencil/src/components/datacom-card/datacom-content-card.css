@@ -1,0 +1,51 @@
+@import url("../../global/css/breakpoints.css");
+@import url("./datacom-card.css");
+
+.dc-card-content {
+  color: var(--dc-primary-text-color);
+  flex-grow: 1;
+}
+
+.dc-card-date {
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 12px;
+}
+
+.dc-card-text {
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  color: var(--dc-primary-text-color);
+  display: -webkit-box;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.dc-card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.dc-card-action-icon-button {
+  background-color: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.dc-card-action-icon-button:focus-visible {
+  outline: 2px solid var(--dc-primary-colour);
+}
+
+.dc-card-action-icon {
+  height: 24px;
+  width: 24px;
+}
+
+.dc-card-action-icon path {
+  fill: var(--dc-primary-colour);
+}
