@@ -78,6 +78,11 @@ export class DatacomButton {
   @Prop() loading: boolean;
 
   /**
+   * If provided, will render button as an anchor tag with provided url
+   */
+  @Prop() url: string;
+
+  /**
    * Generated ids for label accessibility
    */
   private labelId = randomString();
@@ -126,28 +131,38 @@ export class DatacomButton {
 
     return (
       <Host>
-        <button
-          id={this.buttonId}
-          type={this.type}
-          form={this.form}
-          name={this.name}
-          value={this.value}
-          formmethod={this.formmethod}
-          formaction={this.formaction}
-          formtarget={this.formtarget}
-          formenctype={this.formenctype}
-          autoFocus={this.autofocus}
-          aria-labelledby={this.labelId}
-          disabled={this.disabled}
-          class={classes}
-        >
-          {image}
-          <span id={this.labelId} class="dc-button-text">
-            {this.text}
-            <slot></slot>
-          </span>
-          {this.loading && <Spinner class="dc-button-spinner" />}
-        </button>
+        {this.url?.length > 0 ? (
+          <a id={this.buttonId} class={classes} href={this.url} tabIndex={0}>
+            {image}
+            <span class="dc-button-text">
+              {this.text}
+              <slot></slot>
+            </span>
+          </a>
+        ) : (
+          <button
+            id={this.buttonId}
+            type={this.type}
+            form={this.form}
+            name={this.name}
+            value={this.value}
+            formmethod={this.formmethod}
+            formaction={this.formaction}
+            formtarget={this.formtarget}
+            formenctype={this.formenctype}
+            autoFocus={this.autofocus}
+            aria-labelledby={this.labelId}
+            disabled={this.disabled}
+            class={classes}
+          >
+            {image}
+            <span id={this.labelId} class="dc-button-text">
+              {this.text}
+              <slot></slot>
+            </span>
+            {this.loading && <Spinner class="dc-button-spinner" />}
+          </button>
+        )}
       </Host>
     );
   }
