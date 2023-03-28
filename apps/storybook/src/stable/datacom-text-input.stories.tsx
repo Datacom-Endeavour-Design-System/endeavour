@@ -3,6 +3,8 @@ import { ComponentStoryFn, Meta } from '@storybook/react';
 import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
 
+type IndicatorType = 'none' | 'working' | 'done';
+
 export default {
   title: 'Text Input',
   component: DatacomInput,
@@ -80,11 +82,11 @@ export default {
     },
   },
   args: {
-    label: 'First name',
+    label: 'Label',
     disabled: false,
     required: true,
-    placeholder: 'Enter your first name',
-    message: 'First name is required',
+    placeholder: 'Example text',
+    message: 'Error message',
   },
 } as Meta<typeof DatacomInput>;
 
@@ -104,7 +106,7 @@ export const TextInput = Template.bind({});
 TextInput.args = {};
 
 export const WithIndicators = () => {
-  const [indicator, setIndicator] = useState('none');
+  const [indicator, setIndicator] = useState<IndicatorType>('none');
   const [iterations, setIterations] = useState(0);
 
   useEffect(() => {
@@ -157,7 +159,7 @@ export const WithIndicators = () => {
   );
 };
 
-export const VerticalForm = () => {
+export const FormSubmission = () => {
   const form = useRef<HTMLFormElement>();
   const [submitted, setSubmitted] = useState(false);
 
