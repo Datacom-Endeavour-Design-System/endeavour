@@ -48,15 +48,25 @@ export default {
   },
 };
 
+let key = 0;
+let previousDesc = '';
+
 const Template: StoryFn<
   SelectionCardProps & { description: string; tagText: string }
 > = (args) => {
   const { ctaText, description, imageUrl, tagText, title } = args;
 
+  // Trigger re-render if description is updated (as changes to slotted elements don't trigger re-renders)
+  if (description !== previousDesc) {
+    previousDesc = description;
+    key++;
+  }
+
   return (
     <div style={{ height: 600 }}>
       <div style={{ maxWidth: 386 }}>
         <DatacomSelectionCard
+          key={key}
           ctaText={ctaText}
           imageUrl={imageUrl}
           cardTitle={title}>
