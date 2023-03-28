@@ -12,10 +12,6 @@
   margin-bottom: 12px;
 }
 
-.dc-card-title {
-  margin-bottom: 12px;
-}
-
 .dc-card-text {
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
@@ -23,13 +19,14 @@
   display: -webkit-box;
   line-height: 24px;
   letter-spacing: -0.2px;
-  margin-bottom: 24px;
+  margin-top: 12px;
   overflow: hidden;
 }
 
 .dc-card-actions {
   display: flex;
   justify-content: space-between;
+  margin-top: 24px;
 }
 
 .dc-card-action-icon-button {
@@ -37,6 +34,7 @@
   border: 0;
   border-radius: 8px;
   cursor: pointer;
+  margin-left: auto;
 }
 
 .dc-card-action-icon-button:focus-visible {

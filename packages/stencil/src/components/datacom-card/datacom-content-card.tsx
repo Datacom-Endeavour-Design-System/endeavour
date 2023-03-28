@@ -42,6 +42,8 @@ export class DatacomCard {
   }
 
   render() {
+    const hasActions = this.ctaText || this.icon?.length > 0;
+
     return (
       <Host>
         <div class="dc-card">
@@ -63,18 +65,20 @@ export class DatacomCard {
                 </div>
               )}
             </div>
-            <div class="dc-card-actions">
-              {this.ctaText && (
-                <datacom-button variant="secondary" size="small" url={this.url}>
-                  {this.ctaText}
-                </datacom-button>
-              )}
-              {this.icon?.length > 0 && (
-                <button class="dc-card-action-icon-button" onClick={this.onActionIconClick}>
-                  {getSvg(this.icon, { class: 'dc-card-action-icon' })}
-                </button>
-              )}
-            </div>
+            {hasActions && (
+              <div class="dc-card-actions">
+                {this.ctaText && (
+                  <datacom-button variant="secondary" size="small" url={this.url}>
+                    {this.ctaText}
+                  </datacom-button>
+                )}
+                {this.icon?.length > 0 && (
+                  <button class="dc-card-action-icon-button" onClick={this.onActionIconClick}>
+                    {getSvg(this.icon, { class: 'dc-card-action-icon' })}
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </Host>
