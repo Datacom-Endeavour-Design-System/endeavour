@@ -2,7 +2,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 
 /**
- *Scroll button component allows to automatically scroll to specific anchor point when click it.
+ *Scroll button component automatically scroll to specific point when clicked.
  */
 @Component({
   tag: 'datacom-scroll-button',
@@ -10,17 +10,25 @@ import { getSvg } from '../../common/images/icon-provider';
   shadow: true,
 })
 export class DatacomScrollButton {
-  @Prop() url: string;
-  @Prop() ctaTitle: string;
+  @Prop({ mutable: true }) anchorId: string;
+  @Prop() btnTitle: string;
 
   chevronIcon = getSvg('chevron', { class: 'dc-scroll-btn-chevron' });
+
+  onClickHandler = (event: MouseEvent) => {
+    event.preventDefault();
+    const targetElement = document.getElementById(this.anchorId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   render() {
     return (
       <Host>
-        <a href={this.url} class="dc-scroll-btn" title={this.ctaTitle}>
+        <button class="dc-scroll-btn" title={this.btnTitle} onClick={this.onClickHandler}>
           {this.chevronIcon}
-        </a>
+        </button>
       </Host>
     );
   }
