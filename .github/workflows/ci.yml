@@ -129,7 +129,6 @@ jobs:
           projectName: endeavour-design
           directory: apps/storybook/storybook-static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-
   deploy-develop:
     name: Deploy develop
     if: ${{ github.event_name == 'push' && github.ref_name == 'main'}}
@@ -190,7 +189,6 @@ jobs:
           projectName: endeavour-design
           directory: apps/storybook/storybook-static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-
   deploy-production:
     name: Deploy production
     if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
