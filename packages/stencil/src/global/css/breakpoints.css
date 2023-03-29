@@ -19,6 +19,6 @@ background-color: red;
     background-color: yellow;
 }
 */
-@custom-media --breakpoint-tablet (min-width: 501px);
-@custom-media --breakpoint-desktop (min-width: 769px);
-@custom-media --breakpoint-large-desktop (min-width: 1281px);
+@custom-media --breakpoint-tablet (min-width: 500px);
+@custom-media --breakpoint-desktop (min-width: 900px);
+@custom-media --breakpoint-large-desktop (min-width: 1300px);
