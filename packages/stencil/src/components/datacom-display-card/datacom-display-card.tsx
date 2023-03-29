@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, State, Element } from '@stencil/core';
 
 /**
  *Display card component is used to display text image and navigation together using a clear visual hierarchy.
@@ -10,10 +10,20 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class DatacomDisplayCard {
+  @Element() host: HTMLElement;
   @Prop() url?: string;
   @Prop() heading: string;
   @Prop() ctaText: string;
   @Prop() imageUrl: string;
+  @State() hasDescriptionSlotElements = false;
+
+  /**
+   * Lifecycle function which checks for presence of slotted elements
+   * (info needed for conditionally rendering said elements.)
+   */
+  async componentWillLoad(): Promise<void> {
+    this.hasDescriptionSlotElements = !!this.host.querySelector('[slot="description"]');
+  }
 
   render() {
     return (
@@ -24,9 +34,11 @@ export class DatacomDisplayCard {
             <div class="dc-display-card-content">
               <div class="dc-display-content">
                 <span class="dc-display-card-heading">{this.heading}</span>
-                <span class="dc-display-card-description">
-                  <slot />
-                </span>
+                {this.hasDescriptionSlotElements && (
+                  <div class="dc-display-card-description">
+                    <slot name="description" />
+                  </div>
+                )}
               </div>
               <div>
                 <div class="dc-display-card-cta-wrapper">

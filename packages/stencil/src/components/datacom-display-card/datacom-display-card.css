@@ -103,10 +103,6 @@
   background-color: #003fbcb3;
 }
 
-.dc-display-card-link:hover .dc-display-card-link {
-  cursor: pointer;
-}
-
 .dc-display-card-cta-wrapper {
   display: inline-block;
   position: relative;

@@ -45,6 +45,8 @@ export default {
     },
   },
 };
+let key = 0;
+let previousDesc = '';
 
 const Div = styled.div`
   max-width: 600px;
@@ -54,9 +56,15 @@ const Template: StoryFn<DisplayCardProps & { description: string }> = (
   args
 ) => {
   const { description } = args;
+  if (description !== previousDesc) {
+    previousDesc = description;
+    key++;
+  }
   return (
     <Div>
-      <DatacomDisplayCard {...args}>{description}</DatacomDisplayCard>
+      <DatacomDisplayCard key={key} {...args}>
+        {description && <span slot="description">{description}</span>}
+      </DatacomDisplayCard>
     </Div>
   );
 };
