@@ -1,0 +1,152 @@
+@import url("../../global/css/breakpoints.css");
+@import url("./datacom-card.css");
+
+:host {
+  --description-height: 170px;
+  --options-margin: 12px;
+}
+
+:host * {
+  box-sizing: border-box;
+}
+
+.dc-card-title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.dc-card-expand-wrapper {
+  align-items: center;
+  display: flex;
+  height: 24px;
+  margin-left: auto;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-card-expand-wrapper {
+    height: var(--dc-heading5-height);
+  }
+}
+
+.dc-card-expand {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 12px;
+}
+
+.dc-card-chevron {
+  transition: all 0.3s;
+  width: 24px;
+}
+
+.dc-card-chevron path {
+  fill: var(--dc-primary-text-color);
+}
+
+.dc-card-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.dc-card-options-wrapper {
+  flex-grow: 1;
+  margin-bottom: 24px;
+}
+
+.dc-card-options {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: calc(-1 * var(--options-margin));
+  margin-right: calc(-1 * var(--options-margin));
+}
+
+::slotted([slot="options"]) {
+  margin-right: var(--options-margin);
+  margin-bottom: var(--options-margin);
+}
+
+.dc-card-cta {
+  margin-top: auto;
+}
+
+.dc-card-cta .dc-button-btn.sc-datacom-button {
+  min-width: 100%;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-card-cta .dc-button-btn.sc-datacom-button {
+    min-width: auto;
+  }
+}
+
+.dc-card-divider {
+  background-color: var(--dc-background-colour);
+  display: none;
+  position: relative;
+  width: 100%;
+}
+
+.dc-card-divider::after {
+  content: "";
+  border-top: 1px solid var(--dc-greyscale-05);
+  display: block;
+  margin: 0 var(--content-padding);
+}
+
+.dc-card-description-wrapper {
+  display: none;
+  width: 100%;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-card-description-wrapper {
+    bottom: 0;
+    height: 0;
+    position: absolute;
+    z-index: 1;
+  }
+}
+
+.dc-card-description {
+  background-color: var(--dc-background-colour);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  box-sizing: content-box;
+  display: flex;
+  overflow: hidden;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-card-description {
+    box-shadow: var(--box-shadow);
+    max-height: var(--description-height);
+  }
+}
+
+.dc-card-description-text {
+  font-size: 16px;
+  letter-spacing: -0.2px;
+  line-height: 24px;
+  padding: var(--content-padding);
+  overflow-y: auto;
+}
+
+/* Expanded state styles */
+@media (--breakpoint-tablet) {
+  .expand.dc-card {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.expand .dc-card-chevron {
+  transform: rotate(180deg);
+}
+
+.expand .dc-card-description-wrapper,
+.expand .dc-card-divider {
+  display: block;
+}
