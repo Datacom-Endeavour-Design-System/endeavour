@@ -22,7 +22,7 @@ export class DatacomRadio implements FormControl {
   @Prop({ mutable: true }) checked = false;
   @Prop() disabled = false;
   @Prop() required = false;
-  @Prop() name: string;
+  @Prop({ mutable: true }) name: string;
   @Prop() src: string;
   @Prop() icon: string;
   @Prop() value: string;
@@ -35,7 +35,7 @@ export class DatacomRadio implements FormControl {
   @Prop() formenctype: string;
   @Prop() formaction: string;
   @Prop() formtarget: string;
-  @Event() changed: EventEmitter<number>;
+  @Event() selected: EventEmitter<string>;
   @State() grouped = false;
 
   private formElement: HTMLFormElement;
@@ -57,7 +57,7 @@ export class DatacomRadio implements FormControl {
   private inputElement: HTMLInputElement;
 
   handleChange = () => {
-    this.checked = true;
+    this.selected.emit(this.value);
   };
 
   /**
