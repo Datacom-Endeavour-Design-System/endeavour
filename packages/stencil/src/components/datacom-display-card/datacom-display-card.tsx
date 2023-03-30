@@ -40,10 +40,8 @@ export class DatacomDisplayCard {
                   </div>
                 )}
               </div>
-              <div>
-                <div class="dc-display-card-cta-wrapper">
-                  <span class="dc-display-card-cta-text">{this.ctaText}</span>
-                </div>
+              <div class="dc-display-card-cta-wrapper">
+                <span class="dc-display-card-cta-text">{this.ctaText}</span>
               </div>
             </div>
           </div>

@@ -104,8 +104,7 @@
 }
 
 .dc-display-card-cta-wrapper {
-  display: inline-block;
-  position: relative;
+  display: flex;
 }
 
 .dc-display-card-cta-text {
@@ -113,9 +112,10 @@
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  position: relative;
 }
 
-.dc-display-card-cta-wrapper::before {
+.dc-display-card-cta-text::before {
   content: " ";
   position: absolute;
   transform: scaleX(0);
@@ -126,7 +126,7 @@
   transition: transform 0.25s ease-out;
 }
 
-.dc-display-card-link:hover .dc-display-card-cta-wrapper::before {
+.dc-display-card-link:hover .dc-display-card-cta-text::before {
   width: 100%;
   transform: scaleX(1);
   transform-origin: bottom left;
