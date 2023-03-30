@@ -81,18 +81,28 @@ export const DisplayCardGroup = () => {
           imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
           ctaText="Learn more"
           url="https://datacom.com">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi.
+          <span slot="description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+          </span>
         </DatacomDisplayCard>
         <DatacomDisplayCard
           heading="Title"
           imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
           ctaText="Learn more"
           url="https://datacom.com">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi.
+          <span slot="description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+          </span>
         </DatacomDisplayCard>
       </DatacomDisplayCardGroup>
     </div>

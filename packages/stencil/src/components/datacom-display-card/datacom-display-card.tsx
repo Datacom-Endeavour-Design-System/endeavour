@@ -26,6 +26,7 @@ export class DatacomDisplayCard {
   }
 
   render() {
+    const hasActions = this.ctaText;
     return (
       <Host>
         <a href={this.url} class="dc-display-card-link">
@@ -40,9 +41,11 @@ export class DatacomDisplayCard {
                   </div>
                 )}
               </div>
-              <div class="dc-display-card-cta-wrapper">
-                <span class="dc-display-card-cta-text">{this.ctaText}</span>
-              </div>
+              {hasActions && (
+                <div class="dc-display-card-cta-wrapper">
+                  <span class="dc-display-card-cta-text">{this.ctaText}</span>
+                </div>
+              )}
             </div>
           </div>
         </a>
