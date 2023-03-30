@@ -34,15 +34,17 @@ export const ScrollButtonWithExample = () => {
     width: 842px;
     height: 320px;
     display: flex;
+    flex-direction: column;
     background-color: #f0f0f0;
     align-items: center;
     margin: 2rem;
     justify-content: center;
-    text-align: center;
     scroll-margin-top: 30px;
     datacom-scroll-button {
-      text-align: center;
+      margin-top: 24px;
+      margin-bottom: 24px;
       justify-content: center;
+      text-align: center;
     }
   `;
   return (
@@ -58,14 +60,18 @@ export const ScrollButtonWithExample = () => {
         The top
       </h1>
       <Panel>
-        ffffffffffffffffffffffffffffffff
+        <span style={{ marginTop: '200px' }}>
+          Click the scroll button to scroll to the anchor point
+        </span>
         <DatacomScrollButton
           anchorId="anchor"
           btnTitle="Scroll down"></DatacomScrollButton>
       </Panel>
       <Panel />
       <Panel id="anchor" style={{ borderTop: '4px solid #0A1839' }}>
-        Anchor point
+        <span style={{ marginTop: '24px', marginBottom: '272px' }}>
+          Anchor point
+        </span>
       </Panel>
       <Panel />
       <Panel />
