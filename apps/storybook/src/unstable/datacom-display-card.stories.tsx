@@ -16,7 +16,7 @@ export default {
       name: 'Title',
       defaultValue: 'Title',
       description: 'Text of title displayed.',
-      type: { name: 'string' },
+      type: { name: 'string', required: 'true' },
     },
     description: {
       name: 'Description',
