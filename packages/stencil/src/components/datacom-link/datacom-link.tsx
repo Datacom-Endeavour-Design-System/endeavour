@@ -29,18 +29,15 @@ export class DatacomLink {
       'dc-link': true,
       [`dc-link-${this.variant}`]: true,
       'dc-link-disabled': this.disabled,
+      [`dc-link-image-${this.imagePosition}`]: true,
     };
 
     return (
       <Host>
-        <div class="dc-link-wrapper">
-          <a class={Classes} href={this.url}>
-            <span class={`dc-link-image-${this.imagePosition}`}>
-              {image}
-              <slot></slot>
-            </span>
-          </a>
-        </div>
+        <a class={Classes} href={this.url}>
+          {image}
+          <slot></slot>
+        </a>
       </Host>
     );
   }
