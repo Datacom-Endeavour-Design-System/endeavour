@@ -38,10 +38,11 @@ export const ScrollButtonWithExample = () => {
     align-items: center;
     margin: 2rem;
     justify-content: center;
+    text-align: center;
     scroll-margin-top: 30px;
     datacom-scroll-button {
-      margin-top: 200px;
-      margin-right: 400px;
+      text-align: center;
+      justify-content: center;
     }
   `;
   return (
@@ -51,11 +52,13 @@ export const ScrollButtonWithExample = () => {
           fontFamily: 'Montserrat',
           fontSize: '48px',
           lineHeight: '59px',
+          textAlign: 'left',
+          marginLeft: '30px',
         }}>
         The top
       </h1>
       <Panel>
-        Click scroll button to scroll anchor point
+        ffffffffffffffffffffffffffffffff
         <DatacomScrollButton
           anchorId="anchor"
           btnTitle="Scroll down"></DatacomScrollButton>
