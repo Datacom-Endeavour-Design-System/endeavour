@@ -11,7 +11,7 @@ export default {
       name: 'Anchor-Id',
       defaultValue: '#',
       description:
-        'The id of elements that should be scrolled down within the page.',
+        'The ID of the element that the scroll button will adjust the page scroll position to upon clicking.',
       type: { name: 'string' },
     },
     btnTitle: {
