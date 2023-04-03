@@ -34,10 +34,17 @@ export class DatacomLink {
 
     return (
       <Host>
-        <a class={Classes} href={this.url}>
-          {image}
-          <slot></slot>
-        </a>
+        {!this.disabled ? (
+          <a class={Classes} href={this.url}>
+            {image}
+            <slot></slot>
+          </a>
+        ) : (
+          <div class={Classes}>
+            {image}
+            <slot></slot>
+          </div>
+        )}
       </Host>
     );
   }
