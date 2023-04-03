@@ -46,7 +46,6 @@
 }
 
 .dc-scroll-btn:focus-visible {
-  outline: 3px solid var(--dc-scroll-btn-color);
-  border-radius: 100px;
+  outline: 3px solid var(--dc-primary-colour);
   outline-offset: 1px;
 }

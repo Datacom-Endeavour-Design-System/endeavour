@@ -11,7 +11,7 @@ export default {
       name: 'Anchor-Id',
       defaultValue: '#',
       description:
-        'The id of elements that should be scrolled down within the page.',
+        'The ID of the element that the scroll button will adjust the page scroll position to upon clicking.',
       type: { name: 'string' },
     },
     btnTitle: {
@@ -34,14 +34,15 @@ export const ScrollButtonWithExample = () => {
     width: 842px;
     height: 320px;
     display: flex;
+    flex-direction: column;
     background-color: #f0f0f0;
     align-items: center;
     margin: 2rem;
     justify-content: center;
     scroll-margin-top: 30px;
     datacom-scroll-button {
-      margin-top: 200px;
-      margin-right: 400px;
+      margin-top: 24px;
+      margin-bottom: 24px;
     }
   `;
   return (
@@ -51,18 +52,24 @@ export const ScrollButtonWithExample = () => {
           fontFamily: 'Montserrat',
           fontSize: '48px',
           lineHeight: '59px',
+          textAlign: 'left',
+          marginLeft: '30px',
         }}>
         The top
       </h1>
       <Panel>
-        Click scroll button to scroll anchor point
+        <span style={{ marginTop: '200px' }}>
+          Click the scroll button to scroll to the anchor point
+        </span>
         <DatacomScrollButton
           anchorId="anchor"
           btnTitle="Scroll down"></DatacomScrollButton>
       </Panel>
       <Panel />
       <Panel id="anchor" style={{ borderTop: '4px solid #0A1839' }}>
-        Anchor point
+        <span style={{ marginTop: '24px', marginBottom: '272px' }}>
+          Anchor point
+        </span>
       </Panel>
       <Panel />
       <Panel />
