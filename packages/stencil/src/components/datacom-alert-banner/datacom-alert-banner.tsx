@@ -12,7 +12,6 @@ export class DatacomAlertBanner {
   @Prop() url: string;
 
   closeIcon = getSvg('close', { class: 'dc-close-icon' });
-  //chevronIcon = getSvg('chevron', { class: 'dc-accordion-chevron' });
 
   render() {
     return (

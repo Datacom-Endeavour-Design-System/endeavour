@@ -7,10 +7,12 @@
 
 .dc-alert-banner {
   padding: var(--dc-padding-05);
+  padding-right: 40px;
   background-color: var(--bg-color);
   color: var(--color-white);
   font-family: var(--dc-font-family);
   font-size: var(--dc-font-size);
+  position: relative;
 }
 
 .dc-alert-banner a {
@@ -19,6 +21,19 @@
   font-weight: 500;
 }
 
-.disabled .dc-accordion-chevron path {
-  fill: var(--dc-greyscale-05);
+.dc-close-icon {
+  width: 24px;
+  position: absolute;
+  top: 21px;
+  right: 24px;
+}
+
+.dc-close-icon path {
+  fill: var(--color-white);
+}
+
+@media (--breakpoint-desktop) {
+  .dc-alert-banner {
+    padding-right: 24px;
+  }
 }
