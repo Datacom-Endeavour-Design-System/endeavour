@@ -43,8 +43,6 @@ export const ScrollButtonWithExample = () => {
     datacom-scroll-button {
       margin-top: 24px;
       margin-bottom: 24px;
-      justify-content: center;
-      text-align: center;
     }
   `;
   return (
