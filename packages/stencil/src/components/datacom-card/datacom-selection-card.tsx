@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter, Element, Listen } from '@stencil/core';
+import { HTMLDatacomRadioElement } from '../datacom-radio/datacom-radio';
 import { getSvg } from '../../common/images/icon-provider';
 
 /**
