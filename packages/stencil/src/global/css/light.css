@@ -4,6 +4,7 @@
 :root {
   /* Colours */
   --dc-background-colour: #ffffff;
+  --dc-colour-white: #ffffff;
   --dc-background-accent-color: #f0f0f0;
   --dc-primary-colour: #0055ff;
   --dc-primary-accent-colour: #003fbc;
