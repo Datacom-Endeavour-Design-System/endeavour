@@ -24,11 +24,7 @@
   outline: none;
 }
 
-.dc-link-inline {
-  --link-font-size: 16px;
-  --link-height: 22px;
-}
-
+/* Animation */
 .dc-link::before {
   content: " ";
   position: absolute;
@@ -39,26 +35,12 @@
   bottom: 0;
   cursor: pointer;
   transition: transform 0.25s ease-out;
-  background-color: var(--link-color);
-  outline: none;
+  background-color: var(--dc-primary-accent-colour);
   transform-origin: bottom left;
+  outline: none;
 }
 
-.dc-link-inline::before {
-  transform: scaleX(1);
-  transition: none;
-}
-
-.dc-link-stacked,
-.dc-link-footer {
-  --link-color: var(--dc-primary-text-color);
-}
-
-.dc-link-footer {
-  --link-font-size: 14px;
-  --link-height: 18px;
-}
-
+/* Icon */
 .dc-link-icon path {
   fill: var(--link-color);
 }
@@ -68,11 +50,6 @@
   height: 16px;
   width: 16px;
   align-self: center;
-}
-
-.dc-link-footer .dc-link-icon {
-  height: 14px;
-  width: 14px;
 }
 
 .dc-link-image-right {
@@ -92,21 +69,56 @@
   padding-left: 4px;
 }
 
+/* Visited state style */
 .dc-link:visited {
   color: var(--link-visited-color);
-}
-
-.dc-link-inline:visited::before {
-  background: var(--link-visited-color);
 }
 
 .dc-link:visited .dc-link-icon path {
   fill: var(--link-visited-color);
 }
 
+.dc-link-inline:visited::before {
+  background: var(--link-visited-color);
+}
+
+/* Focus style */
 .dc-link:focus-visible {
   border-bottom: 3px solid var(--dc-primary-colour);
   outline: none;
+}
+
+.dc-link:focus-visible::before,
+.dc-link-disabled::before {
+  visibility: hidden;
+}
+
+/* Inline variant */
+.dc-link-inline {
+  --link-font-size: 16px;
+  --link-height: 22px;
+}
+
+.dc-link-inline::before {
+  transform: scaleX(1);
+  transition: none;
+  background: var(--link-color);
+}
+
+/* Footer and stacked variant */
+.dc-link-footer {
+  --link-font-size: 14px;
+  --link-height: 18px;
+}
+
+.dc-link-stacked,
+.dc-link-footer {
+  --link-color: var(--dc-primary-text-color);
+}
+
+.dc-link-footer .dc-link-icon {
+  height: 14px;
+  width: 14px;
 }
 
 .dc-link-stacked .dc-link-icon path,
@@ -114,14 +126,7 @@
   fill: var(--dc-primary-text-color);
 }
 
-.dc-link-disabled .dc-link-icon path,
-.dc-link-disabled {
-  color: var(--dc-primary-disabled-colour);
-  cursor: not-allowed;
-  outline: none;
-  fill: var(--dc-primary-disabled-colour);
-}
-
+/* Hover state style */
 .dc-link:hover {
   color: var(--dc-primary-accent-colour);
 }
@@ -136,16 +141,12 @@
   color: var(--dc-primary-text-color);
 }
 
+/* Correct Style render with hover state */
 .dc-link-stacked::before,
 .dc-link-footer::before,
 .dc-link-stacked:hover::before,
 .dc-link-footer:hover::before {
   background-color: var(--dc-primary-text-color);
-}
-
-.dc-link:focus-visible::before,
-.dc-link-disabled::before {
-  visibility: hidden;
 }
 
 .dc-link:hover .dc-link-icon path {
@@ -157,13 +158,25 @@
   fill: var(--link-icon-hover-color);
 }
 
-.dc-link-disabled:hover .dc-link-icon path,
+/* Disabled state styles */
+.dc-link-disabled {
+  color: var(--dc-primary-disabled-colour);
+  cursor: not-allowed;
+}
+
+.dc-link-disabled .dc-link-icon path {
+  fill: var(--dc-primary-disabled-colour);
+}
+
 .dc-link-disabled:hover {
   color: var(--dc-primary-disabled-colour);
+}
+
+.dc-link-disabled:hover .dc-link-icon path {
   fill: var(--dc-primary-disabled-colour);
 }
 
 .dc-link-disabled.dc-link-inline::before {
-  background-color: var(--dc-primary-disabled-colour);
+  background: var(--dc-primary-disabled-colour);
   visibility: visible;
 }
