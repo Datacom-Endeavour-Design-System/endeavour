@@ -1,0 +1,92 @@
+:host {
+  display: flex;
+
+  --background-color: var(--dc-background-colour);
+  --text-color: var(--dc-primary-text-color);
+}
+
+.dc-tooltip {
+  background-color: var(--background-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: var(--text-color);
+  filter: drop-shadow(0 3px 8px rgba(0 0 0 / 20%));
+  font-family: var(--dc-font-family);
+  font-size: 12px;
+  letter-spacing: -0.2px;
+  line-height: 16px;
+  max-width: 272px;
+  padding: 8px 16px;
+  pointer-events: none;
+  position: relative;
+  user-select: none;
+}
+
+.dc-tooltip-arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  position: absolute;
+}
+
+/* Arrow orientation classes */
+.tooltip-bottom {
+  margin-bottom: 6px;
+}
+
+.tooltip-bottom .dc-tooltip-arrow {
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0;
+  border-color: var(--background-color) transparent transparent transparent;
+}
+
+.tooltip-top {
+  margin-top: 6px;
+}
+
+.tooltip-top .dc-tooltip-arrow {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 6px 6px;
+  border-color: transparent transparent var(--background-color) transparent;
+}
+
+.tooltip-left {
+  margin-left: 6px;
+}
+
+.tooltip-left .dc-tooltip-arrow {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 6px 6px 0;
+  border-color: transparent var(--background-color) transparent transparent;
+}
+
+.tooltip-right {
+  margin-right: 6px;
+}
+
+.tooltip-right .dc-tooltip-arrow {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 6px;
+  border-color: transparent transparent transparent var(--background-color);
+}
+
+/* Dark color style */
+.dark {
+  filter: none;
+
+  --background-color: var(--dc-ui-fill-extended-01);
+  --text-color: var(--dc-colour-white);
+}
+
+/* Class for hiding arrow */
+.hide-tip {
+  visibility: hidden;
+}
