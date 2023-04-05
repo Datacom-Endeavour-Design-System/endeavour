@@ -5,6 +5,23 @@
   --text-color: var(--dc-primary-text-color);
 }
 
+.dc-tooltip-hoc {
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+}
+
+.dc-tooltip-wrapper {
+  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.show {
+  display: flex;
+}
+
 .dc-tooltip {
   background-color: var(--background-color);
   border-radius: 4px;
@@ -20,6 +37,7 @@
   pointer-events: none;
   position: relative;
   user-select: none;
+  width: max-content;
 }
 
 .dc-tooltip-arrow {
@@ -30,11 +48,14 @@
 }
 
 /* Arrow orientation classes */
-.tooltip-bottom {
-  margin-bottom: 6px;
+.tooltip-top {
+  left: 50%;
+  padding-bottom: 6px;
+  top: 0;
+  translate: -50% calc(-100% - 4px);
 }
 
-.tooltip-bottom .dc-tooltip-arrow {
+.tooltip-top .dc-tooltip-arrow {
   left: 50%;
   top: 100%;
   transform: translateX(-50%);
@@ -42,11 +63,14 @@
   border-color: var(--background-color) transparent transparent transparent;
 }
 
-.tooltip-top {
-  margin-top: 6px;
+.tooltip-bottom {
+  bottom: 0;
+  left: 50%;
+  padding-top: 6px;
+  translate: -50% calc(100% + 4px);
 }
 
-.tooltip-top .dc-tooltip-arrow {
+.tooltip-bottom .dc-tooltip-arrow {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
@@ -54,11 +78,14 @@
   border-color: transparent transparent var(--background-color) transparent;
 }
 
-.tooltip-left {
-  margin-left: 6px;
+.tooltip-right {
+  right: 0;
+  padding-left: 6px;
+  top: 50%;
+  translate: calc(100% + 4px) -50%;
 }
 
-.tooltip-left .dc-tooltip-arrow {
+.tooltip-right .dc-tooltip-arrow {
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
@@ -66,11 +93,14 @@
   border-color: transparent var(--background-color) transparent transparent;
 }
 
-.tooltip-right {
-  margin-right: 6px;
+.tooltip-left {
+  left: 0;
+  padding-right: 6px;
+  top: 50%;
+  translate: calc(-100% - 4px) -50%;
 }
 
-.tooltip-right .dc-tooltip-arrow {
+.tooltip-left .dc-tooltip-arrow {
   left: 100%;
   top: 50%;
   transform: translateY(-50%);
