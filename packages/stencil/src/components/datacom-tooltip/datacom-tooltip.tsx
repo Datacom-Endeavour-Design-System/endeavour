@@ -19,7 +19,7 @@ export class DatacomToggle {
   private slotElement: HTMLSlotElement;
   private slottedElement: Element;
 
-  private setSlottedElementRef(el: HTMLSlotElement) {
+  private setSlotElementRef(el: HTMLSlotElement) {
     this.slotElement = el;
   }
 
@@ -38,8 +38,8 @@ export class DatacomToggle {
       this.slottedElement = slottedElement;
       this.slottedElement.addEventListener('mouseenter', this.showTooltip);
       this.slottedElement.addEventListener('mouseleave', this.hideTooltip);
-      this.slottedElement.addEventListener('focus', this.showTooltip);
-      this.slottedElement.addEventListener('blur', this.hideTooltip);
+      this.slottedElement.addEventListener('focusin', this.showTooltip);
+      this.slottedElement.addEventListener('focusout', this.hideTooltip);
     }
   }
 
@@ -47,8 +47,8 @@ export class DatacomToggle {
     if (this.slottedElement !== undefined && this.slottedElement !== null) {
       this.slottedElement.removeEventListener('mouseenter', this.showTooltip);
       this.slottedElement.removeEventListener('mouseleave', this.hideTooltip);
-      this.slottedElement.removeEventListener('focus', this.showTooltip);
-      this.slottedElement.removeEventListener('blur', this.hideTooltip);
+      this.slottedElement.removeEventListener('focusin', this.showTooltip);
+      this.slottedElement.removeEventListener('focusout', this.hideTooltip);
     }
   }
 
@@ -78,7 +78,7 @@ export class DatacomToggle {
               <div class={arrowClasses} />
             </div>
           </div>
-          <slot ref={el => this.setSlottedElementRef(el as HTMLSlotElement)} />
+          <slot ref={el => this.setSlotElementRef(el as HTMLSlotElement)} />
         </div>
       </Host>
     );
