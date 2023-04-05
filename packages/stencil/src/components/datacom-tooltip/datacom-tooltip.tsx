@@ -2,6 +2,10 @@ import { Component, h, Host, Prop, State } from '@stencil/core';
 
 export type TooltipPositionType = 'top' | 'bottom' | 'left' | 'right';
 
+/**
+ * Tooltip component is a floating, non-actionable label
+ * used to explain a user interface element or feature.
+ */
 @Component({
   tag: 'datacom-tooltip',
   styleUrl: 'datacom-tooltip.css',
@@ -60,10 +64,6 @@ export class DatacomToggle {
       [`tooltip-${this.position}`]: true,
     };
 
-    const tooltipClasses = {
-      'dc-tooltip': true,
-    };
-
     const arrowClasses = {
       'dc-tooltip-arrow': true,
       'hide-tip': this.hideTip,
@@ -73,7 +73,7 @@ export class DatacomToggle {
       <Host>
         <div class="dc-tooltip-hoc">
           <div class={wrapperClasses}>
-            <div class={tooltipClasses} id={this.id} role="tooltip">
+            <div class="dc-tooltip" id={this.id} role="tooltip">
               {this.text}
               <div class={arrowClasses} />
             </div>
