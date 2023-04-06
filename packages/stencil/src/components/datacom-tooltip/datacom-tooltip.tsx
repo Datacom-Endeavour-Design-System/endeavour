@@ -1,6 +1,18 @@
 import { Component, h, Host, Prop, State } from '@stencil/core';
 
-export type TooltipPositionType = 'top' | 'bottom' | 'left' | 'right';
+export type TooltipPositionType =
+  | 'top'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'left'
+  | 'left-top'
+  | 'left-bottom'
+  | 'right'
+  | 'right-top'
+  | 'right-bottom';
 
 /**
  * Tooltip component is a floating, non-actionable label
@@ -22,9 +34,14 @@ export class DatacomToggle {
 
   private slotElement: HTMLSlotElement;
   private slottedElement: Element;
+  private tooltipElement: HTMLElement;
 
   private setSlotElementRef(el: HTMLSlotElement) {
     this.slotElement = el;
+  }
+
+  private setTooltipElementRef(el: HTMLElement) {
+    this.tooltipElement = el;
   }
 
   showTooltip = () => {
@@ -35,7 +52,38 @@ export class DatacomToggle {
     this.isTooltipVisible = false;
   };
 
+  /**
+   * Returns data about whether the element is fully visible in the viewport.
+   * @param element - Element to check is in viewport.
+   * @returns object with properties related element's position in viewport.
+   */
+  getViewportPositionData(element: HTMLElement) {
+    const { top, left, bottom, right } = element.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+
+    const topEdgeVisible = top >= 0;
+    const leftEdgeVisible = left >= 0;
+    const bottomEdgeVisible = bottom <= viewportHeight;
+    const rightEdgeVisible = right <= viewportWidth;
+
+    return {
+      fullyVisible: topEdgeVisible && leftEdgeVisible && bottomEdgeVisible && rightEdgeVisible,
+      bottomEdgeVisible,
+      leftEdgeVisible,
+      rightEdgeVisible,
+      topEdgeVisible,
+    };
+  }
+
+  adjustTooltipPosition() {
+    const positionData = this.getViewportPositionData(this.tooltipElement);
+    console.log(positionData);
+  }
+
   componentDidLoad() {
+    this.adjustTooltipPosition();
+
     const slottedElement: Element = this.slotElement.assignedElements()[0];
 
     if (slottedElement !== undefined && this.slottedElement !== null) {
@@ -73,7 +121,7 @@ export class DatacomToggle {
       <Host>
         <div class="dc-tooltip-hoc">
           <div class={wrapperClasses}>
-            <div class="dc-tooltip" id={this.id} role="tooltip">
+            <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)}>
               {this.text}
               <div class={arrowClasses} />
             </div>
