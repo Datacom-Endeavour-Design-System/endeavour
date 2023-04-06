@@ -109,7 +109,7 @@ export class DatacomToggle {
       'dark': this.dark,
       'dc-tooltip-wrapper': true,
       'show': this.isTooltipVisible,
-      [`tooltip-${this.position}`]: true,
+      [`${this.position}`]: true,
     };
 
     const arrowClasses = {

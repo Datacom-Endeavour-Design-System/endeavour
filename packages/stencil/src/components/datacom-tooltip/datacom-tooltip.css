@@ -17,7 +17,7 @@
   pointer-events: none;
   position: absolute;
   user-select: none;
-  visibility: visible;
+  visibility: hidden;
   z-index: 1;
 }
 
@@ -50,15 +50,15 @@
 
 /* Tooltip orientation classes */
 
-/* Top orientation classes */
-.tooltip-top {
+/* Top-related orientation classes */
+.top {
   left: 50%;
   padding-bottom: 6px;
   top: 0;
   translate: -50% calc(-100% - 4px);
 }
 
-.tooltip-top .dc-tooltip-arrow {
+.top .dc-tooltip-arrow {
   border-color: var(--background-color) transparent transparent transparent;
   border-width: 6px 6px 0;
   left: 50%;
@@ -66,43 +66,43 @@
   transform: translateX(-50%);
 }
 
-.tooltip-top-left {
+.top-left {
   left: 0;
   padding-bottom: 6px;
   top: 0;
   translate: 0 calc(-100% - 4px);
 }
 
-.tooltip-top-left .dc-tooltip-arrow {
+.top-left .dc-tooltip-arrow {
   border-color: var(--background-color) transparent transparent transparent;
   border-width: 6px 6px 0;
   left: 12px;
   top: 100%;
 }
 
-.tooltip-top-right {
+.top-right {
   padding-bottom: 6px;
   right: 0;
   top: 0;
   translate: 0 calc(-100% - 4px);
 }
 
-.tooltip-top-right .dc-tooltip-arrow {
+.top-right .dc-tooltip-arrow {
   border-color: var(--background-color) transparent transparent transparent;
   border-width: 6px 6px 0;
   right: 12px;
   top: 100%;
 }
 
-/* Bottom orientation classes */
-.tooltip-bottom {
+/* Bottom-related orientation classes */
+.bottom {
   bottom: 0;
   left: 50%;
   padding-top: 6px;
   translate: -50% calc(100% + 4px);
 }
 
-.tooltip-bottom .dc-tooltip-arrow {
+.bottom .dc-tooltip-arrow {
   border-color: transparent transparent var(--background-color) transparent;
   border-width: 0 6px 6px;
   bottom: 100%;
@@ -110,42 +110,43 @@
   transform: translateX(-50%);
 }
 
-.tooltip-bottom-left {
+.bottom-left {
   bottom: 0;
   left: 0;
   padding-top: 6px;
   translate: 0 calc(100% + 4px);
 }
 
-.tooltip-bottom-left .dc-tooltip-arrow {
+.bottom-left .dc-tooltip-arrow {
   border-color: transparent transparent var(--background-color) transparent;
   border-width: 0 6px 6px;
   bottom: 100%;
   left: 12px;
 }
 
-.tooltip-bottom-right {
+.bottom-right {
   bottom: 0;
   padding-top: 6px;
   right: 0;
   translate: 0 calc(100% + 4px);
 }
 
-.tooltip-bottom-right .dc-tooltip-arrow {
+.bottom-right .dc-tooltip-arrow {
   border-width: 0 6px 6px;
   border-color: transparent transparent var(--background-color) transparent;
   bottom: 100%;
   right: 12px;
 }
 
-.tooltip-right {
+/* Right-related orientation classes */
+.right {
   padding-left: 6px;
   right: 0;
   top: 50%;
   translate: calc(100% + 4px) -50%;
 }
 
-.tooltip-right .dc-tooltip-arrow {
+.right .dc-tooltip-arrow {
   border-color: transparent var(--background-color) transparent transparent;
   border-width: 6px 6px 6px 0;
   right: 100%;
@@ -153,42 +154,43 @@
   transform: translateY(-50%);
 }
 
-.tooltip-right-top {
+.right-top {
   padding-left: 6px;
   right: 0;
   top: 0;
   translate: calc(100% + 4px) 0;
 }
 
-.tooltip-right-top .dc-tooltip-arrow {
+.right-top .dc-tooltip-arrow {
   border-color: transparent var(--background-color) transparent transparent;
   border-width: 6px 6px 6px 0;
   right: 100%;
   top: 8px;
 }
 
-.tooltip-right-bottom {
+.right-bottom {
   bottom: 0;
   padding-left: 6px;
   right: 0;
   translate: calc(100% + 4px) 0;
 }
 
-.tooltip-right-bottom .dc-tooltip-arrow {
+.right-bottom .dc-tooltip-arrow {
   border-width: 6px 6px 6px 0;
   border-color: transparent var(--background-color) transparent transparent;
   bottom: 8px;
   right: 100%;
 }
 
-.tooltip-left {
+/* Left-related orientation classes */
+.left {
   left: 0;
   padding-right: 6px;
   top: 50%;
   translate: calc(-100% - 4px) -50%;
 }
 
-.tooltip-left .dc-tooltip-arrow {
+.left .dc-tooltip-arrow {
   border-color: transparent transparent transparent var(--background-color);
   border-width: 6px 0 6px 6px;
   left: 100%;
@@ -196,28 +198,28 @@
   transform: translateY(-50%);
 }
 
-.tooltip-left-top {
+.left-top {
   left: 0;
   padding-right: 6px;
   top: 0;
   translate: calc(-100% - 4px) 0;
 }
 
-.tooltip-left-top .dc-tooltip-arrow {
+.left-top .dc-tooltip-arrow {
   border-color: transparent transparent transparent var(--background-color);
   border-width: 6px 0 6px 6px;
   left: 100%;
   top: 8px;
 }
 
-.tooltip-left-bottom {
+.left-bottom {
   bottom: 0;
   left: 0;
   padding-right: 6px;
   translate: calc(-100% - 4px) 0;
 }
 
-.tooltip-left-bottom .dc-tooltip-arrow {
+.left-bottom .dc-tooltip-arrow {
   border-color: transparent transparent transparent var(--background-color);
   border-width: 6px 0 6px 6px;
   bottom: 8px;
