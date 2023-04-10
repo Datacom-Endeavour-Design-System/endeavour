@@ -1,0 +1,30 @@
+@import url("../../global/css/breakpoints.css");
+
+:host {
+  display: inline;
+  width: 100%;
+}
+
+.dc-feature-highlight-group {
+  column-gap: 24px;
+  display: grid;
+  row-gap: 24px;
+}
+
+@media (--breakpoint-tablet) {
+  .dc-feature-highlight-group {
+    column-gap: 48px;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 48px;
+  }
+}
+
+@media (--breakpoint-desktop) {
+  .dc-feature-highlight-group {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .dc-feature-highlight-group.four-items {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
