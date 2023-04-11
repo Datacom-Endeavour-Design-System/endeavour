@@ -66,28 +66,28 @@
   transform: translateX(-50%);
 }
 
-.top-left {
+.top-start {
   left: 0;
   padding-bottom: 6px;
   top: 0;
   translate: 0 calc(-100% - 4px);
 }
 
-.top-left .dc-tooltip-arrow {
+.top-start .dc-tooltip-arrow {
   border-color: var(--background-color) transparent transparent transparent;
   border-width: 6px 6px 0;
   left: 12px;
   top: 100%;
 }
 
-.top-right {
+.top-end {
   padding-bottom: 6px;
   right: 0;
   top: 0;
   translate: 0 calc(-100% - 4px);
 }
 
-.top-right .dc-tooltip-arrow {
+.top-end .dc-tooltip-arrow {
   border-color: var(--background-color) transparent transparent transparent;
   border-width: 6px 6px 0;
   right: 12px;
@@ -110,28 +110,28 @@
   transform: translateX(-50%);
 }
 
-.bottom-left {
+.bottom-start {
   bottom: 0;
   left: 0;
   padding-top: 6px;
   translate: 0 calc(100% + 4px);
 }
 
-.bottom-left .dc-tooltip-arrow {
+.bottom-start .dc-tooltip-arrow {
   border-color: transparent transparent var(--background-color) transparent;
   border-width: 0 6px 6px;
   bottom: 100%;
   left: 12px;
 }
 
-.bottom-right {
+.bottom-end {
   bottom: 0;
   padding-top: 6px;
   right: 0;
   translate: 0 calc(100% + 4px);
 }
 
-.bottom-right .dc-tooltip-arrow {
+.bottom-end .dc-tooltip-arrow {
   border-width: 0 6px 6px;
   border-color: transparent transparent var(--background-color) transparent;
   bottom: 100%;
@@ -154,28 +154,28 @@
   transform: translateY(-50%);
 }
 
-.right-top {
+.right-start {
   padding-left: 6px;
   right: 0;
   top: 0;
   translate: calc(100% + 4px) 0;
 }
 
-.right-top .dc-tooltip-arrow {
+.right-start .dc-tooltip-arrow {
   border-color: transparent var(--background-color) transparent transparent;
   border-width: 6px 6px 6px 0;
   right: 100%;
   top: 8px;
 }
 
-.right-bottom {
+.right-end {
   bottom: 0;
   padding-left: 6px;
   right: 0;
   translate: calc(100% + 4px) 0;
 }
 
-.right-bottom .dc-tooltip-arrow {
+.right-end .dc-tooltip-arrow {
   border-width: 6px 6px 6px 0;
   border-color: transparent var(--background-color) transparent transparent;
   bottom: 8px;
@@ -198,28 +198,28 @@
   transform: translateY(-50%);
 }
 
-.left-top {
+.left-start {
   left: 0;
   padding-right: 6px;
   top: 0;
   translate: calc(-100% - 4px) 0;
 }
 
-.left-top .dc-tooltip-arrow {
+.left-start .dc-tooltip-arrow {
   border-color: transparent transparent transparent var(--background-color);
   border-width: 6px 0 6px 6px;
   left: 100%;
   top: 8px;
 }
 
-.left-bottom {
+.left-end {
   bottom: 0;
   left: 0;
   padding-right: 6px;
   translate: calc(-100% - 4px) 0;
 }
 
-.left-bottom .dc-tooltip-arrow {
+.left-end .dc-tooltip-arrow {
   border-color: transparent transparent transparent var(--background-color);
   border-width: 6px 0 6px 6px;
   bottom: 8px;

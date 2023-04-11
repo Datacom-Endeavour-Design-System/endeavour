@@ -1,18 +1,19 @@
 import { Component, h, Host, Prop, State } from '@stencil/core';
+import { debounce } from '../../utils';
 
 export type TooltipPositionType =
   | 'top'
-  | 'top-left'
-  | 'top-right'
+  | 'top-start'
+  | 'top-end'
   | 'bottom'
-  | 'bottom-left'
-  | 'bottom-right'
+  | 'bottom-start'
+  | 'bottom-end'
   | 'left'
-  | 'left-top'
-  | 'left-bottom'
+  | 'left-start'
+  | 'left-end'
   | 'right'
-  | 'right-top'
-  | 'right-bottom';
+  | 'right-start'
+  | 'right-end';
 
 /**
  * Tooltip component is a floating, non-actionable label
@@ -24,12 +25,14 @@ export type TooltipPositionType =
   shadow: true,
 })
 export class DatacomToggle {
-  @Prop() dark: boolean;
+  @Prop() disableAutoPosition = false;
+  @Prop() dark = false;
   @Prop() id: string;
   @Prop() hideTip = false;
   @Prop() position: TooltipPositionType = 'top';
   @Prop() text: string;
 
+  @State() currentPosition: TooltipPositionType = this.position;
   @State() isTooltipVisible = false;
 
   private slotElement: HTMLSlotElement;
@@ -68,6 +71,7 @@ export class DatacomToggle {
     const rightEdgeVisible = right <= viewportWidth;
 
     return {
+      fullyHidden: !topEdgeVisible && !leftEdgeVisible && !bottomEdgeVisible && !rightEdgeVisible,
       fullyVisible: topEdgeVisible && leftEdgeVisible && bottomEdgeVisible && rightEdgeVisible,
       bottomEdgeVisible,
       leftEdgeVisible,
@@ -76,15 +80,69 @@ export class DatacomToggle {
     };
   }
 
-  adjustTooltipPosition() {
+  resetTooltipPosition = debounce(() => {
+    this.currentPosition = this.position;
+  }, 300);
+
+  adjustTooltipPosition = () => {
     const positionData = this.getViewportPositionData(this.tooltipElement);
-    console.log(positionData);
-  }
+
+    if (!positionData.fullyVisible && !positionData.fullyHidden) {
+      console.log('Fixing position!');
+      const splitClass = this.position.split('-');
+      const mainPosition = splitClass[0];
+      const subPosition = splitClass?.[1] || '';
+
+      let positionFinal = mainPosition;
+      let subPositionFinal = subPosition;
+
+      if (mainPosition === 'top' || mainPosition === 'bottom') {
+        if (!positionData.topEdgeVisible) {
+          positionFinal = 'bottom';
+        }
+
+        if (!positionData.bottomEdgeVisible) {
+          positionFinal = 'top';
+        }
+
+        if (!positionData.leftEdgeVisible && positionData.rightEdgeVisible) {
+          subPositionFinal = 'start';
+        } else if (positionData.leftEdgeVisible && !positionData.rightEdgeVisible) {
+          subPositionFinal = 'end';
+        } else if (!positionData.leftEdgeVisible && !positionData.rightEdgeVisible) {
+          subPositionFinal = '';
+        }
+      } else if (mainPosition === 'left' || mainPosition === 'right') {
+        if (!positionData.leftEdgeVisible) {
+          positionFinal = 'right';
+        }
+
+        if (!positionData.rightEdgeVisible) {
+          positionFinal = 'left';
+        }
+
+        if (!positionData.topEdgeVisible && positionData.bottomEdgeVisible) {
+          subPositionFinal = 'start';
+        } else if (positionData.topEdgeVisible && !positionData.bottomEdgeVisible) {
+          subPositionFinal = 'end';
+        } else if (!positionData.topEdgeVisible && !positionData.bottomEdgeVisible) {
+          subPositionFinal = '';
+        }
+      }
+
+      if (subPositionFinal !== '') {
+        positionFinal = `${positionFinal}-${subPositionFinal}`;
+      }
+
+      console.log(`Updating from "${this.position}" to "${positionFinal}" using following data: `);
+      if (positionFinal !== this.position) {
+        this.currentPosition = positionFinal as TooltipPositionType;
+      }
+    }
+  };
 
   componentDidLoad() {
-    this.adjustTooltipPosition();
-
-    const slottedElement: Element = this.slotElement.assignedElements()[0];
+    const slottedElement: Element = this.slotElement?.assignedElements()[0];
 
     if (slottedElement !== undefined && this.slottedElement !== null) {
       this.slottedElement = slottedElement;
@@ -92,6 +150,19 @@ export class DatacomToggle {
       this.slottedElement.addEventListener('mouseleave', this.hideTooltip);
       this.slottedElement.addEventListener('focusin', this.showTooltip);
       this.slottedElement.addEventListener('focusout', this.hideTooltip);
+    }
+
+    if (!this.disableAutoPosition) {
+      this.adjustTooltipPosition();
+      //  THese should reser position of tooltip (which should update currentPosition state, which should trigger new render)
+      window.addEventListener('scroll', this.resetTooltipPosition);
+      window.addEventListener('resize', this.resetTooltipPosition);
+    }
+  }
+
+  componentDidRender() {
+    if (!this.disableAutoPosition && this.currentPosition === this.position) {
+      this.adjustTooltipPosition();
     }
   }
 
@@ -102,6 +173,11 @@ export class DatacomToggle {
       this.slottedElement.removeEventListener('focusin', this.showTooltip);
       this.slottedElement.removeEventListener('focusout', this.hideTooltip);
     }
+
+    if (!this.disableAutoPosition) {
+      window.removeEventListener('scroll', this.resetTooltipPosition);
+      window.removeEventListener('resize', this.resetTooltipPosition);
+    }
   }
 
   render() {
@@ -109,7 +185,7 @@ export class DatacomToggle {
       'dark': this.dark,
       'dc-tooltip-wrapper': true,
       'show': this.isTooltipVisible,
-      [`${this.position}`]: true,
+      [`${this.currentPosition}`]: true,
     };
 
     const arrowClasses = {

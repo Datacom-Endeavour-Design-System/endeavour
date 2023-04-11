@@ -31,3 +31,17 @@ export function randomString(length = 10, prefix?: string): string {
     return (prefix || '') + random.map(n => n.toString(16)).join('');
   }
 }
+
+export const debounce = (func, wait: number) => {
+  let timeout: string | number | NodeJS.Timeout;
+
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
