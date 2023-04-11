@@ -16,9 +16,12 @@ export default {
     variant: {
       name: 'Variant',
       description: 'icon is main Variant',
-      control: 'select',
-      defaultValue: 'icon',
+      control: {
+        type: 'select',
+        labels: { icon: 'Icon', image: 'Image' },
+      },
       options: ['icon', 'image'],
+      defaultValue: 'icon',
       type: { name: 'string', required: 'true' },
     },
     featureTitle: {
@@ -53,24 +56,23 @@ let previousDesc = '';
 const Template: StoryFn<FeatureHighlightProps & { description: string }> = (
   args
 ) => {
-  const { description, ctaText, featureTitle, variant } = args;
+  const { description, ctaText, featureTitle, variant, url } = args;
   if (description !== previousDesc) {
     previousDesc = description;
     key++;
   }
   return (
-    <div style={{ height: 600 }}>
-      <div style={{ maxWidth: 386 }}>
-        <DatacomFeatureHighlight
-          key={key}
-          imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
-          featureTitle={featureTitle}
-          variant={variant}
-          icon="globe"
-          ctaText={ctaText}>
-          {description && <span slot="description">{description}</span>}
-        </DatacomFeatureHighlight>
-      </div>
+    <div style={{ maxWidth: 386 }}>
+      <DatacomFeatureHighlight
+        key={key}
+        imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
+        featureTitle={featureTitle}
+        variant={variant}
+        url={url}
+        icon="globe"
+        ctaText={ctaText}>
+        {description && <span slot="description">{description}</span>}
+      </DatacomFeatureHighlight>
     </div>
   );
 };
@@ -93,7 +95,7 @@ export const FeatureHighlightGroup = (
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
             ctaText={ctaText}
             icon="globe"
-            url="https://datacom.com">
+            url="#">
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -110,7 +112,7 @@ export const FeatureHighlightGroup = (
             icon="globe"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
             ctaText="Learn more"
-            url="https://datacom.com">
+            url="#">
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -127,7 +129,7 @@ export const FeatureHighlightGroup = (
             icon="globe"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
             ctaText="Learn more"
-            url="https://datacom.com">
+            url="#">
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -144,7 +146,7 @@ export const FeatureHighlightGroup = (
             icon="globe"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
             ctaText="Learn more"
-            url="https://datacom.com">
+            url="/#">
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
