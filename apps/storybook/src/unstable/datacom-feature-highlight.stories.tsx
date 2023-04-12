@@ -13,17 +13,6 @@ export default {
   title: 'Feature Highlight',
   component: DatacomFeatureHighlight,
   argTypes: {
-    variant: {
-      name: 'Variant',
-      description: 'icon is main Variant',
-      control: {
-        type: 'select',
-        labels: { icon: 'Icon', image: 'Image' },
-      },
-      options: ['icon', 'image'],
-      defaultValue: 'icon',
-      type: { name: 'string', required: 'true' },
-    },
     featureTitle: {
       name: 'Title',
       defaultValue: 'Title',
@@ -48,6 +37,22 @@ export default {
       description: 'URL that  should link to.',
       type: { name: 'string' },
     },
+    readonly: {
+      name: 'Variant Only',
+      description: 'Will only display set rating if set to true.',
+      type: { name: 'boolean' },
+    },
+    variant: {
+      name: 'Variant',
+      description: 'icon is default variant',
+      control: {
+        type: 'select',
+        labels: { icon: 'Icon', image: 'Image' },
+      },
+      options: ['icon', 'image'],
+      defaultValue: 'icon',
+      if: { arg: 'readonly' },
+    },
   },
 };
 let key = 0;
@@ -56,7 +61,7 @@ let previousDesc = '';
 const Template: StoryFn<FeatureHighlightProps & { description: string }> = (
   args
 ) => {
-  const { description, ctaText, featureTitle, variant, url } = args;
+  const { description, ctaText, featureTitle, url, variant } = args;
   if (description !== previousDesc) {
     previousDesc = description;
     key++;
@@ -67,9 +72,10 @@ const Template: StoryFn<FeatureHighlightProps & { description: string }> = (
         key={key}
         imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
         featureTitle={featureTitle}
-        variant={variant}
-        url={url}
         icon="globe"
+        variant={variant}
+        readonly
+        url={url}
         ctaText={ctaText}>
         {description && <span slot="description">{description}</span>}
       </DatacomFeatureHighlight>
@@ -91,6 +97,7 @@ export const FeatureHighlightGroup = (
         <DatacomFeatureHighlightGroup>
           <DatacomFeatureHighlight
             variant={variant}
+            readonly
             featureTitle={featureTitle}
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
             ctaText={ctaText}
@@ -108,6 +115,7 @@ export const FeatureHighlightGroup = (
           </DatacomFeatureHighlight>
           <DatacomFeatureHighlight
             variant={variant}
+            readonly
             featureTitle={featureTitle}
             icon="globe"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
@@ -125,6 +133,7 @@ export const FeatureHighlightGroup = (
           </DatacomFeatureHighlight>
           <DatacomFeatureHighlight
             variant={variant}
+            readonly
             featureTitle={featureTitle}
             icon="globe"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
@@ -142,11 +151,12 @@ export const FeatureHighlightGroup = (
           </DatacomFeatureHighlight>
           <DatacomFeatureHighlight
             variant={variant}
+            readonly
             featureTitle={featureTitle}
             icon="globe"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
             ctaText="Learn more"
-            url="/#">
+            url="#">
             <span slot="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut

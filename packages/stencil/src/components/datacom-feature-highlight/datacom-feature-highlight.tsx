@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Element, VNode } from '@stencil/core';
+import { Component, Host, h, Prop, State, Element, Fragment } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 
 export type ImageVariant = 'icon' | 'image';
@@ -15,6 +15,7 @@ export type ImageVariant = 'icon' | 'image';
 export class DatacomFeatureHighlight {
   @Element() host: HTMLElement;
 
+  @Prop() readonly = false;
   @Prop() variant: ImageVariant = 'icon';
   @Prop() featureTitle: string;
   @Prop() ctaText: string;
@@ -32,20 +33,38 @@ export class DatacomFeatureHighlight {
     this.hasDescriptionSlotElements = !!this.host.querySelector('[slot="description"]');
   }
 
-  render() {
-    let featureImage: VNode;
+  /**
+   * Renders the variant when component is readonly.
+   * @returns Display icon and image variants.
+   * (Optional)
+   */
+  private renderVariant = () => {
     if (this.variant === 'icon' && this.icon.length > 0) {
-      featureImage = getSvg(this.icon, { class: 'dc-feature-icon' });
+      return <Fragment>{getSvg(this.icon, { class: 'dc-feature-icon' })}</Fragment>;
     } else {
-      featureImage = this.imageUrl && <img class="dc-feature-image" src={this.imageUrl} />;
+      return <Fragment>{this.imageUrl && <img class="dc-feature-image" src={this.imageUrl} />}</Fragment>;
     }
+  };
 
+  /**
+   * Renders the image or icon.
+   * @returns Display image if icon is null.
+   */
+  private renderNotVariant = () => {
+    if (this.icon != null) {
+      return <Fragment>{getSvg(this.icon, { class: 'dc-feature-icon' })}</Fragment>;
+    } else {
+      return <Fragment>{this.imageUrl && <img class="dc-feature-image" src={this.imageUrl} />}</Fragment>;
+    }
+  };
+
+  render() {
     const hasActions = this.ctaText;
 
     return (
       <Host>
         <div class="dc-feature-highlight">
-          <div class="dc-feature-media-wrapper">{featureImage}</div>
+          <div class="dc-feature-media-wrapper">{!this.readonly ? this.renderNotVariant() : this.renderVariant()}</div>
           <div class="dc-feature-content-wrapper">
             <div class="dc-feature-content">
               {this.featureTitle && <div class="dc-feature-title">{this.featureTitle}</div>}

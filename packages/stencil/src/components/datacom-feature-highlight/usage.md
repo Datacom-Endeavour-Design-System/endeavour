@@ -5,7 +5,7 @@
 -Feature highlight component is used to display image, text and action together.
 -The feature highlight component has two components: 'datacom-feature-highlight' , 'datacom-feature-highlight-group'.
 
-### Example
+### Example 
 
 ```html
 <datacom-feature-highlight
@@ -13,7 +13,7 @@
   cta-text="Learn more"
   image-url="https://images.com"
   url='https://test.com'
-  variant="image"
+  icon='globe'
 >
   <span slot="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
 </datacom-feature-highlight>
@@ -29,7 +29,6 @@
   cta-text="Learn more"
   image-url="https://images.com"
   url='https://test.com'
-  variant="image"
 >
   <span slot="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
 </datacom-feature-highlight>
@@ -38,7 +37,6 @@
   cta-text="Learn more"
   image-url="https://images.com"
   url='https://test.com'
-  variant="image"
 >
   <span slot="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
 </datacom-feature-highlight>
@@ -47,7 +45,6 @@
   cta-text="Learn more"
   image-url="https://images.com"
   url='https://test.com'
-  variant="image"
 >
   <span slot="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
 </datacom-feature-highlight>
@@ -57,8 +54,9 @@
 ### Properties
 The component accepts following properties.
 - variant - It takes two values 'image' and 'icon'.The default value is icon.
+- readonly - It enables icon and image variants.
 - featureTitle - This sets the text for the feature title.
 - ctaText - This sets the text within the CTA element.
-- icon - This sets the svg icon used to be displayed at the top of the feature when the variant value is an icon.
-- imageUrl - This sets the url for the image to be displayed at the top of the feature when the variant value is image.
+- icon - This sets the svg icon used to be displayed at the top of the feature.
+- imageUrl - This sets the url for the image to be displayed at the top of the feature.
 - url - This sets the url that the CTA element will link to.
