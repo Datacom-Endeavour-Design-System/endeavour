@@ -174,8 +174,6 @@ export class DatacomToggle {
 
     if (slottedElement !== undefined && this.slottedElement !== null) {
       this.slottedElement = slottedElement;
-      this.slottedElement.addEventListener('mouseenter', this.showTooltip);
-      this.slottedElement.addEventListener('mouseleave', this.hideTooltip);
       this.slottedElement.addEventListener('focusin', this.showTooltip);
       this.slottedElement.addEventListener('focusout', this.hideTooltip);
     }
@@ -199,8 +197,6 @@ export class DatacomToggle {
    */
   disconnectedCallback() {
     if (this.slottedElement !== undefined && this.slottedElement !== null) {
-      this.slottedElement.removeEventListener('mouseenter', this.showTooltip);
-      this.slottedElement.removeEventListener('mouseleave', this.hideTooltip);
       this.slottedElement.removeEventListener('focusin', this.showTooltip);
       this.slottedElement.removeEventListener('focusout', this.hideTooltip);
     }
