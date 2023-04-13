@@ -13,6 +13,19 @@ export default {
   title: 'Feature Highlight',
   component: DatacomFeatureHighlight,
   argTypes: {
+    icon: {
+      name: 'Variant',
+      description: 'Display image icon from a set of pre-defined images',
+      control: {
+        type: 'select',
+        labels: {
+          globe: 'Icon',
+          '': 'Image',
+        },
+      },
+      options: ['', 'globe'],
+      defaultValue: '',
+    },
     featureTitle: {
       name: 'Title',
       defaultValue: 'Title',
@@ -32,26 +45,10 @@ export default {
       type: { name: 'string' },
     },
     url: {
-      name: 'URL',
+      name: 'CTA URL',
       defaultValue: 'https://datacom.com',
       description: 'URL that  should link to.',
       type: { name: 'string' },
-    },
-    readonly: {
-      name: 'Variant Only',
-      description: 'Will only display set rating if set to true.',
-      type: { name: 'boolean' },
-    },
-    variant: {
-      name: 'Variant',
-      description: 'icon is default variant',
-      control: {
-        type: 'select',
-        labels: { icon: 'Icon', image: 'Image' },
-      },
-      options: ['icon', 'image'],
-      defaultValue: 'icon',
-      if: { arg: 'readonly' },
     },
   },
 };
@@ -61,7 +58,7 @@ let previousDesc = '';
 const Template: StoryFn<FeatureHighlightProps & { description: string }> = (
   args
 ) => {
-  const { description, ctaText, featureTitle, url, variant } = args;
+  const { description, ctaText, featureTitle, url, icon } = args;
   if (description !== previousDesc) {
     previousDesc = description;
     key++;
@@ -72,9 +69,7 @@ const Template: StoryFn<FeatureHighlightProps & { description: string }> = (
         key={key}
         imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
         featureTitle={featureTitle}
-        icon="globe"
-        variant={variant}
-        readonly
+        icon={icon}
         url={url}
         ctaText={ctaText}>
         {description && <span slot="description">{description}</span>}
@@ -89,83 +84,43 @@ FeatureHighlight.args = {};
 export const FeatureHighlightGroup = (
   args: FeatureHighlightProps & { description: string }
 ) => {
-  const { ctaText, featureTitle, variant } = args;
+  const { description, ctaText, featureTitle, icon } = args;
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: 600 }}>
       <div style={{ maxWidth: 1254, width: '100%' }}>
         <DatacomFeatureHighlightGroup>
           <DatacomFeatureHighlight
-            variant={variant}
-            readonly
             featureTitle={featureTitle}
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
             ctaText={ctaText}
-            icon="globe"
+            icon={icon}
             url="#">
-            <span slot="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi.
-            </span>
+            <span slot="description">{description}</span>
           </DatacomFeatureHighlight>
           <DatacomFeatureHighlight
-            variant={variant}
-            readonly
             featureTitle={featureTitle}
-            icon="globe"
+            icon={icon}
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
             ctaText="Learn more"
             url="#">
-            <span slot="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi.
-            </span>
+            <span slot="description">{description}</span>
           </DatacomFeatureHighlight>
           <DatacomFeatureHighlight
-            variant={variant}
-            readonly
             featureTitle={featureTitle}
-            icon="globe"
+            imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
+            ctaText="Learn more"
+            icon={icon}
+            url="#">
+            <span slot="description">{description}</span>
+          </DatacomFeatureHighlight>
+          <DatacomFeatureHighlight
+            featureTitle={featureTitle}
+            icon={icon}
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
             ctaText="Learn more"
             url="#">
-            <span slot="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi.
-            </span>
-          </DatacomFeatureHighlight>
-          <DatacomFeatureHighlight
-            variant={variant}
-            readonly
-            featureTitle={featureTitle}
-            icon="globe"
-            imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
-            ctaText="Learn more"
-            url="#">
-            <span slot="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi.
-            </span>
+            <span slot="description">{description}</span>
           </DatacomFeatureHighlight>
         </DatacomFeatureHighlightGroup>
       </div>

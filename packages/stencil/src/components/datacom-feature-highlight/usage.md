@@ -53,8 +53,6 @@
 
 ### Properties
 The component accepts following properties.
-- variant - It takes two values 'image' and 'icon'.The default value is icon.
-- readonly - It enables icon and image variants.
 - featureTitle - This sets the text for the feature title.
 - ctaText - This sets the text within the CTA element.
 - icon - This sets the svg icon used to be displayed at the top of the feature.
