@@ -32,12 +32,13 @@ export class DatacomToggle {
   @Prop() position: TooltipPositionType = 'top';
   @Prop() text: string;
 
-  @State() currentPosition: TooltipPositionType = this.position;
   @State() isTooltipVisible = false;
 
+  private currentPosition: TooltipPositionType;
   private slotElement: HTMLSlotElement;
   private slottedElement: Element;
   private tooltipElement: HTMLElement;
+  private tooltipWrapperElement: HTMLElement;
 
   private setSlotElementRef(el: HTMLSlotElement) {
     this.slotElement = el;
@@ -45,6 +46,10 @@ export class DatacomToggle {
 
   private setTooltipElementRef(el: HTMLElement) {
     this.tooltipElement = el;
+  }
+
+  private setTooltipWrapperElementRef(el: HTMLElement) {
+    this.tooltipWrapperElement = el;
   }
 
   showTooltip = () => {
@@ -80,16 +85,25 @@ export class DatacomToggle {
     };
   }
 
-  resetTooltipPosition = debounce(() => {
-    this.currentPosition = this.position;
-  }, 300);
+  /**
+   * Updates position class on wrapper element. Doing it this way
+   * prevents re-renders for performance.
+   */
+  updatePositionClass(newPosition: TooltipPositionType) {
+    this.tooltipWrapperElement.classList.remove(this.currentPosition);
+    this.currentPosition = newPosition;
+    this.tooltipWrapperElement.classList.add(this.currentPosition);
+  }
 
+  /**
+   * Checks current tooltip position and corrects its position to
+   * make it fully visible in current viewport.
+   */
   adjustTooltipPosition = () => {
     const positionData = this.getViewportPositionData(this.tooltipElement);
 
     if (!positionData.fullyVisible && !positionData.fullyHidden) {
-      console.log('Fixing position!');
-      const splitClass = this.position.split('-');
+      const splitClass = this.currentPosition.split('-');
       const mainPosition = splitClass[0];
       const subPosition = splitClass?.[1] || '';
 
@@ -134,13 +148,27 @@ export class DatacomToggle {
         positionFinal = `${positionFinal}-${subPositionFinal}`;
       }
 
-      console.log(`Updating from "${this.position}" to "${positionFinal}" using following data: `);
-      if (positionFinal !== this.position) {
-        this.currentPosition = positionFinal as TooltipPositionType;
+      if (positionFinal !== this.position || positionFinal !== this.currentPosition) {
+        this.updatePositionClass(positionFinal as TooltipPositionType);
       }
     }
   };
 
+  /**
+   * Debounced function for resetting tooltip position
+   * to initially configured position and re-triggering
+   * tooltip correction logic (adjustTooltipPosition()).
+   */
+  resetTooltipPosition = debounce(() => {
+    this.updatePositionClass(this.position);
+    this.adjustTooltipPosition();
+  }, 100);
+
+  /**
+   * Lifecycle method for setting event listeners for showing tooltip,
+   * as well as setting the position class. Will also set event
+   * listeners for tooltip correction logic if allowed.
+   */
   componentDidLoad() {
     const slottedElement: Element = this.slotElement?.assignedElements()[0];
 
@@ -152,20 +180,23 @@ export class DatacomToggle {
       this.slottedElement.addEventListener('focusout', this.hideTooltip);
     }
 
+    this.updatePositionClass(this.position);
+
     if (!this.disableAutoPosition) {
+      // Initial check for adjusting tooltip position
       this.adjustTooltipPosition();
-      //  THese should reser position of tooltip (which should update currentPosition state, which should trigger new render)
+
+      // Apply listeners to update tooltip position
       window.addEventListener('scroll', this.resetTooltipPosition);
       window.addEventListener('resize', this.resetTooltipPosition);
     }
   }
 
-  componentDidRender() {
-    if (!this.disableAutoPosition && this.currentPosition === this.position) {
-      this.adjustTooltipPosition();
-    }
-  }
-
+  /**
+   * Lifecycle method for removing event listeners for showing tooltip,
+   * as well as removing event listeners for tooltip correction logic
+   * if they were allowed.
+   */
   disconnectedCallback() {
     if (this.slottedElement !== undefined && this.slottedElement !== null) {
       this.slottedElement.removeEventListener('mouseenter', this.showTooltip);
@@ -175,6 +206,7 @@ export class DatacomToggle {
     }
 
     if (!this.disableAutoPosition) {
+      this.tooltipWrapperElement.classList.remove(this.currentPosition);
       window.removeEventListener('scroll', this.resetTooltipPosition);
       window.removeEventListener('resize', this.resetTooltipPosition);
     }
@@ -185,7 +217,6 @@ export class DatacomToggle {
       'dark': this.dark,
       'dc-tooltip-wrapper': true,
       'show': this.isTooltipVisible,
-      [`${this.currentPosition}`]: true,
     };
 
     const arrowClasses = {
@@ -196,7 +227,7 @@ export class DatacomToggle {
     return (
       <Host>
         <div class="dc-tooltip-hoc">
-          <div class={wrapperClasses}>
+          <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)}>
             <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)}>
               {this.text}
               <div class={arrowClasses} />
