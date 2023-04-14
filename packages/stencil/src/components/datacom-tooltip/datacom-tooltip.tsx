@@ -25,7 +25,7 @@ export type TooltipPositionType =
   shadow: true,
 })
 export class DatacomToggle {
-  @Prop() disableAutoPosition = false;
+  @Prop() enableAutoPosition = false;
   @Prop() dark = false;
   @Prop() id: string;
   @Prop() hideTip = false;
@@ -182,7 +182,7 @@ export class DatacomToggle {
 
     this.updatePositionClass(this.position);
 
-    if (!this.disableAutoPosition) {
+    if (!this.enableAutoPosition) {
       // Initial check for adjusting tooltip position
       this.adjustTooltipPosition();
 
@@ -203,7 +203,7 @@ export class DatacomToggle {
       this.slottedElement.removeEventListener('focusout', this.hideTooltip);
     }
 
-    if (!this.disableAutoPosition) {
+    if (!this.enableAutoPosition) {
       this.tooltipWrapperElement.classList.remove(this.currentPosition);
       window.removeEventListener('scroll', this.resetTooltipPosition);
       window.removeEventListener('resize', this.resetTooltipPosition);
