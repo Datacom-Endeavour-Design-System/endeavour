@@ -31,6 +31,7 @@ export class DatacomToggle {
   @Prop() hideTip = false;
   @Prop() position: TooltipPositionType = 'top';
   @Prop() text: string;
+  @Prop() width: number;
 
   @State() isTooltipVisible = false;
 
@@ -66,7 +67,7 @@ export class DatacomToggle {
    * @returns object with properties related element's position in viewport.
    */
   getViewportPositionData(element: HTMLElement) {
-    const { top, left, bottom, right } = element.getBoundingClientRect();
+    const { top, left, bottom, right } = element?.getBoundingClientRect();
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 
@@ -225,7 +226,7 @@ export class DatacomToggle {
     return (
       <Host>
         <div class="dc-tooltip-hoc">
-          <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)}>
+          <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)} style={{ width: `${this.width}` }}>
             <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)}>
               {this.text}
               <div class={arrowClasses} />
