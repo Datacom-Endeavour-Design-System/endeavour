@@ -104,7 +104,7 @@ export class DatacomToggle {
     const slottedElementPositionData = this.getViewportPositionData(this.slottedElement);
 
     // Only trigger positioning logic when element is fully visible but tooltip isn't.
-    if (!tooltipPositionData.fullyVisible && slottedElementPositionData.fullyVisible) {
+    if (!tooltipPositionData.fullyVisible && !slottedElementPositionData.fullyHidden) {
       const splitClass = this.currentPosition.split('-');
       const mainPosition = splitClass[0];
       const subPosition = splitClass?.[1] || '';
