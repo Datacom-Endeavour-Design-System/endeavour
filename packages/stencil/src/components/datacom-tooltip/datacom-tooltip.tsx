@@ -36,7 +36,7 @@ export class DatacomToggle {
 
   private currentPosition: TooltipPositionType;
   private slotElement: HTMLSlotElement;
-  private slottedElement: Element;
+  private slottedElement: HTMLElement;
   private tooltipElement: HTMLElement;
   private tooltipWrapperElement: HTMLElement;
 
@@ -100,9 +100,11 @@ export class DatacomToggle {
    * make it fully visible in current viewport.
    */
   adjustTooltipPosition = () => {
-    const positionData = this.getViewportPositionData(this.tooltipElement);
+    const tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
+    const slottedElementPositionData = this.getViewportPositionData(this.slottedElement);
 
-    if (!positionData.fullyVisible && !positionData.fullyHidden) {
+    // Only trigger positioning logic when element is fully visible but tooltip isn't.
+    if (!tooltipPositionData.fullyVisible && slottedElementPositionData.fullyVisible) {
       const splitClass = this.currentPosition.split('-');
       const mainPosition = splitClass[0];
       const subPosition = splitClass?.[1] || '';
@@ -111,35 +113,35 @@ export class DatacomToggle {
       let subPositionFinal = subPosition;
 
       if (mainPosition === 'top' || mainPosition === 'bottom') {
-        if (!positionData.topEdgeVisible) {
+        if (!tooltipPositionData.topEdgeVisible) {
           positionFinal = 'bottom';
         }
 
-        if (!positionData.bottomEdgeVisible) {
+        if (!tooltipPositionData.bottomEdgeVisible) {
           positionFinal = 'top';
         }
 
-        if (!positionData.leftEdgeVisible && positionData.rightEdgeVisible) {
+        if (!tooltipPositionData.leftEdgeVisible && tooltipPositionData.rightEdgeVisible) {
           subPositionFinal = 'start';
-        } else if (positionData.leftEdgeVisible && !positionData.rightEdgeVisible) {
+        } else if (tooltipPositionData.leftEdgeVisible && !tooltipPositionData.rightEdgeVisible) {
           subPositionFinal = 'end';
-        } else if (!positionData.leftEdgeVisible && !positionData.rightEdgeVisible) {
+        } else if (!tooltipPositionData.leftEdgeVisible && !tooltipPositionData.rightEdgeVisible) {
           subPositionFinal = '';
         }
       } else if (mainPosition === 'left' || mainPosition === 'right') {
-        if (!positionData.leftEdgeVisible) {
+        if (!tooltipPositionData.leftEdgeVisible) {
           positionFinal = 'right';
         }
 
-        if (!positionData.rightEdgeVisible) {
+        if (!tooltipPositionData.rightEdgeVisible) {
           positionFinal = 'left';
         }
 
-        if (!positionData.topEdgeVisible && positionData.bottomEdgeVisible) {
+        if (!tooltipPositionData.topEdgeVisible && tooltipPositionData.bottomEdgeVisible) {
           subPositionFinal = 'start';
-        } else if (positionData.topEdgeVisible && !positionData.bottomEdgeVisible) {
+        } else if (tooltipPositionData.topEdgeVisible && !tooltipPositionData.bottomEdgeVisible) {
           subPositionFinal = 'end';
-        } else if (!positionData.topEdgeVisible && !positionData.bottomEdgeVisible) {
+        } else if (!tooltipPositionData.topEdgeVisible && !tooltipPositionData.bottomEdgeVisible) {
           subPositionFinal = '';
         }
       }
@@ -173,7 +175,7 @@ export class DatacomToggle {
     const slottedElement: Element = this.slotElement?.assignedElements()[0];
 
     if (slottedElement !== undefined && this.slottedElement !== null) {
-      this.slottedElement = slottedElement;
+      this.slottedElement = slottedElement as HTMLElement;
       this.slottedElement.addEventListener('focusin', this.showTooltip);
       this.slottedElement.addEventListener('focusout', this.hideTooltip);
     }
