@@ -15,7 +15,7 @@ export default {
   argTypes: {
     icon: {
       name: 'Variant',
-      description: 'Display image icon from a set of pre-defined images',
+      description: 'Display image or icon from a set of pre-defined images',
       control: {
         type: 'select',
         labels: {
@@ -81,46 +81,54 @@ const Template: StoryFn<FeatureHighlightProps & { description: string }> = (
 export const FeatureHighlight = Template.bind({});
 FeatureHighlight.args = {};
 
-export const FeatureHighlightGroup = (
-  args: FeatureHighlightProps & { description: string }
-) => {
-  const { description, ctaText, featureTitle, icon } = args;
-
+export const FeatureHighlightGroup = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: 600 }}>
       <div style={{ maxWidth: 1254, width: '100%' }}>
         <DatacomFeatureHighlightGroup>
           <DatacomFeatureHighlight
-            featureTitle={featureTitle}
-            imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
-            ctaText={ctaText}
-            icon={icon}
-            url="#">
-            <span slot="description">{description}</span>
-          </DatacomFeatureHighlight>
-          <DatacomFeatureHighlight
-            featureTitle={featureTitle}
-            icon={icon}
+            featureTitle="Title"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
             ctaText="Learn more"
             url="#">
-            <span slot="description">{description}</span>
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim
+              ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            </span>
           </DatacomFeatureHighlight>
           <DatacomFeatureHighlight
-            featureTitle={featureTitle}
-            imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
-            ctaText="Learn more"
-            icon={icon}
-            url="#">
-            <span slot="description">{description}</span>
-          </DatacomFeatureHighlight>
-          <DatacomFeatureHighlight
-            featureTitle={featureTitle}
-            icon={icon}
+            featureTitle="Title"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
             ctaText="Learn more"
             url="#">
-            <span slot="description">{description}</span>
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim
+              ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            </span>
+          </DatacomFeatureHighlight>
+          <DatacomFeatureHighlight
+            featureTitle="Title"
+            imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
+            ctaText="Learn more"
+            url="#">
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim
+              ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            </span>
+          </DatacomFeatureHighlight>
+          <DatacomFeatureHighlight
+            featureTitle="Title"
+            imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
+            ctaText="Learn more"
+            url="#">
+            <span slot="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim
+              ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            </span>
           </DatacomFeatureHighlight>
         </DatacomFeatureHighlightGroup>
       </div>
