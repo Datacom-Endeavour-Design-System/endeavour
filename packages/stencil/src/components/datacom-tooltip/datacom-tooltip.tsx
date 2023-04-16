@@ -36,6 +36,7 @@ export class DatacomToggle {
   @State() isTooltipVisible = false;
 
   private currentPosition: TooltipPositionType;
+  private currentWidth: number;
   private slotElement: HTMLSlotElement;
   private slottedElement: HTMLElement;
   private tooltipElement: HTMLElement;
@@ -62,7 +63,27 @@ export class DatacomToggle {
   };
 
   /**
-   * Returns data about whether the element is fully visible in the viewport.
+   * Updates position class on wrapper element. Doing it this way
+   * prevents re-renders for performance.
+   */
+  updateTooltipPosition(newPosition: TooltipPositionType) {
+    // console.log(`Current pos: ${this.currentPosition} - New Pos: ${newPosition}`);
+    this.tooltipWrapperElement.classList.remove(this.currentPosition);
+    this.currentPosition = newPosition;
+    this.tooltipWrapperElement.classList.add(this.currentPosition);
+  }
+
+  /**
+   * Updates position class on wrapper element. Doing it this way
+   * prevents re-renders for performance.
+   */
+  updateTooltipWidth(newWidth: number) {
+    this.currentWidth = newWidth;
+    this.tooltipWrapperElement.style.width = `${this.currentWidth}px`;
+  }
+
+  /**
+   * Returns data about element's visiblity in viewport and its distance from viewport's edges.
    * @param element - Element to check is in viewport.
    * @returns object with properties related element's position in viewport.
    */
@@ -71,90 +92,57 @@ export class DatacomToggle {
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 
-    const topEdgeVisible = top >= 0;
-    const leftEdgeVisible = left >= 0;
-    const bottomEdgeVisible = bottom <= viewportHeight;
-    const rightEdgeVisible = right <= viewportWidth;
+    const distanceFromTop = top;
+    const distanceFromLeft = left;
+    const distanceFromRight = viewportWidth - right;
+    const distanceFromBottom = viewportHeight - bottom;
 
     return {
-      fullyHidden: !topEdgeVisible && !leftEdgeVisible && !bottomEdgeVisible && !rightEdgeVisible,
-      fullyVisible: topEdgeVisible && leftEdgeVisible && bottomEdgeVisible && rightEdgeVisible,
-      bottomEdgeVisible,
-      leftEdgeVisible,
-      rightEdgeVisible,
-      topEdgeVisible,
+      partiallyVisible: ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) && ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth)),
+      fullyVisible: top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth,
+      distanceFromBottom,
+      distanceFromLeft,
+      distanceFromRight,
+      distanceFromTop,
     };
   }
 
   /**
-   * Updates position class on wrapper element. Doing it this way
-   * prevents re-renders for performance.
+   * Function for creating CSS position class for tooltip
+   * @param mainPosition
+   * @param subPosition
+   * @returns
    */
-  updatePositionClass(newPosition: TooltipPositionType) {
-    this.tooltipWrapperElement.classList.remove(this.currentPosition);
-    this.currentPosition = newPosition;
-    this.tooltipWrapperElement.classList.add(this.currentPosition);
+  concatenatePositionClass(mainPosition: string, subPosition?: string): TooltipPositionType {
+    return (subPosition !== undefined && subPosition !== '' ? `${mainPosition}-${subPosition}` : mainPosition) as TooltipPositionType;
   }
 
   /**
-   * Checks current tooltip position and corrects its position to
-   * make it fully visible in current viewport.
+   * Logic for identifying appropriate position for tooltip
    */
   adjustTooltipPosition = () => {
-    const tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
     const slottedElementPositionData = this.getViewportPositionData(this.slottedElement);
+    const verticalBuffer = 40;
+    const horizontalBuffer = 100;
 
-    // Only trigger positioning logic when element is fully visible but tooltip isn't.
-    if (!tooltipPositionData.fullyVisible && !slottedElementPositionData.fullyHidden) {
-      const splitClass = this.currentPosition.split('-');
-      const mainPosition = splitClass[0];
-      const subPosition = splitClass?.[1] || '';
+    console.log('Slotted element data', slottedElementPositionData);
 
-      let positionFinal = mainPosition;
-      let subPositionFinal = subPosition;
+    let mainPosition;
 
-      if (mainPosition === 'top' || mainPosition === 'bottom') {
-        if (!tooltipPositionData.topEdgeVisible) {
-          positionFinal = 'bottom';
-        }
-
-        if (!tooltipPositionData.bottomEdgeVisible) {
-          positionFinal = 'top';
-        }
-
-        if (!tooltipPositionData.leftEdgeVisible && tooltipPositionData.rightEdgeVisible) {
-          subPositionFinal = 'start';
-        } else if (tooltipPositionData.leftEdgeVisible && !tooltipPositionData.rightEdgeVisible) {
-          subPositionFinal = 'end';
-        } else if (!tooltipPositionData.leftEdgeVisible && !tooltipPositionData.rightEdgeVisible) {
-          subPositionFinal = '';
-        }
-      } else if (mainPosition === 'left' || mainPosition === 'right') {
-        if (!tooltipPositionData.leftEdgeVisible) {
-          positionFinal = 'right';
-        }
-
-        if (!tooltipPositionData.rightEdgeVisible) {
-          positionFinal = 'left';
-        }
-
-        if (!tooltipPositionData.topEdgeVisible && tooltipPositionData.bottomEdgeVisible) {
-          subPositionFinal = 'start';
-        } else if (tooltipPositionData.topEdgeVisible && !tooltipPositionData.bottomEdgeVisible) {
-          subPositionFinal = 'end';
-        } else if (!tooltipPositionData.topEdgeVisible && !tooltipPositionData.bottomEdgeVisible) {
-          subPositionFinal = '';
-        }
-      }
-
-      if (subPositionFinal !== '') {
-        positionFinal = `${positionFinal}-${subPositionFinal}`;
-      }
-
-      if (positionFinal !== this.position || positionFinal !== this.currentPosition) {
-        this.updatePositionClass(positionFinal as TooltipPositionType);
-      }
+    // Check slotted elements distance from viewport edges to determine best cardinal direction to place.
+    if (slottedElementPositionData.distanceFromTop >= verticalBuffer) {
+      mainPosition = 'top';
+    } else if (slottedElementPositionData.distanceFromTop < 0) {
+      mainPosition = 'bottom';
+    } else if (slottedElementPositionData.distanceFromLeft >= horizontalBuffer) {
+      mainPosition = 'left';
+    } else if (slottedElementPositionData.distanceFromRight >= horizontalBuffer) {
+      mainPosition = 'right';
+    } else {
+      mainPosition = 'bottom';
     }
+
+    console.log('Proposed cardinal direction: ', mainPosition);
   };
 
   /**
@@ -163,7 +151,9 @@ export class DatacomToggle {
    * tooltip correction logic (adjustTooltipPosition()).
    */
   resetTooltipPosition = debounce(() => {
-    this.updatePositionClass(this.position);
+    // console.log("Resetting!");
+    this.updateTooltipPosition(this.position);
+    this.updateTooltipWidth(this.width);
     this.adjustTooltipPosition();
   }, 100);
 
@@ -181,10 +171,11 @@ export class DatacomToggle {
       this.slottedElement.addEventListener('focusout', this.hideTooltip);
     }
 
-    this.updatePositionClass(this.position);
+    this.updateTooltipPosition(this.position);
 
     if (!this.enableAutoPosition) {
       // Initial check for adjusting tooltip position
+      this.updateTooltipPosition('top');
       this.adjustTooltipPosition();
 
       // Apply listeners to update tooltip position
