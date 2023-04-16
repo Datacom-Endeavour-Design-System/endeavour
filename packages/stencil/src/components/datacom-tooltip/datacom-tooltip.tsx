@@ -25,11 +25,10 @@ export type TooltipPositionType =
   shadow: true,
 })
 export class DatacomToggle {
-  @Prop() enableAutoPosition = false;
   @Prop() dark = false;
   @Prop() id: string;
   @Prop() hideTip = false;
-  @Prop() position: TooltipPositionType = 'top';
+  @Prop() position: TooltipPositionType;
   @Prop() text: string;
   @Prop() width: number;
 
@@ -66,8 +65,8 @@ export class DatacomToggle {
    * Updates position class on wrapper element. Doing it this way
    * prevents re-renders for performance.
    */
-  updateTooltipPosition(newPosition: TooltipPositionType) {
-    // console.log(`Current pos: ${this.currentPosition} - New Pos: ${newPosition}`);
+  updateTooltipPosition(mainPosition: string, subPosition?: string) {
+    const newPosition = (subPosition !== undefined && subPosition !== '' ? `${mainPosition}-${subPosition}` : mainPosition) as TooltipPositionType;
     this.tooltipWrapperElement.classList.remove(this.currentPosition);
     this.currentPosition = newPosition;
     this.tooltipWrapperElement.classList.add(this.currentPosition);
@@ -78,8 +77,11 @@ export class DatacomToggle {
    * prevents re-renders for performance.
    */
   updateTooltipWidth(newWidth: number) {
-    this.currentWidth = newWidth;
-    this.tooltipWrapperElement.style.width = `${this.currentWidth}px`;
+    if (newWidth === undefined) {
+      this.tooltipWrapperElement.style.removeProperty('width');
+    } else {
+      this.tooltipWrapperElement.style.width = `${newWidth}px`;
+    }
   }
 
   /**
@@ -104,17 +106,9 @@ export class DatacomToggle {
       distanceFromLeft,
       distanceFromRight,
       distanceFromTop,
+      viewportWidth,
+      viewportHeight,
     };
-  }
-
-  /**
-   * Function for creating CSS position class for tooltip
-   * @param mainPosition
-   * @param subPosition
-   * @returns
-   */
-  concatenatePositionClass(mainPosition: string, subPosition?: string): TooltipPositionType {
-    return (subPosition !== undefined && subPosition !== '' ? `${mainPosition}-${subPosition}` : mainPosition) as TooltipPositionType;
   }
 
   /**
@@ -124,12 +118,14 @@ export class DatacomToggle {
     const slottedElementPositionData = this.getViewportPositionData(this.slottedElement);
     const verticalBuffer = 40;
     const horizontalBuffer = 100;
+    const tooltipPositionBuffer = 10;
 
     console.log('Slotted element data', slottedElementPositionData);
 
     let mainPosition;
+    let subPosition;
 
-    // Check slotted elements distance from viewport edges to determine best cardinal direction to place.
+    // Check slotted element's distance from viewport edges to determine best cardinal direction for main tooltip position.
     if (slottedElementPositionData.distanceFromTop >= verticalBuffer) {
       mainPosition = 'top';
     } else if (slottedElementPositionData.distanceFromTop < 0) {
@@ -143,6 +139,42 @@ export class DatacomToggle {
     }
 
     console.log('Proposed cardinal direction: ', mainPosition);
+    // Update tooltip position for next step.
+    this.updateTooltipPosition(mainPosition);
+    let tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
+
+    // Now determine if sub position should be start, end or center depending on where element is placed in viewport.
+    if (mainPosition === 'top' || mainPosition === 'bottom') {
+      // Vertical cardinal directions
+      if (tooltipPositionData.distanceFromLeft < 0 && tooltipPositionData.distanceFromRight >= 0) {
+        subPosition = 'start';
+      } else if (tooltipPositionData.distanceFromLeft >= 0 && tooltipPositionData.distanceFromRight < 0) {
+        subPosition = 'end';
+      } else {
+        subPosition = '';
+      }
+    } else {
+      // Horizontal cardinal directions
+
+      // Check and adjust width if needed.
+      if (tooltipPositionData.distanceFromLeft < 0) {
+        this.updateTooltipWidth(tooltipPositionData.viewportWidth - tooltipPositionData.distanceFromRight - tooltipPositionBuffer);
+        tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
+      } else if (tooltipPositionData.distanceFromRight < 0) {
+        this.updateTooltipWidth(tooltipPositionData.viewportWidth - tooltipPositionData.distanceFromLeft - tooltipPositionBuffer);
+        tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
+      }
+
+      if (tooltipPositionData.distanceFromTop < 0 && tooltipPositionData.distanceFromBottom >= 0) {
+        subPosition = 'start';
+      } else if (tooltipPositionData.distanceFromTop >= 0 && tooltipPositionData.distanceFromBottom < 0) {
+        subPosition = 'end';
+      } else {
+        subPosition = '';
+      }
+    }
+    console.log('Proposed sub position: ', subPosition);
+    this.updateTooltipPosition(mainPosition, subPosition);
   };
 
   /**
@@ -151,9 +183,9 @@ export class DatacomToggle {
    * tooltip correction logic (adjustTooltipPosition()).
    */
   resetTooltipPosition = debounce(() => {
-    // console.log("Resetting!");
-    this.updateTooltipPosition(this.position);
-    this.updateTooltipWidth(this.width);
+    console.log('Resetting!');
+    this.updateTooltipPosition('top');
+    this.updateTooltipWidth(undefined);
     this.adjustTooltipPosition();
   }, 100);
 
@@ -171,12 +203,10 @@ export class DatacomToggle {
       this.slottedElement.addEventListener('focusout', this.hideTooltip);
     }
 
-    this.updateTooltipPosition(this.position);
-
-    if (!this.enableAutoPosition) {
+    if (this.position === undefined) {
       // Initial check for adjusting tooltip position
-      this.updateTooltipPosition('top');
-      this.adjustTooltipPosition();
+      // this.updateTooltipPosition('top');
+      this.resetTooltipPosition();
 
       // Apply listeners to update tooltip position
       window.addEventListener('scroll', this.resetTooltipPosition);
@@ -195,7 +225,7 @@ export class DatacomToggle {
       this.slottedElement.removeEventListener('focusout', this.hideTooltip);
     }
 
-    if (!this.enableAutoPosition) {
+    if (this.position === undefined) {
       this.tooltipWrapperElement.classList.remove(this.currentPosition);
       window.removeEventListener('scroll', this.resetTooltipPosition);
       window.removeEventListener('resize', this.resetTooltipPosition);
@@ -207,6 +237,7 @@ export class DatacomToggle {
       'dark': this.dark,
       'dc-tooltip-wrapper': true,
       'show': this.isTooltipVisible,
+      [`${this.position}`]: this.position !== undefined,
     };
 
     const arrowClasses = {
@@ -217,7 +248,7 @@ export class DatacomToggle {
     return (
       <Host>
         <div class="dc-tooltip-hoc">
-          <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)} style={{ width: `${this.width}` }}>
+          <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)} style={{ width: `${this.width}px` }}>
             <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)}>
               {this.text}
               <div class={arrowClasses} />
