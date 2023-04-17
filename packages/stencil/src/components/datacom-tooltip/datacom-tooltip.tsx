@@ -1,5 +1,4 @@
 import { Component, h, Host, Prop, State } from '@stencil/core';
-import { debounce } from '../../utils';
 
 export type TooltipPositionType =
   | 'top'
@@ -13,7 +12,8 @@ export type TooltipPositionType =
   | 'left-end'
   | 'right'
   | 'right-start'
-  | 'right-end';
+  | 'right-end'
+  | 'auto';
 
 /**
  * Tooltip component is a floating, non-actionable label
@@ -28,7 +28,7 @@ export class DatacomToggle {
   @Prop() dark = false;
   @Prop() id: string;
   @Prop() hideTip = false;
-  @Prop() position: TooltipPositionType;
+  @Prop() position: TooltipPositionType = 'auto';
   @Prop() text: string;
   @Prop() width: number;
 
@@ -53,6 +53,10 @@ export class DatacomToggle {
   }
 
   showTooltip = () => {
+    if (this.position === 'auto') {
+      this.resetTooltipPosition();
+    }
+
     this.isTooltipVisible = true;
   };
 
@@ -174,22 +178,22 @@ export class DatacomToggle {
   };
 
   /**
-   * Debounced function for resetting tooltip position
+   * Function for resetting tooltip position
    * to initially configured position and re-triggering
    * tooltip correction logic (adjustTooltipPosition()).
    */
-  resetTooltipPosition = debounce(() => {
+  resetTooltipPosition = () => {
     this.updateTooltipPosition('bottom');
     this.updateTooltipWidth(undefined);
     this.adjustTooltipPosition();
-  }, 100);
+  };
 
   /**
    * Lifecycle method for setting event listeners for showing tooltip,
    * as well as setting the position class. Will also set event
    * listeners for tooltip correction logic if allowed.
    */
-  componentDidLoad() {
+  async componentDidLoad() {
     const slottedElement: Element = this.slotElement?.assignedElements()[0];
 
     if (slottedElement !== undefined && this.slottedElement !== null) {
@@ -197,13 +201,12 @@ export class DatacomToggle {
       this.slottedElement.addEventListener('focusin', this.showTooltip);
       this.slottedElement.addEventListener('focusout', this.hideTooltip);
 
-      if (this.position === undefined) {
+      if (this.position === 'auto') {
         // Initial reset for tooltip position
         this.resetTooltipPosition();
 
         // Apply listeners to update tooltip position
-        window.addEventListener('scroll', this.resetTooltipPosition);
-        window.addEventListener('resize', this.resetTooltipPosition);
+        this.slottedElement.addEventListener('mouseenter', this.resetTooltipPosition);
       }
     }
   }
@@ -221,8 +224,7 @@ export class DatacomToggle {
 
     if (this.position === undefined) {
       this.tooltipWrapperElement.classList.remove(this.currentPosition);
-      window.removeEventListener('scroll', this.resetTooltipPosition);
-      window.removeEventListener('resize', this.resetTooltipPosition);
+      this.slottedElement.removeEventListener('mouseenter', this.resetTooltipPosition);
     }
   }
 
@@ -231,7 +233,7 @@ export class DatacomToggle {
       'dark': this.dark,
       'dc-tooltip-wrapper': true,
       'show': this.isTooltipVisible,
-      [`${this.position}`]: this.position !== undefined,
+      [`${this.position}`]: this.position !== 'auto',
     };
 
     const arrowClasses = {
