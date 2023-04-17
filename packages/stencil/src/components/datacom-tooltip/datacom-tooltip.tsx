@@ -120,8 +120,6 @@ export class DatacomToggle {
     const horizontalBuffer = 100;
     const tooltipPositionBuffer = 10;
 
-    console.log('Slotted element data', slottedElementPositionData);
-
     let mainPosition;
     let subPosition;
 
@@ -130,16 +128,15 @@ export class DatacomToggle {
       mainPosition = 'top';
     } else if (slottedElementPositionData.distanceFromTop < 0) {
       mainPosition = 'bottom';
-    } else if (slottedElementPositionData.distanceFromLeft >= horizontalBuffer) {
+    } else if (slottedElementPositionData.distanceFromLeft >= horizontalBuffer && slottedElementPositionData.distanceFromLeft > slottedElementPositionData.distanceFromRight) {
       mainPosition = 'left';
-    } else if (slottedElementPositionData.distanceFromRight >= horizontalBuffer) {
+    } else if (slottedElementPositionData.distanceFromRight >= horizontalBuffer && slottedElementPositionData.distanceFromRight > slottedElementPositionData.distanceFromLeft) {
       mainPosition = 'right';
     } else {
       mainPosition = 'bottom';
     }
 
-    console.log('Proposed cardinal direction: ', mainPosition);
-    // Update tooltip position for next step.
+    // Update tooltip position and verify tooltip position data for next steps.
     this.updateTooltipPosition(mainPosition);
     let tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
 
@@ -173,7 +170,7 @@ export class DatacomToggle {
         subPosition = '';
       }
     }
-    console.log('Proposed sub position: ', subPosition);
+
     this.updateTooltipPosition(mainPosition, subPosition);
   };
 
@@ -183,7 +180,6 @@ export class DatacomToggle {
    * tooltip correction logic (adjustTooltipPosition()).
    */
   resetTooltipPosition = debounce(() => {
-    console.log('Resetting!');
     this.updateTooltipPosition('top');
     this.updateTooltipWidth(undefined);
     this.adjustTooltipPosition();
