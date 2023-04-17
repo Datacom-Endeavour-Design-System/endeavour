@@ -222,7 +222,7 @@ export class DatacomToggle {
       this.slottedElement.removeEventListener('focusout', this.hideTooltip);
     }
 
-    if (this.position === undefined) {
+    if (this.position === 'auto') {
       this.tooltipWrapperElement.classList.remove(this.currentPosition);
       this.slottedElement.removeEventListener('mouseenter', this.resetTooltipPosition);
     }
