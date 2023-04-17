@@ -35,7 +35,6 @@ export class DatacomToggle {
   @State() isTooltipVisible = false;
 
   private currentPosition: TooltipPositionType;
-  private currentWidth: number;
   private slotElement: HTMLSlotElement;
   private slottedElement: HTMLElement;
   private tooltipElement: HTMLElement;
