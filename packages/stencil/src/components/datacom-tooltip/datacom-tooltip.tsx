@@ -24,7 +24,7 @@ export type TooltipPositionType =
   styleUrl: 'datacom-tooltip.css',
   shadow: true,
 })
-export class DatacomToggle {
+export class DatacomTooltip {
   @Prop() dark = false;
   @Prop() id: string;
   @Prop() hideTip = false;
@@ -257,4 +257,4 @@ export class DatacomToggle {
   }
 }
 
-export type HTMLDatacomToggleElement = HTMLElement & DatacomToggle;
+export type HTMLDatacomTooltipElement = HTMLElement & DatacomTooltip;
