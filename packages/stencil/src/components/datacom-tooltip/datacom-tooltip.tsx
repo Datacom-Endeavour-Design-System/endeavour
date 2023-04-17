@@ -123,16 +123,16 @@ export class DatacomToggle {
     let subPosition;
 
     // Check slotted element's distance from viewport edges to determine best cardinal direction for main tooltip position.
-    if (slottedElementPositionData.distanceFromTop >= verticalBuffer) {
-      mainPosition = 'top';
-    } else if (slottedElementPositionData.distanceFromTop < 0) {
+    if (slottedElementPositionData.distanceFromBottom >= verticalBuffer) {
       mainPosition = 'bottom';
+    } else if (slottedElementPositionData.distanceFromBottom < 0) {
+      mainPosition = 'top';
     } else if (slottedElementPositionData.distanceFromLeft >= horizontalBuffer && slottedElementPositionData.distanceFromLeft > slottedElementPositionData.distanceFromRight) {
       mainPosition = 'left';
     } else if (slottedElementPositionData.distanceFromRight >= horizontalBuffer && slottedElementPositionData.distanceFromRight > slottedElementPositionData.distanceFromLeft) {
       mainPosition = 'right';
     } else {
-      mainPosition = 'bottom';
+      mainPosition = 'top';
     }
 
     // Update tooltip position and verify tooltip position data for next steps.
@@ -179,7 +179,7 @@ export class DatacomToggle {
    * tooltip correction logic (adjustTooltipPosition()).
    */
   resetTooltipPosition = debounce(() => {
-    this.updateTooltipPosition('top');
+    this.updateTooltipPosition('bottom');
     this.updateTooltipWidth(undefined);
     this.adjustTooltipPosition();
   }, 100);
@@ -196,16 +196,15 @@ export class DatacomToggle {
       this.slottedElement = slottedElement as HTMLElement;
       this.slottedElement.addEventListener('focusin', this.showTooltip);
       this.slottedElement.addEventListener('focusout', this.hideTooltip);
-    }
 
-    if (this.position === undefined) {
-      // Initial check for adjusting tooltip position
-      // this.updateTooltipPosition('top');
-      this.resetTooltipPosition();
+      if (this.position === undefined) {
+        // Initial reset for tooltip position
+        this.resetTooltipPosition();
 
-      // Apply listeners to update tooltip position
-      window.addEventListener('scroll', this.resetTooltipPosition);
-      window.addEventListener('resize', this.resetTooltipPosition);
+        // Apply listeners to update tooltip position
+        window.addEventListener('scroll', this.resetTooltipPosition);
+        window.addEventListener('resize', this.resetTooltipPosition);
+      }
     }
   }
 
