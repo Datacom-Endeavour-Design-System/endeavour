@@ -1,5 +1,4 @@
 import { Component, h, Host, Prop, State } from '@stencil/core';
-import { debounce } from '../../utils';
 
 export type TooltipPositionType =
   | 'top'
@@ -13,7 +12,8 @@ export type TooltipPositionType =
   | 'left-end'
   | 'right'
   | 'right-start'
-  | 'right-end';
+  | 'right-end'
+  | 'auto';
 
 /**
  * Tooltip component is a floating, non-actionable label
@@ -25,11 +25,10 @@ export type TooltipPositionType =
   shadow: true,
 })
 export class DatacomToggle {
-  @Prop() enableAutoPosition = false;
   @Prop() dark = false;
   @Prop() id: string;
   @Prop() hideTip = false;
-  @Prop() position: TooltipPositionType = 'top';
+  @Prop() position: TooltipPositionType = 'auto';
   @Prop() text: string;
   @Prop() width: number;
 
@@ -54,6 +53,10 @@ export class DatacomToggle {
   }
 
   showTooltip = () => {
+    if (this.position === 'auto') {
+      this.resetTooltipPosition();
+    }
+
     this.isTooltipVisible = true;
   };
 
@@ -62,7 +65,30 @@ export class DatacomToggle {
   };
 
   /**
-   * Returns data about whether the element is fully visible in the viewport.
+   * Updates position class on wrapper element. Doing it this way
+   * prevents re-renders for performance.
+   */
+  updateTooltipPosition(mainPosition: string, subPosition?: string) {
+    const newPosition = (subPosition !== undefined && subPosition !== '' ? `${mainPosition}-${subPosition}` : mainPosition) as TooltipPositionType;
+    this.tooltipWrapperElement.classList.remove(this.currentPosition);
+    this.currentPosition = newPosition;
+    this.tooltipWrapperElement.classList.add(this.currentPosition);
+  }
+
+  /**
+   * Updates position class on wrapper element. Doing it this way
+   * prevents re-renders for performance.
+   */
+  updateTooltipWidth(newWidth: number) {
+    if (newWidth === undefined) {
+      this.tooltipWrapperElement.style.removeProperty('width');
+    } else {
+      this.tooltipWrapperElement.style.width = `${newWidth}px`;
+    }
+  }
+
+  /**
+   * Returns data about element's visiblity in viewport and its distance from viewport's edges.
    * @param element - Element to check is in viewport.
    * @returns object with properties related element's position in viewport.
    */
@@ -71,125 +97,117 @@ export class DatacomToggle {
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 
-    const topEdgeVisible = top >= 0;
-    const leftEdgeVisible = left >= 0;
-    const bottomEdgeVisible = bottom <= viewportHeight;
-    const rightEdgeVisible = right <= viewportWidth;
+    const distanceFromTop = top;
+    const distanceFromLeft = left;
+    const distanceFromRight = viewportWidth - right;
+    const distanceFromBottom = viewportHeight - bottom;
 
     return {
-      fullyHidden: !topEdgeVisible && !leftEdgeVisible && !bottomEdgeVisible && !rightEdgeVisible,
-      fullyVisible: topEdgeVisible && leftEdgeVisible && bottomEdgeVisible && rightEdgeVisible,
-      bottomEdgeVisible,
-      leftEdgeVisible,
-      rightEdgeVisible,
-      topEdgeVisible,
+      partiallyVisible: ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) && ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth)),
+      fullyVisible: top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth,
+      distanceFromBottom,
+      distanceFromLeft,
+      distanceFromRight,
+      distanceFromTop,
+      viewportWidth,
+      viewportHeight,
     };
   }
 
   /**
-   * Updates position class on wrapper element. Doing it this way
-   * prevents re-renders for performance.
-   */
-  updatePositionClass(newPosition: TooltipPositionType) {
-    this.tooltipWrapperElement.classList.remove(this.currentPosition);
-    this.currentPosition = newPosition;
-    this.tooltipWrapperElement.classList.add(this.currentPosition);
-  }
-
-  /**
-   * Checks current tooltip position and corrects its position to
-   * make it fully visible in current viewport.
+   * Logic for identifying appropriate position for tooltip
    */
   adjustTooltipPosition = () => {
-    const tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
     const slottedElementPositionData = this.getViewportPositionData(this.slottedElement);
+    const verticalBuffer = 40;
+    const horizontalBuffer = 100;
+    const tooltipPositionBuffer = 10;
 
-    // Only trigger positioning logic when element is fully visible but tooltip isn't.
-    if (!tooltipPositionData.fullyVisible && !slottedElementPositionData.fullyHidden) {
-      const splitClass = this.currentPosition.split('-');
-      const mainPosition = splitClass[0];
-      const subPosition = splitClass?.[1] || '';
+    let mainPosition;
+    let subPosition;
 
-      let positionFinal = mainPosition;
-      let subPositionFinal = subPosition;
+    // Check slotted element's distance from viewport edges to determine best cardinal direction for main tooltip position.
+    if (slottedElementPositionData.distanceFromBottom >= verticalBuffer) {
+      mainPosition = 'bottom';
+    } else if (slottedElementPositionData.distanceFromBottom < 0) {
+      mainPosition = 'top';
+    } else if (slottedElementPositionData.distanceFromLeft >= horizontalBuffer && slottedElementPositionData.distanceFromLeft > slottedElementPositionData.distanceFromRight) {
+      mainPosition = 'left';
+    } else if (slottedElementPositionData.distanceFromRight >= horizontalBuffer && slottedElementPositionData.distanceFromRight > slottedElementPositionData.distanceFromLeft) {
+      mainPosition = 'right';
+    } else {
+      mainPosition = 'top';
+    }
 
-      if (mainPosition === 'top' || mainPosition === 'bottom') {
-        if (!tooltipPositionData.topEdgeVisible) {
-          positionFinal = 'bottom';
-        }
+    // Update tooltip position and verify tooltip position data for next steps.
+    this.updateTooltipPosition(mainPosition);
+    let tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
 
-        if (!tooltipPositionData.bottomEdgeVisible) {
-          positionFinal = 'top';
-        }
+    // Now determine if sub position should be start, end or center depending on where element is placed in viewport.
+    if (mainPosition === 'top' || mainPosition === 'bottom') {
+      // Vertical cardinal directions
+      if (tooltipPositionData.distanceFromLeft < 0 && tooltipPositionData.distanceFromRight >= 0) {
+        subPosition = 'start';
+      } else if (tooltipPositionData.distanceFromLeft >= 0 && tooltipPositionData.distanceFromRight < 0) {
+        subPosition = 'end';
+      } else {
+        subPosition = '';
+      }
+    } else {
+      // Horizontal cardinal directions
 
-        if (!tooltipPositionData.leftEdgeVisible && tooltipPositionData.rightEdgeVisible) {
-          subPositionFinal = 'start';
-        } else if (tooltipPositionData.leftEdgeVisible && !tooltipPositionData.rightEdgeVisible) {
-          subPositionFinal = 'end';
-        } else if (!tooltipPositionData.leftEdgeVisible && !tooltipPositionData.rightEdgeVisible) {
-          subPositionFinal = '';
-        }
-      } else if (mainPosition === 'left' || mainPosition === 'right') {
-        if (!tooltipPositionData.leftEdgeVisible) {
-          positionFinal = 'right';
-        }
-
-        if (!tooltipPositionData.rightEdgeVisible) {
-          positionFinal = 'left';
-        }
-
-        if (!tooltipPositionData.topEdgeVisible && tooltipPositionData.bottomEdgeVisible) {
-          subPositionFinal = 'start';
-        } else if (tooltipPositionData.topEdgeVisible && !tooltipPositionData.bottomEdgeVisible) {
-          subPositionFinal = 'end';
-        } else if (!tooltipPositionData.topEdgeVisible && !tooltipPositionData.bottomEdgeVisible) {
-          subPositionFinal = '';
-        }
+      // Check and adjust width if needed.
+      if (tooltipPositionData.distanceFromLeft < 0) {
+        this.updateTooltipWidth(tooltipPositionData.viewportWidth - tooltipPositionData.distanceFromRight - tooltipPositionBuffer);
+        tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
+      } else if (tooltipPositionData.distanceFromRight < 0) {
+        this.updateTooltipWidth(tooltipPositionData.viewportWidth - tooltipPositionData.distanceFromLeft - tooltipPositionBuffer);
+        tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
       }
 
-      if (subPositionFinal !== '') {
-        positionFinal = `${positionFinal}-${subPositionFinal}`;
-      }
-
-      if (positionFinal !== this.position || positionFinal !== this.currentPosition) {
-        this.updatePositionClass(positionFinal as TooltipPositionType);
+      if (tooltipPositionData.distanceFromTop < 0 && tooltipPositionData.distanceFromBottom >= 0) {
+        subPosition = 'start';
+      } else if (tooltipPositionData.distanceFromTop >= 0 && tooltipPositionData.distanceFromBottom < 0) {
+        subPosition = 'end';
+      } else {
+        subPosition = '';
       }
     }
+
+    this.updateTooltipPosition(mainPosition, subPosition);
   };
 
   /**
-   * Debounced function for resetting tooltip position
+   * Function for resetting tooltip position
    * to initially configured position and re-triggering
    * tooltip correction logic (adjustTooltipPosition()).
    */
-  resetTooltipPosition = debounce(() => {
-    this.updatePositionClass(this.position);
+  resetTooltipPosition = () => {
+    this.updateTooltipPosition('bottom');
+    this.updateTooltipWidth(undefined);
     this.adjustTooltipPosition();
-  }, 100);
+  };
 
   /**
    * Lifecycle method for setting event listeners for showing tooltip,
    * as well as setting the position class. Will also set event
    * listeners for tooltip correction logic if allowed.
    */
-  componentDidLoad() {
+  async componentDidLoad() {
     const slottedElement: Element = this.slotElement?.assignedElements()[0];
 
     if (slottedElement !== undefined && this.slottedElement !== null) {
       this.slottedElement = slottedElement as HTMLElement;
       this.slottedElement.addEventListener('focusin', this.showTooltip);
       this.slottedElement.addEventListener('focusout', this.hideTooltip);
-    }
 
-    this.updatePositionClass(this.position);
+      if (this.position === 'auto') {
+        // Initial reset for tooltip position
+        this.resetTooltipPosition();
 
-    if (!this.enableAutoPosition) {
-      // Initial check for adjusting tooltip position
-      this.adjustTooltipPosition();
-
-      // Apply listeners to update tooltip position
-      window.addEventListener('scroll', this.resetTooltipPosition);
-      window.addEventListener('resize', this.resetTooltipPosition);
+        // Apply listeners to update tooltip position
+        this.slottedElement.addEventListener('mouseenter', this.resetTooltipPosition);
+      }
     }
   }
 
@@ -204,10 +222,9 @@ export class DatacomToggle {
       this.slottedElement.removeEventListener('focusout', this.hideTooltip);
     }
 
-    if (!this.enableAutoPosition) {
+    if (this.position === 'auto') {
       this.tooltipWrapperElement.classList.remove(this.currentPosition);
-      window.removeEventListener('scroll', this.resetTooltipPosition);
-      window.removeEventListener('resize', this.resetTooltipPosition);
+      this.slottedElement.removeEventListener('mouseenter', this.resetTooltipPosition);
     }
   }
 
@@ -216,6 +233,7 @@ export class DatacomToggle {
       'dark': this.dark,
       'dc-tooltip-wrapper': true,
       'show': this.isTooltipVisible,
+      [`${this.position}`]: this.position !== 'auto',
     };
 
     const arrowClasses = {
@@ -226,7 +244,7 @@ export class DatacomToggle {
     return (
       <Host>
         <div class="dc-tooltip-hoc">
-          <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)} style={{ width: `${this.width}` }}>
+          <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)} style={{ width: `${this.width}px` }}>
             <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)}>
               {this.text}
               <div class={arrowClasses} />
