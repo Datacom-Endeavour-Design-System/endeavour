@@ -31,7 +31,7 @@ export default {
     text: {
       name: 'Text',
       description: 'Text displayed in tooltip.',
-      defaultValue: 'Tooltip Text',
+      defaultValue: 'Tooltip text',
       type: { name: 'string' },
     },
     dark: {
