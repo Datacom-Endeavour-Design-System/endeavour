@@ -81,7 +81,7 @@ const Template: StoryFn<FeatureHighlightProps & { description: string }> = (
 export const FeatureHighlight = Template.bind({});
 FeatureHighlight.args = {};
 
-export const FeatureHighlightGroup = () => {
+export const _3ColumnFeatureHighlightGroup = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: 600 }}>
       <div style={{ maxWidth: 1254, width: '100%' }}>
