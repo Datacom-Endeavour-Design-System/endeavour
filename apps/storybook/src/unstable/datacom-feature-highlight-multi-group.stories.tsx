@@ -4,6 +4,7 @@ import {
   DatacomFeatureHighlight,
   DatacomFeatureHighlightGroup,
 } from '@datacom/endeavour-react';
+
 type FeatureHighlightProps = React.ComponentProps<
   typeof DatacomFeatureHighlight
 >;
@@ -13,10 +14,10 @@ export default {
   component: DatacomFeatureHighlight,
   argTypes: {
     itemsPerRow: {
-      Name: 'ItemsPerRow',
+      name: 'Items Per Row',
       control: 'select',
-      defaultValue: 4,
       options: [3, 4],
+      type: { name: 'number' },
     },
   },
 };
@@ -84,5 +85,6 @@ const GroupStoriesTemplate: StoryFn<FeatureHighlightProps> = (args) => (
     </div>
   </div>
 );
-export const _4ColumnFeatureHighlightGroup = GroupStoriesTemplate.bind({});
-_4ColumnFeatureHighlightGroup.args = {};
+
+export const FeatureHighlightGroup = GroupStoriesTemplate.bind({});
+FeatureHighlightGroup.args = {};
