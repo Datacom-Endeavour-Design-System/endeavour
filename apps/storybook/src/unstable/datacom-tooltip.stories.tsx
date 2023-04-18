@@ -55,9 +55,17 @@ export default {
 } as Meta<typeof DatacomTooltip>;
 
 const Template: ComponentStoryFn<typeof DatacomTooltip> = (args) => (
-  <DatacomTooltip {...args}>
-    <DatacomButton>Hover me!</DatacomButton>
-  </DatacomTooltip>
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: 'calc(100vh - 2rem)',
+    }}>
+    <DatacomTooltip {...args}>
+      <DatacomButton>Hover me!</DatacomButton>
+    </DatacomTooltip>
+  </div>
 );
 
 export const Standard = Template.bind({});
