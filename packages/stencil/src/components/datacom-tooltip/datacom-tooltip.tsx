@@ -34,6 +34,7 @@ export class DatacomTooltip {
 
   @State() isTooltipVisible = false;
 
+  private hasAutoPositionEventListeners = false;
   private currentPosition: TooltipPositionType;
   private slotElement: HTMLSlotElement;
   private slottedElement: HTMLElement;
@@ -188,6 +189,29 @@ export class DatacomTooltip {
     this.adjustTooltipPosition();
   };
 
+  initializeAutoPositionLogic = () => {
+    // Initial reset for tooltip position
+    this.resetTooltipPosition();
+
+    if (!this.hasAutoPositionEventListeners) {
+      // Set boolean to track that "auto" position event listener has been added.
+      this.hasAutoPositionEventListeners = true;
+
+      // Apply listeners to update tooltip position
+      this.slottedElement.addEventListener('mouseenter', this.resetTooltipPosition);
+    }
+  };
+
+  removeAutoPositionLogic = () => {
+    if (this.hasAutoPositionEventListeners) {
+      // Set boolean to track that "auto" position event listener has been added.
+      this.hasAutoPositionEventListeners = false;
+
+      this.tooltipWrapperElement.classList.remove(this.currentPosition);
+      this.slottedElement.removeEventListener('mouseenter', this.resetTooltipPosition);
+    }
+  };
+
   /**
    * Lifecycle method for setting event listeners for showing tooltip,
    * as well as setting the position class. Will also set event
@@ -202,12 +226,16 @@ export class DatacomTooltip {
       this.slottedElement.addEventListener('focusout', this.hideTooltip);
 
       if (this.position === 'auto') {
-        // Initial reset for tooltip position
-        this.resetTooltipPosition();
-
-        // Apply listeners to update tooltip position
-        this.slottedElement.addEventListener('mouseenter', this.resetTooltipPosition);
+        this.initializeAutoPositionLogic();
       }
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.position === 'auto') {
+      this.initializeAutoPositionLogic();
+    } else {
+      this.removeAutoPositionLogic();
     }
   }
 
@@ -223,8 +251,7 @@ export class DatacomTooltip {
     }
 
     if (this.position === 'auto') {
-      this.tooltipWrapperElement.classList.remove(this.currentPosition);
-      this.slottedElement.removeEventListener('mouseenter', this.resetTooltipPosition);
+      this.removeAutoPositionLogic();
     }
   }
 
@@ -244,8 +271,8 @@ export class DatacomTooltip {
     return (
       <Host>
         <div class="dc-tooltip-hoc">
-          <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)} style={{ width: `${this.width}px` }}>
-            <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)}>
+          <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)}>
+            <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)} style={{ width: `${this.width}px` }}>
               {this.text}
               <div class={arrowClasses} />
             </div>
