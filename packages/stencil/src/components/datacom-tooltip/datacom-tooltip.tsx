@@ -89,7 +89,7 @@ export class DatacomTooltip {
   }
 
   /**
-   * Returns data about element's visiblity in viewport and its distance from viewport's edges.
+   * Returns data about element's visibility in viewport and its distance from viewport's edges.
    * @param element - Element to check is in viewport.
    * @returns object with properties related element's position in viewport.
    */
