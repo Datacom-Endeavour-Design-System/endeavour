@@ -31,3 +31,27 @@ export function randomString(length = 10, prefix?: string): string {
     return (prefix || '') + random.map(n => n.toString(16)).join('');
   }
 }
+
+/**
+ * Function for creating a debounced function with a
+ * configurable wait time between calls. Useful for limiting
+ * the amount of times a function is called in a short
+ * amount of time.
+ *
+ * @param func - Function to be debounced.
+ * @param wait - Wait time in milliseconds.
+ * @returns debounced function
+ */
+export const debounce = (func, wait: number) => {
+  let timeout: string | number | NodeJS.Timeout;
+
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
