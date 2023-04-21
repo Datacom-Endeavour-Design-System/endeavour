@@ -1,11 +1,19 @@
 import React from 'react';
-import { ComponentStoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { DatacomAvatar } from '@datacom/endeavour-react';
+
+type AvatarProps = React.ComponentProps<typeof DatacomAvatar>;
 
 export default {
   title: 'Avatar',
   component: DatacomAvatar,
   argTypes: {
+    variant: {
+      name: 'Variant',
+      control: 'select',
+      options: ['Simple', 'With Image'],
+      type: { name: 'string' },
+    },
     firstName: {
       name: 'First Name',
       type: { name: 'string', required: true },
@@ -22,15 +30,6 @@ export default {
       name: 'Company Name',
       type: { name: 'string', required: true },
     },
-    src: {
-      name: 'Image Source',
-      type: { name: 'string', required: false },
-    },
-    alt: {
-      name: 'Alt Text for Image',
-      type: { name: 'string', required: false },
-      if: { arg: 'src', truthy: true },
-    },
     url: {
       name: 'URL',
       defaultValue: 'https://datacom.com',
@@ -40,25 +39,33 @@ export default {
     },
   },
   args: {
-    firstName: 'First Name',
-    lastName: 'Last Name',
-    jobTitle: 'Job title',
+    variant: 'Simple',
+    firstName: 'Sally',
+    lastName: 'Mei',
+    jobTitle: 'UX/UI Designer',
     companyName: 'Datacom',
-    src: '',
-    alt: 'Alternate Texts',
-    url: 'https://datacom.com',
+    url: 'https://www.datacom.com',
   },
 } as Meta<typeof DatacomAvatar>;
 
-const Template: ComponentStoryFn<typeof DatacomAvatar> = (args) => (
-  <DatacomAvatar {...args} />
-);
+const Template: StoryFn<AvatarProps & { variant: string }> = (args) => {
+  const props = {
+    firstName: args.firstName,
+    lastName: args.lastName,
+    jobTitle: args.jobTitle,
+    companyName: args.companyName,
+    url: args.companyName,
+    src: '',
+    alt: '',
+  };
+
+  // Apply image related props when variant storybook control is set with 'With Image'.
+  if (args.variant === 'With Image') {
+    props.src = '/images/avatar-images/avatar-image.png';
+    props.alt = 'Avatar Image';
+  }
+
+  return <DatacomAvatar {...props} />;
+};
 
 export const Avatar = Template.bind({});
-Avatar.args = {
-  firstName: 'Sally',
-  lastName: 'Mei',
-  jobTitle: 'UX/UI Designer',
-  companyName: 'Datacom',
-  src: 'https://www.w3schools.com/howto/img_avatar2.png',
-};
