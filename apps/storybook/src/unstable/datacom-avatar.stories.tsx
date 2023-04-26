@@ -1,10 +1,8 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { DatacomAvatar } from '@datacom/endeavour-react';
 
-type AvatarProps = React.ComponentProps<typeof DatacomAvatar>;
-
-export default {
+const meta: Meta = {
   title: 'Avatar',
   component: DatacomAvatar,
   argTypes: {
@@ -46,26 +44,30 @@ export default {
     companyName: 'Datacom',
     url: 'https://www.datacom.com',
   },
-} as Meta<typeof DatacomAvatar>;
-
-const Template: StoryFn<AvatarProps & { variant: string }> = (args) => {
-  const props = {
-    firstName: args.firstName,
-    lastName: args.lastName,
-    jobTitle: args.jobTitle,
-    companyName: args.companyName,
-    url: args.companyName,
-    src: '',
-    alt: '',
-  };
-
-  // Apply image related props when variant storybook control is set with 'With Image'.
-  if (args.variant === 'With Image') {
-    props.src = '/images/avatar-images/avatar-image.png';
-    props.alt = 'Avatar Image';
-  }
-
-  return <DatacomAvatar {...props} />;
 };
 
-export const Avatar = Template.bind({});
+export default meta;
+type Story = StoryObj<typeof DatacomAvatar>;
+
+export const Avatar: Story = {
+  render: (
+    args: React.ComponentProps<typeof DatacomAvatar> & { variant: string }
+  ) => {
+    const props = {
+      firstName: args.firstName,
+      lastName: args.lastName,
+      jobTitle: args.jobTitle,
+      companyName: args.companyName,
+      url: args.companyName,
+      src: '',
+      alt: '',
+    };
+
+    if (args.variant === 'With Image') {
+      props.src = '/images/avatar-images/avatar-image.png';
+      props.alt = 'Avatar Image';
+    }
+
+    return <DatacomAvatar {...props} />;
+  },
+};
