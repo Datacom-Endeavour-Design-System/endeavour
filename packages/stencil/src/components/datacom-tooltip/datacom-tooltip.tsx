@@ -26,10 +26,10 @@ export type TooltipPositionType =
 })
 export class DatacomTooltip {
   @Prop() dark = false;
-  @Prop() id: string;
   @Prop() hideArrow = false;
+  @Prop() id: string;
+  @Prop() label: string;
   @Prop() position: TooltipPositionType = 'auto';
-  @Prop() text: string;
   @Prop() width: number;
 
   @State() isTooltipVisible = false;
@@ -273,7 +273,7 @@ export class DatacomTooltip {
         <div class="dc-tooltip-hoc">
           <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)}>
             <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)} style={{ width: `${this.width}px` }}>
-              {this.text}
+              {this.label}
               <div class={arrowClasses} />
             </div>
           </div>

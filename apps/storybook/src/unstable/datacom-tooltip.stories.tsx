@@ -28,8 +28,8 @@ export default {
       ],
       type: { name: 'string' },
     },
-    text: {
-      name: 'Text',
+    label: {
+      name: 'Label',
       description: 'Text displayed in tooltip.',
       defaultValue: 'Tooltip text',
       type: { name: 'string' },
