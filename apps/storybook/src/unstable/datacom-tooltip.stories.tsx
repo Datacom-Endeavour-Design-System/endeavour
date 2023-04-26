@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStoryFn, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 import { DatacomButton, DatacomTooltip } from '@datacom/endeavour-react';
 
 export default {
@@ -7,7 +7,7 @@ export default {
   component: DatacomTooltip,
   argTypes: {
     position: {
-      name: 'Tooltip position',
+      name: 'Tooltip Position',
       description: 'Sets position of tooltip.',
       control: 'select',
       defaultValue: 'bottom',
@@ -54,18 +54,20 @@ export default {
   },
 } as Meta<typeof DatacomTooltip>;
 
-const Template: ComponentStoryFn<typeof DatacomTooltip> = (args) => (
-  <div
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: 'calc(100vh - 2rem)',
-    }}>
-    <DatacomTooltip {...args}>
-      <DatacomButton>Hover me!</DatacomButton>
-    </DatacomTooltip>
-  </div>
-);
+type Story = StoryObj<typeof DatacomTooltip>;
 
-export const Standard = Template.bind({});
+export const Default: Story = {
+  render: (args: React.ComponentProps<typeof DatacomTooltip>) => (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 'calc(100vh - 2rem)',
+      }}>
+      <DatacomTooltip {...args}>
+        <DatacomButton>Hover me!</DatacomButton>
+      </DatacomTooltip>
+    </div>
+  ),
+};
