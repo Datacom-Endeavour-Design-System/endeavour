@@ -39,8 +39,8 @@ export default {
       defaultValue: false,
       type: { name: 'boolean' },
     },
-    hideTip: {
-      name: 'Hide Tip',
+    hideArrow: {
+      name: 'Hide Arrow',
       defaultValue: false,
       type: { name: 'boolean' },
     },

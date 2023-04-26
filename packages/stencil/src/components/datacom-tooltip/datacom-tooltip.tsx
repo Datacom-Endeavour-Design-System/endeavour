@@ -27,7 +27,7 @@ export type TooltipPositionType =
 export class DatacomTooltip {
   @Prop() dark = false;
   @Prop() id: string;
-  @Prop() hideTip = false;
+  @Prop() hideArrow = false;
   @Prop() position: TooltipPositionType = 'auto';
   @Prop() text: string;
   @Prop() width: number;
@@ -265,7 +265,7 @@ export class DatacomTooltip {
 
     const arrowClasses = {
       'dc-tooltip-arrow': true,
-      'hide-tip': this.hideTip,
+      'hide-arrow': this.hideArrow,
     };
 
     return (
