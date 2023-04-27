@@ -1,11 +1,17 @@
 import React from 'react';
-import { ComponentStoryFn, Meta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { DatacomAvatar } from '@datacom/endeavour-react';
 
-export default {
+const meta: Meta = {
   title: 'Avatar',
   component: DatacomAvatar,
   argTypes: {
+    variant: {
+      name: 'Variant',
+      control: 'select',
+      options: ['Simple', 'With Image'],
+      type: { name: 'string' },
+    },
     firstName: {
       name: 'First Name',
       type: { name: 'string', required: true },
@@ -22,15 +28,6 @@ export default {
       name: 'Company Name',
       type: { name: 'string', required: true },
     },
-    src: {
-      name: 'Image Source',
-      type: { name: 'string', required: false },
-    },
-    alt: {
-      name: 'Alt Text for Image',
-      type: { name: 'string', required: false },
-      if: { arg: 'src', truthy: true },
-    },
     url: {
       name: 'URL',
       defaultValue: 'https://datacom.com',
@@ -40,25 +37,37 @@ export default {
     },
   },
   args: {
-    firstName: 'First Name',
-    lastName: 'Last Name',
-    jobTitle: 'Job title',
+    variant: 'Simple',
+    firstName: 'Sally',
+    lastName: 'Mei',
+    jobTitle: 'UX/UI Designer',
     companyName: 'Datacom',
-    src: '',
-    alt: 'Alternate Texts',
-    url: 'https://datacom.com',
+    url: 'https://www.datacom.com',
   },
-} as Meta<typeof DatacomAvatar>;
+};
 
-const Template: ComponentStoryFn<typeof DatacomAvatar> = (args) => (
-  <DatacomAvatar {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof DatacomAvatar>;
 
-export const Avatar = Template.bind({});
-Avatar.args = {
-  firstName: 'Sally',
-  lastName: 'Mei',
-  jobTitle: 'UX/UI Designer',
-  companyName: 'Datacom',
-  src: 'https://www.w3schools.com/howto/img_avatar2.png',
+export const Avatar: Story = {
+  render: (
+    args: React.ComponentProps<typeof DatacomAvatar> & { variant: string }
+  ) => {
+    const props = {
+      firstName: args.firstName,
+      lastName: args.lastName,
+      jobTitle: args.jobTitle,
+      companyName: args.companyName,
+      url: args.companyName,
+      src: '',
+      alt: '',
+    };
+
+    if (args.variant === 'With Image') {
+      props.src = '/images/avatar-images/avatar-image.png';
+      props.alt = 'Avatar Image';
+    }
+
+    return <DatacomAvatar {...props} />;
+  },
 };
