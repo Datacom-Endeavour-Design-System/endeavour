@@ -132,9 +132,9 @@ export class DatacomTooltip {
       mainPosition = 'bottom';
     } else if (slottedElementPositionData.distanceFromBottom < 0) {
       mainPosition = 'top';
-    } else if (slottedElementPositionData.distanceFromLeft >= horizontalBuffer && slottedElementPositionData.distanceFromLeft > slottedElementPositionData.distanceFromRight) {
+    } else if (slottedElementPositionData.distanceFromLeft >= horizontalBuffer && slottedElementPositionData.distanceFromLeft >= slottedElementPositionData.distanceFromRight) {
       mainPosition = 'left';
-    } else if (slottedElementPositionData.distanceFromRight >= horizontalBuffer && slottedElementPositionData.distanceFromRight > slottedElementPositionData.distanceFromLeft) {
+    } else if (slottedElementPositionData.distanceFromRight >= horizontalBuffer && slottedElementPositionData.distanceFromRight >= slottedElementPositionData.distanceFromLeft) {
       mainPosition = 'right';
     } else {
       mainPosition = 'top';
