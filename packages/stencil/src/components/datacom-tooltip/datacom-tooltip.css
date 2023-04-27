@@ -237,5 +237,9 @@
 
 /* Class for hiding arrow */
 .hide-arrow {
+  padding: 0;
+}
+
+.hide-arrow .dc-tooltip-arrow {
   visibility: hidden;
 }

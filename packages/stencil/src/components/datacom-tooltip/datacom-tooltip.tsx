@@ -259,13 +259,14 @@ export class DatacomTooltip {
     const wrapperClasses = {
       'dark': this.dark,
       'dc-tooltip-wrapper': true,
+      'hide-arrow': this.hideArrow,
       'show': this.isTooltipVisible,
       [`${this.position}`]: this.position !== 'auto',
     };
 
+    // TODO - Clean up arrow classes if multiple classes aren't needed here.
     const arrowClasses = {
       'dc-tooltip-arrow': true,
-      'hide-arrow': this.hideArrow,
     };
 
     return (
