@@ -265,18 +265,13 @@ export class DatacomTooltip {
       [`${this.position}`]: this.position !== 'auto',
     };
 
-    // TODO - Clean up arrow classes if multiple classes aren't needed here.
-    const arrowClasses = {
-      'dc-tooltip-arrow': true,
-    };
-
     return (
       <Host>
         <div class="dc-tooltip-hoc">
           <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)}>
             <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)} style={{ width: `${this.width}px` }}>
               {this.label}
-              <div class={arrowClasses}>
+              <div class="dc-tooltip-arrow">
                 <TooltipArrow />
               </div>
             </div>
