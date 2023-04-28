@@ -1,4 +1,5 @@
 import { Component, h, Host, Prop, State } from '@stencil/core';
+import { TooltipArrow } from './assets/tooltip-arrow';
 
 export type TooltipPositionType =
   | 'top'
@@ -275,7 +276,9 @@ export class DatacomTooltip {
           <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)}>
             <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)} style={{ width: `${this.width}px` }}>
               {this.label}
-              <div class={arrowClasses} />
+              <div class={arrowClasses}>
+                <TooltipArrow />
+              </div>
             </div>
           </div>
           <slot ref={el => this.setSlotElementRef(el as HTMLSlotElement)} />
