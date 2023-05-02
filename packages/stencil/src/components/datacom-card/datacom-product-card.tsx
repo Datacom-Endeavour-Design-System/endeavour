@@ -30,6 +30,15 @@ export class DatacomProductCard {
   @Event() quickViewClicked: EventEmitter;
   @Event() productComparisonClicked: EventEmitter;
 
+  formatPrice = (price: number) => {
+    const formatter = new Intl.NumberFormat('en', {
+      style: 'currency',
+      currency: 'USD',
+    });
+
+    return formatter.format(price);
+  };
+
   /**
    * Helper function to render correct stock status element.
    * @returns HTML element for displaying stock status.
@@ -60,13 +69,17 @@ export class DatacomProductCard {
    * @returns HTML element for displaying price.
    */
   renderPriceElement = () => {
-    return this.promoPrice > 0 ? (
-      <Fragment>
-        <div class="dc-price">{this.promoPrice}</div>
-        <div class="dc-previous-price">{this.price}</div>
-      </Fragment>
-    ) : (
-      <div class="dc-price">{this.price}</div>
+    return (
+      <div class="dc-price-wrapper">
+        {this.promoPrice > 0 ? (
+          <Fragment>
+            <div class="dc-price">{this.formatPrice(this.promoPrice)}</div>
+            <div class="dc-previous-price">{this.formatPrice(this.price)}</div>
+          </Fragment>
+        ) : (
+          <div class="dc-price">{this.formatPrice(this.price)}</div>
+        )}
+      </div>
     );
   };
 

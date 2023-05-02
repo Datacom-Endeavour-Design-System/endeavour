@@ -6,6 +6,14 @@
   flex-grow: 1;
 }
 
+.dc-stock-status {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: -0.002em;
+  margin-bottom: 12px;
+}
+
 .dc-product-title {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -13,6 +21,19 @@
   display: -webkit-box;
   line-height: 24px;
   letter-spacing: -0.2px;
-  margin-top: 12px;
+  margin-bottom: 16px;
   overflow: hidden;
+}
+
+.dc-price-wrapper {
+  align-items: center;
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.dc-price {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  letter-spacing: -0.005em;
 }
