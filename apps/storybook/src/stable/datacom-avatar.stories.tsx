@@ -58,7 +58,7 @@ export const Avatar: Story = {
       lastName: args.lastName,
       jobTitle: args.jobTitle,
       companyName: args.companyName,
-      url: args.companyName,
+      url: args.url,
       src: '',
       alt: '',
     };
