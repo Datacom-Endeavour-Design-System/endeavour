@@ -1,4 +1,5 @@
 import { Component, h, Host, Prop, State } from '@stencil/core';
+import { TooltipArrow } from './assets/tooltip-arrow';
 
 export type TooltipPositionType =
   | 'top'
@@ -26,10 +27,10 @@ export type TooltipPositionType =
 })
 export class DatacomTooltip {
   @Prop() dark = false;
+  @Prop() hideArrow = false;
   @Prop() id: string;
-  @Prop() hideTip = false;
+  @Prop() label: string;
   @Prop() position: TooltipPositionType = 'auto';
-  @Prop() text: string;
   @Prop() width: number;
 
   @State() isTooltipVisible = false;
@@ -132,9 +133,9 @@ export class DatacomTooltip {
       mainPosition = 'bottom';
     } else if (slottedElementPositionData.distanceFromBottom < 0) {
       mainPosition = 'top';
-    } else if (slottedElementPositionData.distanceFromLeft >= horizontalBuffer && slottedElementPositionData.distanceFromLeft > slottedElementPositionData.distanceFromRight) {
+    } else if (slottedElementPositionData.distanceFromLeft >= horizontalBuffer && slottedElementPositionData.distanceFromLeft >= slottedElementPositionData.distanceFromRight) {
       mainPosition = 'left';
-    } else if (slottedElementPositionData.distanceFromRight >= horizontalBuffer && slottedElementPositionData.distanceFromRight > slottedElementPositionData.distanceFromLeft) {
+    } else if (slottedElementPositionData.distanceFromRight >= horizontalBuffer && slottedElementPositionData.distanceFromRight >= slottedElementPositionData.distanceFromLeft) {
       mainPosition = 'right';
     } else {
       mainPosition = 'top';
@@ -259,13 +260,9 @@ export class DatacomTooltip {
     const wrapperClasses = {
       'dark': this.dark,
       'dc-tooltip-wrapper': true,
+      'hide-arrow': this.hideArrow,
       'show': this.isTooltipVisible,
       [`${this.position}`]: this.position !== 'auto',
-    };
-
-    const arrowClasses = {
-      'dc-tooltip-arrow': true,
-      'hide-tip': this.hideTip,
     };
 
     return (
@@ -273,8 +270,10 @@ export class DatacomTooltip {
         <div class="dc-tooltip-hoc">
           <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)}>
             <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)} style={{ width: `${this.width}px` }}>
-              {this.text}
-              <div class={arrowClasses} />
+              {this.label}
+              <div class="dc-tooltip-arrow">
+                <TooltipArrow />
+              </div>
             </div>
           </div>
           <slot ref={el => this.setSlotElementRef(el as HTMLSlotElement)} />
