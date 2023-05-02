@@ -44,7 +44,7 @@ export class DatacomProductCard {
    * @returns HTML element for displaying stock status.
    */
   renderStockStatusElement = () => {
-    let text;
+    let text: string;
 
     switch (this.stockStatus) {
       case 'in-stock':
@@ -53,10 +53,10 @@ export class DatacomProductCard {
       case 'pre-order':
         text = 'Pre order';
         break;
-      case 'in-stock':
+      case 'back-order':
         text = 'Back order';
         break;
-      case 'in-stock':
+      case 'out-of-stock':
         text = 'Out of stock';
         break;
     }
