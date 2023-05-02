@@ -9,8 +9,8 @@
 .dc-stock-status {
   font-size: 14px;
   font-weight: 700;
-  line-height: 17px;
   letter-spacing: -0.002em;
+  line-height: 17px;
   margin-bottom: 12px;
 }
 
@@ -34,6 +34,14 @@
 .dc-price {
   font-size: 24px;
   font-weight: 700;
-  line-height: 29px;
   letter-spacing: -0.005em;
+  line-height: 29px;
+}
+
+.dc-previous-price {
+  color: var(--dc-greyscale-03);
+  letter-spacing: -0.002em;
+  line-height: 20px;
+  margin-left: 8px;
+  text-decoration-line: line-through;
 }
