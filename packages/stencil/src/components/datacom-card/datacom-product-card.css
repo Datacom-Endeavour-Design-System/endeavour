@@ -1,0 +1,18 @@
+@import url("../../global/css/breakpoints.css");
+@import url("./datacom-card.css");
+
+.dc-card-content {
+  color: var(--dc-primary-text-color);
+  flex-grow: 1;
+}
+
+.dc-product-title {
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: var(--dc-primary-text-color);
+  display: -webkit-box;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  margin-top: 12px;
+  overflow: hidden;
+}
