@@ -66,6 +66,7 @@ export class DatacomNumberInput {
           <datacom-input
             type="number"
             class="dc-number-input"
+            readonly={this.readonly}
             title={this.numberTitle}
             max={this.max}
             min={this.min}
