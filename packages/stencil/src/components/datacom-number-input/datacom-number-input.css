@@ -1,0 +1,96 @@
+:host {
+  box-sizing: border-box;
+}
+
+.dc-number-input-wrapper {
+  display: flex;
+  max-width: 400px;
+  margin: 0;
+  padding: 0;
+}
+
+.dc-number-input {
+  width: 100%;
+}
+
+.dc-number-increment,
+.dc-number-decrement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 52px;
+  margin-left: 0%;
+  border: 1px solid var(--dc-greyscale-05);
+  border-left: 0;
+  background-color: var(--dc-background-colour);
+  cursor: pointer;
+  color: var(--dc-primary-colour);
+}
+
+.dc-number-increment {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-left: 0;
+}
+
+.dc-increment-icon,
+.dc-decrement-icon {
+  display: flex;
+  text-align: center;
+  width: 15px;
+  height: 15px;
+}
+
+.dc-decrement-icon path,
+.dc-increment-icon path {
+  fill: var(--dc-primary-extended-color);
+}
+
+.dc-number-increment:focus-visible,
+.dc-number-decrement:focus-visible {
+  border: 2px solid var(--dc-primary-extended-color);
+  outline: none;
+}
+
+/* Remove default arrows/spinners of input field in Firefox  */
+input[type="number"] {
+  appearance: textfield;
+}
+
+/* Remove default arrows/spinners of input field in Chrome, Safari, Edge */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin-right: 0;
+}
+
+.dc-number-decrement:hover,
+.dc-number-increment:hover {
+  background-color: var(--dc-grayscale-06);
+}
+
+.dc-number-input .dc-text-root.sc-datacom-input {
+  max-width: 307px;
+  min-width: 177px;
+  margin: 0;
+}
+
+.dc-number-input .dc-text-input.sc-datacom-input {
+  max-width: 100%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.dc-number-disabled .dc-decrement-icon path,
+.dc-number-disabled .dc-increment-icon path {
+  fill: var(--dc-greyscale-04);
+}
+
+.dc-number-disabled .dc-number-decrement:hover,
+.dc-number-disabled .dc-number-increment:hover,
+.dc-number-disabled .dc-number-decrement:focus,
+.dc-number-disabled .dc-number-increment:focus {
+  background: var(--dc-background-colour);
+}
