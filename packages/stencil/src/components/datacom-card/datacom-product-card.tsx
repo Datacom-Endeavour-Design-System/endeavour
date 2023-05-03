@@ -1,4 +1,8 @@
 import { Component, Host, h, Prop, Event, EventEmitter, Element, Fragment } from '@stencil/core';
+import { IconBackOrder } from './assets/icon-back-order';
+import { IconInStock } from './assets/icon-in-stock';
+import { IconOutOfStock } from './assets/icon-out-of-stock';
+import { IconPreOrder } from './assets/icon-pre-order';
 
 type StockStatus = 'in-stock' | 'pre-order' | 'back-order' | 'out-of-stock';
 
@@ -30,6 +34,11 @@ export class DatacomProductCard {
   @Event() quickViewClicked: EventEmitter;
   @Event() productComparisonClicked: EventEmitter;
 
+  /**
+   * Formats given number into a price format.
+   * @param price - numerical value of price to be formatted.
+   * @returns formatted price as string
+   */
   formatPrice = (price: number) => {
     const formatter = new Intl.NumberFormat('en', {
       style: 'currency',
@@ -44,24 +53,48 @@ export class DatacomProductCard {
    * @returns HTML element for displaying stock status.
    */
   renderStockStatusElement = () => {
+    let icon;
     let text: string;
 
     switch (this.stockStatus) {
       case 'in-stock':
+        icon = <IconInStock />;
         text = 'In stock';
         break;
       case 'pre-order':
+        icon = <IconPreOrder />;
         text = 'Pre order';
         break;
       case 'back-order':
+        icon = <IconBackOrder />;
         text = 'Back order';
         break;
       case 'out-of-stock':
+        icon = <IconOutOfStock />;
         text = 'Out of stock';
         break;
     }
 
-    return <div class="dc-stock-status">{text}</div>;
+    return (
+      <div class="dc-stock-status">
+        <div class="dc-stock-status-icon">{icon}</div>
+        {text}
+      </div>
+    );
+  };
+
+  /**
+   * Helper function to render correct product title element.
+   * @returns HTML element for displaying product title.
+   */
+  renderTitleElement = () => {
+    return this.url?.length > 0 ? (
+      <a href={this.url} class="dc-product-title">
+        {this.productTitle}
+      </a>
+    ) : (
+      <div class="dc-product-title">{this.productTitle}</div>
+    );
   };
 
   /**
@@ -101,7 +134,7 @@ export class DatacomProductCard {
           <div class="dc-card-content-wrapper">
             <div class="dc-card-content">
               {this.stockStatus && this.renderStockStatusElement()}
-              {this.productTitle && <div class="dc-product-title">{this.productTitle}</div>}
+              {this.productTitle && this.renderTitleElement()}
               {this.price && this.renderPriceElement()}
               <datacom-rating slot="rating" rating-value="4" readonly></datacom-rating>
             </div>

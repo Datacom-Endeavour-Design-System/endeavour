@@ -7,11 +7,16 @@
 }
 
 .dc-stock-status {
+  display: flex;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: -0.002em;
   line-height: 17px;
   margin-bottom: 12px;
+}
+
+.dc-stock-status-icon {
+  margin-right: 8px;
 }
 
 .dc-product-title {
