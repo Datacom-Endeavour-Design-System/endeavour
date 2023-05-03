@@ -1,8 +1,11 @@
 import { Component, Host, h, Prop, Event, EventEmitter, Element, Fragment } from '@stencil/core';
 import { IconBackOrder } from './assets/icon-back-order';
+import { IconEye } from './assets/icon-eye';
+import { IconExchange } from './assets/icon-exchange';
 import { IconInStock } from './assets/icon-in-stock';
 import { IconOutOfStock } from './assets/icon-out-of-stock';
 import { IconPreOrder } from './assets/icon-pre-order';
+import { IconShoppingCart } from './assets/icon-shopping-cart';
 
 type StockStatus = 'in-stock' | 'pre-order' | 'back-order' | 'out-of-stock';
 
@@ -27,6 +30,8 @@ export class DatacomProductCard {
   @Prop() price: number;
   @Prop() productTitle: string;
   @Prop() promoPrice: number;
+  @Prop() ratingValue: number;
+  @Prop() ratingLabel: string;
   @Prop() stockStatus: StockStatus;
   @Prop() url: string;
 
@@ -133,10 +138,34 @@ export class DatacomProductCard {
           </div>
           <div class="dc-card-content-wrapper">
             <div class="dc-card-content">
+              <div class="dc-action-icons">
+                <div class="dc-action-icon-wrapper">
+                  <datacom-tooltip label="Add to cart">
+                    <button class="dc-action-icon">
+                      <IconShoppingCart />
+                    </button>
+                  </datacom-tooltip>
+                </div>
+                <div class="dc-action-icon-wrapper">
+                  <datacom-tooltip label="Quick view">
+                    <button class="dc-action-icon">
+                      <IconEye />
+                    </button>
+                  </datacom-tooltip>
+                </div>
+                <div class="dc-action-icon-wrapper">
+                  <datacom-tooltip label="Compare product">
+                    <button class="dc-action-icon">
+                      <IconExchange />
+                    </button>
+                  </datacom-tooltip>
+                </div>
+              </div>
               {this.stockStatus && this.renderStockStatusElement()}
               {this.productTitle && this.renderTitleElement()}
               {this.price && this.renderPriceElement()}
-              <datacom-rating slot="rating" rating-value="4" readonly></datacom-rating>
+              {/* TODO make rating configurable */}
+              <datacom-rating slot="rating" rating-value={this.ratingValue} label={this.ratingLabel} readonly></datacom-rating>
             </div>
           </div>
         </div>
