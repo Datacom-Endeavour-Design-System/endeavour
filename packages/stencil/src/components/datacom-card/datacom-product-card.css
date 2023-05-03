@@ -28,6 +28,7 @@
   letter-spacing: -0.2px;
   margin-bottom: 16px;
   overflow: hidden;
+  text-decoration: none;
 }
 
 .dc-price-wrapper {
