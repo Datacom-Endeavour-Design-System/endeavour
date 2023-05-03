@@ -40,6 +40,27 @@ export class DatacomProductCard {
   @Event() productComparisonClicked: EventEmitter;
 
   /**
+   * Click handler for "Add to cart" action icon.
+   */
+  onAddToCartClicked = () => {
+    this.addToCartClicked.emit();
+  };
+
+  /**
+   * Click handler for "Quick view" action icon.
+   */
+  onQuickViewClicked = () => {
+    this.quickViewClicked.emit();
+  };
+
+  /**
+   * Click handler for "Product Comparison" action icon.
+   */
+  onProductComparisonClicked = () => {
+    this.productComparisonClicked.emit();
+  };
+
+  /**
    * Formats given number into a price format.
    * @param price - numerical value of price to be formatted.
    * @returns formatted price as string
@@ -141,21 +162,21 @@ export class DatacomProductCard {
               <div class="dc-action-icons">
                 <div class="dc-action-icon-wrapper">
                   <datacom-tooltip label="Add to cart">
-                    <button class="dc-action-icon">
+                    <button class="dc-action-icon" onClick={this.onAddToCartClicked}>
                       <IconShoppingCart />
                     </button>
                   </datacom-tooltip>
                 </div>
                 <div class="dc-action-icon-wrapper">
                   <datacom-tooltip label="Quick view">
-                    <button class="dc-action-icon">
+                    <button class="dc-action-icon" onClick={this.onQuickViewClicked}>
                       <IconEye />
                     </button>
                   </datacom-tooltip>
                 </div>
                 <div class="dc-action-icon-wrapper">
                   <datacom-tooltip label="Compare product">
-                    <button class="dc-action-icon">
+                    <button class="dc-action-icon" onClick={this.onProductComparisonClicked}>
                       <IconExchange />
                     </button>
                   </datacom-tooltip>
