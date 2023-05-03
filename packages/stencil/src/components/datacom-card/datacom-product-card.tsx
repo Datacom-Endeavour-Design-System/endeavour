@@ -26,6 +26,9 @@ type StockStatus = 'in-stock' | 'pre-order' | 'back-order' | 'out-of-stock';
 export class DatacomProductCard {
   @Element() host: HTMLElement;
 
+  @Prop() hideAddToCart = false;
+  @Prop() hideProductCompare = false;
+  @Prop() hideQuickView = false;
   @Prop() imageUrl: string;
   @Prop() price: number;
   @Prop() productTitle: string;
@@ -37,7 +40,7 @@ export class DatacomProductCard {
 
   @Event() addToCartClicked: EventEmitter;
   @Event() quickViewClicked: EventEmitter;
-  @Event() productComparisonClicked: EventEmitter;
+  @Event() productCompareClicked: EventEmitter;
 
   /**
    * Click handler for "Add to cart" action icon.
@@ -54,10 +57,10 @@ export class DatacomProductCard {
   };
 
   /**
-   * Click handler for "Product Comparison" action icon.
+   * Click handler for "Product comparison" action icon.
    */
-  onProductComparisonClicked = () => {
-    this.productComparisonClicked.emit();
+  onProductCompareClicked = () => {
+    this.productCompareClicked.emit();
   };
 
   /**
@@ -160,27 +163,33 @@ export class DatacomProductCard {
           <div class="dc-card-content-wrapper">
             <div class="dc-card-content">
               <div class="dc-action-icons">
-                <div class="dc-action-icon-wrapper">
-                  <datacom-tooltip label="Add to cart">
-                    <button class="dc-action-icon" onClick={this.onAddToCartClicked}>
-                      <IconShoppingCart />
-                    </button>
-                  </datacom-tooltip>
-                </div>
-                <div class="dc-action-icon-wrapper">
-                  <datacom-tooltip label="Quick view">
-                    <button class="dc-action-icon" onClick={this.onQuickViewClicked}>
-                      <IconEye />
-                    </button>
-                  </datacom-tooltip>
-                </div>
-                <div class="dc-action-icon-wrapper">
-                  <datacom-tooltip label="Compare product">
-                    <button class="dc-action-icon" onClick={this.onProductComparisonClicked}>
-                      <IconExchange />
-                    </button>
-                  </datacom-tooltip>
-                </div>
+                {!this.hideAddToCart && (
+                  <div class="dc-action-icon-wrapper">
+                    <datacom-tooltip label="Add to cart">
+                      <button class="dc-action-icon" onClick={this.onAddToCartClicked}>
+                        <IconShoppingCart />
+                      </button>
+                    </datacom-tooltip>
+                  </div>
+                )}
+                {!this.hideQuickView && (
+                  <div class="dc-action-icon-wrapper">
+                    <datacom-tooltip label="Quick view">
+                      <button class="dc-action-icon" onClick={this.onQuickViewClicked}>
+                        <IconEye />
+                      </button>
+                    </datacom-tooltip>
+                  </div>
+                )}
+                {!this.hideProductCompare && (
+                  <div class="dc-action-icon-wrapper">
+                    <datacom-tooltip label="Compare product">
+                      <button class="dc-action-icon" onClick={this.onProductCompareClicked}>
+                        <IconExchange />
+                      </button>
+                    </datacom-tooltip>
+                  </div>
+                )}
               </div>
               {this.stockStatus && this.renderStockStatusElement()}
               {this.productTitle && this.renderTitleElement()}
