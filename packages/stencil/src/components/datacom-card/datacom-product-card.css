@@ -1,0 +1,75 @@
+@import url("../../global/css/breakpoints.css");
+@import url("./datacom-card.css");
+
+.dc-card-content {
+  color: var(--dc-primary-text-color);
+  flex-grow: 1;
+}
+
+.dc-action-icons {
+  display: flex;
+  justify-content: end;
+}
+
+.dc-action-icon {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #002bfe;
+  border-radius: 13px;
+  cursor: pointer;
+  display: flex;
+  height: 26px;
+  justify-content: center;
+  padding: 0;
+  width: 26px;
+}
+
+.dc-action-icon-wrapper:not(:last-child) {
+  margin-right: 8px;
+}
+
+.dc-stock-status {
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.002em;
+  line-height: 17px;
+  margin-bottom: 12px;
+}
+
+.dc-stock-status-icon {
+  margin-right: 8px;
+}
+
+.dc-product-title {
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: var(--dc-primary-text-color);
+  display: -webkit-box;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.dc-price-wrapper {
+  align-items: center;
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.dc-price {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  line-height: 29px;
+}
+
+.dc-previous-price {
+  color: var(--dc-greyscale-03);
+  letter-spacing: -0.002em;
+  line-height: 20px;
+  margin-left: 8px;
+  text-decoration-line: line-through;
+}
