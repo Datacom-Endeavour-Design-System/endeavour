@@ -72,8 +72,8 @@ input::-webkit-inner-spin-button {
 }
 
 .dc-number-input .dc-text-root.sc-datacom-input {
-  max-width: 307px;
-  min-width: 177px;
+  max-width: none;
+  min-width: auto;
   margin: 0;
 }
 

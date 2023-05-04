@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, State, Listen } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Listen, Event, EventEmitter } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 
 @Component({
@@ -13,7 +13,7 @@ export class DatacomNumberInput {
   @Prop() required? = false;
   @Prop() numberTitle: string;
   @Prop() name: string;
-  @Prop() text: string;
+  @Prop() label: string;
   @Prop() min: number;
   @Prop() max: number;
   @Prop() step: number;
@@ -21,10 +21,18 @@ export class DatacomNumberInput {
   @Prop() message: string;
   @Prop() disabled: false;
   @Prop() placeholder: string;
-  @State() value?: number | null = null;
+  @Prop({ mutable: true }) value?: number;
+
+  /**
+   * Emit valueChanged event when number input changes.
+   */
+  @Event({
+    composed: true,
+  })
+  private valueChanged: EventEmitter<number>;
 
   handleIncrement = () => {
-    if (this.value === null) {
+    if (this.value === undefined) {
       this.value = this.min;
     } else {
       this.value += this.step;
@@ -32,10 +40,11 @@ export class DatacomNumberInput {
         this.value = this.max;
       }
     }
+    this.valueChanged.emit(this.value);
   };
 
   handleDecrement = () => {
-    if (this.value === null) {
+    if (this.value === undefined) {
       this.value = this.min;
     } else {
       this.value -= this.step;
@@ -43,16 +52,18 @@ export class DatacomNumberInput {
         this.value = this.min;
       }
     }
+    this.valueChanged.emit(this.value);
   };
 
   @Listen('input', { capture: true })
   onInput(event: InputEvent): void {
     const inputElement = event.target as HTMLInputElement;
-    const newValue = inputElement.value !== '' ? +inputElement.value : null;
-    if (newValue !== null && (newValue < this.min || newValue > this.max)) {
+    const newValue = inputElement.value !== '' ? +inputElement.value : undefined;
+    if (newValue !== undefined && (newValue < this.min || newValue > this.max)) {
       return;
     }
     this.value = newValue;
+    this.valueChanged.emit(this.value);
   }
 
   render() {
@@ -71,7 +82,7 @@ export class DatacomNumberInput {
             max={this.max}
             min={this.min}
             name={this.name}
-            value={this.value !== null ? this.value.toString() : ''}
+            value={this.value !== undefined ? this.value.toString() : ''}
             step={this.step}
             help={this.help}
             required={this.required}
@@ -79,7 +90,7 @@ export class DatacomNumberInput {
             disabled={this.disabled}
             placeholder={this.placeholder}
           >
-            {this.text}
+            {this.label}
           </datacom-input>
           <button type="button" disabled={this.disabled} onClick={this.handleDecrement} class="dc-number-decrement">
             {getSvg('remove', { class: 'dc-decrement-icon' })}

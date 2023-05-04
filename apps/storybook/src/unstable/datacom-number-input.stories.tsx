@@ -7,7 +7,7 @@ export default {
   title: 'Number Input',
   component: DatacomNumberInput,
   argTypes: {
-    text: {
+    label: {
       name: 'Label',
       defaultValue: 'Input label',
       description: 'Input label',
@@ -67,7 +67,7 @@ export default {
     },
   },
   args: {
-    text: 'Label',
+    label: 'Label',
     disabled: false,
     required: true,
     placeholder: 'e.g.000',
