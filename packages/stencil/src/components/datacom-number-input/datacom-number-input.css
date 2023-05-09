@@ -45,12 +45,12 @@
 
 .dc-decrement-icon path,
 .dc-increment-icon path {
-  fill: var(--dc-primary-extended-color);
+  fill: var(--dc-primary-accent-colour);
 }
 
 .dc-number-increment:focus-visible,
 .dc-number-decrement:focus-visible {
-  border: 2px solid var(--dc-primary-extended-color);
+  border: 2px solid var(--dc-primary-colour);
   outline: none;
 }
 
