@@ -26,7 +26,6 @@
   border-left: 0;
   background-color: var(--dc-background-colour);
   cursor: pointer;
-  color: var(--dc-primary-colour);
 }
 
 .dc-number-increment {
@@ -83,6 +82,13 @@ input::-webkit-inner-spin-button {
   border-bottom-right-radius: 0;
 }
 
+.dc-number-input-wrapper .dc-text-help.sc-datacom-input {
+  position: absolute;
+  max-width: 100%;
+  min-width: 272px;
+  word-wrap: break-word;
+}
+
 .dc-number-disabled .dc-decrement-icon path,
 .dc-number-disabled .dc-increment-icon path {
   fill: var(--dc-greyscale-04);
@@ -93,4 +99,5 @@ input::-webkit-inner-spin-button {
 .dc-number-disabled .dc-number-decrement:focus,
 .dc-number-disabled .dc-number-increment:focus {
   background: var(--dc-background-colour);
+  cursor: default;
 }

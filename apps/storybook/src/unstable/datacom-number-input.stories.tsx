@@ -24,11 +24,6 @@ export default {
       description: 'Input placeholder prompt',
       type: { name: 'string', required: false },
     },
-    numberTitle: {
-      name: 'Title',
-      description: 'Hover title on the number input',
-      type: { name: 'string', required: false },
-    },
     message: {
       name: 'Error Message',
       description: 'Error if validation fails',
@@ -44,7 +39,6 @@ export default {
       description: 'Is the number input required',
       type: { name: 'boolean' },
     },
-
     min: {
       name: 'Min Number',
       description: 'Minium Number',
