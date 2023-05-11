@@ -73,6 +73,7 @@ const Template: ComponentStoryFn<typeof DatacomNumberInput> = (props) => {
   const Panel = styled.div`
     width: 272px;
   `;
+
   return (
     <Panel>
       <DatacomNumberInput min={1} max={50} step={1} {...props} />
