@@ -17,6 +17,7 @@ export default {
     },
   },
 };
+
 const Template: ComponentStoryFn<typeof DatacomPagination> = (args) => (
   <DatacomPagination {...args} />
 );
