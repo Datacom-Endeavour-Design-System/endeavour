@@ -24,10 +24,9 @@
 .dc-next-btn,
 .dc-last-btn {
   display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: var(--dc-background-colour);
   border: none;
+  outline: none;
 }
 
 .dc-pagination-content-wrapper {

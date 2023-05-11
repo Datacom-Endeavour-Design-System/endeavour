@@ -15,20 +15,15 @@ export class DatacomPagination {
   @State() currentPage?: number = 1;
 
   @Event() changedPagination: EventEmitter<number>;
-
-  private goToPage(pageNumber: number) {
-    if (pageNumber < 1 || pageNumber > this.totalPages) {
-      return;
-    }
-    this.currentPage = pageNumber;
-  }
+  /**
+   * calculate the total number of pages based on the total number of items and the items per page.
+   */
   get totalPages(): number {
     return Math.ceil(this.totalItems / this.itemsPerPage);
   }
 
   onClickFirstPageHandler = () => {
     this.currentPage = 1;
-    this.goToPage(this.currentPage);
     this.changedPagination.emit(this.currentPage);
   };
 
@@ -43,12 +38,14 @@ export class DatacomPagination {
   };
 
   onClickLastPageHandler = () => {
-    this.totalPages;
     this.currentPage = this.totalPages;
     this.changedPagination.emit(this.currentPage);
   };
 
-  pageChangeHandler = (event: Event): void => {
+  /**
+   * Update the value when enter the page number in the input field.
+   */
+  onPageChangeHandler = (event: Event): void => {
     const inputNumber = (event.target as HTMLInputElement).value;
     this.currentPage = parseInt(inputNumber);
     this.changedPagination.emit(this.currentPage);
@@ -70,7 +67,7 @@ export class DatacomPagination {
             {getSvg('drill-down', { class: 'dc-icon-previous' })}
           </button>
           <div class="dc-pagination-content-wrapper">
-            <input type="text" class="dc-pagination-current" value={this.currentPage} onChange={this.pageChangeHandler}></input>of
+            <input type="text" class="dc-pagination-current" value={this.currentPage} onChange={this.onPageChangeHandler}></input>of
             <span class="dc-total-page">{this.totalPages}</span>
           </div>
           <button type="button" class="dc-next-btn" onClick={this.onClickNextPageHandler} disabled={isEnd}>
