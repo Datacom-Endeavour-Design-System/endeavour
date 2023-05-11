@@ -15,6 +15,17 @@ export class DatacomPagination {
   @State() currentPage?: number = 1;
 
   @Event() changedPagination: EventEmitter<number>;
+
+  /**
+   * Handle boundary cases such as only allowing to navigate between the range.
+   */
+  private goToPage(pageNumber: number) {
+    if (pageNumber < 1 || pageNumber > this.totalPages) {
+      return;
+    }
+    this.currentPage = pageNumber;
+  }
+
   /**
    * calculate the total number of pages based on the total number of items and the items per page.
    */
@@ -23,17 +34,17 @@ export class DatacomPagination {
   }
 
   onClickFirstPageHandler = () => {
-    this.currentPage = 1;
+    this.goToPage(1);
     this.changedPagination.emit(this.currentPage);
   };
 
   onClickPerviousPageHandler = () => {
-    this.currentPage = --this.currentPage;
+    this.goToPage(this.currentPage - 1);
     this.changedPagination.emit(this.currentPage);
   };
 
   onClickNextPageHandler = () => {
-    this.currentPage = ++this.currentPage;
+    this.goToPage(+this.currentPage + 1);
     this.changedPagination.emit(this.currentPage);
   };
 
