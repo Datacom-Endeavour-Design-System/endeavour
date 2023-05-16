@@ -111,13 +111,22 @@ jobs:
         with:
           name: storybook-static-unstable
           path: apps/storybook/storybook-static
-      - name: Push to Cloudflare
+      - name: Push to old Cloudflare
         uses: cloudflare/pages-action@1
         with:
           branch: ${{ github.head_ref }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: datacom-endeavour
+          directory: apps/storybook/storybook-static
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push to Cloudflare
+        uses: cloudflare/pages-action@1
+        with:
+          branch: ${{ github.head_ref }}
+          apiToken: ${{ secrets.CLOUDFLARE_DC_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_DC_ACCOUNT_ID }}
+          projectName: endeavour-design
           directory: apps/storybook/storybook-static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
   deploy-develop:
@@ -132,13 +141,22 @@ jobs:
         with:
           name: storybook-static-unstable
           path: apps/storybook/storybook-static
-      - name: Push to Cloudflare
+      - name: Push to old Cloudflare
         uses: cloudflare/pages-action@1
         with:
           branch: develop
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: datacom-endeavour
+          directory: apps/storybook/storybook-static
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push to Cloudflare
+        uses: cloudflare/pages-action@1
+        with:
+          branch: develop
+          apiToken: ${{ secrets.CLOUDFLARE_DC_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_DC_ACCOUNT_ID }}
+          projectName: endeavour-design
           directory: apps/storybook/storybook-static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
   deploy-staging:
@@ -153,13 +171,22 @@ jobs:
         with:
           name: storybook-static-stable
           path: apps/storybook/storybook-static
-      - name: Push to Cloudflare
+      - name: Push to old Cloudflare
         uses: cloudflare/pages-action@1
         with:
           branch: staging
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: datacom-endeavour
+          directory: apps/storybook/storybook-static
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push to Cloudflare
+        uses: cloudflare/pages-action@1
+        with:
+          branch: staging
+          apiToken: ${{ secrets.CLOUDFLARE_DC_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_DC_ACCOUNT_ID }}
+          projectName: endeavour-design
           directory: apps/storybook/storybook-static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
   deploy-production:
@@ -174,12 +201,21 @@ jobs:
         with:
           name: storybook-static-stable
           path: apps/storybook/storybook-static
-      - name: Push to Cloudflare
+      - name: Push to old Cloudflare
         uses: cloudflare/pages-action@1
         with:
           branch: main
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: datacom-endeavour
+          directory: apps/storybook/storybook-static
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push to Cloudflare
+        uses: cloudflare/pages-action@1
+        with:
+          branch: main
+          apiToken: ${{ secrets.CLOUDFLARE_DC_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_DC_ACCOUNT_ID }}
+          projectName: endeavour-design
           directory: apps/storybook/storybook-static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
