@@ -10,7 +10,7 @@ export default {
   argTypes: {
     message: {
       name: 'Message',
-      defaultValue: 'A message to our Datacom community about COVID-19 - ',
+      defaultValue: 'A message to our Datacom community about COVID-19 -',
       type: { name: 'string' },
     },
     label: {

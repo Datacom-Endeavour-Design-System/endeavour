@@ -27,7 +27,7 @@ export class DatacomAlertBanner {
         {this.isOpen && (
           <div class="dc-alert-banner">
             <div class="dc-alert-banner-content">
-              {this.message}
+              {this.message} &nbsp;
               <a href={this.url} class="dc-alert-banner-cta-text">
                 {this.label}
               </a>
