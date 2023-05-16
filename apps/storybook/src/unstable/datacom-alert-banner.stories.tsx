@@ -5,37 +5,37 @@ import { DatacomAlertBanner } from '@datacom/endeavour-react';
 type AlertBannerProps = React.ComponentProps<typeof DatacomAlertBanner>;
 
 export default {
-  title: 'Alert-Banner',
+  title: 'Alert Banner',
   component: DatacomAlertBanner,
   argTypes: {
-    copy: {
+    message: {
       name: 'Message',
       defaultValue: 'A message to our Datacom community about COVID-19 - ',
-      description: 'Label content within the content tag.',
       type: { name: 'string' },
     },
-    link: {
-      name: 'Link Label',
+    label: {
+      name: 'CTA Label',
       defaultValue: 'Learn more',
-      description: 'Label content within the content tag.',
       type: { name: 'string' },
     },
     url: {
-      name: 'Link',
+      name: 'CTA URL',
       defaultValue: 'https://datacom.com',
-      description:
-        'URL that content tag should link to. Omitting a url will change the tag into a non-interactable div element',
       type: { name: 'string' },
     },
   },
 };
 
 const Template: StoryFn<AlertBannerProps> = (args) => {
-  const { copy, link, url } = args;
+  const { message, label, url } = args;
 
   return (
-    <DatacomAlertBanner link={link} url={url} copy={copy}></DatacomAlertBanner>
+    <DatacomAlertBanner
+      label={label}
+      url={url}
+      message={message}></DatacomAlertBanner>
   );
 };
 
-export const AlertBanner = Template.bind({});
+export const Default = Template.bind({});
+Default.args;

@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 
 @Component({
@@ -7,20 +7,36 @@ import { getSvg } from '../../common/images/icon-provider';
   shadow: true,
 })
 export class DatacomAlertBanner {
-  @Prop() copy: string;
-  @Prop() link: string;
+  @Prop() message: string;
+  @Prop() label: string;
   @Prop() url: string;
+  @State() isOpen = true;
+
+  @Event() close: EventEmitter<void>;
 
   closeIcon = getSvg('close', { class: 'dc-close-icon' });
+
+  private onClickHandler = () => {
+    this.isOpen = false;
+    this.close.emit();
+  };
 
   render() {
     return (
       <Host>
-        <div class="dc-alert-banner">
-          {this.copy}
-          <a href={this.url}>{this.link}</a>
-          {this.closeIcon}
-        </div>
+        {this.isOpen && (
+          <div class="dc-alert-banner">
+            <div class="dc-alert-banner-content">
+              {this.message}
+              <a href={this.url} class="dc-alert-banner-cta-text">
+                {this.label}
+              </a>
+            </div>
+            <button class="dc-alert-banner-btn" onClick={this.onClickHandler}>
+              {this.closeIcon}
+            </button>
+          </div>
+        )}
       </Host>
     );
   }

@@ -1,13 +1,14 @@
-:host {
-  display: block;
+@import url("../../global/css/breakpoints.css");
 
+:host {
   --bg-color: var(--dc-secondary-text-color);
-  --color-white: #ffffff;
+  --color-white: var(--dc-background-colour);
 }
 
 .dc-alert-banner {
-  padding: var(--dc-padding-05);
-  padding-right: 40px;
+  display: flex;
+  justify-content: end;
+  padding: 24px;
   background-color: var(--bg-color);
   color: var(--color-white);
   font-family: var(--dc-font-family);
@@ -15,17 +16,41 @@
   position: relative;
 }
 
-.dc-alert-banner a {
+.dc-alert-banner-content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  word-break: break-all;
+  margin-right: 28px;
+  overflow: hidden;
+}
+
+.dc-alert-banner-cta-text {
   color: var(--color-white);
   text-decoration: none;
   font-weight: 500;
 }
 
+@media (--breakpoint-tablet) {
+  .dc-alert-banner-content {
+    flex-direction: row;
+    margin-right: 52px;
+  }
+}
+
+.dc-alert-banner-btn {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
 .dc-close-icon {
-  width: 24px;
-  position: absolute;
-  top: 21px;
-  right: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .dc-close-icon path {
@@ -34,6 +59,30 @@
 
 @media (--breakpoint-desktop) {
   .dc-alert-banner {
-    padding-right: 24px;
+    padding: 24px 32px;
+  }
+
+  .dc-close-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .dc-alert-banner-content {
+    margin-right: 72px;
+  }
+}
+
+@media (--breakpoint-large-desktop) {
+  .dc-alert-banner {
+    padding: 24px 332px;
+  }
+
+  .dc-close-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .dc-alert-banner-content {
+    margin-right: 48px;
   }
 }
