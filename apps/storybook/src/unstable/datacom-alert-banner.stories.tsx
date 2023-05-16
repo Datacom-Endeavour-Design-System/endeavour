@@ -28,7 +28,6 @@ export default {
 
 const Template: StoryFn<AlertBannerProps> = (args) => {
   const { message, label, url } = args;
-
   return (
     <DatacomAlertBanner
       label={label}
