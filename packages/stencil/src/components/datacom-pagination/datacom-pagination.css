@@ -1,7 +1,13 @@
-@import url("../../global/css/breakpoints.css");
-
 :host {
   box-sizing: border-box;
+}
+
+:host * {
+  font-family: var(--dc-font-family);
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .dc-pagination-wrapper {
@@ -12,10 +18,7 @@
   min-width: 272px;
   height: 80px;
   background-color: var(--dc-background-colour);
-  font-family: var(--dc-font-family);
   color: var(--dc-primary-text-color);
-  font-weight: 400;
-  line-height: 24px;
   border-top: 1px solid var(--dc-greyscale-05);
 }
 
@@ -26,65 +29,69 @@
   display: flex;
   background-color: var(--dc-background-colour);
   border: none;
+  margin: 0;
+  padding: 0;
   outline: none;
+  cursor: pointer;
+}
+
+.dc-first-btn {
+  margin-right: 24px;
+}
+
+.dc-last-btn {
+  margin-left: 24px;
 }
 
 .dc-pagination-content-wrapper {
   display: flex;
   text-align: center;
-  margin: 0 32px 0 24px;
+  margin: 0 32px;
 }
 
 .dc-pagination-current {
   width: 24px;
   text-align: center;
   border-bottom: 1px solid var(--dc-primary-colour);
-  font-style: normal;
-  font-size: 18px;
   font-weight: 700;
   border-top: 0;
   border-left: 0;
   border-right: 0;
   outline: none;
-  margin-right: 8px;
+  margin-right: 16px;
 }
 
 .dc-total-page {
-  margin-left: 15px;
+  margin-left: 16px;
 }
 
 .dc-icon-line {
   height: 24px;
+  width: 24px;
   transform: rotate(90deg);
   margin: 0;
   padding: 0;
 }
 
-.dc-icon-first {
+.dc-icon-first,
+.dc-icon-last,
+.dc-icon-next,
+.dc-icon-previous {
   height: 24px;
   width: 14px;
+}
+
+.dc-icon-first {
   margin-left: -8px;
-  padding: 0;
-  margin-right: 20px;
   transform: rotate(180deg);
 }
 
 .dc-icon-last {
-  height: 24px;
-  width: 14px;
   margin-right: -8px;
-  margin-left: 22px;
 }
 
 .dc-icon-previous {
-  height: 24px;
-  width: 14px;
   transform: rotate(180deg);
-}
-
-.dc-icon-next {
-  height: 24px;
-  width: 14px;
 }
 
 .dc-icon-first path,
@@ -93,6 +100,15 @@
 .dc-icon-previous path,
 .dc-icon-next path {
   fill: var(--dc-primary-text-color);
+}
+
+.dc-first-btn:disabled .dc-icon-first,
+.dc-first-btn:disabled .dc-icon-line,
+.dc-previous-btn:disabled .dc-icon-previous,
+.dc-next-btn:disabled .dc-icon-next,
+.dc-last-btn:disabled .dc-icon-last,
+.dc-last-btn:disabled .dc-icon-line {
+  cursor: not-allowed;
 }
 
 .dc-first-btn:disabled .dc-icon-first path,

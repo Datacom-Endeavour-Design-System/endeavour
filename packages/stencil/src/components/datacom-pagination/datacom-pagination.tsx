@@ -58,7 +58,13 @@ export class DatacomPagination {
    */
   onPageChangeHandler = (event: Event): void => {
     const inputNumber = (event.target as HTMLInputElement).value;
-    this.currentPage = parseInt(inputNumber);
+    const newPage = parseInt(inputNumber);
+
+    if (isNaN(newPage)) {
+      this.goToPage(this.currentPage);
+    } else {
+      this.goToPage(newPage);
+    }
     this.changedPagination.emit(this.currentPage);
   };
 
