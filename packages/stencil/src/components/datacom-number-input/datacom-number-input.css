@@ -44,13 +44,7 @@
 
 .dc-decrement-icon path,
 .dc-increment-icon path {
-  fill: var(--dc-primary-accent-colour);
-}
-
-.dc-number-increment:focus-visible,
-.dc-number-decrement:focus-visible {
-  border: 2px solid var(--dc-primary-colour);
-  outline: none;
+  fill: var(--dc-primary-colour);
 }
 
 /* Remove default arrows/spinners of input field in Firefox  */
@@ -65,9 +59,20 @@ input::-webkit-inner-spin-button {
   margin-right: 0;
 }
 
+.dc-number-increment:focus-visible,
+.dc-number-decrement:focus-visible {
+  border: 2px solid var(--dc-primary-colour);
+  outline: none;
+}
+
 .dc-number-decrement:hover,
 .dc-number-increment:hover {
   background-color: var(--dc-grayscale-06);
+}
+
+.dc-number-decrement:hover .dc-decrement-icon path,
+.dc-number-increment:hover .dc-increment-icon path {
+  fill: var(--dc-primary-accent-colour);
 }
 
 .dc-number-input .dc-text-root.sc-datacom-input {
@@ -89,8 +94,14 @@ input::-webkit-inner-spin-button {
   word-wrap: break-word;
 }
 
+/* Disabled state */
 .dc-number-disabled .dc-decrement-icon path,
 .dc-number-disabled .dc-increment-icon path {
+  fill: var(--dc-greyscale-04);
+}
+
+.dc-number-disabled:hover .dc-decrement-icon path,
+.dc-number-disabled:hover .dc-increment-icon path {
   fill: var(--dc-greyscale-04);
 }
 
