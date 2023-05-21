@@ -1,7 +1,7 @@
 @import url("../../global/css/breakpoints.css");
 
 :host {
-  --bg-color: var(--dc-secondary-text-color);
+  --alert-color: var(--dc-secondary-text-color);
   --color-white: var(--dc-background-colour);
 }
 
@@ -9,19 +9,30 @@
   display: flex;
   justify-content: end;
   padding: 24px;
-  background-color: var(--bg-color);
+  background-color: var(--alert-color);
   color: var(--color-white);
   font-family: var(--dc-font-family);
-  font-size: var(--dc-font-size);
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.2px;
   position: relative;
 }
 
+.dc-alert-banner-blue {
+  --alert-color: #000a14;
+}
+
+.dc-alert-banner-light-blue {
+  --alert-color: #76c4ff;
+}
+
+.dc-alert-banner-primary-pink {
+  --alert-color: #e60060;
+}
+
 .dc-alert-banner-content {
-  display: flex;
   flex-grow: 1;
-  flex-direction: column;
-  word-break: break-all;
-  margin-right: 28px;
+  margin-right: 24px;
   overflow: hidden;
 }
 
@@ -29,13 +40,6 @@
   color: var(--color-white);
   text-decoration: none;
   font-weight: 500;
-}
-
-@media (--breakpoint-tablet) {
-  .dc-alert-banner-content {
-    flex-direction: row;
-    margin-right: 52px;
-  }
 }
 
 .dc-alert-banner-btn {
@@ -59,6 +63,8 @@
 
 @media (--breakpoint-desktop) {
   .dc-alert-banner {
+    font-size: 16px;
+    line-height: 24px;
     padding: 24px 32px;
   }
 
@@ -66,23 +72,10 @@
     width: 24px;
     height: 24px;
   }
-
-  .dc-alert-banner-content {
-    margin-right: 72px;
-  }
 }
 
 @media (--breakpoint-large-desktop) {
   .dc-alert-banner {
     padding: 24px 332px;
-  }
-
-  .dc-close-icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .dc-alert-banner-content {
-    margin-right: 48px;
   }
 }
