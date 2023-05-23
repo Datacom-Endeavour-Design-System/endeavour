@@ -78,7 +78,7 @@ export class DatacomPagination {
       <Host>
         <div class="dc-pagination-wrapper">
           <button type="button" class="dc-first-btn" onClick={this.onClickFirstPageHandler} disabled={isStart}>
-            {getSvg('remove', { class: 'dc-icon-line' })} {getSvg('drill-down', { class: 'dc-icon-first' })}
+            {getSvg('last', { class: 'dc-icon-first' })}
           </button>
           <button type="button" class="dc-previous-btn" onClick={this.onClickPerviousPageHandler} disabled={isStart}>
             {getSvg('drill-down', { class: 'dc-icon-previous' })}
@@ -91,8 +91,7 @@ export class DatacomPagination {
             {getSvg('drill-down', { class: 'dc-icon-next' })}
           </button>
           <button type="button" class="dc-last-btn" onClick={this.onClickLastPageHandler} disabled={isEnd}>
-            {getSvg('drill-down', { class: 'dc-icon-last' })}
-            {getSvg('remove', { class: 'dc-icon-line' })}
+            {getSvg('last', { class: 'dc-icon-last' })}
           </button>
         </div>
       </Host>

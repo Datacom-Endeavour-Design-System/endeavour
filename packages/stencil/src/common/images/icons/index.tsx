@@ -25,5 +25,6 @@ export * from './search';
 export * from './tick';
 export * from './chevron';
 export * from './clear';
+export * from './last';
 export * from './drill-down';
 export * from './check-circle';
