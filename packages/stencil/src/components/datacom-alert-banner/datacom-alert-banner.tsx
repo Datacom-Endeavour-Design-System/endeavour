@@ -10,7 +10,7 @@ export type AlertBannerVariant = 'dark-blue' | 'blue' | 'light-blue' | 'primary-
 })
 export class DatacomAlertBanner {
   @Prop() variant: AlertBannerVariant = 'dark-blue';
-  @Prop() label: string;
+  @Prop() ctaText: string;
   @Prop() url: string;
   @State() isOpen = true;
 
@@ -24,6 +24,7 @@ export class DatacomAlertBanner {
   };
 
   render() {
+    const hasActions = this.ctaText;
     const Classes = {
       'dc-alert-banner': true,
       [`dc-alert-banner-${this.variant}`]: true,
@@ -34,10 +35,12 @@ export class DatacomAlertBanner {
         {this.isOpen && (
           <div class={Classes}>
             <div class="dc-alert-banner-content">
-              <slot name="message" /> &nbsp;
-              <a href={this.url} class="dc-alert-banner-cta-text">
-                {this.label}
-              </a>
+              <slot name="message" />
+              {hasActions && (
+                <a href={this.url} class="dc-alert-banner-cta-text">
+                  {this.ctaText}
+                </a>
+              )}
             </div>
             <button class="dc-alert-banner-btn" onClick={this.onClickHandler}>
               {this.closeIcon}

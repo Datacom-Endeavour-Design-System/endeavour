@@ -26,12 +26,12 @@ export default {
     },
     message: {
       name: 'Message',
-      defaultValue: 'A message to our Datacom community about COVID-19 -',
+      defaultValue: 'A message to our Datacom community about COVID-19 ',
       type: { name: 'string' },
     },
-    label: {
+    ctaText: {
       name: 'CTA Label',
-      defaultValue: 'Learn more',
+      defaultValue: '- Learn more',
       type: { name: 'string' },
     },
     url: {
