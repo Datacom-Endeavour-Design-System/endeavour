@@ -1,7 +1,7 @@
 @import url("../../global/css/breakpoints.css");
 
 :host {
-  --alert-color: var(--dc-secondary-text-color);
+  --alert-color: var(--dc-primary-text-color);
   --color-white: var(--dc-background-colour);
 }
 
@@ -19,7 +19,7 @@
 }
 
 .dc-alert-banner-blue {
-  --alert-color: #000a14;
+  --alert-color: var(--dc-secondary-text-color);
 }
 
 .dc-alert-banner-light-blue {
