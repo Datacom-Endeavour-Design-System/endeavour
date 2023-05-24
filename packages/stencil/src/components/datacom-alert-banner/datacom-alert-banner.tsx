@@ -38,6 +38,7 @@ export class DatacomAlertBanner {
               <slot name="message" />
               {hasActions && (
                 <a href={this.url} class="dc-alert-banner-cta-text">
+                  <span> - </span>
                   {this.ctaText}
                 </a>
               )}

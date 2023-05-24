@@ -24,6 +24,7 @@
 
 .dc-alert-banner-light-blue {
   --alert-color: #76c4ff;
+  --color-white: var(--dc-primary-text-color);
 }
 
 .dc-alert-banner-primary-pink {

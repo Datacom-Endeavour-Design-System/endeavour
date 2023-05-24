@@ -31,7 +31,7 @@ export default {
     },
     ctaText: {
       name: 'CTA Label',
-      defaultValue: '- Learn more',
+      defaultValue: 'Learn more',
       type: { name: 'string' },
     },
     url: {
