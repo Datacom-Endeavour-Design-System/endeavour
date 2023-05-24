@@ -15,7 +15,7 @@ export default {
         type: 'select',
         labels: {
           'dark-blue': 'Dark-blue',
-          blue: 'Datacom-blue',
+          'datacom-blue': 'Datacom-blue',
           'light-blue': 'Light-blue',
           'primary-pink': 'Primary-accent-pink',
         },

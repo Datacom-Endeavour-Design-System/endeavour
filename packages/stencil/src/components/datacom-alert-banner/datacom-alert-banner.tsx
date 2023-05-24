@@ -1,7 +1,7 @@
 import { Component, Host, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 
-export type AlertBannerVariant = 'dark-blue' | 'blue' | 'light-blue' | 'primary-pink';
+export type AlertBannerVariant = 'dark-blue' | 'datacom-blue' | 'light-blue' | 'primary-pink';
 
 @Component({
   tag: 'datacom-alert-banner',

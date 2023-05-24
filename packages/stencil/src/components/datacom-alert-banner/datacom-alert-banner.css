@@ -18,7 +18,7 @@
   position: relative;
 }
 
-.dc-alert-banner-blue {
+.dc-alert-banner-datacom-blue {
   --alert-color: var(--dc-secondary-text-color);
 }
 
