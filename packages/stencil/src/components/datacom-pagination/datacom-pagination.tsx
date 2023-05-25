@@ -9,7 +9,6 @@ import { getSvg } from '../../common/images';
 export class DatacomPagination {
   @Prop({ mutable: true }) itemsPerPage?: number = 5;
   @Prop({ mutable: true }) totalItems?: number = 100;
-  @Prop() disabled?: boolean;
   @State() currentPage?: number = 1;
 
   @Event() changedPagination: EventEmitter<number>;
