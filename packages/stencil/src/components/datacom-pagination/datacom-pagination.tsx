@@ -11,7 +11,7 @@ export class DatacomPagination {
   @Prop({ mutable: true }) totalItems?: number;
   @State() currentPage?: number = 1;
 
-  @Event() changedPagination: EventEmitter<number>;
+  @Event() pageChanged: EventEmitter<number>;
 
   /**
    * Handle boundary cases such as only allowing to navigate between the range.
@@ -32,22 +32,22 @@ export class DatacomPagination {
 
   onClickFirstPageHandler = () => {
     this.goToPage(1);
-    this.changedPagination.emit(this.currentPage);
+    this.pageChanged.emit(this.currentPage);
   };
 
   onClickPerviousPageHandler = () => {
     this.goToPage(this.currentPage - 1);
-    this.changedPagination.emit(this.currentPage);
+    this.pageChanged.emit(this.currentPage);
   };
 
   onClickNextPageHandler = () => {
     this.goToPage(+this.currentPage + 1);
-    this.changedPagination.emit(this.currentPage);
+    this.pageChanged.emit(this.currentPage);
   };
 
   onClickLastPageHandler = () => {
     this.currentPage = this.totalPages;
-    this.changedPagination.emit(this.currentPage);
+    this.pageChanged.emit(this.currentPage);
   };
 
   /**
@@ -62,7 +62,7 @@ export class DatacomPagination {
     } else {
       this.goToPage(newPage);
     }
-    this.changedPagination.emit(this.currentPage);
+    this.pageChanged.emit(this.currentPage);
   };
 
   render() {
