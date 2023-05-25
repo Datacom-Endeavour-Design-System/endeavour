@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Event, EventEmitter, State } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
 import { getSvg } from '../../common/images';
 
 @Component({
@@ -7,8 +7,6 @@ import { getSvg } from '../../common/images';
   shadow: true,
 })
 export class DatacomPagination {
-  @Element() host: HTMLElement;
-
   @Prop({ mutable: true }) itemsPerPage?: number = 5;
   @Prop({ mutable: true }) totalItems?: number = 100;
   @Prop() disabled?: boolean;
