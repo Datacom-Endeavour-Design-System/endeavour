@@ -12,6 +12,9 @@ module.exports = {
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-interactions'),
   ],
+  core: {
+    builder: getAbsolutePath('@storybook/builder-vite'), // 👈 The builder enabled here.
+  },
 
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
