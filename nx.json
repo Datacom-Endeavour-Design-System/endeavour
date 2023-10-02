@@ -17,20 +17,14 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     },
     "start": {
-      "dependsOn": [
-        { "projects": "dependencies", "target": "build" }
-      ]
+      "dependsOn": [{ "projects": "dependencies", "target": "build" }]
     },
-    "package": {
-      "dependsOn": [
-        { "projects": "dependencies", "target": "build" }
-      ]
-    }    
+    "test": {
+      "dependsOn": [{ "projects": "dependencies", "target": "build" }]
+    }
   },
   "affected": {
     "defaultBase": "main"

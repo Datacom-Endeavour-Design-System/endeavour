@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "Datacom Endeavour Design System",
   "scripts": {
-    "test": "npm run test --workspace=apps/storybook",
-    "test:ci": "concurrently npm:test:ci:*",
-    "test:ci:storybook": "npm run test:ci --workspace=apps/storybook",
-    "test:ci:stencil": "npm run test:unit --workspace=packages/stencil",
+    "test": "nx run-many --target=test",
     "build": "nx run-many --target=build",
     "clean": "nx run-many --target=clean",
     "lint": "nx run-many --target=lint",
@@ -16,7 +13,6 @@
     "dev:stencil": "npm run dev --workspace=packages/stencil",
     "start:storybook": "nx run @datacom/endeavour-storybook:start",
     "start:stencil": "nx run @datacom/endeavour:start",
-    "package": "nx run-many --target=package",
     "prepare": "husky install"
   },
   "author": "endeavour@datacom.co.nz",
@@ -43,7 +39,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
-    "nx": "14.8.4",
+    "nx": "^16.9.1",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "stylelint": "^14.16.1",

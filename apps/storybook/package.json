@@ -8,10 +8,10 @@
     "dev": "npm run start",
     "lint": "eslint src",
     "start": "cross-env STORYBOOK_STORIES=unstable storybook dev -p 6006",
-    "package": "storybook build && node ./scripts/cleanup.js",
-    "package:unstable": "cross-env STORYBOOK_STORIES=unstable storybook build && node ./scripts/cleanup.js",
-    "test": "cypress open --component",
-    "test:ci": "cypress run --component --config video=false"
+    "build": "storybook build",
+    "build:unstable": "cross-env STORYBOOK_STORIES=unstable storybook build",
+    "test": "cypress run --component --config video=false",
+    "test:interactive": "cypress open --component"
   },
   "dependencies": {
     "@datacom/endeavour": "*",
