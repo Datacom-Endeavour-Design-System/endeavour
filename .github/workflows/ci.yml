@@ -81,7 +81,7 @@ jobs:
 
   test-status:
     name: Test Status
-    needs: [lint, unit-test]
+    needs: [lint, test]
     if: success() || failure()
     runs-on: ubuntu-latest
     env:
