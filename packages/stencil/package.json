@@ -19,7 +19,7 @@
     "lint:css": "stylelint src/**/*.css",
     "lint:js:fix": "eslint --fix src",
     "lint:css:fix": "stylelint --fix src/**/*.css",
-    "test:unit": "stencil test --spec",
+    "test": "stencil test --spec",
     "test:e2e": "stencil test --spec --e2e",
     "start": "stencil build --dev --watch --serve",
     "clean": "rimraf dist loader www src/components.d.ts",

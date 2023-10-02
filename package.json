@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "Datacom Endeavour Design System",
   "scripts": {
-    "test": "npm run test --workspace=apps/storybook",
-    "test:ci": "concurrently npm:test:ci:*",
-    "test:ci:storybook": "npm run test:ci --workspace=apps/storybook",
-    "test:ci:stencil": "npm run test:unit --workspace=packages/stencil",
+    "test": "nx run-many --target=test",
     "build": "nx run-many --target=build",
     "clean": "nx run-many --target=clean",
     "lint": "nx run-many --target=lint",

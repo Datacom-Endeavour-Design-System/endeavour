@@ -21,6 +21,9 @@
     },
     "start": {
       "dependsOn": [{ "projects": "dependencies", "target": "build" }]
+    },
+    "test": {
+      "dependsOn": [{ "projects": "dependencies", "target": "build" }]
     }
   },
   "affected": {

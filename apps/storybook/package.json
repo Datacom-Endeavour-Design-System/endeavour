@@ -10,8 +10,8 @@
     "start": "cross-env STORYBOOK_STORIES=unstable storybook dev -p 6006",
     "build": "storybook build",
     "build:unstable": "cross-env STORYBOOK_STORIES=unstable storybook build",
-    "test": "cypress open --component",
-    "test:ci": "cypress run --component --config video=false"
+    "test": "cypress run --component --config video=false",
+    "test:interactive": "cypress open --component"
   },
   "dependencies": {
     "@datacom/endeavour": "*",

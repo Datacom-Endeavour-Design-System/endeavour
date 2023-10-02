@@ -101,7 +101,7 @@ jobs:
   promote-staging:
     name: Promote deployment to staging
     environment: staging
-    needs: [test-status]
+    needs: [deploy-status, test-status]
     if: ${{ github.ref == 'refs/heads/main' }}
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
