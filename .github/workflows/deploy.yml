@@ -1,0 +1,50 @@
+name: Playwright tests
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    outputs:
+      url:
+        description: The deployment url
+        value: ${{ jobs.deploy.outputs.url }}
+    secrets:
+      VERCEL_API_TOKEN:
+        required: true
+      VERCEL_ORG_ID:
+        required: true
+      VERCEL_PROJECT_ID:
+        required: true
+
+jobs:
+  deploy:
+    name: Deploy to Vercel
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      PROD_FLAG: "${{ inputs.environment == 'production' && '--prod' || '' }}"
+      STORYBOOK_STORIES: "${{ inputs.environment == 'production' && 'stable' || 'unstable'"
+    outputs:
+      url: ${{ steps.deploy.outputs.url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Pull Vercel Environment Information
+        run: npx vercel pull --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }}
+      - name: Build Project Artifacts
+        run: npx vercel build ${{ env.PROD_FLAG }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }}
+      - name: Deploy Project Artifacts to Vercel
+        id: deploy
+        run: echo "url=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})" >> "$GITHUB_OUTPUT"
