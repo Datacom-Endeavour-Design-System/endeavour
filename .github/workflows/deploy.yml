@@ -25,7 +25,7 @@ jobs:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
       PROD_FLAG: "${{ inputs.environment == 'production' && '--prod' || '' }}"
-      STORYBOOK_STORIES: "${{ inputs.environment == 'production' && 'stable' || 'unstable'"
+      STORYBOOK_STORIES: "${{ inputs.environment == 'production' && 'stable' || 'unstable' }}"
     outputs:
       url: ${{ steps.deploy.outputs.url }}
     runs-on: ubuntu-latest
