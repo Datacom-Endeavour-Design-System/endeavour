@@ -22,7 +22,7 @@
     "test": "stencil test --spec",
     "test:e2e": "stencil test --spec --e2e",
     "start": "stencil build --dev --watch --serve",
-    "clean": "rimraf dist loader www src/components.d.ts",
+    "clean": "rimraf dist loader www src/components.d.ts .stencil",
     "generate": "stencil generate"
   },
   "dependencies": {

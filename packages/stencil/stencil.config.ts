@@ -1,13 +1,13 @@
 import { Config } from '@stencil/core';
 import { postcss } from '@stencil-community/postcss';
-import { reactOutputTarget as react } from '@stencil/react-output-target';
+import { reactOutputTarget } from '@stencil/react-output-target';
 import postcssCustomMedia from 'postcss-custom-media';
 
 export const config: Config = {
   namespace: 'datacom',
   globalStyle: 'src/global/css/light.css',
   extras: {
-    experimentalImportInjection: true,
+    enableImportInjection: true,
   },
   plugins: [
     postcss({
@@ -15,11 +15,6 @@ export const config: Config = {
     }),
   ],
   outputTargets: [
-    react({
-      componentCorePackage: '@datacom/endeavour',
-      proxiesFile: '../react/src/components/stencil-generated/index.ts',
-      includeDefineCustomElements: true,
-    }),
     {
       type: 'dist',
       copy: [
@@ -41,5 +36,10 @@ export const config: Config = {
       ],
       serviceWorker: null,
     },
+    reactOutputTarget({
+      componentCorePackage: '@datacom/endeavour',
+      proxiesFile: '../react/src/components/stencil-generated/index.ts',
+      includeDefineCustomElements: true,
+    }),
   ],
 };
