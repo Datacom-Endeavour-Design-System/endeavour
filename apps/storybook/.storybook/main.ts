@@ -1,10 +1,17 @@
+import type { StorybookConfig } from '@storybook/react-vite';
+
 import { dirname, join } from 'path';
+
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, 'package.json')));
+}
+
 const stories =
   process.env.STORYBOOK_STORIES === 'unstable'
     ? ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)']
     : ['../src/stable/**/*.stories.@(js|jsx|ts|tsx|mdx)'];
 
-module.exports = {
+const config: StorybookConfig = {
   stories,
 
   addons: [
@@ -12,12 +19,9 @@ module.exports = {
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-interactions'),
   ],
-  core: {
-    builder: getAbsolutePath('@storybook/builder-vite'), // 👈 The builder enabled here.
-  },
 
   framework: {
-    name: getAbsolutePath('@storybook/react-vite'),
+    name: '@storybook/react-vite',
     options: {},
   },
 
@@ -28,6 +32,4 @@ module.exports = {
   },
 };
 
-function getAbsolutePath(value) {
-  return dirname(require.resolve(join(value, 'package.json')));
-}
+export default config;
