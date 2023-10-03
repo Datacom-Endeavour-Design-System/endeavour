@@ -37,7 +37,6 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-          header: deploy
           append: true
           message: |
             "${{ env.STATUS == 'failed' && 'Deploy Failed' || env.MESSAGE }}"
@@ -93,7 +92,6 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-          header: test
           append: true
           message: |
             Test suite ${{ env.STATUS }}
