@@ -6,7 +6,8 @@
     "outDir": "dist",
     "rootDir": "src",
     "strictBindCallApply": true,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "jsx": "react-jsx"
   },
   "include": ["src"],
   "references": [
