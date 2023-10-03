@@ -1,4 +1,4 @@
-const fs = require('fs');
+/*const fs = require('fs');
 const replace = require('replace-in-file');
 
 // cloudflare pages doesn't like node_modules and @ characters
@@ -11,4 +11,4 @@ replace.sync({
   files: './storybook-static/*',
   from: /node_modules\/%40storybook/g,
   to: 'storybook',
-});
+});*/

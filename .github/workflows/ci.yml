@@ -1,25 +1,52 @@
-name: Deploy
+name: CI
 
 on:
   push:
     branches:
       - main
-      - develop
   pull_request:
+    branches:
+      - main
   workflow_dispatch:
-
-env:
-  STORYBOOK_STORIES: ${{ vars.STORYBOOK_STORIES }}
 
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
   cancel-in-progress: true
 
 jobs:
-  build-unstable:
-    name: Build unstable
+  deploy:
+    name: Deploy
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
+    with:
+      environment: "${{ ( github.ref == 'refs/heads/main' && github.event_name == 'push' ) && 'production' || 'preview' }} "
+
+  deploy-status:
+    name: Deploy Status
+    needs: [deploy]
+    if: success() || failure()
     runs-on: ubuntu-latest
-    environment: 'development'
+    env:
+      STATUS: "${{ contains(needs.*.result, 'failure') && 'failed' || 'passed' }}"
+      MESSAGE: 'Latest deployment available at ${{ needs.deploy.outputs.url }}'
+    steps:
+      - name: Add preview URL to job summary
+        run: |
+          echo "${{ env.STATUS == 'failed' && 'Deploy Failed' || env.MESSAGE }}" >> "$GITHUB_STEP_SUMMARY"
+      - name: Add preview URL to PR
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          append: false
+          message: |
+            "${{ env.STATUS == 'failed' && 'Deploy Failed' || env.MESSAGE }}"
+      - name: Failing deploy
+        if: ${{ env.STATUS == 'failed' }}
+        run: exit 1
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -28,194 +55,90 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.x'
           cache: 'npm'
-      - name: Use nx-set-sha
-        uses: nrwl/nx-set-shas@v3
       - name: Install
         run: npm ci
       - name: Package
-        run: npm run package
-      - name: Store build
-        uses: actions/upload-artifact@v3
-        with:
-          name: storybook-static-unstable
-          path: apps/storybook/storybook-static
-  build-stable:
-    name: Build stable
-    if: ${{ github.ref_name == 'main' }}
-    runs-on: ubuntu-latest
-    environment: 'staging'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
-          cache: 'npm'
-      - name: Use nx-set-sha
-        uses: nrwl/nx-set-shas@v3
-      - name: Install
-        run: npm ci
-      - name: Package
-        run: npm run package
-      - name: Store build
-        uses: actions/upload-artifact@v3
-        with:
-          name: storybook-static-stable
-          path: apps/storybook/storybook-static
+        run: npm run lint
+
   test:
-    name: Test
-    runs-on: ubuntu-20.04
-    strategy:
-      # when one test fails, DO NOT cancel the other
-      # containers, because this will kill Cypress processes
-      # leaving the Dashboard hanging ...
-      # https://github.com/cypress-io/github-action/issues/48
-      fail-fast: true
+    name: Unit Test
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Cypress install
-        uses: cypress-io/github-action@v4
         with:
-          build: npm run build
-          project: ./apps/storybook
-          runTests: false
-      - name: Chrome components
-        uses: cypress-io/github-action@v4
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          browser: chrome
-          install: false
-          project: ./apps/storybook
-          command: npm run test:ci
-      - name: Firefox Components
-        uses: cypress-io/github-action@v4
+          node-version: '18.x'
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Package
+        run: npm run test
+
+  test-status:
+    name: Test Status
+    needs: [lint, test]
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    env:
+      STATUS: "${{ contains(needs.*.result, 'failure') && 'failed' || 'passed'}}"
+    steps:
+      - name: Add test status to PR
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          browser: firefox
-          install: false
-          project: ./apps/storybook
-          command: npm run test:ci
-  deploy-preview:
-    name: Preview deploy
-    if: ${{ (github.ref_name != 'main') && (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch') }}
-    environment: 'development'
-    needs: [build-unstable, test]
+          append: true
+          message: |
+            Test suite ${{ env.STATUS }}
+      - name: Failing deploy
+        if: ${{ env.STATUS == 'failed' }}
+        run: exit 1
+
+  promote-staging:
+    name: Promote deployment to staging
+    environment: staging
+    needs: [deploy-status, test-status]
+    if: ${{ github.ref == 'refs/heads/main' }}
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     runs-on: ubuntu-latest
     steps:
-      - name: Retrieve build
-        uses: actions/download-artifact@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          name: storybook-static-unstable
-          path: apps/storybook/storybook-static
-      - name: Push to old Cloudflare
-        uses: cloudflare/pages-action@1
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          branch: ${{ github.head_ref }}
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: datacom-endeavour
-          directory: apps/storybook/storybook-static
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push to Cloudflare
-        uses: cloudflare/pages-action@1
-        with:
-          branch: ${{ github.head_ref }}
-          apiToken: ${{ secrets.CLOUDFLARE_DC_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_DC_ACCOUNT_ID }}
-          projectName: endeavour-design
-          directory: apps/storybook/storybook-static
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-  deploy-develop:
-    name: Deploy develop
-    if: ${{ github.event_name == 'push' && github.ref_name == 'main'}}
-    environment: 'development'
-    needs: [build-unstable, test]
+          node-version: '18.x'
+          cache: 'npm'
+      - name: Alias build to production
+        run: echo "$(npx vercel alias ${{ needs.deploy.outputs.url }} staging.${{ vars.VERCEL_ALIAS }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})" >> "$GITHUB_STEP_SUMMARY"
+
+  promote-production:
+    name: Promote deployment to production
+    environment: production
+    needs: [promote-staging]
+    if: ${{ github.ref == 'refs/heads/main' }}
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     runs-on: ubuntu-latest
     steps:
-      - name: Retrieve build
-        uses: actions/download-artifact@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          name: storybook-static-unstable
-          path: apps/storybook/storybook-static
-      - name: Push to old Cloudflare
-        uses: cloudflare/pages-action@1
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          branch: develop
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: datacom-endeavour
-          directory: apps/storybook/storybook-static
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push to Cloudflare
-        uses: cloudflare/pages-action@1
-        with:
-          branch: develop
-          apiToken: ${{ secrets.CLOUDFLARE_DC_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_DC_ACCOUNT_ID }}
-          projectName: endeavour-design
-          directory: apps/storybook/storybook-static
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-  deploy-staging:
-    name: Deploy staging
-    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
-    environment: 'staging'
-    needs: [build-stable, test]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Retrieve build
-        uses: actions/download-artifact@v3
-        with:
-          name: storybook-static-stable
-          path: apps/storybook/storybook-static
-      - name: Push to old Cloudflare
-        uses: cloudflare/pages-action@1
-        with:
-          branch: staging
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: datacom-endeavour
-          directory: apps/storybook/storybook-static
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push to Cloudflare
-        uses: cloudflare/pages-action@1
-        with:
-          branch: staging
-          apiToken: ${{ secrets.CLOUDFLARE_DC_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_DC_ACCOUNT_ID }}
-          projectName: endeavour-design
-          directory: apps/storybook/storybook-static
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-  deploy-production:
-    name: Deploy production
-    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
-    environment: 'production'
-    needs: [deploy-staging]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Retrieve build
-        uses: actions/download-artifact@v3
-        with:
-          name: storybook-static-stable
-          path: apps/storybook/storybook-static
-      - name: Push to old Cloudflare
-        uses: cloudflare/pages-action@1
-        with:
-          branch: main
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: datacom-endeavour
-          directory: apps/storybook/storybook-static
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push to Cloudflare
-        uses: cloudflare/pages-action@1
-        with:
-          branch: main
-          apiToken: ${{ secrets.CLOUDFLARE_DC_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_DC_ACCOUNT_ID }}
-          projectName: endeavour-design
-          directory: apps/storybook/storybook-static
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          node-version: '18.x'
+          cache: 'npm'
+      - name: Alias build to production
+        run: echo "$(npx vercel alias ${{ needs.deploy.outputs.url }} ${{ vars.VERCEL_ALIAS }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})" >> "$GITHUB_STEP_SUMMARY"

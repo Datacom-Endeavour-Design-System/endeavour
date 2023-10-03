@@ -6,7 +6,7 @@
     "build": "tsc -p .",
     "dev": "tsc -p . --watch",
     "lint": "eslint src",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist src/components/stencil-generated",
     "rollup": "rollup -c"
   },
   "dependencies": {

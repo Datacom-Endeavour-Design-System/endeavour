@@ -8,3 +8,5 @@ loader/
 .stencil/
 .idea/
 .vscode/
+# generated type definitions
+src/components.d.ts
