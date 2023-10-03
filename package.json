@@ -1,13 +1,13 @@
 {
   "name": "datacom",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Datacom Endeavour Design System",
   "scripts": {
     "test": "nx run-many --target=test",
     "build": "nx run-many --target=build",
     "clean": "nx run-many --target=clean",
     "lint": "nx run-many --target=lint",
-    "dev": "npm run build && concurrently -k npm:dev:*",
+    "dev": "concurrently -k npm:dev:*",
     "dev:storybook": "npm run dev --workspace=apps/storybook",
     "dev:react": "npm run dev --workspace=packages/react",
     "dev:stencil": "npm run dev --workspace=packages/stencil",
@@ -37,8 +37,8 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^13.0.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
     "nx": "^16.9.1",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
@@ -47,8 +47,8 @@
     "typescript": "^5.2.2"
   },
   "engines": {
-    "npm": ">=8.0.0",
-    "node": ">=16.0.0"
+    "npm": ">=9.0.0",
+    "node": ">=18.0.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,md,html}": "prettier --write",

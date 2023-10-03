@@ -1,6 +1,6 @@
 {
   "name": "@datacom/endeavour",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Datacom Component Library with Stencil",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -12,7 +12,7 @@
   "unpkg": "dist/@datacom/endeavour/datacom.esm.js",
   "scripts": {
     "build": "stencil build",
-    "dev": "stencil build --watch --es5",
+    "dev": "stencil build --watch",
     "docs": "stencil build --config stencil.config-docs.ts --docs",
     "lint": "concurrently npm:lint:js npm:lint:css",
     "lint:js": "eslint src",
@@ -26,7 +26,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^4.4.0"
+    "@stencil/core": "^4.0.5"
   },
   "devDependencies": {
     "@stencil-community/eslint-plugin": "^0.5.0",
