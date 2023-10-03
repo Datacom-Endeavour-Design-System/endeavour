@@ -7,7 +7,7 @@
     "build": "nx run-many --target=build",
     "clean": "nx run-many --target=clean",
     "lint": "nx run-many --target=lint",
-    "dev": "npm run build && concurrently -k npm:dev:*",
+    "dev": "concurrently -k npm:dev:*",
     "dev:storybook": "npm run dev --workspace=apps/storybook",
     "dev:react": "npm run dev --workspace=packages/react",
     "dev:stencil": "npm run dev --workspace=packages/stencil",
