@@ -19,6 +19,8 @@ module.exports = {
       rules: {
         // Rules we don't like
         '@typescript-eslint/require-await': 'off',
+        // conflicts with the the smarter tsc version
+        '@typescript-eslint/no-unused-vars': 'off',
         // Rules we like
         // TODO: resolve and set to error
         '@typescript-eslint/no-unsafe-assignment': 'warn',
