@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Add preview URL to job summary
         run: |
-          echo "${{ env.STATUS == 'failed' && 'Deploy Failed' || env.MESSAGE }}" >> "$GITHUB_STEP_SUMMARY"
+          echo ${{ env.STATUS == 'failed' && 'Deploy Failed' || env.MESSAGE }} >> "$GITHUB_STEP_SUMMARY"
       - name: Add preview URL to PR
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2
