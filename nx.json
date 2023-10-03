@@ -9,6 +9,7 @@
           "package",
           "start:storybook",
           "start:stencil",
+          "lint",
           "test",
           "test.watch"
         ]
@@ -20,6 +21,9 @@
       "dependsOn": ["^build"]
     },
     "start": {
+      "dependsOn": [{ "projects": "dependencies", "target": "build" }]
+    },
+    "lint": {
       "dependsOn": [{ "projects": "dependencies", "target": "build" }]
     },
     "test": {

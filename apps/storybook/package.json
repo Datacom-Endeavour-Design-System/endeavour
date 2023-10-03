@@ -29,7 +29,7 @@
     "@storybook/react-vite": "7.4.5",
     "@storybook/testing-library": "0.2.1",
     "@storybook/theming": "7.4.5",
-    "@types/node": "^15.12.2",
+    "@types/node": "^18.11.7",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
     "babel-loader": "^8.2.5",
