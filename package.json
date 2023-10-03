@@ -51,10 +51,7 @@
     "node": ">=16.0.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint"
-    ],
+    "*.{js,jsx,ts,tsx,json,md,html}": "prettier --write",
     "*.css": "stylelint"
   },
   "dependencies": {
