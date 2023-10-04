@@ -9,7 +9,7 @@
     "strictNullChecks": false,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": ["src", ".storybook"],
   "references": [
     { "path": "../../packages/react" },
     { "path": "../../packages/stencil" }

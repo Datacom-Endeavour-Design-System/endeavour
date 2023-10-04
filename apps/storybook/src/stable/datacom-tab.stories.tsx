@@ -7,6 +7,7 @@ export default {
   component: DatacomTabgroup,
 };
 
+/* TODO: var color */
 const H2 = styled.h2`
   font-family: Montserrat;
   font-size: 48px;
@@ -14,6 +15,7 @@ const H2 = styled.h2`
   color: #0a1839;
 `;
 
+/* TODO: var color */
 const P = styled.p`
   font-family: Montserrat;
   font-size: 16px;

@@ -28,6 +28,7 @@ const Template: ComponentStoryFn<typeof DatacomScrollButton> = (args) => (
 
 export const ScrollButton = Template.bind({});
 
+/* TODO: var color */
 export const ScrollButtonWithExample = () => {
   const Panel = styled.div`
     font-family: Montserrat;
