@@ -7,7 +7,6 @@
     "baseUrl": ".",
     "composite": true,
     "experimentalDecorators": true,
-    "jsx": "react",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noImplicitReturns": true,

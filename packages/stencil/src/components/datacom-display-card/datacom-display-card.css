@@ -18,6 +18,8 @@
   display: flex;
   height: var(--display-card-height);
   width: 100%;
+
+  /* TODO: var color */
   background-color: #0a1839b3;
   border-radius: var(--border-display-radius);
 }
@@ -99,6 +101,7 @@
 }
 
 .dc-display-card-link:hover .dc-display-card-media {
+  /* TODO: var color */
   background-color: #003fbcb3;
 }
 

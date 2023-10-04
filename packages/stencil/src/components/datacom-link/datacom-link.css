@@ -1,8 +1,12 @@
 :host {
   --link-color: var(--dc-primary-colour);
+
+  /* TODO: var color */
   --link-visited-color: #6b2fc6;
   --link-font-size: 18px;
   --link-height: 24px;
+
+  /* TODO: var color */
   --link-icon-hover-color: #0a1840;
 }
 
