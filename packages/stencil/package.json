@@ -15,7 +15,7 @@
     "dev": "npm run clean && stencil build --watch --es5",
     "docs": "stencil build --config stencil.config-docs.ts --docs",
     "lint": "concurrently npm:lint:js npm:lint:css",
-    "lint:js": "eslint src/**",
+    "lint:js": "eslint src",
     "lint:css": "stylelint src/**/*.css",
     "lint:js:fix": "eslint --fix src",
     "lint:css:fix": "stylelint --fix src/**/*.css",
