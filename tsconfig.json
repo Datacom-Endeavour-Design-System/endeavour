@@ -13,8 +13,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "@datacom/endeavour": ["packages/stencil/src"],
-      "@datacom/endeavour-react": ["packages/react/src"]
+      "@datacom/endeavour": ["packages/stencil"],
+      "@datacom/endeavour-react": ["packages/react"]
     },
     "removeComments": false,
     "sourceMap": true,

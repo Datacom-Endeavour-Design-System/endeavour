@@ -1,5 +1,7 @@
 {
   "extends": "../../tsconfig.json",
+  "buildOnSave": true,
+  "compileOnSave": true,
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
