@@ -12,7 +12,7 @@
   "unpkg": "dist/@datacom/endeavour/datacom.esm.js",
   "scripts": {
     "build": "stencil build --es5",
-    "dev": "stencil build --watch --prod --es5",
+    "dev": "npm run clean && stencil build --watch --es5",
     "docs": "stencil build --config stencil.config-docs.ts --docs",
     "lint": "concurrently npm:lint:js npm:lint:css",
     "lint:js": "eslint src",
@@ -25,11 +25,7 @@
     "clean": "rimraf dist loader www src/components.d.ts .stencil",
     "generate": "stencil generate"
   },
-  "dependencies": {
-    "@stencil/core": "^4.0.5"
-  },
   "devDependencies": {
-    "@stencil-community/eslint-plugin": "^0.5.0",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/react-output-target": "^0.5.3",
     "@types/jest": "^27.5.2",
@@ -57,5 +53,8 @@
         ]
       }
     }
+  },
+  "dependencies": {
+    "@stencil/core": "^4.0.5"
   }
 }
