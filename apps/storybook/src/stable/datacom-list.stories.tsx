@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { ComponentProps } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { DatacomLi, DatacomList } from '@datacom/endeavour-react';
-import { PropsOf } from '@emotion/react';
 
 const meta = {
   title: 'List',
@@ -28,7 +27,7 @@ const meta = {
   render: ({
     heading,
     ...args
-  }: PropsOf<typeof DatacomList> & { heading?: string }) => (
+  }: ComponentProps<typeof DatacomList> & { heading?: string }) => (
     <DatacomList {...args}>
       <DatacomLi> List content item 1</DatacomLi>
       <DatacomLi> List content item 2 </DatacomLi>
@@ -141,7 +140,7 @@ export const StandaloneOrderedList: Story = {
     heading: 'List content item',
     variant: 'ordered',
   },
-  render: (args: PropsOf<typeof DatacomList> & { heading?: string }) => {
+  render: (args: ComponentProps<typeof DatacomList> & { heading?: string }) => {
     const { heading } = args;
 
     return (
@@ -166,7 +165,7 @@ export const StandaloneUnorderedList: Story = {
     heading: 'List content item',
     variant: 'unordered',
   },
-  render: (args: PropsOf<typeof DatacomList> & { heading?: string }) => {
+  render: (args: ComponentProps<typeof DatacomList> & { heading?: string }) => {
     const { heading } = args;
     return (
       <div>
