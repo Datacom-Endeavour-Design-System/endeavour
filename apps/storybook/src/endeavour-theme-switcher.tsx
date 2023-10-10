@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { light, dark } from './theme';
 
 import { Icons, IconButton, WithTooltip, Button } from '@storybook/components';
@@ -55,7 +55,6 @@ const Label = styled.label(({ theme }) => ({
       paddingLeft: 8,
     },
   },
-
   'input:checked ~ span:last-of-type, input:not(:checked) ~ span:first-of-type':
     {
       background: theme.boolean.selectedBackground,
@@ -77,17 +76,16 @@ const inferThemeMode = () => {
   return 'light';
 };
 
-export const EndeavourThemeSwitcher = () => {
+export const EndeavourThemeSwitcher = memo(function EndeavourThemeSwitcher() {
   const [globals, updateGlobals] = useGlobals();
-  const mode = globals['endeavour-mode'] || inferThemeMode();
 
-  console.log('hmmm', mode);
+  const isDark = (globals['endeavour-mode'] || inferThemeMode()) === 'dark';
 
   useEffect(() => {
     addons.setConfig({
-      theme: mode === 'dark' ? dark : light,
+      theme: isDark ? dark : light,
     });
-  }, [mode]);
+  }, [isDark]);
 
   const setMode = useCallback(
     (theme: 'light' | 'dark' | 'system') => {
@@ -109,32 +107,21 @@ export const EndeavourThemeSwitcher = () => {
     [updateGlobals],
   );
 
-  const onChange = () => {
-    if (mode === 'light') {
-      setMode('dark');
-    }
-    if (mode === 'dark') {
-      setMode('light');
-    }
-  };
-
   return (
     <WithTooltip
       placement="top"
       trigger="click"
       closeOnOutsideClick
       tooltip={() => (
-        <>
+        <div style={{ padding: '7px 10px', borderRadius: '3px' }}>
           <Label
             htmlFor="endeavour-theme-mode"
-            title={
-              mode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'
-            }>
+            title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
             <input
               id="endeavour-theme-mode"
               type="checkbox"
-              onChange={onChange}
-              checked={mode === 'dark'}
+              onChange={() => (isDark ? setMode('light') : setMode('dark'))}
+              checked={isDark}
             />
             <span>Light</span>
             <span>Dark</span>
@@ -142,7 +129,7 @@ export const EndeavourThemeSwitcher = () => {
           <Button outline secondary small onClick={() => setMode('system')}>
             System
           </Button>
-        </>
+        </div>
       )}>
       <IconButton title="Select Theme and Mode">
         <Icons icon="circlehollow" />
@@ -150,4 +137,4 @@ export const EndeavourThemeSwitcher = () => {
       </IconButton>
     </WithTooltip>
   );
-};
+});

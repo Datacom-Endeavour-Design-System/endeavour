@@ -80,20 +80,21 @@ const meta: Meta<typeof DatacomButton> = {
 };
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Primary: StoryObj<typeof DatacomButton> = {
+export const Primary: Story = {
   args: {
     variant: 'primary',
   },
 };
 
-export const Secondary: StoryObj<typeof DatacomButton> = {
+export const Secondary: Story = {
   args: {
     variant: 'secondary',
   },
 };
 
-export const Disabled: StoryObj<typeof DatacomButton> = {
+export const Disabled: Story = {
   args: {
     variant: 'primary',
     disabled: true,

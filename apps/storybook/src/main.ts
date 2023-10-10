@@ -2,14 +2,14 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 import { dirname, join } from 'path';
 
-function getAbsolutePath(value) {
+function getAbsolutePath(value: string) {
   return dirname(require.resolve(join(value, 'package.json')));
 }
 
 const stories =
   process.env.STORYBOOK_STORIES === 'unstable'
-    ? ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)']
-    : ['../src/stable/**/*.stories.@(js|jsx|ts|tsx|mdx)'];
+    ? ['./**/*.stories.@(js|jsx|ts|tsx|mdx)']
+    : ['./stable/**/*.stories.@(js|jsx|ts|tsx|mdx)'];
 
 const config: StorybookConfig = {
   stories,

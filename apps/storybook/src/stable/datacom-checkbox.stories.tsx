@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ComponentStoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import {
   DatacomCheckbox,
   DatacomCheckboxGroup,
@@ -7,7 +7,7 @@ import {
 } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
 
-export default {
+const meta: Meta<typeof DatacomCheckbox> = {
   title: 'Checkbox',
   component: DatacomCheckbox,
   argTypes: {
@@ -15,7 +15,7 @@ export default {
       name: 'Label',
       defaultValue: 'Checkbox Item',
       description: 'checkbox label',
-      type: { label: 'string' },
+      type: { name: 'string' },
     },
     variant: {
       name: 'Variant',
@@ -24,7 +24,7 @@ export default {
       control: 'select',
       defaultValue: 'standard',
       options: ['standard', 'small'],
-      type: { label: 'string' },
+      type: { name: 'string' },
     },
     checked: {
       name: 'Selected',
@@ -47,7 +47,7 @@ export default {
       type: { name: 'boolean' },
     },
   },
-  arg: {
+  args: {
     label: 'Checkbox Item',
     variant: 'standard',
     required: false,
@@ -56,63 +56,69 @@ export default {
   },
 };
 
-const Template: ComponentStoryFn<typeof DatacomCheckbox> = (args) => (
-  <DatacomCheckbox {...args} />
-);
+export default meta;
 
-export const Single = Template.bind({});
-Single.args = {
-  label: 'Checkbox Item',
-  variant: 'standard',
-  checked: false,
+export const Single: StoryObj<typeof DatacomCheckbox> = {
+  args: {
+    label: 'Checkbox Item',
+    variant: 'standard',
+    checked: false,
+  },
 };
 
-export const Grouped = (props) => {
-  const custom = (({ label, ...object }) => object)(props);
+export const Grouped: StoryObj<typeof DatacomCheckbox> = {
+  render: (props) => {
+    const custom = (({ label, ...object }) => object)(props);
 
-  return (
-    <div>
-      <DatacomCheckboxGroup>
-        <DatacomCheckbox {...custom}>Parent checkbox</DatacomCheckbox>
-        <DatacomCheckbox {...custom}>Child option 1</DatacomCheckbox>
-        <DatacomCheckbox {...custom}>Child option 2</DatacomCheckbox>
-        <DatacomCheckbox {...custom}>Child option 3</DatacomCheckbox>
-        <DatacomCheckbox {...custom}>Child option 4</DatacomCheckbox>
-      </DatacomCheckboxGroup>
-    </div>
-  );
-};
-
-export const FormValidation = () => {
-  const form = useRef<HTMLFormElement>();
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (event: SubmitEvent) => {
-    if (form.current.checkValidity()) {
-      setSubmitted(true);
-      event.preventDefault();
-    } else {
-      setSubmitted(false);
-    }
-  };
-
-  const ButtonPanel = styled.div`
-    margin-top: 24px;
-  `;
-
-  return (
-    <form method="post" ref={form} onSubmit={handleSubmit}>
+    return (
       <div>
-        <DatacomCheckbox required={true} message="Please agree to the terms">
-          I agree to terms and conditions
-        </DatacomCheckbox>
-
-        {submitted && <p>Form would have been submitted but was prevented</p>}
+        <DatacomCheckboxGroup>
+          <DatacomCheckbox {...custom}>Parent checkbox</DatacomCheckbox>
+          <DatacomCheckbox {...custom}>Child option 1</DatacomCheckbox>
+          <DatacomCheckbox {...custom}>Child option 2</DatacomCheckbox>
+          <DatacomCheckbox {...custom}>Child option 3</DatacomCheckbox>
+          <DatacomCheckbox {...custom}>Child option 4</DatacomCheckbox>
+        </DatacomCheckboxGroup>
       </div>
+    );
+  },
+};
 
-      <ButtonPanel>
-        <DatacomButton type="submit">Submit</DatacomButton>
-      </ButtonPanel>
-    </form>
-  );
+export const FormValidation: StoryObj<typeof DatacomCheckbox> = {
+  args: {
+    label: 'I agree to terms and conditions',
+    required: true,
+    message: 'Please agree to the terms',
+  },
+  render: (props) => {
+    const form = useRef<HTMLFormElement>();
+    const [submitted, setSubmitted] = useState(false);
+
+    const ButtonPanel = styled.div`
+      margin-top: 24px;
+    `;
+
+    return (
+      <form
+        method="post"
+        ref={form}
+        onSubmit={(event) => {
+          if (form.current.checkValidity()) {
+            setSubmitted(true);
+            event.preventDefault();
+          } else {
+            setSubmitted(false);
+          }
+        }}>
+        <div>
+          <DatacomCheckbox {...props} />
+          {submitted && <p>Form would have been submitted but was prevented</p>}
+        </div>
+
+        <ButtonPanel>
+          <DatacomButton type="submit">Submit</DatacomButton>
+        </ButtonPanel>
+      </form>
+    );
+  },
 };

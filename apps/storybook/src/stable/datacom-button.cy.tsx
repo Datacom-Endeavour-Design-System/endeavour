@@ -1,3 +1,4 @@
+import React from 'react';
 import { composeStories } from '@storybook/react';
 import { mount } from 'cypress/react';
 import * as stories from './datacom-button.stories';

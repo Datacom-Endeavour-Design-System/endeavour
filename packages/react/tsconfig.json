@@ -4,10 +4,11 @@
   "compileOnSave": true,
   "compilerOptions": {
     "emitDecoratorMetadata": true,
+    "declarationMap": true,
+    "declaration": true,
     "esModuleInterop": true,
     "outDir": "dist",
     "rootDir": "src",
-    "skipLibCheck": true,
     "jsx": "react"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
