@@ -137,7 +137,7 @@ export class DatacomTooltip {
     const horizontalBuffer = 100;
     const tooltipPositionBuffer = 10;
 
-    let mainPosition: 'bottom' | 'left' | 'top' | 'right';
+    let mainPosition: 'top' | 'bottom' | 'left' | 'right';
     let subPosition: 'start' | 'end' | '';
 
     // Check slotted element's distance from viewport edges to determine best cardinal direction for main tooltip position.
