@@ -9,7 +9,7 @@
     "build": "tsc -p .",
     "dev": "tsc -p . --watch",
     "lint": "eslint src",
-    "clean": "rimraf dist src/components/stencil-generated",
+    "clean": "rimraf dist",
     "rollup": "rollup -c"
   },
   "dependencies": {
