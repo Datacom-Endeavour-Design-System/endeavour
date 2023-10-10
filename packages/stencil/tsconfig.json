@@ -5,10 +5,8 @@
     "jsxFactory": "h",
     "outDir": "dist",
     "rootDir": "src",
-    "skipLibCheck": true,
     "noImplicitAny": false,
-    "strictPropertyInitialization": false,
-    "strictNullChecks": false
+    "strictPropertyInitialization": false
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/**"]

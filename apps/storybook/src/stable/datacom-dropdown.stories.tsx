@@ -130,18 +130,6 @@ export const FormSubmission = () => {
   const [selectedValue, setSelectedValue] = useState([]);
   const [hasError, setHasError] = useState(false);
 
-  const handleSubmit = (event: SubmitEvent) => {
-    event.preventDefault();
-
-    if (selectedValue.length > 0) {
-      setHasError(false);
-      setSubmitted(true);
-    } else {
-      setHasError(true);
-      setSubmitted(false);
-    }
-  };
-
   const onDropdownChange = (event: CustomEvent) => {
     const value = event.detail as string[];
     setSelectedValue(value);
@@ -152,7 +140,17 @@ export const FormSubmission = () => {
     <form
       method="post"
       ref={formRef}
-      onSubmit={handleSubmit}
+      onSubmit={(event) => {
+        event.preventDefault();
+
+        if (selectedValue.length > 0) {
+          setHasError(false);
+          setSubmitted(true);
+        } else {
+          setHasError(true);
+          setSubmitted(false);
+        }
+      }}
       style={{ maxWidth: 272 }}>
       <DatacomDropdown
         ref={dropdownRef}

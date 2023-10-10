@@ -11,7 +11,7 @@
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/@datacom/endeavour/datacom.esm.js",
   "scripts": {
-    "build": "stencil build --es5",
+    "build": "npm run clean && stencil build --es5",
     "dev": "npm run clean && stencil build --watch --es5",
     "docs": "stencil build --config stencil.config-docs.ts --docs",
     "lint": "concurrently npm:lint:js npm:lint:css",
@@ -22,7 +22,7 @@
     "test": "stencil test --spec",
     "test:e2e": "stencil test --spec --e2e",
     "start": "stencil build --dev --watch --serve",
-    "clean": "rimraf dist loader www src/components.d.ts .stencil",
+    "clean": "rimraf dist loader www src/components.d.ts .stencil ../react/src/components/stencil-generated",
     "generate": "stencil generate"
   },
   "devDependencies": {

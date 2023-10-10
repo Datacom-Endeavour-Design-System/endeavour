@@ -14,6 +14,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  prepare:
+    name: Prepare
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add preview URL to PR
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: Deployment Started
+
   deploy:
     name: Deploy
     uses: ./.github/workflows/deploy.yml
@@ -28,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       STATUS: "${{ contains(needs.*.result, 'failure') && 'failed' || 'passed' }}"
-      MESSAGE: 'Latest deployment available at ${{ needs.deploy.outputs.url }}'
+      MESSAGE: Latest deployment available at ${{ needs.deploy.outputs.url }}
     steps:
       - name: Add preview URL to job summary
         run: |
@@ -37,7 +47,6 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-          append: true
           message: |
             "${{ env.STATUS == 'failed' && 'Deploy Failed' || env.MESSAGE }}"
       - name: Failing deploy
@@ -88,13 +97,6 @@ jobs:
     env:
       STATUS: "${{ contains(needs.*.result, 'failure') && 'failed' || 'passed'}}"
     steps:
-      - name: Add test status to PR
-        if: github.event_name == 'pull_request'
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          append: true
-          message: |
-            Test suite ${{ env.STATUS }}
       - name: Failing deploy
         if: ${{ env.STATUS == 'failed' }}
         run: exit 1

@@ -1,0 +1,122 @@
+@import url("./dc-colour-tokens.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400..700");
+/**
+    Light theme.
+*/
+
+:root {
+  /* Colours */
+  --dc-background-colour: var(--dc-token-background-white-theme);
+  --dc-colour-white: #ffffff;
+  --dc-background-accent-color: var(--dc-token-interactive-hover-02);
+  --dc-primary-colour: var(--dc-token-interactive-01);
+  --dc-primary-accent-colour: var(--dc-token-interactive-hover-01);
+  --dc-primary-disabled-colour: var(--dc-token-disabled-01);
+  --dc-error-colour: #cf364e;
+  --dc-primary-text-color: var(--dc-token-text-01);
+  --dc-secondary-text-color: #002470;
+  --dc-ui-fill-extended-01: #3b4660;
+
+  --dc-greyscale-01: #151515;
+  --dc-greyscale-02: #333333;
+  --dc-greyscale-03: #666666;
+  --dc-greyscale-04: #999999;
+  --dc-greyscale-05: #dadada;
+  --dc-grayscale-06: #f0f0f0;
+
+  /* hmm */
+
+  /* Typography */
+  --dc-font-family: montserrat, sans-serif;
+
+  /* Body */
+  --dc-body-text-height: 24px;
+  --dc-body-text-size: 16px;
+  --dc-body-text-spacing: -0.2px;
+  --dc-body-text-weight: 400;
+
+  /* Spacing */
+  --dc-padding-01: 4px;
+  --dc-padding-02: 8px;
+  --dc-padding-03: 12px;
+  --dc-padding-04: 16px;
+  --dc-padding-05: 24px;
+  --dc-padding-06: 32px;
+  --dc-padding-07: 40px;
+
+  /* Headings */
+
+  /* 1 */
+  --dc-heading1-size: 64px;
+  --dc-heading1-height: 80px;
+  --dc-heading1-weight: 700;
+  --dc-heading1-spacing: -0.5px;
+
+  /* 2 */
+  --dc-heading2-size: 48px;
+  --dc-heading2-height: 64px;
+  --dc-heading2-weight: 700;
+  --dc-heading2-spacing: -0.5px;
+
+  /* 3 */
+  --dc-heading3-size: 40px;
+  --dc-heading3-height: 48px;
+  --dc-heading3-weight: 700;
+  --dc-heading3-spacing: -0.5px;
+
+  /* 4 */
+  --dc-heading4-size: 32px;
+  --dc-heading4-height: 40px;
+  --dc-heading4-weight: 700;
+  --dc-heading4-spacing: -0.5px;
+
+  /* 5 */
+  --dc-heading5-size: 24px;
+  --dc-heading5-height: 32px;
+  --dc-heading5-weight: 700;
+  --dc-heading5-spacing: -0.5px;
+
+  /* 6 */
+  --dc-heading6-size: 14px;
+  --dc-heading6-height: 24px;
+  --dc-heading6-weight: 700;
+  --dc-heading6-spacing: -0.2px;
+}
+
+.dark {
+  --dc-background-colour: var(--dc-token-ui-background-dark-theme);
+  --dc-colour-white: #ffffff;
+  --dc-background-accent-color: var(--dc-token-interactive-hover-04);
+  --dc-primary-colour: var(--dc-token-interactive-03);
+  --dc-primary-accent-colour: var(--dc-token-interactive-hover-03);
+  --dc-primary-disabled-colour: var(--dc-token-disabled-03);
+  --dc-error-colour: #cf364e;
+  --dc-primary-text-color: var(--dc-token-text-02);
+  --dc-secondary-text-color: #002470;
+  --dc-ui-fill-extended-01: #3b4660;
+}
+
+/*
+Below are custom media queries for defining breakpoints for our
+component CSS (made possible using the "postcss-custom-media"
+PostCSS plugin). They're written in a "mobile-first" approach
+and can be applied into a normal '@media' CSS rule like below.
+
+Example CSS:
+
+// "Mobile width" CSS styles go here
+background-color: red;
+
+@media(--tablet-breakpoint) {
+    // "Tablet width and up" CSS styles go here
+    background-color: blue;
+}
+
+@media(--desktop-breakpoint) {
+    // "Desktop width and up" CSS styles go here
+    background-color: yellow;
+}
+*/
+@custom-media --breakpoint-tablet (min-width: 500px);
+@custom-media --breakpoint-desktop (min-width: 900px);
+@custom-media --breakpoint-large-desktop (min-width: 1300px);

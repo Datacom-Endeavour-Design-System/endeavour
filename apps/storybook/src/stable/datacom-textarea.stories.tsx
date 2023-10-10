@@ -89,17 +89,18 @@ export const FormSubmission = () => {
   const form = useRef<HTMLFormElement>();
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (event: SubmitEvent) => {
-    if (form.current.checkValidity()) {
-      setSubmitted(true);
-      event.preventDefault();
-    } else {
-      setSubmitted(false);
-    }
-  };
-
   return (
-    <form method="post" ref={form} onSubmit={handleSubmit}>
+    <form
+      method="post"
+      ref={form}
+      onSubmit={(event) => {
+        if (form.current.checkValidity()) {
+          setSubmitted(true);
+          event.preventDefault();
+        } else {
+          setSubmitted(false);
+        }
+      }}>
       <div style={{ width: '300px' }}>
         <DatacomTextarea
           name="textarea"

@@ -1,15 +1,12 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "emitDecoratorMetadata": true,
+    "noEmit": true,
     "esModuleInterop": true,
     "outDir": "dist",
-    "rootDir": "src",
     "strictBindCallApply": true,
-    "strictNullChecks": false,
-    "jsx": "react-jsx"
+    "jsx": "react"
   },
-  "include": ["src", ".storybook"],
   "references": [
     { "path": "../../packages/react" },
     { "path": "../../packages/stencil" }

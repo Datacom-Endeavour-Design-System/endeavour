@@ -1,17 +1,10 @@
-import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { DatacomAvatar } from '@datacom/endeavour-react';
 
-const meta: Meta = {
+const meta: Meta<typeof DatacomAvatar> = {
   title: 'Avatar',
   component: DatacomAvatar,
   argTypes: {
-    variant: {
-      name: 'Variant',
-      control: 'select',
-      options: ['Simple', 'With Image'],
-      type: { name: 'string' },
-    },
     firstName: {
       name: 'First Name',
       type: { name: 'string', required: true },
@@ -37,7 +30,6 @@ const meta: Meta = {
     },
   },
   args: {
-    variant: 'Simple',
     firstName: 'Sally',
     lastName: 'Mei',
     jobTitle: 'UX/UI Designer',
@@ -47,27 +39,13 @@ const meta: Meta = {
 };
 
 export default meta;
-type Story = StoryObj<typeof DatacomAvatar>;
+type Story = StoryObj<typeof meta>;
 
-export const Avatar: Story = {
-  render: (
-    args: React.ComponentProps<typeof DatacomAvatar> & { variant: string }
-  ) => {
-    const props = {
-      firstName: args.firstName,
-      lastName: args.lastName,
-      jobTitle: args.jobTitle,
-      companyName: args.companyName,
-      url: args.url,
-      src: '',
-      alt: '',
-    };
+export const simple: Story = {};
 
-    if (args.variant === 'With Image') {
-      props.src = '/images/avatar-images/avatar-image.png';
-      props.alt = 'Avatar Image';
-    }
-
-    return <DatacomAvatar {...props} />;
+export const withImage: Story = {
+  args: {
+    src: '/images/avatar-images/avatar-image.png',
+    alt: 'Avatar Image',
   },
 };

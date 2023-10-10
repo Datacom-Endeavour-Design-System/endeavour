@@ -1,8 +1,7 @@
-import React from 'react';
-import { ComponentStoryFn, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 import { DatacomButton } from '@datacom/endeavour-react';
 
-export default {
+const meta: Meta<typeof DatacomButton> = {
   title: 'Button',
   component: DatacomButton,
   argTypes: {
@@ -28,7 +27,7 @@ export default {
       defaultValue: 'large',
       options: ['large', 'small'],
     },
-    'image-position': {
+    imagePosition: {
       name: 'Image position',
       description: 'Image or icon position. Defaults to left if not set',
       control: 'select',
@@ -76,21 +75,28 @@ export default {
     },
   },
   args: {
-    text: 'Button text',
-    variant: 'primary',
-    size: 'large',
-    'image-position': 'left',
-    icon: '',
-    loading: false,
-    disabled: false,
+    text: 'Button',
   },
-} as Meta<typeof DatacomButton>;
+};
 
-const Template: ComponentStoryFn<typeof DatacomButton> = (args) => (
-  <DatacomButton {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Button = Template.bind({});
-Button.args = {
-  variant: 'primary',
+export const Primary: Story = {
+  args: {
+    variant: 'primary',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    variant: 'secondary',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    variant: 'primary',
+    disabled: true,
+  },
 };

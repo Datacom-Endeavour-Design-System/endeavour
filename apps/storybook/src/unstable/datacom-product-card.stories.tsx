@@ -92,7 +92,9 @@ type Story = StoryObj<typeof DatacomProductCard>;
 
 export const ProductCard: Story = {
   render: (
-    args: React.ComponentProps<typeof DatacomProductCard> & { tagText: string }
+    args: React.ComponentProps<typeof DatacomProductCard> & {
+      tagText?: string;
+    },
   ) => {
     const { tagText } = args;
 
