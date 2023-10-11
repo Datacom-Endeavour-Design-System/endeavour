@@ -94,6 +94,12 @@ export const Secondary: Story = {
   },
 };
 
+export const Tertiary: Story = {
+  args: {
+    variant: 'ghost',
+  },
+};
+
 export const Disabled: Story = {
   args: {
     variant: 'primary',

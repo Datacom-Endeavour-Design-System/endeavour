@@ -1,6 +1,6 @@
 import React from 'react';
 import { addons, types } from '@storybook/manager-api';
-import { EndeavourThemeSwitcher } from './endeavour-theme-switcher';
+import { ThemeSwitcher } from './theme/theme-switcher';
 
 addons.register('endeavour', () => {
   addons.add('endeavour/theme', {
@@ -9,7 +9,7 @@ addons.register('endeavour', () => {
     type: types.TOOL,
     //👇 Shows the Toolbar UI element if either the Canvas or Docs tab is active
     match: ({ viewMode }) => !!(viewMode && viewMode.match(/^(story|docs)$/)),
-    render: () => <EndeavourThemeSwitcher />,
+    render: () => <ThemeSwitcher />,
   });
 });
 
