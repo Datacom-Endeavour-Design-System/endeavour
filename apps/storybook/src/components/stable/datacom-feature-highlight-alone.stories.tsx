@@ -53,7 +53,7 @@ let key = 0;
 let previousDesc = '';
 
 const Template: StoryFn<FeatureHighlightProps & { description: string }> = (
-  args
+  args,
 ) => {
   const { description, ctaText, featureTitle, url, icon } = args;
   if (description !== previousDesc) {

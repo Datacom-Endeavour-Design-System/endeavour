@@ -53,7 +53,7 @@ const Div = styled.div`
 `;
 
 const Template: StoryFn<DisplayCardProps & { description: string }> = (
-  args
+  args,
 ) => {
   const { description } = args;
   if (description !== previousDesc) {

@@ -30,7 +30,7 @@ export default {
 };
 
 const SingleSectionTemplate: ComponentStoryFn<typeof DatacomAccordion> = (
-  args
+  args,
 ) => {
   const { disabled, expanded, label } = args;
 

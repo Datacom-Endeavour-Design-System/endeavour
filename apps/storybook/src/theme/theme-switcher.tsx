@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { light, dark } from './storybook-theme';
 import { Icons, IconButton, WithTooltip } from '@storybook/components';
 import { addons } from '@storybook/manager-api';
@@ -11,6 +11,8 @@ import {
 
 export const ThemeSwitcher = memo(function EndeavourThemeSwitcher() {
   const [globals, updateGlobals] = useEndeavourGlobals();
+
+  const [visible, setVisible] = useState(false);
 
   const isDark =
     (globals['endeavour-theme-mode'] || inferThemeMode()) === 'dark';
@@ -48,6 +50,7 @@ export const ThemeSwitcher = memo(function EndeavourThemeSwitcher() {
       placement="top"
       trigger="click"
       closeOnOutsideClick
+      onVisibleChange={setVisible}
       tooltip={() => (
         <div style={{ borderRadius: '3px' }}>
           <div
@@ -99,7 +102,7 @@ export const ThemeSwitcher = memo(function EndeavourThemeSwitcher() {
           </div>
         </div>
       )}>
-      <IconButton title="Select Theme and Mode">
+      <IconButton active={visible} title="Select Theme and Mode">
         <Icons icon="circlehollow" />
         <div style={{ paddingLeft: '.5em' }}>Theme</div>
       </IconButton>
