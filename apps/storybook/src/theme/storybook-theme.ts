@@ -32,8 +32,8 @@ export const light = create({
 
   buttonBg: '#FFFFFF', // button background
 
-  booleanSelectedBg: '#002BFE', // active toggle value background
-  booleanBg: '#FFFFFF', // inactive toggle value background
+  booleanSelectedBg: '#FFFFFF', // active toggle value background
+  booleanBg: '#DADADA', // inactive toggle value background
 
   // Top toolbar and tab selector on bottom toolbar
   barBg: '#CCD9FC', // background
@@ -58,7 +58,7 @@ export const dark = create({
 
   brandImage: '/images/logo-dark.png',
 
-  colorPrimary: '#FF00FF', // ??? probably the storybook logo (not used by us)
+  colorPrimary: '#80A0F8', // ??? probably the storybook logo (not used by us)
   colorSecondary: '#80A0F8', // active selection backround; main menu icons
 
   textColor: '#E6E7E8', // text
@@ -71,8 +71,8 @@ export const dark = create({
 
   buttonBg: '#000A14', // button background
 
-  booleanSelectedBg: '#80A0F8', // active toggle value background
-  booleanBg: '#000A14', // inactive toggle value background
+  booleanSelectedBg: '#000A14', // active toggle value background
+  booleanBg: '#666666', // inactive toggle value background
 
   // Top toolbar and tab selector on bottom toolbar
   barBg: '#1A232C', // background

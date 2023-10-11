@@ -9,7 +9,7 @@ function getAbsolutePath(value: string) {
 const stories =
   process.env.STORYBOOK_STORIES === 'unstable'
     ? ['./**/*.stories.@(js|jsx|ts|tsx|mdx)']
-    : ['./stable/**/*.stories.@(js|jsx|ts|tsx|mdx)'];
+    : ['./**/stable/**/*.stories.@(js|jsx|ts|tsx|mdx)'];
 
 const config: StorybookConfig = {
   stories,
@@ -25,7 +25,7 @@ const config: StorybookConfig = {
     options: {},
   },
 
-  staticDirs: ['../static'],
+  staticDirs: ['./public'],
 
   docs: {
     autodocs: true,

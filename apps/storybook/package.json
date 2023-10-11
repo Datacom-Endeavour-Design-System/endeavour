@@ -6,9 +6,11 @@
   "scripts": {
     "clean": "rimraf dist storybook-static",
     "dev": "npm run start",
-    "lint": "concurrently npm:lint:eslint npm:lint:types",
+    "lint": "concurrently npm:lint:eslint npm:lint:types npm:lint:css",
     "lint:eslint": "eslint src",
     "lint:types": "tsc -p .",
+    "lint:css": "stylelint src/**/*.css",
+    "lint:css:fix": "stylelint --fix src/**/*.css",
     "start": "cross-env STORYBOOK_STORIES=unstable storybook dev -p 6006 -c src",
     "build": "storybook build -c src",
     "build:unstable": "cross-env STORYBOOK_STORIES=unstable storybook build -c src",
