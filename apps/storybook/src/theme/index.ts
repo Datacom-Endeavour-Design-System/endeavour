@@ -1,12 +1,12 @@
 import { useGlobals } from '@storybook/manager-api';
 
 const THEMES = {
-  masterbrand: { title: 'Masterbrand', colour: '#FF0000' },
-  datapay: { title: 'Datapay', colour: '#00FF00' },
-  datascape: { title: 'Datascape', colour: '#0000FF' },
-  gateway: { title: 'Gateway', colour: '#00FFFF' },
-  timpani: { title: 'Timpani', colour: '#FF00FF' },
-  connect: { title: 'Connect', colour: '#FFFF00' },
+  masterbrand: { title: 'Masterbrand', colour: '#002bfe' },
+  datapay: { title: 'Datapay', colour: '#01dbe5' },
+  datascape: { title: 'Datascape', colour: '#7827ff' },
+  gateway: { title: 'Gateway', colour: '#feb301' },
+  timpani: { title: 'Timpani', colour: '#0072ed' },
+  connect: { title: 'Connect', colour: '#df2468' },
 };
 
 export type ThemeKey = keyof typeof THEMES;
