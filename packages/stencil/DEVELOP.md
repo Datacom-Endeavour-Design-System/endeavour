@@ -5,7 +5,7 @@
 Use explicit and narrow typescript types where possible:
 
 ```ts
-export type ButtonVariant = 'primary' | 'seconday' | 'ghost';
+export type ButtonVariant = 'primary' | 'seconday' | 'tertiary';
 
 // Prop uses type definition (it will still be a string)
 @Prop() variant: ButtonVariant = 'primary';
@@ -24,7 +24,9 @@ For styling that changes on properties (e.g. variant), add classes at the root e
 **Good**
 
 ```html
-<button class="primary image-left size-small"><svg class="image"></svg><span class="text">{this.text}</span>{spinner}</button>
+<button class="primary image-left size-small">
+  <svg class="image"></svg><span class="text">{this.text}</span>{spinner}
+</button>
 ```
 
 ```css
@@ -38,7 +40,10 @@ For styling that changes on properties (e.g. variant), add classes at the root e
 There should be no need to add classes to the image like "image-small".
 
 ```html
-<button class="primary image-left size-small"><svg class="image image-small"></svg><span class="text">{this.text}</span>{spinner}</button>
+<button class="primary image-left size-small">
+  <svg class="image image-small"></svg
+  ><span class="text">{this.text}</span>{spinner}
+</button>
 ```
 
 ### Host
@@ -70,8 +75,8 @@ Instead, theme elements within the component.
 Validate a property explicitly if it has a set of possible values. Issue a warning if the property is incorrectly configured and revert to a sensible default.
 
 ```ts
-if (!['primary', 'secondary', 'ghost'].includes(this.variant)) {
-  console.warn('Button variant must be either primary, secondary or ghost.');
+if (!['primary', 'secondary', 'tertiary'].includes(this.variant)) {
+  console.warn('Button variant must be either primary, secondary or tertiary.');
   this.variant = 'primary';
 }
 ```

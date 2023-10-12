@@ -30,6 +30,8 @@ export default [
   // Typescript
   {
     files: ['**/*.{ts,tsx}'],
+    // Stencil has it's own typescript config below
+    ignores: ['**/packages/stencil/**'],
     languageOptions: {
       parser: typeScriptEsLintParser,
       globals: {
@@ -53,18 +55,10 @@ export default [
         .rules,
       ...typeScriptEsLintPlugin.configs['recommended-requiring-type-checking']
         .rules,
-      // Rules we like
-      // TODO: resolve and set to error
-      '@typescript-eslint/no-unsafe-assignment': 'warn',
-      '@typescript-eslint/no-unsafe-call': 'warn',
-      '@typescript-eslint/no-unsafe-member-access': 'warn',
-      '@typescript-eslint/no-unsafe-return': 'warn',
-      '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-misused-promises': 'warn',
-      // Rules we don't like
-      '@typescript-eslint/require-await': 'off',
       // conflicts with the the smarter tsc version
       '@typescript-eslint/no-unused-vars': 'off',
+      // Rules we don't like
+      '@typescript-eslint/require-await': 'off',
     },
   },
   // Import order and promise preferences
@@ -89,11 +83,6 @@ export default [
       react: eslintPluginReact,
       'react-hooks': eslintPluginReactHooks,
     },
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
     languageOptions: {
       parserOptions: {
         ecmaFeatures: {
@@ -102,6 +91,11 @@ export default [
       },
       globals: {
         ...globals.browser,
+      },
+    },
+    settings: {
+      react: {
+        version: 'detect',
       },
     },
     rules: {
@@ -110,21 +104,14 @@ export default [
       ...eslintPluginReactHooks.configs.recommended.rules,
     },
   },
-  // Jest
-  {
-    files: ['**/*.spec*'],
-    plugins: {
-      jest: eslintPluginJest,
-    },
-    rules: {
-      ...eslintPluginJest.configs['recommended'].rules,
-      '@typescript-eslint/no-unsafe-call': 'off',
-      'jest/prefer-expect-assertions': 'off',
-    },
-  },
   // Stencil
   {
     files: ['**/stencil/src/**/*.{cjs,mjs,js,jsx,ts,tsx}'],
+    plugins: {
+      react: eslintPluginReact,
+      '@stencil-community': stencilPlugin,
+      '@typescript-eslint': typeScriptEsLintPlugin,
+    },
     languageOptions: {
       parser: typeScriptEsLintParser,
       globals: {
@@ -133,20 +120,12 @@ export default [
       },
       parserOptions: {
         project: true,
-        ecmaVersion: 2018,
-        sourceType: 'module',
-        ecmaFeatures: {
-          jsx: true,
-        },
       },
     },
-    plugins: {
-      react: eslintPluginReact,
-      '@stencil-community': stencilPlugin,
-      '@typescript-eslint': typeScriptEsLintPlugin,
-    },
     rules: {
-      ...stencilPlugin.configs['base'].rules,
+      ...typeScriptEsLintPlugin.configs['eslint-recommended'].overrides?.[0]
+        .rules,
+      ...stencilPlugin.configs['base'].overrides[0].rules,
       ...stencilPlugin.configs['recommended'].rules,
       // Ignore stencil JSX parser
       '@typescript-eslint/no-unused-vars': [
@@ -161,6 +140,23 @@ export default [
       '@stencil-community/strict-mutable': 'warn',
       '@stencil-community/element-type': 'warn',
       '@stencil-community/own-methods-must-be-private': 'warn',
+    },
+  },
+  // Jest
+  {
+    files: ['**/*.spec*'],
+    plugins: {
+      jest: eslintPluginJest,
+    },
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+    rules: {
+      ...eslintPluginJest.configs['recommended'].rules,
+      '@typescript-eslint/no-unsafe-call': 'off',
+      'jest/prefer-expect-assertions': 'off',
     },
   },
   // Global rule dissable overides

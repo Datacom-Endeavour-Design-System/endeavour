@@ -7,7 +7,7 @@ import {
   getLocalThemeMode,
   inferThemeMode,
   useEndeavourGlobals,
-} from '.';
+} from './endeavour-theme';
 
 export const ThemeSwitcher = memo(function EndeavourThemeSwitcher() {
   const [globals, updateGlobals] = useEndeavourGlobals();

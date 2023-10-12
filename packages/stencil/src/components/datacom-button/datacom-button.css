@@ -145,7 +145,9 @@
   outline: none;
 }
 
-.dc-button-primary:disabled {
+.dc-button-primary:disabled
+.dc-button-primary:disabled:hover {
+  color: var(--dc-primary-disabled-text-colour);
   background-color: var(--dc-primary-disabled-colour);
 }
 
@@ -181,7 +183,8 @@
   outline: none;
 }
 
-.dc-button-secondary:disabled {
+.dc-button-secondary:disabled,
+.dc-button-secondary:disabled:hover {
   color: var(--dc-primary-disabled-colour);
   border-color: var(--dc-primary-disabled-colour);
 }
@@ -203,44 +206,45 @@
   stroke: var(--dc-primary-disabled-colour);
 }
 
-/* Ghost */
-.dc-button-ghost {
+/* Tertiary */
+.dc-button-tertiary {
   color: var(--dc-primary-colour);
   background-color: var(--dc-background-colour);
   border-width: 2px;
   border: none;
 }
 
-.dc-button-ghost:focus {
+.dc-button-tertiary:focus {
   outline: 2px solid var(--dc-primary-colour);
   outline-offset: 1px;
   color: var(--dc-primary-colour);
 }
 
-.dc-button-ghost:hover,
-.dc-button-ghost:active {
+.dc-button-tertiary:hover,
+.dc-button-tertiary:active {
   background-color: var(--dc-background-accent-color);
   color: var(--dc-primary-accent-colour);
   outline: none;
 }
 
-.dc-button-ghost:disabled {
+.dc-button-tertiary:disabled,
+.dc-button-tertiary:disabled:hover {
   color: var(--dc-primary-disabled-colour);
 }
 
-.dc-button-ghost .dc-button-image path {
+.dc-button-tertiary .dc-button-image path {
   fill: var(--dc-primary-colour);
 }
 
-.dc-button-ghost:disabled .dc-button-image path {
+.dc-button-tertiary:disabled .dc-button-image path {
   fill: var(--dc-primary-disabled-colour);
 }
 
-.dc-button-ghost .dc-button-spinner circle {
+.dc-button-tertiary .dc-button-spinner circle {
   stroke: var(--dc-primary-colour);
   fill: none;
 }
 
-.dc-button-ghost:disabled .dc-button-spinner circle {
+.dc-button-tertiary:disabled .dc-button-spinner circle {
   stroke: var(--dc-primary-disabled-colour);
 }

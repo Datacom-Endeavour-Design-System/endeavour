@@ -16,7 +16,7 @@ const meta: Meta<typeof DatacomButton> = {
       description: 'Main button variant. Defaults to primary if not set.',
       control: 'select',
       defaultValue: 'primary',
-      options: ['primary', 'secondary', 'ghost'],
+      options: ['primary', 'secondary', 'tertiary'],
       type: { name: 'string', required: true },
     },
     size: {
@@ -96,7 +96,7 @@ export const Secondary: Story = {
 
 export const Tertiary: Story = {
   args: {
-    variant: 'ghost',
+    variant: 'tertiary',
   },
 };
 

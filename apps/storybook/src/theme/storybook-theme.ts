@@ -27,10 +27,14 @@ export const light = create({
   textInverseColor: '#FFFFFF', // ??? same as background
   textMutedColor: '#666666', // chevron; input text; shortcut helper text
 
+  appBorderColor: '#E6E7E8',
+
   inputTextColor: '#000A14', // input text
   inputBg: '#FFFFFF', // input background
+  inputBorder: '#80858A',
 
   buttonBg: '#FFFFFF', // button background
+  buttonBorder: '#80858A',
 
   booleanSelectedBg: '#FFFFFF', // active toggle value background
   booleanBg: '#DADADA', // inactive toggle value background
@@ -45,18 +49,13 @@ export const light = create({
 
   // Bottom toolbar content
   appContentBg: '#FFFFFF', //background
-
-  // alpha values, leave as is
-  appBorderColor: '#E6E7E8',
-  buttonBorder: '#80858A',
-  inputBorder: '#80858A',
 });
 
 export const dark = create({
   ...base,
   base: 'dark',
 
-  brandImage: '/images/logo-dark.png',
+  brandImage: '/images/logo-dark.svg',
 
   colorPrimary: '#80A0F8', // ??? probably the storybook logo (not used by us)
   colorSecondary: '#80A0F8', // active selection backround; main menu icons
@@ -65,11 +64,15 @@ export const dark = create({
   textInverseColor: '#FF00FF', // ??? same as background
   textMutedColor: '#999999', // chevron; input text; shortcut helper text
 
+  appBorderColor: '#1A232C',
+
   inputTextColor: '#80858A', // input text
 
   inputBg: '#000A14', // input background
+  inputBorder: '#80858A',
 
   buttonBg: '#000A14', // button background
+  buttonBorder: '#80A0F8',
 
   booleanSelectedBg: '#000A14', // active toggle value background
   booleanBg: '#666666', // inactive toggle value background
@@ -84,9 +87,4 @@ export const dark = create({
 
   // Bottom toolbar content
   appContentBg: '#000A14', //background
-
-  // alpha values, leave as is
-  appBorderColor: '#1A232C',
-  buttonBorder: '#80A0F8',
-  inputBorder: '#80858A',
 });

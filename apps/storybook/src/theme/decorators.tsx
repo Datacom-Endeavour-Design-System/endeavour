@@ -3,7 +3,7 @@ import { DocsContainer as StorybookDocsContainer } from '@storybook/addon-docs';
 import { DocsContainerProps } from '@storybook/blocks';
 import { Preview } from '@storybook/react';
 
-import { EndeavourGlobals } from '.';
+import { EndeavourGlobals } from './endeavour-theme';
 import { dark, light } from './storybook-theme';
 
 const ApplyTheme = ({
@@ -14,7 +14,7 @@ const ApplyTheme = ({
   return (
     <link
       rel="stylesheet"
-      href={`/${theme || 'masterbrand'}-colour-tokens.css`}
+      href={`/css/${theme || 'masterbrand'}-colour-tokens.css`}
     />
   );
 };

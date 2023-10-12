@@ -3,7 +3,7 @@ import { getSvg } from '../../common/images/icon-provider';
 import { Spinner } from '../../common/images/icons';
 import { randomString } from '../../utils';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
 export type ButtonSize = 'large' | 'small';
 export type ImagePosition = 'left' | 'right';
 export type ButtonType = 'button' | 'submit' | 'reset';
@@ -44,7 +44,7 @@ export class DatacomButton {
    * Button variant:
    * - primary
    * - seconday
-   * - ghost
+   * - tertiary
    */
   @Prop() variant: ButtonVariant = 'primary';
 
@@ -94,18 +94,24 @@ export class DatacomButton {
     let size = this.size;
     let imagePosition = this.imagePosition;
 
-    if (!['primary', 'secondary', 'ghost'].includes(variant)) {
-      console.log('Button variant must be either primary, secondary or ghost. Defaulting to primary');
+    if (!['primary', 'secondary', 'tertiary'].includes(variant)) {
+      console.log(
+        'Button variant must be either primary, secondary or tertiary. Defaulting to primary',
+      );
       variant = 'primary';
     }
 
     if (this.size?.length > 0 && !['large', 'small'].includes(size)) {
-      console.log('Button size must be either large or small. Defaulting to large');
+      console.log(
+        'Button size must be either large or small. Defaulting to large',
+      );
       size = 'large';
     }
 
     if (!['left', 'right'].includes(this.imagePosition)) {
-      console.log('Button image position must be either left or right. Defaulting to left');
+      console.log(
+        'Button image position must be either left or right. Defaulting to left',
+      );
       imagePosition = 'left';
     }
 
@@ -153,8 +159,7 @@ export class DatacomButton {
             autoFocus={this.autofocus}
             aria-labelledby={this.labelId}
             disabled={this.disabled}
-            class={classes}
-          >
+            class={classes}>
             {image}
             <span id={this.labelId} class="dc-button-text">
               {this.text}
