@@ -17,6 +17,8 @@
   --dc-secondary-text-color: #002470;
   --dc-ui-fill-extended-01: #3b4660;
 
+  --dc-primary-disabled-text-colour: var(--dc-token-disabled-02);
+
   --dc-greyscale-01: #151515;
   --dc-greyscale-02: #333333;
   --dc-greyscale-03: #666666;

@@ -11,6 +11,6 @@
     "rootDir": "src",
     "jsx": "react"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src"],
   "references": [{ "path": "../stencil" }]
 }

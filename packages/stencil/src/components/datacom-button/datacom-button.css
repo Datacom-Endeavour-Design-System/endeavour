@@ -146,6 +146,7 @@
 }
 
 .dc-button-primary:disabled {
+  color: var(--dc-primary-disabled-text-colour);
   background-color: var(--dc-primary-disabled-colour);
 }
 

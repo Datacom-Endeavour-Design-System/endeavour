@@ -56,7 +56,7 @@ export const dark = create({
   ...base,
   base: 'dark',
 
-  brandImage: '/images/logo-dark.png',
+  brandImage: '/images/logo-dark.svg',
 
   colorPrimary: '#80A0F8', // ??? probably the storybook logo (not used by us)
   colorSecondary: '#80A0F8', // active selection backround; main menu icons

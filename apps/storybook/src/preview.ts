@@ -3,7 +3,7 @@ import '@datacom/endeavour/dist/endeavour/endeavour.css';
 import { Preview } from '@storybook/react';
 
 import { PreviewDecorator, DocsContainer } from './theme/decorators';
-import { globals } from './theme';
+import { globals } from './theme/endeavour-theme';
 
 const preview: Preview = {
   decorators: [PreviewDecorator],
