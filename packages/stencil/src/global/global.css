@@ -11,12 +11,12 @@
   --dc-background-accent-color: var(--dc-token-interactive-hover-02);
   --dc-primary-colour: var(--dc-token-interactive-01);
   --dc-primary-accent-colour: var(--dc-token-interactive-hover-01);
-  --dc-primary-disabled-colour: var(--dc-token-disabled-01);
   --dc-error-colour: #cf364e;
   --dc-primary-text-color: var(--dc-token-text-01);
   --dc-secondary-text-color: #002470;
   --dc-ui-fill-extended-01: #3b4660;
 
+  --dc-primary-disabled-colour: var(--dc-token-disabled-01);
   --dc-primary-disabled-text-colour: var(--dc-token-disabled-02);
 
   --dc-greyscale-01: #151515;
@@ -91,7 +91,6 @@
   --dc-background-accent-color: var(--dc-token-interactive-hover-04);
   --dc-primary-colour: var(--dc-token-interactive-03);
   --dc-primary-accent-colour: var(--dc-token-interactive-hover-03);
-  --dc-primary-disabled-colour: var(--dc-token-disabled-03);
   --dc-error-colour: #cf364e;
   --dc-primary-text-color: var(--dc-token-text-02);
   --dc-secondary-text-color: #002470;
