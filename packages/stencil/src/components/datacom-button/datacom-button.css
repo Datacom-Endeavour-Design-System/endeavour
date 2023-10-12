@@ -139,14 +139,13 @@
   outline-offset: 1px;
 }
 
-.dc-button-primary:hover,
-.dc-button-primary:active {
+.dc-button-primary:hover:enabled,
+.dc-button-primary:active:enabled {
   background-color: var(--dc-primary-accent-colour);
   outline: none;
 }
 
-.dc-button-primary:disabled
-.dc-button-primary:disabled:hover {
+.dc-button-primary:disabled {
   color: var(--dc-primary-disabled-text-colour);
   background-color: var(--dc-primary-disabled-colour);
 }
@@ -175,16 +174,15 @@
   outline-offset: 1px;
 }
 
-.dc-button-secondary:hover,
-.dc-button-secondary:active {
+.dc-button-secondary:hover:enabled,
+.dc-button-secondary:active:enabled {
   color: var(--dc-primary-accent-colour);
   border-color: var(--dc-primary-accent-colour);
   background-color: var(--dc-background-accent-color);
   outline: none;
 }
 
-.dc-button-secondary:disabled,
-.dc-button-secondary:disabled:hover {
+.dc-button-secondary:disabled {
   color: var(--dc-primary-disabled-colour);
   border-color: var(--dc-primary-disabled-colour);
 }
@@ -220,15 +218,14 @@
   color: var(--dc-primary-colour);
 }
 
-.dc-button-tertiary:hover,
-.dc-button-tertiary:active {
+.dc-button-tertiary:hover:enabled,
+.dc-button-tertiary:active:enabled {
   background-color: var(--dc-background-accent-color);
   color: var(--dc-primary-accent-colour);
   outline: none;
 }
 
-.dc-button-tertiary:disabled,
-.dc-button-tertiary:disabled:hover {
+.dc-button-tertiary:disabled {
   color: var(--dc-primary-disabled-colour);
 }
 
