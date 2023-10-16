@@ -1,4 +1,15 @@
-import { Component, h, Prop, Element, EventEmitter, Event, VNode, State, Method, Host } from '@stencil/core';
+import {
+  Component,
+  h,
+  Prop,
+  Element,
+  EventEmitter,
+  Event,
+  VNode,
+  State,
+  Method,
+  Host,
+} from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 import { randomString } from '../../utils';
 import { FormControl } from '../form-control';
@@ -13,11 +24,11 @@ export type ImagePosition = 'left' | 'right';
   scoped: true,
 })
 export class DatacomRadio implements FormControl {
-  @Element() host: HTMLElement;
+  @Element() host: HTMLDatacomRadioElement;
   @Prop() label: string;
   @Prop() variant: RadioVariant = 'radio';
   @Prop() size: RadioSize = 'standard';
-  @Prop({ attribute: 'image-position' }) imagePosition: ImagePosition = 'left';
+  @Prop({ attribute: 'image-position' }) iconPosition: ImagePosition = 'left';
   @Prop() type = 'radio';
   @Prop({ mutable: true }) checked = false;
   @Prop() disabled = false;
@@ -124,7 +135,7 @@ export class DatacomRadio implements FormControl {
     // Shouldn't overwrite immutable properties so we must use local variables
     let variant = this.variant;
     let size = this.size;
-    let imagePosition = this.imagePosition;
+    let iconPosition = this.iconPosition;
 
     if (!['standard', 'small'].includes(size)) {
       console.log('radio size must be either standard or small.');
@@ -136,9 +147,9 @@ export class DatacomRadio implements FormControl {
       variant = 'radio';
     }
 
-    if (!['left', 'right'].includes(this.imagePosition)) {
+    if (!['left', 'right'].includes(this.iconPosition)) {
       console.log('radio group image position must be either left or right.');
-      imagePosition = 'left';
+      iconPosition = 'left';
     }
 
     let image: VNode;
@@ -162,7 +173,7 @@ export class DatacomRadio implements FormControl {
           <div class="dc-radio-wrapper">
             <input
               class="dc-radio-input"
-              ref={el => this.setInputElementRef(el)}
+              ref={(el) => this.setInputElementRef(el)}
               form={this.form}
               autofocus={this.autofocus}
               formmethod={this.formmethod}
@@ -181,7 +192,7 @@ export class DatacomRadio implements FormControl {
               tabIndex={0}
             />
             <label htmlFor={this.inputId} class="dc-radio-label" tabIndex={-1}>
-              <span tabIndex={-1} class={`dc-radio-image-${imagePosition}`}>
+              <span tabIndex={-1} class={`dc-radio-image-${iconPosition}`}>
                 {this.label}
                 {variant !== 'radio' && image}
               </span>
