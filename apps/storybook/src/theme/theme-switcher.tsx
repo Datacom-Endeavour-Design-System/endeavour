@@ -87,12 +87,11 @@ export const ThemeSwitcher = memo(function EndeavourThemeSwitcher() {
                 style={{
                   justifyContent: 'start',
                   width: '100%',
-                  padding: '0px 30px',
                 }}
                 active={name === globals['endeavour-theme-name']}
                 onClick={() => updateGlobals({ 'endeavour-theme-name': name })}>
                 <Icons
-                  style={{ marginRight: '30px' }}
+                  style={{ marginRight: '12px' }}
                   icon="circle"
                   color={colour}
                 />

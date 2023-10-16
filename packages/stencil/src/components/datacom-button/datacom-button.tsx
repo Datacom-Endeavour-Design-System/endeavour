@@ -60,7 +60,7 @@ export class DatacomButton {
    * - left
    * - right
    */
-  @Prop({ attribute: 'image-position' }) imagePosition: ImagePosition = 'left';
+  @Prop({ attribute: 'image-position' }) iconPosition: ImagePosition = 'left';
 
   /**
    * Image source as either relative or obsolute URI
@@ -92,7 +92,7 @@ export class DatacomButton {
     // Shouldn't overwrite immutable properties so we must use local variables
     let variant = this.variant;
     let size = this.size;
-    let imagePosition = this.imagePosition;
+    let iconPosition = this.iconPosition;
 
     if (!['primary', 'secondary', 'tertiary'].includes(variant)) {
       console.log(
@@ -108,11 +108,11 @@ export class DatacomButton {
       size = 'large';
     }
 
-    if (!['left', 'right'].includes(this.imagePosition)) {
+    if (!['left', 'right'].includes(this.iconPosition)) {
       console.log(
         'Button image position must be either left or right. Defaulting to left',
       );
-      imagePosition = 'left';
+      iconPosition = 'left';
     }
 
     /**
@@ -132,7 +132,7 @@ export class DatacomButton {
       'dc-button-loading': this.loading,
       [`dc-button-${variant}`]: true,
       [`dc-button-size-${size}`]: true,
-      [`dc-button-image-${imagePosition}`]: image && this.text?.length > 0,
+      [`dc-button-image-${iconPosition}`]: image && this.text?.length > 0,
     };
 
     return (

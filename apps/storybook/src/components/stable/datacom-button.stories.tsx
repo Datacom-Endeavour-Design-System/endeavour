@@ -9,7 +9,7 @@ const meta: Meta<typeof DatacomButton> = {
       name: 'Text',
       defaultValue: 'Button text',
       description: 'Button text',
-      type: { name: 'string', required: true },
+      type: { name: 'string' },
     },
     variant: {
       name: 'Variant',
@@ -17,7 +17,7 @@ const meta: Meta<typeof DatacomButton> = {
       control: 'select',
       defaultValue: 'primary',
       options: ['primary', 'secondary', 'tertiary'],
-      type: { name: 'string', required: true },
+      type: { name: 'string' },
     },
     size: {
       name: 'Size',
@@ -27,8 +27,8 @@ const meta: Meta<typeof DatacomButton> = {
       defaultValue: 'large',
       options: ['large', 'small'],
     },
-    imagePosition: {
-      name: 'Image position',
+    iconPosition: {
+      name: 'Icon position',
       description: 'Image or icon position. Defaults to left if not set',
       control: 'select',
       defaultValue: 'left',

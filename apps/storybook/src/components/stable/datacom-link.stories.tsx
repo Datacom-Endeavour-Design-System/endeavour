@@ -29,7 +29,7 @@ export default {
       options: ['standalone', 'inline', 'stacked', 'footer'],
       type: { name: 'string' },
     },
-    imagePosition: {
+    iconPosition: {
       name: 'Image Position',
       description: 'Image or icon position. Defaults to left if not set',
       control: 'select',
@@ -80,13 +80,13 @@ export default {
 };
 
 const Template: StoryFn<LinkProps & { label: string }> = (args) => {
-  const { label, url, variant, icon, imagePosition, disabled } = args;
+  const { label, url, variant, icon, iconPosition, disabled } = args;
   return (
     <DatacomLink
       variant={variant}
       url={url}
       icon={icon}
-      imagePosition={imagePosition}
+      iconPosition={iconPosition}
       disabled={disabled}>
       {label}
     </DatacomLink>
@@ -108,7 +108,7 @@ export const stackedLinks = () => {
           variant="stacked"
           url="https://www.datacom.com/nz/en"
           icon="forward"
-          imagePosition="right">
+          iconPosition="right">
           Learn more
         </DatacomLink>
       </div>
@@ -116,7 +116,7 @@ export const stackedLinks = () => {
         variant="stacked"
         url="https://www.datacom.com/nz/en/search"
         icon="settings"
-        imagePosition="right">
+        iconPosition="right">
         Account settings
       </DatacomLink>
     </div>

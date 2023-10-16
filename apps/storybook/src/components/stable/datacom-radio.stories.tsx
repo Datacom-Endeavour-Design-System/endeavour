@@ -43,7 +43,7 @@ const meta = {
       description: 'Required Field',
       type: { name: 'boolean' },
     },
-    imagePosition: {
+    iconPosition: {
       name: 'Image position',
       description: 'Image or icon position. Defaults to left if not set',
       control: 'select',
