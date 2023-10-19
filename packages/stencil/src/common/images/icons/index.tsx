@@ -27,3 +27,4 @@ export * from './chevron';
 export * from './clear';
 export * from './drill-down';
 export * from './check-circle';
+export * from './theme';
