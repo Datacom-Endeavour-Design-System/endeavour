@@ -43,7 +43,7 @@
   transform: scaleX(1);
   transform-origin: bottom left;
   cursor: pointer;
-  background-color: var(--dc-secondary-colour);
+  background-color: var(--dc-primary-underline);
 }
 
 .dc-text:hover {
