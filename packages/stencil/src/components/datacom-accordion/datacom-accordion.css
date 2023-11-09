@@ -54,7 +54,7 @@
 
 /* Hover state styles */
 .dc-accordion-heading:hover {
-  background-color: var(--dc-grayscale-06);
+  background-color: var(--dc-ui-fill-hover-colour);
 }
 
 /* Focus state styles */
