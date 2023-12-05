@@ -1,6 +1,6 @@
 {
   "name": "@datacom/endeavour",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Datacom Component Library with Stencil",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -11,27 +11,23 @@
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/@datacom/endeavour/datacom.esm.js",
   "scripts": {
-    "build": "stencil build",
-    "dev": "stencil build --watch",
+    "build": "npm run clean && stencil build --es5",
+    "dev": "npm run clean && stencil build --watch --es5",
     "docs": "stencil build --config stencil.config-docs.ts --docs",
-    "lint": "concurrently npm:lint:*(!fix)",
+    "lint": "concurrently npm:lint:js npm:lint:css",
     "lint:js": "eslint src",
     "lint:css": "stylelint src/**/*.css",
     "lint:js:fix": "eslint --fix src",
     "lint:css:fix": "stylelint --fix src/**/*.css",
-    "test:unit": "stencil test --spec",
+    "test": "stencil test --spec",
     "test:e2e": "stencil test --spec --e2e",
     "start": "stencil build --dev --watch --serve",
-    "clean": "rimraf dist loader www",
+    "clean": "rimraf dist loader www src/components.d.ts .stencil ../react/src/components/stencil-generated",
     "generate": "stencil generate"
   },
-  "dependencies": {
-    "@stencil/core": "^2.19.1"
-  },
   "devDependencies": {
-    "@stencil/eslint-plugin": "^0.4.0",
-    "@stencil/postcss": "^2.1.0",
-    "@stencil/react-output-target": "^0.3.1",
+    "@stencil-community/postcss": "^2.2.0",
+    "@stencil/react-output-target": "^0.5.3",
     "@types/jest": "^27.5.2",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
@@ -57,5 +53,8 @@
         ]
       }
     }
+  },
+  "dependencies": {
+    "@stencil/core": "^4.0.5"
   }
 }

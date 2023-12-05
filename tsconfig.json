@@ -7,15 +7,15 @@
     "baseUrl": ".",
     "composite": true,
     "experimentalDecorators": true,
-    "jsx": "react",
     "moduleResolution": "node",
+    "skipLibCheck": true,
     "noImplicitAny": true,
-    "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "strictNullChecks": false,
     "paths": {
-      "@datacom/endeavour": ["packages/stencil/src"],
-      "@datacom/endeavour-react": ["packages/react/src"]
+      "@datacom/endeavour": ["packages/stencil"],
+      "@datacom/endeavour-react": ["packages/react"]
     },
     "removeComments": false,
     "sourceMap": true,

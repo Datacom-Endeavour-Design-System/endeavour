@@ -31,23 +31,26 @@
   border-radius: 4px;
   box-sizing: border-box;
   color: var(--text-color);
+
+  /* TODO: var color */
   filter: drop-shadow(0 3px 8px rgba(0 0 0 / 20%));
   font-family: var(--dc-font-family);
   font-size: 12px;
   letter-spacing: -0.2px;
   line-height: 16px;
   max-width: 272px;
-  padding: 8px 16px;
+  padding: 8px;
   position: relative;
-  text-align: center;
   width: max-content;
 }
 
 .dc-tooltip-arrow {
-  width: 0;
-  height: 0;
-  border-style: solid;
+  display: flex;
   position: absolute;
+}
+
+.dc-tooltip-arrow svg path {
+  fill: var(--background-color);
 }
 
 /* Tooltip orientation classes */
@@ -61,11 +64,9 @@
 }
 
 .top .dc-tooltip-arrow {
-  border-color: var(--background-color) transparent transparent transparent;
-  border-width: 6px 6px 0;
   left: 50%;
   top: 100%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) rotate(180deg);
 }
 
 .top-start {
@@ -76,10 +77,9 @@
 }
 
 .top-start .dc-tooltip-arrow {
-  border-color: var(--background-color) transparent transparent transparent;
-  border-width: 6px 6px 0;
   left: 12px;
   top: 100%;
+  transform: rotate(180deg);
 }
 
 .top-end {
@@ -90,10 +90,9 @@
 }
 
 .top-end .dc-tooltip-arrow {
-  border-color: var(--background-color) transparent transparent transparent;
-  border-width: 6px 6px 0;
   right: 12px;
   top: 100%;
+  transform: rotate(180deg);
 }
 
 /* Bottom-related orientation classes */
@@ -105,8 +104,6 @@
 }
 
 .bottom .dc-tooltip-arrow {
-  border-color: transparent transparent var(--background-color) transparent;
-  border-width: 0 6px 6px;
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
@@ -120,8 +117,6 @@
 }
 
 .bottom-start .dc-tooltip-arrow {
-  border-color: transparent transparent var(--background-color) transparent;
-  border-width: 0 6px 6px;
   bottom: 100%;
   left: 12px;
 }
@@ -134,8 +129,6 @@
 }
 
 .bottom-end .dc-tooltip-arrow {
-  border-width: 0 6px 6px;
-  border-color: transparent transparent var(--background-color) transparent;
   bottom: 100%;
   right: 12px;
 }
@@ -149,11 +142,10 @@
 }
 
 .right .dc-tooltip-arrow {
-  border-color: transparent var(--background-color) transparent transparent;
-  border-width: 6px 6px 6px 0;
+  margin-right: -3px;
   right: 100%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) rotate(-90deg);
 }
 
 .right-start {
@@ -164,10 +156,10 @@
 }
 
 .right-start .dc-tooltip-arrow {
-  border-color: transparent var(--background-color) transparent transparent;
-  border-width: 6px 6px 6px 0;
+  margin-right: -3px;
   right: 100%;
   top: 8px;
+  transform: rotate(-90deg);
 }
 
 .right-end {
@@ -178,10 +170,10 @@
 }
 
 .right-end .dc-tooltip-arrow {
-  border-width: 6px 6px 6px 0;
-  border-color: transparent var(--background-color) transparent transparent;
   bottom: 8px;
+  margin-right: -3px;
   right: 100%;
+  transform: rotate(-90deg);
 }
 
 /* Left-related orientation classes */
@@ -193,11 +185,10 @@
 }
 
 .left .dc-tooltip-arrow {
-  border-color: transparent transparent transparent var(--background-color);
-  border-width: 6px 0 6px 6px;
   left: 100%;
+  margin-left: -3px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) rotate(90deg);
 }
 
 .left-start {
@@ -208,10 +199,10 @@
 }
 
 .left-start .dc-tooltip-arrow {
-  border-color: transparent transparent transparent var(--background-color);
-  border-width: 6px 0 6px 6px;
   left: 100%;
+  margin-left: -3px;
   top: 8px;
+  transform: rotate(90deg);
 }
 
 .left-end {
@@ -222,10 +213,10 @@
 }
 
 .left-end .dc-tooltip-arrow {
-  border-color: transparent transparent transparent var(--background-color);
-  border-width: 6px 0 6px 6px;
   bottom: 8px;
+  margin-left: -3px;
   left: 100%;
+  transform: rotate(90deg);
 }
 
 /* Dark color style */
@@ -237,6 +228,10 @@
 }
 
 /* Class for hiding arrow */
-.hide-tip {
+.hide-arrow {
+  padding: 0;
+}
+
+.hide-arrow .dc-tooltip-arrow {
   visibility: hidden;
 }

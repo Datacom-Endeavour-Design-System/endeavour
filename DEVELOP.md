@@ -42,6 +42,12 @@ You can optionally run the stencil development server instead of storybook:
 npm run start:stencil
 ```
 
+To import a theme from figma to css, the following two search and replace regex will parse it to valid css, note the regex must support multiline matches (ie vscode):
+
+/^[^$#].\*\n//
+
+/^\$(._)\n(._)/--dc-token-$1: $2;/
+
 #### Further information
 
 - [Storybook and Cypress](storybook/DEVELOP.md)

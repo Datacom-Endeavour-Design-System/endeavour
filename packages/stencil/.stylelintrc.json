@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "custom-media-pattern": "breakpoint-.+"
+  }
+}
