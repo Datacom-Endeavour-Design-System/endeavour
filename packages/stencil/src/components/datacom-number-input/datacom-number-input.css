@@ -67,7 +67,7 @@ input::-webkit-inner-spin-button {
 
 .dc-number-decrement:hover,
 .dc-number-increment:hover {
-  background-color: var(--dc-grayscale-06);
+  background-color: var(--dc-background-accent-color);
 }
 
 .dc-number-decrement:hover .dc-decrement-icon path,
