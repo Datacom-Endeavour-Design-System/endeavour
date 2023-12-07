@@ -22,7 +22,7 @@
   min-width: 48px;
   height: 52px;
   margin-left: 0%;
-  border: 1px solid var(--dc-greyscale-05);
+  border: 1px solid var( --dc-ui-border-default);
   border-left: 0;
   background-color: var(--dc-background-colour);
   cursor: pointer;
@@ -95,6 +95,11 @@ input::-webkit-inner-spin-button {
 }
 
 /* Disabled state */
+.dc-number-disabled .dc-number-increment,
+.dc-number-disabled .dc-number-decrement {
+  border-color: var(--dc-ui-disabled-border);
+}
+
 .dc-number-disabled .dc-decrement-icon path,
 .dc-number-disabled .dc-increment-icon path {
   fill: var(--dc-greyscale-04);

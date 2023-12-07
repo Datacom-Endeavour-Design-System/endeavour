@@ -39,7 +39,7 @@
 
 .dc-text-input {
   background-color: var(--dc-background-colour);
-  border: 1px solid var(--dc-greyscale-05);
+  border: 1px solid var( --dc-ui-border-default);
   border-radius: 8px;
   box-sizing: border-box;
   caret-color: var(--dc-primary-colour);
@@ -183,7 +183,7 @@
 /* Disabled */
 .dc-text-disabled .dc-text-input,
 .dc-text-disabled .dc-text-input:hover {
-  border-color: var(--dc-greyscale-05);
+  border-color: var(--dc-ui-disabled-border);
 }
 
 .dc-text-disabled .dc-text-label,
@@ -193,5 +193,5 @@
 
 .dc-text-disabled .dc-text-input:hover,
 .dc-text-disabled .dc-text-input:focus {
-  border-color: var(--dc-greyscale-05);
+  border-color: var(--dc-ui-disabled-border);
 }

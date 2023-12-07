@@ -16,11 +16,12 @@
   --dc-primary-text-color: var(--dc-token-text-01);
   --dc-secondary-text-color: #002470;
   --dc-ui-fill-extended-01: #3b4660;
-
   --dc-primary-disabled-colour: var(--dc-token-disabled-01);
   --dc-primary-disabled-text-colour: var(--dc-token-disabled-02);
 
   --dc-ui-fill-hover-colour: var(--dc-token-interactive-hover-02);
+  --dc-ui-border-default: var(--dc-token-border-default-01);
+  --dc-ui-disabled-border: var(--dc-token-disabled-02);
 
   --dc-greyscale-01: #151515;
   --dc-greyscale-02: #333333;
@@ -98,6 +99,8 @@
   --dc-primary-text-color: var(--dc-token-text-02);
   --dc-secondary-text-color: #002470;
   --dc-ui-fill-extended-01: #3b4660;
+  --dc-ui-disabled-border: var(--dc-token-disabled-03);
+
 
   --dc-ui-fill-hover-colour: var(--dc-token-ui-fill-extended-01);
 }
