@@ -6,7 +6,7 @@
 
 /* Default styles */
 .dc-accordion {
-  box-shadow: 0 2px 6px #00000029;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.161);
   display: flex;
   flex-direction: column;
   position: relative;

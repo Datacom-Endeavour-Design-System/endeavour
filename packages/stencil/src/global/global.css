@@ -99,7 +99,7 @@
   --dc-secondary-text-color: #002470;
   --dc-ui-fill-extended-01: #3b4660;
 
-  --dc-ui-fill-hover-colour: var(--dc-token-ui-fill-extended-01);
+  --dc-ui-fill-hover-colour: var(--dc-token-interactive-hover-04);
 }
 
 /*
