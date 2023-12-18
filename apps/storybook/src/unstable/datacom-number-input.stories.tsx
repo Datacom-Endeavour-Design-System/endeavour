@@ -1,9 +1,8 @@
 import React from 'react';
-import { ComponentStoryFn, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 import { DatacomNumberInput } from '@datacom/endeavour-react';
-import styled from '@emotion/styled';
 
-export default {
+const meta: Meta<typeof DatacomNumberInput> = {
   title: 'Number Input',
   component: DatacomNumberInput,
   argTypes: {
@@ -20,7 +19,7 @@ export default {
     },
     placeholder: {
       name: 'Placeholder',
-      defaultValue: 'e.g.000',
+      defaultValue: 'e.g. 000',
       description: 'Input placeholder prompt',
       type: { name: 'string', required: false },
     },
@@ -51,7 +50,7 @@ export default {
     },
     step: {
       name: 'Step',
-      description: 'step for increment and decrement',
+      description: 'Step for increment and decrement',
       type: { name: 'number' },
     },
     disabled: {
@@ -64,22 +63,18 @@ export default {
     label: 'Label',
     disabled: false,
     required: true,
-    placeholder: 'e.g.000',
+    placeholder: 'e.g. 000',
     message: 'Error message',
   },
-} as Meta<typeof DatacomNumberInput>;
-
-const Template: ComponentStoryFn<typeof DatacomNumberInput> = (props) => {
-  const Panel = styled.div`
-    width: 272px;
-  `;
-
-  return (
-    <Panel>
-      <DatacomNumberInput min={1} max={50} step={1} {...props} />
-    </Panel>
-  );
 };
 
-export const Default = Template.bind({});
-Default.args = {};
+export default meta;
+type Story = StoryObj<typeof meta>;
+export const Default: Story = {
+  render: (args: React.ComponentProps<typeof DatacomNumberInput>) => (
+    <div style={{ width: '272px' }}>
+      {' '}
+      <DatacomNumberInput min={0} max={100} step={1} {...args} />
+    </div>
+  ),
+};

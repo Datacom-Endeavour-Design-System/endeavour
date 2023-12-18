@@ -144,7 +144,7 @@
 .dc-text-error .dc-text-input,
 .dc-text-error .dc-text-input:hover,
 .dc-text-error .dc-text-input:focus {
-  border-color: var(--dc-error-colour);
+  border-color: var(--dc-primary-error-color);
 }
 
 .dc-text-error .dc-text-error-icon {
@@ -154,8 +154,12 @@
   top: 18px;
 }
 
+.dc-text-error-icon path {
+  fill :var(--dc-primary-error-color)
+}
+
 .dc-text-error-msg {
-  color: var(--dc-error-colour);
+  color: var(--dc-primary-error-color);
   display: none;
   font-size: 12px;
   font-weight: 400;
