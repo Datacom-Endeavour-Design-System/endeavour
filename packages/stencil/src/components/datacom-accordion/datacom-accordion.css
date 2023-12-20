@@ -83,7 +83,7 @@
 
 /* Expanded state styles */
 .expand .dc-accordion-heading-content {
-  border-bottom: 1px solid var(--dc-primary-border-color);
+  border-bottom: 1px solid var(--dc-ui-border-default);
 }
 
 .expand .dc-accordion-chevron {
