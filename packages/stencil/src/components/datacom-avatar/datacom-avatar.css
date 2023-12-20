@@ -21,8 +21,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--dc-primary-text-color);
-  color: var(--dc-colour-white);
+  background: var(--dc-background-secondary-color);
+  color: var(--dc-primary-token-text-color);
   font-weight: 400;
   font-size: 18px;
   line-height: 28px;

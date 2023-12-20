@@ -9,12 +9,14 @@
   --dc-background-colour: var(--dc-token-background-white-theme);
   --dc-colour-white: #ffffff;
   --dc-background-accent-color: var(--dc-token-interactive-hover-02);
+  --dc-background-secondary-color: var(--dc-token-ui-02);
   --dc-primary-colour: var(--dc-token-interactive-01);
   --dc-primary-accent-colour: var(--dc-token-interactive-hover-01);
   --dc-secondary-colour: var(--dc-token-interactive-03);
   --dc-error-colour: #cf364e;
   --dc-primary-error-color: var(--dc-token-support-extended-01);
   --dc-primary-text-color: var(--dc-token-text-01);
+  --dc-primary-token-text-color: var(--dc-token-text-02);
   --dc-secondary-text-color: #002470;
   --dc-ui-fill-extended-01: #3b4660;
 
@@ -99,11 +101,13 @@
   --dc-background-colour: var(--dc-token-ui-background-dark-theme);
   --dc-colour-white: #ffffff;
   --dc-background-accent-color: var(--dc-token-interactive-hover-04);
+  --dc-background-secondary-color: var(--dc-token-ui-05);
   --dc-primary-colour: var(--dc-token-interactive-03);
   --dc-primary-accent-colour: var(--dc-token-interactive-hover-03);
   --dc-error-colour: #cf364e;
   --dc-primary-error-color: var(--dc-token-support-01);
   --dc-primary-text-color: var(--dc-token-text-02);
+  --dc-primary-token-text-color: var(--dc-token-text-01);
   --dc-secondary-text-color: #002470;
   --dc-ui-fill-extended-01: #3b4660;
   --dc-primary-box-shadow: 0px 3px 6px 0px #ccced029;
