@@ -21,7 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--dc-background-secondary-color);
+  background: var(--dc-primary-colour);
   color: var(--dc-primary-token-text-color);
   font-weight: 400;
   font-size: 18px;
