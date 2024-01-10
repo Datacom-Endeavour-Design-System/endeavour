@@ -36,14 +36,24 @@
   letter-spacing: -0.2px;
 }
 
+.dc-checkbox-disabled .dc-checkbox-label {
+  color: var(--dc-greyscale-04);
+}
+
 .dc-checkbox-size-standard .dc-checkbox-input {
+  display: flex;
   width: 24px;
   height: 24px;
+  justify-content: center;
+  align-items: center;
 }
 
 .dc-checkbox-size-small .dc-checkbox-input {
+  display: flex;
   width: 20px;
   height: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .dc-checkbox-size-standard .dc-checkbox-label {
@@ -67,17 +77,22 @@
 
 .dc-checkbox-input:checked {
   background-color: var(--dc-primary-colour);
-  background-image: url("data:image/svg+xml,%3csvg width='14' height='12' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.851 11.563a.765.765 0 0 1-.541-.243L.217 6.91c-.299-.318-.28-.822 0-1.14.3-.318.767-.3 1.065 0l3.55 3.83L12.7.688A.73.73 0 0 1 13.764.65c.299.299.317.803.037 1.14L5.41 11.32c-.167.15-.354.243-.56.243Z' fill='white'/%3e%3c/svg%3e");
-  background-size: 14px;
-  background-position: center;
-  background-repeat: no-repeat;
   border-color: var(--dc-primary-colour);
 }
 
-.dc-checkbox-size-small .dc-checkbox-input:checked {
-  background-size: 12px;
-  background-position: center;
-  background-repeat: no-repeat;
+.dc-checkbox-input:checked::before {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 12px;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'  viewBox='0 0 12 10' fill='none'%3E%3Cpath d='M4.20931 9.63556C4.03779 9.63556 3.88209 9.55771 3.75802 9.43302L0.347819 5.75813C0.0984391 5.49356 0.114269 5.07329 0.347819 4.80809C0.597189 4.54352 0.986449 4.55872 1.2352 4.80809L4.19355 7.99999L10.7489 0.573139C10.9825 0.308569 11.3876 0.292749 11.6363 0.542119C11.8857 0.791489 11.9009 1.21177 11.6673 1.49215L4.67661 9.43298C4.53672 9.55767 4.38102 9.63552 4.2095 9.63552L4.20931 9.63556Z' fill='white'/%3E%3C/svg%3E") no-repeat;
+  mask-position: center;
+  background-color: var(--dc-background-colour); 
+}
+
+.dc-checkbox-size-small .dc-checkbox-input:checked::before {
+  width: 12px;
+  height: 10px;
 }
 
 .dc-checkbox-input:focus-visible {
@@ -113,7 +128,6 @@
   content: "";
   width: 14px;
   height: 2px;
-  margin: 0 0 1px 4px;
   background-color: var(--dc-background-colour);
 }
 
@@ -122,7 +136,6 @@
   content: "";
   width: 12px;
   height: 2px;
-  margin: 0 0 3px 3px;
   background-color: var(--dc-background-colour);
 }
 
@@ -131,13 +144,8 @@
   background-color: var(--dc-background-disabled-color);
 }
 
-.dc-checkbox-disabled .dc-checkbox-input:checked {
-  background-color: var(--dc-background-disabled-color);
-  background-image: url("data:image/svg+xml,%3csvg width='14' height='12' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.851 11.563a.765.765 0 0 1-.541-.243L.217 6.91c-.299-.318-.28-.822 0-1.14.3-.318.767-.3 1.065 0l3.55 3.83L12.7.688A.73.73 0 0 1 13.764.65c.299.299.317.803.037 1.14L5.41 11.32c-.167.15-.354.243-.56.243Z' fill='%23999999'/%3e%3c/svg%3e");
-}
-
-.dc-checkbox-disabled.dc-checkbox-indeterminate .dc-checkbox-input {
-  background-color: var(--dc-grayscale-05);
+.dc-checkbox-disabled .dc-checkbox-input:checked::before {
+  background-color: var(--dc-greyscale-04);  
 }
 
 .dc-checkbox-disabled.dc-checkbox-indeterminate .dc-checkbox-input::after {
