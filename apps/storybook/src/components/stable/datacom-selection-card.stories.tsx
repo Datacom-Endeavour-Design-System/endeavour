@@ -13,38 +13,40 @@ export default {
   title: 'Card',
   component: DatacomSelectionCard,
   argTypes: {
-    title: {
+    cardTitle: {
       name: 'Title',
-      defaultValue: 'Title',
       description: 'Text of title displayed.',
       type: { name: 'string' },
     },
     description: {
       name: 'Description',
-      defaultValue:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
       description: 'Text of description displayed.',
       type: { name: 'string' },
     },
     tagText: {
       name: 'Tag Text',
-      defaultValue: 'Tag',
       description: 'Text for content tag.',
       type: { name: 'string' },
     },
     ctaText: {
       name: 'CTA Label',
-      defaultValue: 'Button text',
       description: 'Text within the CTA element.',
       type: { name: 'string' },
     },
     imageUrl: {
       name: 'Image URL',
-      defaultValue:
-        'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
       description: 'Image URL to be displayed at top of card.',
       type: { name: 'string' },
     },
+  },
+  args: {
+    cardTitle: 'Title',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
+    ctaText: 'Button text',
+    url: 'https://datacom.com',
+    imageUrl:
+      'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
   },
 };
 
@@ -54,7 +56,7 @@ let previousDesc = '';
 const Template: StoryFn<
   SelectionCardProps & { description: string; tagText: string }
 > = (args) => {
-  const { ctaText, description, imageUrl, tagText, title } = args;
+  const { description, tagText } = args;
 
   // Trigger re-render if description is updated (as changes to slotted elements don't trigger re-renders)
   if (description !== previousDesc) {
@@ -65,11 +67,7 @@ const Template: StoryFn<
   return (
     <div style={{ height: 600 }}>
       <div style={{ maxWidth: 386 }}>
-        <DatacomSelectionCard
-          key={key}
-          ctaText={ctaText}
-          imageUrl={imageUrl}
-          cardTitle={title}>
+        <DatacomSelectionCard key={key} {...args}>
           <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
           <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
           <DatacomRadio slot="options" label="Label" id="radio3" value="3" />

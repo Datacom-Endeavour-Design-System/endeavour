@@ -3,10 +3,11 @@
 This file contains variables and classes that are common across
 all variants of the card component.
 */
+@import url("../../global/global.css");
 
 :host {
   --border-radius: 8px;
-  --box-shadow: 0 3px 6px #00000029;
+  --box-shadow: var(--dc-primary-box-shadow);
   --content-padding: 24px;
 }
 
