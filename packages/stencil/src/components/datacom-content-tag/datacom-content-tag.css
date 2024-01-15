@@ -4,7 +4,7 @@
   --highlight-hover-color: var(--dc-primary-accent-colour);
 
   /* TODO: var color */
-  --promo-hover-color: #eb337f;
+  --promo-hover-color: var(--dc-tag-hover-color);
   --tag-border-width: 1px;
   --tag-color: var(--dc-primary-text-color);
   --tag-height: 26px;
@@ -38,14 +38,18 @@ a.dc-content-tag:hover {
 }
 
 /* Color setting for other variants */
-.event,
-.product-promo {
+.event {
   /* TODO: var color */
-  --tag-color: #e60060;
+  --tag-color: var(--dc-primary-colour);
+}
+
+.product-promo {
+  --tag-color: var(--dc-accent-color);
+  --dc-background-colour: #000a14;
 }
 
 .product-highlight {
-  --tag-color: var(--dc-secondary-text-color);
+  --tag-color: var(--dc-background-secondary-accent-color);
 }
 
 /* "Product" styles */
@@ -55,6 +59,11 @@ a.dc-content-tag:hover {
   border-color: var(--tag-color);
   color: var(--dc-background-colour);
   font-weight: 600;
+}
+
+a.event:hover {
+  border-color: var(--dc-link-hover-color);
+  color: var(--dc-link-hover-color);
 }
 
 a.product-highlight:hover {
