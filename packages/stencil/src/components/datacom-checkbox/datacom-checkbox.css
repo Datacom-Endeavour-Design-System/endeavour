@@ -121,6 +121,7 @@
 .dc-checkbox-indeterminate .dc-checkbox-input {
   background-image: none;
   background-color: var(--dc-primary-colour);
+  border-color: var(--dc-primary-colour);
 }
 
 .dc-checkbox-indeterminate.dc-checkbox-size-standard .dc-checkbox-input::after {
