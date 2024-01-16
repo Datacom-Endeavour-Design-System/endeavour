@@ -115,7 +115,10 @@ export const ProductCard: Story = {
         <div style={{ maxWidth: 386 }}>
           <DatacomProductCard {...args}>
             {tagText && (
-              <DatacomContentTag url="https://datacom.com" slot="tags">
+              <DatacomContentTag
+                url="https://datacom.com"
+                variant="product-promo"
+                slot="tags">
                 {tagText}
               </DatacomContentTag>
             )}

@@ -178,7 +178,7 @@ export class DatacomProductCard {
                       <button
                         class="dc-action-icon"
                         onClick={this.onAddToCartClicked}>
-                        <IconShoppingCart class="dc-card-shopping-cart-icon" />
+                        <IconShoppingCart class="dc-card-icon-shopping-cart" />
                       </button>
                     </datacom-tooltip>
                   </div>
