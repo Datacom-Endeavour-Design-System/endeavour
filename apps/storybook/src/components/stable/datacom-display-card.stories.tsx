@@ -44,6 +44,15 @@ export default {
       type: { name: 'string', required: 'true' },
     },
   },
+  args: {
+    heading: 'Title',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
+    ctaText: 'Learn more',
+    url: 'https://datacom.com',
+    imageUrl:
+      'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
+  },
 };
 let key = 0;
 let previousDesc = '';
