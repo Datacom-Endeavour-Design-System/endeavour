@@ -1,12 +1,12 @@
-
+@import url("../../global/global.css");
 :host {
-  --accordion-border-radius: 10px;
+  --accordion-border-radius: 8px;
   --accordion-padding: 24px;
 }
 
 /* Default styles */
 .dc-accordion {
-  box-shadow: 0 2px 6px #00000029;
+  box-shadow: var(--dc-primary-box-shadow);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -19,7 +19,7 @@
   cursor: pointer;
   font-family: var(--dc-font-family);
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
   padding: var(--accordion-padding) var(--accordion-padding) 0;
 }
 
@@ -83,7 +83,7 @@
 
 /* Expanded state styles */
 .expand .dc-accordion-heading-content {
-  border-bottom: 1px solid var(--dc-greyscale-05);
+  border-bottom: 1px solid var(--dc-ui-border-default);
 }
 
 .expand .dc-accordion-chevron {
@@ -101,9 +101,9 @@
 }
 
 .disabled .dc-accordion-heading-content {
-  color: var(--dc-greyscale-05);
+  color: var(--dc-secondary-disabled-text-colour);
 }
 
 .disabled .dc-accordion-chevron path {
-  fill: var(--dc-greyscale-05);
+  fill: var(--dc-secondary-disabled-text-colour);
 }
