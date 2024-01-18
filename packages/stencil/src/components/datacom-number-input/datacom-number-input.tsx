@@ -1,4 +1,13 @@
-import { Component, Host, h, Prop, Element, Listen, Event, EventEmitter } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  Element,
+  Listen,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 
 @Component({
@@ -58,8 +67,12 @@ export class DatacomNumberInput {
   @Listen('input', { capture: true })
   onInput(event: InputEvent): void {
     const inputElement = event.target as HTMLInputElement;
-    const newValue = inputElement.value !== '' ? +inputElement.value : undefined;
-    if (newValue !== undefined && (newValue < this.min || newValue > this.max)) {
+    const newValue =
+      inputElement.value !== '' ? +inputElement.value : undefined;
+    if (
+      newValue !== undefined &&
+      (newValue < this.min || newValue > this.max)
+    ) {
       return;
     }
     this.value = newValue;
@@ -88,14 +101,21 @@ export class DatacomNumberInput {
             required={this.required}
             message={this.message}
             disabled={this.disabled}
-            placeholder={this.placeholder}
-          >
+            placeholder={this.placeholder}>
             {this.label}
           </datacom-input>
-          <button type="button" disabled={this.disabled} onClick={this.handleDecrement} class="dc-number-decrement">
+          <button
+            type="button"
+            disabled={this.disabled}
+            onClick={this.handleDecrement}
+            class="dc-number-decrement">
             {getSvg('remove', { class: 'dc-decrement-icon' })}
           </button>
-          <button type="button" disabled={this.disabled} onClick={this.handleIncrement} class="dc-number-increment">
+          <button
+            type="button"
+            disabled={this.disabled}
+            onClick={this.handleIncrement}
+            class="dc-number-increment">
             {getSvg('add', { class: 'dc-increment-icon' })}
           </button>
         </div>
