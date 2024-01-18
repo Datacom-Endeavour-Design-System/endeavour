@@ -126,11 +126,6 @@
   border-color: var(--dc-primary-colour);
 }
 
-.dc-checkbox-indeterminate .dc-checkbox-input:hover {
-  border: 1px solid var(--dc-primary-accent-colour);
-  cursor: pointer;
-}
-
 .dc-checkbox-indeterminate.dc-checkbox-size-standard .dc-checkbox-input::after {
   display: inline-block;
   content: "";
@@ -152,10 +147,16 @@
   background-color: var(--dc-background-disabled-color);
 }
 
+.dc-checkbox-indeterminate .dc-checkbox-input:hover:enabled {
+  border: 1px solid var(--dc-primary-accent-colour);
+  cursor: pointer;
+}
+
 .dc-checkbox-disabled .dc-checkbox-input:checked::before {
   background-color: var(--dc-greyscale-04);  
 }
 
 .dc-checkbox-disabled.dc-checkbox-indeterminate .dc-checkbox-input::after {
   background-color: var(--dc-greyscale-04);
+  cursor: default;
 }
