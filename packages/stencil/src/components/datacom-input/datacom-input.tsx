@@ -51,6 +51,7 @@ export class DatacomInput implements FormControl {
   @Prop() pattern?: string;
   @Prop() min?: number;
   @Prop() max?: number;
+  @Prop() step?: number;
   @Prop() inputmode?: string;
   @Prop() size?: number;
   @Prop() title: string;
@@ -323,6 +324,7 @@ export class DatacomInput implements FormControl {
               inputMode={this.inputmode}
               title={this.title}
               disabled={this.disabled}
+              step={this.step}
               value={this.value}
             />
             {this.indicator == 'working' && showIndicator && <Spinner class="dc-text-spinner dc-text-indicator" />}
