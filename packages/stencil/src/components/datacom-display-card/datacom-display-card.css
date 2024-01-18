@@ -1,3 +1,4 @@
+@import url("../../global/global.css");
 
 :host {
   --border-display-radius: 8px;
