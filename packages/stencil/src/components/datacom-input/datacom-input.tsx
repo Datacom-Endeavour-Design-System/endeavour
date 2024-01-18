@@ -1,4 +1,14 @@
-import { Component, Host, h, Prop, State, Listen, Event, EventEmitter, Method } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  State,
+  Listen,
+  Event,
+  EventEmitter,
+  Method,
+} from '@stencil/core';
 import { randomString } from '../../utils';
 import { Error, Spinner, Tick } from '../../common/images/icons';
 import { FormControl } from '../form-control';
@@ -6,7 +16,16 @@ import { FormControl } from '../form-control';
 /**
  * This control only accepts a subset of input types
  */
-export type DatacomInputType = 'text' | 'number' | 'password' | 'tel' | 'time' | 'url' | 'week' | 'month' | 'email';
+export type DatacomInputType =
+  | 'text'
+  | 'number'
+  | 'password'
+  | 'tel'
+  | 'time'
+  | 'url'
+  | 'week'
+  | 'month'
+  | 'email';
 
 /**
  * Display indicator. This has an explicit 'none' so the indicator
@@ -51,6 +70,7 @@ export class DatacomInput implements FormControl {
   @Prop() pattern?: string;
   @Prop() min?: number;
   @Prop() max?: number;
+  @Prop() step?: number;
   @Prop() inputmode?: string;
   @Prop() size?: number;
   @Prop() title: string;
@@ -254,15 +274,24 @@ export class DatacomInput implements FormControl {
     /**
      * Validate enumerated props and warn
      */
-    if (this.indicator !== undefined && !['working', 'done', 'none'].includes(this.indicator)) {
-      console.warn(`Feedback indicator ${this.indicator} is not valid. Setting to 'none'`);
+    if (
+      this.indicator !== undefined &&
+      !['working', 'done', 'none'].includes(this.indicator)
+    ) {
+      console.warn(
+        `Feedback indicator ${this.indicator} is not valid. Setting to 'none'`,
+      );
       this.indicator = 'none';
     }
 
     /**
      * The control is in edit mode if explicitly editing or there is a non-empty value or explicitly in error
      */
-    const edit = this.isEditing || this.value?.length > 0 || this.isDirty || this.isValid == false;
+    const edit =
+      this.isEditing ||
+      this.value?.length > 0 ||
+      this.isDirty ||
+      this.isValid == false;
 
     /**
      * When in edit mode, we disable tabindex within the control so that keyboard actions
@@ -293,14 +322,17 @@ export class DatacomInput implements FormControl {
     return (
       <Host tabIndex={tabindex}>
         <div class={classes}>
-          <label class="dc-text-label" htmlFor={this.inputId} tabIndex={tabindex}>
+          <label
+            class="dc-text-label"
+            htmlFor={this.inputId}
+            tabIndex={tabindex}>
             {this.label}
             <slot></slot>
           </label>
           <div class="dc-text-input-wrap">
             <input
               class="dc-text-input"
-              ref={el => this.setInputElementRef(el)}
+              ref={(el) => this.setInputElementRef(el)}
               tabIndex={tabindex}
               id={this.inputId}
               type={this.type}
@@ -323,10 +355,15 @@ export class DatacomInput implements FormControl {
               inputMode={this.inputmode}
               title={this.title}
               disabled={this.disabled}
+              step={this.step}
               value={this.value}
             />
-            {this.indicator == 'working' && showIndicator && <Spinner class="dc-text-spinner dc-text-indicator" />}
-            {this.indicator == 'done' && showIndicator && <Tick class="dc-text-tick dc-text-indicator" />}
+            {this.indicator == 'working' && showIndicator && (
+              <Spinner class="dc-text-spinner dc-text-indicator" />
+            )}
+            {this.indicator == 'done' && showIndicator && (
+              <Tick class="dc-text-tick dc-text-indicator" />
+            )}
             {error && <Error class="dc-text-error-icon" />}
             <p tabIndex={-1} class="dc-text-error-msg">
               {this.message}
