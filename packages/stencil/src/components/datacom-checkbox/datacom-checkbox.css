@@ -34,10 +34,12 @@
   font-weight: 400;
   color: var(--dc-primary-text-color);
   letter-spacing: -0.2px;
+  cursor: pointer;
 }
 
 .dc-checkbox-disabled .dc-checkbox-label {
   color: var(--dc-greyscale-04);
+  cursor: default;
 }
 
 .dc-checkbox-size-standard .dc-checkbox-input {
@@ -122,6 +124,11 @@
   background-image: none;
   background-color: var(--dc-primary-colour);
   border-color: var(--dc-primary-colour);
+}
+
+.dc-checkbox-indeterminate .dc-checkbox-input:hover {
+  border: 1px solid var(--dc-primary-accent-colour);
+  cursor: pointer;
 }
 
 .dc-checkbox-indeterminate.dc-checkbox-size-standard .dc-checkbox-input::after {
