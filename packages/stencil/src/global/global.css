@@ -34,7 +34,7 @@
   --dc-ui-fill-hover-colour: var(--dc-token-interactive-hover-02);
   --dc-link-hover-color: var(--dc-token-interactive-01);
   --dc-tag-hover-color: var(--dc-token-interactive-hover-05);
-  --dc-link-hover-color: var(--dc-token-interactive-hover-01);
+  --dc-primary-hover-color: var(--dc-token-interactive-hover-01);
 
   --dc-greyscale-01: #151515;
   --dc-greyscale-02: #333333;
