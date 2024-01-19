@@ -128,6 +128,7 @@ export const ContentCardGroup = () => {
             cardTitle="Card 1"
             ctaText="Learn more"
             icon="download"
+            iconUrl="https://datacom.com"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
             <DatacomContentTag url="https://datacom.com" slot="tags">
               Professional Services
@@ -181,6 +182,7 @@ export const ContentCardGroup = () => {
             cardTitle="Card 4"
             ctaText="Learn more"
             icon="download"
+            iconUrl="https://datacom.com"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
             <DatacomContentTag url="https://datacom.com" slot="tags">
               Articles
