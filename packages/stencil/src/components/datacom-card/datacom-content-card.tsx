@@ -1,4 +1,13 @@
-import { Component, Host, h, Prop, Event, EventEmitter, State, Element } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  Event,
+  EventEmitter,
+  State,
+  Element,
+} from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
 
 /**
@@ -24,6 +33,7 @@ export class DatacomCard {
   @Prop() icon: string;
   @Prop() imageUrl: string;
   @Prop() url: string;
+  @Prop() iconUrl: string;
 
   @State() hasDescriptionSlotElements = false;
 
@@ -38,7 +48,9 @@ export class DatacomCard {
    * (info needed for conditionally rendering said elements.)
    */
   async componentWillLoad(): Promise<void> {
-    this.hasDescriptionSlotElements = !!this.host.querySelector('[slot="description"]');
+    this.hasDescriptionSlotElements = !!this.host.querySelector(
+      '[slot="description"]',
+    );
   }
 
   render() {
@@ -61,7 +73,9 @@ export class DatacomCard {
           <div class="dc-card-content-wrapper">
             <div class="dc-card-content">
               {this.date && <div class="dc-card-date">{this.date}</div>}
-              {this.cardTitle && <div class="dc-card-title">{this.cardTitle}</div>}
+              {this.cardTitle && (
+                <div class="dc-card-title">{this.cardTitle}</div>
+              )}
               {this.hasDescriptionSlotElements && (
                 <div class="dc-card-text">
                   <slot name="description" />
@@ -71,15 +85,25 @@ export class DatacomCard {
             {hasActions && (
               <div class="dc-card-actions">
                 {this.ctaText && (
-                  <datacom-button variant="secondary" size="small" url={this.url}>
+                  <datacom-button
+                    variant="secondary"
+                    size="small"
+                    url={this.url}>
                     {this.ctaText}
                   </datacom-button>
                 )}
-                {this.icon?.length > 0 && (
-                  <button class="dc-card-action-icon-button" onClick={this.onActionIconClick}>
-                    {getSvg(this.icon, { class: 'dc-card-action-icon' })}
-                  </button>
-                )}
+                {this.icon?.length > 0 &&
+                  (this.iconUrl ? (
+                    <a href={this.iconUrl}>
+                      {getSvg(this.icon, { class: 'dc-card-action-icon' })}
+                    </a>
+                  ) : (
+                    <button
+                      class="dc-card-action-icon-button"
+                      onClick={this.onActionIconClick}>
+                      {getSvg(this.icon, { class: 'dc-card-action-icon' })}
+                    </button>
+                  ))}
               </div>
             )}
           </div>
