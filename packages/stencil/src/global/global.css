@@ -19,6 +19,7 @@
   --dc-primary-error-color: var(--dc-token-support-extended-01);
   --dc-primary-text-color: var(--dc-token-text-01);
   --dc-primary-token-text-color: var(--dc-token-text-02);
+  --dc-accent-text-color: var(--dc-token-text-05);
   --dc-secondary-text-color: #002470;
   --dc-ui-fill-extended-01: #3b4660;
 
@@ -116,6 +117,7 @@
   --dc-error-colour: #cf364e;
   --dc-primary-text-color: var(--dc-token-text-02);
   --dc-primary-token-text-color: var(--dc-token-text-01);
+  --dc-accent-text-color: var(--dc-token-text-06);
   --dc-secondary-text-color: #002470;
   --dc-ui-fill-extended-01: #3b4660;
   --dc-primary-box-shadow: 0px 3px 6px 0px #ccced029;
