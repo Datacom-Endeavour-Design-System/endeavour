@@ -7,7 +7,7 @@
   --link-height: 24px;
 
   /* TODO: var color */
-  --link-icon-hover-color: #0a1840;
+  --link-icon-hover-color: var(--dc-primary-text-color);
 }
 
 .dc-link {
