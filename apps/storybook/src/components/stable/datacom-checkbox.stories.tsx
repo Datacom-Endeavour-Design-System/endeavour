@@ -112,9 +112,12 @@ export const FormValidation: StoryObj<typeof DatacomCheckbox> = {
         }}>
         <div>
           <DatacomCheckbox {...props} />
-          {submitted && <p>Form would have been submitted but was prevented</p>}
+          {submitted && (
+            <p style={{ color: 'var(--dc-primary-text-color)' }}>
+              Form would have been submitted but was prevented
+            </p>
+          )}
         </div>
-
         <ButtonPanel>
           <DatacomButton type="submit">Submit</DatacomButton>
         </ButtonPanel>
