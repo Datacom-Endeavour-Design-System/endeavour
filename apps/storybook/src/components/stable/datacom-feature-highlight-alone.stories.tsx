@@ -25,28 +25,32 @@ export default {
     },
     featureTitle: {
       name: 'Title',
-      defaultValue: 'Title',
       description: 'Text of title displayed.',
       type: { name: 'string', required: 'true' },
     },
     description: {
       name: 'Description',
-      defaultValue:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
       description: 'Description of display feature',
       type: { name: 'string' },
     },
     ctaText: {
       name: 'CTA Label',
-      defaultValue: 'Learn more',
       type: { name: 'string' },
     },
     url: {
       name: 'CTA URL',
-      defaultValue: 'https://datacom.com',
       description: 'URL that  should link to.',
       type: { name: 'string' },
     },
+  },
+  args: {
+    featureTitle: 'Title',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
+    ctaText: 'Learn more',
+    url: 'https://datacom.com',
+    imageUrl:
+      'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
   },
 };
 let key = 0;

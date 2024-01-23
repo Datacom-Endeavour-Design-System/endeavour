@@ -14,35 +14,37 @@ export default {
   argTypes: {
     heading: {
       name: 'Title',
-      defaultValue: 'Title',
       description: 'Text of title displayed.',
       type: { name: 'string', required: 'true' },
     },
     description: {
       name: 'Description',
-      defaultValue:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
       description: 'Description of display card.',
       type: { name: 'string' },
     },
     ctaText: {
       name: 'CTA Text',
-      defaultValue: 'Learn more',
       type: { name: 'string' },
     },
     url: {
       name: 'URL',
-      defaultValue: 'https://datacom.com',
       description: 'URL that  should link to.',
       type: { name: 'string' },
     },
     imageUrl: {
       name: 'Image URL',
-      defaultValue:
-        'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
       description: 'Image URL to be displayed at top of card.',
       type: { name: 'string', required: 'true' },
     },
+  },
+  args: {
+    heading: 'Title',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
+    ctaText: 'Learn more',
+    url: 'https://datacom.com',
+    imageUrl:
+      'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
   },
 };
 let key = 0;
@@ -85,9 +87,6 @@ export const DisplayCardGroup = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
           </span>
         </DatacomDisplayCard>
         <DatacomDisplayCard
@@ -96,9 +95,6 @@ export const DisplayCardGroup = () => {
           ctaText="Learn more"
           url="https://datacom.com">
           <span slot="description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi.

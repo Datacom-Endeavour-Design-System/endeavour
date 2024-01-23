@@ -32,8 +32,8 @@
   --dc-background-disabled-color: var(--dc-token-background-white-theme); 
   --dc-link-hover-color: var(--dc-token-interactive-01);
   --dc-tag-hover-color: var(--dc-token-interactive-hover-05);
+  --dc-primary-hover-color: var(--dc-token-interactive-hover-01);
   
-  --dc-ui-fill-hover-colour: var(--dc-token-interactive-hover-02);
   --dc-ui-border-default: var(--dc-token-border-default-01);
   --dc-ui-disabled-border: var(--dc-token-disabled-02);
 
