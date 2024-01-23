@@ -28,8 +28,6 @@
 
   --dc-primary-disabled-colour: var(--dc-token-disabled-01);
   --dc-primary-disabled-text-colour: var(--dc-token-disabled-02);
-  --dc-primary-disabled-colour: var(--dc-token-disabled-01);
-  --dc-primary-disabled-text-colour: var(--dc-token-disabled-02);
   --dc-secondary-disabled-text-colour: var(--dc-token-disabled-02);
   --dc-background-disabled-color: var(--dc-token-background-white-theme); 
   
@@ -127,7 +125,6 @@
 
   --dc-ui-fill-hover-colour: var(--dc-token-interactive-hover-04);
   --dc-link-hover-color: var(--dc-token-interactive-hover-03);
-  --dc-secondary-disabled-text-colour: var(--dc-token-disabled-01);
   --dc-background-disabled-color: var(--dc-token-disabled-03); 
   --dc-secondary-disabled-text-colour: var(--dc-token-disabled-01);
   --dc-ui-disabled-border: var(--dc-token-disabled-03);
