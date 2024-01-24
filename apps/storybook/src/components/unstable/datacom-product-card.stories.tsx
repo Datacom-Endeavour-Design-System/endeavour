@@ -11,7 +11,7 @@ export default {
   component: DatacomProductCard,
   argTypes: {
     stockStatus: {
-      name: 'Stock Status',
+      name: 'Stock status',
       defaultValue: 'in-stock',
       description: 'Status of product stock',
       control: 'select',
@@ -31,19 +31,19 @@ export default {
       type: { name: 'number' },
     },
     promoPrice: {
-      name: 'Promotional Price',
+      name: 'Promotional price',
       default: 500,
       description: 'Promotional price of product displayed.',
       type: { name: 'number' },
     },
     ratingValue: {
-      name: 'Rating Value',
+      name: 'Rating value',
       defaultValue: 'Tag',
       description: 'Rating value of product (should be between 0 and 5).',
       type: { name: 'number' },
     },
     ratingLabel: {
-      name: 'Rating Label',
+      name: 'Rating label',
       defaultValue: '(100)',
       description: 'Label displayed next to product rating.',
       type: { name: 'string' },
