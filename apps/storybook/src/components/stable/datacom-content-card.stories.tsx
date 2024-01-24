@@ -28,12 +28,12 @@ export default {
       type: { name: 'string' },
     },
     tagText: {
-      name: 'Tag Text',
+      name: 'Tag text',
       description: 'Text for content tag.',
       type: { name: 'string' },
     },
     ctaText: {
-      name: 'CTA Label',
+      name: 'CTA label',
       description: 'Text within the CTA element.',
       type: { name: 'string' },
     },
@@ -77,7 +77,7 @@ export default {
     cardTitle: 'Title',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
-    tagText: 'Tag',
+    tagText: 'Tag text',
     ctaText: 'Button text',
     url: 'https://datacom.com',
     imageUrl:

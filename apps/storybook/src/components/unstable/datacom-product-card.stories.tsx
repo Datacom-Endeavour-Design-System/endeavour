@@ -49,7 +49,7 @@ export default {
       type: { name: 'string' },
     },
     tagText: {
-      name: 'Tag Text',
+      name: 'Tag text',
       description: 'Text for content tag.',
       type: { name: 'string' },
     },
@@ -88,8 +88,6 @@ export default {
   args: {
     stockStatus: 'in-stock',
     productTitle: 'Product name',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
     tagText: 'sale',
     hideAddToCart: false,
     hideQuickView: false,
