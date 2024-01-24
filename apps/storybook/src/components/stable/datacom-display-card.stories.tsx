@@ -23,7 +23,7 @@ export default {
       type: { name: 'string' },
     },
     ctaText: {
-      name: 'CTA Text',
+      name: 'CTA text',
       type: { name: 'string' },
     },
     url: {
