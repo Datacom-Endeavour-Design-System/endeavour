@@ -131,6 +131,7 @@
   line-height: 24px;
   padding: var(--content-padding);
   overflow-y: auto;
+  color: var(--dc-primary-text-color);
 }
 
 /* Expanded state styles */

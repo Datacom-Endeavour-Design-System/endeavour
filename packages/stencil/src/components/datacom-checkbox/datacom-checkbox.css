@@ -42,6 +42,10 @@
   cursor: default;
 }
 
+.dc-checkbox-disabled .dc-checkbox-label {
+  color: var(--dc-greyscale-04);
+}
+
 .dc-checkbox-size-standard .dc-checkbox-input {
   display: flex;
   width: 24px;

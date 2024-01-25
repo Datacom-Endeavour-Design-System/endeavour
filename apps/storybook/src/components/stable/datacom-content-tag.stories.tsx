@@ -10,7 +10,6 @@ export default {
   argTypes: {
     label: {
       name: 'Label',
-      defaultValue: 'Label',
       description: 'Label content within the content tag.',
       type: { name: 'string' },
     },
@@ -26,28 +25,26 @@ export default {
           'product-promo': 'Product - Promo',
         },
       },
-      defaultValue: 'article',
       options: ['article', 'event', 'product-highlight', 'product-promo'],
       type: { name: 'string' },
     },
     url: {
       name: 'URL',
-      defaultValue: 'https://datacom.com',
       description:
         'URL that content tag should link to. Omitting a url will change the tag into a non-interactable div element',
       type: { name: 'string' },
     },
   },
+  args: {
+    label: 'label',
+    url: 'https://datacom.com',
+    variant: 'article',
+  },
 };
 
 const Template: StoryFn<ContentTagProps & { label: string }> = (args) => {
-  const { label, url, variant } = args;
-
-  return (
-    <DatacomContentTag variant={variant} url={url}>
-      {label}
-    </DatacomContentTag>
-  );
+  const { label } = args;
+  return <DatacomContentTag {...args}>{label}</DatacomContentTag>;
 };
 
 export const ContentTag = Template.bind({});

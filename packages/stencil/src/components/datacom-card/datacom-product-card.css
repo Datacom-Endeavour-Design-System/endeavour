@@ -13,7 +13,7 @@
 .dc-action-icon {
   align-items: center;
   background-color: transparent;
-  border: 1px solid #002bfe;
+  border: 1px solid var(--dc-primary-colour);
   border-radius: 13px;
   cursor: pointer;
   display: flex;
@@ -71,4 +71,30 @@
   line-height: 20px;
   margin-left: 8px;
   text-decoration-line: line-through;
+}
+.dc-card-icon-shopping-cart path {
+  stroke: var(--dc-primary-colour);
+  fill: var(--dc-primary-colour);
+}
+
+.dc-card-icon-eye path, .dc-card-icon-exchange path {
+  fill: var(--dc-primary-colour);
+}
+
+.dc-action-icon:hover {
+  background-color: var(--dc-primary-colour);
+}
+
+.dc-action-icon:focus {
+  outline: 1px solid var(--dc-primary-colour);
+  outline-offset: 2px;
+}
+
+.dc-action-icon:hover .dc-card-icon-shopping-cart path {
+  stroke: var(--dc-primary-token-text-color);
+  fill: var(--dc-primary-token-text-color);
+}
+
+.dc-action-icon:hover .dc-card-icon-eye path, .dc-action-icon:hover .dc-card-icon-exchange path {
+  fill: var(--dc-primary-token-text-color);
 }

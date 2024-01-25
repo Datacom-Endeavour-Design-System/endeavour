@@ -50,7 +50,6 @@ export default {
     },
     tagText: {
       name: 'Tag Text',
-      defaultValue: 'Tag',
       description: 'Text for content tag.',
       type: { name: 'string' },
     },
@@ -86,6 +85,19 @@ export default {
       type: { name: 'boolean' },
     },
   },
+  args: {
+    stockStatus: 'in-stock',
+    productTitle: 'Product name',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
+    tagText: 'sale',
+    hideAddToCart: false,
+    hideQuickView: false,
+    hideProductCompare: false,
+    url: 'https://datacom.com',
+    imageUrl:
+      'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
+  },
 } as Meta<typeof DatacomProductCard>;
 
 type Story = StoryObj<typeof DatacomProductCard>;
@@ -103,7 +115,10 @@ export const ProductCard: Story = {
         <div style={{ maxWidth: 386 }}>
           <DatacomProductCard {...args}>
             {tagText && (
-              <DatacomContentTag url="https://datacom.com" slot="tags">
+              <DatacomContentTag
+                url="https://datacom.com"
+                variant="product-promo"
+                slot="tags">
                 {tagText}
               </DatacomContentTag>
             )}

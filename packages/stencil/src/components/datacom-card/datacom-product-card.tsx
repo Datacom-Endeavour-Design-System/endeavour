@@ -1,4 +1,13 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Element, Fragment } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  Event,
+  EventEmitter,
+  Element,
+  Fragment,
+} from '@stencil/core';
 import { IconBackOrder } from './assets/icon-back-order';
 import { IconEye } from './assets/icon-eye';
 import { IconExchange } from './assets/icon-exchange';
@@ -166,8 +175,10 @@ export class DatacomProductCard {
                 {!this.hideAddToCart && (
                   <div class="dc-action-icon-wrapper">
                     <datacom-tooltip label="Add to cart">
-                      <button class="dc-action-icon" onClick={this.onAddToCartClicked}>
-                        <IconShoppingCart />
+                      <button
+                        class="dc-action-icon"
+                        onClick={this.onAddToCartClicked}>
+                        <IconShoppingCart class="dc-card-icon-shopping-cart" />
                       </button>
                     </datacom-tooltip>
                   </div>
@@ -175,8 +186,10 @@ export class DatacomProductCard {
                 {!this.hideQuickView && (
                   <div class="dc-action-icon-wrapper">
                     <datacom-tooltip label="Quick view">
-                      <button class="dc-action-icon" onClick={this.onQuickViewClicked}>
-                        <IconEye />
+                      <button
+                        class="dc-action-icon"
+                        onClick={this.onQuickViewClicked}>
+                        <IconEye class="dc-card-icon-eye" />
                       </button>
                     </datacom-tooltip>
                   </div>
@@ -184,8 +197,10 @@ export class DatacomProductCard {
                 {!this.hideProductCompare && (
                   <div class="dc-action-icon-wrapper">
                     <datacom-tooltip label="Compare product">
-                      <button class="dc-action-icon" onClick={this.onProductCompareClicked}>
-                        <IconExchange />
+                      <button
+                        class="dc-action-icon"
+                        onClick={this.onProductCompareClicked}>
+                        <IconExchange class="dc-card-icon-exchange" />
                       </button>
                     </datacom-tooltip>
                   </div>
@@ -195,7 +210,11 @@ export class DatacomProductCard {
               {this.productTitle && this.renderTitleElement()}
               {this.price && this.renderPriceElement()}
               {/* TODO make rating configurable */}
-              <datacom-rating slot="rating" rating-value={this.ratingValue} label={this.ratingLabel} readonly></datacom-rating>
+              <datacom-rating
+                slot="rating"
+                rating-value={this.ratingValue}
+                label={this.ratingLabel}
+                readonly></datacom-rating>
             </div>
           </div>
         </div>
