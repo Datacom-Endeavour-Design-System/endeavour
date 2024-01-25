@@ -19,23 +19,22 @@
   --dc-primary-error-color: var(--dc-token-support-extended-01);
   --dc-primary-text-color: var(--dc-token-text-01);
   --dc-primary-token-text-color: var(--dc-token-text-02);
-  --dc-accent-text-color: var(--dc-token-text-05);
   --dc-secondary-text-color: #002470;
   --dc-ui-fill-extended-01: #3b4660;
 
-  --dc-primary-box-shadow: 0px 3px 6px 0px #000a1429;
+  --dc-primary-box-shadow: 0px 3px 6px 0px #000a1429;;
   --dc-ui-border-default: var(--dc-token-border-default-01);
-
   --dc-primary-disabled-colour: var(--dc-token-disabled-01);
   --dc-primary-disabled-text-colour: var(--dc-token-disabled-02);
   --dc-secondary-disabled-text-colour: var(--dc-token-disabled-02);
   --dc-background-disabled-color: var(--dc-token-background-white-theme); 
+
   --dc-link-hover-color: var(--dc-token-interactive-01);
-  --dc-tag-hover-color: var(--dc-token-interactive-hover-05);
   --dc-primary-hover-color: var(--dc-token-interactive-hover-01);
-  
-  --dc-ui-border-default: var(--dc-token-border-default-01);
+  --dc-tag-hover-color: var(--dc-token-interactive-hover-05);
   --dc-ui-disabled-border: var(--dc-token-disabled-02);
+  
+  --dc-ui-fill-hover-colour: var(--dc-token-interactive-hover-02);
 
   --dc-greyscale-01: #151515;
   --dc-greyscale-02: #333333;
@@ -117,17 +116,16 @@
   --dc-error-colour: #cf364e;
   --dc-primary-text-color: var(--dc-token-text-02);
   --dc-primary-token-text-color: var(--dc-token-text-01);
-  --dc-accent-text-color: var(--dc-token-text-06);
   --dc-secondary-text-color: #002470;
   --dc-ui-fill-extended-01: #3b4660;
   --dc-primary-box-shadow: 0px 3px 6px 0px #ccced029;
 
-  --dc-ui-fill-hover-colour: var(--dc-token-interactive-hover-04);
   --dc-link-hover-color: var(--dc-token-interactive-hover-03);
+  --dc-ui-fill-hover-colour: var(--dc-token-interactive-hover-04);
   --dc-secondary-disabled-text-colour: var(--dc-token-disabled-01);
-  --dc-background-disabled-color: var(--dc-token-disabled-03); 
   --dc-ui-disabled-border: var(--dc-token-disabled-03);
-}
+  --dc-background-disabled-color: var(--dc-token-disabled-03); 
+ }
 
 /*
 Below are custom media queries for defining breakpoints for our
