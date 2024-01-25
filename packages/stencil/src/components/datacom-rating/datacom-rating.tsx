@@ -1,4 +1,14 @@
-import { Component, Host, h, Prop, Event, EventEmitter, State, Fragment, Method } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  Event,
+  EventEmitter,
+  State,
+  Fragment,
+  Method,
+} from '@stencil/core';
 import { RatingStarEmpty } from './icons/rating-star-empty';
 import { RatingStarFull } from './icons/rating-star-full';
 
@@ -51,13 +61,20 @@ export class DatacomRating {
 
       elementList.push(
         <Fragment>
-          <input class="dc-rating-input" type="radio" name="rating" value={i} id={inputId} onChange={this.onRatingSelected(i)} />
+          <input
+            class="dc-rating-input"
+            type="radio"
+            name="rating"
+            value={i}
+            id={inputId}
+            onChange={this.onRatingSelected(i)}
+          />
           <label class="dc-rating-input-label" htmlFor={inputId}>
             <div class="dc-rating-star">
-              <RatingStarEmpty />
+              <RatingStarEmpty class="dc-half-rating-star-icon" />
             </div>
             <div class="dc-rating-star full-star">
-              <RatingStarFull />
+              <RatingStarFull class="dc-full-rating-star-icon" />
             </div>
             <span class="dc-rating-sr-label">{i} stars</span>
           </label>
@@ -124,13 +141,15 @@ export class DatacomRating {
   render() {
     const mainClasses = {
       'dc-rating': true,
-      'large': this.size === 'large',
+      large: this.size === 'large',
     };
 
     return (
       <Host>
         <div class={mainClasses}>
-          {this.readonly ? this.renderRatingDisplay() : this.renderRatingInputs()}
+          {this.readonly
+            ? this.renderRatingDisplay()
+            : this.renderRatingInputs()}
           {this.label && <div class="dc-rating-label">{this.label}</div>}
         </div>
       </Host>
