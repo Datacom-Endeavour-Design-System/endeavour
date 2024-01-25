@@ -34,7 +34,7 @@ export default {
       type: { name: 'string' },
     },
     ctaText: {
-      name: 'CTA Label',
+      name: 'CTA label',
       type: { name: 'string' },
     },
     url: {
@@ -42,11 +42,17 @@ export default {
       description: 'URL that  should link to.',
       type: { name: 'string' },
     },
+    imageUrl: {
+      name: 'Image URL',
+      description: 'Image URL to be displayed at top of feature.',
+      type: { name: 'string' },
+    },
   },
   args: {
+    icon: '',
     featureTitle: 'Title',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     ctaText: 'Learn more',
     url: 'https://datacom.com',
     imageUrl:
@@ -59,20 +65,14 @@ let previousDesc = '';
 const Template: StoryFn<FeatureHighlightProps & { description: string }> = (
   args,
 ) => {
-  const { description, ctaText, featureTitle, url, icon } = args;
+  const { description } = args;
   if (description !== previousDesc) {
     previousDesc = description;
     key++;
   }
   return (
     <div style={{ maxWidth: 386 }}>
-      <DatacomFeatureHighlight
-        key={key}
-        imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
-        featureTitle={featureTitle}
-        icon={icon}
-        url={url}
-        ctaText={ctaText}>
+      <DatacomFeatureHighlight key={key} {...args}>
         {description && <span slot="description">{description}</span>}
       </DatacomFeatureHighlight>
     </div>
