@@ -1,6 +1,7 @@
 import { Config } from '@stencil/core';
 import { postcss } from '@stencil-community/postcss';
 import { reactOutputTarget } from '@stencil/react-output-target';
+import { angularOutputTarget } from '@stencil/angular-output-target';
 import postcssCustomMedia from 'postcss-custom-media';
 //import { resolve } from 'path';
 
@@ -37,6 +38,12 @@ export const config: Config = {
       componentCorePackage: '@datacom/endeavour',
       proxiesFile: '../react/src/components/stencil-generated/index.ts',
       includeDefineCustomElements: true,
+    }),
+    angularOutputTarget({
+      componentCorePackage: '@datacom/endeavour',
+      outputType: 'standalone',
+      customElementsDir: 'dist/components',
+      directivesProxyFile: '../angular/src/stencil-generated/components.ts',
     }),
   ],
 };

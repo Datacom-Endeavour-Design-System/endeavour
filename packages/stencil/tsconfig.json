@@ -4,10 +4,10 @@
     "jsx": "react",
     "jsxFactory": "h",
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": ".",
     "noImplicitAny": false,
     "strictPropertyInitialization": false
   },
-  "include": ["src"],
+  "include": ["src", "*.config.ts"],
   "exclude": ["node_modules", "**/__tests__/**"]
 }
