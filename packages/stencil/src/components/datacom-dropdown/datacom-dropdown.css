@@ -26,11 +26,13 @@
   margin: 1px;
   box-sizing: border-box;
   caret-color: var(--dc-primary-colour);
+  color: var(--dc-primary-text-color);
   padding: 0;
+  background-color: var(--dc-background-colour);
 }
 
 .dc-ddl-input::placeholder {
-  color: var(--dc-greyscale-04);
+  color: var(--dc-accent-text-color);
 }
 
 .dc-ddl-select {
@@ -47,7 +49,7 @@
   justify-content: space-between;
   align-items: center;
   outline: 3px solid transparent;
-  border: 1px solid var(--dc-greyscale-05);
+  border: 1px solid var(--dc-ui-border-default);
   border-radius: 8px;
   padding: 14px 16px;
   cursor: pointer;
@@ -94,7 +96,7 @@
 .dc-ddl-combo-placeholder {
   line-height: 52px;
   display: block;
-  color: var(--dc-greyscale-04);
+  color: var(--dc-accent-text-color);
   font-size: 16px;
 }
 
@@ -136,6 +138,10 @@
   height: 10px;
 }
 
+.dc-ddl-chevron-down path {
+  fill: var(--dc-primary-colour);
+}
+
 .dc-ddl-clear-btn {
   display: none;
   margin-right: 24px;
@@ -169,6 +175,10 @@
   width: 16px;
   height: 10px;
   transform: rotate(180deg);
+}
+
+.dc-ddl-chevron-up path {
+  fill: var(--dc-primary-colour);
 }
 
 .dc-ddl-selected-option pre {
@@ -249,6 +259,10 @@
 }
 
 /* Disabled */
+.dc-ddl-disabled .dc-ddl-control {
+  border-color: var(--dc-ui-disabled-border);
+}
+
 .dc-ddl-disabled .dc-ddl-label,
 .dc-ddl-disabled .dc-ddl-selected-option {
   color: var(--dc-greyscale-04);
@@ -259,7 +273,7 @@
 }
 
 .dc-ddl-disabled .dc-ddl-control:hover {
-  border-color: var(--dc-greyscale-05);
+  border-color: var(--dc-ui-disabled-border);
 }
 
 .dc-ddl-disabled .dc-ddl-control:focus-visible {
@@ -269,7 +283,7 @@
 /* Error state */
 .dc-ddl-error-msg {
   display: none;
-  color: var(--dc-error-colour);
+  color: var(--dc-primary-error-color);
   font-size: 12px;
   padding: 4px 0 0 14px;
   white-space: pre-wrap;
@@ -278,7 +292,7 @@
 }
 
 .dc-ddl-error .dc-ddl-control {
-  border: 1px solid var(--dc-error-colour);
+  border: 1px solid var(--dc-primary-error-color);
 }
 
 .dc-ddl-error .dc-ddl-error-msg:not(:empty) {

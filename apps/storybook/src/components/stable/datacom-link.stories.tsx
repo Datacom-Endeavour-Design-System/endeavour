@@ -10,7 +10,6 @@ export default {
   argTypes: {
     label: {
       name: 'Label',
-      defaultValue: 'Learn more',
       type: { name: 'string' },
     },
     variant: {
@@ -25,7 +24,6 @@ export default {
           stacked: 'Stacked',
         },
       },
-      defaultValue: 'standalone',
       options: ['standalone', 'inline', 'stacked', 'footer'],
       type: { name: 'string' },
     },
@@ -33,7 +31,6 @@ export default {
       name: 'Image Position',
       description: 'Image or icon position. Defaults to left if not set',
       control: 'select',
-      defaultValue: 'left',
       options: ['left', 'right'],
     },
     icon: {
@@ -68,7 +65,6 @@ export default {
     },
     url: {
       name: 'URL',
-      defaultValue: '#',
       description: ' should be add link to. ',
       type: { name: 'string', required: true },
     },
@@ -78,20 +74,17 @@ export default {
       type: { name: 'boolean' },
     },
   },
+  args: {
+    label: 'Learn more',
+    variant: 'standalone',
+    iconPosition: 'left',
+    url: '#',
+  },
 };
 
 const Template: StoryFn<LinkProps & { label: string }> = (args) => {
-  const { label, url, variant, icon, iconPosition, disabled } = args;
-  return (
-    <DatacomLink
-      variant={variant}
-      url={url}
-      icon={icon}
-      iconPosition={iconPosition}
-      disabled={disabled}>
-      {label}
-    </DatacomLink>
-  );
+  const { label } = args;
+  return <DatacomLink {...args}>{label}</DatacomLink>;
 };
 
 export const Link = Template.bind({});
