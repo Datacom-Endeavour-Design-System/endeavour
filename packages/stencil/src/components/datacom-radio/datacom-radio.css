@@ -62,6 +62,7 @@
 .dc-radio-radio .dc-radio-input:hover {
   border: 1px solid var(--dc-primary-colour);
   border-radius: 12px;
+  cursor: pointer;
 }
 
 /* Focus state */
