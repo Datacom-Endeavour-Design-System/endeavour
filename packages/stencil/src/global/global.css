@@ -37,7 +37,8 @@
   
   --dc-ui-fill-hover-colour: var(--dc-token-interactive-hover-02);
   --dc-primary-interactive-color: var(--dc-token-interactive-04);
-  --dc-border-color: var(--dc-token-ui-background-light-theme);
+  --dc-border-color: var(--dc-token-border-light-theme-01);
+  --dc-fill-interactive: var(--dc-token-interactive-05);
 
   --dc-greyscale-01: #151515;
   --dc-greyscale-02: #333333;
@@ -129,7 +130,7 @@
   --dc-secondary-disabled-text-colour: var(--dc-token-disabled-01);
   --dc-ui-disabled-border: var(--dc-token-disabled-03);
   --dc-background-disabled-color: var(--dc-token-disabled-03);
-  --dc-border-color: var(--dc-token-ui-06); 
+  --dc-border-color: var(--dc-token-interactive-05); 
  }
 
 /*
