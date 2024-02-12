@@ -1,0 +1,5 @@
+tsconfig.*
+node_modules
+*.md
+src
+ng-package.json

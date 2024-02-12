@@ -15,6 +15,7 @@
     "strictNullChecks": false,
     "paths": {
       "@datacom/endeavour": ["packages/stencil"],
+      "@datacom/endeavour-angular": ["packages/angular"],
       "@datacom/endeavour-react": ["packages/react"]
     },
     "removeComments": false,

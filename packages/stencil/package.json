@@ -1,6 +1,6 @@
 {
   "name": "@datacom/endeavour",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Datacom Component Library with Stencil",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -13,7 +13,7 @@
   "scripts": {
     "build": "npm run clean && stencil build --es5",
     "dev": "npm run clean && stencil build --watch --es5",
-    "docs": "stencil build --config stencil.config-docs.ts --docs",
+    "docs": "stencil build --config stencil-docs.config.ts --docs",
     "lint": "concurrently npm:lint:js npm:lint:css",
     "lint:js": "eslint src",
     "lint:css": "stylelint src/**/*.css",
@@ -27,12 +27,14 @@
   },
   "devDependencies": {
     "@stencil-community/postcss": "^2.2.0",
+    "@stencil/angular-output-target": "^0.8.3",
     "@stencil/react-output-target": "^0.5.3",
     "@types/jest": "^27.5.2",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
     "jest-config": "^29.3.0",
     "jest-dom": "^4.0.0",
+    "ng-packagr": "~17.1.0",
     "postcss": "^8.4.21",
     "postcss-custom-media": "^9.0.1",
     "puppeteer": "^10.4.0",
@@ -49,12 +51,13 @@
         "outputs": [
           "{projectRoot}/dist",
           "{projectRoot}/www",
-          "{projectRoot}/../react/src/components/stencil-generated"
+          "{projectRoot}/../react/src/components/stencil-generated",
+          "{projectRoot}/../angular/src/stencil-generated"
         ]
       }
     }
   },
   "dependencies": {
-    "@stencil/core": "^4.0.5"
+    "@stencil/core": "^4.7.2"
   }
 }

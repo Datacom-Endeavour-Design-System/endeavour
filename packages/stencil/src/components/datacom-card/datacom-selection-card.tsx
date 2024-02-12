@@ -1,4 +1,14 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter, Element, Listen } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  State,
+  Event,
+  EventEmitter,
+  Element,
+  Listen,
+} from '@stencil/core';
 import { HTMLDatacomRadioElement } from '../datacom-radio/datacom-radio';
 import { getSvg } from '../../common/images/icon-provider';
 
@@ -62,7 +72,9 @@ export class DatacomSelectionCard {
       return this.children;
     }
 
-    this.host.querySelectorAll<HTMLDatacomRadioElement>('datacom-radio').forEach(element => this.children.push(element));
+    this.host
+      .querySelectorAll<HTMLDatacomRadioElement>('datacom-radio')
+      .forEach((element) => this.children.push(element));
     return this.children;
   }
 
@@ -72,7 +84,7 @@ export class DatacomSelectionCard {
    *
    * @param event - Custom 'selected' state from radio component.
    */
-  @Listen('selected', { capture: true })
+  @Listen('select', { capture: true })
   onRadioChange(event: CustomEvent<string>) {
     this.optionSelected = event.detail;
   }
@@ -86,14 +98,16 @@ export class DatacomSelectionCard {
    */
   async componentWillLoad(): Promise<void> {
     const children = this.getRadioComponents();
-    children.forEach(option => {
+    children.forEach((option) => {
       option.name = this.cardTitle + ' options';
       option.size = 'small';
       option.variant = 'button';
     });
 
     this.hasOptionSlotElements = !!this.host.querySelector('[slot="options"]');
-    this.hasDescriptionSlotElements = !!this.host.querySelector('[slot="description"]');
+    this.hasDescriptionSlotElements = !!this.host.querySelector(
+      '[slot="description"]',
+    );
   }
 
   render() {
@@ -101,7 +115,7 @@ export class DatacomSelectionCard {
 
     const mainClasses = {
       'dc-card': true,
-      'expand': this.expanded,
+      expand: this.expanded,
     };
 
     const tagClasses = {
@@ -120,7 +134,9 @@ export class DatacomSelectionCard {
           </div>
           <div class="dc-card-content-wrapper">
             <div class="dc-card-title-wrapper">
-              {this.cardTitle && <div class="dc-card-title">{this.cardTitle}</div>}
+              {this.cardTitle && (
+                <div class="dc-card-title">{this.cardTitle}</div>
+              )}
               {this.hasDescriptionSlotElements && (
                 <div class="dc-card-expand-wrapper">
                   <button class="dc-card-expand" onClick={this.onExpandClick}>
@@ -138,7 +154,12 @@ export class DatacomSelectionCard {
                 </div>
               )}
               {this.ctaText && (
-                <datacom-button class="dc-card-cta" variant="secondary" size="small" type="submit" onClick={this.onSubmitClick}>
+                <datacom-button
+                  class="dc-card-cta"
+                  variant="secondary"
+                  size="small"
+                  type="submit"
+                  onClick={this.onSubmitClick}>
                   {this.ctaText}
                 </datacom-button>
               )}
@@ -160,4 +181,5 @@ export class DatacomSelectionCard {
   }
 }
 
-export type HTMLDatacomSelectionCardElement = HTMLElement & DatacomSelectionCard;
+export type HTMLDatacomSelectionCardElement = HTMLElement &
+  DatacomSelectionCard;

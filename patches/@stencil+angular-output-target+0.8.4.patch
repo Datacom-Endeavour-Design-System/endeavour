@@ -1,0 +1,39 @@
+diff --git a/node_modules/@stencil/angular-output-target/dist/index.cjs.js b/node_modules/@stencil/angular-output-target/dist/index.cjs.js
+index 1e914f5..4e227e8 100644
+--- a/node_modules/@stencil/angular-output-target/dist/index.cjs.js
++++ b/node_modules/@stencil/angular-output-target/dist/index.cjs.js
+@@ -476,7 +476,7 @@ ${createImportStatement(componentLibImports, './angular-component-lib/utils')}\n
+         let importLocation = outputTarget.componentCorePackage
+             ? normalizePath(outputTarget.componentCorePackage)
+             : normalizePath(componentsTypeFile);
+-        importLocation += isCustomElementsBuild ? `/${outputTarget.customElementsDir}` : '';
++        // importLocation += isCustomElementsBuild ? `/${outputTarget.customElementsDir}` : '';
+         return `import ${isCustomElementsBuild ? 'type ' : ''}{ ${IMPORT_TYPES} } from '${importLocation}';\n`;
+     };
+     const typeImports = generateTypeImports();
+diff --git a/node_modules/@stencil/angular-output-target/dist/index.js b/node_modules/@stencil/angular-output-target/dist/index.js
+index 554880a..8e61f0c 100644
+--- a/node_modules/@stencil/angular-output-target/dist/index.js
++++ b/node_modules/@stencil/angular-output-target/dist/index.js
+@@ -468,7 +468,7 @@ ${createImportStatement(componentLibImports, './angular-component-lib/utils')}\n
+         let importLocation = outputTarget.componentCorePackage
+             ? normalizePath(outputTarget.componentCorePackage)
+             : normalizePath(componentsTypeFile);
+-        importLocation += isCustomElementsBuild ? `/${outputTarget.customElementsDir}` : '';
++        // importLocation += isCustomElementsBuild ? `/${outputTarget.customElementsDir}` : '';
+         return `import ${isCustomElementsBuild ? 'type ' : ''}{ ${IMPORT_TYPES} } from '${importLocation}';\n`;
+     };
+     const typeImports = generateTypeImports();
+diff --git a/node_modules/@stencil/angular-output-target/dist/output-angular.js b/node_modules/@stencil/angular-output-target/dist/output-angular.js
+index 8d23de7..9a18925 100644
+--- a/node_modules/@stencil/angular-output-target/dist/output-angular.js
++++ b/node_modules/@stencil/angular-output-target/dist/output-angular.js
+@@ -76,7 +76,7 @@ ${createImportStatement(componentLibImports, './angular-component-lib/utils')}\n
+         let importLocation = outputTarget.componentCorePackage
+             ? normalizePath(outputTarget.componentCorePackage)
+             : normalizePath(componentsTypeFile);
+-        importLocation += isCustomElementsBuild ? `/${outputTarget.customElementsDir}` : '';
++        // importLocation += isCustomElementsBuild ? `/${outputTarget.customElementsDir}` : '';
+         return `import ${isCustomElementsBuild ? 'type ' : ''}{ ${IMPORT_TYPES} } from '${importLocation}';\n`;
+     };
+     const typeImports = generateTypeImports();
