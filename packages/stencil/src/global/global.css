@@ -118,7 +118,7 @@
   --dc-background-accent-color: var(--dc-token-interactive-hover-04);
   --dc-background-secondary-color: var(--dc-token-ui-05);
   --dc-background-secondary-accent-color: var(--dc-token-interactive-02);
-  --dc-background-token-fill-color: var(--dc-token-ui-fill-extended-01);
+  --dc-background-token-fill-color: var(--dc-token-interactive-hover-04);
   --dc-accent-color: var(--dc-token-interactive-06);
   --dc-primary-colour: var(--dc-token-interactive-03);
   --dc-primary-accent-colour: var(--dc-token-interactive-hover-03);
