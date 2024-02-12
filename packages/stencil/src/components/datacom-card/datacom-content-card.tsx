@@ -55,7 +55,6 @@ export class DatacomCard {
 
   render() {
     const hasActions = this.ctaText || this.icon?.length > 0;
-
     const tagClasses = {
       'dc-card-tags': true,
       'with-image': this.imageUrl?.length > 0,
