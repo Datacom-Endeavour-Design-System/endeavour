@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStoryFn } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import { DatacomRating } from '@datacom/endeavour-react';
 
 export default {
@@ -22,12 +22,12 @@ export default {
       type: { name: 'string' },
     },
     readonly: {
-      name: 'Read Only',
+      name: 'Read only',
       description: 'Will only display set rating if set to true.',
       type: { name: 'boolean' },
     },
     ratingValue: {
-      name: 'Rating Value',
+      name: 'Rating value',
       description:
         'Rating value to be displayed. Only used when readonly property is set to true',
       type: { name: 'number' },
@@ -36,7 +36,7 @@ export default {
   },
 };
 
-const RatingTemplate: ComponentStoryFn<typeof DatacomRating> = (args) => (
+const RatingTemplate: StoryFn<typeof DatacomRating> = (args) => (
   <DatacomRating {...args}></DatacomRating>
 );
 
