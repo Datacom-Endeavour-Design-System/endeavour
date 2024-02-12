@@ -1,7 +1,7 @@
 :host {
   display: flex;
 
-  --background-color: var(--dc-background-colour);
+  --background-color: var(--dc-background-token-fill-color);
   --text-color: var(--dc-primary-text-color);
 }
 
@@ -33,7 +33,7 @@
   color: var(--text-color);
 
   /* TODO: var color */
-  filter: drop-shadow(0 3px 8px rgba(0 0 0 / 20%));
+  box-shadow: var( --dc-primary-box-shadow);
   font-family: var(--dc-font-family);
   font-size: 12px;
   letter-spacing: -0.2px;

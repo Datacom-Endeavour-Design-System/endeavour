@@ -40,6 +40,22 @@
   margin-right: 8px;
 }
 
+.dc-card-in-stock-icon path {
+  fill: var(--dc-accent-status-color);
+}
+ 
+.dc-card-pre-order-icon path {
+  fill: var(--dc-primary-status-color);
+}
+
+.dc-card-back-order-icon path {
+ fill: var(--dc-secondary-status-color);
+}
+
+.dc-card-out-stock-icon path {
+  fill: var(--dc-primary-error-color);
+}
+
 .dc-product-title {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;

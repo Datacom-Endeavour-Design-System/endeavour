@@ -96,19 +96,19 @@ export class DatacomProductCard {
 
     switch (this.stockStatus) {
       case 'in-stock':
-        icon = <IconInStock />;
+        icon = <IconInStock class="dc-card-in-stock-icon" />;
         text = 'In stock';
         break;
       case 'pre-order':
-        icon = <IconPreOrder />;
+        icon = <IconPreOrder class="dc-card-pre-order-icon" />;
         text = 'Pre order';
         break;
       case 'back-order':
-        icon = <IconBackOrder />;
+        icon = <IconBackOrder class="dc-card-back-order-icon" />;
         text = 'Back order';
         break;
       case 'out-of-stock':
-        icon = <IconOutOfStock />;
+        icon = <IconOutOfStock class="dc-card-out-stock-icon" />;
         text = 'Out of stock';
         break;
     }
