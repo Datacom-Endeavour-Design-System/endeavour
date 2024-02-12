@@ -39,6 +39,7 @@
   font-family: var(--dc-font-family);
   color: var(--dc-primary-text-color);
   font-style: normal;
+  cursor: pointer;
 }
 
 .dc-radio-radio .dc-radio-label {
@@ -61,6 +62,7 @@
 .dc-radio-radio .dc-radio-input:hover {
   border: 1px solid var(--dc-primary-colour);
   border-radius: 12px;
+  cursor: pointer;
 }
 
 /* Focus state */
@@ -83,7 +85,8 @@
 }
 
 .dc-radio-disabled .dc-radio-label {
-  color: var(--dc-greyscale-03);
+  color: var(--dc-greyscale-04);
+  cursor: default;
 }
 
 .dc-radio-disabled.dc-radio-radio .dc-radio-input:checked {
