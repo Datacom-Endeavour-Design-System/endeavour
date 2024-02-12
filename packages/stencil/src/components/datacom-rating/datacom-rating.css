@@ -49,6 +49,14 @@
   width: var(--star-width);
 }
 
+.dc-rating-star svg path {
+  stroke: var(--dc-border-color);
+}
+
+.dc-full-star path {
+  fill: var(--dc-fill-interactive);
+}
+
 /* Input related classes */
 .full-star {
   display: block;
