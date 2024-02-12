@@ -34,6 +34,7 @@
 
   /* TODO: var color */
   box-shadow: var( --dc-primary-box-shadow);
+  filter: drop-shadow(rgba(0, 0, 0, 0.2) 0px 3px 8px);
   font-family: var(--dc-font-family);
   font-size: 12px;
   letter-spacing: -0.2px;
@@ -217,14 +218,6 @@
   margin-left: -3px;
   left: 100%;
   transform: rotate(90deg);
-}
-
-/* Dark color style */
-.dark {
-  filter: none;
-
-  --background-color: var(--dc-ui-fill-extended-01);
-  --text-color: var(--dc-colour-white);
 }
 
 /* Class for hiding arrow */

@@ -26,7 +26,6 @@ export type TooltipPositionType =
   shadow: true,
 })
 export class DatacomTooltip {
-  @Prop() dark = false;
   @Prop() hideArrow = false;
   @Prop() id: string;
   @Prop() label: string;
@@ -304,7 +303,6 @@ export class DatacomTooltip {
 
   render() {
     const wrapperClasses = {
-      dark: this.dark,
       'dc-tooltip-wrapper': true,
       'hide-arrow': this.hideArrow,
       show: this.isTooltipVisible,

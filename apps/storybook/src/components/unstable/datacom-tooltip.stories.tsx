@@ -7,7 +7,7 @@ export default {
   component: DatacomTooltip,
   argTypes: {
     position: {
-      name: 'Tooltip Position',
+      name: 'Tooltip position',
       description: 'Sets position of tooltip.',
       control: 'select',
       defaultValue: 'bottom',
@@ -34,13 +34,8 @@ export default {
       defaultValue: 'Tooltip text',
       type: { name: 'string' },
     },
-    dark: {
-      name: 'Dark Theme',
-      defaultValue: false,
-      type: { name: 'boolean' },
-    },
     hideArrow: {
-      name: 'Hide Arrow',
+      name: 'Hide arrow',
       defaultValue: false,
       type: { name: 'boolean' },
     },
@@ -51,6 +46,9 @@ export default {
       type: { name: 'number' },
       if: { arg: 'position', truthy: true },
     },
+  },
+  args: {
+    label: 'Tooltip text',
   },
 } as Meta<typeof DatacomTooltip>;
 

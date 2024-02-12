@@ -28,12 +28,12 @@ export default {
       type: { name: 'string' },
     },
     tagText: {
-      name: 'Tag Text',
+      name: 'Tag text',
       description: 'Text for content tag.',
       type: { name: 'string' },
     },
     ctaText: {
-      name: 'CTA Label',
+      name: 'CTA label',
       description: 'Text within the CTA element.',
       type: { name: 'string' },
     },
