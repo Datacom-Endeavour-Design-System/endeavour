@@ -14,7 +14,7 @@ export default {
   component: DatacomFeatureHighlight,
   argTypes: {
     itemsPerRow: {
-      name: 'Items Per Row',
+      name: 'Items per row',
       control: 'select',
       options: [3, 4],
       type: { name: 'number' },
@@ -33,8 +33,7 @@ const GroupStoriesTemplate: StoryFn<FeatureHighlightProps> = (args) => (
           url="#">
           <span slot="description">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </span>
         </DatacomFeatureHighlight>
         <DatacomFeatureHighlight
@@ -44,8 +43,7 @@ const GroupStoriesTemplate: StoryFn<FeatureHighlightProps> = (args) => (
           url="#">
           <span slot="description">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </span>
         </DatacomFeatureHighlight>
         <DatacomFeatureHighlight
@@ -55,8 +53,7 @@ const GroupStoriesTemplate: StoryFn<FeatureHighlightProps> = (args) => (
           url="#">
           <span slot="description">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </span>
         </DatacomFeatureHighlight>
         <DatacomFeatureHighlight
@@ -66,8 +63,7 @@ const GroupStoriesTemplate: StoryFn<FeatureHighlightProps> = (args) => (
           url="#">
           <span slot="description">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </span>
         </DatacomFeatureHighlight>
         <DatacomFeatureHighlight
@@ -77,8 +73,7 @@ const GroupStoriesTemplate: StoryFn<FeatureHighlightProps> = (args) => (
           url="#">
           <span slot="description">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </span>
         </DatacomFeatureHighlight>
       </DatacomFeatureHighlightGroup>
