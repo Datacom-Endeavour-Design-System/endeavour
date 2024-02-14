@@ -12,6 +12,7 @@
   line-height: 18px;
   color: var(--dc-primary-text-color);
   position: relative;
+  align-self: center;
 }
 
 .dc-loader-spinner.dc-loader-default {
