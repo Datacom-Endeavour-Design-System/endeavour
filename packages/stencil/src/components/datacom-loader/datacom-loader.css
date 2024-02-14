@@ -65,6 +65,10 @@
   }
 }
 
+.dc-loader-success path {
+  fill: var(--dc-primary-colour);
+}
+
 .dc-loader-success,
 .dc-loader-error {
   display: flex;
