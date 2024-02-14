@@ -33,6 +33,10 @@ export default {
       description: 'Text within the CTA element.',
       type: { name: 'string' },
     },
+    url: {
+      name: 'URL',
+      description: 'URL for tag.',
+    },
     imageUrl: {
       name: 'Image URL',
       description: 'Image URL to be displayed at top of card.',
@@ -40,6 +44,7 @@ export default {
     },
   },
   args: {
+    tagText: 'Tag text',
     cardTitle: 'Title',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
@@ -72,7 +77,9 @@ const Template: StoryFn<
           <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
           <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
           {tagText && (
-            <DatacomContentTag slot="tags">{tagText}</DatacomContentTag>
+            <DatacomContentTag slot="tags" url="https://datacom.com">
+              {tagText}
+            </DatacomContentTag>
           )}
           {description && <span slot="description">{description}</span>}
         </DatacomSelectionCard>
@@ -92,6 +99,9 @@ export const SelectionCardGroup = () => {
             cardTitle="Card 1"
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Tag text
+            </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
             <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
@@ -109,6 +119,9 @@ export const SelectionCardGroup = () => {
             cardTitle="Card 2"
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Tag text
+            </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
             <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
@@ -126,6 +139,9 @@ export const SelectionCardGroup = () => {
             cardTitle="Card 3"
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Tag text
+            </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
             <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
@@ -138,6 +154,9 @@ export const SelectionCardGroup = () => {
             cardTitle="Card 4"
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Tag text
+            </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
             <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
@@ -155,6 +174,9 @@ export const SelectionCardGroup = () => {
             cardTitle="Card 5"
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Tag text
+            </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
             <DatacomRadio slot="options" label="Label" id="radio3" value="3" />
@@ -172,6 +194,9 @@ export const SelectionCardGroup = () => {
             cardTitle="Card 6"
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
+            <DatacomContentTag url="https://datacom.com" slot="tags">
+              Tag text
+            </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
             <DatacomRadio slot="options" label="Label" id="radio3" value="3" />

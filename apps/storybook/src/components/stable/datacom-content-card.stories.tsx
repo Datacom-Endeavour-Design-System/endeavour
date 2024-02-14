@@ -73,16 +73,17 @@ export default {
     },
   },
   args: {
+    tagText: 'Tag',
     date: '00-00-2022',
     cardTitle: 'Title',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
-    tagText: 'Tag',
     ctaText: 'Button text',
     url: 'https://datacom.com',
+    icon: '',
+    iconUrl: 'https://datacom.com',
     imageUrl:
       'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
-    iconUrl: 'https://datacom.com',
   },
 };
 
@@ -129,6 +130,7 @@ export const ContentCardGroup = () => {
             ctaText="Learn more"
             icon="download"
             iconUrl="https://datacom.com"
+            url="https://datacom.com"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
             <DatacomContentTag url="https://datacom.com" slot="tags">
               Professional Services
@@ -150,7 +152,8 @@ export const ContentCardGroup = () => {
             date="00-00-2022"
             cardTitle="Card 2"
             ctaText="Learn more"
-            imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
+            imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg"
+            url="https://datacom.com">
             <DatacomContentTag url="https://datacom.com" slot="tags">
               Articles
             </DatacomContentTag>
@@ -168,7 +171,8 @@ export const ContentCardGroup = () => {
             date="00-00-2022"
             cardTitle="Card 3"
             ctaText="Learn more"
-            imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
+            imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg"
+            url="https://datacom.com">
             <DatacomContentTag url="https://datacom.com" slot="tags">
               Articles
             </DatacomContentTag>
@@ -183,7 +187,8 @@ export const ContentCardGroup = () => {
             ctaText="Learn more"
             icon="download"
             iconUrl="https://datacom.com"
-            imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
+            imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg"
+            url="https://datacom.com">
             <DatacomContentTag url="https://datacom.com" slot="tags">
               Articles
             </DatacomContentTag>
@@ -201,7 +206,8 @@ export const ContentCardGroup = () => {
             date="00-00-2022"
             cardTitle="Card 5"
             ctaText="Learn more"
-            imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
+            imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg"
+            url="https://datacom.com">
             <DatacomContentTag url="https://datacom.com" slot="tags">
               Articles
             </DatacomContentTag>
@@ -219,7 +225,8 @@ export const ContentCardGroup = () => {
             date="00-00-2022"
             cardTitle="Card 6"
             ctaText="Learn more"
-            imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
+            imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg"
+            url="https://datacom.com">
             <DatacomContentTag url="https://datacom.com" slot="tags">
               Articles
             </DatacomContentTag>

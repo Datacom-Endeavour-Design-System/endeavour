@@ -167,7 +167,11 @@ export class DatacomProductCard {
             <div class={tagClasses}>
               <slot name="tags" />
             </div>
-            {this.imageUrl && <img class="dc-card-image" src={this.imageUrl} />}
+            <a href={this.url} class="dc-card-image-wrapper">
+              {this.imageUrl && (
+                <img class="dc-card-image" src={this.imageUrl} />
+              )}
+            </a>
           </div>
           <div class="dc-card-content-wrapper">
             <div class="dc-card-content">
@@ -208,7 +212,7 @@ export class DatacomProductCard {
               </div>
               {this.stockStatus && this.renderStockStatusElement()}
               {this.productTitle && this.renderTitleElement()}
-              {this.price && this.renderPriceElement()}
+              {this.price >= 0 && this.renderPriceElement()}
               {/* TODO make rating configurable */}
               <datacom-rating
                 slot="rating"
