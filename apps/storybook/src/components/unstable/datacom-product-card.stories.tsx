@@ -95,8 +95,8 @@ export default {
     url: 'https://datacom.com',
     imageUrl:
       'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
-    price: '1000',
-    promoPrice: '500',
+    price: 1000,
+    promoPrice: 500,
   },
 } as Meta<typeof DatacomProductCard>;
 
