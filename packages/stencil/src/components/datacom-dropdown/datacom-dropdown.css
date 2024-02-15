@@ -133,19 +133,14 @@
   padding-bottom: 2px;
 }
 
-.dc-ddl-chevron-down {
-  width: 16px;
-  height: 10px;
-}
-
-.dc-ddl-chevron-down path {
-  fill: var(--dc-primary-colour);
-}
-
 .dc-ddl-clear-btn {
   display: none;
   margin-right: 24px;
   cursor: pointer;
+}
+
+.dc-ddl-open .dc-ddl-clear-btn {
+  margin-right: 42px;
 }
 
 .dc-ddl-clear-filter-btn {
@@ -163,22 +158,34 @@
   fill: var(--dc-primary-text-color);
 }
 
-.dc-ddl-open-btn,
-.dc-ddl-close-btn {
+.dc-ddl-open-btn {
   display: flex;
   align-items: center;
   width: 16px;
   height: 16px;
 }
 
-.dc-ddl-chevron-up {
+.dc-ddl-chevron {
   width: 16px;
   height: 10px;
+  transition: all 0.3s;
+}
+
+.dc-ddl-chevron path {
+  fill: var(--dc-primary-colour);
+}
+
+/* animation  */
+.dc-ddl-open .dc-ddl-chevron {
   transform: rotate(180deg);
 }
 
-.dc-ddl-chevron-up path {
-  fill: var(--dc-primary-colour);
+.dc-ddl-open-btn .dc-ddl-chevron {
+  z-index: 20;
+}
+
+.dc-ddl-open .dc-ddl-open-btn {
+  margin-right: 18px;
 }
 
 .dc-ddl-selected-option pre {
@@ -216,7 +223,7 @@
 }
 
 .dc-ddl-selected .dc-ddl-control {
-  border: 1px solid var(--dc-greyscale-05);
+  border: 1px solid var(--dc-ui-border-default);
   border-radius: 8px;
   padding: 14px 16px;
 }
@@ -246,10 +253,6 @@
   top: -6px;
   line-height: 16px;
   z-index: 20;
-}
-
-.dc-ddl-open .dc-ddl-view-btns {
-  display: none;
 }
 
 .dc-ddl-open .dc-ddl-control {
