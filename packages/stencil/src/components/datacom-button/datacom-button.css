@@ -54,7 +54,7 @@
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
-  min-width: 110px;
+  /*min-width: 110px;*/
 }
 
 .dc-button-size-small .dc-button-image {
@@ -68,7 +68,7 @@
   padding: 12px 24px;
   border-radius: 8px;
   font-size: 18px;
-  min-width: 150px;
+  /* min-width: 150px;*/
 }
 
 .dc-button-size-large .dc-button-image {
@@ -128,10 +128,8 @@
   color: var(--dc-background-colour);
   background-color: var(--dc-primary-colour);
   border: none;
-}
-
-.dc-button-primary .dc-button-image path {
   fill: var(--dc-background-colour);
+  stroke: var(--dc-background-colour);
 }
 
 .dc-button-primary:focus {
@@ -139,22 +137,17 @@
   outline-offset: 1px;
 }
 
-.dc-button-primary:hover,
-.dc-button-primary:active {
+.dc-button-primary:hover:enabled,
+.dc-button-primary:active:enabled {
   background-color: var(--dc-primary-accent-colour);
   outline: none;
 }
 
 .dc-button-primary:disabled {
+  color: var(--dc-primary-disabled-text-colour);
   background-color: var(--dc-primary-disabled-colour);
-}
-
-.dc-button-primary .dc-button-spinner circle {
-  stroke: var(--dc-background-colour);
-}
-
-.dc-button-primary:disabled .dc-button-spinner circle {
-  stroke: var(--dc-background-colour);
+  fill: var(--dc-primary-disabled-text-colour);
+  stroke: var(--dc-primary-disabled-text-colour);
 }
 
 /* Secondary */
@@ -164,6 +157,8 @@
   border-color: var(--dc-primary-colour);
   border-width: 2px;
   border-style: solid;
+  fill: var(--dc-primary-colour);
+  stroke: var(--dc-primary-colour);
 }
 
 .dc-button-secondary:focus {
@@ -173,74 +168,51 @@
   outline-offset: 1px;
 }
 
-.dc-button-secondary:hover,
-.dc-button-secondary:active {
+.dc-button-secondary:hover:enabled,
+.dc-button-secondary:active:enabled {
   color: var(--dc-primary-accent-colour);
   border-color: var(--dc-primary-accent-colour);
   background-color: var(--dc-background-accent-color);
   outline: none;
+  fill: var(--dc-primary-accent-colour);
+  stroke: var(--dc-primary-accent-colour);
 }
 
 .dc-button-secondary:disabled {
   color: var(--dc-primary-disabled-colour);
   border-color: var(--dc-primary-disabled-colour);
-}
-
-.dc-button-secondary .dc-button-image path {
-  fill: var(--dc-primary-colour);
-}
-
-.dc-button-secondary:disabled .dc-button-image path {
   fill: var(--dc-primary-disabled-colour);
-}
-
-.dc-button-secondary .dc-button-spinner circle {
-  stroke: var(--dc-primary-colour);
-  fill: none;
-}
-
-.dc-button-secondary:disabled .dc-button-spinner circle {
   stroke: var(--dc-primary-disabled-colour);
 }
 
-/* Ghost */
-.dc-button-ghost {
+/* Tertiary */
+.dc-button-tertiary {
   color: var(--dc-primary-colour);
   background-color: var(--dc-background-colour);
   border-width: 2px;
   border: none;
+  fill: var(--dc-primary-colour);
+  stroke: var(--dc-primary-colour); 
 }
 
-.dc-button-ghost:focus {
+.dc-button-tertiary:focus {
   outline: 2px solid var(--dc-primary-colour);
   outline-offset: 1px;
   color: var(--dc-primary-colour);
 }
 
-.dc-button-ghost:hover,
-.dc-button-ghost:active {
+.dc-button-tertiary:hover:enabled,
+.dc-button-tertiary:active:enabled {
   background-color: var(--dc-background-accent-color);
   color: var(--dc-primary-accent-colour);
   outline: none;
+  fill: var(--dc-primary-accent-colour);
+  stroke: var(--dc-primary-accent-colour);
 }
 
-.dc-button-ghost:disabled {
+.dc-button-tertiary:disabled {
   color: var(--dc-primary-disabled-colour);
-}
-
-.dc-button-ghost .dc-button-image path {
-  fill: var(--dc-primary-colour);
-}
-
-.dc-button-ghost:disabled .dc-button-image path {
+  stroke: var(--dc-primary-disabled-colour);
   fill: var(--dc-primary-disabled-colour);
 }
 
-.dc-button-ghost .dc-button-spinner circle {
-  stroke: var(--dc-primary-colour);
-  fill: none;
-}
-
-.dc-button-ghost:disabled .dc-button-spinner circle {
-  stroke: var(--dc-primary-disabled-colour);
-}

@@ -17,7 +17,7 @@ export class DatacomLink {
   @Prop() url: string;
   @Prop() icon?: string;
   @Prop() disabled: boolean;
-  @Prop() imagePosition: ImagePosition = 'left';
+  @Prop() iconPosition: ImagePosition = 'left';
 
   render() {
     let image: VNode;
@@ -29,7 +29,7 @@ export class DatacomLink {
       'dc-link': true,
       [`dc-link-${this.variant}`]: true,
       'dc-link-disabled': this.disabled,
-      [`dc-link-image-${this.imagePosition}`]: true,
+      [`dc-link-image-${this.iconPosition}`]: true,
     };
 
     return (

@@ -3,7 +3,7 @@ import { getSvg } from '../../common/images/icon-provider';
 import { Spinner } from '../../common/images/icons';
 import { randomString } from '../../utils';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
 export type ButtonSize = 'large' | 'small';
 export type ImagePosition = 'left' | 'right';
 export type ButtonType = 'button' | 'submit' | 'reset';
@@ -44,7 +44,7 @@ export class DatacomButton {
    * Button variant:
    * - primary
    * - seconday
-   * - ghost
+   * - tertiary
    */
   @Prop() variant: ButtonVariant = 'primary';
 
@@ -60,7 +60,7 @@ export class DatacomButton {
    * - left
    * - right
    */
-  @Prop({ attribute: 'image-position' }) imagePosition: ImagePosition = 'left';
+  @Prop({ attribute: 'image-position' }) iconPosition: ImagePosition = 'left';
 
   /**
    * Image source as either relative or obsolute URI
@@ -92,21 +92,27 @@ export class DatacomButton {
     // Shouldn't overwrite immutable properties so we must use local variables
     let variant = this.variant;
     let size = this.size;
-    let imagePosition = this.imagePosition;
+    let iconPosition = this.iconPosition;
 
-    if (!['primary', 'secondary', 'ghost'].includes(variant)) {
-      console.log('Button variant must be either primary, secondary or ghost. Defaulting to primary');
+    if (!['primary', 'secondary', 'tertiary'].includes(variant)) {
+      console.log(
+        'Button variant must be either primary, secondary or tertiary. Defaulting to primary',
+      );
       variant = 'primary';
     }
 
     if (this.size?.length > 0 && !['large', 'small'].includes(size)) {
-      console.log('Button size must be either large or small. Defaulting to large');
+      console.log(
+        'Button size must be either large or small. Defaulting to large',
+      );
       size = 'large';
     }
 
-    if (!['left', 'right'].includes(this.imagePosition)) {
-      console.log('Button image position must be either left or right. Defaulting to left');
-      imagePosition = 'left';
+    if (!['left', 'right'].includes(this.iconPosition)) {
+      console.log(
+        'Button image position must be either left or right. Defaulting to left',
+      );
+      iconPosition = 'left';
     }
 
     /**
@@ -126,7 +132,7 @@ export class DatacomButton {
       'dc-button-loading': this.loading,
       [`dc-button-${variant}`]: true,
       [`dc-button-size-${size}`]: true,
-      [`dc-button-image-${imagePosition}`]: image && this.text?.length > 0,
+      [`dc-button-image-${iconPosition}`]: image && this.text?.length > 0,
     };
 
     return (
@@ -153,8 +159,7 @@ export class DatacomButton {
             autoFocus={this.autofocus}
             aria-labelledby={this.labelId}
             disabled={this.disabled}
-            class={classes}
-          >
+            class={classes}>
             {image}
             <span id={this.labelId} class="dc-button-text">
               {this.text}

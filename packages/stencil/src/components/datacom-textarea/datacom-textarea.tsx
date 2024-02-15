@@ -145,7 +145,7 @@ export class DatacomTextarea implements FormControl {
   }
 
   @Listen('blur', { capture: true })
-  onBlur(event: any): void {
+  onBlur(event: FocusEvent): void {
     this.isEditing = false;
     const elem = event.target as HTMLElement;
 

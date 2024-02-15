@@ -31,6 +31,8 @@
   border-radius: 4px;
   box-sizing: border-box;
   color: var(--text-color);
+
+  /* TODO: var color */
   filter: drop-shadow(0 3px 8px rgba(0 0 0 / 20%));
   font-family: var(--dc-font-family);
   font-size: 12px;

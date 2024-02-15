@@ -1,5 +1,4 @@
-@import url("../../global/css/breakpoints.css");
-
+@import url(../../global/global.css);
 :host {
   --border-radius: 8px;
 }
@@ -52,7 +51,6 @@
 }
 
 .dc-feature-title {
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   display: -webkit-box;
   font-weight: var(--dc-heading5-weight);
@@ -61,7 +59,6 @@
 }
 
 .dc-feature-text {
-  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   color: var(--dc-primary-text-color);
   display: -webkit-box;

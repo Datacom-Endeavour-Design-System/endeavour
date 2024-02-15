@@ -71,7 +71,11 @@ export class DatacomTooltip {
    * prevents re-renders for performance.
    */
   updateTooltipPosition(mainPosition: string, subPosition?: string) {
-    const newPosition = (subPosition !== undefined && subPosition !== '' ? `${mainPosition}-${subPosition}` : mainPosition) as TooltipPositionType;
+    const newPosition = (
+      subPosition !== undefined && subPosition !== ''
+        ? `${mainPosition}-${subPosition}`
+        : mainPosition
+    ) as TooltipPositionType;
     this.tooltipWrapperElement.classList.remove(this.currentPosition);
     this.currentPosition = newPosition;
     this.tooltipWrapperElement.classList.add(this.currentPosition);
@@ -95,9 +99,11 @@ export class DatacomTooltip {
    * @returns object with properties related element's position in viewport.
    */
   getViewportPositionData(element: HTMLElement) {
-    const { top, left, bottom, right } = element?.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+    const { top, left, bottom, right } = element.getBoundingClientRect();
+    const viewportHeight =
+      window.innerHeight || document.documentElement.clientHeight;
+    const viewportWidth =
+      window.innerWidth || document.documentElement.clientWidth;
 
     const distanceFromTop = top;
     const distanceFromLeft = left;
@@ -105,8 +111,12 @@ export class DatacomTooltip {
     const distanceFromBottom = viewportHeight - bottom;
 
     return {
-      partiallyVisible: ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) && ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth)),
-      fullyVisible: top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth,
+      partiallyVisible:
+        ((top > 0 && top < innerHeight) ||
+          (bottom > 0 && bottom < innerHeight)) &&
+        ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth)),
+      fullyVisible:
+        top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth,
       distanceFromBottom,
       distanceFromLeft,
       distanceFromRight,
@@ -120,22 +130,32 @@ export class DatacomTooltip {
    * Logic for identifying appropriate position for tooltip
    */
   adjustTooltipPosition = () => {
-    const slottedElementPositionData = this.getViewportPositionData(this.slottedElement);
+    const slottedElementPositionData = this.getViewportPositionData(
+      this.slottedElement,
+    );
     const verticalBuffer = 40;
     const horizontalBuffer = 100;
     const tooltipPositionBuffer = 10;
 
-    let mainPosition;
-    let subPosition;
+    let mainPosition: 'top' | 'bottom' | 'left' | 'right';
+    let subPosition: 'start' | 'end' | '';
 
     // Check slotted element's distance from viewport edges to determine best cardinal direction for main tooltip position.
     if (slottedElementPositionData.distanceFromBottom >= verticalBuffer) {
       mainPosition = 'bottom';
     } else if (slottedElementPositionData.distanceFromBottom < 0) {
       mainPosition = 'top';
-    } else if (slottedElementPositionData.distanceFromLeft >= horizontalBuffer && slottedElementPositionData.distanceFromLeft >= slottedElementPositionData.distanceFromRight) {
+    } else if (
+      slottedElementPositionData.distanceFromLeft >= horizontalBuffer &&
+      slottedElementPositionData.distanceFromLeft >=
+        slottedElementPositionData.distanceFromRight
+    ) {
       mainPosition = 'left';
-    } else if (slottedElementPositionData.distanceFromRight >= horizontalBuffer && slottedElementPositionData.distanceFromRight >= slottedElementPositionData.distanceFromLeft) {
+    } else if (
+      slottedElementPositionData.distanceFromRight >= horizontalBuffer &&
+      slottedElementPositionData.distanceFromRight >=
+        slottedElementPositionData.distanceFromLeft
+    ) {
       mainPosition = 'right';
     } else {
       mainPosition = 'top';
@@ -148,9 +168,15 @@ export class DatacomTooltip {
     // Now determine if sub position should be start, end or center depending on where element is placed in viewport.
     if (mainPosition === 'top' || mainPosition === 'bottom') {
       // Vertical cardinal directions
-      if (tooltipPositionData.distanceFromLeft < 0 && tooltipPositionData.distanceFromRight >= 0) {
+      if (
+        tooltipPositionData.distanceFromLeft < 0 &&
+        tooltipPositionData.distanceFromRight >= 0
+      ) {
         subPosition = 'start';
-      } else if (tooltipPositionData.distanceFromLeft >= 0 && tooltipPositionData.distanceFromRight < 0) {
+      } else if (
+        tooltipPositionData.distanceFromLeft >= 0 &&
+        tooltipPositionData.distanceFromRight < 0
+      ) {
         subPosition = 'end';
       } else {
         subPosition = '';
@@ -160,16 +186,30 @@ export class DatacomTooltip {
 
       // Check and adjust width if needed.
       if (tooltipPositionData.distanceFromLeft < 0) {
-        this.updateTooltipWidth(tooltipPositionData.viewportWidth - tooltipPositionData.distanceFromRight - tooltipPositionBuffer);
+        this.updateTooltipWidth(
+          tooltipPositionData.viewportWidth -
+            tooltipPositionData.distanceFromRight -
+            tooltipPositionBuffer,
+        );
         tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
       } else if (tooltipPositionData.distanceFromRight < 0) {
-        this.updateTooltipWidth(tooltipPositionData.viewportWidth - tooltipPositionData.distanceFromLeft - tooltipPositionBuffer);
+        this.updateTooltipWidth(
+          tooltipPositionData.viewportWidth -
+            tooltipPositionData.distanceFromLeft -
+            tooltipPositionBuffer,
+        );
         tooltipPositionData = this.getViewportPositionData(this.tooltipElement);
       }
 
-      if (tooltipPositionData.distanceFromTop < 0 && tooltipPositionData.distanceFromBottom >= 0) {
+      if (
+        tooltipPositionData.distanceFromTop < 0 &&
+        tooltipPositionData.distanceFromBottom >= 0
+      ) {
         subPosition = 'start';
-      } else if (tooltipPositionData.distanceFromTop >= 0 && tooltipPositionData.distanceFromBottom < 0) {
+      } else if (
+        tooltipPositionData.distanceFromTop >= 0 &&
+        tooltipPositionData.distanceFromBottom < 0
+      ) {
         subPosition = 'end';
       } else {
         subPosition = '';
@@ -199,7 +239,10 @@ export class DatacomTooltip {
       this.hasAutoPositionEventListeners = true;
 
       // Apply listeners to update tooltip position
-      this.slottedElement.addEventListener('mouseenter', this.resetTooltipPosition);
+      this.slottedElement.addEventListener(
+        'mouseenter',
+        this.resetTooltipPosition,
+      );
     }
   };
 
@@ -209,7 +252,10 @@ export class DatacomTooltip {
       this.hasAutoPositionEventListeners = false;
 
       this.tooltipWrapperElement.classList.remove(this.currentPosition);
-      this.slottedElement.removeEventListener('mouseenter', this.resetTooltipPosition);
+      this.slottedElement.removeEventListener(
+        'mouseenter',
+        this.resetTooltipPosition,
+      );
     }
   };
 
@@ -258,25 +304,32 @@ export class DatacomTooltip {
 
   render() {
     const wrapperClasses = {
-      'dark': this.dark,
+      dark: this.dark,
       'dc-tooltip-wrapper': true,
       'hide-arrow': this.hideArrow,
-      'show': this.isTooltipVisible,
+      show: this.isTooltipVisible,
       [`${this.position}`]: this.position !== 'auto',
     };
 
     return (
       <Host>
         <div class="dc-tooltip-hoc">
-          <div class={wrapperClasses} ref={el => this.setTooltipWrapperElementRef(el as HTMLElement)}>
-            <div class="dc-tooltip" id={this.id} role="tooltip" ref={el => this.setTooltipElementRef(el as HTMLElement)} style={{ width: `${this.width}px` }}>
+          <div
+            class={wrapperClasses}
+            ref={(el) => this.setTooltipWrapperElementRef(el as HTMLElement)}>
+            <div
+              class="dc-tooltip"
+              id={this.id}
+              role="tooltip"
+              ref={(el) => this.setTooltipElementRef(el as HTMLElement)}
+              style={{ width: `${this.width}px` }}>
               {this.label}
               <div class="dc-tooltip-arrow">
                 <TooltipArrow />
               </div>
             </div>
           </div>
-          <slot ref={el => this.setSlotElementRef(el as HTMLSlotElement)} />
+          <slot ref={(el) => this.setSlotElementRef(el as HTMLSlotElement)} />
         </div>
       </Host>
     );

@@ -9,7 +9,7 @@ import { useRef, useEffect } from 'react';
  */
 export const useEventRef = <T extends HTMLElement = HTMLElement>(
   name: string,
-  listener: EventListener
+  listener: EventListener,
 ) => {
   const targetRef = useRef<T>();
   const handlerRef = useRef(listener);
@@ -22,7 +22,9 @@ export const useEventRef = <T extends HTMLElement = HTMLElement>(
     const handler: EventListener = (e) => handlerRef.current(e);
 
     const target = targetRef.current;
-    if (!target) return;
+    if (!target) {
+      return;
+    }
 
     target.addEventListener(name, handler);
     return () => target.removeEventListener(name, handler);

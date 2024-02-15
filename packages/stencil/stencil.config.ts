@@ -1,32 +1,24 @@
 import { Config } from '@stencil/core';
-import { postcss } from '@stencil/postcss';
-import { reactOutputTarget as react } from '@stencil/react-output-target';
+import { postcss } from '@stencil-community/postcss';
+import { reactOutputTarget } from '@stencil/react-output-target';
 import postcssCustomMedia from 'postcss-custom-media';
+//import { resolve } from 'path';
 
 export const config: Config = {
-  namespace: 'datacom',
-  globalStyle: 'src/global/css/light.css',
+  namespace: 'endeavour',
+  globalStyle: 'src/global/global.css',
   extras: {
-    experimentalImportInjection: true,
+    enableImportInjection: true,
   },
+  buildEs5: true,
   plugins: [
     postcss({
       plugins: [postcssCustomMedia()],
     }),
   ],
   outputTargets: [
-    react({
-      componentCorePackage: '@datacom/endeavour',
-      proxiesFile: '../react/src/components/stencil-generated/index.ts',
-      includeDefineCustomElements: true,
-    }),
     {
       type: 'dist',
-      copy: [
-        {
-          src: 'global/*',
-        },
-      ],
     },
     {
       type: 'dist-custom-elements',
@@ -41,5 +33,10 @@ export const config: Config = {
       ],
       serviceWorker: null,
     },
+    reactOutputTarget({
+      componentCorePackage: '@datacom/endeavour',
+      proxiesFile: '../react/src/components/stencil-generated/index.ts',
+      includeDefineCustomElements: true,
+    }),
   ],
 };
