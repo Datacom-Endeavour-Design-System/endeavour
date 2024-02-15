@@ -17,25 +17,21 @@ export default {
     },
     hideAddToCart: {
       name: 'Hide "Add to cart" icon',
-      default: false,
       description: 'Toggles visibility of "Add to cart" icon',
       type: { name: 'boolean' },
     },
     hideQuickView: {
       name: 'Hide "Quick view" icon',
-      default: false,
       description: 'Toggles visibility of "Quick view" icon',
       type: { name: 'boolean' },
     },
     hideProductCompare: {
       name: 'Hide "Product compare" icon',
-      default: false,
       description: 'Toggles visibility of "Product compare" icon',
       type: { name: 'boolean' },
     },
     stockStatus: {
       name: 'Stock status',
-      defaultValue: 'in-stock',
       description: 'Status of product stock',
       control: 'select',
       options: ['in-stock', 'pre-order', 'back-order', 'out-of-stock'],
@@ -49,38 +45,31 @@ export default {
     },
     url: {
       name: 'URL',
-      defaultValue: 'https://datacom.com',
       description: 'URL that CTA should link to.',
       type: { name: 'string' },
     },
     price: {
       name: 'Price',
-      default: 1000,
       description: 'Price of product displayed.',
       type: { name: 'number' },
     },
     promoPrice: {
       name: 'Promotional price',
-      default: 500,
       description: 'Promotional price of product displayed.',
       type: { name: 'number' },
     },
     ratingValue: {
       name: 'Rating value',
-      defaultValue: 'Tag',
       description: 'Rating value of product (should be between 0 and 5).',
       type: { name: 'number' },
     },
     ratingLabel: {
       name: 'Rating label',
-      defaultValue: '(100)',
       description: 'Label displayed next to product rating.',
       type: { name: 'string' },
     },
     imageUrl: {
       name: 'Image URL',
-      defaultValue:
-        'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
       description: 'Image URL to be displayed at top of card.',
       type: { name: 'string' },
     },
@@ -95,7 +84,7 @@ export default {
     url: 'https://datacom.com',
     price: 1000,
     promoPrice: 500,
-    ratingValue: 'Tag',
+    ratingValue: 3.5,
     ratingLabel: '(100)',
     imageUrl:
       'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
