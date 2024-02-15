@@ -24,7 +24,7 @@ export default {
       type: { name: 'string' },
     },
     tagText: {
-      name: 'Tag text',
+      name: 'Tag',
       description: 'Text for content tag.',
       type: { name: 'string' },
     },
@@ -33,10 +33,6 @@ export default {
       description: 'Text within the CTA element.',
       type: { name: 'string' },
     },
-    url: {
-      name: 'URL',
-      description: 'URL for tag.',
-    },
     imageUrl: {
       name: 'Image URL',
       description: 'Image URL to be displayed at top of card.',
@@ -44,12 +40,11 @@ export default {
     },
   },
   args: {
-    tagText: 'Tag text',
+    tagText: 'Tag',
     cardTitle: 'Title',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
     ctaText: 'Button text',
-    url: 'https://datacom.com',
     imageUrl:
       'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
   },
@@ -100,7 +95,7 @@ export const SelectionCardGroup = () => {
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
             <DatacomContentTag url="https://datacom.com" slot="tags">
-              Tag text
+              Cloud
             </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
@@ -120,7 +115,7 @@ export const SelectionCardGroup = () => {
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
             <DatacomContentTag url="https://datacom.com" slot="tags">
-              Tag text
+              Cloud
             </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
@@ -140,7 +135,7 @@ export const SelectionCardGroup = () => {
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
             <DatacomContentTag url="https://datacom.com" slot="tags">
-              Tag text
+              Cloud
             </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
@@ -155,7 +150,7 @@ export const SelectionCardGroup = () => {
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg">
             <DatacomContentTag url="https://datacom.com" slot="tags">
-              Tag text
+              Cloud
             </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
@@ -175,7 +170,7 @@ export const SelectionCardGroup = () => {
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/259526/pexels-photo-259526.jpeg">
             <DatacomContentTag url="https://datacom.com" slot="tags">
-              Tag text
+              Cloud
             </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
@@ -195,7 +190,7 @@ export const SelectionCardGroup = () => {
             ctaText="Next"
             imageUrl="https://images.pexels.com/photos/11542516/pexels-photo-11542516.jpeg">
             <DatacomContentTag url="https://datacom.com" slot="tags">
-              Tag text
+              Cloud
             </DatacomContentTag>
             <DatacomRadio slot="options" label="Label" id="radio1" value="1" />
             <DatacomRadio slot="options" label="Label" id="radio2" value="2" />
