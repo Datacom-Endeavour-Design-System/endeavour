@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import {
   DatacomButton,
   DatacomDropdown,
   DatacomOption,
 } from '@datacom/endeavour-react';
+import { HTMLDatacomDropdownElement } from 'packages/stencil/dist/types/components/datacom-dropdown/datacom-dropdown';
+type DatacomDropdownProps = React.ComponentProps<typeof DatacomDropdown>;
 const meta: Meta<typeof DatacomDropdown> = {
   title: 'Dropdown',
   component: DatacomDropdown,
@@ -51,25 +53,28 @@ const meta: Meta<typeof DatacomDropdown> = {
 };
 export default meta;
 
-const StandardTemplate: StoryObj<typeof DatacomDropdown> = (args) => (
-  <div style={{ maxWidth: 272 }}>
-    <DatacomDropdown {...args}>
-      <DatacomOption value="1" label="Option 1"></DatacomOption>
-      <DatacomOption value="2" label="Option 2"></DatacomOption>
-      <DatacomOption value="3" label="Option 3"></DatacomOption>
-      <DatacomOption value="4" label="Option 4"></DatacomOption>
-      <DatacomOption value="5" label="Option 5"></DatacomOption>
-    </DatacomDropdown>
-  </div>
+const StandardTemplate: StoryFn<DatacomDropdownProps> = (args) => (
+  (args = {
+    label: 'Label',
+    message: 'Please select an option',
+    placeholder: 'Placeholder',
+  }),
+  (
+    <div style={{ maxWidth: 272 }}>
+      <DatacomDropdown {...args}>
+        <DatacomOption value="1" label="Option 1"></DatacomOption>
+        <DatacomOption value="2" label="Option 2"></DatacomOption>
+        <DatacomOption value="3" label="Option 3"></DatacomOption>
+        <DatacomOption value="4" label="Option 4"></DatacomOption>
+        <DatacomOption value="5" label="Option 5"></DatacomOption>
+      </DatacomDropdown>
+    </div>
+  )
 );
 
 export const Standard = StandardTemplate.bind({});
-Standard.args = {
-  label: 'Label',
-  message: 'Please select an option',
-  placeholder: 'Placeholder',
-};
-const MultiTemplate: StoryObj<typeof DatacomDropdown> = (args) => (
+
+const MultiTemplate: StoryFn<DatacomDropdownProps> = (args) => (
   <div style={{ maxWidth: 272 }}>
     <DatacomDropdown {...args}>
       <DatacomOption value="1" label="Option 1"></DatacomOption>
@@ -89,7 +94,7 @@ Multi.args = {
   variant: 'multi',
 };
 
-const ComboboxTemplate: StoryObj<typeof DatacomDropdown> = (args) => (
+const ComboboxTemplate: StoryFn<DatacomDropdownProps> = (args) => (
   <div style={{ maxWidth: 272 }}>
     <DatacomDropdown {...args}>
       <DatacomOption value="1" label="Option 1"></DatacomOption>
@@ -108,7 +113,7 @@ Combobox.args = {
   placeholder: 'Placeholder',
   variant: 'combobox',
 };
-const CountryTemplate: StoryObj<typeof DatacomDropdown> = (args) => (
+const CountryTemplate: StoryFn<DatacomDropdownProps> = (args) => (
   <div style={{ maxWidth: 272 }}>
     <DatacomDropdown {...args}>
       <DatacomOption
@@ -162,10 +167,10 @@ WithImages.args = {
   placeholder: 'Select your country',
 };
 
-export const FormSubmission: StoryObj<typeof DatacomDropdown> = {
+export const FormSubmission: StoryObj<DatacomDropdownProps> = {
   render: (props) => {
     const formRef = useRef<HTMLFormElement>();
-    const dropdownRef = useRef<DatacomDropdown>();
+    const dropdownRef = useRef<HTMLDatacomDropdownElement>();
     const [submitted, setSubmitted] = useState(false);
     const [selectedValue, setSelectedValue] = useState([]);
     const [hasError, setHasError] = useState(false);
