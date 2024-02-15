@@ -5,7 +5,6 @@ import {
   DatacomDropdown,
   DatacomOption,
 } from '@datacom/endeavour-react';
-import { HTMLDatacomDropdownElement } from 'packages/stencil/dist/types/components/datacom-dropdown/datacom-dropdown';
 type DatacomDropdownProps = React.ComponentProps<typeof DatacomDropdown>;
 const meta: Meta<typeof DatacomDropdown> = {
   title: 'Dropdown',
@@ -170,7 +169,7 @@ WithImages.args = {
 export const FormSubmission: StoryObj<DatacomDropdownProps> = {
   render: (props) => {
     const formRef = useRef<HTMLFormElement>();
-    const dropdownRef = useRef<HTMLDatacomDropdownElement>();
+    const dropdownRef = useRef<DatacomDropdown>();
     const [submitted, setSubmitted] = useState(false);
     const [selectedValue, setSelectedValue] = useState([]);
     const [hasError, setHasError] = useState(false);
