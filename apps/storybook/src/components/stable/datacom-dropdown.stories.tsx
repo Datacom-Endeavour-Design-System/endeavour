@@ -5,7 +5,6 @@ import {
   DatacomDropdown,
   DatacomOption,
 } from '@datacom/endeavour-react';
-import { HTMLDatacomDropdownElement } from 'packages/stencil/dist/types/components/datacom-dropdown/datacom-dropdown';
 type DatacomDropdownProps = React.ComponentProps<typeof DatacomDropdown>;
 const meta: Meta<typeof DatacomDropdown> = {
   title: 'Dropdown',
