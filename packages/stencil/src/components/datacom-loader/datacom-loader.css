@@ -69,6 +69,10 @@
   fill: var(--dc-primary-colour);
 }
 
+.dc-loader-error path {
+  fill: var(--dc-primary-error-color);
+}
+
 .dc-loader-success,
 .dc-loader-error {
   display: flex;

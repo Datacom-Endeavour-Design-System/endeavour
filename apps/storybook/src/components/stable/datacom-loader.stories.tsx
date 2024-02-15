@@ -15,7 +15,7 @@ const meta: Meta<typeof DatacomLoader> = {
       type: { name: 'string' },
     },
     loadingStatus: {
-      name: 'Loading Status',
+      name: 'Loading status',
       description: 'Loading status is default if it is not set',
       options: ['default', 'error', 'success'],
       defaultValue: 'default',
