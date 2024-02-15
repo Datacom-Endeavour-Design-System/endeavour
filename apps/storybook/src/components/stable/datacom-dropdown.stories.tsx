@@ -1,12 +1,11 @@
 import React, { useRef, useState } from 'react';
-import { StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import {
   DatacomButton,
   DatacomDropdown,
   DatacomOption,
 } from '@datacom/endeavour-react';
-
-export default {
+const meta: Meta<typeof DatacomDropdown> = {
   title: 'Dropdown',
   component: DatacomDropdown,
   argTypes: {
@@ -50,8 +49,9 @@ export default {
     label: 'Label',
   },
 };
+export default meta;
 
-const StandardTemplate: StoryFn<typeof DatacomDropdown> = (args) => (
+const StandardTemplate: StoryObj<typeof DatacomDropdown> = (args) => (
   <div style={{ maxWidth: 272 }}>
     <DatacomDropdown {...args}>
       <DatacomOption value="1" label="Option 1"></DatacomOption>
@@ -69,7 +69,7 @@ Standard.args = {
   message: 'Please select an option',
   placeholder: 'Placeholder',
 };
-const MultiTemplate: StoryFn<typeof DatacomDropdown> = (args) => (
+const MultiTemplate: StoryObj<typeof DatacomDropdown> = (args) => (
   <div style={{ maxWidth: 272 }}>
     <DatacomDropdown {...args}>
       <DatacomOption value="1" label="Option 1"></DatacomOption>
@@ -89,7 +89,7 @@ Multi.args = {
   variant: 'multi',
 };
 
-const ComboboxTemplate: StoryFn<typeof DatacomDropdown> = (args) => (
+const ComboboxTemplate: StoryObj<typeof DatacomDropdown> = (args) => (
   <div style={{ maxWidth: 272 }}>
     <DatacomDropdown {...args}>
       <DatacomOption value="1" label="Option 1"></DatacomOption>
@@ -108,7 +108,7 @@ Combobox.args = {
   placeholder: 'Placeholder',
   variant: 'combobox',
 };
-const CountryTemplate: StoryFn<typeof DatacomDropdown> = (args) => (
+const CountryTemplate: StoryObj<typeof DatacomDropdown> = (args) => (
   <div style={{ maxWidth: 272 }}>
     <DatacomDropdown {...args}>
       <DatacomOption
@@ -162,10 +162,10 @@ WithImages.args = {
   placeholder: 'Select your country',
 };
 
-export const FormSubmission: StoryFn<typeof DatacomDropdown> = {
+export const FormSubmission: StoryObj<typeof DatacomDropdown> = {
   render: (props) => {
     const formRef = useRef<HTMLFormElement>();
-    const dropdownRef = useRef<HTMLDatacomDropdownElement>();
+    const dropdownRef = useRef<DatacomDropdown>();
     const [submitted, setSubmitted] = useState(false);
     const [selectedValue, setSelectedValue] = useState([]);
     const [hasError, setHasError] = useState(false);
