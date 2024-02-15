@@ -1,4 +1,4 @@
-@import url("../../global/css/breakpoints.css");
+@import url(../../global/global.css);
 
 :host {
   --border-display-radius: 8px;
@@ -18,7 +18,9 @@
   display: flex;
   height: var(--display-card-height);
   width: 100%;
-  background-color: #0a1839b3;
+
+  /* TODO: var color */
+  background-color: #000a14b3;
   border-radius: var(--border-display-radius);
 }
 
@@ -38,7 +40,7 @@
   flex-grow: 1;
   flex-direction: column;
   padding: calc(var(--display-card-height)/2) 24px 32px 24px;
-  color: var(--dc-background-colour);
+  color: var(--dc-colour-white);
   font-family: var(--dc-font-family);
   justify-content: end;
   overflow: hidden;
@@ -83,7 +85,7 @@
 
 @media (--breakpoint-large-desktop) {
   .dc-display-card-content {
-    padding: calc(var(--display-card-height)/2) 48px 48px 48px;
+    padding: calc(var(--display-card-height)/2) 48px 46px 48px;
   }
 
   .dc-display-card-heading {
@@ -99,7 +101,8 @@
 }
 
 .dc-display-card-link:hover .dc-display-card-media {
-  background-color: #003fbcb3;
+  /* TODO: var color */
+  background-color: color-mix(in oklch, transparent, var(--dc-primary-hover-color) 70%);
 }
 
 .dc-display-card-cta-wrapper {
@@ -130,5 +133,5 @@
   width: 100%;
   transform: scaleX(1);
   transform-origin: bottom left;
-  background-color: var(--dc-background-colour);
+  background-color: var(--dc-colour-white);
 }

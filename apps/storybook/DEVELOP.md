@@ -5,7 +5,7 @@
 Use explicit and narrow typescript types where possible:
 
 ```ts
-export type ButtonVariant = 'primary' | 'seconday' | 'ghost';
+export type ButtonVariant = 'primary' | 'seconday' | 'tertiary';
 
 // Prop uses type definition (it will still be a string)
 @Prop() variant: ButtonVariant = 'primary';
@@ -75,8 +75,8 @@ Instead, theme elements within the component.
 Validate a property explicitly if it has a set of possible values. Issue a warning if the property is incorrectly configured and revert to a sensible default.
 
 ```ts
-if (!['primary', 'secondary', 'ghost'].includes(this.variant)) {
-  console.warn('Button variant must be either primary, secondary or ghost.');
+if (!['primary', 'secondary', 'tertiary'].includes(this.variant)) {
+  console.warn('Button variant must be either primary, secondary or tertiary.');
   this.variant = 'primary';
 }
 ```

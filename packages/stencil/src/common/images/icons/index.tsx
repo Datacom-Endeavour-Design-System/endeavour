@@ -26,5 +26,6 @@ export * from './search';
 export * from './settings';
 export * from './spinner';
 export * from './tick';
+export * from './theme';
 export * from './up';
 export * from './upload';

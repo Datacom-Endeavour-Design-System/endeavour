@@ -1,4 +1,15 @@
-import { Component, Host, h, Prop, State, Listen, Method, Event, EventEmitter, Fragment } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  State,
+  Listen,
+  Method,
+  Event,
+  EventEmitter,
+  Fragment,
+} from '@stencil/core';
 import { Error } from '../../common/images/icons';
 import { randomString } from '../../utils';
 import { FormControl } from '../form-control';
@@ -145,7 +156,7 @@ export class DatacomTextarea implements FormControl {
   }
 
   @Listen('blur', { capture: true })
-  onBlur(event: any): void {
+  onBlur(event: FocusEvent): void {
     this.isEditing = false;
     const elem = event.target as HTMLElement;
 
@@ -208,7 +219,11 @@ export class DatacomTextarea implements FormControl {
     /* When in edit mode, we disable tabindex within the control so that keyboard actions
      * like tab and shift-tab move correctly to the next form control.
      */
-    const edit = this.isEditing || this.value?.length > 0 || this.isDirty || this.isValid == false;
+    const edit =
+      this.isEditing ||
+      this.value?.length > 0 ||
+      this.isDirty ||
+      this.isValid == false;
 
     const tabindex = this.isEditing ? -1 : 0;
     const error = (this.isInError && this.isDirty) || this.isValid == false;
@@ -233,7 +248,7 @@ export class DatacomTextarea implements FormControl {
           <div class="dc-textarea-wrap">
             <textarea
               class="dc-textarea-input"
-              ref={el => this.setTextElementRef(el)}
+              ref={(el) => this.setTextElementRef(el)}
               tabIndex={tabindex}
               id={this.inputId}
               placeholder={this.placeholder}
@@ -246,8 +261,7 @@ export class DatacomTextarea implements FormControl {
               form={this.form}
               disabled={this.disabled}
               maxlength={this.maxlength}
-              value={this.value}
-            ></textarea>
+              value={this.value}></textarea>
             {error && (
               <Fragment>
                 <Error class="dc-textarea-error-icon" />
@@ -257,7 +271,9 @@ export class DatacomTextarea implements FormControl {
               </Fragment>
             )}
           </div>
-          {this.help && !error && <div class="dc-textarea-help">{this.help}</div>}
+          {this.help && !error && (
+            <div class="dc-textarea-help">{this.help}</div>
+          )}
         </div>
       </Host>
     );
