@@ -24,7 +24,7 @@ export default {
       type: { name: 'string' },
     },
     tagText: {
-      name: 'Tag',
+      name: 'Tag text',
       description: 'Text for content tag.',
       type: { name: 'string' },
     },
