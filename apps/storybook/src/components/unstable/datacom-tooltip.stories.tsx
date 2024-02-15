@@ -66,7 +66,7 @@ export const Default: Story = {
         height: 'calc(100vh - 2rem)',
       }}>
       <DatacomTooltip {...args}>
-        <DatacomButton>Hover me!</DatacomButton>
+        <DatacomButton>Hover over me</DatacomButton>
       </DatacomTooltip>
     </div>
   ),
