@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { DatacomLoader } from '@datacom/endeavour-react';
+import { DatacomButton, DatacomLoader } from '@datacom/endeavour-react';
+import styled from '@emotion/styled';
+
+type LoadingStatusType = 'default' | 'error' | 'success';
 
 const meta: Meta<typeof DatacomLoader> = {
   title: 'Loader',
@@ -42,4 +45,49 @@ export const InlineLoader: StoryObj<typeof DatacomLoader> = {
     }
     return <DatacomLoader {...props}>Loading message</DatacomLoader>;
   },
+};
+
+export const WithLoadingStatus = () => {
+  const [loadingStatus, setLoadingStatus] =
+    useState<LoadingStatusType>('default');
+  const [message, setMessage] = useState('loading..');
+
+  useEffect(() => {
+    if (loadingStatus == 'default') {
+      setTimeout(() => {
+        setLoadingStatus('success');
+        setMessage('loading is complete.');
+      }, 1000);
+    } else if (loadingStatus == null) {
+      setTimeout(() => {
+        setLoadingStatus('default');
+        setMessage('loading..');
+      }, 2000);
+    }
+  });
+
+  const ClickHandler = () => {
+    setLoadingStatus('default');
+    setMessage('loading..');
+  };
+
+  const disabled = loadingStatus == 'default';
+
+  const ButtonPanel = styled.div`
+    margin-top: 24px;
+  `;
+
+  return (
+    <>
+      <DatacomLoader loadingStatus={loadingStatus}>{message}</DatacomLoader>
+      <ButtonPanel>
+        <DatacomButton
+          disabled={disabled}
+          variant="primary"
+          onClick={ClickHandler}>
+          Start loading
+        </DatacomButton>
+      </ButtonPanel>
+    </>
+  );
 };
