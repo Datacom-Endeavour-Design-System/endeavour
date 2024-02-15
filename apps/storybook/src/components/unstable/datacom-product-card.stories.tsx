@@ -10,6 +10,29 @@ export default {
   title: 'Card',
   component: DatacomProductCard,
   argTypes: {
+    tagText: {
+      name: 'Tag text',
+      description: 'Text for content tag.',
+      type: { name: 'string' },
+    },
+    hideAddToCart: {
+      name: 'Hide "Add to cart" icon',
+      default: false,
+      description: 'Toggles visibility of "Add to cart" icon',
+      type: { name: 'boolean' },
+    },
+    hideQuickView: {
+      name: 'Hide "Quick view" icon',
+      default: false,
+      description: 'Toggles visibility of "Quick view" icon',
+      type: { name: 'boolean' },
+    },
+    hideProductCompare: {
+      name: 'Hide "Product compare" icon',
+      default: false,
+      description: 'Toggles visibility of "Product compare" icon',
+      type: { name: 'boolean' },
+    },
     stockStatus: {
       name: 'Stock status',
       defaultValue: 'in-stock',
@@ -22,6 +45,12 @@ export default {
       name: 'Title',
       defaultValue: 'Product name',
       description: 'Text of product title displayed.',
+      type: { name: 'string' },
+    },
+    url: {
+      name: 'URL',
+      defaultValue: 'https://datacom.com',
+      description: 'URL that CTA should link to.',
       type: { name: 'string' },
     },
     price: {
@@ -48,17 +77,6 @@ export default {
       description: 'Label displayed next to product rating.',
       type: { name: 'string' },
     },
-    tagText: {
-      name: 'Tag text',
-      description: 'Text for content tag.',
-      type: { name: 'string' },
-    },
-    url: {
-      name: 'URL',
-      defaultValue: 'https://datacom.com',
-      description: 'URL that CTA should link to.',
-      type: { name: 'string' },
-    },
     imageUrl: {
       name: 'Image URL',
       defaultValue:
@@ -66,37 +84,21 @@ export default {
       description: 'Image URL to be displayed at top of card.',
       type: { name: 'string' },
     },
-    hideAddToCart: {
-      name: 'Hide "Add to cart" icon',
-      default: false,
-      description: 'Toggles visibility of "Add to cart" icon',
-      type: { name: 'boolean' },
-    },
-    hideQuickView: {
-      name: 'Hide "Quick view" icon',
-      default: false,
-      description: 'Toggles visibility of "Quick view" icon',
-      type: { name: 'boolean' },
-    },
-    hideProductCompare: {
-      name: 'Hide "Product compare" icon',
-      default: false,
-      description: 'Toggles visibility of "Product compare" icon',
-      type: { name: 'boolean' },
-    },
   },
   args: {
-    stockStatus: 'in-stock',
-    productTitle: 'Product name',
     tagText: 'Sale',
     hideAddToCart: false,
     hideQuickView: false,
     hideProductCompare: false,
+    stockStatus: 'in-stock',
+    productTitle: 'Product name',
     url: 'https://datacom.com',
-    imageUrl:
-      'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
     price: 1000,
     promoPrice: 500,
+    ratingValue: 'Tag',
+    ratingLabel: '(100)',
+    imageUrl:
+      'https://images.pexels.com/photos/15638791/pexels-photo-15638791.jpeg',
   },
 } as Meta<typeof DatacomProductCard>;
 

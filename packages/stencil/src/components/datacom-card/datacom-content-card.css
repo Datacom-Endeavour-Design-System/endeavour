@@ -42,6 +42,7 @@
 }
 
 .dc-card-action-icon {
+  display: flex;
   height: 24px;
   width: 24px;
 }
