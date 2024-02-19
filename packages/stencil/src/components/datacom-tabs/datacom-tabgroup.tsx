@@ -1,4 +1,12 @@
-import { Component, h, Host, Element, Method, State } from '@stencil/core';
+import {
+  Component,
+  h,
+  Host,
+  Element,
+  Method,
+  State,
+  Listen,
+} from '@stencil/core';
 import { HTMLDatacomTabElement } from './datacom-tab';
 
 @Component({
@@ -7,8 +15,7 @@ import { HTMLDatacomTabElement } from './datacom-tab';
   shadow: true,
 })
 export class DatacomTabGroup {
-  @Element()
-  host: HTMLDatacomTabgroupElement;
+  @Element() host: HTMLElement;
 
   /**
    * Currently selected tab
@@ -20,7 +27,59 @@ export class DatacomTabGroup {
    */
   @State() force = 0;
 
-  private tabs: HTMLDatacomTabElement[] = [];
+  @State()
+  tabs: HTMLDatacomTabElement[] = [];
+
+  @Listen('forceReRenderTabGroup')
+  handleForceReRender() {
+    this.force++;
+  }
+
+  /**
+   * When the component is loaded, select the first tab if none is selected.
+   *
+   * @returns void
+   */
+  async connectedCallback(): Promise<void> {
+    this.getTabs();
+
+    /**
+     * Log a warning if there are no tab child elements included
+     */
+    if (this.tabs.length === 0) {
+      console.warn('Tab group has no tabs');
+      return;
+    }
+
+    /**
+     * If no tab is selected, then set the first as selected.
+     */
+    const hasSelectedTab = this.tabs.some(
+      (t: HTMLDatacomTabElement) => t.selected,
+    );
+
+    if (!hasSelectedTab) {
+      await this.select(0);
+    }
+  }
+
+  /**
+   * Pre-rendering validation
+   *
+   * @returns
+   */
+  componentWillRender() {
+    if (this.host == undefined) {
+      return;
+    }
+
+    /**
+     * Log an error if there are non-tab elements included
+     */
+    if (this.host.querySelectorAll(':scope > :not(datacom-tab)').length > 0) {
+      console.error('Tab group may only contain tab items');
+    }
+  }
 
   /**
    * Select a tab with focus (zero index based)
@@ -56,96 +115,6 @@ export class DatacomTabGroup {
   }
 
   /**
-   * Return selected tab (zero index based)
-   *
-   * @returns number
-   */
-  @Method()
-  async selected(): Promise<number> {
-    return this.selectedTab;
-  }
-
-  /**
-   * Disable tab
-   *
-   * @returns void
-   */
-  @Method()
-  async disableTab(index: number): Promise<void> {
-    const tab = this.getTab(index);
-    if (tab == undefined) {
-      return;
-    }
-
-    tab.disabled = true;
-
-    /**
-     * Force render
-     */
-    this.force++;
-  }
-
-  /**
-   * Enable tab
-   *
-   * @returns void
-   */
-  @Method()
-  async enableTab(index: number): Promise<void> {
-    const tab = this.getTab(index);
-    if (tab == undefined) {
-      return;
-    }
-    tab.disabled = false;
-
-    /**
-     * Force render
-     */
-    this.force++;
-  }
-
-  /**
-   * When the component is loaded, select the first tab if none is selected.
-   *
-   * @returns void
-   */
-  async connectedCallback(): Promise<void> {
-    this.getTabs();
-    if (this.tabs.length === 0) {
-      console.warn('Tab group has no tabs');
-      return;
-    }
-
-    /**
-     * If no tab is selected, then set the first as selected.
-     */
-    const hasSelected = this.tabs.some(
-      (t: HTMLDatacomTabElement) => t.selected,
-    );
-    if (!hasSelected) {
-      await this.select(0);
-    }
-  }
-
-  /**
-   * Pre-rendering validation
-   *
-   * @returns
-   */
-  componentWillRender() {
-    if (this.host == undefined) {
-      return;
-    }
-
-    /**
-     * Log an error if there are non-tab elements included
-     */
-    if (this.host.querySelectorAll(':scope > :not(datacom-tab)').length > 0) {
-      console.error('Tab group may only contain tab items');
-    }
-  }
-
-  /**
    * Get a list of tab children
    *
    * @returns List of tabs
@@ -163,14 +132,6 @@ export class DatacomTabGroup {
     this.host
       .querySelectorAll<HTMLDatacomTabElement>('datacom-tab')
       .forEach((t) => this.tabs.push(t));
-  }
-
-  private getTab(index: number): HTMLDatacomTabElement {
-    if (index < 0 || index > this.tabs.length - 1) {
-      return undefined;
-    }
-
-    return this.tabs[index];
   }
 
   /**
