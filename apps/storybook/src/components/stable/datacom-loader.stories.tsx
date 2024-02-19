@@ -3,11 +3,17 @@ import { Meta, StoryObj } from '@storybook/react';
 import { DatacomButton, DatacomLoader } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
 
+type LoaderProps = React.ComponentProps<typeof DatacomLoader>;
 type LoadingStatusType = 'default' | 'error' | 'success';
 
-const meta: Meta<typeof DatacomLoader> = {
+const meta: Meta<LoaderProps> = {
   title: 'Loader',
   component: DatacomLoader,
+};
+
+export default meta;
+
+export const Loader: StoryObj<LoaderProps> = {
   argTypes: {
     size: {
       name: 'Size',
@@ -32,18 +38,29 @@ const meta: Meta<typeof DatacomLoader> = {
   },
 };
 
-export default meta;
-export const Loader: StoryObj<typeof DatacomLoader> = {};
-
-export const InlineLoader: StoryObj<typeof DatacomLoader> = {
+export const InlineLoader: StoryObj<LoaderProps & { label: string }> = {
+  argTypes: {
+    loadingStatus: {
+      name: 'Loading status',
+      description: 'Loading status is default if it is not set',
+      options: ['default', 'error', 'success'],
+      defaultValue: 'default',
+      control: 'select',
+      type: { name: 'string' },
+    },
+    label: {
+      name: 'Label',
+      description: 'Label for loading status.',
+      defaultValue: 'Loader status message',
+      type: { name: 'string' },
+    },
+  },
+  args: {
+    loadingStatus: 'default',
+    label: 'Loader status message',
+  },
   render: (props) => {
-    if (props.loadingStatus === 'error') {
-      return <DatacomLoader {...props}>Error message</DatacomLoader>;
-    }
-    if (props.loadingStatus === 'success') {
-      return <DatacomLoader {...props}>Success message</DatacomLoader>;
-    }
-    return <DatacomLoader {...props}>Loading message</DatacomLoader>;
+    return <DatacomLoader {...props}>{props.label}</DatacomLoader>;
   },
 };
 
