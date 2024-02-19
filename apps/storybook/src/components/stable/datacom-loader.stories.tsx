@@ -23,18 +23,9 @@ export const Loader: StoryObj<LoaderProps> = {
       control: 'select',
       type: { name: 'string' },
     },
-    loadingStatus: {
-      name: 'Loading status',
-      description: 'Loading status is default if it is not set',
-      options: ['default', 'error', 'success'],
-      defaultValue: 'default',
-      control: 'select',
-      type: { name: 'string' },
-    },
   },
   args: {
     size: 'small',
-    loadingStatus: 'default',
   },
 };
 
