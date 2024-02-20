@@ -28,7 +28,7 @@ export type DatacomDropDownVariantType = 'standard' | 'multi' | 'combobox';
 @Component({
   tag: 'datacom-dropdown',
   styleUrl: 'datacom-dropdown.css',
-  scoped: true,
+  shadow: false,
 })
 export class DatacomDropdown implements FormControl {
   /**
@@ -627,6 +627,7 @@ export class DatacomDropdown implements FormControl {
             <input
               class="dc-ddl-input"
               type="text"
+              title={this.placeholder}
               tabIndex={0}
               placeholder={this.placeholder}
               onKeyUp={this.handleInputEntry}
@@ -666,7 +667,7 @@ export class DatacomDropdown implements FormControl {
      * When in edit mode, we disable tabindex within the control so that keyboard actions
      * like tab and shift-tab move correctly to the next form control.
      */
-    //const tabindex = this.isEditing ? -1 : 0;
+    // const tabindex = this.isEditing ? -1 : 0;
 
     /**
      * Is there a selected item to display
@@ -702,7 +703,6 @@ export class DatacomDropdown implements FormControl {
           <p tabIndex={-1} class="dc-ddl-error-msg">
             {this.message}
           </p>
-
           <div class="dc-ddl-list" tabIndex={-1}>
             {this.renderDropdown()}
           </div>

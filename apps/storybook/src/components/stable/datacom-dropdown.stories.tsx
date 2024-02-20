@@ -53,25 +53,24 @@ const meta: Meta<typeof DatacomDropdown> = {
 export default meta;
 
 const StandardTemplate: StoryFn<DatacomDropdownProps> = (args) => (
-  (args = {
-    label: 'Label',
-    message: 'Please select an option',
-    placeholder: 'Placeholder',
-  }),
-  (
-    <div style={{ maxWidth: 272 }}>
-      <DatacomDropdown {...args}>
-        <DatacomOption value="1" label="Option 1"></DatacomOption>
-        <DatacomOption value="2" label="Option 2"></DatacomOption>
-        <DatacomOption value="3" label="Option 3"></DatacomOption>
-        <DatacomOption value="4" label="Option 4"></DatacomOption>
-        <DatacomOption value="5" label="Option 5"></DatacomOption>
-      </DatacomDropdown>
-    </div>
-  )
+  <div style={{ maxWidth: 272 }}>
+    <DatacomDropdown {...args}>
+      <DatacomOption value="1" label="Option 1"></DatacomOption>
+      <DatacomOption value="2" label="Option 2"></DatacomOption>
+      <DatacomOption value="3" label="Option 3"></DatacomOption>
+      <DatacomOption value="4" label="Option 4"></DatacomOption>
+      <DatacomOption value="5" label="Option 5"></DatacomOption>
+    </DatacomDropdown>
+  </div>
 );
 
 export const Standard = StandardTemplate.bind({});
+Standard.args = {
+  label: 'Label',
+  message: 'Please select an option',
+  placeholder: 'Placeholder',
+  variant: 'standard',
+};
 
 const MultiTemplate: StoryFn<DatacomDropdownProps> = (args) => (
   <div style={{ maxWidth: 272 }}>
@@ -201,8 +200,7 @@ export const FormSubmission: StoryObj<DatacomDropdownProps> = {
           isValid={!hasError}
           label="Country"
           message="Please select a country"
-          placeholder="Select your country"
-          {...props}>
+          placeholder="Select your country">
           <DatacomOption
             src="/images/dropdown-example-flags/new-zealand.png"
             value="NZ"
