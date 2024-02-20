@@ -166,7 +166,7 @@ WithImages.args = {
 };
 
 export const FormSubmission: StoryObj<DatacomDropdownProps> = {
-  render: (props) => {
+  render: () => {
     const formRef = useRef<HTMLFormElement>();
     const dropdownRef = useRef<HTMLDatacomDropdownElement>();
     const [submitted, setSubmitted] = useState(false);
