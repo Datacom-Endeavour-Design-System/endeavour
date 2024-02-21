@@ -1,39 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import { StoryFn } from '@storybook/react';
-import { DatacomLoader, DatacomButton } from '@datacom/endeavour-react';
+import React, { useEffect, useState } from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { DatacomButton, DatacomLoader } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
 
 type LoaderProps = React.ComponentProps<typeof DatacomLoader>;
 type LoadingStatusType = 'default' | 'error' | 'success';
 
-export default {
+const meta: Meta<LoaderProps> = {
   title: 'Loader',
   component: DatacomLoader,
+};
+
+export default meta;
+
+export const Loader: StoryObj<LoaderProps> = {
   argTypes: {
-    label: {
-      name: 'Label',
-      defaultValue: 'Loader status message',
-      description: 'Label for loading status.',
-      type: { name: 'string' },
-    },
-    loadingStatus: {
-      name: 'Loading Status',
-      defaultValue: 'default',
+    size: {
+      name: 'Size',
+      description: 'Loader size. Default to small if not set',
+      options: ['small', 'large'],
       control: 'select',
-      description: 'Loading status is default if it is not set',
-      options: ['default', 'error', 'success'],
       type: { name: 'string' },
     },
   },
+  args: {
+    size: 'small',
+  },
 };
 
-const Template: StoryFn<LoaderProps & { label: string }> = (args) => {
-  const { label } = args;
-
-  return <DatacomLoader {...args}>{label}</DatacomLoader>;
+export const InlineLoader: StoryObj<LoaderProps & { label: string }> = {
+  argTypes: {
+    loadingStatus: {
+      name: 'Loading status',
+      description: 'Loading status is default if it is not set',
+      options: ['default', 'error', 'success'],
+      control: 'select',
+      type: { name: 'string' },
+    },
+    label: {
+      name: 'Label',
+      description: 'Label for loading status.',
+      type: { name: 'string' },
+    },
+  },
+  args: {
+    loadingStatus: 'default',
+    label: 'Loader status message',
+  },
+  render: (props) => {
+    return <DatacomLoader {...props}>{props.label}</DatacomLoader>;
+  },
 };
-
-export const InlineLoader = Template.bind({});
 
 export const WithLoadingStatus = () => {
   const [loadingStatus, setLoadingStatus] =
@@ -61,23 +78,21 @@ export const WithLoadingStatus = () => {
 
   const disabled = loadingStatus == 'default';
 
-  const Wrapper = styled.div`
-    width: 272px;
+  const ButtonPanel = styled.div`
+    margin-top: 24px;
   `;
+
   return (
     <>
-      <Wrapper>
-        <DatacomLoader loadingStatus={loadingStatus}>{message}</DatacomLoader>
-      </Wrapper>
-      <div>
-        <br></br>
+      <DatacomLoader loadingStatus={loadingStatus}>{message}</DatacomLoader>
+      <ButtonPanel>
         <DatacomButton
           disabled={disabled}
           variant="primary"
           onClick={ClickHandler}>
           Start loading
         </DatacomButton>
-      </div>
+      </ButtonPanel>
     </>
   );
 };
