@@ -25,6 +25,9 @@
   box-sizing: border-box;
   caret-color: var(--dc-primary-colour);
   color: var(--dc-primary-text-color);
+  font-family: var(--dc-font-family);
+  font-weight: 400;
+  font-size: 16px;
   padding: 0;
   background-color: var(--dc-background-colour);
   text-overflow: ellipsis;

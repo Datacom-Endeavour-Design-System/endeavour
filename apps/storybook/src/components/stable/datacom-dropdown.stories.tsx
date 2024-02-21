@@ -31,7 +31,6 @@ const meta: Meta<typeof DatacomDropdown> = {
       name: 'Placeholder',
       description:
         'Placeholder text placed in search field of combobox & multi variant.',
-      defaultValue: 'Placeholder',
       type: { name: 'string' },
     },
     disabled: {
@@ -72,45 +71,120 @@ Standard.args = {
   variant: 'standard',
 };
 
-const MultiTemplate: StoryFn<DatacomDropdownProps> = (args) => (
-  <div style={{ maxWidth: 272 }}>
-    <DatacomDropdown {...args}>
-      <DatacomOption value="1" label="Option 1"></DatacomOption>
-      <DatacomOption value="2" label="Option 2"></DatacomOption>
-      <DatacomOption value="3" label="Option 3"></DatacomOption>
-      <DatacomOption value="4" label="Option 4"></DatacomOption>
-      <DatacomOption value="5" label="Option 5"></DatacomOption>
-    </DatacomDropdown>
-  </div>
-);
-
-export const Multi = MultiTemplate.bind({});
-Multi.args = {
-  label: 'Label',
-  message: 'Please select an option',
-  placeholder: 'Placeholder',
-  variant: 'multi',
+export const Multi: StoryObj<typeof DatacomDropdown> = {
+  argTypes: {
+    variant: {
+      name: 'Variant',
+      description: 'Dropdown variant. Defaults to standard if not set.',
+      control: 'select',
+      options: ['standard', 'multi', 'combobox'],
+      type: { name: 'string', required: true },
+    },
+    label: {
+      name: 'Label',
+      description: 'Dropdown label',
+      type: { name: 'string' },
+    },
+    message: {
+      name: 'Error message',
+      description: 'Error message displayed in error state.',
+      type: { name: 'string' },
+    },
+    placeholder: {
+      name: 'Placeholder multi',
+      description:
+        'Placeholder text placed in search field of combobox & multi variant.',
+      type: { name: 'string' },
+    },
+    disabled: {
+      name: 'Disabled',
+      description: 'Controls disable state of dropdown',
+      type: { name: 'boolean' },
+    },
+    isValid: {
+      name: 'Is valid',
+      description: "Controls whether component is in it's error state.",
+      type: { name: 'boolean' },
+    },
+  },
+  args: {
+    variant: 'multi',
+    label: 'Label',
+    message: 'Please select an option',
+    placeholder: 'Select item(s)',
+  },
+  render: (props) => {
+    return (
+      <div style={{ maxWidth: 272 }}>
+        <DatacomDropdown {...props}>
+          <DatacomOption value="1" label="Option 1"></DatacomOption>
+          <DatacomOption value="2" label="Option 2"></DatacomOption>
+          <DatacomOption value="3" label="Option 3"></DatacomOption>
+          <DatacomOption value="4" label="Option 4"></DatacomOption>
+          <DatacomOption value="5" label="Option 5"></DatacomOption>
+        </DatacomDropdown>
+      </div>
+    );
+  },
 };
 
-const ComboboxTemplate: StoryFn<DatacomDropdownProps> = (args) => (
-  <div style={{ maxWidth: 272 }}>
-    <DatacomDropdown {...args}>
-      <DatacomOption value="1" label="Option 1"></DatacomOption>
-      <DatacomOption value="2" label="Option 2"></DatacomOption>
-      <DatacomOption value="3" label="Option 3"></DatacomOption>
-      <DatacomOption value="4" label="Option 4"></DatacomOption>
-      <DatacomOption value="5" label="Option 5"></DatacomOption>
-    </DatacomDropdown>
-  </div>
-);
-
-export const Combobox = ComboboxTemplate.bind({});
-Combobox.args = {
-  label: 'Label',
-  message: 'Please select an option',
-  placeholder: 'Placeholder',
-  variant: 'combobox',
+export const Combobox: StoryObj<typeof DatacomDropdown> = {
+  argTypes: {
+    variant: {
+      name: 'Variant',
+      description: 'Dropdown variant. Defaults to standard if not set.',
+      control: 'select',
+      options: ['standard', 'multi', 'combobox'],
+      type: { name: 'string', required: true },
+    },
+    label: {
+      name: 'Label',
+      description: 'Dropdown label',
+      type: { name: 'string' },
+    },
+    message: {
+      name: 'Error message',
+      description: 'Error message displayed in error state.',
+      type: { name: 'string' },
+    },
+    placeholder: {
+      name: 'Placeholder combobox',
+      description:
+        'Placeholder text placed in search field of combobox & multi variant.',
+      type: { name: 'string' },
+    },
+    disabled: {
+      name: 'Disabled',
+      description: 'Controls disable state of dropdown',
+      type: { name: 'boolean' },
+    },
+    isValid: {
+      name: 'Is valid',
+      description: "Controls whether component is in it's error state.",
+      type: { name: 'boolean' },
+    },
+  },
+  args: {
+    variant: 'combobox',
+    label: 'Label',
+    message: 'Please select an option',
+    placeholder: 'Search...',
+  },
+  render: (props) => {
+    return (
+      <div style={{ maxWidth: 272 }}>
+        <DatacomDropdown {...props}>
+          <DatacomOption value="1" label="Option 1"></DatacomOption>
+          <DatacomOption value="2" label="Option 2"></DatacomOption>
+          <DatacomOption value="3" label="Option 3"></DatacomOption>
+          <DatacomOption value="4" label="Option 4"></DatacomOption>
+          <DatacomOption value="5" label="Option 5"></DatacomOption>
+        </DatacomDropdown>
+      </div>
+    );
+  },
 };
+
 const CountryTemplate: StoryFn<DatacomDropdownProps> = (args) => (
   <div style={{ maxWidth: 272 }}>
     <DatacomDropdown {...args}>
@@ -158,6 +232,7 @@ const CountryTemplate: StoryFn<DatacomDropdownProps> = (args) => (
     </DatacomDropdown>
   </div>
 );
+
 export const WithImages = CountryTemplate.bind({});
 WithImages.args = {
   label: 'Country',
