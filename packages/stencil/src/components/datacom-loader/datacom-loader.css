@@ -12,6 +12,7 @@
   line-height: 18px;
   color: var(--dc-primary-text-color);
   position: relative;
+  align-self: center;
 }
 
 .dc-loader-spinner.dc-loader-default {
@@ -62,6 +63,14 @@
     stroke-dasharray: 50, 150;
     stroke-dashoffset: -120;
   }
+}
+
+.dc-loader-success path {
+  fill: var(--dc-primary-colour);
+}
+
+.dc-loader-error path {
+  fill: var(--dc-primary-error-color);
 }
 
 .dc-loader-success,
