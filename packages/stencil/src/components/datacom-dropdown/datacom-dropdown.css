@@ -277,6 +277,7 @@
 .dc-ddl-disabled .dc-ddl-label,
 .dc-ddl-disabled .dc-ddl-selected-option {
   color: var(--dc-greyscale-04);
+  cursor: not-allowed;
 }
 
 .dc-ddl-disabled .dc-ddl-view-btns svg path {

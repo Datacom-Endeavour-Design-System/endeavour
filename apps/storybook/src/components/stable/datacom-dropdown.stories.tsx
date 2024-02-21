@@ -28,7 +28,7 @@ const meta: Meta<typeof DatacomDropdown> = {
       type: { name: 'string' },
     },
     placeholder: {
-      name: 'Placeholder',
+      name: 'Placeholder (multi + combobox)',
       description:
         'Placeholder text placed in search field of combobox & multi variant.',
       type: { name: 'string' },
@@ -72,41 +72,6 @@ Standard.args = {
 };
 
 export const Multi: StoryObj<typeof DatacomDropdown> = {
-  argTypes: {
-    variant: {
-      name: 'Variant',
-      description: 'Dropdown variant. Defaults to standard if not set.',
-      control: 'select',
-      options: ['standard', 'multi', 'combobox'],
-      type: { name: 'string', required: true },
-    },
-    label: {
-      name: 'Label',
-      description: 'Dropdown label',
-      type: { name: 'string' },
-    },
-    message: {
-      name: 'Error message',
-      description: 'Error message displayed in error state.',
-      type: { name: 'string' },
-    },
-    placeholder: {
-      name: 'Placeholder multi',
-      description:
-        'Placeholder text placed in search field of combobox & multi variant.',
-      type: { name: 'string' },
-    },
-    disabled: {
-      name: 'Disabled',
-      description: 'Controls disable state of dropdown',
-      type: { name: 'boolean' },
-    },
-    isValid: {
-      name: 'Is valid',
-      description: "Controls whether component is in it's error state.",
-      type: { name: 'boolean' },
-    },
-  },
   args: {
     variant: 'multi',
     label: 'Label',
@@ -129,41 +94,6 @@ export const Multi: StoryObj<typeof DatacomDropdown> = {
 };
 
 export const Combobox: StoryObj<typeof DatacomDropdown> = {
-  argTypes: {
-    variant: {
-      name: 'Variant',
-      description: 'Dropdown variant. Defaults to standard if not set.',
-      control: 'select',
-      options: ['standard', 'multi', 'combobox'],
-      type: { name: 'string', required: true },
-    },
-    label: {
-      name: 'Label',
-      description: 'Dropdown label',
-      type: { name: 'string' },
-    },
-    message: {
-      name: 'Error message',
-      description: 'Error message displayed in error state.',
-      type: { name: 'string' },
-    },
-    placeholder: {
-      name: 'Placeholder combobox',
-      description:
-        'Placeholder text placed in search field of combobox & multi variant.',
-      type: { name: 'string' },
-    },
-    disabled: {
-      name: 'Disabled',
-      description: 'Controls disable state of dropdown',
-      type: { name: 'boolean' },
-    },
-    isValid: {
-      name: 'Is valid',
-      description: "Controls whether component is in it's error state.",
-      type: { name: 'boolean' },
-    },
-  },
   args: {
     variant: 'combobox',
     label: 'Label',
