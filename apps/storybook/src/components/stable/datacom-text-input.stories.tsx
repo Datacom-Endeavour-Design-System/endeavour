@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ComponentStoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
 
@@ -37,7 +37,7 @@ export default {
       type: { name: 'string', required: false },
     },
     message: {
-      name: 'Error Message',
+      name: 'Error message',
       description:
         'Error if validation fails or explicitly set with "valid" property',
       type: { name: 'string', required: false },
@@ -48,7 +48,7 @@ export default {
       type: { name: 'string', required: false },
     },
     valid: {
-      name: 'Is Valid',
+      name: 'Is valid',
       description: 'Is the input valid (show error otherwise)',
       type: { name: 'boolean' },
     },
@@ -90,7 +90,7 @@ export default {
   },
 } as Meta<typeof DatacomInput>;
 
-const Template: ComponentStoryFn<typeof DatacomInput> = (props) => {
+const Template: StoryFn<typeof DatacomInput> = (props) => {
   const Panel = styled.div`
     width: 272px;
   `;
@@ -142,7 +142,7 @@ export const WithIndicators = () => {
 
       <div>
         {iterations > 3 && (
-          <small>
+          <small style={{ color: 'var(--dc-primary-text-color)' }}>
             {iterations} clicks and counting. Keep going for a high score.
           </small>
         )}
@@ -222,7 +222,11 @@ export const FormSubmission = () => {
           required={true}
         />
 
-        {submitted && <p>Form would have been submitted but was prevented</p>}
+        {submitted && (
+          <p style={{ color: 'var(--dc-primary-text-color)' }}>
+            Form would have been submitted but was prevented
+          </p>
+        )}
       </Panel>
 
       <div>

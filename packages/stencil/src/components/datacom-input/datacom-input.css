@@ -82,6 +82,10 @@
   top: 15px;
 }
 
+.dc-text-tick path {
+  fill: var(--dc-primary-colour);
+}
+
 .dc-text-spinner {
   animation: dc-text-spinner-rotate 2s linear infinite;
 }
