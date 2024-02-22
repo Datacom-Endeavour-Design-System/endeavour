@@ -1,34 +1,34 @@
 import React from 'react';
-import { ComponentStoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { DatacomScrollButton } from '@datacom/endeavour-react';
+
 import styled from '@emotion/styled';
 
-export default {
+const meta: Meta<typeof DatacomScrollButton> = {
   title: 'Scroll Button',
   component: DatacomScrollButton,
   argTypes: {
     anchorId: {
       name: 'Anchor-Id',
-      defaultValue: '#',
       description:
         'The ID of the element that the scroll button will adjust the page scroll position to upon clicking.',
       type: { name: 'string' },
     },
     btnTitle: {
       name: 'Tooltip label',
-      defaultValue: 'Scroll down',
       type: { name: 'string' },
     },
   },
+  args: {
+    anchorId: '#',
+    btnTitle: 'Scroll down',
+  },
 };
 
-const Template: ComponentStoryFn<typeof DatacomScrollButton> = (args) => (
-  <DatacomScrollButton {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const ScrollButton = Template.bind({});
-
-/* TODO: var color */
+export const ScrollButton: Story = {};
 export const ScrollButtonWithExample = () => {
   const Panel = styled.div`
     font-family: Montserrat;
@@ -55,6 +55,7 @@ export const ScrollButtonWithExample = () => {
           lineHeight: '59px',
           textAlign: 'left',
           marginLeft: '30px',
+          color: 'var(--dc-primary-text-color)',
         }}>
         The top
       </h1>
