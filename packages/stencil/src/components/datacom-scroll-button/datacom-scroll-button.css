@@ -40,7 +40,7 @@
 }
 
 .dc-scroll-btn:hover {
-  background-color: var(--dc-primary-colour);
+  background-color: var(--dc-primary-accent-colour);
   cursor: pointer;
 }
 

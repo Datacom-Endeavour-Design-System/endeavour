@@ -9,7 +9,7 @@ const meta: Meta<typeof DatacomScrollButton> = {
   component: DatacomScrollButton,
   argTypes: {
     anchorId: {
-      name: 'Anchor-Id',
+      name: 'Anchor-ID',
       description:
         'The ID of the element that the scroll button will adjust the page scroll position to upon clicking.',
       type: { name: 'string' },
@@ -36,7 +36,7 @@ export const ScrollButtonWithExample = () => {
     height: 320px;
     display: flex;
     flex-direction: column;
-    background-color: #f0f0f0;
+    background-color: var(--dc-ui-disabled-border);
     align-items: center;
     margin: 2rem;
     justify-content: center;
@@ -60,7 +60,8 @@ export const ScrollButtonWithExample = () => {
         The top
       </h1>
       <Panel>
-        <span style={{ marginTop: '200px' }}>
+        <span
+          style={{ marginTop: '200px', color: 'var(--dc-primary-text-color)' }}>
           Click the scroll button to scroll to the anchor point
         </span>
         <DatacomScrollButton
@@ -68,8 +69,15 @@ export const ScrollButtonWithExample = () => {
           btnTitle="Scroll down"></DatacomScrollButton>
       </Panel>
       <Panel />
-      <Panel id="anchor" style={{ borderTop: '4px solid #0A1839' }}>
-        <span style={{ marginTop: '24px', marginBottom: '272px' }}>
+      <Panel
+        id="anchor"
+        style={{ borderTop: '4px solid var(--dc-primary-text-color)' }}>
+        <span
+          style={{
+            marginTop: '24px',
+            marginBottom: '272px',
+            color: 'var(--dc-primary-text-color)',
+          }}>
           Anchor point
         </span>
       </Panel>
