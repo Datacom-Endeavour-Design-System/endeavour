@@ -9,7 +9,7 @@ const meta: Meta<typeof DatacomScrollButton> = {
   component: DatacomScrollButton,
   argTypes: {
     anchorId: {
-      name: 'Anchor-ID',
+      name: 'Anchor ID',
       description:
         'The ID of the element that the scroll button will adjust the page scroll position to upon clicking.',
       type: { name: 'string' },

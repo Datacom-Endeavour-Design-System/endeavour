@@ -41,6 +41,7 @@
 
 .dc-scroll-btn:hover {
   background-color: var(--dc-primary-accent-colour);
+  border-color: var(--dc-primary-accent-colour);
   cursor: pointer;
 }
 
