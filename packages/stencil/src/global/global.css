@@ -40,6 +40,7 @@
   --dc-primary-interactive-color: var(--dc-token-interactive-04);
   --dc-border-color: var(--dc-token-border-light-theme-01);
   --dc-fill-interactive: var(--dc-token-interactive-05);
+  --dc-accent-text-color: var(--dc-token-text-05);
   --dc-accent-status-color: var(--dc-token-support-extended-03);
   --dc-primary-status-color: var(--dc-token-support-extended-04);
   --dc-secondary-status-color: var(--dc-token-support-extended-02);
@@ -137,6 +138,7 @@
   --dc-ui-disabled-border: var(--dc-token-disabled-03);
   --dc-background-disabled-color: var(--dc-token-disabled-03);
   --dc-border-color: var(--dc-token-interactive-05);
+  --dc-accent-text-color: var(--dc-token-text-06); 
   --dc-accent-status-color: var(--dc-token-support-03);
   --dc-primary-status-color: var(--dc-token-support-04);
   --dc-secondary-status-color: var(--dc-token-support-02);
