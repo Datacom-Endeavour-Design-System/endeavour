@@ -137,7 +137,7 @@
 }
 
 .dc-text-edit .dc-text-input::placeholder {
-  color: var(--dc-greyscale-04);
+  color: var( --dc-accent-text-color);
 }
 
 /* Error state */
