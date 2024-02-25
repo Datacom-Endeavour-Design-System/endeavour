@@ -1,7 +1,7 @@
 :host {
   display: flex;
 
-  --background-color: var(--dc-background-colour);
+  --background-color: var(--dc-background-token-fill-color);
   --text-color: var(--dc-primary-text-color);
 }
 
@@ -31,9 +31,7 @@
   border-radius: 4px;
   box-sizing: border-box;
   color: var(--text-color);
-
-  /* TODO: var color */
-  filter: drop-shadow(0 3px 8px rgba(0 0 0 / 20%));
+  filter: drop-shadow(rgba(0, 0, 0, 0.2) 0px 3px 8px);
   font-family: var(--dc-font-family);
   font-size: 12px;
   letter-spacing: -0.2px;
@@ -217,14 +215,6 @@
   margin-left: -3px;
   left: 100%;
   transform: rotate(90deg);
-}
-
-/* Dark color style */
-.dark {
-  filter: none;
-
-  --background-color: var(--dc-ui-fill-extended-01);
-  --text-color: var(--dc-colour-white);
 }
 
 /* Class for hiding arrow */
