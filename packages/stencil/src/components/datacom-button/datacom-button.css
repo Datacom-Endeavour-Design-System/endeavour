@@ -26,6 +26,7 @@
 
 .dc-button-btn:hover {
   cursor: pointer;
+  background-color: var(--dc-background-accent-color);
 }
 
 .dc-button-image-right {
@@ -162,7 +163,7 @@
 }
 
 .dc-button-secondary:focus {
-  outline: 2px solid var(--dc-primary-colour);
+  outline: 3px solid var(--dc-primary-colour);
   border-color: var(--dc-primary-colour);
   color: var(--dc-primary-colour);
   outline-offset: 1px;

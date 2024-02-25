@@ -96,19 +96,19 @@ export class DatacomProductCard {
 
     switch (this.stockStatus) {
       case 'in-stock':
-        icon = <IconInStock />;
+        icon = <IconInStock class="dc-card-in-stock-icon" />;
         text = 'In stock';
         break;
       case 'pre-order':
-        icon = <IconPreOrder />;
+        icon = <IconPreOrder class="dc-card-pre-order-icon" />;
         text = 'Pre order';
         break;
       case 'back-order':
-        icon = <IconBackOrder />;
+        icon = <IconBackOrder class="dc-card-back-order-icon" />;
         text = 'Back order';
         break;
       case 'out-of-stock':
-        icon = <IconOutOfStock />;
+        icon = <IconOutOfStock class="dc-card-out-stock-icon" />;
         text = 'Out of stock';
         break;
     }
@@ -167,7 +167,11 @@ export class DatacomProductCard {
             <div class={tagClasses}>
               <slot name="tags" />
             </div>
-            {this.imageUrl && <img class="dc-card-image" src={this.imageUrl} />}
+            <a href={this.url} class="dc-card-image-wrapper">
+              {this.imageUrl && (
+                <img class="dc-card-image" src={this.imageUrl} />
+              )}
+            </a>
           </div>
           <div class="dc-card-content-wrapper">
             <div class="dc-card-content">
@@ -208,7 +212,7 @@ export class DatacomProductCard {
               </div>
               {this.stockStatus && this.renderStockStatusElement()}
               {this.productTitle && this.renderTitleElement()}
-              {this.price && this.renderPriceElement()}
+              {this.price >= 0 && this.renderPriceElement()}
               {/* TODO make rating configurable */}
               <datacom-rating
                 slot="rating"

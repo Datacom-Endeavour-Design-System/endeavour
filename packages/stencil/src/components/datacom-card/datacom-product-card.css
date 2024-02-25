@@ -5,6 +5,10 @@
   flex-grow: 1;
 }
 
+.dc-card-image-wrapper {
+  width: 100%;
+}
+
 .dc-action-icons {
   display: flex;
   justify-content: end;
@@ -40,12 +44,29 @@
   margin-right: 8px;
 }
 
+.dc-card-in-stock-icon path {
+  fill: var(--dc-accent-status-color);
+}
+ 
+.dc-card-pre-order-icon path {
+  fill: var(--dc-primary-status-color);
+}
+
+.dc-card-back-order-icon path {
+ fill: var(--dc-secondary-status-color);
+}
+
+.dc-card-out-stock-icon path {
+  fill: var(--dc-primary-error-color);
+}
+
 .dc-product-title {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   color: var(--dc-primary-text-color);
   display: -webkit-box;
   line-height: 24px;
+  font-weight: 500;
   letter-spacing: -0.2px;
   margin-bottom: 16px;
   overflow: hidden;
@@ -60,7 +81,7 @@
 
 .dc-price {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.005em;
   line-height: 29px;
 }
@@ -79,6 +100,14 @@
 
 .dc-card-icon-eye path, .dc-card-icon-exchange path {
   fill: var(--dc-primary-colour);
+}
+
+.dc-product-title:hover {
+  color: var(--dc-primary-accent-colour);
+}
+
+.dc-product-title:focus {
+outline: 2px solid var(--dc-primary-colour);
 }
 
 .dc-action-icon:hover {
