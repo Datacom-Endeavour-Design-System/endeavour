@@ -42,6 +42,7 @@ type Tab = {
   name: string;
   description: string;
   type: { name: string };
+  if?: { arg: string; truthy?: boolean };
 };
 
 type TabArgType = {
@@ -160,7 +161,6 @@ tabsWithContent.forEach((tab, i) => {
     description: `Tab${tabNumber} content image URL`,
     type: { name: 'string' },
     if: { arg: `Tab${tabNumber}Disabled`, truthy: false },
-    if: { arg: `Tab${tabNumber}Image` },
   };
   tabsWithContentArgs[`Tab${tabNumber}Label`] = tab.heading;
   tabsWithContentArgs[`Tab${tabNumber}Disabled`] = tabNumber === 3;
