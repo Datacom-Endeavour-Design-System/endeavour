@@ -88,7 +88,7 @@
 }
 
 .tab-label.disabled {
-  cursor: auto;
+  cursor: not-allowed;
 }
 
 .tab-label.disabled .tab-text {
