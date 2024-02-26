@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { ComponentStoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { DatacomTextarea, DatacomButton } from '@datacom/endeavour-react';
 
 export default {
@@ -8,19 +8,16 @@ export default {
   argTypes: {
     name: {
       name: 'Name',
-      defaultValue: 'Name',
       description: 'Name attribute for text area element',
       type: { name: 'string', required: true },
     },
     label: {
       name: 'Label',
-      defaultValue: 'Label',
       description: 'Label for text area element',
       type: { name: 'string', required: true },
     },
     placeholder: {
       name: 'Placeholder',
-      defaultValue: 'Example text',
       description:
         'Placeholder text that is displayed when the text area is focused',
       type: { name: 'string' },
@@ -31,24 +28,24 @@ export default {
       type: { name: 'string', required: false },
     },
     message: {
-      name: 'Error Message',
+      name: 'Error message',
       defaultValue: 'Please complete this field.',
       description:
         'Error if validation fails or explicitly set with "valid" property',
       type: { name: 'string', required: false },
     },
     help: {
-      name: 'Help Text',
+      name: 'Help text',
       description: 'Assistance instructions below input',
       type: { name: 'string', required: false },
     },
     isValid: {
-      name: 'Is Valid',
+      name: 'Is valid',
       description: 'Is the input valid (show error otherwise)',
       type: { name: 'boolean' },
     },
     maxlength: {
-      name: 'Max Character Length',
+      name: 'Max character length',
       description: 'Maximum number of characters',
       type: { name: 'number' },
     },
@@ -59,8 +56,16 @@ export default {
       type: { name: 'boolean' },
     },
   },
+  args: {
+    name: 'Name',
+    label: 'Label',
+    placeholder: 'Example text',
+    message: 'Please complete this field.',
+    disabled: false,
+  },
 } as Meta<typeof DatacomTextarea>;
-const Template: ComponentStoryFn<typeof DatacomTextarea> = (args) => (
+
+const Template: StoryFn<typeof DatacomTextarea> = (args) => (
   <div style={{ width: '300px' }}>
     {' '}
     <DatacomTextarea {...args} />
@@ -111,7 +116,11 @@ export const FormSubmission = () => {
           label="Label"></DatacomTextarea>
       </div>
       <br />
-      {submitted && <p>Form would have been submitted but was prevented</p>}
+      {submitted && (
+        <p style={{ color: 'var(--dc-primary-text-color)' }}>
+          Form would have been submitted but was prevented
+        </p>
+      )}
       <div style={{ marginTop: '24px' }}>
         <DatacomButton variant="primary" type="submit">
           Submit
