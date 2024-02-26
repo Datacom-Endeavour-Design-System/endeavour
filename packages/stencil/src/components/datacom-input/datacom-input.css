@@ -192,11 +192,13 @@
 .dc-text-disabled .dc-text-input,
 .dc-text-disabled .dc-text-input:hover {
   border-color: var(--dc-ui-disabled-border);
+  cursor: not-allowed;
 }
 
 .dc-text-disabled .dc-text-label,
 .dc-text-disabled .dc-text-input {
   color: var(--dc-greyscale-04);
+  cursor: not-allowed;
 }
 
 .dc-text-disabled .dc-text-input:hover,

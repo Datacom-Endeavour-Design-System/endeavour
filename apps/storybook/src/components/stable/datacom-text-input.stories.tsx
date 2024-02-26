@@ -11,29 +11,12 @@ export default {
   argTypes: {
     label: {
       name: 'Label',
-      defaultValue: 'Input label',
       description: 'Input label',
-      type: { name: 'string', required: true },
-    },
-    value: {
-      name: 'Value',
-      description: 'Prepopulated input',
       type: { name: 'string', required: false },
     },
     placeholder: {
       name: 'Placeholder',
-      defaultValue: 'Enter a value',
       description: 'Input placeholder prompt',
-      type: { name: 'string', required: false },
-    },
-    pattern: {
-      name: 'Pattern',
-      description: 'Validate the control using regular expression',
-      type: { name: 'string', required: false },
-    },
-    title: {
-      name: 'Title',
-      description: 'Hover title on the edit input',
       type: { name: 'string', required: false },
     },
     message: {
@@ -47,9 +30,14 @@ export default {
       description: 'Assistance instructions below input',
       type: { name: 'string', required: false },
     },
-    valid: {
-      name: 'Is valid',
-      description: 'Is the input valid (show error otherwise)',
+    value: {
+      name: 'Value',
+      description: 'Prepopulated input',
+      type: { name: 'string', required: false },
+    },
+    disabled: {
+      name: 'Disabled',
+      description: 'Disable button',
       type: { name: 'boolean' },
     },
     required: {
@@ -57,28 +45,38 @@ export default {
       description: 'Is the input required',
       type: { name: 'boolean' },
     },
-    size: {
-      name: 'Size',
-      description: 'Size of input control (characters)',
-      type: { name: 'number' },
+    valid: {
+      name: 'Is valid',
+      description: 'Is the input valid (show error otherwise)',
+      type: { name: 'boolean' },
+    },
+    pattern: {
+      name: 'Pattern',
+      description: 'Validate the control using regular expression',
+      type: { name: 'string', required: false },
     },
     maxlength: {
       name: 'Max length',
       description: 'Maximum number of characters',
       type: { name: 'number' },
     },
-    disabled: {
-      name: 'Disabled',
-      description: 'Disable button',
-      type: { name: 'boolean' },
-    },
     indicator: {
+      table: { disable: false },
       name: 'Indicator',
       description: 'Feedback indicator in edit mode',
       control: 'select',
-      defaultValue: 'none',
       options: ['none', 'working', 'done'],
       type: { name: 'string', required: false },
+    },
+    title: {
+      name: 'Title',
+      description: 'Hover title on the edit input',
+      type: { name: 'string', required: false },
+    },
+    size: {
+      name: 'Size',
+      description: 'Size of input control (characters)',
+      type: { name: 'number' },
     },
   },
   args: {
@@ -94,16 +92,20 @@ const Template: StoryFn<typeof DatacomInput> = (props) => {
   const Panel = styled.div`
     width: 272px;
   `;
-
   return (
     <Panel>
-      <DatacomInput {...props} />
+      <DatacomInput {...props} type="email" />
     </Panel>
   );
 };
 
-export const TextInput = Template.bind({});
-TextInput.args = {};
+export const Standard = Template.bind({});
+Standard.args = {};
+
+export const WithHelperText = Template.bind({});
+WithHelperText.args = {
+  help: 'Make sure to complete this field.',
+};
 
 export const WithIndicators = () => {
   const [indicator, setIndicator] = useState<IndicatorType>('none');
@@ -130,13 +132,13 @@ export const WithIndicators = () => {
     <>
       <Panel>
         <DatacomInput
-          label="First name"
-          title="You first names (including middle)"
-          placeholder="First names"
+          label="Email address"
+          title="You email address"
+          placeholder="Enter Email address"
           required={true}
-          value="William"
+          value="example@email.com"
           indicator={indicator}
-          message="Please enter your first name"
+          message="Please enter valid email"
         />
       </Panel>
 
@@ -191,6 +193,7 @@ export const FormSubmission = () => {
           placeholder="First names"
           required={true}
           message="Please enter your first name"
+          indicator="none"
         />
 
         <DatacomInput
@@ -200,6 +203,7 @@ export const FormSubmission = () => {
           help="Enter your family or surname"
           required={true}
           message="Please enter your surname"
+          indicator="none"
         />
 
         <DatacomInput
@@ -210,6 +214,7 @@ export const FormSubmission = () => {
           placeholder="Home or Mobile"
           pattern="^\d*$"
           required={true}
+          indicator="none"
         />
 
         <DatacomInput
@@ -220,6 +225,7 @@ export const FormSubmission = () => {
           message="Please enter a valid email"
           placeholder="Email address"
           required={true}
+          indicator="none"
         />
 
         {submitted && (
