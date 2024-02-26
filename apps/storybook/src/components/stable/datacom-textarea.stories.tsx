@@ -22,11 +22,6 @@ export default {
         'Placeholder text that is displayed when the text area is focused',
       type: { name: 'string' },
     },
-    value: {
-      name: 'Value',
-      description: 'Prepopulated input value',
-      type: { name: 'string', required: false },
-    },
     message: {
       name: 'Error message',
       defaultValue: 'Please complete this field.',
@@ -39,6 +34,17 @@ export default {
       description: 'Assistance instructions below input',
       type: { name: 'string', required: false },
     },
+    value: {
+      name: 'Value',
+      description: 'Prepopulated input value',
+      type: { name: 'string', required: false },
+    },
+    disabled: {
+      name: 'Disabled',
+      defaultValue: false,
+      description: 'Disable button',
+      type: { name: 'boolean' },
+    },
     isValid: {
       name: 'Is valid',
       description: 'Is the input valid (show error otherwise)',
@@ -48,12 +54,6 @@ export default {
       name: 'Max character length',
       description: 'Maximum number of characters',
       type: { name: 'number' },
-    },
-    disabled: {
-      name: 'Disabled',
-      defaultValue: false,
-      description: 'Disable button',
-      type: { name: 'boolean' },
     },
   },
   args: {
@@ -74,8 +74,8 @@ const Template: StoryFn<typeof DatacomTextarea> = (args) => (
 
 export const Standard = Template.bind({});
 
-export const HelperText = Template.bind({});
-HelperText.args = {
+export const WithHelperText = Template.bind({});
+WithHelperText.args = {
   help: 'Make sure to complete this field.',
 };
 
