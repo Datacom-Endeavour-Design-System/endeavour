@@ -78,7 +78,7 @@ export const Tabs: StoryObj<typeof DatacomTabgroup> = {
   argTypes: tabsArgTypes,
   args: tabsArgs,
   render: (props) => {
-    const newProps = { ...props };
+    const newProps = { ...props } as TabArg;
     return (
       <DatacomTabgroup>
         {tabs.map((_tab, i) => {
@@ -191,7 +191,7 @@ export const TabsWithContent: StoryObj<typeof DatacomTabgroup> = {
   argTypes: tabsWithContentArgTypes,
   args: tabsWithContentArgs,
   render: (props) => {
-    const newProps = { ...props };
+    const newProps = { ...props } as TabArg;
     return (
       <DatacomTabgroup>
         {tabs.map((_tab, i) => {
