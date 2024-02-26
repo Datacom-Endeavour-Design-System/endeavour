@@ -1,8 +1,21 @@
-import { Component, Host, h, Prop, State, Method, Element, Listen, Fragment, Event, EventEmitter } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  State,
+  Method,
+  Element,
+  Listen,
+  Fragment,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import { randomString } from '../../utils';
 import { FormControl } from '../form-control';
 import { DatacomDropdownOptionElement } from './datacom-dropdown-option';
-import { Chevron, Clear } from '../../common/images/icons';
+import { Clear } from '../../common/images/icons';
+import { getSvg } from '../../common/images/icon-provider';
 
 export type DatacomDropDownVariantType = 'standard' | 'multi' | 'combobox';
 
@@ -15,7 +28,7 @@ export type DatacomDropDownVariantType = 'standard' | 'multi' | 'combobox';
 @Component({
   tag: 'datacom-dropdown',
   styleUrl: 'datacom-dropdown.css',
-  scoped: true,
+  shadow: false,
 })
 export class DatacomDropdown implements FormControl {
   /**
@@ -129,7 +142,7 @@ export class DatacomDropdown implements FormControl {
    */
   @Method()
   async getSelected(): Promise<string[]> {
-    return this.selected.map(ind => this.getOption(ind).value);
+    return this.selected.map((ind) => this.getOption(ind).value);
   }
 
   /**
@@ -194,7 +207,9 @@ export class DatacomDropdown implements FormControl {
       return this.options;
     }
 
-    this.host.querySelectorAll<DatacomDropdownOptionElement>('datacom-option').forEach(t => this.options.push(t));
+    this.host
+      .querySelectorAll<DatacomDropdownOptionElement>('datacom-option')
+      .forEach((t) => this.options.push(t));
 
     return this.options;
   }
@@ -219,7 +234,7 @@ export class DatacomDropdown implements FormControl {
    */
   private clearFilter() {
     const options = this.getOptions();
-    options.forEach(opt => {
+    options.forEach((opt) => {
       opt.visible = true;
     });
 
@@ -244,7 +259,7 @@ export class DatacomDropdown implements FormControl {
     const options = this.getOptions();
 
     find = find.toLowerCase();
-    options.forEach(opt => {
+    options.forEach((opt) => {
       const text = (opt.search ?? opt.label)?.toLowerCase();
       if (text !== undefined) {
         opt.visible = text.indexOf(find) >= 0;
@@ -303,7 +318,7 @@ export class DatacomDropdown implements FormControl {
     if (withToggle) {
       if (this.variant == 'multi') {
         if (option.selected) {
-          this.selected = this.selected.filter(k => k !== index);
+          this.selected = this.selected.filter((k) => k !== index);
           option.selected = false;
         } else {
           this.selected = [...this.selected, index];
@@ -323,7 +338,7 @@ export class DatacomDropdown implements FormControl {
      * This is easier than selectively removing the item from the DOM if deselected.
      */
     this.selectElement.replaceChildren();
-    this.selected.forEach(ind => {
+    this.selected.forEach((ind) => {
       const opt = this.getOption(ind);
       const node = document.createElement('option');
 
@@ -334,7 +349,7 @@ export class DatacomDropdown implements FormControl {
     });
 
     // Emit event to notify change in selection
-    this.changed.emit(this.selected.map(ind => this.getOption(ind).value));
+    this.changed.emit(this.selected.map((ind) => this.getOption(ind).value));
 
     // Close the drop down if just single select mode
     if (this.variant !== 'multi') {
@@ -539,7 +554,7 @@ export class DatacomDropdown implements FormControl {
       this.formElement.removeEventListener('submit', this.handleFormSubmit);
     }
   }
-
+  chevronIcon = getSvg('chevron', { class: 'dc-ddl-chevron' });
   /**
    * Render view control
    *
@@ -584,9 +599,7 @@ export class DatacomDropdown implements FormControl {
 
         <div class="dc-ddl-view-btns dc-ddl-buttons">
           {clearBtn}
-          <span class="dc-ddl-open-btn">
-            <Chevron class="dc-ddl-chevron-down" />
-          </span>
+          <span class="dc-ddl-open-btn">{this.chevronIcon}</span>
         </div>
       </Fragment>
     );
@@ -602,14 +615,23 @@ export class DatacomDropdown implements FormControl {
     return (
       <Fragment>
         <div class="dc-ddl-list-area">
-          {this.variant === 'multi' && this.selected.length == 0 && <div class="dc-ddl-combo-placeholder">{this.placeholder}</div>}
+          {this.variant === 'multi' && this.selected.length == 0 && (
+            <div class="dc-ddl-combo-placeholder">{this.placeholder}</div>
+          )}
           {this.variant === 'multi' && this.selected.length > 0 && (
             <div class="dc-ddl-combo-count">
               <pre>{this.selected.length}</pre>&nbsp;selected
             </div>
           )}
           {this.variant === 'combobox' && (
-            <input class="dc-ddl-input" type="text" tabIndex={0} placeholder={this.placeholder} onKeyUp={this.handleInputEntry} ref={el => this.setInputElementRef(el)}></input>
+            <input
+              class="dc-ddl-input"
+              type="text"
+              title={this.placeholder}
+              tabIndex={0}
+              placeholder={this.placeholder}
+              onKeyUp={this.handleInputEntry}
+              ref={(el) => this.setInputElementRef(el)}></input>
           )}
           <div class="dc-ddl-list-btns dc-ddl-buttons">
             {this.variant === 'multi' && (
@@ -618,16 +640,14 @@ export class DatacomDropdown implements FormControl {
               </span>
             )}
             {this.variant === 'combobox' && this.showFilterClear && (
-              <span onClick={this.handleFilterClear} class="dc-ddl-clear-filter-btn">
+              <span
+                onClick={this.handleFilterClear}
+                class="dc-ddl-clear-filter-btn">
                 <Clear class="dc-ddl-clear-icon" />
               </span>
             )}
-            <span class="dc-ddl-close-btn">
-              <Chevron class="dc-ddl-chevron-up" />
-            </span>
           </div>
         </div>
-
         <div class="dc-ddl-options" tabindex={-1}>
           <slot></slot>
         </div>
@@ -637,7 +657,9 @@ export class DatacomDropdown implements FormControl {
 
   render() {
     if (!['standard', 'multi', 'combobox'].includes(this.variant)) {
-      console.warn(`Variant ${this.variant} is not valid. Defaulting to 'standard'`);
+      console.warn(
+        `Variant ${this.variant} is not valid. Defaulting to 'standard'`,
+      );
       this.variant = 'standard';
     }
 
@@ -645,7 +667,7 @@ export class DatacomDropdown implements FormControl {
      * When in edit mode, we disable tabindex within the control so that keyboard actions
      * like tab and shift-tab move correctly to the next form control.
      */
-    //const tabindex = this.isEditing ? -1 : 0;
+    // const tabindex = this.isEditing ? -1 : 0;
 
     /**
      * Is there a selected item to display
@@ -670,7 +692,10 @@ export class DatacomDropdown implements FormControl {
 
     return (
       <Host>
-        <div class={classes} onClick={this.handleClick} onKeyUp={this.handleKeyUp}>
+        <div
+          class={classes}
+          onClick={this.handleClick}
+          onKeyUp={this.handleKeyUp}>
           <div class="dc-ddl-control" tabIndex={!this.disabled ? 0 : -1}>
             {this.renderViewControl()}
           </div>
@@ -678,13 +703,18 @@ export class DatacomDropdown implements FormControl {
           <p tabIndex={-1} class="dc-ddl-error-msg">
             {this.message}
           </p>
-
           <div class="dc-ddl-list" tabIndex={-1}>
             {this.renderDropdown()}
           </div>
         </div>
 
-        <select class="dc-ddl-select" ref={el => this.setSelectElementRef(el)} name={this.name} multiple={true} required={this.required} form={this.form}></select>
+        <select
+          class="dc-ddl-select"
+          ref={(el) => this.setSelectElementRef(el)}
+          name={this.name}
+          multiple={true}
+          required={this.required}
+          form={this.form}></select>
       </Host>
     );
   }

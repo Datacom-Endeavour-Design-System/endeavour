@@ -6,11 +6,13 @@ type DropdownOptionMode = 'list' | 'standalone';
 @Component({
   tag: 'datacom-option',
   styleUrl: 'datacom-dropdown-option.css',
-  shadow: true,
+  shadow: false,
 })
 export class DatacomDropdownOption {
-  @Event({ eventName: 'selected', bubbles: true }) selectedEvent: EventEmitter<number>;
-  @Event({ eventName: 'deselected', bubbles: true }) deselectedEvent: EventEmitter<number>;
+  @Event({ eventName: 'selected', bubbles: true })
+  selectedEvent: EventEmitter<number>;
+  @Event({ eventName: 'deselected', bubbles: true })
+  deselectedEvent: EventEmitter<number>;
 
   /**
    * Option id
@@ -124,13 +126,17 @@ export class DatacomDropdownOption {
 
     return (
       <Host data-index={this.index}>
-        <div class={classes} tabIndex={0} onClick={this.handleClick} onKeyUp={this.handleKeyUp}>
+        <div
+          class={classes}
+          tabIndex={0}
+          onClick={this.handleClick}
+          onKeyUp={this.handleKeyUp}>
           <label class="dc-ddl-option-content" title={this.label}>
             {image && <span class="dc-ddl-option-icon">{image}</span>}
-            <span class="dc-ddl-option-label">
+            <div class="dc-ddl-option-label">
               {this.label}
               <slot></slot>
-            </span>
+            </div>
           </label>
         </div>
       </Host>

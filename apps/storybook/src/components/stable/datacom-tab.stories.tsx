@@ -4,6 +4,18 @@ import { DatacomTabgroup, DatacomTab } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
 
 type TabGroupProps = React.ComponentProps<typeof DatacomTabgroup>;
+type Tab = {
+  name: string;
+  description: string;
+  type: { name: string };
+  if?: { arg: string; truthy?: boolean };
+};
+type TabArgType = {
+  [key: string]: Tab;
+};
+type TabArg = {
+  [key: string]: string | boolean;
+};
 
 export default {
   title: 'Tabs',
@@ -36,21 +48,6 @@ export const SingleTab: StoryObj<
       </DatacomTabgroup>
     );
   },
-};
-
-type Tab = {
-  name: string;
-  description: string;
-  type: { name: string };
-  if?: { arg: string; truthy?: boolean };
-};
-
-type TabArgType = {
-  [key: string]: Tab;
-};
-
-type TabArg = {
-  [key: string]: string | boolean;
 };
 
 const tabs = ['Overview', 'Solutions', 'Industries', 'Discover'];
