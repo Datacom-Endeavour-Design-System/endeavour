@@ -83,12 +83,9 @@ export const Tabs: StoryObj<typeof DatacomTabgroup> = {
       <DatacomTabgroup>
         {tabs.map((_tab, i) => {
           const tabNumber = i + 1;
-          return (
-            <DatacomTab
-              label={newProps[`Tab${tabNumber}Label`]}
-              disabled={newProps[`Tab${tabNumber}Disabled`]}
-            />
-          );
+          const label = newProps[`Tab${tabNumber}Label`] as string;
+          const disabled = newProps[`Tab${tabNumber}Disabled`] as boolean;
+          return <DatacomTab label={label} disabled={disabled} />;
         })}
       </DatacomTabgroup>
     );
@@ -199,15 +196,17 @@ export const TabsWithContent: StoryObj<typeof DatacomTabgroup> = {
       <DatacomTabgroup>
         {tabs.map((_tab, i) => {
           const tabNumber = i + 1;
+          const label = newProps[`Tab${tabNumber}Label`] as string;
+          const disabled = newProps[`Tab${tabNumber}Disabled`] as boolean;
+          const heading = newProps[`Tab${tabNumber}Heading`] as string;
+          const description = newProps[`Tab${tabNumber}Description`] as string;
+          const imageFlag = newProps[`Tab${tabNumber}Image`] as boolean;
+          const imageURL = newProps[`Tab${tabNumber}ImageURL`] as string;
           return (
-            <DatacomTab
-              label={newProps[`Tab${tabNumber}Label`]}
-              disabled={newProps[`Tab${tabNumber}Disabled`]}>
-              <H2>{newProps[`Tab${tabNumber}Heading`]}</H2>
-              <P>{newProps[`Tab${tabNumber}Description`]}</P>
-              {newProps[`Tab${tabNumber}Image`] && (
-                <IMG src={newProps[`Tab${tabNumber}ImageURL`]} />
-              )}
+            <DatacomTab label={label} disabled={disabled}>
+              <H2>{heading}</H2>
+              <P>{description}</P>
+              {imageFlag && <IMG src={imageURL} />}
             </DatacomTab>
           );
         })}
