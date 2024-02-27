@@ -2,14 +2,11 @@
   display: block;
 }
 
-:host * {
-  font-family: var(--dc-font-family);
-}
-
 .dc-ddl-option {
+  font-family: var(--dc-font-family);
   color: var(--dc-primary-text-color);
   margin: 0;
-  border-top: 1px solid var(--dc-greyscale-05);
+  border-top: 1px solid var(--dc-ui-border-default);
   padding: 2px 3px 3px;
   outline: none;
   height: 52px;
