@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StoryFn, Meta } from '@storybook/react';
+import React, { useState, useEffect } from 'react';
+import { StoryObj, Meta } from '@storybook/react';
 import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
 import styled from '@emotion/styled';
 
+type InputProps = React.ComponentProps<typeof DatacomInput>;
+
 type IndicatorType = 'none' | 'working' | 'done';
 
-export default {
+const meta: Meta<InputProps> = {
   title: 'Text Input',
   component: DatacomInput,
   argTypes: {
@@ -45,7 +47,7 @@ export default {
       description: 'Is the input required',
       type: { name: 'boolean' },
     },
-    valid: {
+    isValid: {
       name: 'Is valid',
       description: 'Is the input valid (show error otherwise)',
       type: { name: 'boolean' },
@@ -56,7 +58,7 @@ export default {
       type: { name: 'string', required: false },
     },
     maxlength: {
-      name: 'Max length',
+      name: 'Character limit',
       description: 'Maximum number of characters',
       type: { name: 'number' },
     },
@@ -86,25 +88,34 @@ export default {
     placeholder: 'Example text',
     message: 'Error message',
   },
-} as Meta<typeof DatacomInput>;
-
-const Template: StoryFn<typeof DatacomInput> = (props) => {
-  const Panel = styled.div`
-    width: 272px;
-  `;
-  return (
-    <Panel>
-      <DatacomInput {...props} type="email" />
-    </Panel>
-  );
 };
 
-export const Standard = Template.bind({});
-Standard.args = {};
+export default meta;
+const Panel = styled.div`
+  width: 272px;
+`;
 
-export const WithHelperText = Template.bind({});
-WithHelperText.args = {
-  help: 'Make sure to complete this field.',
+export const Standard: StoryObj<InputProps> = {
+  render: (props) => {
+    return (
+      <Panel>
+        <DatacomInput {...props} type="email" />
+      </Panel>
+    );
+  },
+};
+export const WithHelperText: StoryObj<InputProps> = {
+  render: (props) => {
+    return (
+      <Panel>
+        <DatacomInput
+          {...props}
+          type="email"
+          help="Make sure to complete this field."
+        />
+      </Panel>
+    );
+  },
 };
 
 export const WithIndicators = () => {
@@ -123,11 +134,6 @@ export const WithIndicators = () => {
   });
 
   const disabled = indicator == 'none' || indicator == 'working';
-
-  const Panel = styled.div`
-    width: 272px;
-  `;
-
   return (
     <>
       <Panel>
@@ -158,88 +164,5 @@ export const WithIndicators = () => {
         )}
       </div>
     </>
-  );
-};
-
-export const FormSubmission = () => {
-  const form = useRef<HTMLFormElement>();
-  const [submitted, setSubmitted] = useState(false);
-
-  const Panel = styled.div`
-    width: 272px;
-    margin-bottom: 30px;
-    datacom-input {
-      margin-bottom: 12px;
-    }
-  `;
-
-  return (
-    <form
-      method="post"
-      ref={form}
-      onSubmit={(event) => {
-        if (form.current.checkValidity()) {
-          setSubmitted(true);
-          event.preventDefault();
-        } else {
-          setSubmitted(false);
-        }
-      }}>
-      <Panel>
-        <DatacomInput
-          label="First name(s)"
-          title="You first names (including middle)"
-          help="Enter your first names (inc. middle)"
-          placeholder="First names"
-          required={true}
-          message="Please enter your first name"
-          indicator="none"
-        />
-
-        <DatacomInput
-          label="Surname"
-          title="Your family or surname"
-          placeholder="Surname"
-          help="Enter your family or surname"
-          required={true}
-          message="Please enter your surname"
-          indicator="none"
-        />
-
-        <DatacomInput
-          label="Telephone"
-          title="Enter a phone number with numbers only"
-          help="Enter a phone number with numbers only"
-          message="Please enter a valid phone number"
-          placeholder="Home or Mobile"
-          pattern="^\d*$"
-          required={true}
-          indicator="none"
-        />
-
-        <DatacomInput
-          label="Email"
-          type="email"
-          title="Enter a email address"
-          help="Enter email address"
-          message="Please enter a valid email"
-          placeholder="Email address"
-          required={true}
-          indicator="none"
-        />
-
-        {submitted && (
-          <p style={{ color: 'var(--dc-primary-text-color)' }}>
-            Form would have been submitted but was prevented
-          </p>
-        )}
-      </Panel>
-
-      <div>
-        <DatacomButton variant="primary" type="submit">
-          Submit
-        </DatacomButton>
-      </div>
-    </form>
   );
 };
