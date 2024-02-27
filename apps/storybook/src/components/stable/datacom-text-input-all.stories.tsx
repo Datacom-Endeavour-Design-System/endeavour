@@ -63,22 +63,19 @@ const meta: Meta<InputProps> = {
       type: { name: 'number' },
     },
     indicator: {
-      table: { disable: false },
       name: 'Indicator',
       description: 'Feedback indicator in edit mode',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: { working: 'loading', done: 'success' },
+      },
       options: ['none', 'working', 'done'],
       type: { name: 'string', required: false },
     },
     title: {
-      name: 'Title',
+      name: 'Tooltip label',
       description: 'Hover title on the edit input',
       type: { name: 'string', required: false },
-    },
-    size: {
-      name: 'Size',
-      description: 'Size of input control (characters)',
-      type: { name: 'number' },
     },
   },
   args: {
@@ -99,7 +96,7 @@ export const Standard: StoryObj<InputProps> = {
   render: (props) => {
     return (
       <Panel>
-        <DatacomInput {...props} type="email" />
+        <DatacomInput {...props} />
       </Panel>
     );
   },
@@ -108,11 +105,7 @@ export const WithHelperText: StoryObj<InputProps> = {
   render: (props) => {
     return (
       <Panel>
-        <DatacomInput
-          {...props}
-          type="email"
-          help="Make sure to complete this field."
-        />
+        <DatacomInput {...props} help="Make sure to complete this field." />
       </Panel>
     );
   },
@@ -145,6 +138,7 @@ export const WithIndicators = () => {
           value="example@email.com"
           indicator={indicator}
           message="Please enter valid email"
+          type="email"
         />
       </Panel>
 

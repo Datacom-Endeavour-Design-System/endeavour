@@ -60,14 +60,9 @@ const meta: Meta<typeof DatacomInput> = {
       type: { name: 'number' },
     },
     title: {
-      name: 'Title',
+      name: 'Tooltip label',
       description: 'Hover title on the edit input',
       type: { name: 'string', required: false },
-    },
-    size: {
-      name: 'Size',
-      description: 'Size of input control (characters)',
-      type: { name: 'number' },
     },
   },
   args: {
