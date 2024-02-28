@@ -31,7 +31,7 @@ export default {
       type: { name: 'string', required: false },
     },
     help: {
-      name: 'Help text',
+      name: 'Helper text',
       description: 'Assistance instructions below input',
       type: { name: 'string', required: false },
     },
@@ -62,7 +62,6 @@ export default {
     label: 'Label',
     placeholder: 'Example text',
     message: 'Please complete this field.',
-    disabled: false,
   },
 } as Meta<typeof DatacomTextarea>;
 
