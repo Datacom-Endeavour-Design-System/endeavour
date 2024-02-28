@@ -10,11 +10,12 @@ export default {
       name: 'Name',
       description: 'Name attribute for text area element',
       type: { name: 'string', required: true },
+      table: { disable: true },
     },
     label: {
       name: 'Label',
       description: 'Label for text area element',
-      type: { name: 'string', required: true },
+      type: { name: 'string', required: false },
     },
     placeholder: {
       name: 'Placeholder',
@@ -51,7 +52,7 @@ export default {
       type: { name: 'boolean' },
     },
     maxlength: {
-      name: 'Max character length',
+      name: 'Character limit',
       description: 'Maximum number of characters',
       type: { name: 'number' },
     },
@@ -77,17 +78,6 @@ export const Standard = Template.bind({});
 export const WithHelperText = Template.bind({});
 WithHelperText.args = {
   help: 'Make sure to complete this field.',
-};
-
-export const WithError = Template.bind({});
-WithError.args = {
-  isValid: false,
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Label',
-  disabled: true,
 };
 
 export const FormSubmission = () => {
