@@ -1,0 +1,173 @@
+@import url("../../global/global.css");
+
+:host {
+  --message-color: var(--dc-token-text-02);
+}
+
+.dc-alert-banner {
+  display: flex;
+  justify-content: end;
+  padding: 24px;
+  background-color: var(--alert-color);
+  color: var(--message-color);
+  font-family: var(--dc-font-family);
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.2px;
+  position: relative;
+}
+
+/* #00167F */
+.dc-alert-banner-admiral-blue {
+  --alert-color: var(--dc-token-ui-03);
+}
+
+/* #000A14 */
+.dc-alert-banner-midnight-blue {
+  --alert-color: var(--dc-token-ui-02);
+}
+
+/* #FF338D
+ *
+ * masterband --dc-token-ui-fill-extended-21
+ * datapay --dc-token-ui-fill-extended-10
+ */
+.dc-alert-banner-candy-pink {
+  --alert-color: var(--dc-token-ui-fill-extended-10);
+  --message-color: var(--dc-token-text-01)
+}
+
+/* #002BFE
+ *
+ * masterband --dc-token-ui-04
+ * datapay --dc-token-ui-07
+ * datascape --dc-token-ui-07
+ * gateway --dc-token-ui-07
+ * timpani --dc-token-ui-07
+ * connect --dc-token-ui-07
+ */
+.dc-alert-banner-electric-blue {
+  --alert-color: var(--dc-token-ui-07);
+}
+
+/* #00D1C4
+ *
+ * datascape --dc-token-ui-06
+ * connect --dc-token-ui-06
+ */
+.dc-alert-banner-empress-teal {
+  --alert-color: var(--dc-token-ui-06);
+  --message-color: var(--dc-token-text-01)
+}
+
+/* #4ADEFF */
+.dc-alert-banner-sky-blue {
+  --alert-color: var(--dc-token-ui-06);
+  --message-color: var(--dc-token-text-01)
+}
+
+/* #FF7D33 */
+.dc-alert-banner-tangerine-orange {
+  --alert-color: var(--dc-token-ui-fill-extended-10);
+  --message-color: var(--dc-token-text-01)
+}
+
+/* Datapay specific */
+/* #01DBE5 */
+.dc-alert-banner-datapay-turquoise {
+  --alert-color: var(--dc-token-ui-05);
+  --message-color: var(--dc-token-text-01)
+}
+
+/* Datascape specific */
+/* #7827FF */
+.dc-alert-banner-datascape-indigo {
+  --alert-color: var(--dc-token-ui-04);
+}
+
+/* Gateway specific */
+/* #FEB301 */
+.dc-alert-banner-gateway-gold {
+  --alert-color: var(--dc-token-ui-05);
+  --message-color: var(--dc-token-text-01)
+}
+
+/* Timpani specific */
+/* #0072ED */
+.dc-alert-banner-timpani-sapphire {
+  --alert-color: var(--dc-token-ui-04);
+}
+
+/* Connect specific */
+/* #0072ED */
+.dc-alert-banner-connect-fuchsia {
+  --alert-color: var(--dc-token-ui-04);
+}
+
+.dc-alert-banner-content {
+  flex-grow: 1;
+  margin-right: 24px;
+  overflow: hidden;
+}
+
+.dc-alert-banner-cta-text {
+  color: var(--message-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.dc-alert-banner-btn {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.dc-close-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.dc-close-icon path {
+  fill: var(--dc-token-text-02);
+}
+
+.dc-alert-banner-candy-pink,
+.dc-alert-banner-datapay-turquoise,
+.dc-alert-banner-empress-teal,
+.dc-alert-banner-gateway-gold,
+.dc-alert-banner-sky-blue,
+.dc-alert-banner-tangerine-orange {
+  .dc-close-icon path {
+    fill: var(--dc-token-text-01);
+  }
+}
+
+@media (--breakpoint-desktop) {
+  .dc-alert-banner {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 24px 32px;
+  }
+
+  .dc-close-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (--breakpoint-large-desktop) {
+  .dc-alert-banner {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 24px 200px;
+  }
+
+  .dc-close-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
