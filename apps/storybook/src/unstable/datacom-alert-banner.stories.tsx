@@ -4,6 +4,20 @@ import { DatacomAlertBanner } from '@datacom/endeavour-react';
 
 type AlertBannerProps = React.ComponentProps<typeof DatacomAlertBanner>;
 
+type AlertBannerVariant =
+  | 'admiral-blue'
+  | 'midnight-blue'
+  | 'candy-pink'
+  | 'electric-blue'
+  | 'datapay-turquoise'
+  | 'datascape-indigo'
+  | 'empress-teal'
+  | 'gateway-gold'
+  | 'sky-blue'
+  | 'timpani-sapphire'
+  | 'tangerine-orange'
+  | 'connect-fuchsia';
+
 export default {
   title: 'Alert Banner',
   component: DatacomAlertBanner,
@@ -120,13 +134,12 @@ export const Default: StoryObj<
     ctaURL: 'https://datacom.com',
   },
   render: (props) => {
-    const variant =
-      props.variantForMasterbrand ||
+    const variant = (props.variantForMasterbrand ||
       props.variantForDatapay ||
       props.variantForDatascape ||
       props.variantForGateway ||
       props.variantForTimpani ||
-      props.variantForConnect;
+      props.variantForConnect) as AlertBannerVariant;
     return (
       <DatacomAlertBanner
         variant={variant}
