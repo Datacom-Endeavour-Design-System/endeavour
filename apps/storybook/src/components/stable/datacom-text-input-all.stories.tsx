@@ -37,6 +37,11 @@ const meta: Meta<InputProps> = {
       description: 'Prepopulated input',
       type: { name: 'string', required: false },
     },
+    title: {
+      name: 'Tooltip label',
+      description: 'Hover title on the edit input',
+      type: { name: 'string', required: false },
+    },
     disabled: {
       name: 'Disabled',
       description: 'Disable button',
@@ -72,16 +77,9 @@ const meta: Meta<InputProps> = {
       options: ['none', 'working', 'done'],
       type: { name: 'string', required: false },
     },
-    title: {
-      name: 'Tooltip label',
-      description: 'Hover title on the edit input',
-      type: { name: 'string', required: false },
-    },
   },
   args: {
     label: 'Label',
-    disabled: false,
-    required: true,
     placeholder: 'Example text',
     message: 'Error message',
   },
@@ -132,8 +130,8 @@ export const WithIndicators = () => {
       <Panel>
         <DatacomInput
           label="Email address"
-          title="You email address"
-          placeholder="Enter Email address"
+          title="Email address"
+          placeholder="Enter email address"
           required={true}
           value="example@email.com"
           indicator={indicator}
@@ -143,17 +141,12 @@ export const WithIndicators = () => {
       </Panel>
 
       <div>
-        {iterations > 3 && (
-          <small style={{ color: 'var(--dc-primary-text-color)' }}>
-            {iterations} clicks and counting. Keep going for a high score.
-          </small>
-        )}
         {iterations > 0 && (
           <DatacomButton
             disabled={disabled}
             variant="primary"
             onClick={() => setIndicator('none')}>
-            Again...
+            Reload
           </DatacomButton>
         )}
       </div>

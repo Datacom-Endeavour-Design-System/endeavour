@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Meta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
 
 import styled from '@emotion/styled';
@@ -76,83 +76,84 @@ const meta: Meta<typeof DatacomInput> = {
 
 export default meta;
 
-export const FormSubmission = () => {
-  const form = useRef<HTMLFormElement>();
-  const [submitted, setSubmitted] = useState(false);
+export const FormSubmission: StoryObj<typeof DatacomInput> = {
+  render: () => {
+    const form = useRef<HTMLFormElement>();
+    const [submitted, setSubmitted] = useState(false);
 
-  const Panel = styled.div`
-    width: 272px;
-    margin-bottom: 30px;
-    datacom-input {
-      margin-bottom: 12px;
-    }
-  `;
+    const Panel = styled.div`
+      width: 272px;
+      margin-bottom: 30px;
+      datacom-input {
+        margin-bottom: 12px;
+      }
+    `;
 
-  return (
-    <form
-      method="post"
-      ref={form}
-      onSubmit={(event) => {
-        if (form.current.checkValidity()) {
-          setSubmitted(true);
-          event.preventDefault();
-        } else {
-          setSubmitted(false);
-        }
-      }}>
-      <Panel>
-        <DatacomInput
-          label="First name(s)"
-          title="You first names (including middle)"
-          help="Enter your first names (inc. middle)"
-          placeholder="First names"
-          required={true}
-          message="Please enter your first name"
-          indicator="none"
-        />
-        <DatacomInput
-          label="Surname"
-          title="Your family or surname"
-          placeholder="Surname"
-          help="Enter your family or surname"
-          required={true}
-          message="Please enter your surname"
-          indicator="none"
-        />
-        <DatacomInput
-          label="Telephone"
-          title="Enter a phone number with numbers only"
-          help="Enter a phone number with numbers only"
-          message="Please enter a valid phone number"
-          placeholder="Home or Mobile"
-          pattern="^\d*$"
-          required={true}
-          indicator="none"
-        />
+    return (
+      <form
+        method="post"
+        ref={form}
+        onSubmit={(event) => {
+          if (form.current.checkValidity()) {
+            setSubmitted(true);
+            event.preventDefault();
+          } else {
+            setSubmitted(false);
+          }
+        }}>
+        <Panel>
+          <DatacomInput
+            label="First name(s)"
+            title="You first names (including middle)"
+            help="Enter your first names (inc. middle)"
+            placeholder="Enter first name(s)"
+            required={true}
+            message="Please enter your first name"
+            indicator="none"
+          />
+          <DatacomInput
+            label="Last name"
+            title="Your family or surname"
+            placeholder="Enter last name"
+            help="Enter your family or surname"
+            required={true}
+            message="Please enter your surname"
+            indicator="none"
+          />
+          <DatacomInput
+            label="Phone number"
+            title="Enter a phone number with numbers only"
+            help="Enter a contact number using numerical digits only”"
+            message="Please enter a valid phone number"
+            placeholder="Home or Mobile"
+            pattern="^\d*$"
+            required={true}
+            indicator="none"
+          />{' '}
+          <br></br>
+          <DatacomInput
+            label="Email"
+            type="email"
+            title="Enter a email address"
+            help="Enter your email address"
+            message="Please enter a valid email"
+            placeholder="Enter email address"
+            required={true}
+            indicator="none"
+          />
+          {submitted && (
+            <p style={{ color: 'var(--dc-primary-text-color)' }}>
+              Form would have been submitted but was prevented
+            </p>
+          )}
+        </Panel>
 
-        <DatacomInput
-          label="Email"
-          type="email"
-          title="Enter a email address"
-          help="Enter email address"
-          message="Please enter a valid email"
-          placeholder="Email address"
-          required={true}
-          indicator="none"
-        />
-
-        {submitted && (
-          <p style={{ color: 'var(--dc-primary-text-color)' }}>
-            Form would have been submitted but was prevented
-          </p>
-        )}
-      </Panel>
-
-      <div>
-        <DatacomButton variant="primary" type="submit">
-          Submit
-        </DatacomButton>
-      </div>
-    </form>
-  );
+        <div>
+          <DatacomButton variant="primary" type="submit">
+            Submit
+          </DatacomButton>
+        </div>
+      </form>
+    );
+  },
 };
