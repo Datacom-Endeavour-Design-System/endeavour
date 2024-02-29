@@ -123,7 +123,7 @@ export const FormSubmission: StoryObj<typeof DatacomInput> = {
           <DatacomInput
             label="Phone number"
             title="Enter a phone number with numbers only"
-            help="Enter a contact number using numerical digits only”"
+            help="Enter a contact number using numerical digits only"
             message="Please enter a valid phone number"
             placeholder="Home or Mobile"
             pattern="^\d*$"
