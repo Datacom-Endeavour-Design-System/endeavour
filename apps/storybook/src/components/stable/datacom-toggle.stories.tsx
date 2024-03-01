@@ -37,7 +37,6 @@ export default {
       description:
         'If true, label will be rendered on the left of the toggle element.',
       control: 'select',
-      defaultValue: 'right',
       options: ['left', 'right'],
       type: { name: 'string' },
     },
