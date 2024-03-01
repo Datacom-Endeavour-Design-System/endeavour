@@ -21,7 +21,7 @@
 
 .dc-toggle-switch {
   background: var(--dc-background-colour);
-  border: var(--switch-border) solid var(--dc-greyscale-05);
+  border: var(--switch-border) solid var(--dc-ui-border-default);
   border-radius: var(--switch-height);
   display: inline-block;
   height: calc(var(--switch-height) - 2 * var(--switch-border));
@@ -88,22 +88,31 @@
 }
 
 /* Disabled state styles */
+.dc-toggle-input:disabled + .dc-toggle-switch {
+  border-color: var(--dc-ui-disabled-border);
+  cursor: not-allowed;
+}
+
 .dc-toggle-input:disabled + .dc-toggle-switch::before {
-  background-color: var(--dc-grayscale-06);
-  border-color: var(--dc-greyscale-05);
+  background-color: var(--dc-secondary-disabled-text-colour);
+  border-color: var(--dc-greyscale-04);
+  cursor: not-allowed;
 }
 
 .dc-toggle-input:checked:disabled + .dc-toggle-switch {
-  border-color: var(--dc-greyscale-04);
-  background-color: var(--dc-greyscale-04);
+  border-color: var(--dc-disabled-color-01);
+  background-color: var(--dc-disabled-color-01);
+  cursor: not-allowed;
 }
 
 .dc-toggle-input:checked:disabled + .dc-toggle-switch::before {
   border-color: var(--dc-greyscale-04);
+  cursor: not-allowed;
 }
 
 .disabled {
   color: var(--dc-greyscale-04);
+  cursor: not-allowed;
 }
 
 /* "Label on left" styles */

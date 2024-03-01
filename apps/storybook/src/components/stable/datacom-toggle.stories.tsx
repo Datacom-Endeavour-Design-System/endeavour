@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStoryFn } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import { DatacomToggle } from '@datacom/endeavour-react';
 
 export default {
@@ -11,6 +11,7 @@ export default {
       defaultValue: 'Toggle',
       description: 'HTML "name" attribute for toggle element.',
       type: { name: 'string' },
+      table: { disable: true },
     },
     label: {
       name: 'Label',
@@ -24,7 +25,7 @@ export default {
       control: 'select',
       defaultValue: 'standard',
       options: ['standard', 'small'],
-      type: { name: 'string', required: true },
+      type: { name: 'string' },
     },
     toggled: {
       name: 'Toggled',
@@ -32,13 +33,13 @@ export default {
       type: { name: 'boolean' },
     },
     labelPosition: {
-      name: 'Label Position',
+      name: 'Label position',
       description:
         'If true, label will be rendered on the left of the toggle element.',
       control: 'select',
       defaultValue: 'right',
       options: ['left', 'right'],
-      type: { name: 'string', required: true },
+      type: { name: 'string' },
     },
     disabled: {
       name: 'Disabled',
@@ -48,7 +49,7 @@ export default {
   },
 };
 
-const Template: ComponentStoryFn<typeof DatacomToggle> = (args) => {
+const Template: StoryFn<typeof DatacomToggle> = (args) => {
   const { disabled, label, labelPosition, name, toggled, variant } = args;
 
   return (

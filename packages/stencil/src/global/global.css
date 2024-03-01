@@ -44,6 +44,7 @@
   --dc-accent-status-color: var(--dc-token-support-extended-03);
   --dc-primary-status-color: var(--dc-token-support-extended-04);
   --dc-secondary-status-color: var(--dc-token-support-extended-02);
+  --dc-disabled-color-01: var(--dc-token-disabled-01);
 
 
   --dc-greyscale-01: #151515;
@@ -142,6 +143,7 @@
   --dc-accent-status-color: var(--dc-token-support-03);
   --dc-primary-status-color: var(--dc-token-support-04);
   --dc-secondary-status-color: var(--dc-token-support-02);
+  --dc-disabled-color-01: var(--dc-token-disabled-03);
  }
 
 /*
