@@ -57,7 +57,7 @@
 /* Focus state styles */
 .dc-toggle-input:focus-visible + .dc-toggle-switch {
   outline: 3px solid var(--dc-primary-colour);
-  outline-offset: 2px;
+  outline-offset: 1px;
 }
 
 /* Hover state styles */
@@ -80,6 +80,7 @@
       - 2 * var(--thumb-border)
       - 2 * var(--switch-border)
     );
+border: 1px solid transparent;
 }
 
 .dc-toggle-input:checked + .dc-toggle-switch:hover {
@@ -95,7 +96,7 @@
 
 .dc-toggle-input:disabled + .dc-toggle-switch::before {
   background-color: var(--dc-secondary-disabled-text-colour);
-  border-color: var(--dc-greyscale-04);
+  border-color: var(--dc-disabled-color-01);
   cursor: not-allowed;
 }
 

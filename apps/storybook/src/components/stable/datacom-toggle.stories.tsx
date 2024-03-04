@@ -8,29 +8,14 @@ export default {
   argTypes: {
     name: {
       name: 'Name',
-      defaultValue: 'Toggle',
       description: 'HTML "name" attribute for toggle element.',
       type: { name: 'string' },
       table: { disable: true },
     },
     label: {
       name: 'Label',
-      defaultValue: 'Label',
       description: 'Label for toggle element.',
       type: { name: 'string' },
-    },
-    variant: {
-      name: 'Variant',
-      description: "Toggle size variant. Defaults to 'standard' if not set.",
-      control: 'select',
-      defaultValue: 'standard',
-      options: ['standard', 'small'],
-      type: { name: 'string' },
-    },
-    toggled: {
-      name: 'Toggled',
-      description: 'If true, toggle element will be toggled on initial load.',
-      type: { name: 'boolean' },
     },
     labelPosition: {
       name: 'Label position',
@@ -39,6 +24,18 @@ export default {
       control: 'select',
       options: ['left', 'right'],
       type: { name: 'string' },
+    },
+    variant: {
+      name: 'Size',
+      description: "Toggle size variant. Defaults to 'standard' if not set.",
+      control: 'select',
+      options: ['standard', 'small'],
+      type: { name: 'string' },
+    },
+    toggled: {
+      name: 'Toggled',
+      description: 'If true, toggle element will be toggled on initial load.',
+      type: { name: 'boolean' },
     },
     disabled: {
       name: 'Disabled',
@@ -55,9 +52,9 @@ const Template: StoryFn<typeof DatacomToggle> = (args) => {
     <DatacomToggle
       name={name}
       label={label}
+      labelPosition={labelPosition}
       disabled={disabled}
       toggled={toggled}
-      labelPosition={labelPosition}
       variant={variant}
     />
   );
@@ -65,10 +62,9 @@ const Template: StoryFn<typeof DatacomToggle> = (args) => {
 
 export const Toggle = Template.bind({});
 Toggle.args = {
-  name: 'Toggle',
   label: 'Label',
+  labelPosition: 'right',
   variant: 'standard',
   toggled: false,
-  labelPosition: 'right',
   disabled: false,
 };
