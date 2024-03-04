@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 import { DatacomTextarea, DatacomButton } from '@datacom/endeavour-react';
 
+import styled from '@emotion/styled';
+
 export default {
   title: 'Text Area',
   component: DatacomTextarea,
@@ -65,12 +67,16 @@ export default {
   },
 } as Meta<typeof DatacomTextarea>;
 
-const Template: StoryFn<typeof DatacomTextarea> = (args) => (
-  <div style={{ width: '300px' }}>
-    {' '}
-    <DatacomTextarea {...args} />
-  </div>
-);
+const Template: StoryFn<typeof DatacomTextarea> = (args) => {
+  const Panel = styled.div`
+    width: 272px;
+  `;
+  return (
+    <Panel>
+      <DatacomTextarea {...args} />
+    </Panel>
+  );
+};
 
 export const Standard = Template.bind({});
 
@@ -95,12 +101,12 @@ export const FormSubmission = () => {
           setSubmitted(false);
         }
       }}>
-      <div style={{ width: '300px' }}>
+      <div style={{ width: '272px' }}>
         <DatacomTextarea
           name="textarea"
           required
           autoValidate
-          message="Please enter value"
+          message="This field is mandatory"
           placeholder="Example text"
           label="Label"></DatacomTextarea>
       </div>

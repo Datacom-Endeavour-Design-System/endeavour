@@ -11,8 +11,9 @@
 
 .dc-textarea {
   background-color: var(--dc-background-colour);
-  display: inline-block;
+  display: block;
   position: relative;
+  
 }
 
 .dc-textarea-label {
@@ -65,6 +66,7 @@
   line-height: 16px;
   margin-left: 16px;
   margin-top: 4px;
+  word-wrap: break-word;
 }
 
 /* View control */
@@ -132,7 +134,7 @@
 .dc-textarea-error .dc-textarea-error-icon {
   display: block;
   position: absolute;
-  right: 8px;
+  left: calc(100% - 24px);
   top: 16px;
 }
 
@@ -146,9 +148,11 @@ fill: var( --dc-primary-error-color);
   font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 12px;
-  margin: 4px 0 0 16px;
+  margin: 0;
+  padding: 4px 0 0 16px;
   max-width: 270px;
   white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .dc-textarea-error .dc-textarea-error-msg {
