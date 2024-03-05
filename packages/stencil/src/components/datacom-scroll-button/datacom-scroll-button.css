@@ -1,4 +1,4 @@
-
+@import url(../../global/global.css);
 :host {
   display: block;
 }
@@ -23,6 +23,10 @@
   display: flex;
 }
 
+.dc-scroll-btn-chevron path {
+  fill: var(--dc-primary-colour)
+}
+
 @media (--breakpoint-tablet) {
   .dc-scroll-btn {
     height: 48px;
@@ -36,7 +40,8 @@
 }
 
 .dc-scroll-btn:hover {
-  background-color: var(--dc-primary-colour);
+  background-color: var(--dc-primary-accent-colour);
+  border-color: var(--dc-primary-accent-colour);
   cursor: pointer;
 }
 
