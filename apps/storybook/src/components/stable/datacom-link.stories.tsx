@@ -28,7 +28,7 @@ export default {
       type: { name: 'string' },
     },
     iconPosition: {
-      name: 'Image Position',
+      name: 'Image position',
       description: 'Image or icon position. Defaults to left if not set',
       control: 'select',
       options: ['left', 'right'],
