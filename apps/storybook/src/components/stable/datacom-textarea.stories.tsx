@@ -106,7 +106,7 @@ export const FormSubmission = () => {
           name="textarea"
           required
           autoValidate
-          message="This field is mandatory"
+          message="This field is mandatory. Please provide the required information to proceed"
           placeholder="Example text"
           label="Label"></DatacomTextarea>
       </div>
