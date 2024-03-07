@@ -72,7 +72,7 @@ const meta: Meta<InputProps> = {
       description: 'Feedback indicator in edit mode',
       control: {
         type: 'select',
-        labels: { working: 'loading', done: 'success' },
+        labels: { working: 'Loading', done: 'Success' },
       },
       options: ['none', 'working', 'done'],
       type: { name: 'string', required: false },
