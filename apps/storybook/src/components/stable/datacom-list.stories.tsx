@@ -9,14 +9,28 @@ const meta = {
     variant: {
       name: 'Variant',
       description: 'List variant. Defaults ordered if not set.',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          ordered: 'Ordered',
+          unordered: 'Unordered',
+        },
+      },
       defaultValue: 'ordered',
       options: ['ordered', 'unordered'],
       type: { name: 'string', required: true },
     },
     type: {
       name: 'Type',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          numbers: 'Numbers',
+          lowercase: 'Lowercase',
+          uppercase: 'Uppercase',
+          roman: 'Roman',
+        },
+      },
       description: 'List type is default numbers if not set',
       options: ['numbers', 'lowercase', 'uppercase', 'roman'],
     },

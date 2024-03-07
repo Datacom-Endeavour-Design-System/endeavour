@@ -21,7 +21,10 @@ export default {
     variant: {
       name: 'Variant',
       description: "Toggle size variant. Defaults to 'standard' if not set.",
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: { standard: ' Standard', small: 'Small' },
+      },
       defaultValue: 'standard',
       options: ['standard', 'small'],
       type: { name: 'string', required: true },
@@ -35,7 +38,7 @@ export default {
       name: 'Label Position',
       description:
         'If true, label will be rendered on the left of the toggle element.',
-      control: 'select',
+      control: { type: 'select', labels: { left: 'Left', right: 'Right' } },
       defaultValue: 'right',
       options: ['left', 'right'],
       type: { name: 'string', required: true },

@@ -9,7 +9,24 @@ export default {
     position: {
       name: 'Tooltip position',
       description: 'Sets position of tooltip.',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          auto: 'Auto',
+          top: 'Top',
+          'top-start': 'Top-start',
+          'top-end': 'Top-end',
+          bottom: 'Bottom',
+          'bottom-start': 'Bottom-start',
+          'bottom-end': 'Bottom-end',
+          left: 'Left',
+          'left-start': 'Left-start',
+          'left-end': 'Left-end',
+          right: 'Right',
+          'right-start': 'Right-start',
+          'right-end': 'Right-end',
+        },
+      },
       defaultValue: 'bottom',
       options: [
         'auto',
