@@ -1,0 +1,106 @@
+@import url("../../global/global.css");
+:host {
+  box-sizing: border-box;
+}
+
+:host * {
+  font-family: var(--dc-font-family);
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.dc-pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  min-width: 272px;
+  height: 80px;
+  background-color: var(--dc-background-colour);
+  color: var(--dc-primary-text-color);
+  border-top: 1px solid var(--dc-greyscale-05);
+}
+
+.dc-first-btn,
+.dc-previous-btn,
+.dc-next-btn,
+.dc-last-btn {
+  display: flex;
+  background-color: var(--dc-background-colour);
+  border: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.dc-first-btn {
+  margin-right: 24px;
+}
+
+.dc-last-btn {
+  margin-left: 24px;
+}
+
+.dc-pagination-content-wrapper {
+  display: flex;
+  text-align: center;
+  margin: 0 32px;
+}
+
+.dc-pagination-current {
+  background-color: var(--dc-background-colour);
+  color: var(--dc-primary-text-color);
+  width: 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--dc-primary-colour);
+  font-weight: 700;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  outline: none;
+  margin-right: 16px;
+}
+
+.dc-total-page {
+  margin-left: 16px;
+}
+
+.dc-icon-first,
+.dc-icon-last,
+.dc-icon-next,
+.dc-icon-previous {
+  height: 24px;
+}
+
+.dc-icon-previous,
+.dc-icon-first {
+  transform: rotate(180deg);
+}
+
+.dc-icon-first path,
+.dc-icon-first,
+.dc-icon-last path,
+.dc-icon-last,
+.dc-icon-previous path,
+.dc-icon-next path {
+  fill: var(--dc-primary-text-color);
+}
+
+.dc-first-btn:disabled .dc-icon-first path,
+.dc-first-btn:disabled .dc-icon-first,
+.dc-previous-btn:disabled .dc-icon-previous path,
+.dc-next-btn:disabled .dc-icon-next path,
+.dc-last-btn:disabled .dc-icon-last path,
+.dc-last-btn:disabled .dc-icon-last {
+  fill: var(--dc-greyscale-05);
+}
+
+.dc-first-btn:disabled .dc-icon-first,
+.dc-previous-btn:disabled .dc-icon-previous,
+.dc-next-btn:disabled .dc-icon-next,
+.dc-last-btn:disabled .dc-icon-last {
+  cursor: not-allowed;
+}
