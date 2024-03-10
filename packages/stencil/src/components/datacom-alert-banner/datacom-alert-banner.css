@@ -1,5 +1,3 @@
-@import url("../../global/global.css");
-
 :host {
   --message-color: var(--dc-token-text-02);
 }
@@ -17,91 +15,37 @@
   position: relative;
 }
 
-/* #00167F */
-.dc-alert-banner-admiral-blue {
-  --alert-color: var(--dc-token-ui-03);
-}
-
-/* #000A14 */
-.dc-alert-banner-midnight-blue {
-  --alert-color: var(--dc-token-ui-02);
-}
-
-/* #FF338D
- *
- * masterband --dc-token-ui-fill-extended-21
- * datapay --dc-token-ui-fill-extended-10
- */
-.dc-alert-banner-candy-pink {
-  --alert-color: var(--dc-token-ui-fill-extended-10);
-  --message-color: var(--dc-token-text-01)
-}
-
-/* #002BFE
- *
- * masterband --dc-token-ui-04
- * datapay --dc-token-ui-07
- * datascape --dc-token-ui-07
- * gateway --dc-token-ui-07
- * timpani --dc-token-ui-07
- * connect --dc-token-ui-07
- */
-.dc-alert-banner-electric-blue {
-  --alert-color: var(--dc-token-ui-07);
-}
-
-/* #00D1C4
- *
- * datascape --dc-token-ui-06
- * connect --dc-token-ui-06
- */
-.dc-alert-banner-empress-teal {
-  --alert-color: var(--dc-token-ui-06);
-  --message-color: var(--dc-token-text-01)
-}
-
-/* #4ADEFF */
-.dc-alert-banner-sky-blue {
-  --alert-color: var(--dc-token-ui-06);
-  --message-color: var(--dc-token-text-01)
-}
-
-/* #FF7D33 */
-.dc-alert-banner-tangerine-orange {
-  --alert-color: var(--dc-token-ui-fill-extended-10);
-  --message-color: var(--dc-token-text-01)
-}
-
-/* Datapay specific */
-/* #01DBE5 */
-.dc-alert-banner-datapay-turquoise {
-  --alert-color: var(--dc-token-ui-05);
-  --message-color: var(--dc-token-text-01)
-}
-
-/* Datascape specific */
-/* #7827FF */
-.dc-alert-banner-datascape-indigo {
-  --alert-color: var(--dc-token-ui-04);
-}
-
-/* Gateway specific */
-/* #FEB301 */
-.dc-alert-banner-gateway-gold {
-  --alert-color: var(--dc-token-ui-05);
-  --message-color: var(--dc-token-text-01)
-}
-
-/* Timpani specific */
-/* #0072ED */
-.dc-alert-banner-timpani-sapphire {
-  --alert-color: var(--dc-token-ui-04);
-}
-
-/* Connect specific */
-/* #0072ED */
+.dc-alert-banner-admiral-blue,
+.dc-alert-banner-datapay-turquoise,
+.dc-alert-banner-datascape-indigo,
+.dc-alert-banner-gateway-gold,
+.dc-alert-banner-timpani-sapphire,
 .dc-alert-banner-connect-fuchsia {
-  --alert-color: var(--dc-token-ui-04);
+  --alert-color: var(--dc-token-ui-background-alternate-01);
+}
+
+.dc-alert-banner-candy-pink,
+.dc-alert-banner-empress-teal,
+.dc-alert-banner-sky-blue,
+.dc-alert-banner-tangerine-orange {
+  --alert-color: var(--dc-token-ui-background-alternate-02);
+}
+
+.dc-alert-banner-midnight-blue {
+  --alert-color: var(--dc-token-ui-background-alternate-03);
+}
+
+.dc-alert-banner-electric-blue {
+  --alert-color: var(--dc-token-ui-background-alternate-04);
+}
+
+.dc-alert-banner-datapay-turquoise,
+.dc-alert-banner-gateway-gold,
+.dc-alert-banner-candy-pink,
+.dc-alert-banner-empress-teal,
+.dc-alert-banner-sky-blue,
+.dc-alert-banner-tangerine-orange {
+  --message-color: var(--dc-token-text-01)
 }
 
 .dc-alert-banner-content {
