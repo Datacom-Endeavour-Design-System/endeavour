@@ -162,7 +162,7 @@ export const AlertBanner: StoryObj<
       type: { name: 'string' },
     },
     ctaLabel: {
-      name: 'CTA Label',
+      name: 'CTA label',
       type: { name: 'string' },
     },
     ctaURL: {
