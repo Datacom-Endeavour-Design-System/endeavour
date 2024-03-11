@@ -57,10 +57,12 @@ export class DatacomAlertBanner {
             <div class="dc-alert-banner-content">
               <slot />
               {hasActions && (
-                <a href={this.ctaURL} class="dc-alert-banner-cta-text">
+                <span>
                   <span> - </span>
-                  {this.ctaLabel}
-                </a>
+                  <datacom-link url={this.ctaURL} variant="stacked">
+                    {this.ctaLabel}
+                  </datacom-link>
+                </span>
               )}
             </div>
             <button class="dc-alert-banner-btn" onClick={this.onClickHandler}>

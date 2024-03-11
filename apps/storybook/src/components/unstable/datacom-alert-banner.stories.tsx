@@ -23,7 +23,7 @@ export default {
   component: DatacomAlertBanner,
 };
 
-export const Default: StoryObj<
+export const AlertBanner: StoryObj<
   AlertBannerProps & {
     variantForMasterbrand: string;
     variantForDatapay: string;
@@ -38,74 +38,122 @@ export const Default: StoryObj<
     variantForMasterbrand: {
       name: 'Variant',
       description:
-        "Alert banner variant. Defaults to 'admiral-blue' if not set.",
-      control: 'select',
-      options: ['admiral-blue', 'midnight-blue', 'candy-pink', 'electric-blue'],
+        "Alert banner variant. Defaults to 'Admiral blue' if not set.",
+      options: ['admiral-blue', 'candy-pink', 'midnight-blue', 'electric-blue'],
+      control: {
+        type: 'select',
+        labels: {
+          'admiral-blue': 'Admiral blue',
+          'candy-pink': 'Candy pink',
+          'midnight-blue': 'Midnight blue',
+          'electric-blue': 'Electric blue',
+        },
+      },
       type: { name: 'string' },
       if: { global: 'endeavour-theme-name', eq: 'masterbrand' },
     },
     variantForDatapay: {
       name: 'Variant',
       description:
-        "Alert banner variant. Defaults to 'datapay-turquoise' if not set.",
-      control: 'select',
+        "Alert banner variant. Defaults to 'Datapay turquoise' if not set.",
       options: [
         'datapay-turquoise',
-        'midnight-blue',
         'candy-pink',
+        'midnight-blue',
         'electric-blue',
       ],
+      control: {
+        type: 'select',
+        labels: {
+          'datapay-turquoise': 'Datapay turquoise',
+          'candy-pink': 'Candy pink',
+          'midnight-blue': 'Midnight blue',
+          'electric-blue': 'Electric blue',
+        },
+      },
       type: { name: 'string' },
       if: { global: 'endeavour-theme-name', eq: 'datapay' },
     },
     variantForDatascape: {
       name: 'Variant',
       description:
-        "Alert banner variant. Defaults to 'datascape-indigo' if not set.",
-      control: 'select',
+        "Alert banner variant. Defaults to 'Datascape indigo' if not set.",
       options: [
         'datascape-indigo',
-        'midnight-blue',
         'empress-teal',
+        'midnight-blue',
         'electric-blue',
       ],
+      control: {
+        type: 'select',
+        labels: {
+          'datascape-indigo': 'Datascape indigo',
+          'empress-teal': 'Empress teal',
+          'midnight-blue': 'Midnight blue',
+          'electric-blue': 'Electric blue',
+        },
+      },
       type: { name: 'string' },
       if: { global: 'endeavour-theme-name', eq: 'datascape' },
     },
     variantForGateway: {
       name: 'Variant',
       description:
-        "Alert banner variant. Defaults to 'gateway-gold' if not set.",
-      control: 'select',
-      options: ['gateway-gold', 'midnight-blue', 'sky-blue', 'electric-blue'],
+        "Alert banner variant. Defaults to 'Gateway gold' if not set.",
+      options: ['gateway-gold', 'sky-blue', 'midnight-blue', 'electric-blue'],
+      control: {
+        type: 'select',
+        labels: {
+          'gateway-gold': 'Gateway gold',
+          'sky-blue': 'Sky blue',
+          'midnight-blue': 'Midnight blue',
+          'electric-blue': 'Electric blue',
+        },
+      },
       type: { name: 'string' },
       if: { global: 'endeavour-theme-name', eq: 'gateway' },
     },
     variantForTimpani: {
       name: 'Variant',
       description:
-        "Alert banner variant. Defaults to 'admiral-blue' if not set.",
-      control: 'select',
+        "Alert banner variant. Defaults to 'Timpani sapphire' if not set.",
       options: [
         'timpani-sapphire',
-        'midnight-blue',
         'tangerine-orange',
+        'midnight-blue',
         'electric-blue',
       ],
+      control: {
+        type: 'select',
+        labels: {
+          'timpani-sapphire': 'Timpani sapphire',
+          'tangerine-orange': 'Tangerine orange',
+          'midnight-blue': 'Midnight blue',
+          'electric-blue': 'Electric blue',
+        },
+      },
       type: { name: 'string' },
       if: { global: 'endeavour-theme-name', eq: 'timpani' },
     },
     variantForConnect: {
       name: 'Variant',
       description:
-        "Alert banner variant. Defaults to 'connect-fuchsia' if not set.",
-      control: 'select',
+        "Alert banner variant. Defaults to 'Connect fuchsia' if not set.",
       options: [
         'connect-fuchsia',
-        'midnight-blue',
         'empress-teal',
+        'midnight-blue',
         'electric-blue',
       ],
+      control: {
+        type: 'select',
+        labels: {
+          'connect-fuchsia': 'Connect fuchsia',
+          'empress-teal': 'Empress teal',
+          'midnight-blue': 'Midnight blue',
+          'electric-blue': 'Electric blue',
+        },
+      },
       type: { name: 'string' },
       if: { global: 'endeavour-theme-name', eq: 'connect' },
     },

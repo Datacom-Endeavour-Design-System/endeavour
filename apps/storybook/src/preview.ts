@@ -9,6 +9,11 @@ const preview: Preview = {
   decorators: [PreviewDecorator],
   globals,
   parameters: {
+    options: {
+      storySort: {
+        method: 'alphabetical',
+      },
+    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     docs: {
       container: DocsContainer,

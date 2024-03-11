@@ -1,5 +1,8 @@
 :host {
   --message-color: var(--dc-token-text-02);
+  --message-font-size: 14px;
+  --message-height: 18px;
+  --message-spacing: -0.2px;
 }
 
 .dc-alert-banner {
@@ -9,10 +12,25 @@
   background-color: var(--alert-color);
   color: var(--message-color);
   font-family: var(--dc-font-family);
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: -0.2px;
+  font-size: var(--message-font-size);
+  line-height: var(--message-height);
+  letter-spacing: var(--message-spacing);
   position: relative;
+}
+
+.dc-alert-banner-content .dc-link-stacked.sc-datacom-link {
+  color: var(--message-color);
+  font-size: var(--message-font-size);
+  line-height: var(--message-height);
+  letter-spacing: var(--message-spacing);
+
+  &:hover {
+    color: var(--message-color);
+  }
+
+  &:hover::before {
+    background-color: var(--message-color);
+  }
 }
 
 .dc-alert-banner-admiral-blue,
@@ -48,16 +66,32 @@
   --message-color: var(--dc-token-text-01)
 }
 
+.dc-alert-banner-datapay-turquoise,
+.dc-alert-banner-gateway-gold,
+.dc-alert-banner-candy-pink,
+.dc-alert-banner-empress-teal,
+.dc-alert-banner-sky-blue,
+.dc-alert-banner-tangerine-orange {
+  .dc-alert-banner-content .dc-link-stacked.sc-datacom-link {
+    color: var(--message-color);
+    font-size: var(--message-font-size);
+    line-height: var(--message-height);
+    letter-spacing: var(--message-spacing);
+
+    &:hover {
+      color: var(--message-color);
+    }
+
+    &:hover::before {
+      background-color: var(--message-color);
+    }
+  }
+}
+
 .dc-alert-banner-content {
   flex-grow: 1;
   margin-right: 24px;
   overflow: hidden;
-}
-
-.dc-alert-banner-cta-text {
-  color: var(--message-color);
-  text-decoration: none;
-  font-weight: 500;
 }
 
 .dc-alert-banner-btn {
