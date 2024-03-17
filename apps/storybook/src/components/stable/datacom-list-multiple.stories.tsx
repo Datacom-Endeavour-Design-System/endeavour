@@ -126,6 +126,15 @@ export const UnorderedListWithNestedItems: Story = {
 };
 
 export const OrderedListWithNestedUnorderedItems: Story = {
+  argTypes: {
+    variant: {
+      name: 'Variant',
+      table: { disable: true },
+    },
+    type: {
+      table: { disable: true },
+    },
+  },
   render: (props) => {
     return (
       <div>
@@ -147,6 +156,15 @@ export const OrderedListWithNestedUnorderedItems: Story = {
 };
 
 export const UnorderedListWithNestedOrderedItems: Story = {
+  argTypes: {
+    variant: {
+      name: 'Variant',
+      table: { disable: true },
+    },
+    type: {
+      table: { disable: true },
+    },
+  },
   render: (props) => {
     return (
       <div>
