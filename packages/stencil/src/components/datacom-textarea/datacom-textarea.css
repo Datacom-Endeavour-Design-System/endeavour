@@ -11,8 +11,9 @@
 
 .dc-textarea {
   background-color: var(--dc-background-colour);
-  display: inline-block;
+  display: block;
   position: relative;
+  
 }
 
 .dc-textarea-label {
@@ -36,11 +37,11 @@
 
 .dc-textarea-input {
   background-color: var(--dc-background-colour);
-  border: var(--default-border-size) solid var(--dc-greyscale-05);
+  border: var(--default-border-size) solid var(--dc-ui-border-default);
   border-radius: 8px;
   box-shadow: none;
   box-sizing: border-box;
-  caret-color: var(--dc-primary-text-color);
+  caret-color: var(--dc-primary-colour);
   color: var(--dc-primary-text-color);
   font-family: var(--dc-font-family);
   font-size: 16px;
@@ -54,17 +55,18 @@
 }
 
 .dc-textarea-input::placeholder {
-  color: var(--dc-greyscale-04);
+  color: var(--dc-accent-text-color);
 }
 
 .dc-textarea-help {
-  color: var(--dc-greyscale-03);
+  color: var(--dc-accent-text-color);
   font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   margin-left: 16px;
   margin-top: 4px;
+  word-wrap: break-word;
 }
 
 /* View control */
@@ -96,7 +98,7 @@
 }
 
 /* Hover State */
-.dc-textarea-input:hover {
+.dc-textarea-input:hover:enabled {
   border-color: var(--dc-primary-accent-colour);
 }
 
@@ -108,23 +110,21 @@
 
 /* Disabled State */
 .dc-textarea-disabled .dc-textarea-label {
-  border-color: var(--dc-greyscale-05);
+  border-color: var(--dc-ui-disabled-border);
+  color: var(--dc-greyscale-04);
+}
+
+.dc-textarea-disabled .dc-textarea-help {
   color: var(--dc-greyscale-04);
 }
 
 .dc-textarea-disabled .dc-textarea-input,
 .dc-textarea-disabled .dc-textarea-counter {
   color: var(--dc-greyscale-04);
+  border-color: var(--dc-ui-disabled-border);
+  cursor: not-allowed;
 }
 
-.dc-textarea-disabled .dc-textarea-label:hover {
-  border-color: var(--dc-greyscale-05);
-}
-
-.dc-textarea-disabled .dc-textarea-input:hover,
-.dc-textarea-disabled .dc-textarea-input:focus {
-  border-color: var(--dc-greyscale-05);
-}
 
 /* Error state */
 .dc-textarea-error-icon {
@@ -134,19 +134,25 @@
 .dc-textarea-error .dc-textarea-error-icon {
   display: block;
   position: absolute;
-  right: 8px;
+  left: calc(100% - 24px);
   top: 16px;
+}
+
+.dc-textarea-error-icon path {
+fill: var( --dc-primary-error-color);
 }
 
 .dc-textarea-error-msg {
   display: none;
-  color: var(--dc-error-colour);
+  color: var( --dc-primary-error-color);
   font-family: var(--dc-font-family);
   font-weight: 400;
   font-size: 12px;
-  margin: 4px 0 0 16px;
+  margin: 0;
+  padding: 4px 0 0 16px;
   max-width: 270px;
   white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .dc-textarea-error .dc-textarea-error-msg {
@@ -161,6 +167,6 @@
 
 .dc-textarea-error .dc-textarea-input,
 .dc-textarea-error .dc-textarea-input:focus {
-  border: 2px solid var(--dc-error-colour);
+  border: 2px solid var(--dc-primary-error-color);
   padding: calc(var(--textarea-padding-v) - 1px) calc(var(--textarea-padding-h) - 1px);
 }
