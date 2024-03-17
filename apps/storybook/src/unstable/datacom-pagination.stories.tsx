@@ -1,26 +1,41 @@
-import React from 'react';
-import { StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { DatacomPagination } from '@datacom/endeavour-react';
-export default {
+
+const meta: Meta<typeof DatacomPagination> = {
   title: 'Pagination',
   component: DatacomPagination,
   argTypes: {
     itemsPerPage: {
-      name: 'Items Per Page',
-      defaultValue: 10,
+      name: 'Items per page',
+      description: 'Set number of items /elements to show per page',
       type: { name: 'number' },
     },
     totalItems: {
-      name: 'Total Items',
-      defaultValue: 200,
+      name: 'Total items',
+      description:
+        ' Total number of elements or items used to calculate page displays',
+      type: { name: 'number' },
+    },
+    currentPage: {
+      name: 'Current page',
+      description: 'Index of the page',
+      table: { disable: true },
       type: { name: 'number' },
     },
   },
+  args: {
+    itemsPerPage: 10,
+    totalItems: 200,
+  },
 };
 
-const Template: StoryFn<typeof DatacomPagination> = (args) => (
-  <DatacomPagination {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args;
+export const Standard: Story = {
+  args: {
+    currentPage: 1,
+    itemsPerPage: 10,
+    totalItems: 200,
+  },
+};

@@ -20,7 +20,7 @@
   height: 80px;
   background-color: var(--dc-background-colour);
   color: var(--dc-primary-text-color);
-  border-top: 1px solid var(--dc-greyscale-05);
+  border-top: 1px solid var(--dc-ui-border-default);
 }
 
 .dc-first-btn,
@@ -95,7 +95,7 @@
 .dc-next-btn:disabled .dc-icon-next path,
 .dc-last-btn:disabled .dc-icon-last path,
 .dc-last-btn:disabled .dc-icon-last {
-  fill: var(--dc-greyscale-05);
+  fill: var(--dc-ui-disabled-border);
 }
 
 .dc-first-btn:disabled .dc-icon-first,
