@@ -19,7 +19,7 @@ export default {
     },
     dateFormat: {
       name: 'Date format',
-      description: 'Date format. Default is "dd/MM/yyyy"',
+      description: 'Date format. Default to "dd/MM/yyyy"',
       type: { name: 'string' },
     },
     required: {

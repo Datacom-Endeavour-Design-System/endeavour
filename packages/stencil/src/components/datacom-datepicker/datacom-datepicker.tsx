@@ -116,18 +116,15 @@ export class DatacomDatepicker {
     this.isInvalid = false;
     if (this.range) {
       /* Range datepicker validation */
-      // Substring the inputted value from 0 to length of date format "dd/MM/yyyy" to get the start date
-      const startDate = value.substring(0, this.dateFormat.length);
-      // Substring the inputted value from length of date format "dd/MM/yyyy" + 1 to get the end date
-      const endDate = value.substring(this.dateFormat.length + 1);
+      const { startDate, endDate } = this.getStartEndDateString(newValue);
       // Validate
       if (!this.isValidDate(startDate) || !this.isValidDate(endDate)) {
         this.isInvalid = true;
       }
     } else {
       /* Single datepicker validation */
-      // Substring the inputted value from 0 to length of date format "dd/MM/yyyy" to get the selected date
-      const selectedDate = value.substring(0, this.dateFormat.length);
+      // Substring the inputted value from 0 to formatted date string count to get the selected date
+      const selectedDate = value.substring(0, this.formattedDateStringCount());
       // Validate
       if (!this.isValidDate(selectedDate)) {
         this.isInvalid = true;
@@ -412,7 +409,7 @@ export class DatacomDatepicker {
   };
 
   /**
-   * Capture day mouseover and set to mouseover date state if in selecting state
+   * Capture day mouseover and update mouseover date state if in selecting state
    *
    * @param event
    */
@@ -430,30 +427,43 @@ export class DatacomDatepicker {
   };
 
   /**
-   * Handle day selection
+   * Handle day selection and hide calendar after selection
    *
    * @param day
    */
   private daySelectHandler = (day: number): void => {
     const date = setDate(this.date, day);
+    /* Range datepicker */
     if (this.range) {
+      // End selection if in selecting state and the selected day is before the start date
+      // Else, Start selection
       if (this.isSelecting && isBefore(this.startDate, date)) {
         this.endSelection(date);
+        // Hide calendar
         this.toggleCalendar();
       } else {
         this.startSelection(date);
       }
     } else {
+      /* Single datepicker */
+      // Update selected date state
       this.selectedDate = date;
+      // Hide calendar
       this.toggleCalendar();
     }
     this.setInputValue();
   };
 
+  /**
+   * Hide/show calendar
+   */
   private toggleCalendar = (): void => {
     this.isOpen = !this.isOpen;
   };
 
+  /**
+   * Enable editing state and close opened calendar if date input field is focused
+   */
   private dateFocusHandler = (): void => {
     this.isEditing = true;
     if (this.isOpen) {
@@ -461,62 +471,130 @@ export class DatacomDatepicker {
     }
   };
 
+  /**
+   * Disable editing state if date input value is empty string
+   */
   private dateBlurHandler = (): void => {
     if (this.inputValue === '') {
       this.isEditing = false;
     }
   };
 
+  /**
+   * Handle year input change
+   *
+   * @param event
+   */
   private yearInputHandler = (event: InputEvent): void => {
     const el = event.target as HTMLInputElement;
     this.changeYear(parseInt(el.value));
   };
 
+  /**
+   * Handle date input change and debounced the input value
+   *
+   * @param event
+   */
   private dateInputHandler = (event: InputEvent): void => {
     const el = event.target as HTMLInputElement;
     this.debouncedDateInput(el.value.replace(/\s+/g, ''));
   };
 
-  private debouncedDateInput = debounce((newValue: string): void => {
+  /**
+   * Handle the debounced date input adding 500 milliseconds delays on input
+   *
+   * @private
+   */
+  private debouncedDateInput = debounce((debouncedValue: string): void => {
+    // Validate inputted value by date format for both single and range datepicker
+    // Set the valid date to its corresponding state
+    // Range datepicker sets start date and end date states
+    // Single datepicker set selected date state
     if (this.range) {
-      const startDate = newValue.substring(0, this.dateFormat.length);
-      const endDate = newValue.substring(this.dateFormat.length + 1);
       let parsedStartDate: Date;
       let parsedEndDate: Date;
+      const { startDate, endDate } = this.getStartEndDateString(debouncedValue);
       if (this.isValidDate(startDate)) {
+        // Parse the start date string to date
         parsedStartDate = parse(startDate, this.dateFormat, new Date());
+        // Set the parsed start date to start date state
         this.startDate = parsedStartDate;
       } else {
+        // Invalid start date value sets the start date and end date to initial state value
         this.startDate = undefined;
         this.endDate = undefined;
       }
       if (this.isValidDate(endDate)) {
+        // Parse the end date string to date
         parsedEndDate = parse(endDate, this.dateFormat, new Date());
+        // Validate parsed end date if after the parsed start date
+        // If yes, set the parsed end date to end date state
+        // Else, set the parsed start date to end date state
         if (parsedStartDate > parsedEndDate) {
           this.endDate = parsedStartDate;
         } else {
           this.endDate = parsedEndDate;
         }
       } else {
+        // Invalid start date value sets the end date to initial state value
         this.endDate = undefined;
       }
     } else {
-      const selectedDate = newValue.substring(0, this.dateFormat.length);
+      // Substring the debounced value from 0 to formatted date string count to get the selected date
+      const selectedDate = debouncedValue.substring(
+        0,
+        this.formattedDateStringCount(),
+      );
       if (this.isValidDate(selectedDate)) {
+        // Parse the selected date string to date
         this.selectedDate = parse(selectedDate, this.dateFormat, new Date());
       } else {
         this.selectedDate = undefined;
       }
     }
-    this.setInputValue(newValue);
+    // Set the debounce value to input value state
+    this.setInputValue(debouncedValue);
   }, 500);
 
-  private isValidDate = (date: string): boolean => {
-    return (
-      date.length === this.dateFormat.length && isMatch(date, this.dateFormat)
-    );
+  /**
+   * Count the number of string of the formatted date
+   */
+  private formattedDateStringCount = (): number => {
+    return format(new Date(), this.dateFormat).length;
   };
 
+  /**
+   * Retrieve start date and end date string of the provided ranged date string
+   *
+   * @param value
+   */
+  private getStartEndDateString = (
+    value: string,
+  ): { startDate: string; endDate: string } => {
+    // Count the formatted date string
+    const formattedDateStringCount = this.formattedDateStringCount();
+    // Substring the inputted value from 0 to formatted date string count to get the start date
+    const startDate = value.substring(0, formattedDateStringCount);
+    // Substring the inputted value from formatted date string count + 1 to get the end date
+    const endDate = value.substring(formattedDateStringCount + 1);
+    return { startDate, endDate };
+  };
+
+  /**
+   * Validation for date if matched the date format
+   *
+   * @param date
+   */
+  private isValidDate = (date: string): boolean => {
+    const dateStringCount = this.formattedDateStringCount();
+    return date.length === dateStringCount && isMatch(date, this.dateFormat);
+  };
+
+  /**
+   * Update input value state with the inputted value
+   *
+   * @param value
+   */
   private setInputValue = (value = ''): void => {
     if (this.range && isValid(this.startDate) && isValid(this.endDate)) {
       this.inputValue = `${format(this.startDate, this.dateFormat)} - ${format(
@@ -539,53 +617,92 @@ export class DatacomDatepicker {
     }
   };
 
+  /**
+   * Handle calendar update by switching to previous month and re-initialize calendar details
+   */
   private switchToPreviousMonth = (): void => {
     this.date = subMonths(this.date, 1);
     this.setCalendarDetails();
   };
 
+  /**
+   * Handle calendar update by switching to next month and re-initialize calendar details
+   */
   private switchToNextMonth = (): void => {
     this.date = addMonths(this.date, 1);
     this.setCalendarDetails();
   };
 
+  /**
+   * Handle calendar update by changing the year
+   *
+   * @param year
+   */
   private changeYear = (year: number): void => {
     this.date = setYear(this.date, year);
     this.setCalendarDetails();
   };
 
-  private startSelection = (date: Date): void => {
+  /**
+   * Range datepicker
+   * Enable selecting flag and set the selected date to start date state
+   * Reset the initial state value of end date and mouseover date state to ensure no value on start selection
+   *
+   * @param selectedDate
+   */
+  private startSelection = (selectedDate: Date): void => {
     this.isSelecting = true;
-    this.startDate = date;
+    this.startDate = selectedDate;
     this.endDate = undefined;
     this.mouseoverDate = undefined;
   };
 
-  private endSelection = (date: Date): void => {
+  /**
+   * Range datepicker
+   * Disable selecting flag and set the selected date to end date state
+   *
+   * @param selectedDate
+   */
+  private endSelection = (selectedDate: Date): void => {
     this.isSelecting = false;
-    this.endDate = date;
+    this.endDate = selectedDate;
   };
 
+  /**
+   * Accessibility:
+   * Setting the tab index of the calendar days
+   * If the date input is empty, set the calendar current date tab index to 0 to include in tabbing
+   * If the date input and selected date is not empty, set the calendar selected date tab index to 0 to include in tabbing
+   * If the date input and start date is not empty, set the calendar start date tab index to 0 to include in tabbing
+   * Else, tab index is -1 to exclude in tabbing
+   *
+   * @param day
+   * @param index
+   */
   private getDayTabIndex = (day: number, index: number): number => {
     let tabIndex = -1;
 
-    if (this.inputValue === '') {
-      if (this.isToday(day, index)) {
-        tabIndex = 0;
-      }
-    } else {
-      if (this.selectedDate && this.isSelectedDay(day, index)) {
-        tabIndex = 0;
-      }
+    if (this.inputValue === '' && this.isToday(day, index)) {
+      tabIndex = 0;
+    }
 
-      if (this.startDate && this.isStartDate(day)) {
-        tabIndex = 0;
-      }
+    if (this.selectedDate && this.isSelectedDay(day, index)) {
+      tabIndex = 0;
+    }
+
+    if (this.startDate && this.isStartDate(day)) {
+      tabIndex = 0;
     }
 
     return tabIndex;
   };
 
+  /**
+   * Retrieve the corresponding class per calendar day
+   *
+   * @param day
+   * @param index
+   */
   private getDayClasses = (day: number, index: number): string => {
     const classDigit = [];
 
@@ -616,6 +733,12 @@ export class DatacomDatepicker {
     return classDigit.join(' ');
   };
 
+  /**
+   * Checks if the selected day from calendar is equal to current date
+   *
+   * @param day
+   * @param index
+   */
   private isToday = (day: number, index: number): boolean => {
     const date = setDate(this.date, day);
     return (
@@ -624,6 +747,12 @@ export class DatacomDatepicker {
     );
   };
 
+  /**
+   * Checks if the selected day from calendar is equal to selected date
+   *
+   * @param day
+   * @param index
+   */
   private isSelectedDay = (day: number, index: number) => {
     const date = setDate(this.date, day);
     return (
@@ -632,26 +761,51 @@ export class DatacomDatepicker {
     );
   };
 
+  /**
+   * Checks if the selected day from calendar is equal to start date
+   *
+   * @param day
+   */
   private isStartDate = (day: number) => {
     const date = setDate(this.date, day);
     return this.startDate.toDateString() === date.toDateString();
   };
 
+  /**
+   * Checks if the selected day from calendar is equal to end date
+   *
+   * @param day
+   */
   private isEndDate = (day: number) => {
     const date = setDate(this.date, day);
     return this.endDate.toDateString() === date.toDateString();
   };
 
+  /**
+   * Checks if the selected day from calendar is between the start date and end date
+   *
+   * @param day
+   */
   private isInBetween = (day: number) => {
     const date = setDate(this.date, day);
     return this.startDate < date && date < this.endDate;
   };
 
+  /**
+   * Checks if the selected day from calendar is in range of the start date and mouseover date
+   *
+   * @param day
+   */
   private isInRange = (day: number) => {
     const date = setDate(this.date, day);
-    return this.startDate < date && date <= this.mouseoverDate;
+    return this.startDate <= date && date <= this.mouseoverDate;
   };
 
+  /**
+   * Generate a day name for calendar day element
+   *
+   * @param day
+   */
   private getDayName = (day: number): string => {
     return format(setDate(this.date, day), this.dateFormat);
   };
