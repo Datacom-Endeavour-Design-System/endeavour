@@ -46,6 +46,13 @@
   --dc-secondary-status-color: var(--dc-token-support-extended-02);
   --dc-disabled-color-01: var(--dc-token-disabled-01);
 
+  --dc-input-label-background: var(--dc-token-ui-01);
+  --dc-input-label-color: var(--dc-token-text-01);
+  --dc-input-background: var(--dc-token-ui-01);
+  --dc-input-color: var(--dc-token-text-05);
+  --dc-interactive-fill: var(--dc-token-interactive-01);
+  --dc-interactive-color: var(--dc-token-interactive-02);
+  --dc-color-error: var(--dc-token-support-extended-01);
 
   --dc-greyscale-01: #151515;
   --dc-greyscale-02: #333333;
@@ -144,7 +151,15 @@
   --dc-primary-status-color: var(--dc-token-support-04);
   --dc-secondary-status-color: var(--dc-token-support-02);
   --dc-disabled-color-01: var(--dc-token-disabled-03);
- }
+
+  --dc-input-label-background: var(--dc-token-ui-02);
+  --dc-input-label-color: var(--dc-token-text-02);
+  --dc-input-background: var(--dc-token-ui-02);
+  --dc-input-color: var(--dc-token-text-06);
+  --dc-interactive-fill: var(--dc-token-interactive-03);
+  --dc-interactive-color: var(--dc-token-interactive-04);
+  --dc-color-error: var(--dc-token-support-01);
+}
 
 /*
 Below are custom media queries for defining breakpoints for our
