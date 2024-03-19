@@ -10,7 +10,7 @@ export type ImagePosition = 'left' | 'right';
 @Component({
   tag: 'datacom-link',
   styleUrl: 'datacom-link.css',
-  shadow: true,
+  scoped: true,
 })
 export class DatacomLink {
   @Prop() variant: LinkVariant = 'standalone';
