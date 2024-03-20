@@ -41,7 +41,7 @@ const meta: Meta<typeof DatacomAvatar> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const simple: Story = {};
+export const Default: Story = {};
 
 export const withImage: Story = {
   args: {

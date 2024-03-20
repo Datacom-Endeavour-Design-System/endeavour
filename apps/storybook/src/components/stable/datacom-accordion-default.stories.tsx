@@ -51,8 +51,8 @@ const SingleSectionTemplate: ComponentStoryFn<typeof DatacomAccordion> = (
   );
 };
 
-export const SingleSection = SingleSectionTemplate.bind({});
-SingleSection.args = {
+export const Default = SingleSectionTemplate.bind({});
+Default.args = {
   disabled: false,
   expanded: true,
   label: 'Section Label',
