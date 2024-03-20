@@ -108,29 +108,29 @@ export class DatacomDatepicker {
    */
   @State() mouseoverDate: Date;
 
-  @Watch('inputValue')
-  watchInputValue(newValue: string): void {
-    // Remove all spaces on the inputted value
-    const value = newValue.replace(/\s+/g, '');
-    // Validate inputted value by date format for both single and range datepicker
-    this.isInvalid = false;
-    if (this.range) {
-      /* Range datepicker validation */
-      const { startDate, endDate } = this.getStartEndDateString(newValue);
-      // Validate
-      if (!this.isValidDate(startDate) || !this.isValidDate(endDate)) {
-        this.isInvalid = true;
-      }
-    } else {
-      /* Single datepicker validation */
-      // Substring the inputted value from 0 to formatted date string count to get the selected date
-      const selectedDate = value.substring(0, this.formattedDateStringCount());
-      // Validate
-      if (!this.isValidDate(selectedDate)) {
-        this.isInvalid = true;
-      }
-    }
-  }
+  // @Watch('inputValue')
+  // watchInputValue(newValue: string): void {
+  //   // Remove all spaces on the inputted value
+  //   const value = newValue.replace(/\s+/g, '');
+  //   // Validate inputted value by date format for both single and range datepicker
+  //   this.isInvalid = false;
+  //   if (this.range) {
+  //     /* Range datepicker validation */
+  //     const { startDate, endDate } = this.getStartEndDateString(newValue);
+  //     // Validate
+  //     if (!this.isValidDate(startDate) || !this.isValidDate(endDate)) {
+  //       this.isInvalid = true;
+  //     }
+  //   } else {
+  //     /* Single datepicker validation */
+  //     // Substring the inputted value from 0 to formatted date string count to get the selected date
+  //     const selectedDate = value.substring(0, this.formattedDateStringCount());
+  //     // Validate
+  //     if (!this.isValidDate(selectedDate)) {
+  //       this.isInvalid = true;
+  //     }
+  //   }
+  // }
 
   @Watch('isOpen')
   watchCalendarToggle(open: boolean): void {
@@ -138,16 +138,18 @@ export class DatacomDatepicker {
     if (open) {
       setTimeout(() => {
         // Instantiate focused element name
-        let focusedElementName: string;
+        let focusedElementName: string = '';
         if (this.inputValue === '') {
           // Retrieve active element
           const activeDateElement = this.datepickerElement.querySelector(
             '.dc-datepicker-active',
           ) as HTMLButtonElement;
-          // Autofocus active element on the calendar if opened and no inputted value
-          activeDateElement.focus();
-          // Set active element name sa focused element
-          focusedElementName = activeDateElement.name;
+          if (activeDateElement instanceof HTMLButtonElement) {
+            // Autofocus active element on the calendar if opened and no inputted value
+            activeDateElement.focus();
+            // Set active element name sa focused element
+            focusedElementName = activeDateElement.name;
+          }
         } else {
           /* Range datepicker */
           if (this.range) {
@@ -155,35 +157,38 @@ export class DatacomDatepicker {
             const startDateElement = this.datepickerElement.querySelector(
               '.dc-datepicker-start-date',
             ) as HTMLButtonElement;
-            // Autofocus start date element on the calendar if opened and with inputted value
-            startDateElement.focus();
-            // Set start element name sa focused element
-            focusedElementName = startDateElement.name;
+            if (startDateElement instanceof HTMLButtonElement) {
+              // Autofocus start date element on the calendar if opened and with inputted value
+              startDateElement.focus();
+              // Set start element name sa focused element
+              focusedElementName = startDateElement.name;
+            }
           } else {
             /* Single datepicker */
             // Retrieve selected date element
             const selectedDateElement = this.datepickerElement.querySelector(
               '.dc-datepicker-selected',
             ) as HTMLButtonElement;
-            // Autofocus selected date element on the calendar if opened and with inputted value
-            selectedDateElement.focus();
-            // Set selected element name sa focused element
-            focusedElementName = selectedDateElement.name;
+            if (selectedDateElement instanceof HTMLButtonElement) {
+              // Autofocus selected date element on the calendar if opened and with inputted value
+              selectedDateElement.focus();
+              // Set selected element name sa focused element
+              focusedElementName = selectedDateElement.name;
+            }
           }
         }
-        // Parse focused element name to date and set to focused date variable
-        this.focusedDate = parse(
-          focusedElementName,
-          this.dateFormat,
-          new Date(),
-        );
+        if (focusedElementName !== '') {
+          // Parse focused element name to date and set to focused date variable
+          this.focusedDate = parse(
+            focusedElementName,
+            this.dateFormat,
+            new Date(),
+          );
+        }
       }, 100);
     } else {
       // Update base date state on calendar close
-      if (this.inputValue === '') {
-        // Set start of day of the current date if no inputted value
-        this.date = startOfDay(new Date());
-      } else {
+      if (isValid(this.selectedDate) || isValid(this.startDate)) {
         /* Range datepicker */
         if (this.range) {
           // Set start of day of the chosen start date
@@ -193,6 +198,9 @@ export class DatacomDatepicker {
           // Set start of day of the selected date
           this.date = startOfDay(this.selectedDate);
         }
+      } else {
+        // Set start of day of the current date if no inputted value
+        this.date = startOfDay(new Date());
       }
       // Re-initialize calendar details
       this.setCalendarDetails();
@@ -201,8 +209,10 @@ export class DatacomDatepicker {
         const calendarShowElement = this.datepickerElement.querySelector(
           '.dc-datepicker-calendar-show',
         ) as HTMLButtonElement;
-        // Autofocus calendar show button on calendar close
-        calendarShowElement.focus();
+        if (calendarShowElement instanceof HTMLButtonElement) {
+          // Autofocus calendar show button on calendar close
+          calendarShowElement.focus();
+        }
       }, 100);
     }
   }
@@ -307,11 +317,19 @@ export class DatacomDatepicker {
           '.dc-datepicker-tab-loop-end',
         ) as HTMLDivElement;
         // Set the focus to the first element if the active element is equal to tab loop start
-        if (tabLoopStart === activeElement) {
+        if (
+          tabLoopStart instanceof HTMLDivElement &&
+          lastElement instanceof HTMLButtonElement &&
+          tabLoopStart === activeElement
+        ) {
           lastElement.focus();
         }
         // Set the focus to the last element if the active element is equal to tab loop start
-        if (tabLoopEnd === activeElement) {
+        if (
+          tabLoopEnd instanceof HTMLDivElement &&
+          firstElement instanceof HTMLButtonElement &&
+          tabLoopEnd === activeElement
+        ) {
           firstElement.focus();
         }
 
@@ -349,10 +367,12 @@ export class DatacomDatepicker {
       let dateElement = this.datepickerElement.querySelector(
         `button[name="${focusedDateElementName}"]`,
       ) as HTMLButtonElement;
-      // Update tabIndex attribute of the focused date element to exclude in the accessibility tabbing
-      dateElement.tabIndex = -1;
-      // Remove focus on focused date element
-      dateElement.blur();
+      if (dateElement instanceof HTMLButtonElement) {
+        // Update tabIndex attribute of the focused date element to exclude in the accessibility tabbing
+        dateElement.tabIndex = -1;
+        // Remove focus on focused date element
+        dateElement.blur();
+      }
       switch (direction) {
         case 'up':
           // Update the focused date 1 week backward
@@ -399,10 +419,12 @@ export class DatacomDatepicker {
         dateElement = this.datepickerElement.querySelector(
           `button[name="${focusedDateElementName}"]`,
         ) as HTMLButtonElement;
-        // Update tabIndex attribute of the focused date element to include in the accessibility tabbing
-        dateElement.tabIndex = 0;
-        // Autofocus the new focused date element
-        dateElement.focus();
+        if (dateElement instanceof HTMLButtonElement) {
+          // Update tabIndex attribute of the focused date element to include in the accessibility tabbing
+          dateElement.tabIndex = 0;
+          // Autofocus the new focused date element
+          dateElement.focus();
+        }
       }, 100);
     }
     this.focusedDate = focusedDate;
