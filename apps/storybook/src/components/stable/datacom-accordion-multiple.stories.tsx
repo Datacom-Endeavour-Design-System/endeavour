@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStoryFn } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import {
   DatacomAccordionGroup,
   DatacomAccordion,
@@ -10,7 +10,7 @@ export default {
   component: DatacomAccordionGroup,
   argTypes: {
     allowMultiExpand: {
-      name: 'Allow Multi Expand',
+      name: 'Allow multi expand',
       description:
         'If true, allows multiple sections to be open simultaneously.',
       type: { name: 'boolean' },
@@ -18,9 +18,9 @@ export default {
   },
 };
 
-const MultipleSectionsTemplate: ComponentStoryFn<
-  typeof DatacomAccordionGroup
-> = (args) => (
+const MultipleSectionsTemplate: StoryFn<typeof DatacomAccordionGroup> = (
+  args,
+) => (
   <DatacomAccordionGroup allow-multi-expand={args.allowMultiExpand}>
     <DatacomAccordion label="Section 1" expanded>
       <p>

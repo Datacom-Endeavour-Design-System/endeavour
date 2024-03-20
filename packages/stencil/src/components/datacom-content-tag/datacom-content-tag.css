@@ -2,8 +2,6 @@
   display: inline-block;
 
   --highlight-hover-color: var(--dc-primary-accent-colour);
-
-  /* TODO: var color */
   --promo-hover-color: var(--dc-tag-hover-color);
   --tag-border-width: 1px;
   --tag-color: var(--dc-primary-text-color);
@@ -39,7 +37,6 @@ a.dc-content-tag:hover {
 
 /* Color setting for other variants */
 .event {
-  /* TODO: var color */
   --tag-color: var(--dc-primary-colour);
 }
 

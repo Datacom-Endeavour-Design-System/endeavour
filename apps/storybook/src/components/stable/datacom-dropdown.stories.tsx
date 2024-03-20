@@ -13,7 +13,10 @@ const meta: Meta<typeof DatacomDropdown> = {
     variant: {
       name: 'Variant',
       description: 'Dropdown variant. Defaults to standard if not set.',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: { standard: 'Standard', multi: 'Multi', combobox: 'Combobox' },
+      },
       options: ['standard', 'multi', 'combobox'],
       type: { name: 'string', required: true },
     },

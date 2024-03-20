@@ -19,7 +19,7 @@ export const Loader: StoryObj<LoaderProps> = {
       name: 'Size',
       description: 'Loader size. Default to small if not set',
       options: ['small', 'large'],
-      control: 'select',
+      control: { type: 'select', labels: { small: 'Small', large: 'Large' } },
       type: { name: 'string' },
     },
   },
@@ -34,7 +34,10 @@ export const InlineLoader: StoryObj<LoaderProps & { label: string }> = {
       name: 'Loading status',
       description: 'Loading status is default if it is not set',
       options: ['default', 'error', 'success'],
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: { default: 'Default', error: 'Error', success: 'Success' },
+      },
       type: { name: 'string' },
     },
     label: {

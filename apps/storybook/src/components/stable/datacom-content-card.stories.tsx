@@ -50,7 +50,21 @@ export default {
     icon: {
       name: 'Icon',
       description: 'Display action icon from a set of pre-defined images',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          add: 'Add',
+          'add-to-cart': 'Add-to-cart',
+          bookmark: 'Bookmark',
+          calendar: 'Calendar',
+          download: 'Download',
+          'external-link': 'External-link',
+          forward: 'Forward',
+          information: 'Information',
+          remove: 'Remove',
+          setting: 'Settings',
+        },
+      },
       options: [
         '',
         'add',

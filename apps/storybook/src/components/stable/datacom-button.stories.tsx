@@ -14,7 +14,14 @@ const meta: Meta<typeof DatacomButton> = {
     variant: {
       name: 'Variant',
       description: 'Main button variant. Defaults to primary if not set.',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          primary: 'Primary',
+          secondary: 'Secondary',
+          tertiary: 'Tertiary',
+        },
+      },
       defaultValue: 'primary',
       options: ['primary', 'secondary', 'tertiary'],
       type: { name: 'string' },
@@ -23,21 +30,59 @@ const meta: Meta<typeof DatacomButton> = {
       name: 'Size',
       description:
         'Button size within variant. Defaults to standard if not set',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          large: 'Large',
+          small: 'Small',
+        },
+      },
       defaultValue: 'large',
       options: ['large', 'small'],
     },
     iconPosition: {
       name: 'Icon position',
       description: 'Image or icon position. Defaults to left if not set',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          left: 'Left',
+          right: 'Right',
+        },
+      },
       defaultValue: 'left',
       options: ['left', 'right'],
     },
     icon: {
       name: 'Icon',
       description: 'Display image icon from a set of pre-defined images',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          add: 'Add',
+          'add-to-cart': 'Add-to-cart',
+          back: 'Back',
+          'back-to-top': 'Back-to-top',
+          bookmark: 'Bookmark',
+          calendar: 'Calendar',
+          copy: 'Copy',
+          down: 'Down',
+          download: 'Download',
+          'external-link': 'External-link',
+          filter: 'Filter',
+          forward: 'Forward',
+          globe: 'Globe',
+          information: 'Information',
+          menu: 'Menu',
+          refresh: 'Refresh',
+          remove: 'Remove',
+          search: 'Search',
+          settings: 'Settings',
+          theme: 'Theme',
+          up: 'Up',
+          upload: 'Upload',
+        },
+      },
       options: [
         '',
         'add',
