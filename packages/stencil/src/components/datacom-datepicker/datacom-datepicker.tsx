@@ -29,6 +29,7 @@ import {
 })
 export class DatacomDatepicker {
   private datepickerElement: HTMLDivElement;
+  private formElement: HTMLFormElement;
   private currentDate = new Date();
   /**
    * Variable to track the focused date. Used for accessibility tabbing of calendar days.
@@ -74,6 +75,10 @@ export class DatacomDatepicker {
    * Optional property to handle the error message.
    */
   @Prop() message?: string;
+  /**
+   * Optional property to automatically validate datepicker input value on form submit
+   */
+  @Prop() autoValidate? = true;
 
   /**
    * State that handle the inputted value. Default to empty string.
@@ -107,30 +112,17 @@ export class DatacomDatepicker {
    * State that handle the date of the hovered calendar day.
    */
   @State() mouseoverDate: Date;
+  /**
+   * State that handle the datepicker status after form submission
+   */
+  @State() isSubmitted = false;
 
-  // @Watch('inputValue')
-  // watchInputValue(newValue: string): void {
-  //   // Remove all spaces on the inputted value
-  //   const value = newValue.replace(/\s+/g, '');
-  //   // Validate inputted value by date format for both single and range datepicker
-  //   this.isInvalid = false;
-  //   if (this.range) {
-  //     /* Range datepicker validation */
-  //     const { startDate, endDate } = this.getStartEndDateString(newValue);
-  //     // Validate
-  //     if (!this.isValidDate(startDate) || !this.isValidDate(endDate)) {
-  //       this.isInvalid = true;
-  //     }
-  //   } else {
-  //     /* Single datepicker validation */
-  //     // Substring the inputted value from 0 to formatted date string count to get the selected date
-  //     const selectedDate = value.substring(0, this.formattedDateStringCount());
-  //     // Validate
-  //     if (!this.isValidDate(selectedDate)) {
-  //       this.isInvalid = true;
-  //     }
-  //   }
-  // }
+  @Watch('inputValue')
+  watchInputValue(newValue: string): void {
+    if (this.isSubmitted) {
+      this.validateInputValue(newValue);
+    }
+  }
 
   @Watch('isOpen')
   watchCalendarToggle(open: boolean): void {
@@ -269,6 +261,57 @@ export class DatacomDatepicker {
     this.setInputValue();
   }
 
+  componentDidLoad() {
+    // Add submit event listener to the nearest form
+    this.addNearestFormSubmitEvent();
+  }
+
+  disconnectedCallback() {
+    // When removed from the DOM, remove submit event listener
+    if (this.formElement !== undefined && this.formElement !== null) {
+      this.formElement.removeEventListener('submit', () =>
+        this.validateInputValue(this.inputValue),
+      );
+    }
+  }
+
+  /**
+   * Validate date input value
+   *
+   * @param inputValue
+   */
+  private validateInputValue = (inputValue: string): void => {
+    this.isInvalid = false;
+    if (this.required && inputValue === '') {
+      this.isInvalid = true;
+    } else if (inputValue !== '') {
+      // Remove all spaces on the inputted value
+      const value = inputValue.replace(/\s+/g, '');
+      // Validate inputted value by date format for both single and range datepicker
+      this.isInvalid = false;
+      if (this.range) {
+        /* Range datepicker validation */
+        const { startDate, endDate } = this.getStartEndDateString(value);
+        // Validate
+        if (!this.isValidDate(startDate) || !this.isValidDate(endDate)) {
+          this.isInvalid = true;
+        }
+      } else {
+        /* Single datepicker validation */
+        // Substring the inputted value from 0 to formatted date string count to get the selected date
+        const selectedDate = value.substring(
+          0,
+          this.formattedDateStringCount(),
+        );
+        // Validate
+        if (!this.isValidDate(selectedDate)) {
+          this.isInvalid = true;
+        }
+      }
+    }
+    this.isSubmitted = true;
+  };
+
   /**
    * Initialize the calendar details
    */
@@ -286,6 +329,48 @@ export class DatacomDatepicker {
     // Retrieve the total fill in days count of next month
     this.daysOfNextMonthCount =
       calendar.daysInCalendar - calendar.getDaysOfNextMonthCount();
+  };
+
+  /**
+   * Update input value state with the inputted value
+   *
+   * @param value
+   */
+  private setInputValue = (value = ''): void => {
+    if (this.range && isValid(this.startDate) && isValid(this.endDate)) {
+      this.inputValue = `${format(this.startDate, this.dateFormat)} - ${format(
+        this.endDate,
+        this.dateFormat,
+      )}`;
+      this.date = startOfDay(this.startDate);
+    } else if (
+      this.range &&
+      isValid(this.startDate) &&
+      !isValid(this.endDate)
+    ) {
+      this.inputValue = format(this.startDate, this.dateFormat);
+      this.date = startOfDay(this.startDate);
+    } else if (isValid(this.selectedDate)) {
+      this.inputValue = format(this.selectedDate, this.dateFormat);
+      this.date = startOfDay(this.selectedDate);
+    } else {
+      this.inputValue = value;
+    }
+  };
+
+  /**
+   * Add submit event listeners to the nearest form
+   */
+  private addNearestFormSubmitEvent = (): void => {
+    if (this.autoValidate) {
+      this.formElement = this.datepickerElement.closest('form');
+      if (this.formElement !== undefined && this.formElement !== null) {
+        this.formElement.noValidate = true;
+        this.formElement.addEventListener('submit', () =>
+          this.validateInputValue(this.inputValue),
+        );
+      }
+    }
   };
 
   /**
@@ -451,9 +536,11 @@ export class DatacomDatepicker {
   /**
    * Handle day selection and hide calendar after selection
    *
+   * @param event
    * @param day
    */
-  private daySelectHandler = (day: number): void => {
+  private daySelectHandler = (event: Event, day: number): void => {
+    event.preventDefault();
     const date = setDate(this.date, day);
     /* Range datepicker */
     if (this.range) {
@@ -479,7 +566,8 @@ export class DatacomDatepicker {
   /**
    * Hide/show calendar
    */
-  private toggleCalendar = (): void => {
+  private toggleCalendar = (event?: Event): void => {
+    event && event.preventDefault();
     this.isOpen = !this.isOpen;
   };
 
@@ -613,36 +701,10 @@ export class DatacomDatepicker {
   };
 
   /**
-   * Update input value state with the inputted value
-   *
-   * @param value
-   */
-  private setInputValue = (value = ''): void => {
-    if (this.range && isValid(this.startDate) && isValid(this.endDate)) {
-      this.inputValue = `${format(this.startDate, this.dateFormat)} - ${format(
-        this.endDate,
-        this.dateFormat,
-      )}`;
-      this.date = startOfDay(this.startDate);
-    } else if (
-      this.range &&
-      isValid(this.startDate) &&
-      !isValid(this.endDate)
-    ) {
-      this.inputValue = format(this.startDate, this.dateFormat);
-      this.date = startOfDay(this.startDate);
-    } else if (isValid(this.selectedDate)) {
-      this.inputValue = format(this.selectedDate, this.dateFormat);
-      this.date = startOfDay(this.selectedDate);
-    } else {
-      this.inputValue = value;
-    }
-  };
-
-  /**
    * Handle calendar update by switching to previous month and re-initialize calendar details
    */
-  private switchToPreviousMonth = (): void => {
+  private switchToPreviousMonth = (event?: Event): void => {
+    event && event.preventDefault();
     this.date = subMonths(this.date, 1);
     this.setCalendarDetails();
   };
@@ -650,7 +712,8 @@ export class DatacomDatepicker {
   /**
    * Handle calendar update by switching to next month and re-initialize calendar details
    */
-  private switchToNextMonth = (): void => {
+  private switchToNextMonth = (event?: Event): void => {
+    event && event.preventDefault();
     this.date = addMonths(this.date, 1);
     this.setCalendarDetails();
   };
@@ -916,7 +979,7 @@ export class DatacomDatepicker {
                           class={this.getDayClasses(day, index)}
                           name={this.getDayName(day)}
                           onMouseOver={this.dayMouseoverHandler}
-                          onClick={() => this.daySelectHandler(day)}>
+                          onClick={(e) => this.daySelectHandler(e, day)}>
                           {day}
                         </button>
                       );
