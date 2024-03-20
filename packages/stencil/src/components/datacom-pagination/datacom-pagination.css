@@ -88,7 +88,12 @@
 .dc-icon-next path {
   fill: var(--dc-primary-text-color);
 }
-
+.dc-first-btn:focus,
+.dc-previous-btn:focus,
+.dc-next-btn:focus,
+.dc-last-btn:focus {
+  outline: 3px solid var(--dc-primary-colour);
+}
 .dc-first-btn:disabled .dc-icon-first path,
 .dc-first-btn:disabled .dc-icon-first,
 .dc-previous-btn:disabled .dc-icon-previous path,
