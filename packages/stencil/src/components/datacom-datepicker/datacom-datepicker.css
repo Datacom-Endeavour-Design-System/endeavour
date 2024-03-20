@@ -1,4 +1,6 @@
 :host {
+    display: block;
+    outline: none;
     font-family: var(--dc-font-family);
 }
 
@@ -258,10 +260,10 @@
     border-color: var(--dc-token-disabled-02);
 }
 
-.dc-datepicker-disabled .dc-datepicker-calendar-icon {
+.dc-datepicker-disabled .dc-datepicker-calendar-show-icon {
     cursor: default;
 }
 
-.dc-datepicker-disabled .dc-datepicker-calendar-icon path {
+.dc-datepicker-disabled .dc-datepicker-calendar-show-icon path {
     fill: var(--dc-token-disabled-01);
 }

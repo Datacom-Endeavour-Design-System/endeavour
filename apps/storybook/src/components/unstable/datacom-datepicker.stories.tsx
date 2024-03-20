@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { StoryObj } from '@storybook/react';
-import { DatacomDatepicker } from '@datacom/endeavour-react';
+import { DatacomDatepicker, DatacomButton } from '@datacom/endeavour-react';
+import styled from '@emotion/styled';
 
 const currentDate = new Date();
 export default {
@@ -19,7 +20,8 @@ export default {
     },
     dateFormat: {
       name: 'Date format',
-      description: 'Date format. Default to "dd/MM/yyyy"',
+      description:
+        'Acceptable date format. Default to "dd/MM/yyyy". Reference: https://date-fns.org/v3.6.0/docs/format',
       type: { name: 'string' },
     },
     required: {
@@ -35,7 +37,7 @@ export default {
     message: {
       name: 'Error message',
       description:
-        'Error if validation fails or explicitly set with "valid" property',
+        'Error message if validation fails. Validate required and date format',
       type: { name: 'string' },
     },
   },
@@ -78,6 +80,64 @@ export const DateRange: StoryObj<typeof DatacomDatepicker> = {
           endDate={currentDate}
         />
       </div>
+    );
+  },
+};
+
+export const FormSubmission: StoryObj<typeof DatacomDatepicker> = {
+  render: () => {
+    const form = useRef<HTMLFormElement>();
+    const [submitted, setSubmitted] = useState(false);
+
+    const Panel = styled.div`
+      width: 272px;
+      margin-bottom: 30px;
+      datacom-datepicker {
+        margin-bottom: 12px;
+      }
+    `;
+
+    return (
+      <form
+        method="post"
+        ref={form}
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (form.current.checkValidity()) {
+            setSubmitted(true);
+          } else {
+            setSubmitted(false);
+          }
+        }}>
+        <Panel>
+          <DatacomDatepicker
+            label="Select a date"
+            placeholder="DD/MM/YYYY"
+            message="Please enter a valid date"
+            dateFormat="dd/MM/yyyy"
+            required
+          />
+          <DatacomDatepicker
+            label="Select dates"
+            placeholder="DD/MM/YYYY - DD/MM/YYYY"
+            message="Please enter a valid date"
+            dateFormat="dd/MM/yyyy"
+            range
+            required
+          />
+          {submitted && (
+            <p style={{ color: 'var(--dc-primary-text-color)' }}>
+              Form would have been submitted but was prevented
+            </p>
+          )}
+        </Panel>
+
+        <div>
+          <DatacomButton variant="primary" type="submit">
+            Submit
+          </DatacomButton>
+        </div>
+      </form>
     );
   },
 };
