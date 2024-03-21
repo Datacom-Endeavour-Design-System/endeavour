@@ -65,6 +65,17 @@ export class DatacomPagination {
     this.pageChanged.emit(this.currentPage);
   };
 
+  handleInputBlur = (event: Event): void => {
+    const inputNumber = (event.target as HTMLInputElement).value;
+    const newPage = parseInt(inputNumber);
+
+    if (newPage > this.totalPages) {
+      console.log(this.totalPages);
+      this.totalPages;
+    }
+    console.log('jjj');
+  };
+
   render() {
     const start = this.currentPage;
     const isStart = start === 1;
@@ -93,7 +104,8 @@ export class DatacomPagination {
               type="text"
               class="dc-pagination-current"
               value={this.currentPage}
-              onChange={this.onPageChangeHandler}></input>
+              onChange={this.onPageChangeHandler}
+              onBlur={this.handleInputBlur}></input>
             of
             <span class="dc-total-page">{this.totalPages}</span>
           </div>
