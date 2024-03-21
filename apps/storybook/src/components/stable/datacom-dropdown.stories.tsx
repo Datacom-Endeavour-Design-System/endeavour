@@ -15,7 +15,11 @@ const meta: Meta<typeof DatacomDropdown> = {
       description: 'Dropdown variant. Defaults to standard if not set.',
       control: {
         type: 'select',
-        labels: { standard: 'Standard', multi: 'Multi', combobox: 'Combobox' },
+        labels: {
+          standard: 'Default',
+          multi: 'Multi-select',
+          combobox: 'Combobox',
+        },
       },
       options: ['standard', 'multi', 'combobox'],
       type: { name: 'string', required: true },
@@ -66,15 +70,15 @@ const StandardTemplate: StoryFn<DatacomDropdownProps> = (args) => (
   </div>
 );
 
-export const Standard = StandardTemplate.bind({});
-Standard.args = {
+export const Default = StandardTemplate.bind({});
+Default.args = {
   label: 'Label',
   message: 'Please select an option',
   placeholder: 'Placeholder',
   variant: 'standard',
 };
 
-export const Multi: StoryObj<typeof DatacomDropdown> = {
+export const MultiSelect: StoryObj<typeof DatacomDropdown> = {
   args: {
     variant: 'multi',
     label: 'Label',

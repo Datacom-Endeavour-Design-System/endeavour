@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn } from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import { DatacomToggle } from '@datacom/endeavour-react';
 
 export default {
@@ -30,7 +30,7 @@ export default {
       description: "Toggle size variant. Defaults to 'standard' if not set.",
       control: {
         type: 'select',
-        labels: { standard: ' Standard', small: 'Small' },
+        labels: { standard: 'Large', small: 'Small' },
       },
       defaultValue: 'standard',
       options: ['standard', 'small'],
@@ -47,28 +47,15 @@ export default {
       type: { name: 'boolean' },
     },
   },
+  args: {
+    label: 'Label',
+    labelPosition: 'right',
+    variant: 'standard',
+    toggled: false,
+    disabled: false,
+  },
 };
 
-const Template: StoryFn<typeof DatacomToggle> = (args) => {
-  const { disabled, label, labelPosition, name, toggled, variant } = args;
-
-  return (
-    <DatacomToggle
-      name={name}
-      label={label}
-      labelPosition={labelPosition}
-      disabled={disabled}
-      toggled={toggled}
-      variant={variant}
-    />
-  );
-};
-
-export const Toggle = Template.bind({});
-Toggle.args = {
-  label: 'Label',
-  labelPosition: 'right',
-  variant: 'standard',
-  toggled: false,
-  disabled: false,
+export const Default: StoryObj<typeof DatacomToggle> = (args) => {
+  return <DatacomToggle {...args} />;
 };

@@ -47,4 +47,4 @@ const Template: StoryFn<ContentTagProps & { label: string }> = (args) => {
   return <DatacomContentTag {...args}>{label}</DatacomContentTag>;
 };
 
-export const ContentTag = Template.bind({});
+export const Default = Template.bind({});

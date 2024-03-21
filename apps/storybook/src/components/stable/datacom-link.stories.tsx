@@ -121,14 +121,14 @@ const Template: StoryFn<LinkProps & { label: string }> = (args) => {
   return <DatacomLink {...args}>{label}</DatacomLink>;
 };
 
-export const Link = Template.bind({});
+export const Default = Template.bind({});
 
 export const LinkWithIcon = Template.bind({});
 LinkWithIcon.args = {
   icon: 'globe',
 };
 
-export const stackedLinks = {
+export const StackedLinks = {
   argTypes: {
     label: {
       name: 'Label',

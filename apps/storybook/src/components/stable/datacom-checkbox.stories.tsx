@@ -24,7 +24,7 @@ const meta: Meta<typeof DatacomCheckbox> = {
       control: {
         type: 'select',
         labels: {
-          standard: 'Standard',
+          standard: 'Large',
           small: 'Small',
         },
       },

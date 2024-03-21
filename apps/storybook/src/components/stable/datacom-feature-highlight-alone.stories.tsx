@@ -26,7 +26,7 @@ export default {
     featureTitle: {
       name: 'Title',
       description: 'Text of title displayed.',
-      type: { name: 'string', required: 'true' },
+      type: { name: 'string' },
     },
     description: {
       name: 'Description',
@@ -62,9 +62,9 @@ export default {
 let key = 0;
 let previousDesc = '';
 
-const Template: StoryFn<FeatureHighlightProps & { description: string }> = (
-  args,
-) => {
+export const Default: StoryFn<
+  FeatureHighlightProps & { description: string }
+> = (args) => {
   const { description } = args;
   if (description !== previousDesc) {
     previousDesc = description;
@@ -78,6 +78,3 @@ const Template: StoryFn<FeatureHighlightProps & { description: string }> = (
     </div>
   );
 };
-
-export const FeatureHighlight = Template.bind({});
-FeatureHighlight.args = {};

@@ -25,7 +25,7 @@ const meta = {
       description: 'Radio size within variant. Defaults to standard if not set',
       control: {
         type: 'select',
-        labels: { standard: 'Standard', small: 'Small' },
+        labels: { standard: 'Large', small: 'Small' },
       },
       defaultValue: 'standard',
       options: ['standard', 'small'],
@@ -123,7 +123,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Radio: Story = {
+export const Default: Story = {
   args: {
     label: ' Radio item',
     size: 'standard',

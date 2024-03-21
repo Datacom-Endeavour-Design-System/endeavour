@@ -22,7 +22,9 @@ export default {
   },
 };
 
-const GroupStoriesTemplate: StoryFn<FeatureHighlightProps> = (args) => (
+export const FeatureHighlightGrouping: StoryFn<FeatureHighlightProps> = (
+  args,
+) => (
   <div style={{ display: 'flex', justifyContent: 'center', height: 600 }}>
     <div style={{ maxWidth: 1254, width: '100%' }}>
       <DatacomFeatureHighlightGroup {...args}>
@@ -80,6 +82,3 @@ const GroupStoriesTemplate: StoryFn<FeatureHighlightProps> = (args) => (
     </div>
   </div>
 );
-
-export const FeatureHighlightGroup = GroupStoriesTemplate.bind({});
-FeatureHighlightGroup.args = {};
