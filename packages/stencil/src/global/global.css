@@ -45,6 +45,7 @@
   --dc-primary-status-color: var(--dc-token-support-extended-04);
   --dc-secondary-status-color: var(--dc-token-support-extended-02);
   --dc-disabled-color-01: var(--dc-token-disabled-01);
+  --dc-primary-link-visited-color: var(--dc-token-link-visited-white-theme);
 
   --dc-input-label-background: var(--dc-token-ui-01);
   --dc-input-label-color: var(--dc-token-text-01);
@@ -151,6 +152,7 @@
   --dc-primary-status-color: var(--dc-token-support-04);
   --dc-secondary-status-color: var(--dc-token-support-02);
   --dc-disabled-color-01: var(--dc-token-disabled-03);
+  --dc-primary-link-visited-color: var(--dc-token-link-visited-dark-theme);
 
   --dc-input-label-background: var(--dc-token-ui-02);
   --dc-input-label-color: var(--dc-token-text-02);
