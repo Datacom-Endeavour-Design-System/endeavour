@@ -10,6 +10,11 @@ const meta: Meta<typeof DatacomDropdown> = {
   title: 'Dropdown',
   component: DatacomDropdown,
   argTypes: {
+    label: {
+      name: 'Label',
+      description: 'Dropdown label',
+      type: { name: 'string' },
+    },
     variant: {
       name: 'Variant',
       description: 'Dropdown variant. Defaults to standard if not set.',
@@ -23,11 +28,6 @@ const meta: Meta<typeof DatacomDropdown> = {
       },
       options: ['standard', 'multi', 'combobox'],
       type: { name: 'string', required: true },
-    },
-    label: {
-      name: 'Label',
-      description: 'Dropdown label',
-      type: { name: 'string' },
     },
     message: {
       name: 'Error message',
@@ -52,8 +52,8 @@ const meta: Meta<typeof DatacomDropdown> = {
     },
   },
   args: {
-    variant: 'standard',
     label: 'Label',
+    variant: 'standard',
   },
 };
 export default meta;
@@ -80,8 +80,8 @@ Default.args = {
 
 export const MultiSelect: StoryObj<typeof DatacomDropdown> = {
   args: {
-    variant: 'multi',
     label: 'Label',
+    variant: 'multi',
     message: 'Please select an option',
     placeholder: 'Select item(s)',
   },
@@ -102,8 +102,8 @@ export const MultiSelect: StoryObj<typeof DatacomDropdown> = {
 
 export const Combobox: StoryObj<typeof DatacomDropdown> = {
   args: {
-    variant: 'combobox',
     label: 'Label',
+    variant: 'combobox',
     message: 'Please select an option',
     placeholder: 'Search...',
   },

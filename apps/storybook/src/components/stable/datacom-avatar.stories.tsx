@@ -7,18 +7,22 @@ const meta: Meta<typeof DatacomAvatar> = {
   argTypes: {
     firstName: {
       name: 'First name',
+      description: 'Specify first name',
       type: { name: 'string', required: true },
     },
     lastName: {
       name: 'Last name',
+      description: 'Specify last name',
       type: { name: 'string', required: true },
     },
     jobTitle: {
       name: 'Job title',
+      description: 'Specify job title',
       type: { name: 'string', required: true },
     },
     companyName: {
       name: 'Company name',
+      description: 'Specify company name',
       type: { name: 'string', required: true },
     },
     url: {

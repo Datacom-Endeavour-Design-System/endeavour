@@ -8,7 +8,7 @@ export default {
   title: 'Link',
   component: DatacomLink,
   argTypes: {
-    label: {
+    linkLabel: {
       name: 'Label',
       type: { name: 'string' },
     },
@@ -107,7 +107,7 @@ export default {
     },
   },
   args: {
-    label: 'Learn more',
+    linkLabel: 'Learn more',
     variant: 'standalone',
     iconPosition: 'left',
     icon: '',
@@ -116,21 +116,20 @@ export default {
   },
 };
 
-const Template: StoryFn<LinkProps & { label: string }> = (args) => {
-  const { label } = args;
-  return <DatacomLink {...args}>{label}</DatacomLink>;
+const Template: StoryFn<LinkProps> = (args) => {
+  return <DatacomLink {...args}></DatacomLink>;
 };
 
 export const Default = Template.bind({});
 
-export const LinkWithIcon = Template.bind({});
-LinkWithIcon.args = {
+export const WithIcon = Template.bind({});
+WithIcon.args = {
   icon: 'globe',
 };
 
 export const StackedLinks = {
   argTypes: {
-    label: {
+    linkLabel: {
       name: 'Label',
       type: { name: 'string' },
     },
