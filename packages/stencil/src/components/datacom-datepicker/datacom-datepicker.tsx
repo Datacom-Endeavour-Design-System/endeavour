@@ -29,6 +29,7 @@ import {
 })
 export class DatacomDatepicker {
   private datepickerElement: HTMLDivElement;
+  private datepickerInputElement: HTMLInputElement;
   private formElement: HTMLFormElement;
   private currentDate = new Date();
   /**
@@ -128,6 +129,7 @@ export class DatacomDatepicker {
   watchCalendarToggle(open: boolean): void {
     // Re-instantiate states and set element focus on calendar toggle
     if (open) {
+      this.mouseoverDate = undefined;
       setTimeout(() => {
         // Instantiate focused element name
         let focusedElementName: string = '';
@@ -337,24 +339,27 @@ export class DatacomDatepicker {
    * @param value
    */
   private setInputValue = (value = ''): void => {
+    let inputValue = value;
     if (this.range && isValid(this.startDate) && isValid(this.endDate)) {
-      this.inputValue = `${format(this.startDate, this.dateFormat)} - ${format(
+      this.date = startOfDay(this.startDate);
+      inputValue = `${format(this.startDate, this.dateFormat)} - ${format(
         this.endDate,
         this.dateFormat,
       )}`;
-      this.date = startOfDay(this.startDate);
     } else if (
       this.range &&
       isValid(this.startDate) &&
       !isValid(this.endDate)
     ) {
-      this.inputValue = format(this.startDate, this.dateFormat);
       this.date = startOfDay(this.startDate);
+      inputValue = `${format(this.startDate, this.dateFormat)} - `;
     } else if (isValid(this.selectedDate)) {
-      this.inputValue = format(this.selectedDate, this.dateFormat);
       this.date = startOfDay(this.selectedDate);
-    } else {
-      this.inputValue = value;
+      inputValue = format(this.selectedDate, this.dateFormat);
+    }
+    this.inputValue = inputValue;
+    if (this.datepickerInputElement instanceof HTMLInputElement) {
+      this.datepickerInputElement.value = inputValue;
     }
   };
 
@@ -918,6 +923,7 @@ export class DatacomDatepicker {
                 type="text"
                 id={this.inputId}
                 class="dc-datepicker-input"
+                ref={(el) => (this.datepickerInputElement = el)}
                 name={this.inputId}
                 required={this.required}
                 disabled={this.disabled}
