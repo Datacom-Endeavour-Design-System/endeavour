@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn } from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import {
   DatacomFeatureHighlight,
   DatacomFeatureHighlightGroup,
@@ -22,7 +22,7 @@ export default {
   },
 };
 
-export const FeatureHighlightGrouping: StoryFn<FeatureHighlightProps> = {
+export const FeatureHighlightGrouping: StoryObj<FeatureHighlightProps> = {
   render: (props) => {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', height: 600 }}>
