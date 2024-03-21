@@ -131,7 +131,6 @@ export const FormSubmission: StoryObj<typeof DatacomDatepicker> = {
             </p>
           )}
         </Panel>
-
         <div>
           <DatacomButton variant="primary" type="submit">
             Submit
