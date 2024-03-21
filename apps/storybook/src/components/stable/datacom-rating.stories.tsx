@@ -43,6 +43,8 @@ export default {
   },
 };
 
-export const Default: StoryObj<typeof DatacomRating> = (args) => (
-  <DatacomRating {...args}></DatacomRating>
-);
+export const Default: StoryObj<typeof DatacomRating> = {
+  render: (props) => {
+    return <DatacomRating {...props}></DatacomRating>;
+  },
+};

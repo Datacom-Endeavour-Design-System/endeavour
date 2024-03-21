@@ -18,15 +18,15 @@ export default {
   },
 };
 
-const Template: StoryObj<typeof DatacomBreadcrumb> = (args) => {
-  const { url } = args;
-  return (
-    <DatacomBreadcrumb url={url} separator>
-      Breadcrumb
-    </DatacomBreadcrumb>
-  );
+export const Default: StoryObj<typeof DatacomBreadcrumb> = {
+  render: (props) => {
+    return (
+      <DatacomBreadcrumb {...props} separator>
+        Breadcrumb
+      </DatacomBreadcrumb>
+    );
+  },
 };
-export const Default = Template.bind({});
 
 export const BreadcrumbGrouping = () => {
   return (

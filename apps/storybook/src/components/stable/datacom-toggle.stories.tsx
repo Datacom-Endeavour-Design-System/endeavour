@@ -56,6 +56,8 @@ export default {
   },
 };
 
-export const Default: StoryObj<typeof DatacomToggle> = (args) => {
-  return <DatacomToggle {...args} />;
+export const Default: StoryObj<typeof DatacomToggle> = {
+  render: (props) => {
+    return <DatacomToggle {...props} />;
+  },
 };
