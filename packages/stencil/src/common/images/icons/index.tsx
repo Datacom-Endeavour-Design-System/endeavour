@@ -16,6 +16,7 @@ export * from './down';
 export * from './delete';
 export * from './copy';
 export * from './calendar';
+export * from './calendar-alt';
 export * from './bookmark';
 export * from './back';
 export * from './back-to-top';

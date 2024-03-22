@@ -1,9 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { StoryObj } from '@storybook/react';
+import { StoryFn, StoryObj } from '@storybook/react';
 import { DatacomDatepicker, DatacomButton } from '@datacom/endeavour-react';
-import styled from '@emotion/styled';
 
-const currentDate = new Date();
 export default {
   title: 'Datepicker',
   component: DatacomDatepicker,
@@ -18,48 +16,53 @@ export default {
       description: 'Datepicker placeholder',
       type: { name: 'string' },
     },
+    message: {
+      name: 'Error message',
+      description:
+        'Error if validation fails or explicitly set with "valid" property',
+      type: { name: 'string' },
+    },
     dateFormat: {
       name: 'Date format',
       description:
         'Acceptable date format. Default to "dd/MM/yyyy". Reference: https://date-fns.org/v3.6.0/docs/format',
       type: { name: 'string' },
     },
-    required: {
-      name: 'Required',
-      description: 'Datepicker required',
-      type: { name: 'boolean' },
-    },
     disabled: {
       name: 'Disabled',
       description: 'Datepicker disabled',
       type: { name: 'boolean' },
     },
-    message: {
-      name: 'Error message',
-      description:
-        'Error message if validation fails. Validate required and date format',
-      type: { name: 'string' },
+    required: {
+      name: 'Required',
+      description: 'Datepicker required',
+      type: { name: 'boolean' },
+    },
+    isValid: {
+      name: 'Is valid',
+      description: 'Is the input valid (show error otherwise)',
+      type: { name: 'boolean' },
     },
   },
   args: {
     label: '',
     placeholder: '',
+    message: 'Error message',
     dateFormat: 'dd/MM/yyyy',
     disabled: false,
     required: false,
-    message: 'Error message',
   },
 };
 
 export const SingleDate: StoryObj<typeof DatacomDatepicker> = {
   args: {
-    label: 'Select a date',
+    label: 'Enter date',
     placeholder: 'DD/MM/YYYY',
   },
   render: (props) => {
     return (
       <div style={{ width: '272px' }}>
-        <DatacomDatepicker {...props} selectedDate={currentDate} />
+        <DatacomDatepicker {...props} />
       </div>
     );
   },
@@ -67,76 +70,76 @@ export const SingleDate: StoryObj<typeof DatacomDatepicker> = {
 
 export const DateRange: StoryObj<typeof DatacomDatepicker> = {
   args: {
-    label: 'Select dates',
-    placeholder: 'DD/MM/YYYY - DD/MM/YYYY',
+    label: 'Enter dates',
+    placeholder: 'Start - End',
   },
   render: (props) => {
     return (
-      <div style={{ width: '400px' }}>
-        <DatacomDatepicker
-          {...props}
-          range={true}
-          startDate={currentDate}
-          endDate={currentDate}
-        />
+      <div style={{ width: '272px' }}>
+        <DatacomDatepicker {...props} range={true} />
       </div>
     );
   },
 };
 
-export const FormSubmission: StoryObj<typeof DatacomDatepicker> = {
-  render: () => {
-    const form = useRef<HTMLFormElement>();
-    const [submitted, setSubmitted] = useState(false);
+export const FormSubmission: StoryFn<typeof DatacomDatepicker> = () => {
+  const form = useRef<HTMLFormElement>();
+  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [startDate, setStartDate] = useState<Date>();
+  const [endaDate, setEndDate] = useState<Date>();
+  const [submitted, setSubmitted] = useState(false);
 
-    const Panel = styled.div`
-      width: 272px;
-      margin-bottom: 30px;
-      datacom-datepicker {
-        margin-bottom: 12px;
-      }
-    `;
+  const handleOnChanged = (event: CustomEvent): void => {
+    if (event.detail instanceof Array) {
+      const [newStartDate, newEndDate] = event.detail as Date[];
+      setStartDate(newStartDate);
+      setEndDate(newEndDate);
+    }
+    if (event.detail instanceof Date) {
+      setSelectedDate(event.detail);
+    }
+  };
 
-    return (
-      <form
-        method="post"
-        ref={form}
-        onSubmit={(event) => {
-          event.preventDefault();
-          if (form.current.checkValidity()) {
-            setSubmitted(true);
-          } else {
-            setSubmitted(false);
-          }
-        }}>
-        <Panel>
-          <DatacomDatepicker
-            label="Select a date"
-            placeholder="DD/MM/YYYY"
-            message="Please enter a valid date"
-            dateFormat="dd/MM/yyyy"
-            required
-          />
-          <DatacomDatepicker
-            label="Select dates"
-            placeholder="DD/MM/YYYY - DD/MM/YYYY"
-            message="Please enter a valid date"
-            dateFormat="dd/MM/yyyy"
-            range
-            required
-          />
-          {submitted && (
-            <p style={{ color: 'var(--dc-primary-text-color)' }}>
-              Form would have been submitted but was prevented
-            </p>
-          )}
-        </Panel>
-        <div>
-          <DatacomButton variant="primary" type="submit">
-            Submit
-          </DatacomButton>
-        </div>
-      </form>
-    );
-  },
+  const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    if (form.current.checkValidity()) {
+      setSubmitted(true);
+    } else {
+      setSubmitted(false);
+    }
+  };
+
+  return (
+    <form method="post" ref={form} onSubmit={handleOnSubmit}>
+      <div style={{ width: '272px', marginBottom: '30px' }}>
+        <DatacomDatepicker
+          label="Enter date"
+          placeholder="DD/MM/YYYY"
+          message="Please enter a valid date"
+          required={true}
+          selectedDate={selectedDate}
+          onChanged={handleOnChanged}
+          style={{ marginBottom: '12px' }}
+        />
+        <DatacomDatepicker
+          label="Enter dates"
+          placeholder="Start - End"
+          message="Please enter a valid dates"
+          range={true}
+          required={true}
+          startDate={startDate}
+          endDate={endaDate}
+          onChanged={handleOnChanged}
+        />
+        {submitted && (
+          <p style={{ color: 'var(--dc-primary-text-color)' }}>
+            Form would have been submitted but was prevented
+          </p>
+        )}
+      </div>
+      <DatacomButton variant="primary" type="submit">
+        Submit
+      </DatacomButton>
+    </form>
+  );
 };

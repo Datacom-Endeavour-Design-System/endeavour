@@ -28,6 +28,7 @@
     "@eslint/eslintrc": "^2.1.2",
     "@nrwl/nx-cloud": "latest",
     "@stencil-community/eslint-plugin": "^0.5.0",
+    "@types/date-fns": "^2.6.0",
     "@types/eslint": "^8.44.3",
     "@types/eslint-config-prettier": "^6.11.1",
     "@types/node": "^18.11.7",
@@ -64,7 +65,7 @@
     "*.css": "stylelint"
   },
   "dependencies": {
-    "date-fns": "^3.6.0",
+    "date-fns": "^2.30.0",
     "esbuild": "^0.17.12"
   }
 }
