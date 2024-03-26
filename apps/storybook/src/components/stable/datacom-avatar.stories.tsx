@@ -6,11 +6,11 @@ const meta: Meta<typeof DatacomAvatar> = {
   component: DatacomAvatar,
   argTypes: {
     firstName: {
-      name: 'First Name',
+      name: 'First name',
       type: { name: 'string', required: true },
     },
     lastName: {
-      name: 'Last Name',
+      name: 'Last name',
       type: { name: 'string', required: true },
     },
     jobTitle: {
@@ -18,7 +18,7 @@ const meta: Meta<typeof DatacomAvatar> = {
       type: { name: 'string', required: true },
     },
     companyName: {
-      name: 'Company Name',
+      name: 'Company name',
       type: { name: 'string', required: true },
     },
     url: {

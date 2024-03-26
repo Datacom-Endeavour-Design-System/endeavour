@@ -213,7 +213,6 @@ export class DatacomProductCard {
               {this.stockStatus && this.renderStockStatusElement()}
               {this.productTitle && this.renderTitleElement()}
               {this.price >= 0 && this.renderPriceElement()}
-              {/* TODO make rating configurable */}
               <datacom-rating
                 slot="rating"
                 rating-value={this.ratingValue}

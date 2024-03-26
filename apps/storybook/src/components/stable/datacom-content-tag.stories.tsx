@@ -36,7 +36,7 @@ export default {
     },
   },
   args: {
-    label: 'label',
+    label: 'Label',
     url: 'https://datacom.com',
     variant: 'article',
   },

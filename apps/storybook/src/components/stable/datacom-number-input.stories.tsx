@@ -24,7 +24,7 @@ const meta: Meta<typeof DatacomNumberInput> = {
       type: { name: 'string', required: false },
     },
     message: {
-      name: 'Error Message',
+      name: 'Error message',
       description: 'Error if validation fails',
       type: { name: 'string', required: false },
     },
@@ -39,12 +39,12 @@ const meta: Meta<typeof DatacomNumberInput> = {
       type: { name: 'boolean' },
     },
     min: {
-      name: 'Min Number',
+      name: 'Min number',
       description: 'Minium Number',
       type: { name: 'number' },
     },
     max: {
-      name: 'Max Number',
+      name: 'Max number',
       description: 'Maximum Number',
       type: { name: 'number' },
     },
