@@ -1,4 +1,12 @@
-import { Component, h, Host, Element, Method, State } from '@stencil/core';
+import {
+  Component,
+  h,
+  Host,
+  Element,
+  Method,
+  State,
+  Listen,
+} from '@stencil/core';
 import { HTMLDatacomTabElement } from './datacom-tab';
 
 @Component({
@@ -7,8 +15,7 @@ import { HTMLDatacomTabElement } from './datacom-tab';
   shadow: true,
 })
 export class DatacomTabGroup {
-  @Element()
-  host: HTMLElement;
+  @Element() host: HTMLElement;
 
   /**
    * Currently selected tab
@@ -20,14 +27,26 @@ export class DatacomTabGroup {
    */
   @State() force = 0;
 
+  @State()
+  tabs: HTMLDatacomTabElement[] = [];
+
+  @Listen('forceReRenderTabGroup')
+  handleForceReRender() {
+    this.force++;
+  }
+
   /**
-   * When the component is loaded, select the first tab is none is selected.
+   * When the component is loaded, select the first tab if none is selected.
    *
    * @returns void
    */
   async connectedCallback(): Promise<void> {
-    const tabs = this.getTabs();
-    if (tabs.length === 0) {
+    this.getTabs();
+
+    /**
+     * Log a warning if there are no tab child elements included
+     */
+    if (this.tabs.length === 0) {
       console.warn('Tab group has no tabs');
       return;
     }
@@ -35,94 +54,13 @@ export class DatacomTabGroup {
     /**
      * If no tab is selected, then set the first as selected.
      */
-    const selected = await Promise.all(tabs.map(t => t.isSelected()));
-    if (!selected.includes(true)) {
+    const hasSelectedTab = this.tabs.some(
+      (t: HTMLDatacomTabElement) => t.selected,
+    );
+
+    if (!hasSelectedTab) {
       await this.select(0);
     }
-  }
-
-  /**
-   * Select a tab with focus (zero index based)
-   *
-   * @param index
-   *
-   * @returns void
-   */
-  @Method()
-  async select(index: number): Promise<void> {
-    const tabs = this.getTabs();
-
-    if (index > tabs.length - 1 || index < 0) {
-      console.warn(`Invalid tab index ${index}`);
-      return;
-    }
-
-    if (tabs[index].disabled) {
-      return;
-    }
-
-    for (let i = 0; i < tabs.length; i++) {
-      await tabs[i].setSelected(false);
-    }
-
-    /**
-     * Selecting the tab displays the content
-     */
-    await tabs[index].setSelected(true);
-
-    /**
-     * Force a re-render using a stateful property
-     */
-    this.selectedTab = index;
-  }
-
-  /**
-   * Return selected tab (zero index based)
-   *
-   * @returns number
-   */
-  @Method()
-  async selected(): Promise<number> {
-    return this.selectedTab;
-  }
-
-  /**
-   * Disable tab
-   *
-   * @returns void
-   */
-  @Method()
-  async disableTab(index: number): Promise<void> {
-    const tab = this.getTab(index);
-    if (tab == undefined) {
-      return;
-    }
-
-    tab.disabled = true;
-
-    /**
-     * Force render
-     */
-    this.force++;
-  }
-
-  /**
-   * Enable tab
-   *
-   * @returns void
-   */
-  @Method()
-  async enableTab(index: number): Promise<void> {
-    const tab = this.getTab(index);
-    if (tab == undefined) {
-      return;
-    }
-    tab.disabled = false;
-
-    /**
-     * Force render
-     */
-    this.force++;
   }
 
   /**
@@ -143,7 +81,38 @@ export class DatacomTabGroup {
     }
   }
 
-  private tabs: HTMLDatacomTabElement[] = [];
+  /**
+   * Select a tab with focus (zero index based)
+   *
+   * @param index
+   *
+   * @returns void
+   */
+  @Method()
+  async select(index: number): Promise<void> {
+    if (index > this.tabs.length - 1 || index < 0) {
+      console.warn(`Invalid tab index ${index}`);
+      return;
+    }
+
+    if (this.tabs[index].disabled) {
+      return;
+    }
+
+    for (let i = 0; i < this.tabs.length; i++) {
+      await this.tabs[i].setSelected(false);
+    }
+
+    /**
+     * Selecting the tab displays the content
+     */
+    await this.tabs[index].setSelected(true);
+
+    /**
+     * Force a re-render using a stateful property
+     */
+    this.selectedTab = index;
+  }
 
   /**
    * Get a list of tab children
@@ -155,24 +124,14 @@ export class DatacomTabGroup {
       return [];
     }
 
-    if (this.tabs?.length > 0) {
+    if (this.tabs.length > 0) {
       return this.tabs;
     }
 
     // Only get immediate children of tab group to permit nested tabs
-    this.host.querySelectorAll<HTMLDatacomTabElement>('datacom-tab').forEach(t => this.tabs.push(t));
-
-    return this.tabs;
-  }
-
-  private getTab(index: number): HTMLDatacomTabElement {
-    const tabs = this.getTabs();
-
-    if (index < 0 || index > this.tabs.length - 1) {
-      return undefined;
-    }
-
-    return tabs[index];
+    this.host
+      .querySelectorAll<HTMLDatacomTabElement>('datacom-tab')
+      .forEach((t) => this.tabs.push(t));
   }
 
   /**
@@ -206,25 +165,30 @@ export class DatacomTabGroup {
     const tabIndex = disabled == true ? -1 : 0;
     const classes = {
       'tab-label': true,
-      'selected': selected && !disabled,
-      'disabled': disabled,
+      selected: selected && !disabled,
+      disabled: disabled,
     };
 
     return (
-      <label key={index} class={classes} title={tab.title} tabIndex={tabIndex} onClick={() => this.onClick(index)} onKeyPress={e => this.onKeyPress(e, index)}>
+      <label
+        key={index}
+        class={classes}
+        title={tab.title}
+        tabIndex={tabIndex}
+        onClick={() => this.onClick(index)}
+        onKeyPress={(e) => this.onKeyPress(e, index)}>
         <span class="tab-text">{label}</span>
       </label>
     );
   }
 
   render() {
-    const tabs = this.getTabs();
-
     return (
       <Host>
         <div class="tab-group">
-          <div class="tab-bar">{tabs.map((t, ind) => this.header(t, ind))}</div>
-
+          <div class="tab-bar">
+            {this.tabs.map((t, ind) => this.header(t, ind))}
+          </div>
           <slot />
         </div>
       </Host>

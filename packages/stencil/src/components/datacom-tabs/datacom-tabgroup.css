@@ -1,9 +1,7 @@
-:host {
-  display: block;
-}
-
 :host * {
+  display: block;
   font-family: var(--dc-font-family);
+  color: var(--dc-primary-text-color);
 }
 
 .tab-label {
@@ -15,12 +13,12 @@
   min-width: 120px;
   box-sizing: border-box;
   height: 64px;
+  cursor: pointer;
 }
 
 .tab-text {
   font-size: 18px;
-  color: var(--dc-primary-text-color);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 24px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -34,7 +32,7 @@
 }
 
 .tab-bar {
-  border-bottom: 1px solid var(--dc-greyscale-05);
+  border-bottom: 1px solid var(--dc-token-border-default-01);
 }
 
 .tab-label:focus-visible {
@@ -47,10 +45,11 @@
 
 .tab-label.selected {
   border: none;
+  cursor: auto;
 }
 
 .tab-label.selected .tab-text {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .tab-label.selected::after {
@@ -86,6 +85,10 @@
   height: 4px;
   border-radius: 10px;
   background-color: var(--dc-primary-colour);
+}
+
+.tab-label.disabled {
+  cursor: not-allowed;
 }
 
 .tab-label.disabled .tab-text {
