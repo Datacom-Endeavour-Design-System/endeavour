@@ -50,6 +50,7 @@ export class DatacomDatepicker {
   @Prop() range?: boolean = false;
   @Prop() dateFormat?: string = 'dd/MM/yyyy';
   @Prop() message?: string;
+  @Prop({ attribute: 'valid' }) isValid?: boolean;
   @Prop() autoValidate? = true;
 
   @State() isEditing = false;
@@ -61,7 +62,10 @@ export class DatacomDatepicker {
 
   @Listen('click', { target: 'document' })
   async handleOnClick(event: MouseEvent): Promise<void> {
-    if (!this.host.contains(event.target as Node)) {
+    if (
+      !this.host.contains(event.target as Node) &&
+      typeof this.isValid !== 'boolean'
+    ) {
       if (this.isOpenCalendar) {
         await this.toggleCalendarHandler(event);
       }
@@ -151,9 +155,15 @@ export class DatacomDatepicker {
     }
   }
 
+  @Watch('isValid')
+  async watchIsValid(): Promise<void> {
+    await this.toggleCalendarHandler();
+  }
+
   private toggleCalendarHandler = async (
     event?: MouseEvent | KeyboardEvent | CustomEvent,
   ): Promise<void> => {
+    console.log('open');
     if (
       event instanceof MouseEvent ||
       event instanceof KeyboardEvent ||
@@ -284,7 +294,7 @@ export class DatacomDatepicker {
     const classes = {
       'dc-datepicker-container': true,
       'dc-datepicker-open-calendar': this.isOpenCalendar,
-      'dc-datepicker-error': this.isError,
+      'dc-datepicker-error': this.isError || this.isValid === false,
       'dc-datepicker-disabled': this.disabled,
     };
 
