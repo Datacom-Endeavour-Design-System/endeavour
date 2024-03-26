@@ -32,7 +32,7 @@ const meta: Meta<typeof DatacomPagination> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Standard: Story = {
+export const Default: Story = {
   args: {
     currentPage: 1,
     itemsPerPage: 10,
