@@ -3,7 +3,7 @@ import { StoryFn, StoryObj } from '@storybook/react';
 import { DatacomDatepicker, DatacomButton } from '@datacom/endeavour-react';
 
 export default {
-  title: 'Datepicker',
+  title: 'Date Picker',
   component: DatacomDatepicker,
   argTypes: {
     label: {
