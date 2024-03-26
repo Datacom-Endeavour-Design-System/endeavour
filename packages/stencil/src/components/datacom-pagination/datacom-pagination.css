@@ -64,6 +64,18 @@
   margin-right: 16px;
 }
 
+/* Remove default arrows/spinners of input field in Firefox  */
+input[type="number"] {
+  appearance: textfield;
+}
+
+/* Remove default arrows/spinners of input field in Chrome, Safari, Edge */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin-right: 0;
+}
+
 .dc-total-page {
   margin-left: 16px;
 }

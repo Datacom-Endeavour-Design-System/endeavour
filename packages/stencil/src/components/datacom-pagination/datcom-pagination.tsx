@@ -1,17 +1,28 @@
-import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  Event,
+  EventEmitter,
+  Listen,
+} from '@stencil/core';
 import { getSvg } from '../../common/images';
 
 @Component({
   tag: 'datacom-pagination',
   styleUrl: 'datacom-pagination.css',
-  shadow: true,
+  scoped: true,
 })
 export class DatacomPagination {
   @Prop({ mutable: true }) itemsPerPage?: number;
   @Prop({ mutable: true }) totalItems?: number;
-  @Prop() currentPage?: number;
-
-  @Event() pageChanged: EventEmitter<number>;
+  @Prop({ mutable: true }) currentPage?: number;
+  @Event({
+    composed: true,
+  })
+  private pageChanged: EventEmitter<number>;
+  // private inputElement: HTMLInputElement;
 
   /**
    * Handle boundary cases such as only allowing to navigate between the range.
@@ -21,6 +32,7 @@ export class DatacomPagination {
       return;
     }
     this.currentPage = pageNumber;
+    this.pageChanged.emit(this.currentPage);
   }
 
   /**
@@ -56,7 +68,6 @@ export class DatacomPagination {
   onPageChangeHandler = (event: Event): void => {
     const inputNumber = (event.target as HTMLInputElement).value;
     const newPage = parseInt(inputNumber);
-
     if (isNaN(newPage)) {
       this.goToPage(this.currentPage);
     } else {
@@ -64,16 +75,22 @@ export class DatacomPagination {
     }
     this.pageChanged.emit(this.currentPage);
   };
+  @Listen('input', { capture: true })
+  onInput(event: InputEvent): void {
+    const inputElement = event.target as HTMLInputElement;
+    const newValue =
+      inputElement.value !== '' ? +inputElement.value : undefined;
+    this.currentPage = newValue;
+    this.pageChanged.emit(this.currentPage);
+  }
 
   handleInputBlur = (event: Event): void => {
     const inputNumber = (event.target as HTMLInputElement).value;
-    const newPage = parseInt(inputNumber);
-
-    if (newPage > this.totalPages) {
-      console.log(this.totalPages);
-      this.totalPages;
+    let newEnteredHigher = parseInt(inputNumber);
+    if (newEnteredHigher > this.totalPages) {
+      newEnteredHigher = this.totalPages;
     }
-    console.log('jjj');
+    this.currentPage = newEnteredHigher;
   };
 
   render() {
@@ -101,7 +118,7 @@ export class DatacomPagination {
           </button>
           <div class="dc-pagination-content-wrapper">
             <input
-              type="text"
+              type="number"
               class="dc-pagination-current"
               value={this.currentPage}
               onChange={this.onPageChangeHandler}
