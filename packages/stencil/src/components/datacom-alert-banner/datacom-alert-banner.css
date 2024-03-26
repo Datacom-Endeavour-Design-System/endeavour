@@ -1,0 +1,151 @@
+:host {
+  --message-color: var(--dc-token-text-02);
+  --message-font-size: 14px;
+  --message-height: 18px;
+  --message-spacing: -0.2px;
+}
+
+.dc-alert-banner {
+  display: flex;
+  justify-content: end;
+  padding: 24px;
+  background-color: var(--alert-color);
+  color: var(--message-color);
+  font-family: var(--dc-font-family);
+  font-size: var(--message-font-size);
+  line-height: var(--message-height);
+  letter-spacing: var(--message-spacing);
+  position: relative;
+}
+
+.dc-alert-banner-content .dc-link-stacked.sc-datacom-link {
+  color: var(--message-color);
+  font-size: var(--message-font-size);
+  line-height: var(--message-height);
+  letter-spacing: var(--message-spacing);
+
+  &:hover {
+    color: var(--message-color);
+  }
+
+  &:hover::before {
+    background-color: var(--message-color);
+  }
+}
+
+.dc-alert-banner-admiral-blue,
+.dc-alert-banner-datapay-turquoise,
+.dc-alert-banner-datascape-indigo,
+.dc-alert-banner-gateway-gold,
+.dc-alert-banner-timpani-sapphire,
+.dc-alert-banner-connect-fuchsia {
+  --alert-color: var(--dc-token-ui-background-alternate-01);
+}
+
+.dc-alert-banner-candy-pink,
+.dc-alert-banner-empress-teal,
+.dc-alert-banner-sky-blue,
+.dc-alert-banner-tangerine-orange {
+  --alert-color: var(--dc-token-ui-background-alternate-02);
+}
+
+.dc-alert-banner-midnight-blue {
+  --alert-color: var(--dc-token-ui-background-alternate-03);
+}
+
+.dc-alert-banner-electric-blue {
+  --alert-color: var(--dc-token-ui-background-alternate-04);
+}
+
+.dc-alert-banner-datapay-turquoise,
+.dc-alert-banner-gateway-gold,
+.dc-alert-banner-candy-pink,
+.dc-alert-banner-empress-teal,
+.dc-alert-banner-sky-blue,
+.dc-alert-banner-tangerine-orange {
+  --message-color: var(--dc-token-text-01)
+}
+
+.dc-alert-banner-datapay-turquoise,
+.dc-alert-banner-gateway-gold,
+.dc-alert-banner-candy-pink,
+.dc-alert-banner-empress-teal,
+.dc-alert-banner-sky-blue,
+.dc-alert-banner-tangerine-orange {
+  .dc-alert-banner-content .dc-link-stacked.sc-datacom-link {
+    color: var(--message-color);
+    font-size: var(--message-font-size);
+    line-height: var(--message-height);
+    letter-spacing: var(--message-spacing);
+
+    &:hover {
+      color: var(--message-color);
+    }
+
+    &:hover::before {
+      background-color: var(--message-color);
+    }
+  }
+}
+
+.dc-alert-banner-content {
+  flex-grow: 1;
+  margin-right: 24px;
+  overflow: hidden;
+}
+
+.dc-alert-banner-btn {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.dc-close-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.dc-close-icon path {
+  fill: var(--dc-token-text-02);
+}
+
+.dc-alert-banner-candy-pink,
+.dc-alert-banner-datapay-turquoise,
+.dc-alert-banner-empress-teal,
+.dc-alert-banner-gateway-gold,
+.dc-alert-banner-sky-blue,
+.dc-alert-banner-tangerine-orange {
+  .dc-close-icon path {
+    fill: var(--dc-token-text-01);
+  }
+}
+
+@media (--breakpoint-desktop) {
+  .dc-alert-banner {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 24px 32px;
+  }
+
+  .dc-close-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (--breakpoint-large-desktop) {
+  .dc-alert-banner {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 24px 200px;
+  }
+
+  .dc-close-icon {
+    width: 24px;
+    height: 24px;
+  }
+}

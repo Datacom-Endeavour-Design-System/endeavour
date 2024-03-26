@@ -21,7 +21,13 @@ const meta: Meta<typeof DatacomCheckbox> = {
       name: 'Variant',
       description:
         'checkbox size within variant. Defaults to standard if not set',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          standard: 'Standard',
+          small: 'Small',
+        },
+      },
       defaultValue: 'standard',
       options: ['standard', 'small'],
       type: { name: 'string' },

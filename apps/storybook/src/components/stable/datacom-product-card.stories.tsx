@@ -33,7 +33,15 @@ export default {
     stockStatus: {
       name: 'Stock status',
       description: 'Status of product stock',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          'in-stock': 'In-stock',
+          'pre-order': 'Pre-order',
+          'back-order': 'Back-order',
+          'out-of-stock': 'Out-of-stock',
+        },
+      },
       options: ['in-stock', 'pre-order', 'back-order', 'out-of-stock'],
       type: { name: 'string' },
     },

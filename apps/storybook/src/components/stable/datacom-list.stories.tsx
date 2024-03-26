@@ -9,14 +9,28 @@ const meta = {
     variant: {
       name: 'Variant',
       description: 'List variant. Defaults ordered if not set.',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          ordered: 'Ordered',
+          unordered: 'Unordered',
+        },
+      },
       defaultValue: 'ordered',
       options: ['ordered', 'unordered'],
-      type: { name: 'string', required: true },
+      type: { name: 'string' },
     },
     type: {
-      name: 'Type',
-      control: 'select',
+      name: 'Numbering type',
+      control: {
+        type: 'select',
+        labels: {
+          numbers: 'Numbers',
+          lowercase: 'Lowercase',
+          uppercase: 'Uppercase',
+          roman: 'Roman',
+        },
+      },
       description: 'List type is default numbers if not set',
       options: ['numbers', 'lowercase', 'uppercase', 'roman'],
     },
@@ -52,6 +66,12 @@ export const UnorderedList: Story = {
 };
 
 export const OrderedListWithNestedItems: Story = {
+  argTypes: {
+    type: {
+      name: 'Numbering type',
+      table: { disable: true },
+    },
+  },
   render: () => {
     return (
       <div>
@@ -73,6 +93,12 @@ export const OrderedListWithNestedItems: Story = {
 };
 
 export const UnorderedListWithNestedItems: Story = {
+  argTypes: {
+    type: {
+      name: 'Numbering type',
+      table: { disable: true },
+    },
+  },
   render: () => {
     return (
       <div>
@@ -94,6 +120,12 @@ export const UnorderedListWithNestedItems: Story = {
 };
 
 export const OrderedListWithNestedUnorderedItems: Story = {
+  argTypes: {
+    type: {
+      name: 'Numbering type',
+      table: { disable: true },
+    },
+  },
   render: () => {
     return (
       <div>
@@ -115,6 +147,12 @@ export const OrderedListWithNestedUnorderedItems: Story = {
 };
 
 export const UnorderedListWithNestedOrderedItems: Story = {
+  argTypes: {
+    type: {
+      name: 'Numbering type',
+      table: { disable: true },
+    },
+  },
   render: () => {
     return (
       <div>
@@ -136,10 +174,13 @@ export const UnorderedListWithNestedOrderedItems: Story = {
 };
 
 export const StandaloneOrderedList: Story = {
-  args: {
-    heading: 'List content item',
-    variant: 'ordered',
+  argTypes: {
+    heading: {
+      name: 'Heading',
+      description: 'List variant. Defaults ordered if not set.',
+    },
   },
+
   render: (args: ComponentProps<typeof DatacomList> & { heading?: string }) => {
     const { heading } = args;
 
