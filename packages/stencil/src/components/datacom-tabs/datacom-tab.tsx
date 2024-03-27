@@ -1,4 +1,13 @@
-import { Component, h, Prop, Method, Host } from '@stencil/core';
+import {
+  Component,
+  h,
+  Prop,
+  Method,
+  Host,
+  Watch,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 
 /**
  * The tab element describes the tab, but does not render the tab label.
@@ -16,13 +25,14 @@ export class DatacomTab {
   @Prop({ mutable: true }) selected?: boolean;
 
   /**
-   * Is this tab currently selected
-   *
-   * @returns boolean
+   * Event to force re render tab group
    */
-  @Method()
-  public async isSelected(): Promise<boolean> {
-    return this.selected;
+  @Event({ bubbles: true, composed: true }) forceReRenderTabGroup: EventEmitter;
+
+  @Watch('label')
+  @Watch('disabled')
+  watchMultiplePropsHandler() {
+    this.forceReRenderTabGroup.emit();
   }
 
   /**
@@ -41,9 +51,8 @@ export class DatacomTab {
         <div
           class={{
             'tab-content': true,
-            'selected': this.selected,
-          }}
-        >
+            selected: this.selected,
+          }}>
           <slot />
         </div>
       </Host>
