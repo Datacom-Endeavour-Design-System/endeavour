@@ -52,12 +52,13 @@ export class DatacomDatepickerInput {
   @State() focusedDate: Date;
   @State() isError = false;
   @State() isSubmitted = false;
+  @State() isChanged = false;
 
   @Watch('selectedDate')
   @Watch('startDate')
   @Watch('endDate')
-  watchDates(date: Date, _, propName: string): void {
-    this.setValue(date, propName);
+  watchDates(newDate: Date, _, propName: string): void {
+    this.setValue(newDate, propName);
   }
 
   @Watch('value')
@@ -129,12 +130,15 @@ export class DatacomDatepickerInput {
 
   private changeDateHandler = (event: InputEvent): void => {
     event.preventDefault();
+    this.isChanged = true;
     const el = event.target as HTMLInputElement;
     this.debouncedDateInput(el.value.replace(/\s+/g, ''));
   };
 
   private clearDateInputHandler = (event: MouseEvent | KeyboardEvent): void => {
     event.preventDefault();
+    this.value = '';
+    this.inputElement.value = '';
     if (this.range) {
       this.startDate = undefined;
       this.endDate = undefined;
@@ -151,6 +155,7 @@ export class DatacomDatepickerInput {
       if (this.validateDate(startDate)) {
         parsedStartDate = parse(startDate, this.dateFormat, new Date());
         this.startDate = parsedStartDate;
+        this.endDate = undefined;
       } else {
         this.startDate = undefined;
         this.endDate = undefined;
@@ -184,40 +189,33 @@ export class DatacomDatepickerInput {
     if (propName === 'selectedDate' && date instanceof Date) {
       value = format(date, this.dateFormat);
       this.changed.emit(date);
-    } else if (propName === 'startDate' || propName === 'endDate') {
-      const { startDate, endDate } = this.getStartEndDateString(
-        value.replace(/\s+/g, ''),
-      );
-
-      if (propName === 'startDate' && date instanceof Date) {
-        if (endDate !== '') {
-          value = `${format(date, this.dateFormat)} - ${endDate}`;
-          this.changed.emit([date, this.endDate]);
-        } else {
-          value = `${format(date, this.dateFormat)} - `;
-          this.changed.emit([date]);
-        }
-      }
-
-      if (propName === 'startDate' && !(date instanceof Date)) {
-        value = '';
-        this.changed.emit([]);
-      }
-
-      if (propName === 'endDate' && date instanceof Date) {
-        value = `${startDate} - ${format(date, this.dateFormat)}`;
-        this.changed.emit([this.startDate, date]);
-      }
-
-      if (propName === 'endDate' && !(date instanceof Date)) {
-        this.changed.emit([this.startDate]);
-      }
-    } else {
-      value = '';
+    } else if (propName === 'selectedDate' && !(date instanceof Date)) {
+      value = this.inputElement.value;
       this.changed.emit();
     }
+
+    if (propName === 'startDate' && date instanceof Date) {
+      const startDateStr = `${format(date, this.dateFormat)} - `;
+      const endDateString = value.substring(startDateStr.length);
+      value = this.isChanged ? `${startDateStr}${endDateString}` : startDateStr;
+      this.changed.emit([date]);
+    } else if (propName === 'startDate' && !(date instanceof Date)) {
+      this.changed.emit([]);
+    }
+
+    if (propName === 'endDate' && date instanceof Date) {
+      value = `${format(this.startDate, this.dateFormat)} - ${format(
+        date,
+        this.dateFormat,
+      )}`;
+      this.changed.emit([this.startDate, date]);
+    } else if (propName === 'endDate' && !(date instanceof Date)) {
+      this.changed.emit([this.startDate]);
+    }
+
     this.value = value;
     this.inputElement.value = value;
+    this.isChanged = false;
   };
 
   private getStartEndDateString = (

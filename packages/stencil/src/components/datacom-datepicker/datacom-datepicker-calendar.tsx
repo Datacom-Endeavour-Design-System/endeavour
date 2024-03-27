@@ -15,7 +15,6 @@ import { getSvg } from '../../common/images';
 import {
   addMonths,
   format,
-  isBefore,
   parse,
   setDate,
   setYear,
@@ -53,8 +52,8 @@ export class DatacomDatepickerCalendar {
   @Watch('selectedDate')
   @Watch('startDate')
   @Watch('endDate')
-  watchDates(date: Date, _, propName: string): void {
-    this.setCalendarDate(date, propName);
+  watchDates(newDate: Date, _, propName: string): void {
+    this.setCalendarDate(newDate, propName);
   }
 
   @Watch('calendarDate')
@@ -95,12 +94,10 @@ export class DatacomDatepickerCalendar {
     event.preventDefault();
     const date = setDate(this.calendarDate, day);
     if (this.range) {
-      if (this.isSelecting && isBefore(this.startDate, date)) {
+      if (this.isSelecting && this.startDate <= date) {
         this.endSelection(date);
-        this.changed.emit([this.startDate, date]);
       } else {
         this.startSelection(date);
-        this.changed.emit([date]);
       }
     } else {
       this.selectedDate = date;
@@ -142,23 +139,23 @@ export class DatacomDatepickerCalendar {
     } else if (propName === 'startDate' && date instanceof Date) {
       this.calendarDate = date;
       this.isSelecting = true;
+      this.changed.emit([date]);
     } else if (propName === 'endDate' && date instanceof Date) {
       this.calendarDate = this.startDate;
       this.isSelecting = false;
+      this.changed.emit([this.startDate, date]);
     } else {
       this.calendarDate = startOfDay(new Date());
     }
   }
 
   private startSelection = (date: Date): void => {
-    this.isSelecting = true;
     this.startDate = date;
     this.endDate = undefined;
     this.mouseoverDate = undefined;
   };
 
   private endSelection = (date: Date): void => {
-    this.isSelecting = false;
     this.endDate = date;
   };
 

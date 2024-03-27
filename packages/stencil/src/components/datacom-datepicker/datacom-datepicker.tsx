@@ -146,10 +146,10 @@ export class DatacomDatepicker {
   @Watch('selectedDate')
   @Watch('startDate')
   @Watch('endDate')
-  async watchDates(): Promise<void> {
+  async watchDates(newDate: Date, _, propName: string): Promise<void> {
     if (
-      this.selectedDate instanceof Date ||
-      (this.startDate instanceof Date && this.endDate instanceof Date)
+      (propName === 'selectedDate' || propName === 'endDate') &&
+      newDate instanceof Date
     ) {
       await this.toggleCalendarHandler();
     }
@@ -163,7 +163,6 @@ export class DatacomDatepicker {
   private toggleCalendarHandler = async (
     event?: MouseEvent | KeyboardEvent | CustomEvent,
   ): Promise<void> => {
-    console.log('open');
     if (
       event instanceof MouseEvent ||
       event instanceof KeyboardEvent ||
