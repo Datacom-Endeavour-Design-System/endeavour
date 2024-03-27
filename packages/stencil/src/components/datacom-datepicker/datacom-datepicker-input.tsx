@@ -12,7 +12,7 @@ import {
 } from '@stencil/core';
 import { debounce, randomString } from '../../utils';
 import { CalendarAlt } from '../../common/images/icons';
-import { format, isMatch, isValid, parse } from 'date-fns';
+import { format, isMatch, isValid, parse, setDate } from 'date-fns';
 import { getSvg } from '../../common/images';
 
 @Component({
@@ -176,10 +176,21 @@ export class DatacomDatepickerInput {
     const valueToParse = debouncedValue.substring(this.oldValue.length);
     const parsedDate = this.parseToDate(valueToParse);
     if (parsedDate.isValid) {
-      newDebouncedValue = newDebouncedValue.replace(
-        valueToParse,
-        format(parsedDate.date, this.dateFormat),
-      );
+      if (parsedDate.format === 'MMMM') {
+        const currentDate = new Date();
+        newDebouncedValue = newDebouncedValue.replace(
+          valueToParse,
+          format(
+            setDate(parsedDate.date, currentDate.getDate()),
+            this.dateFormat,
+          ),
+        );
+      } else {
+        newDebouncedValue = newDebouncedValue.replace(
+          valueToParse,
+          format(parsedDate.date, this.dateFormat),
+        );
+      }
     }
 
     newDebouncedValue = newDebouncedValue.replace(/\s+/g, '');
