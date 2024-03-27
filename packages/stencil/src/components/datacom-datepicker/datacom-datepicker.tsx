@@ -157,7 +157,9 @@ export class DatacomDatepicker {
 
   @Watch('isValid')
   async watchIsValid(): Promise<void> {
-    await this.toggleCalendarHandler();
+    if (!this.isOpenCalendar) {
+      await this.toggleCalendarHandler();
+    }
   }
 
   private toggleCalendarHandler = async (
