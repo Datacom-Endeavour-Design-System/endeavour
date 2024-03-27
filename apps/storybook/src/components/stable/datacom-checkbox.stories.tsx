@@ -18,13 +18,13 @@ const meta: Meta<typeof DatacomCheckbox> = {
       type: { name: 'string' },
     },
     variant: {
-      name: 'Variant',
+      name: 'Size',
       description:
         'checkbox size within variant. Defaults to standard if not set',
       control: {
         type: 'select',
         labels: {
-          standard: 'Standard',
+          standard: 'Large',
           small: 'Small',
         },
       },
@@ -64,7 +64,7 @@ const meta: Meta<typeof DatacomCheckbox> = {
 
 export default meta;
 
-export const Single: StoryObj<typeof DatacomCheckbox> = {
+export const Default: StoryObj<typeof DatacomCheckbox> = {
   args: {
     label: 'Checkbox Item',
     variant: 'standard',
@@ -72,7 +72,7 @@ export const Single: StoryObj<typeof DatacomCheckbox> = {
   },
 };
 
-export const Grouped: StoryObj<typeof DatacomCheckbox> = {
+export const CheckboxGrouping: StoryObj<typeof DatacomCheckbox> = {
   render: (props) => {
     const custom = (({ label, ...object }) => object)(props);
 

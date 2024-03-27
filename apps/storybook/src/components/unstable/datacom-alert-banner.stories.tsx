@@ -23,7 +23,7 @@ export default {
   component: DatacomAlertBanner,
 };
 
-export const AlertBanner: StoryObj<
+export const Default: StoryObj<
   AlertBannerProps & {
     variantForMasterbrand: string;
     variantForDatapay: string;

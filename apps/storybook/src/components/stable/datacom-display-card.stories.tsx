@@ -71,10 +71,10 @@ const Template: StoryFn<DisplayCardProps & { description: string }> = (
   );
 };
 
-export const DisplayCard = Template.bind({});
-DisplayCard.args = {};
+export const Default = Template.bind({});
+Default.args = {};
 
-export const DisplayCardGroup = () => {
+export const DisplayCardGrouping = () => {
   return (
     <div style={{ minWidth: '1200' }}>
       <DatacomDisplayCardGroup>

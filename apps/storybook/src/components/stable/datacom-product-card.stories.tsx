@@ -128,7 +128,7 @@ export const ProductCard: Story = {
   },
 };
 
-export const ProductCardGroup: Story = {
+export const ProductCardGrouping: Story = {
   render: () => {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', height: 600 }}>

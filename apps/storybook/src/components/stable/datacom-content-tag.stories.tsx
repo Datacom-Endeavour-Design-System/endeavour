@@ -37,8 +37,8 @@ export default {
   },
   args: {
     label: 'Label',
-    url: 'https://datacom.com',
     variant: 'article',
+    url: 'https://datacom.com',
   },
 };
 
@@ -47,4 +47,4 @@ const Template: StoryFn<ContentTagProps & { label: string }> = (args) => {
   return <DatacomContentTag {...args}>{label}</DatacomContentTag>;
 };
 
-export const ContentTag = Template.bind({});
+export const Default = Template.bind({});

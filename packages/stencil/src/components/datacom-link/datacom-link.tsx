@@ -18,6 +18,7 @@ export class DatacomLink {
   @Prop() icon?: string;
   @Prop() disabled: boolean;
   @Prop() iconPosition: ImagePosition = 'left';
+  @Prop() linkLabel: string;
 
   render() {
     let image: VNode;
@@ -37,11 +38,13 @@ export class DatacomLink {
         {!this.disabled ? (
           <a class={Classes} href={this.url}>
             {image}
+            {this.linkLabel}
             <slot></slot>
           </a>
         ) : (
           <div class={Classes}>
             {image}
+            {this.linkLabel}
             <slot></slot>
           </div>
         )}

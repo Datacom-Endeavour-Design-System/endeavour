@@ -7,18 +7,22 @@ const meta: Meta<typeof DatacomAvatar> = {
   argTypes: {
     firstName: {
       name: 'First name',
+      description: 'Specify first name',
       type: { name: 'string', required: true },
     },
     lastName: {
       name: 'Last name',
+      description: 'Specify last name',
       type: { name: 'string', required: true },
     },
     jobTitle: {
       name: 'Job title',
+      description: 'Specify job title',
       type: { name: 'string', required: true },
     },
     companyName: {
       name: 'Company name',
+      description: 'Specify company name',
       type: { name: 'string', required: true },
     },
     url: {
@@ -41,7 +45,7 @@ const meta: Meta<typeof DatacomAvatar> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const simple: Story = {};
+export const Default: Story = {};
 
 export const withImage: Story = {
   args: {

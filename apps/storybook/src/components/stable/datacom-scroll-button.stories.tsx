@@ -17,6 +17,7 @@ const meta: Meta<typeof DatacomScrollButton> = {
     btnTitle: {
       name: 'Tooltip label',
       type: { name: 'string' },
+      description: 'Specify label for the scroll button',
     },
   },
   args: {
@@ -28,8 +29,8 @@ const meta: Meta<typeof DatacomScrollButton> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const ScrollButton: Story = {};
-export const ScrollButtonWithExample = () => {
+export const Default: Story = {};
+export const WithExample = () => {
   const Panel = styled.div`
     font-family: Montserrat;
     width: 842px;

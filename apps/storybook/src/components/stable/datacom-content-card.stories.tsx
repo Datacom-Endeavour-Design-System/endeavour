@@ -133,7 +133,7 @@ const Template: StoryFn<
 
 export const ContentCard = Template.bind({});
 
-export const ContentCardGroup = () => {
+export const ContentCardGrouping = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: 600 }}>
       <div style={{ maxWidth: 1254, width: '100%' }}>

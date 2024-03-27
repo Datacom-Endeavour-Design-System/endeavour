@@ -10,20 +10,24 @@ const meta: Meta<typeof DatacomDropdown> = {
   title: 'Dropdown',
   component: DatacomDropdown,
   argTypes: {
+    label: {
+      name: 'Label',
+      description: 'Dropdown label',
+      type: { name: 'string' },
+    },
     variant: {
       name: 'Variant',
       description: 'Dropdown variant. Defaults to standard if not set.',
       control: {
         type: 'select',
-        labels: { standard: 'Standard', multi: 'Multi', combobox: 'Combobox' },
+        labels: {
+          standard: 'Default',
+          multi: 'Multi-select',
+          combobox: 'Combobox',
+        },
       },
       options: ['standard', 'multi', 'combobox'],
       type: { name: 'string', required: true },
-    },
-    label: {
-      name: 'Label',
-      description: 'Dropdown label',
-      type: { name: 'string' },
     },
     message: {
       name: 'Error message',
@@ -48,8 +52,8 @@ const meta: Meta<typeof DatacomDropdown> = {
     },
   },
   args: {
-    variant: 'standard',
     label: 'Label',
+    variant: 'standard',
   },
 };
 export default meta;
@@ -66,18 +70,18 @@ const StandardTemplate: StoryFn<DatacomDropdownProps> = (args) => (
   </div>
 );
 
-export const Standard = StandardTemplate.bind({});
-Standard.args = {
+export const Default = StandardTemplate.bind({});
+Default.args = {
   label: 'Label',
   message: 'Please select an option',
   placeholder: 'Placeholder',
   variant: 'standard',
 };
 
-export const Multi: StoryObj<typeof DatacomDropdown> = {
+export const MultiSelect: StoryObj<typeof DatacomDropdown> = {
   args: {
-    variant: 'multi',
     label: 'Label',
+    variant: 'multi',
     message: 'Please select an option',
     placeholder: 'Select item(s)',
   },
@@ -98,8 +102,8 @@ export const Multi: StoryObj<typeof DatacomDropdown> = {
 
 export const Combobox: StoryObj<typeof DatacomDropdown> = {
   args: {
-    variant: 'combobox',
     label: 'Label',
+    variant: 'combobox',
     message: 'Please select an option',
     placeholder: 'Search...',
   },

@@ -85,7 +85,7 @@ const Template: StoryFn<
 
 export const SelectionCard = Template.bind({});
 
-export const SelectionCardGroup = () => {
+export const SelectionCardGrouping = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: 600 }}>
       <div style={{ maxWidth: 1254, width: '100%' }}>
