@@ -12,7 +12,7 @@ import {
 } from '@stencil/core';
 import { debounce, randomString } from '../../utils';
 import { CalendarAlt } from '../../common/images/icons';
-import { format, isMatch, parse } from 'date-fns';
+import { format, isMatch, isValid, parse } from 'date-fns';
 import { getSvg } from '../../common/images';
 
 @Component({
@@ -42,12 +42,14 @@ export class DatacomDatepickerInput {
   @Prop({ mutable: true }) selectedDate?: Date;
   @Prop({ mutable: true }) startDate?: Date;
   @Prop({ mutable: true }) endDate?: Date;
-  @Prop() range?: boolean = false;
-  @Prop() dateFormat?: string = 'dd/MM/yyyy';
+  @Prop() range? = false;
+  @Prop() dateFormat? = 'dd/MM/yyyy';
+  @Prop() supportedFormat? = ['MMMM', 'dd MMMM', 'dd MMMM yyyy'];
   @Prop() message?: string;
   @Prop() autoValidate? = true;
 
   @State() value = '';
+  @State() oldValue = '';
   @State() isEditing = false;
   @State() focusedDate: Date;
   @State() isError = false;
@@ -132,7 +134,7 @@ export class DatacomDatepickerInput {
     event.preventDefault();
     this.isChanged = true;
     const el = event.target as HTMLInputElement;
-    this.debouncedDateInput(el.value.replace(/\s+/g, ''));
+    this.debouncedDateInput(el.value);
   };
 
   private clearDateInputHandler = (event: MouseEvent | KeyboardEvent): void => {
@@ -147,11 +149,45 @@ export class DatacomDatepickerInput {
     }
   };
 
+  private parseToDate = (
+    value: string,
+  ): { format?: string; date?: Date; isValid: boolean } => {
+    let date: { format?: string; date?: Date; isValid: boolean } = {
+      isValid: false,
+    };
+    for (let i = 0; i < this.supportedFormat.length; i++) {
+      const format = this.supportedFormat[i];
+      const parsedDate = parse(value, format, new Date());
+      if (isValid(parsedDate)) {
+        date = {
+          format: this.supportedFormat[i],
+          date: parsedDate,
+          isValid: true,
+        };
+        break;
+      }
+    }
+    return date;
+  };
+
   private debouncedDateInput = debounce((debouncedValue: string): void => {
+    let newDebouncedValue = debouncedValue;
+
+    const valueToParse = debouncedValue.substring(this.oldValue.length);
+    const parsedDate = this.parseToDate(valueToParse);
+    if (parsedDate.isValid) {
+      newDebouncedValue = newDebouncedValue.replace(
+        valueToParse,
+        format(parsedDate.date, this.dateFormat),
+      );
+    }
+
+    newDebouncedValue = newDebouncedValue.replace(/\s+/g, '');
     if (this.range) {
       let parsedStartDate: Date;
       let parsedEndDate: Date;
-      const { startDate, endDate } = this.getStartEndDateString(debouncedValue);
+      const { startDate, endDate } =
+        this.getStartEndDateString(newDebouncedValue);
       if (this.validateDate(startDate)) {
         parsedStartDate = parse(startDate, this.dateFormat, new Date());
         this.startDate = parsedStartDate;
@@ -171,7 +207,7 @@ export class DatacomDatepickerInput {
         this.endDate = undefined;
       }
     } else {
-      const selectedDate = debouncedValue.substring(
+      const selectedDate = newDebouncedValue.substring(
         0,
         this.getFormattedDateStringCount(),
       );
@@ -184,19 +220,20 @@ export class DatacomDatepickerInput {
   }, 500);
 
   private setValue = (date: Date, propName: string): void => {
+    let oldValue: string = '';
     let value: string = this.inputElement.value;
 
     if (propName === 'selectedDate' && date instanceof Date) {
       value = format(date, this.dateFormat);
       this.changed.emit(date);
     } else if (propName === 'selectedDate' && !(date instanceof Date)) {
-      value = this.inputElement.value;
       this.changed.emit();
     }
 
     if (propName === 'startDate' && date instanceof Date) {
       const startDateStr = `${format(date, this.dateFormat)} - `;
       const endDateString = value.substring(startDateStr.length);
+      oldValue = startDateStr;
       value = this.isChanged ? `${startDateStr}${endDateString}` : startDateStr;
       this.changed.emit([date]);
     } else if (propName === 'startDate' && !(date instanceof Date)) {
@@ -213,6 +250,7 @@ export class DatacomDatepickerInput {
       this.changed.emit([this.startDate]);
     }
 
+    this.oldValue = oldValue;
     this.value = value;
     this.inputElement.value = value;
     this.isChanged = false;

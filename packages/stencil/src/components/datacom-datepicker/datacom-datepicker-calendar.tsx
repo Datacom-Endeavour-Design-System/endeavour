@@ -41,10 +41,10 @@ export class DatacomDatepickerCalendar {
   @Prop({ mutable: true }) selectedDate?: Date;
   @Prop({ mutable: true }) startDate?: Date;
   @Prop({ mutable: true }) endDate?: Date;
-  @Prop() range?: boolean = false;
-  @Prop() dateFormat?: string = 'dd/MM/yyyy';
+  @Prop() range? = false;
+  @Prop() dateFormat? = 'dd/MM/yyyy';
 
-  @State() calendarDate?: Date = startOfMonth(new Date());
+  @State() calendarDate? = startOfMonth(new Date());
   @State() calendarDays: number[];
   @State() isSelecting = false;
   @State() mouseoverDate: Date;

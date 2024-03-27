@@ -46,8 +46,9 @@ export class DatacomDatepicker {
   @Prop({ mutable: true }) selectedDate?: Date;
   @Prop({ mutable: true }) startDate?: Date;
   @Prop({ mutable: true }) endDate?: Date;
-  @Prop() range?: boolean = false;
-  @Prop() dateFormat?: string = 'dd/MM/yyyy';
+  @Prop() range? = false;
+  @Prop() dateFormat? = 'dd/MM/yyyy';
+  @Prop() supportedFormat?: string[];
   @Prop() message?: string;
   @Prop({ attribute: 'valid' }) isValid?: boolean;
   @Prop() autoValidate? = true;
@@ -66,16 +67,16 @@ export class DatacomDatepicker {
       typeof this.isValid !== 'boolean'
     ) {
       if (this.isOpenCalendar) {
-        await this.toggleCalendarHandler(event);
+        await this.toggleCalendarHandler();
       }
       this.isEditing = isValid(this.selectedDate) || isValid(this.startDate);
     }
   }
 
   @Listen('inputFocused')
-  async handleOnInputFocused(event: CustomEvent): Promise<void> {
+  async handleOnInputFocused(): Promise<void> {
     if (!this.isOpenCalendar) {
-      await this.toggleCalendarHandler(event);
+      await this.toggleCalendarHandler();
     }
   }
 
@@ -108,22 +109,22 @@ export class DatacomDatepicker {
   async handleOnKeydown(event: KeyboardEvent): Promise<void> {
     switch (event.key) {
       case 'ArrowUp':
-        await this.moveDateFocus('up', event);
+        await this.moveDateFocus('up');
         break;
       case 'ArrowDown':
-        await this.moveDateFocus('down', event);
+        await this.moveDateFocus('down');
         break;
       case 'ArrowLeft':
-        await this.moveDateFocus('left', event);
+        await this.moveDateFocus('left');
         break;
       case 'ArrowRight':
-        await this.moveDateFocus('right', event);
+        await this.moveDateFocus('right');
         break;
       case 'Tab':
-        this.loopTabFocus(event);
+        this.loopTabFocus();
         break;
       case 'Escape':
-        await this.toggleCalendarHandler(event);
+        await this.toggleCalendarHandler();
         break;
       default:
         break;
@@ -179,9 +180,8 @@ export class DatacomDatepicker {
     this.isOpenCalendar = !this.isOpenCalendar;
   };
 
-  private loopTabFocus = (event: KeyboardEvent): void => {
+  private loopTabFocus = (): void => {
     setTimeout(() => {
-      event.preventDefault();
       if (this.isOpenCalendar) {
         const activeElement = document.activeElement;
         const firstElement = this.host.querySelector<HTMLInputElement>(
@@ -223,9 +223,7 @@ export class DatacomDatepicker {
 
   private moveDateFocus = async (
     direction: 'up' | 'down' | 'left' | 'right',
-    event: KeyboardEvent,
   ): Promise<void> => {
-    event.preventDefault();
     let focusedDate = this.focusedDate;
     if (isValid(focusedDate)) {
       let focusedDateElementName = format(focusedDate, this.dateFormat);
