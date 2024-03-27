@@ -12,6 +12,7 @@
 
 .dc-datepicker-calendar {
   margin: auto;
+  padding: 14px 0;
   width: 236px;
   color: var(--dc-datepicker-primary-text-color);
 }
@@ -28,7 +29,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 14px;
 }
 
 .dc-datepicker-header .dc-datepicker-prev-icon,
@@ -55,7 +55,6 @@
   align-items: center;
   justify-content: center;
   width: 169px;
-
 }
 
 .dc-datepicker-header span,
@@ -89,14 +88,22 @@
 .dc-datepicker-dates {
   display: grid;
   grid-template-columns: repeat(7, calc(100% / 7));
-  margin-block: 16px;
+}
+
+.dc-datepicker-days {
+  justify-content: center;
+  margin-top: 14px;
 }
 
 .dc-datepicker-days span {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
+  width: 34.29px;
+  height: 32px;
 }
 
 .dc-datepicker-dates button {
