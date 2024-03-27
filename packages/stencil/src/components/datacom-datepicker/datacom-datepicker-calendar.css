@@ -103,8 +103,8 @@
   font-size: 14px;
   line-height: 18px;
   aspect-ratio: 1;
-  width: 100%;
-  height: 94.93%;
+  width: 34.29px;
+  height: 32px;
 }
 
 .dc-datepicker-dates button:hover:not(.dc-datepicker-disabled):not(.dc-datepicker-selected):not(.dc-datepicker-start-date):not(.dc-datepicker-end-date):not(.dc-datepicker-mouseover-date),
