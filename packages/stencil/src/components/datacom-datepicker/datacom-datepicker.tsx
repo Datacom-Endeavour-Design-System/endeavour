@@ -3,7 +3,6 @@ import {
   Element,
   Event,
   EventEmitter,
-  Fragment,
   h,
   Host,
   Listen,
@@ -325,16 +324,12 @@ export class DatacomDatepicker {
             tabIndex={this.isOpenCalendar ? 0 : -1}></div>
           <div class="dc-datepicker">
             <datacom-datepicker-input {...inputProps} />
-            {this.isOpenCalendar && (
-              <Fragment>
-                <datacom-datepicker-calendar {...calendarProps} />
-                <button
-                  class="dc-datepicker-close"
-                  onClick={this.toggleCalendarHandler}>
-                  Close calendar
-                </button>
-              </Fragment>
-            )}
+            <datacom-datepicker-calendar {...calendarProps} />
+            <button
+              class="dc-datepicker-close"
+              onClick={this.toggleCalendarHandler}>
+              Close calendar
+            </button>
           </div>
           <p tabIndex={-1} class="dc-datepicker-error-msg">
             {this.message}

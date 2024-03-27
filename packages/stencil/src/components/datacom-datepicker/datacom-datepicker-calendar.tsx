@@ -141,9 +141,11 @@ export class DatacomDatepickerCalendar {
       this.isSelecting = true;
       this.changed.emit([date]);
     } else if (propName === 'endDate' && date instanceof Date) {
-      this.calendarDate = this.startDate;
       this.isSelecting = false;
       this.changed.emit([this.startDate, date]);
+    } else if (propName === 'endDate' && !(date instanceof Date)) {
+      this.isSelecting = true;
+      this.changed.emit([this.startDate]);
     } else {
       this.calendarDate = startOfDay(new Date());
     }
