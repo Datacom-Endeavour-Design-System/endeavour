@@ -18,7 +18,7 @@ import {
   parse,
   setDate,
   setYear,
-  startOfDay,
+  startOfMonth,
   subMonths,
 } from 'date-fns';
 
@@ -44,7 +44,7 @@ export class DatacomDatepickerCalendar {
   @Prop() range?: boolean = false;
   @Prop() dateFormat?: string = 'dd/MM/yyyy';
 
-  @State() calendarDate?: Date = startOfDay(new Date());
+  @State() calendarDate?: Date = startOfMonth(new Date());
   @State() calendarDays: number[];
   @State() isSelecting = false;
   @State() mouseoverDate: Date;
@@ -147,7 +147,7 @@ export class DatacomDatepickerCalendar {
       this.isSelecting = true;
       this.changed.emit([this.startDate]);
     } else {
-      this.calendarDate = startOfDay(new Date());
+      this.calendarDate = startOfMonth(new Date());
     }
   }
 
@@ -159,6 +159,7 @@ export class DatacomDatepickerCalendar {
 
   private endSelection = (date: Date): void => {
     this.endDate = date;
+    this.mouseoverDate = undefined;
   };
 
   private getDayTabIndex = (day: number, index: number): number => {
