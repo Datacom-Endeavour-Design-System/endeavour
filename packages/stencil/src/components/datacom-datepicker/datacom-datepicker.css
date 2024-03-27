@@ -66,6 +66,7 @@
 
 .dc-datepicker-error datacom-datepicker-input {
   --dc-datepicker-input-border-color: var(--dc-datepicker-error-color);
+  --dc-datepicker-input-border-hover-color: var(--dc-datepicker-error-color);
 }
 
 .dc-datepicker-error .dc-datepicker-error-msg:not(:empty) {

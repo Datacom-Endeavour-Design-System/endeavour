@@ -3,6 +3,7 @@
   --dc-datepicker-input-border-width: 1px 1px 1px 1px;
   --dc-datepicker-input-border-radius: 8px;
   --dc-datepicker-input-border-color: var(--dc-token-border-default-01);
+  --dc-datepicker-input-border-hover-color: var(--dc-datepicker-interactive-hover-color);
 }
 
 :host * {
@@ -48,7 +49,7 @@
 }
 
 .dc-datepicker-input-wrapper input:hover {
-  border-color: var(--dc-datepicker-interactive-hover-color);
+  border-color: var(--dc-datepicker-input-border-hover-color);
 }
 
 .dc-datepicker-input-wrapper input::placeholder {
