@@ -104,9 +104,9 @@
   display: none;
   flex-direction: column;
   position: absolute;
-  top: 4px;
+  top: 0;
   right: 0;
-  height: 12px;
+  height: 26px;
 }
 
 .dc-datepicker-header .dc-datepicker-year-input-focused .dc-datepicker-quantity-nav {
@@ -114,7 +114,13 @@
 }
 
 .dc-datepicker-header .dc-datepicker-quantity-nav button {
-  padding: 1px;
+  padding: 2px 4px;
+  height: 13px;
+  display: flex;
+}
+
+.dc-datepicker-header .dc-datepicker-quantity-nav .dc-datepicker-quantity-up {
+  align-items: end;
 }
 
 .dc-datepicker-header .dc-datepicker-quantity-up-icon,

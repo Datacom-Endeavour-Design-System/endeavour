@@ -60,14 +60,30 @@ export class DatacomDatepickerCalendar {
   async handleOnKeydown(event: KeyboardEvent): Promise<void> {
     switch (event.key) {
       case 'ArrowUp':
-        this.yearIncreaseHandler();
+        this.yearIncreaseHandler(event);
         break;
       case 'ArrowDown':
-        this.yearDecreaseHandler();
+        this.yearDecreaseHandler(event);
         break;
       default:
         break;
     }
+  }
+
+  @Listen('mouseover', { capture: true })
+  async handleOnMouseOver(event: MouseEvent): Promise<void> {
+    const mouseoverElement = event.target as HTMLElement;
+
+    const attributeName = [
+      'yearInput',
+      'yearUp',
+      'yearDown',
+      'yearDownIcon',
+      'yearUpIcon',
+    ];
+    this.yearFocused = !!attributeName.includes(
+      mouseoverElement.getAttribute('name'),
+    );
   }
 
   @Watch('selectedDate')
@@ -96,7 +112,8 @@ export class DatacomDatepickerCalendar {
       calendar.daysInCalendar - calendar.getDaysOfNextMonthCount();
   };
 
-  private yearIncreaseHandler = (): void => {
+  private yearIncreaseHandler = (event: MouseEvent | KeyboardEvent): void => {
+    event.preventDefault();
     this.yearChanged = true;
     this.yearFocused = true;
     this.yearInputElement.focus();
@@ -111,7 +128,8 @@ export class DatacomDatepickerCalendar {
     }, 100);
   };
 
-  private yearDecreaseHandler = (): void => {
+  private yearDecreaseHandler = (event: MouseEvent | KeyboardEvent): void => {
+    event.preventDefault();
     this.yearChanged = true;
     this.yearFocused = true;
     this.yearInputElement.focus();
@@ -346,6 +364,7 @@ export class DatacomDatepickerCalendar {
               <div class={yearInputClass}>
                 <input
                   type="number"
+                  name="yearInput"
                   ref={(el) => (this.yearInputElement = el)}
                   min={1}
                   onFocus={this.focusYearHandler}
@@ -356,18 +375,22 @@ export class DatacomDatepickerCalendar {
                 <div class="dc-datepicker-quantity-nav">
                   <button
                     tabIndex={-1}
+                    name="yearUp"
                     class="dc-datepicker-quantity-up"
                     onClick={this.yearIncreaseHandler}>
                     {getSvg('caret', {
                       class: 'dc-datepicker-quantity-up-icon',
+                      name: 'yearUpIcon',
                     })}
                   </button>
                   <button
                     tabIndex={-1}
+                    name="yearDown"
                     class="dc-datepicker-quantity-down"
                     onClick={this.yearDecreaseHandler}>
                     {getSvg('caret', {
                       class: 'dc-datepicker-quantity-down-icon',
+                      name: 'yearDownIcon',
                     })}
                   </button>
                 </div>
