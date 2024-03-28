@@ -26,8 +26,7 @@
   line-height: 0;
 }
 
-.dc-datepicker-calendar button:focus-visible,
-.dc-datepicker-calendar input:focus-visible {
+.dc-datepicker-calendar button:focus-visible {
   outline: 3px solid var(--dc-datepicker-primary-interactive-color);
   outline-offset: 1px;
   border-radius: 8px;
@@ -87,7 +86,7 @@
   display: flex;
   justify-content: end;
   align-items: center;
-  width: 98px;
+  max-width: 98px;
   margin-right: 8px;
 }
 
@@ -97,12 +96,14 @@
   color: var(--dc-datepicker-primary-text-color);
   border-radius: 4px;
   cursor: pointer;
-  width: 69px;
-  padding: 0;
+  width: 51px;
+  padding: 0 4px;
+  text-align: left;
 }
 
-.dc-datepicker-header input:active {
+.dc-datepicker-header input:focus-visible {
   border-color: var(--dc-datepicker-primary-interactive-color);
+  outline: none;
 }
 
 /* Remove default arrows/spinners of input field in Firefox  */
