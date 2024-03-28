@@ -1,0 +1,116 @@
+:host {
+  display: block;
+  outline: none;
+}
+
+:host * {
+  font-family: var(--dc-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
+.dc-datepicker-container {
+  position: relative;
+  max-width: 400px;
+  min-width: 272px;
+  color: var(--dc-datepicker-primary-text-color);
+}
+
+.dc-datepicker-container datacom-datepicker-calendar {
+  display: none;
+}
+
+.dc-datepicker-container .dc-datepicker-close {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  line-height: 18px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--dc-primary-text-color);
+  background-color: var(--dc-datepicker-ui-color);
+  border: none;
+  border-radius: 8px;
+  position: absolute;
+  top: 52px;
+  left: 3px;
+  margin-top: 7px;
+  z-index: 1000;
+}
+
+.dc-datepicker-container .dc-datepicker-close:focus-visible {
+  outline: 2px solid var(--dc-datepicker-primary-interactive-color);
+  outline-offset: 1px;
+}
+
+.dc-datepicker-container .dc-datepicker-close:not(.dc-datepicker-close:focus-visible) {
+  clip: rect(0 0 0 0);
+}
+
+.dc-datepicker-error-msg {
+  display: none;
+  color: var(--dc-datepicker-error-color);
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  max-width: 272px;
+  outline: none;
+  padding: 4px 0 0 14px;
+  white-space: pre-wrap;
+}
+
+/* Calendar open state */
+.dc-datepicker-open-calendar .dc-datepicker {
+  border-width: 2px 2px 0 2px;
+  border-style: solid;
+  border-color: var(--dc-datepicker-primary-interactive-color);
+  border-radius: 8px 8px 0 0;
+}
+
+.dc-datepicker-open-calendar datacom-datepicker-input {
+  --dc-datepicker-input-border-width: 0 0 1px 0;
+  --dc-datepicker-input-border-radius: 8px 8px 0 0;
+}
+
+.dc-datepicker-open-calendar datacom-datepicker-calendar {
+  display: block;
+  border-width: 0 2px 2px 2px;
+  border-style: solid;
+  border-color: var(--dc-datepicker-primary-interactive-color);
+  border-radius: 0 0 8px 8px;
+  position: absolute;
+  top: 52px;
+  left: 0;
+  z-index: 1000;
+}
+
+.dc-datepicker-open-calendar .dc-datepicker-close {
+  top: 318px;
+  left: 3px;
+}
+
+.dc-datepicker-open-calendar .dc-datepicker-error-msg {
+  position: absolute;
+  top: 318px;
+  left: 0;
+}
+
+/* Error state */
+.dc-datepicker-error .dc-datepicker {
+  border-color: var(--dc-datepicker-error-color);
+}
+
+.dc-datepicker-error datacom-datepicker-input {
+  --dc-datepicker-input-border-color: var(--dc-datepicker-error-color);
+  --dc-datepicker-input-border-hover-color: var(--dc-datepicker-error-color);
+}
+
+.dc-datepicker-error datacom-datepicker-calendar {
+  border-color: var(--dc-datepicker-error-color);
+}
+
+.dc-datepicker-error .dc-datepicker-error-msg:not(:empty) {
+  display: block;
+}
