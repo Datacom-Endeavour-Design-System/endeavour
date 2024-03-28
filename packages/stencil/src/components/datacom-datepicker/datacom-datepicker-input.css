@@ -26,6 +26,7 @@
   padding: 0 4px;
   background: var(--dc-datepicker-ui-color);
   color: var(--dc-datepicker-primary-text-color);
+  transition: all 0.3s;
 }
 
 .dc-datepicker-input-wrapper input {
@@ -40,7 +41,7 @@
   height: 52px;
   width: 100%;
   outline: none;
-  padding: 14px 36px 14px 14px;
+  padding: 14px 36px 14px 16px;
   text-overflow: ellipsis;
   display: block;
 }
@@ -57,36 +58,38 @@
   color: transparent;
 }
 
-.dc-datepicker-input-wrapper .dc-datepicker-calendar-icon path {
-  fill: var(--dc-datepicker-text-icon-color);
-}
-
+.dc-datepicker-input-wrapper .dc-datepicker-calendar,
 .dc-datepicker-input-wrapper .dc-datepicker-clear {
   position: absolute;
-  top: 13px;
-  right: 10px;
-  padding: 0 4px;
-}
-
-.dc-datepicker-input-wrapper .dc-datepicker-calendar-icon {
-  position: absolute;
-  top: 15px;
-  right: 12px;
-  padding: 0 4px;
-}
-
-.dc-datepicker-input-wrapper .dc-datepicker-clear {
-  cursor: pointer;
   border: none;
   background: transparent;
   color: var(--dc-primary-text-color);
   line-height: 0;
+  padding: 0 4px;
+}
+
+.dc-datepicker-input-wrapper .dc-datepicker-clear {
+  display: none;
+  cursor: pointer;
+  top: 13px;
+  right: 10px;
+}
+
+.dc-datepicker-input-wrapper .dc-datepicker-calendar {
+  display: block;
+  cursor: text;
+  top: 15px;
+  right: 12px;
 }
 
 .dc-datepicker-input-wrapper .dc-datepicker-calendar-icon,
 .dc-datepicker-input-wrapper .dc-datepicker-clear-icon {
   width: 20px;
   height: 20px;
+}
+
+.dc-datepicker-input-wrapper .dc-datepicker-calendar-icon path {
+  fill: var(--dc-datepicker-text-icon-color);
 }
 
 .dc-datepicker-input-wrapper .dc-datepicker-clear-icon path {
@@ -107,6 +110,14 @@
 
 .dc-datepicker-input-edit input::placeholder {
   color: var(--dc-datepicker-secondary-text-color);
+}
+
+.dc-datepicker-input-edit .dc-datepicker-clear {
+  display: block;
+}
+
+.dc-datepicker-input-edit .dc-datepicker-calendar {
+  display: none
 }
 
 /* Disabled state */

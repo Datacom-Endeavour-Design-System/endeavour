@@ -330,12 +330,12 @@ export class DatacomDatepicker {
             <button
               class="dc-datepicker-close"
               onClick={this.toggleCalendarHandler}>
-              Close calendar
+              Close Calendar
             </button>
+            <p tabIndex={-1} class="dc-datepicker-error-msg">
+              {this.message}
+            </p>
           </div>
-          <p tabIndex={-1} class="dc-datepicker-error-msg">
-            {this.message}
-          </p>
           <div
             class="dc-datepicker-tab-loop-end"
             tabIndex={this.isOpenCalendar ? 0 : -1}></div>

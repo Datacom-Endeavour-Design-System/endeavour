@@ -11,7 +11,6 @@ import {
   Watch,
 } from '@stencil/core';
 import { debounce, randomString } from '../../utils';
-import { CalendarAlt } from '../../common/images/icons';
 import { format, isMatch, isValid, parse } from 'date-fns';
 import { getSvg } from '../../common/images';
 
@@ -44,7 +43,13 @@ export class DatacomDatepickerInput {
   @Prop({ mutable: true }) endDate?: Date;
   @Prop() range? = false;
   @Prop() dateFormat? = 'dd/MM/yyyy';
-  @Prop() supportedFormat? = ['MMMM', 'dd MMMM', 'dd MMMM yyyy'];
+  @Prop() supportedFormat? = [
+    'MMMM',
+    'dd MMMM',
+    'dd MMMM yyyy',
+    'ddMM',
+    'ddMMyyyy',
+  ];
   @Prop() message?: string;
   @Prop() autoValidate? = true;
 
@@ -124,7 +129,7 @@ export class DatacomDatepickerInput {
     }
   };
 
-  private focusDateHandler = (event: FocusEvent): void => {
+  private focusDateHandler = (event: FocusEvent | MouseEvent): void => {
     event.preventDefault();
     this.isEditing = true;
     this.focused.emit();
@@ -303,15 +308,22 @@ export class DatacomDatepickerInput {
             onInput={this.changeDateHandler}
             value={this.value}
           />
-          {this.isEditing ? (
+          {this.value && (
             <button
               class="dc-datepicker-clear"
               onClick={this.clearDateInputHandler}>
               {getSvg('clear', { class: 'dc-datepicker-clear-icon' })}
             </button>
-          ) : (
-            <CalendarAlt class="dc-datepicker-calendar-icon" />
           )}
+          <button
+            tabIndex={-1}
+            class="dc-datepicker-calendar"
+            onClick={(event: MouseEvent) => {
+              event.preventDefault();
+              this.inputElement.focus();
+            }}>
+            {getSvg('calendar-alt', { class: 'dc-datepicker-calendar-icon' })}
+          </button>
         </div>
       </Host>
     );

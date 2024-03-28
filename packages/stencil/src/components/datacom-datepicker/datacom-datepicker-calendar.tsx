@@ -58,15 +58,18 @@ export class DatacomDatepickerCalendar {
 
   @Listen('keydown', { capture: true })
   async handleOnKeydown(event: KeyboardEvent): Promise<void> {
-    switch (event.key) {
-      case 'ArrowUp':
-        this.yearIncreaseHandler(event);
-        break;
-      case 'ArrowDown':
-        this.yearDecreaseHandler(event);
-        break;
-      default:
-        break;
+    const keydownElement = event.target as HTMLElement;
+    if (keydownElement.getAttribute('name') === 'yearInput') {
+      switch (event.key) {
+        case 'ArrowUp':
+          this.yearIncreaseHandler(event);
+          break;
+        case 'ArrowDown':
+          this.yearDecreaseHandler(event);
+          break;
+        default:
+          break;
+      }
     }
   }
 
@@ -354,9 +357,10 @@ export class DatacomDatepickerCalendar {
           <div class="dc-datepicker-header">
             <button
               class="dc-datepicker-prev"
-              onClick={async (): Promise<void> =>
-                await this.switchToPreviousMonth()
-              }>
+              onClick={async (event: MouseEvent): Promise<void> => {
+                event.preventDefault();
+                await this.switchToPreviousMonth();
+              }}>
               {getSvg('chevron', { class: 'dc-datepicker-prev-icon' })}
             </button>
             <div class="dc-datepicker-month-year-container">
@@ -398,9 +402,10 @@ export class DatacomDatepickerCalendar {
             </div>
             <button
               class="dc-datepicker-next"
-              onClick={async (): Promise<void> =>
-                await this.switchToNextMonth()
-              }>
+              onClick={async (event: MouseEvent): Promise<void> => {
+                event.preventDefault();
+                await this.switchToNextMonth();
+              }}>
               {getSvg('chevron', { class: 'dc-datepicker-next-icon' })}
             </button>
           </div>

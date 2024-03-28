@@ -8,12 +8,12 @@ export default {
   argTypes: {
     label: {
       name: 'Label',
-      description: 'Datepicker label',
+      description: 'Date picker label',
       type: { name: 'string' },
     },
     placeholder: {
       name: 'Placeholder',
-      description: 'Datepicker placeholder',
+      description: 'Date picker placeholder',
       type: { name: 'string' },
     },
     message: {
@@ -25,17 +25,25 @@ export default {
     dateFormat: {
       name: 'Date format',
       description:
-        'Acceptable date format. Default to "dd/MM/yyyy". Reference: https://date-fns.org/v3.6.0/docs/format',
+        'Date picker format value. Reference: https://date-fns.org/v3.6.0/docs/format',
       type: { name: 'string' },
+    },
+    supportedFormat: {
+      name: 'Supported date format',
+      description:
+        'Supported date formats to input in date picker. Reference: https://date-fns.org/v3.6.0/docs/format',
+      control: {
+        type: 'object',
+      },
     },
     disabled: {
       name: 'Disabled',
-      description: 'Datepicker disabled',
+      description: 'Date picker disabled',
       type: { name: 'boolean' },
     },
     required: {
       name: 'Required',
-      description: 'Datepicker required',
+      description: 'Date picker required',
       type: { name: 'boolean' },
     },
     isValid: {
@@ -49,6 +57,7 @@ export default {
     placeholder: '',
     message: 'Error message',
     dateFormat: 'dd/MM/yyyy',
+    supportedFormat: ['MMMM', 'dd MMMM', 'dd MMMM yyyy', 'ddMM', 'ddMMyyyy'],
     disabled: false,
     required: false,
   },
@@ -60,6 +69,7 @@ export const SingleDate: StoryObj<typeof DatacomDatepicker> = {
     placeholder: 'DD/MM/YYYY',
   },
   render: (props) => {
+    console.log(props.supportedFormat);
     return (
       <div style={{ width: '272px' }}>
         <DatacomDatepicker {...props} />
@@ -90,6 +100,7 @@ export const FormSubmission: StoryFn<typeof DatacomDatepicker> = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleOnChanged = (event: CustomEvent): void => {
+    setSubmitted(false);
     if (event.detail instanceof Array) {
       const [newStartDate, newEndDate] = event.detail as Date[];
       setStartDate(newStartDate);
@@ -124,7 +135,7 @@ export const FormSubmission: StoryFn<typeof DatacomDatepicker> = () => {
         <DatacomDatepicker
           label="Enter dates"
           placeholder="Start - End"
-          message="Please enter a valid dates"
+          message="Please enter a valid date range"
           range={true}
           required={true}
           startDate={startDate}

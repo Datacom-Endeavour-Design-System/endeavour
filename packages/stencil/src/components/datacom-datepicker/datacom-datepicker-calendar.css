@@ -1,6 +1,7 @@
 :host {
   display: block;
   outline: none;
+  background: var(--dc-datepicker-ui-color);
 }
 
 :host * {
@@ -25,10 +26,22 @@
   line-height: 0;
 }
 
+.dc-datepicker-calendar button:focus-visible,
+.dc-datepicker-calendar input:focus-visible {
+  outline: 3px solid var(--dc-datepicker-primary-interactive-color);
+  outline-offset: 1px;
+  border-radius: 8px;
+}
+
 .dc-datepicker-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.dc-datepicker-header .dc-datepicker-prev,
+.dc-datepicker-header .dc-datepicker-next {
+  height: 28px;
 }
 
 .dc-datepicker-header .dc-datepicker-prev-icon,
@@ -67,10 +80,15 @@
   font-size: 16px;
   line-height: 24px;
   text-align: center;
+  height: 28px;
 }
 
 .dc-datepicker-header span {
+  display: flex;
+  justify-content: end;
+  align-items: center;
   width: 98px;
+  margin-right: 8px;
 }
 
 .dc-datepicker-header input {
@@ -105,7 +123,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  height: 26px;
+  height: 28px;
 }
 
 .dc-datepicker-header .dc-datepicker-year-input-focused .dc-datepicker-quantity-nav {
@@ -114,7 +132,7 @@
 
 .dc-datepicker-header .dc-datepicker-quantity-nav button {
   padding: 2px 4px;
-  height: 13px;
+  height: 14px;
   display: flex;
 }
 
