@@ -19,12 +19,7 @@
 }
 
 .dc-datepicker-container datacom-datepicker-calendar {
-  position: relative;
   display: none;
-  border-width: 0 2px 2px 2px;
-  border-style: solid;
-  border-color: var(--dc-datepicker-primary-interactive-color);
-  border-radius: 0 0 8px 8px;
 }
 
 .dc-datepicker-container .dc-datepicker-close {
@@ -39,9 +34,9 @@
   border: 2px solid var(--dc-datepicker-primary-interactive-color);
   border-radius: 8px;
   position: absolute;
-  top: 318px;
+  top: 52px;
   left: 3px;
-  margin-top: 8px;
+  margin-top: 7px;
   z-index: 1000;
 }
 
@@ -82,10 +77,19 @@
 
 .dc-datepicker-open-calendar datacom-datepicker-calendar {
   display: block;
+  border-width: 0 2px 2px 2px;
+  border-style: solid;
+  border-color: var(--dc-datepicker-primary-interactive-color);
+  border-radius: 0 0 8px 8px;
   position: absolute;
   top: 52px;
   left: 0;
   z-index: 1000;
+}
+
+.dc-datepicker-open-calendar .dc-datepicker-close {
+  top: 318px;
+  left: 3px;
 }
 
 .dc-datepicker-open-calendar .dc-datepicker-error-msg {

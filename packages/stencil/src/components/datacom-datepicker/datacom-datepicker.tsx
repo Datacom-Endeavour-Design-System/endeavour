@@ -329,6 +329,7 @@ export class DatacomDatepicker {
             <datacom-datepicker-calendar {...calendarProps} />
             <button
               class="dc-datepicker-close"
+              tabIndex={this.isOpenCalendar ? 0 : -1}
               onClick={this.toggleCalendarHandler}>
               Close Calendar
             </button>
