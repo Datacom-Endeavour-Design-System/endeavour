@@ -31,7 +31,7 @@
   font-size: 14px;
   color: var(--dc-primary-text-color);
   background-color: var(--dc-datepicker-ui-color);
-  border: 2px solid var(--dc-datepicker-primary-interactive-color);
+  border: none;
   border-radius: 8px;
   position: absolute;
   top: 52px;
@@ -41,9 +41,8 @@
 }
 
 .dc-datepicker-container .dc-datepicker-close:focus-visible {
-  outline: 3px solid var(--dc-datepicker-primary-interactive-color);
+  outline: 2px solid var(--dc-datepicker-primary-interactive-color);
   outline-offset: 1px;
-  border-radius: 8px;
 }
 
 .dc-datepicker-container .dc-datepicker-close:not(.dc-datepicker-close:focus-visible) {
