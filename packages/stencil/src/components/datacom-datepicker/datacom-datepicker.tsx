@@ -91,7 +91,7 @@ export class DatacomDatepicker {
       this.endDate = undefined;
     }
 
-    if (event.detail instanceof Date) {
+    if (isValid(event.detail)) {
       this.selectedDate = event.detail;
     } else {
       this.selectedDate = undefined;
@@ -149,7 +149,7 @@ export class DatacomDatepicker {
   async watchDates(newDate: Date, _, propName: string): Promise<void> {
     if (
       (propName === 'selectedDate' || propName === 'endDate') &&
-      newDate instanceof Date
+      isValid(newDate)
     ) {
       await this.toggleCalendarHandler();
     }
@@ -163,7 +163,7 @@ export class DatacomDatepicker {
   }
 
   private toggleCalendarHandler = async (
-    event?: MouseEvent | KeyboardEvent | CustomEvent,
+    event?: KeyboardEvent | MouseEvent | CustomEvent,
   ): Promise<void> => {
     if (
       event instanceof MouseEvent ||
@@ -171,8 +171,10 @@ export class DatacomDatepicker {
       event instanceof CustomEvent
     ) {
       event.preventDefault();
-    }
 
+      const activeElement = document.activeElement as HTMLElement;
+      activeElement.blur();
+    }
     const inputElement =
       this.host.querySelector<HTMLDatacomDatepickerInputElement>(
         'datacom-datepicker-input',
@@ -184,8 +186,8 @@ export class DatacomDatepicker {
 
   private loopTabFocus = (): void => {
     setTimeout(() => {
+      const activeElement = document.activeElement;
       if (this.isOpenCalendar) {
-        const activeElement = document.activeElement;
         const firstElement = this.host.querySelector<HTMLInputElement>(
           'datacom-datepicker-input input',
         );

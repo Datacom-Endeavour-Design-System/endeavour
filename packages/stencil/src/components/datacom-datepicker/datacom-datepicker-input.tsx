@@ -223,30 +223,30 @@ export class DatacomDatepickerInput {
     let oldValue: string = '';
     let value: string = this.inputElement.value;
 
-    if (propName === 'selectedDate' && date instanceof Date) {
+    if (propName === 'selectedDate' && isValid(date)) {
       value = format(date, this.dateFormat);
       this.changed.emit(date);
-    } else if (propName === 'selectedDate' && !(date instanceof Date)) {
+    } else if (propName === 'selectedDate' && !isValid(date)) {
       this.changed.emit();
     }
 
-    if (propName === 'startDate' && date instanceof Date) {
+    if (propName === 'startDate' && isValid(date)) {
       const startDateStr = `${format(date, this.dateFormat)} - `;
       const endDateString = value.substring(startDateStr.length);
       oldValue = startDateStr;
       value = this.isChanged ? `${startDateStr}${endDateString}` : startDateStr;
       this.changed.emit([date]);
-    } else if (propName === 'startDate' && !(date instanceof Date)) {
+    } else if (propName === 'startDate' && !isValid(date)) {
       this.changed.emit([]);
     }
 
-    if (propName === 'endDate' && date instanceof Date) {
+    if (propName === 'endDate' && isValid(date)) {
       value = `${format(this.startDate, this.dateFormat)} - ${format(
         date,
         this.dateFormat,
       )}`;
       this.changed.emit([this.startDate, date]);
-    } else if (propName === 'endDate' && !(date instanceof Date)) {
+    } else if (propName === 'endDate' && !isValid(date)) {
       this.changed.emit([this.startDate]);
     }
 

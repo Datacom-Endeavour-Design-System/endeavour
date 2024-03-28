@@ -1,5 +1,6 @@
 :host {
   display: block;
+  outline: none;
   --dc-datepicker-input-border-width: 1px 1px 1px 1px;
   --dc-datepicker-input-border-radius: 8px;
   --dc-datepicker-input-border-color: var(--dc-token-border-default-01);

@@ -5,6 +5,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Listen,
   Method,
   Prop,
   State,
@@ -14,12 +15,15 @@ import { Calendar } from '../../utils/calendar';
 import { getSvg } from '../../common/images';
 import {
   addMonths,
+  addYears,
   format,
+  isValid,
   parse,
   setDate,
   setYear,
   startOfMonth,
   subMonths,
+  subYears,
 } from 'date-fns';
 
 @Component({
@@ -29,6 +33,7 @@ import {
 })
 export class DatacomDatepickerCalendar {
   private dayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  private yearInputElement: HTMLInputElement;
   private currentDate = new Date();
   private daysOfPrevMonthCount: number;
   private daysOfNextMonthCount: number;
@@ -44,10 +49,26 @@ export class DatacomDatepickerCalendar {
   @Prop() range? = false;
   @Prop() dateFormat? = 'dd/MM/yyyy';
 
-  @State() calendarDate? = startOfMonth(new Date());
+  @State() yearChanged = false;
+  @State() yearFocused = false;
+  @State() calendarDate = startOfMonth(new Date());
   @State() calendarDays: number[];
   @State() isSelecting = false;
   @State() mouseoverDate: Date;
+
+  @Listen('keydown', { capture: true })
+  async handleOnKeydown(event: KeyboardEvent): Promise<void> {
+    switch (event.key) {
+      case 'ArrowUp':
+        this.yearIncreaseHandler();
+        break;
+      case 'ArrowDown':
+        this.yearDecreaseHandler();
+        break;
+      default:
+        break;
+    }
+  }
 
   @Watch('selectedDate')
   @Watch('startDate')
@@ -73,6 +94,35 @@ export class DatacomDatepickerCalendar {
     this.daysOfPrevMonthCount = calendar.getDaysOfPrevMonthCount();
     this.daysOfNextMonthCount =
       calendar.daysInCalendar - calendar.getDaysOfNextMonthCount();
+  };
+
+  private yearIncreaseHandler = (): void => {
+    this.yearChanged = true;
+    this.yearFocused = true;
+    this.yearInputElement.focus();
+    this.calendarDate = addYears(this.calendarDate, 1);
+
+    const buttonElement = this.host.querySelector<HTMLDivElement>(
+      '.dc-datepicker-quantity-up',
+    );
+    buttonElement.classList.add('dc-test');
+    setTimeout(() => {
+      buttonElement.classList.remove('dc-test');
+    }, 100);
+  };
+
+  private yearDecreaseHandler = (): void => {
+    this.yearChanged = true;
+    this.yearFocused = true;
+    this.yearInputElement.focus();
+    this.calendarDate = subYears(this.calendarDate, 1);
+    const buttonElement = this.host.querySelector<HTMLDivElement>(
+      '.dc-datepicker-quantity-down',
+    );
+    buttonElement.classList.add('dc-test');
+    setTimeout(() => {
+      buttonElement.classList.remove('dc-test');
+    }, 100);
   };
 
   private mouseoverDayHandler = (event: MouseEvent): void => {
@@ -105,6 +155,22 @@ export class DatacomDatepickerCalendar {
     }
   };
 
+  private focusYearHandler = (event: FocusEvent): void => {
+    event.preventDefault();
+    this.yearFocused = true;
+  };
+
+  private blurYearHandler = (event: FocusEvent): void => {
+    event.preventDefault();
+    setTimeout(() => {
+      if (this.yearChanged) {
+        this.yearChanged = false;
+      } else {
+        this.yearFocused = false;
+      }
+    }, 200);
+  };
+
   private changeYearHandler = (event: InputEvent): void => {
     event.preventDefault();
     const el = event.target as HTMLInputElement;
@@ -134,16 +200,16 @@ export class DatacomDatepickerCalendar {
   }
 
   private setCalendarDate(date: Date, propName: string): void {
-    if (propName === 'selectedDate' && date instanceof Date) {
+    if (propName === 'selectedDate' && isValid(date)) {
       this.calendarDate = date;
-    } else if (propName === 'startDate' && date instanceof Date) {
+    } else if (propName === 'startDate' && isValid(date)) {
       this.calendarDate = date;
       this.isSelecting = true;
       this.changed.emit([date]);
-    } else if (propName === 'endDate' && date instanceof Date) {
+    } else if (propName === 'endDate' && isValid(date)) {
       this.isSelecting = false;
       this.changed.emit([this.startDate, date]);
-    } else if (propName === 'endDate' && !(date instanceof Date)) {
+    } else if (propName === 'endDate' && !isValid(date)) {
       this.isSelecting = true;
       this.changed.emit([this.startDate]);
     } else {
@@ -260,6 +326,10 @@ export class DatacomDatepickerCalendar {
   };
 
   render() {
+    const yearInputClass = {
+      'dc-datepicker-input-wrapper': true,
+      'dc-datepicker-year-input-focused': this.yearFocused,
+    };
     return (
       <Host>
         <div class="dc-datepicker-calendar">
@@ -273,11 +343,35 @@ export class DatacomDatepickerCalendar {
             </button>
             <div class="dc-datepicker-month-year-container">
               <span>{format(this.calendarDate, 'LLLL')}</span>
-              <input
-                type="number"
-                onInput={this.changeYearHandler}
-                value={this.calendarDate.getFullYear()}
-              />
+              <div class={yearInputClass}>
+                <input
+                  type="number"
+                  ref={(el) => (this.yearInputElement = el)}
+                  min={1}
+                  onFocus={this.focusYearHandler}
+                  onBlur={this.blurYearHandler}
+                  onInput={this.changeYearHandler}
+                  value={this.calendarDate.getFullYear()}
+                />
+                <div class="dc-datepicker-quantity-nav">
+                  <button
+                    tabIndex={-1}
+                    class="dc-datepicker-quantity-up"
+                    onClick={this.yearIncreaseHandler}>
+                    {getSvg('caret', {
+                      class: 'dc-datepicker-quantity-up-icon',
+                    })}
+                  </button>
+                  <button
+                    tabIndex={-1}
+                    class="dc-datepicker-quantity-down"
+                    onClick={this.yearDecreaseHandler}>
+                    {getSvg('caret', {
+                      class: 'dc-datepicker-quantity-down-icon',
+                    })}
+                  </button>
+                </div>
+              </div>
             </div>
             <button
               class="dc-datepicker-next"
