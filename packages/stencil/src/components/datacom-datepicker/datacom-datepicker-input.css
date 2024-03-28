@@ -58,6 +58,10 @@
   border-color: var(--dc-datepicker-input-border-hover-color);
 }
 
+.dc-datepicker-input-wrapper input:disabled {
+  cursor: not-allowed;
+}
+
 .dc-datepicker-input-wrapper input::placeholder {
   color: transparent;
 }
@@ -137,7 +141,7 @@
 }
 
 .dc-datepicker-input-disabled .dc-datepicker-calendar-icon {
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .dc-datepicker-input-disabled .dc-datepicker-calendar-icon path {

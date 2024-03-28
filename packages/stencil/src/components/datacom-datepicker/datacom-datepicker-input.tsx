@@ -321,7 +321,8 @@ export class DatacomDatepickerInput {
             onClick={(event: MouseEvent) => {
               event.preventDefault();
               this.inputElement.focus();
-            }}>
+            }}
+            disabled={this.disabled}>
             {getSvg('calendar-alt', { class: 'dc-datepicker-calendar-icon' })}
           </button>
         </div>
