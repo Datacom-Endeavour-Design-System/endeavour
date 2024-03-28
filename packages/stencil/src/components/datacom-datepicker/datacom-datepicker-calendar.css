@@ -225,5 +225,5 @@
 
 .dc-datepicker-dates button.dc-datepicker-disabled {
   color: var(--dc-token-disabled-01);
-  cursor: default;
+  cursor: not-allowed;
 }
