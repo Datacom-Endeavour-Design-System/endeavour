@@ -95,7 +95,6 @@
   background: transparent;
   color: var(--dc-datepicker-primary-text-color);
   border-radius: 4px;
-  cursor: pointer;
   width: 51px;
   padding: 0 4px;
   text-align: left;
