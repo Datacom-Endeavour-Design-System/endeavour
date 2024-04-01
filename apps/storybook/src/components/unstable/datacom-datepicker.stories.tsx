@@ -69,7 +69,6 @@ export const SingleDate: StoryObj<typeof DatacomDatepicker> = {
     placeholder: 'DD/MM/YYYY',
   },
   render: (props) => {
-    console.log(props.supportedFormat);
     return (
       <div style={{ width: '272px' }}>
         <DatacomDatepicker {...props} />

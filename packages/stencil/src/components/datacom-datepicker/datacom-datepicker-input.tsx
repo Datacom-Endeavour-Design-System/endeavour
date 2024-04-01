@@ -222,7 +222,7 @@ export class DatacomDatepickerInput {
         this.selectedDate = undefined;
       }
     }
-  }, 500);
+  }, 1000);
 
   private setValue = (date: Date, propName: string): void => {
     let oldValue: string = '';

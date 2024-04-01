@@ -308,6 +308,7 @@ export class DatacomDatepicker {
       endDate: this.endDate,
       range: this.range,
       dateFormat: this.dateFormat,
+      supportedFormat: this.supportedFormat,
     };
 
     const calendarProps = {

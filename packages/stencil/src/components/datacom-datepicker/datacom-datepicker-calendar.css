@@ -27,7 +27,7 @@
 }
 
 .dc-datepicker-calendar button:focus-visible {
-  outline: 3px solid var(--dc-datepicker-primary-interactive-color);
+  outline: 2px solid var(--dc-datepicker-primary-interactive-color);
   outline-offset: 1px;
   border-radius: 8px;
 }
