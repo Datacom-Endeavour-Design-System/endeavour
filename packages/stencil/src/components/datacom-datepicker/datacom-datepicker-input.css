@@ -79,8 +79,8 @@
 .dc-datepicker-input-wrapper .dc-datepicker-clear {
   display: none;
   cursor: pointer;
-  top: 13px;
-  right: 10px;
+  top: 15px;
+  right: 16px;
 }
 
 .dc-datepicker-input-wrapper .dc-datepicker-clear:focus-visible {
@@ -92,8 +92,8 @@
 .dc-datepicker-input-wrapper .dc-datepicker-calendar {
   display: block;
   cursor: text;
-  top: 15px;
-  right: 12px;
+  top: 16px;
+  right: 16px;
 }
 
 .dc-datepicker-input-wrapper .dc-datepicker-calendar-icon,
@@ -119,8 +119,7 @@
 }
 
 .dc-datepicker-input-edit input {
-  padding: 11px 31px 12px 14px;
-  height: 50px;
+  padding: 14px 16px;
 }
 
 .dc-datepicker-input-edit input::placeholder {

@@ -13,7 +13,7 @@
 }
 
 .dc-datepicker-calendar {
-  padding: 14px 16px;
+  padding: 16px;
   width: 236px;
   color: var(--dc-datepicker-primary-text-color);
 }
@@ -71,7 +71,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 169px;
 }
 
 .dc-datepicker-header .dc-datepicker-input-wrapper {
@@ -84,7 +83,7 @@
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  height: 28px;
+  height: 24px;
 }
 
 .dc-datepicker-header span {
@@ -96,18 +95,17 @@
 }
 
 .dc-datepicker-header input {
-  border: 1px solid transparent;
+  border: none;
   background: transparent;
   color: var(--dc-datepicker-primary-text-color);
   border-radius: 4px;
   width: 51px;
-  padding: 0 4px;
+  padding: 2px 4px;
   text-align: left;
 }
 
 .dc-datepicker-header input:focus-visible {
-  border-color: var(--dc-datepicker-primary-interactive-color);
-  outline: none;
+  outline: 1px solid var(--dc-datepicker-primary-interactive-color);
 }
 
 /* Remove default arrows/spinners of input field in Firefox  */
@@ -127,7 +125,7 @@
   flex-direction: column;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 4px;
   height: 28px;
 }
 
@@ -136,9 +134,9 @@
 }
 
 .dc-datepicker-header .dc-datepicker-quantity-nav button {
-  padding: 2px 4px;
   height: 14px;
   display: flex;
+  padding: 0;
 }
 
 .dc-datepicker-header .dc-datepicker-quantity-nav .dc-datepicker-quantity-up {
@@ -149,6 +147,7 @@
 .dc-datepicker-header .dc-datepicker-quantity-down-icon {
   width: 9px;
   height: 4px;
+  margin: 2px 0;
 }
 
 .dc-datepicker-header .dc-datepicker-quantity-up-icon path,
@@ -173,7 +172,7 @@
 
 .dc-datepicker-days {
   justify-content: center;
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 .dc-datepicker-days span {
