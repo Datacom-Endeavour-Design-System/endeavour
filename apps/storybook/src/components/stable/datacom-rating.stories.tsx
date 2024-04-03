@@ -16,7 +16,10 @@ export default {
       name: 'Size',
       description:
         'Size of stars in rating component. Defaults to standard if not set.',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: { standard: 'Standard', large: 'Large' },
+      },
       defaultValue: 'standard',
       options: ['standard', 'large'],
       type: { name: 'string' },

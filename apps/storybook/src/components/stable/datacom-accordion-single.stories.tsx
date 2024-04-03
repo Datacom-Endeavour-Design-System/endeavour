@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStoryFn } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import {
   DatacomAccordionGroup,
   DatacomAccordion,
@@ -29,9 +29,7 @@ export default {
   },
 };
 
-const SingleSectionTemplate: ComponentStoryFn<typeof DatacomAccordion> = (
-  args,
-) => {
+const SingleSectionTemplate: StoryFn<typeof DatacomAccordion> = (args) => {
   const { disabled, expanded, label } = args;
 
   return (

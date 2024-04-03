@@ -1,13 +1,8 @@
 :host {
   --link-color: var(--dc-primary-colour);
-
-  /* TODO: var color */
-  --link-visited-color: #6b2fc6;
+  --link-visited-color: var(--dc-primary-link-visited-color);
   --link-font-size: 18px;
   --link-height: 24px;
-
-  /* TODO: var color */
-  --link-icon-hover-color: var(--dc-primary-text-color);
 }
 
 .dc-link {
@@ -159,7 +154,7 @@
 
 .dc-link-footer:hover .dc-link-icon path,
 .dc-link-stacked:hover .dc-link-icon path {
-  fill: var(--link-icon-hover-color);
+  fill: color-mix(in oklch, transparent, var(--dc-primary-text-color) 90%);
 }
 
 /* Disabled state styles */

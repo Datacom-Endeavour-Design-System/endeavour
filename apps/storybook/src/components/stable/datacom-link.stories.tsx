@@ -28,15 +28,47 @@ export default {
       type: { name: 'string' },
     },
     iconPosition: {
-      name: 'Image Position',
+      name: 'Image position',
       description: 'Image or icon position. Defaults to left if not set',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          left: 'Left',
+          right: 'Right',
+        },
+      },
       options: ['left', 'right'],
     },
     icon: {
       name: 'Icon',
       description: 'Display image icon from a set of pre-defined images',
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          add: 'Add',
+          'add-to-cart': 'Add-to-cart',
+          back: 'Back',
+          'back-to-top': 'Back-to-top',
+          bookmark: 'Bookmark',
+          calendar: 'Calendar',
+          copy: 'Copy',
+          down: 'Down',
+          download: 'Download',
+          'external-link': 'External-link',
+          filter: 'Filter',
+          forward: 'Forward',
+          globe: 'Globe',
+          information: 'Information',
+          menu: 'Menu',
+          refresh: 'Refresh',
+          remove: 'Remove',
+          search: 'Search',
+          settings: 'Settings',
+          theme: 'Theme',
+          up: 'Up',
+          upload: 'Upload',
+        },
+      },
       options: [
         '',
         'add',
@@ -63,21 +95,23 @@ export default {
         'upload',
       ],
     },
-    url: {
-      name: 'URL',
-      description: ' should be add link to. ',
-      type: { name: 'string', required: true },
-    },
     disabled: {
       name: 'Disabled',
       description: 'Disable Link',
       type: { name: 'boolean' },
+    },
+    url: {
+      name: 'URL',
+      description: ' should be add link to. ',
+      type: { name: 'string' },
     },
   },
   args: {
     label: 'Learn more',
     variant: 'standalone',
     iconPosition: 'left',
+    icon: '',
+    disabled: false,
     url: '#',
   },
 };
@@ -94,25 +128,48 @@ LinkWithIcon.args = {
   icon: 'globe',
 };
 
-export const stackedLinks = () => {
-  return (
-    <div>
-      <div style={{ paddingBottom: '12px' }}>
+export const stackedLinks = {
+  argTypes: {
+    label: {
+      name: 'Label',
+      type: { name: 'string' },
+    },
+    variant: {
+      name: 'Variant',
+      description: " Link variants.Defaults to 'standalone' if not set.",
+      table: { disable: true },
+    },
+    iconPosition: {
+      name: 'Image position',
+      description: 'Image or icon position. Defaults to left if not set',
+      table: { disable: true },
+    },
+    icon: {
+      name: 'Icon',
+      description: 'Display image icon from a set of pre-defined images',
+      table: { disable: true },
+    },
+  },
+  render: () => {
+    return (
+      <div>
+        <div style={{ paddingBottom: '12px' }}>
+          <DatacomLink
+            variant="stacked"
+            url="https://www.datacom.com/nz/en"
+            icon="forward"
+            iconPosition="right">
+            Learn more
+          </DatacomLink>
+        </div>
         <DatacomLink
           variant="stacked"
-          url="https://www.datacom.com/nz/en"
-          icon="forward"
+          url="https://www.datacom.com/nz/en/search"
+          icon="settings"
           iconPosition="right">
-          Learn more
+          Account settings
         </DatacomLink>
       </div>
-      <DatacomLink
-        variant="stacked"
-        url="https://www.datacom.com/nz/en/search"
-        icon="settings"
-        iconPosition="right">
-        Account settings
-      </DatacomLink>
-    </div>
-  );
+    );
+  },
 };
