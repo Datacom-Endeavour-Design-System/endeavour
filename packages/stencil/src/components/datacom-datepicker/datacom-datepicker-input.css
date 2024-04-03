@@ -73,7 +73,7 @@
   background: transparent;
   color: var(--dc-primary-text-color);
   line-height: 0;
-  padding: 0 4px;
+  padding: 0;
 }
 
 .dc-datepicker-input-wrapper .dc-datepicker-clear {
