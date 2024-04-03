@@ -16,7 +16,6 @@ const meta = {
           unordered: 'Unordered',
         },
       },
-      defaultValue: 'ordered',
       options: ['ordered', 'unordered'],
       type: { name: 'string' },
     },
