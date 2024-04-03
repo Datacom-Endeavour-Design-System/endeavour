@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+
+}
+
+ .dc-overflow-menu-horizontal {
+  transform: rotate(90deg);
+  position: relative;
+}
+ 
+.dropdown-options {
+  max-width: 272px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

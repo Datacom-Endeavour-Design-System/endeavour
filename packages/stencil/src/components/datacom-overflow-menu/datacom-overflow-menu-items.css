@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.menu-item {
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+}
