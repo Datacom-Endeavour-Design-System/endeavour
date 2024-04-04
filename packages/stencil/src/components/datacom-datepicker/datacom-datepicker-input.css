@@ -4,6 +4,7 @@
   --dc-datepicker-input-border-width: 1px 1px 1px 1px;
   --dc-datepicker-input-border-radius: 8px;
   --dc-datepicker-input-border-color: var(--dc-token-border-default-01);
+  --dc-datepicker-input-border-hover-color: var(--dc-datepicker-interactive-hover-color);
 }
 
 :host * {
@@ -49,12 +50,12 @@
   display: block;
 }
 
-.dc-datepicker-input-wrapper input:active {
-  border-color: var(--dc-datepicker-primary-interactive-color);
-}
+/*.dc-datepicker-input-wrapper input:active {*/
+/*  border-color: var(--dc-datepicker-primary-interactive-color);*/
+/*}*/
 
 .dc-datepicker-input-wrapper:not(.dc-datepicker-input-edit):not(.dc-datepicker-input-error) input:hover {
-  border-color: var(--dc-datepicker-interactive-hover-color);
+  border-color: var(--dc-datepicker-input-border-hover-color);
 }
 
 .dc-datepicker-input-wrapper input:disabled {
@@ -152,9 +153,4 @@
 
 .dc-datepicker-input-disabled .dc-datepicker-calendar-icon path {
   fill: var(--dc-token-disabled-01);
-}
-
-/* Error state */
-.dc-datepicker-input-error input {
-  border-color: var(--dc-datepicker-error-color);
 }

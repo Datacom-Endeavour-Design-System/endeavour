@@ -297,7 +297,7 @@ export class DatacomDatepicker {
       'dc-datepicker-open-calendar': this.isOpenCalendar,
       'dc-datepicker-error': this.isError || this.isValid === false,
       'dc-datepicker-disabled': this.disabled,
-      'dc-datepicker-required': this.required,
+      'dc-datepicker-required': !this.required,
     };
 
     const inputProps = {
@@ -333,7 +333,7 @@ export class DatacomDatepicker {
             <div class="dc-datepicker-close-wrapper">
               <button
                 class="dc-datepicker-close"
-                tabIndex={this.required ? 0 : -1}
+                tabIndex={!this.required ? 0 : -1}
                 onClick={this.toggleCalendarHandler}>
                 Close
               </button>
