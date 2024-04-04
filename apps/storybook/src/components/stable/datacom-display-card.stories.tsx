@@ -24,11 +24,12 @@ export default {
     },
     ctaText: {
       name: 'CTA text',
+      description: 'Specify text for link',
       type: { name: 'string' },
     },
     url: {
       name: 'URL',
-      description: 'URL that  should link to.',
+      description: 'URL that should link to.',
       type: { name: 'string' },
     },
     imageUrl: {

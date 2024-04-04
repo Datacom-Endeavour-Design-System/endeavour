@@ -10,11 +10,12 @@ export default {
   argTypes: {
     linkLabel: {
       name: 'Label',
+      description: 'Specify label for link.',
       type: { name: 'string' },
     },
     variant: {
       name: 'Variant',
-      description: " Link variants.Defaults to 'standalone' if not set.",
+      description: "Link variants.Defaults to 'standalone' if not set.",
       control: {
         type: 'select',
         labels: {
@@ -102,7 +103,7 @@ export default {
     },
     url: {
       name: 'URL',
-      description: ' should be add link to. ',
+      description: 'Should be add link to. ',
       type: { name: 'string' },
     },
   },
@@ -125,6 +126,51 @@ export const Default = Template.bind({});
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   icon: 'globe',
+};
+
+export const InlineLinks = {
+  argTypes: {
+    linkLabel: {
+      name: 'Label',
+      type: { name: 'string' },
+    },
+    variant: {
+      name: 'Variant',
+      description: " Link variants.Defaults to 'standalone' if not set.",
+      table: { disable: true },
+    },
+    iconPosition: {
+      name: 'Image position',
+      description: 'Image or icon position. Defaults to left if not set',
+      table: { disable: true },
+    },
+    icon: {
+      name: 'Icon',
+      description: 'Display image icon from a set of pre-defined images',
+      table: { disable: true },
+    },
+  },
+  render: () => {
+    return (
+      <div>
+        <div style={{ paddingBottom: '12px', color: '' }}>
+          <p style={{ color: 'var(--dc-primary-text-color)' }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <DatacomLink
+              variant="inline"
+              url="https://www.datacom.com/nz/en"
+              icon="forward"
+              iconPosition="right">
+              Learn more
+            </DatacomLink>
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </div>
+    );
+  },
 };
 
 export const StackedLinks = {
@@ -163,6 +209,52 @@ export const StackedLinks = {
         </div>
         <DatacomLink
           variant="stacked"
+          url="https://www.datacom.com/nz/en/search"
+          icon="settings"
+          iconPosition="right">
+          Account settings
+        </DatacomLink>
+      </div>
+    );
+  },
+};
+
+export const FooterLinks = {
+  argTypes: {
+    linkLabel: {
+      name: 'Label',
+      type: { name: 'string' },
+    },
+    variant: {
+      name: 'Variant',
+      description: " Link variants.Defaults to 'standalone' if not set.",
+      table: { disable: true },
+    },
+    iconPosition: {
+      name: 'Image position',
+      description: 'Image or icon position. Defaults to left if not set',
+      table: { disable: true },
+    },
+    icon: {
+      name: 'Icon',
+      description: 'Display image icon from a set of pre-defined images',
+      table: { disable: true },
+    },
+  },
+  render: () => {
+    return (
+      <div>
+        <div style={{ paddingBottom: '12px' }}>
+          <DatacomLink
+            variant="footer"
+            url="https://www.datacom.com/nz/en"
+            icon="forward"
+            iconPosition="right">
+            Learn more
+          </DatacomLink>
+        </div>
+        <DatacomLink
+          variant="footer"
           url="https://www.datacom.com/nz/en/search"
           icon="settings"
           iconPosition="right">
