@@ -4,7 +4,6 @@
   --dc-datepicker-input-border-width: 1px 1px 1px 1px;
   --dc-datepicker-input-border-radius: 8px;
   --dc-datepicker-input-border-color: var(--dc-token-border-default-01);
-  --dc-datepicker-input-border-hover-color: var(--dc-datepicker-interactive-hover-color);
 }
 
 :host * {
@@ -54,8 +53,8 @@
   border-color: var(--dc-datepicker-primary-interactive-color);
 }
 
-.dc-datepicker-input-wrapper input:hover {
-  border-color: var(--dc-datepicker-input-border-hover-color);
+.dc-datepicker-input-wrapper:not(.dc-datepicker-input-edit):not(.dc-datepicker-input-error) input:hover {
+  border-color: var(--dc-datepicker-interactive-hover-color);
 }
 
 .dc-datepicker-input-wrapper input:disabled {
@@ -119,7 +118,8 @@
 }
 
 .dc-datepicker-input-edit input {
-  border-bottom: 1px solid var(--dc-token-border-default-01);
+  border-bottom-width: 1px;
+  border-bottom-color: var(--dc-token-border-default-01);
   box-shadow: none;
 }
 
@@ -155,6 +155,6 @@
 }
 
 /* Error state */
-.dc-datepicker-input-error input:hover {
+.dc-datepicker-input-error input {
   border-color: var(--dc-datepicker-error-color);
 }

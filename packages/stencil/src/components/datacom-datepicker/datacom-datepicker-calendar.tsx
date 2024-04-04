@@ -51,6 +51,7 @@ export class DatacomDatepickerCalendar {
 
   @State() yearChanged = false;
   @State() yearFocused = false;
+  @State() yearMouseover = false;
   @State() calendarDate = startOfMonth(new Date());
   @State() calendarDays: number[];
   @State() isSelecting = false;
@@ -84,7 +85,7 @@ export class DatacomDatepickerCalendar {
       'yearDownIcon',
       'yearUpIcon',
     ];
-    this.yearFocused = !!attributeName.includes(
+    this.yearMouseover = !!attributeName.includes(
       mouseoverElement.getAttribute('name'),
     );
   }
@@ -349,7 +350,8 @@ export class DatacomDatepickerCalendar {
   render() {
     const yearInputClass = {
       'dc-datepicker-input-wrapper': true,
-      'dc-datepicker-year-input-focused': this.yearFocused,
+      'dc-datepicker-year-input-focused':
+        this.yearFocused || this.yearMouseover,
     };
     return (
       <Host>

@@ -297,6 +297,7 @@ export class DatacomDatepicker {
       'dc-datepicker-open-calendar': this.isOpenCalendar,
       'dc-datepicker-error': this.isError || this.isValid === false,
       'dc-datepicker-disabled': this.disabled,
+      'dc-datepicker-required': this.required,
     };
 
     const inputProps = {
@@ -327,13 +328,17 @@ export class DatacomDatepicker {
             class="dc-datepicker-tab-loop-start"
             tabIndex={this.isOpenCalendar ? 0 : -1}></div>
           <datacom-datepicker-input {...inputProps} />
-          <datacom-datepicker-calendar {...calendarProps} />
-          <button
-            class="dc-datepicker-close"
-            tabIndex={this.isOpenCalendar ? 0 : -1}
-            onClick={this.toggleCalendarHandler}>
-            Close Calendar
-          </button>
+          <div class="dc-datepicker-calendar-container">
+            <datacom-datepicker-calendar {...calendarProps} />
+            <div class="dc-datepicker-close-wrapper">
+              <button
+                class="dc-datepicker-close"
+                tabIndex={this.required ? 0 : -1}
+                onClick={this.toggleCalendarHandler}>
+                Close
+              </button>
+            </div>
+          </div>
           <p tabIndex={-1} class="dc-datepicker-error-msg">
             {this.message}
           </p>

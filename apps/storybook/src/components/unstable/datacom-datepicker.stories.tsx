@@ -25,13 +25,13 @@ export default {
     dateFormat: {
       name: 'Date format',
       description:
-        'Date picker format value. Reference: https://date-fns.org/v3.6.0/docs/format',
+        'Date format value of date picker. Reference: https://date-fns.org/v3.6.0/docs/format',
       type: { name: 'string' },
     },
     supportedFormat: {
       name: 'Supported date format',
       description:
-        'Supported date formats to input in date picker. Reference: https://date-fns.org/v3.6.0/docs/format',
+        'Supported date format to input in date picker. Reference: https://date-fns.org/v3.6.0/docs/format',
       control: {
         type: 'object',
       },
