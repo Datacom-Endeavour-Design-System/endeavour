@@ -3,19 +3,18 @@ import { StoryObj, Meta } from '@storybook/react';
 import {
   DatacomOverflowMenu,
   DatacomMenuItems,
-  DatacomOption,
 } from '@datacom/endeavour-react';
 
 const meta: Meta<typeof DatacomOverflowMenu> = {
   title: 'Overflow Menu',
   component: DatacomOverflowMenu,
   argTypes: {
-    itemText: {
-      name: ' tooltip Text',
-      defaultValue: 'Button text',
-      description: 'Button text',
-      type: { name: 'string' },
-    },
+    // itemText: {
+    //   name: ' tooltip Text',
+    //   defaultValue: 'Button text',
+    //   description: 'Button text',
+    //   type: { name: 'string' },
+    // },
     variant: {
       name: 'Variant',
       description: 'Main button variant. Defaults to primary if not set.',
@@ -31,9 +30,9 @@ const meta: Meta<typeof DatacomOverflowMenu> = {
       type: { name: 'string' },
     },
   },
-  args: {
-    itemText: 'Button',
-  },
+  // args: {
+  //   itemText: 'Button',
+  // },
 };
 
 export default meta;
@@ -44,8 +43,8 @@ export const Primary: Story = {
     return (
       <div style={{ maxWidth: 272 }}>
         <DatacomOverflowMenu {...props}>
-          <DatacomOption> text</DatacomOption>
-          <DatacomOption> text</DatacomOption>
+          <DatacomMenuItems itemUrl="#">text1</DatacomMenuItems>
+          <DatacomMenuItems itemText="text">jjj</DatacomMenuItems>
         </DatacomOverflowMenu>
       </div>
     );

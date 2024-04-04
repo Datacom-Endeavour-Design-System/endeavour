@@ -1,7 +1,8 @@
-import { Component, Host, h, Prop, Fragment, State } from '@stencil/core';
+import { Component, Host, h, Prop, State } from '@stencil/core';
 import { OverflowMenuIcon } from './assets/overflow-menu-icon';
 
 export type OverFlowMenuVariantType = 'horizontal' | 'vertical';
+export type MenuSizeType = 'standard' | 'small';
 
 @Component({
   tag: 'datacom-overflow-menu',
@@ -14,7 +15,8 @@ export class DatacomOverflowMenu {
   @Prop() close: true;
   @State() isOpen: boolean = false;
   @Prop() url: string;
-  @Prop() itemText: string;
+  @Prop() menuText: string;
+  @Prop() size: MenuSizeType = 'small';
 
   // @Method()
   // async isExpanded(): Promise<boolean> {
@@ -25,24 +27,12 @@ export class DatacomOverflowMenu {
     this.isOpen = !this.isOpen;
   }
 
-  renderDropdown() {
-    // const tagItem = this.url ? 'a': 'button';
-    return (
-      <Fragment>
-        <div class="dc-overflow-menu-items-wrapper">
-          {this.url ? (
-            <a href={this.url}>{this.itemText}</a>
-          ) : (
-            <button>{this.itemText}</button>
-          )}
-        </div>
-      </Fragment>
-    );
-  }
   render() {
-    //  const Classes = {
-    //   // [`dc-overflow-menu-${this.variant}`]: true,
-    //  };
+    const Classes = {
+      // [`dc-overflow-menu-${this.variant}`]: true,
+      [`dc-menu-item-${this.size}`]: true,
+      'dropdown-options': true,
+    };
 
     return (
       <Host>
@@ -52,9 +42,11 @@ export class DatacomOverflowMenu {
               <OverflowMenuIcon class={`dc-overflow-menu-${this.variant}`} />
             </datacom-tooltip>
           ) : (
-            <div class="dropdown options">
+            <div>
               <OverflowMenuIcon class={`dc-overflow-menu-${this.variant}`} />
-              <slot />
+              <div class={Classes}>
+                <slot />
+              </div>
             </div>
           )}
         </div>
