@@ -149,7 +149,8 @@ export class DatacomDatepicker {
   async watchDates(newDate: Date, _, propName: string): Promise<void> {
     if (
       (propName === 'selectedDate' || propName === 'endDate') &&
-      isValid(newDate)
+      isValid(newDate) &&
+      this.isOpenCalendar
     ) {
       await this.toggleCalendarHandler();
     }
@@ -325,23 +326,21 @@ export class DatacomDatepicker {
           <div
             class="dc-datepicker-tab-loop-start"
             tabIndex={this.isOpenCalendar ? 0 : -1}></div>
-          <div class="dc-datepicker">
-            <datacom-datepicker-input {...inputProps} />
-            <datacom-datepicker-calendar {...calendarProps} />
-            <button
-              class="dc-datepicker-close"
-              tabIndex={this.isOpenCalendar ? 0 : -1}
-              onClick={this.toggleCalendarHandler}>
-              Close Calendar
-            </button>
-            <p tabIndex={-1} class="dc-datepicker-error-msg">
-              {this.message}
-            </p>
-          </div>
-          <div
-            class="dc-datepicker-tab-loop-end"
-            tabIndex={this.isOpenCalendar ? 0 : -1}></div>
+          <datacom-datepicker-input {...inputProps} />
+          <datacom-datepicker-calendar {...calendarProps} />
+          <button
+            class="dc-datepicker-close"
+            tabIndex={this.isOpenCalendar ? 0 : -1}
+            onClick={this.toggleCalendarHandler}>
+            Close Calendar
+          </button>
+          <p tabIndex={-1} class="dc-datepicker-error-msg">
+            {this.message}
+          </p>
         </div>
+        <div
+          class="dc-datepicker-tab-loop-end"
+          tabIndex={this.isOpenCalendar ? 0 : -1}></div>
       </Host>
     );
   }

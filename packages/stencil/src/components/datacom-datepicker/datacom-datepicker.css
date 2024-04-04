@@ -62,16 +62,11 @@
 }
 
 /* Calendar open state */
-.dc-datepicker-open-calendar .dc-datepicker {
-  border-width: 2px 2px 0 2px;
-  border-style: solid;
-  border-color: var(--dc-datepicker-primary-interactive-color);
-  border-radius: 8px 8px 0 0;
-}
-
 .dc-datepicker-open-calendar datacom-datepicker-input {
-  --dc-datepicker-input-border-width: 0 0 1px 0;
+  --dc-datepicker-input-border-width: 2px 2px 0 2px;
   --dc-datepicker-input-border-radius: 8px 8px 0 0;
+  --dc-datepicker-input-border-color: var(--dc-datepicker-primary-interactive-color);
+  --dc-datepicker-input-border-hover-color: var(--dc-datepicker-primary-interactive-color);
 }
 
 .dc-datepicker-open-calendar datacom-datepicker-calendar {
@@ -80,8 +75,10 @@
   border-style: solid;
   border-color: var(--dc-datepicker-primary-interactive-color);
   border-radius: 0 0 8px 8px;
+  height: 260px;
+  padding-top: 1px;
   position: absolute;
-  top: 54px;
+  top: 51px;
   left: 0;
   z-index: 1000;
 }

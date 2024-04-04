@@ -270,11 +270,7 @@ export class DatacomDatepickerCalendar {
   private getDayClasses = (day: number, index: number): string => {
     const classDigit = [];
 
-    if (
-      !isValid(this.selectedDate) &&
-      !isValid(this.startDate) &&
-      this.isToday(day, index)
-    ) {
+    if (this.isToday(day, index)) {
       classDigit.push('dc-datepicker-active');
     }
 

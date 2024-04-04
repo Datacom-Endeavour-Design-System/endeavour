@@ -1,7 +1,6 @@
 :host {
   display: block;
   outline: none;
-  background: var(--dc-datepicker-ui-color);
 }
 
 :host * {
@@ -13,9 +12,12 @@
 }
 
 .dc-datepicker-calendar {
+  background: var(--dc-datepicker-ui-color);
+  color: var(--dc-datepicker-primary-text-color);
+  border-radius: 0 0 8px 8px;
   padding: 16px;
   width: 236px;
-  color: var(--dc-datepicker-primary-text-color);
+  height: calc(100% - 32px);
 }
 
 .dc-datepicker-calendar button {
@@ -41,8 +43,8 @@
 .dc-datepicker-header .dc-datepicker-prev,
 .dc-datepicker-header .dc-datepicker-next {
   padding: 0;
-  height: 28px;
-  width: 28px;
+  height: 24px;
+  width: 24px;
 }
 
 
@@ -86,7 +88,7 @@
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  height: 24px;
+  height: 20px;
 }
 
 .dc-datepicker-header span {
@@ -129,7 +131,7 @@
   position: absolute;
   top: 0;
   right: 4px;
-  height: 28px;
+  height: 24px;
 }
 
 .dc-datepicker-header .dc-datepicker-year-input-focused .dc-datepicker-quantity-nav {
@@ -137,7 +139,7 @@
 }
 
 .dc-datepicker-header .dc-datepicker-quantity-nav button {
-  height: 14px;
+  height: 12px;
   display: flex;
   padding: 0;
 }
@@ -150,7 +152,14 @@
 .dc-datepicker-header .dc-datepicker-quantity-down-icon {
   width: 9px;
   height: 4px;
-  margin: 2px 0;
+}
+
+.dc-datepicker-header .dc-datepicker-quantity-up-icon {
+  margin-bottom: 3px
+}
+
+.dc-datepicker-header .dc-datepicker-quantity-down-icon {
+  margin-top: 1px
 }
 
 .dc-datepicker-header .dc-datepicker-quantity-up-icon path,
