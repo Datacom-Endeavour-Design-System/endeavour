@@ -165,7 +165,7 @@ export const AlertBanner: StoryObj<
     },
     ctaLabel: {
       name: 'CTA label',
-      description: 'Label that represents to a link.',
+      description: 'Text within the CTA element.',
       type: { name: 'string' },
     },
     ctaURL: {
