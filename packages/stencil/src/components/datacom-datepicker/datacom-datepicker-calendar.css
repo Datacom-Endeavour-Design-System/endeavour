@@ -41,11 +41,14 @@
 .dc-datepicker-header .dc-datepicker-prev,
 .dc-datepicker-header .dc-datepicker-next {
   padding: 0;
+  height: 28px;
+  width: 28px;
 }
+
 
 .dc-datepicker-header .dc-datepicker-prev:focus-visible,
 .dc-datepicker-header .dc-datepicker-next:focus-visible {
-  outline-offset: 3px;
+  outline-offset: 1px;
 }
 
 .dc-datepicker-header .dc-datepicker-prev-icon,
