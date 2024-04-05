@@ -287,7 +287,8 @@ export class DatacomDatePickerInput {
   render() {
     const classes = {
       'dc-date-picker-input-wrapper': true,
-      'dc-date-picker-input-edit': this.isEditing || this.value !== '',
+      'dc-date-picker-input-edit':
+        this.isEditing || this.inputElement?.value !== '',
       'dc-date-picker-input-disabled': this.disabled,
       'dc-date-picker-input-error': this.isError,
     };

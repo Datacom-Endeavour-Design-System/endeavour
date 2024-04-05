@@ -1,9 +1,11 @@
 :host {
   display: block;
   outline: none;
+  --dc-date-picker-input-padding: 14px 36px 14px 16px;
   --dc-date-picker-input-border-width: 1px 1px 1px 1px;
   --dc-date-picker-input-border-radius: 8px;
   --dc-date-picker-input-border-color: var(--dc-token-border-default-01);
+  --dc-date-picker-input-border-bottom-color: var(--dc-token-border-default-01);
   --dc-date-picker-input-border-hover-color: var(--dc-date-picker-interactive-hover-color);
 }
 
@@ -45,16 +47,11 @@
   height: 52px;
   width: 100%;
   outline: none;
-  padding: 14px 36px 14px 16px;
+  padding: var(--dc-date-picker-input-padding);
   text-overflow: ellipsis;
-  display: block;
 }
 
-/*.dc-date-picker-input-wrapper input:active {*/
-/*  border-color: var(--dc-date-picker-primary-interactive-color);*/
-/*}*/
-
-.dc-date-picker-input-wrapper:not(.dc-date-picker-input-edit):not(.dc-date-picker-input-error) input:hover {
+.dc-date-picker-input-wrapper:not(.dc-date-picker-input-edit):not(.dc-date-picker-input-error):not(.dc-date-picker-input-disabled) input:hover {
   border-color: var(--dc-date-picker-input-border-hover-color);
 }
 
@@ -120,7 +117,7 @@
 
 .dc-date-picker-input-edit input {
   border-bottom-width: 1px;
-  border-bottom-color: var(--dc-token-border-default-01);
+  border-bottom-color: var(--dc-date-picker-input-border-bottom-color);
   box-shadow: none;
 }
 

@@ -331,12 +331,13 @@ export class DatacomDatePicker {
           <div class="dc-date-picker-calendar-container">
             <datacom-date-picker-calendar {...calendarProps} />
             <div class="dc-date-picker-close-wrapper">
-              <button
+              <datacom-button
                 class="dc-date-picker-close"
-                tabIndex={!this.required ? 0 : -1}
+                variant="secondary"
+                size="small"
                 onClick={this.toggleCalendarHandler}>
                 Close
-              </button>
+              </datacom-button>
             </div>
           </div>
           <p tabIndex={-1} class="dc-date-picker-error-msg">

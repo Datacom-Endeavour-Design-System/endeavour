@@ -23,34 +23,6 @@
   display: none;
 }
 
-.dc-date-picker-container .dc-date-picker-close {
-  box-sizing: border-box;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 34px;
-  line-height: 18px;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--dc-date-picker-primary-interactive-color);
-  background-color: var(--dc-date-picker-ui-color);
-  border: 2px solid var(--dc-date-picker-primary-interactive-color);
-  border-radius: 8px;
-}
-
-.dc-date-picker-container .dc-date-picker-close:focus-visible {
-  outline: 2px solid var(--dc-date-picker-primary-interactive-color);
-  outline-offset: 1px;
-}
-
-.dc-date-picker-container .dc-date-picker-close:hover:enabled,
-.dc-date-picker-container .dc-date-picker-close:active:enabled {
-  color: var(--dc-date-picker-interactive-hover-color);
-  border-color: var(--dc-date-picker-interactive-hover-color);
-}
-
 .dc-date-picker-error-msg {
   display: none;
   color: var(--dc-date-picker-error-color);
@@ -65,6 +37,7 @@
 
 /* Calendar open state */
 .dc-date-picker-open-calendar datacom-date-picker-input {
+  --dc-date-picker-input-padding: 13px 35px 14px 15px;
   --dc-date-picker-input-border-width: 2px 2px 0 2px;
   --dc-date-picker-input-border-radius: 8px 8px 0 0;
   --dc-date-picker-input-border-color: var(--dc-date-picker-primary-interactive-color);
@@ -107,6 +80,10 @@
 }
 
 /* Error state */
+.dc-date-picker-error:not(.dc-date-picker-open-calendar) datacom-date-picker-input {
+  --dc-date-picker-input-border-bottom-color: var(--dc-date-picker-error-color);
+}
+
 .dc-date-picker-error .dc-date-picker {
   border-color: var(--dc-date-picker-error-color);
 }
