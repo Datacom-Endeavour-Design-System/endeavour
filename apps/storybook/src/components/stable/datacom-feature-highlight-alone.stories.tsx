@@ -35,6 +35,7 @@ export default {
     },
     ctaText: {
       name: 'CTA label',
+      description: 'Text within the CTA element',
       type: { name: 'string' },
     },
     url: {

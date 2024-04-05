@@ -24,7 +24,7 @@ export default {
     },
     ctaText: {
       name: 'CTA text',
-      description: 'Specify text for link',
+      description: 'Text within the CTA element',
       type: { name: 'string' },
     },
     url: {

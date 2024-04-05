@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn } from '@storybook/react';
+import { StoryFn, StoryObj } from '@storybook/react';
 import { DatacomLink } from '@datacom/endeavour-react';
 
 type LinkProps = React.ComponentProps<typeof DatacomLink>;
@@ -29,7 +29,7 @@ export default {
       type: { name: 'string' },
     },
     iconPosition: {
-      name: 'Image position',
+      name: 'Icon position',
       description: 'Image or icon position. Defaults to left if not set',
       control: {
         type: 'select',
@@ -128,44 +128,28 @@ WithIcon.args = {
   icon: 'globe',
 };
 
-export const InlineLinks = {
-  argTypes: {
-    linkLabel: {
-      name: 'Label',
-      type: { name: 'string' },
-    },
-    variant: {
-      name: 'Variant',
-      description: " Link variants.Defaults to 'standalone' if not set.",
-      table: { disable: true },
-    },
-    iconPosition: {
-      name: 'Image position',
-      description: 'Image or icon position. Defaults to left if not set',
-      table: { disable: true },
-    },
-    icon: {
-      name: 'Icon',
-      description: 'Display image icon from a set of pre-defined images',
-      table: { disable: true },
-    },
+export const InlineLinks: StoryObj<typeof DatacomLink> = {
+  args: {
+    variant: 'inline',
+    icon: ' ',
+    url: 'https://www.datacom.com/nz/en',
   },
-  render: () => {
+
+  render: (props) => {
     return (
       <div>
-        <div style={{ paddingBottom: '12px', color: '' }}>
-          <p style={{ color: 'var(--dc-primary-text-color)' }}>
+        <div style={{ paddingBottom: '12px' }}>
+          <p
+            style={{
+              color: 'var(--dc-primary-text-color)',
+              font: '16px',
+              fontFamily: 'montserrat, sans-serif',
+            }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            <DatacomLink
-              variant="inline"
-              url="https://www.datacom.com/nz/en"
-              icon="forward"
-              iconPosition="right">
-              Learn more
-            </DatacomLink>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat.
+            eiusmod tempor incididunt ut labore et dolore magna aliqua&nbsp;
+            <DatacomLink {...props}></DatacomLink>&nbsp;Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.
           </p>
         </div>
       </div>
