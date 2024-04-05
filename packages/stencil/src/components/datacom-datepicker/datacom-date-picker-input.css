@@ -1,0 +1,156 @@
+:host {
+  display: block;
+  outline: none;
+  --dc-date-picker-input-border-width: 1px 1px 1px 1px;
+  --dc-date-picker-input-border-radius: 8px;
+  --dc-date-picker-input-border-color: var(--dc-token-border-default-01);
+  --dc-date-picker-input-border-hover-color: var(--dc-date-picker-interactive-hover-color);
+}
+
+:host * {
+  font-family: var(--dc-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
+.dc-date-picker-input-wrapper {
+  position: relative;
+}
+
+.dc-date-picker-input-wrapper label {
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  padding: 0 4px;
+  background: var(--dc-date-picker-ui-color);
+  color: var(--dc-date-picker-primary-text-color);
+  transition: all 0.3s;
+  max-width: calc(100% - 52px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dc-date-picker-input-wrapper input {
+  background-color: var(--dc-date-picker-ui-color);
+  color: var(--dc-date-picker-primary-text-color);
+  border-width: var(--dc-date-picker-input-border-width);
+  border-style: solid;
+  border-color: var(--dc-date-picker-input-border-color);
+  border-radius: var(--dc-date-picker-input-border-radius);
+  caret-color: var(--dc-date-picker-primary-interactive-color);
+  box-sizing: border-box;
+  height: 52px;
+  width: 100%;
+  outline: none;
+  padding: 14px 36px 14px 16px;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+/*.dc-date-picker-input-wrapper input:active {*/
+/*  border-color: var(--dc-date-picker-primary-interactive-color);*/
+/*}*/
+
+.dc-date-picker-input-wrapper:not(.dc-date-picker-input-edit):not(.dc-date-picker-input-error) input:hover {
+  border-color: var(--dc-date-picker-input-border-hover-color);
+}
+
+.dc-date-picker-input-wrapper input:disabled {
+  cursor: not-allowed;
+}
+
+.dc-date-picker-input-wrapper input::placeholder {
+  color: transparent;
+}
+
+.dc-date-picker-input-wrapper .dc-date-picker-calendar,
+.dc-date-picker-input-wrapper .dc-date-picker-clear {
+  position: absolute;
+  border: none;
+  background: transparent;
+  color: var(--dc-primary-text-color);
+  line-height: 0;
+  padding: 0;
+}
+
+.dc-date-picker-input-wrapper .dc-date-picker-clear {
+  display: none;
+  cursor: pointer;
+  top: 15px;
+  right: 16px;
+}
+
+.dc-date-picker-input-wrapper .dc-date-picker-clear:focus-visible {
+  outline: 2px solid var(--dc-date-picker-primary-interactive-color);
+  outline-offset: 1px;
+  border-radius: 10px;
+}
+
+.dc-date-picker-input-wrapper .dc-date-picker-calendar {
+  display: block;
+  cursor: text;
+  top: 16px;
+  right: 16px;
+}
+
+.dc-date-picker-input-wrapper .dc-date-picker-calendar-icon,
+.dc-date-picker-input-wrapper .dc-date-picker-clear-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.dc-date-picker-input-wrapper .dc-date-picker-calendar-icon path {
+  fill: var(--dc-date-picker-text-icon-color);
+}
+
+.dc-date-picker-input-wrapper .dc-date-picker-clear-icon path {
+  fill: var(--dc-date-picker-interactive-icon-color);
+}
+
+/* Edit state */
+.dc-date-picker-input-edit label {
+  font-size: 12px;
+  line-height: 16px;
+  top: -8px;
+  max-width: calc(100% - 35px);
+}
+
+.dc-date-picker-input-edit input {
+  border-bottom-width: 1px;
+  border-bottom-color: var(--dc-token-border-default-01);
+  box-shadow: none;
+}
+
+.dc-date-picker-input-edit input::placeholder {
+  color: var(--dc-date-picker-secondary-text-color);
+}
+
+.dc-date-picker-input-edit .dc-date-picker-clear {
+  display: block;
+}
+
+.dc-date-picker-input-edit .dc-date-picker-calendar {
+  display: none
+}
+
+/* Disabled state */
+.dc-date-picker-input-disabled input,
+.dc-date-picker-input-disabled input:hover {
+  border-color: var(--dc-date-picker-disabled-color);
+}
+
+.dc-date-picker-input-disabled label,
+.dc-date-picker-input-disabled input {
+  color: var(--dc-token-disabled-01);
+}
+
+.dc-date-picker-input-disabled .dc-date-picker-calendar-icon {
+  cursor: not-allowed;
+}
+
+.dc-date-picker-input-disabled .dc-date-picker-calendar-icon path {
+  fill: var(--dc-token-disabled-01);
+}

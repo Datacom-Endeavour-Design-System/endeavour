@@ -27,20 +27,20 @@ import {
 } from 'date-fns';
 
 @Component({
-  tag: 'datacom-datepicker-calendar',
-  styleUrl: 'datacom-datepicker-calendar.css',
+  tag: 'datacom-date-picker-calendar',
+  styleUrl: 'datacom-date-picker-calendar.css',
   scoped: true,
 })
-export class DatacomDatepickerCalendar {
+export class DatacomDatePickerCalendar {
   private dayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   private yearInputElement: HTMLInputElement;
   private currentDate = new Date();
   private daysOfPrevMonthCount: number;
   private daysOfNextMonthCount: number;
 
-  @Element() host: HTMLDatacomDatepickerCalendarElement;
+  @Element() host: HTMLDatacomDatePickerCalendarElement;
 
-  @Event({ eventName: 'datepickerChanged', bubbles: true, composed: true })
+  @Event({ eventName: 'datePickerChanged', bubbles: true, composed: true })
   changed: EventEmitter<Date | Date[]>;
 
   @Prop({ mutable: true }) selectedDate?: Date;
@@ -124,7 +124,7 @@ export class DatacomDatepickerCalendar {
     this.calendarDate = addYears(this.calendarDate, 1);
 
     const buttonElement = this.host.querySelector<HTMLDivElement>(
-      '.dc-datepicker-quantity-up',
+      '.dc-date-picker-quantity-up',
     );
     buttonElement.classList.add('dc-test');
     setTimeout(() => {
@@ -139,7 +139,7 @@ export class DatacomDatepickerCalendar {
     this.yearInputElement.focus();
     this.calendarDate = subYears(this.calendarDate, 1);
     const buttonElement = this.host.querySelector<HTMLDivElement>(
-      '.dc-datepicker-quantity-down',
+      '.dc-date-picker-quantity-down',
     );
     buttonElement.classList.add('dc-test');
     setTimeout(() => {
@@ -272,31 +272,31 @@ export class DatacomDatepickerCalendar {
     const classDigit = [];
 
     if (this.isToday(day, index)) {
-      classDigit.push('dc-datepicker-active');
+      classDigit.push('dc-date-picker-active');
     }
 
     if (this.selectedDate && this.isSelectedDay(day, index)) {
-      classDigit.push('dc-datepicker-selected');
+      classDigit.push('dc-date-picker-selected');
     }
 
     if (this.startDate && this.isStartDate(day)) {
-      classDigit.push('dc-datepicker-start-date');
+      classDigit.push('dc-date-picker-start-date');
     }
 
     if (this.endDate && this.isEndDate(day)) {
-      classDigit.push('dc-datepicker-end-date');
+      classDigit.push('dc-date-picker-end-date');
     }
 
     if (this.startDate && this.endDate && this.isInBetween(day)) {
-      classDigit.push('dc-datepicker-in-between');
+      classDigit.push('dc-date-picker-in-between');
     }
 
     if (this.mouseoverDate && this.isInRange(day)) {
-      classDigit.push('dc-datepicker-in-range');
+      classDigit.push('dc-date-picker-in-range');
     }
 
     if (this.mouseoverDate && this.isMouseoverDate(day)) {
-      classDigit.push('dc-datepicker-mouseover-date');
+      classDigit.push('dc-date-picker-mouseover-date');
     }
 
     return classDigit.join(' ');
@@ -349,23 +349,23 @@ export class DatacomDatepickerCalendar {
 
   render() {
     const yearInputClass = {
-      'dc-datepicker-input-wrapper': true,
-      'dc-datepicker-year-input-focused':
+      'dc-date-picker-input-wrapper': true,
+      'dc-date-picker-year-input-focused':
         this.yearFocused || this.yearMouseover,
     };
     return (
       <Host>
-        <div class="dc-datepicker-calendar">
-          <div class="dc-datepicker-header">
+        <div class="dc-date-picker-calendar">
+          <div class="dc-date-picker-header">
             <button
-              class="dc-datepicker-prev"
+              class="dc-date-picker-prev"
               onClick={async (event: MouseEvent): Promise<void> => {
                 event.preventDefault();
                 await this.switchToPreviousMonth();
               }}>
-              {getSvg('chevron', { class: 'dc-datepicker-prev-icon' })}
+              {getSvg('chevron', { class: 'dc-date-picker-prev-icon' })}
             </button>
-            <div class="dc-datepicker-month-year-container">
+            <div class="dc-date-picker-month-year-container">
               <span>{format(this.calendarDate, 'LLLL')}</span>
               <div class={yearInputClass}>
                 <input
@@ -378,24 +378,24 @@ export class DatacomDatepickerCalendar {
                   onInput={this.changeYearHandler}
                   value={this.calendarDate.getFullYear()}
                 />
-                <div class="dc-datepicker-quantity-nav">
+                <div class="dc-date-picker-quantity-nav">
                   <button
                     tabIndex={-1}
                     name="yearUp"
-                    class="dc-datepicker-quantity-up"
+                    class="dc-date-picker-quantity-up"
                     onClick={this.yearIncreaseHandler}>
                     {getSvg('caret', {
-                      class: 'dc-datepicker-quantity-up-icon',
+                      class: 'dc-date-picker-quantity-up-icon',
                       name: 'yearUpIcon',
                     })}
                   </button>
                   <button
                     tabIndex={-1}
                     name="yearDown"
-                    class="dc-datepicker-quantity-down"
+                    class="dc-date-picker-quantity-down"
                     onClick={this.yearDecreaseHandler}>
                     {getSvg('caret', {
-                      class: 'dc-datepicker-quantity-down-icon',
+                      class: 'dc-date-picker-quantity-down-icon',
                       name: 'yearDownIcon',
                     })}
                   </button>
@@ -403,27 +403,27 @@ export class DatacomDatepickerCalendar {
               </div>
             </div>
             <button
-              class="dc-datepicker-next"
+              class="dc-date-picker-next"
               onClick={async (event: MouseEvent): Promise<void> => {
                 event.preventDefault();
                 await this.switchToNextMonth();
               }}>
-              {getSvg('chevron', { class: 'dc-datepicker-next-icon' })}
+              {getSvg('chevron', { class: 'dc-date-picker-next-icon' })}
             </button>
           </div>
-          <div class="dc-datepicker-days">
+          <div class="dc-date-picker-days">
             {this.dayNames.map((dayName) => (
               <span>{dayName}</span>
             ))}
           </div>
-          <div class="dc-datepicker-dates">
+          <div class="dc-date-picker-dates">
             {this.calendarDays.map((day, index) => {
               if (
                 index < this.daysOfPrevMonthCount ||
                 index >= this.daysOfNextMonthCount
               ) {
                 return (
-                  <button class="dc-datepicker-disabled" tabIndex={-1}>
+                  <button class="dc-date-picker-disabled" tabIndex={-1}>
                     {day}
                   </button>
                 );
@@ -447,5 +447,5 @@ export class DatacomDatepickerCalendar {
   }
 }
 
-export type HTMLDatacomDatepickerCalendarElement = HTMLElement &
-  DatacomDatepickerCalendar;
+export type HTMLDatacomDatePickerCalendarElement = HTMLElement &
+  DatacomDatePickerCalendar;

@@ -23,16 +23,16 @@ import {
   subDays,
   subWeeks,
 } from 'date-fns';
-import { HTMLDatacomDatepickerCalendarElement } from './datacom-datepicker-calendar';
-import { HTMLDatacomDatepickerInputElement } from './datacom-datepicker-input';
+import { HTMLDatacomDatePickerCalendarElement } from './datacom-date-picker-calendar';
+import { HTMLDatacomDatePickerInputElement } from './datacom-date-picker-input';
 
 @Component({
-  tag: 'datacom-datepicker',
-  styleUrl: 'datacom-datepicker.css',
+  tag: 'datacom-date-picker',
+  styleUrl: 'datacom-date-picker.css',
   scoped: true,
 })
-export class DatacomDatepicker {
-  @Element() host: HTMLDatacomDatepickerElement;
+export class DatacomDatePicker {
+  @Element() host: HTMLDatacomDatePickerElement;
 
   @Event({ bubbles: true, composed: true }) changed: EventEmitter<
     Date | Date[]
@@ -80,7 +80,7 @@ export class DatacomDatepicker {
     }
   }
 
-  @Listen('datepickerChanged')
+  @Listen('datePickerChanged')
   handleOnInputChanged(event: CustomEvent): void {
     if (event.detail instanceof Array) {
       const [startDate, endDate] = event.detail;
@@ -134,7 +134,7 @@ export class DatacomDatepicker {
   @Watch('isOpenCalendar')
   watchCalendarToggle(open: boolean): void {
     const inputElement = this.host.querySelector<HTMLInputElement>(
-      'datacom-datepicker-input input',
+      'datacom-date-picker-input input',
     );
     if (inputElement instanceof HTMLInputElement) {
       if (!open) {
@@ -177,8 +177,8 @@ export class DatacomDatepicker {
       activeElement.blur();
     }
     const inputElement =
-      this.host.querySelector<HTMLDatacomDatepickerInputElement>(
-        'datacom-datepicker-input',
+      this.host.querySelector<HTMLDatacomDatePickerInputElement>(
+        'datacom-date-picker-input',
       );
     await inputElement.toggleIsEditing(!this.isOpenCalendar);
 
@@ -190,16 +190,16 @@ export class DatacomDatepicker {
       const activeElement = document.activeElement;
       if (this.isOpenCalendar) {
         const firstElement = this.host.querySelector<HTMLInputElement>(
-          'datacom-datepicker-input input',
+          'datacom-date-picker-input input',
         );
         const lastElement = this.host.querySelector<HTMLButtonElement>(
-          '.dc-datepicker-close',
+          '.dc-date-picker-close',
         );
         const tabLoopStart = this.host.querySelector<HTMLDivElement>(
-          '.dc-datepicker-tab-loop-start',
+          '.dc-date-picker-tab-loop-start',
         );
         const tabLoopEnd = this.host.querySelector<HTMLDivElement>(
-          '.dc-datepicker-tab-loop-end',
+          '.dc-date-picker-tab-loop-end',
         );
         if (
           tabLoopStart instanceof HTMLDivElement &&
@@ -263,8 +263,8 @@ export class DatacomDatepicker {
       }
 
       const calendarElement =
-        this.host.querySelector<HTMLDatacomDatepickerCalendarElement>(
-          'datacom-datepicker-calendar',
+        this.host.querySelector<HTMLDatacomDatePickerCalendarElement>(
+          'datacom-date-picker-calendar',
         );
       await calendarElement.setMouseoverDate(focusedDate);
       const calendarDate = await calendarElement.getCalendarDate();
@@ -293,11 +293,11 @@ export class DatacomDatepicker {
 
   render() {
     const classes = {
-      'dc-datepicker-container': true,
-      'dc-datepicker-open-calendar': this.isOpenCalendar,
-      'dc-datepicker-error': this.isError || this.isValid === false,
-      'dc-datepicker-disabled': this.disabled,
-      'dc-datepicker-required': !this.required,
+      'dc-date-picker-container': true,
+      'dc-date-picker-open-calendar': this.isOpenCalendar,
+      'dc-date-picker-error': this.isError || this.isValid === false,
+      'dc-date-picker-disabled': this.disabled,
+      'dc-date-picker-required': !this.required,
     };
 
     const inputProps = {
@@ -325,30 +325,30 @@ export class DatacomDatepicker {
       <Host>
         <div class={classes}>
           <div
-            class="dc-datepicker-tab-loop-start"
+            class="dc-date-picker-tab-loop-start"
             tabIndex={this.isOpenCalendar ? 0 : -1}></div>
-          <datacom-datepicker-input {...inputProps} />
-          <div class="dc-datepicker-calendar-container">
-            <datacom-datepicker-calendar {...calendarProps} />
-            <div class="dc-datepicker-close-wrapper">
+          <datacom-date-picker-input {...inputProps} />
+          <div class="dc-date-picker-calendar-container">
+            <datacom-date-picker-calendar {...calendarProps} />
+            <div class="dc-date-picker-close-wrapper">
               <button
-                class="dc-datepicker-close"
+                class="dc-date-picker-close"
                 tabIndex={!this.required ? 0 : -1}
                 onClick={this.toggleCalendarHandler}>
                 Close
               </button>
             </div>
           </div>
-          <p tabIndex={-1} class="dc-datepicker-error-msg">
+          <p tabIndex={-1} class="dc-date-picker-error-msg">
             {this.message}
           </p>
         </div>
         <div
-          class="dc-datepicker-tab-loop-end"
+          class="dc-date-picker-tab-loop-end"
           tabIndex={this.isOpenCalendar ? 0 : -1}></div>
       </Host>
     );
   }
 }
 
-export type HTMLDatacomDatepickerElement = HTMLElement & DatacomDatepicker;
+export type HTMLDatacomDatePickerElement = HTMLElement & DatacomDatePicker;

@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { StoryFn, StoryObj } from '@storybook/react';
-import { DatacomDatepicker, DatacomButton } from '@datacom/endeavour-react';
+import { DatacomDatePicker, DatacomButton } from '@datacom/endeavour-react';
 
 export default {
   title: 'Date Picker',
-  component: DatacomDatepicker,
+  component: DatacomDatePicker,
   argTypes: {
     label: {
       name: 'Label',
@@ -63,7 +63,7 @@ export default {
   },
 };
 
-export const SingleDate: StoryObj<typeof DatacomDatepicker> = {
+export const SingleDate: StoryObj<typeof DatacomDatePicker> = {
   args: {
     label: 'Enter date',
     placeholder: 'DD/MM/YYYY',
@@ -71,13 +71,13 @@ export const SingleDate: StoryObj<typeof DatacomDatepicker> = {
   render: (props) => {
     return (
       <div style={{ width: '272px' }}>
-        <DatacomDatepicker {...props} />
+        <DatacomDatePicker {...props} />
       </div>
     );
   },
 };
 
-export const DateRange: StoryObj<typeof DatacomDatepicker> = {
+export const DateRange: StoryObj<typeof DatacomDatePicker> = {
   args: {
     label: 'Enter dates',
     placeholder: 'Start - End',
@@ -85,13 +85,13 @@ export const DateRange: StoryObj<typeof DatacomDatepicker> = {
   render: (props) => {
     return (
       <div style={{ width: '272px' }}>
-        <DatacomDatepicker {...props} range={true} />
+        <DatacomDatePicker {...props} range={true} />
       </div>
     );
   },
 };
 
-export const FormSubmission: StoryFn<typeof DatacomDatepicker> = () => {
+export const FormSubmission: StoryFn<typeof DatacomDatePicker> = () => {
   const form = useRef<HTMLFormElement>();
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [startDate, setStartDate] = useState<Date>();
@@ -122,7 +122,7 @@ export const FormSubmission: StoryFn<typeof DatacomDatepicker> = () => {
   return (
     <form method="post" ref={form} onSubmit={handleOnSubmit}>
       <div style={{ width: '272px', marginBottom: '30px' }}>
-        <DatacomDatepicker
+        <DatacomDatePicker
           label="Enter date"
           placeholder="DD/MM/YYYY"
           message="Please enter a valid date"
@@ -131,7 +131,7 @@ export const FormSubmission: StoryFn<typeof DatacomDatepicker> = () => {
           onChanged={handleOnChanged}
           style={{ marginBottom: '12px' }}
         />
-        <DatacomDatepicker
+        <DatacomDatePicker
           label="Enter dates"
           placeholder="Start - End"
           message="Please enter a valid date range"

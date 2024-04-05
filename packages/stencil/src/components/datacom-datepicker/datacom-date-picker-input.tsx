@@ -15,18 +15,18 @@ import { format, isMatch, isValid, parse } from 'date-fns';
 import { getSvg } from '../../common/images';
 
 @Component({
-  tag: 'datacom-datepicker-input',
-  styleUrl: 'datacom-datepicker-input.css',
+  tag: 'datacom-date-picker-input',
+  styleUrl: 'datacom-date-picker-input.css',
   scoped: true,
 })
-export class DatacomDatepickerInput {
+export class DatacomDatePickerInput {
   private inputId = randomString();
   private inputElement: HTMLInputElement;
   private formElement: HTMLFormElement;
 
-  @Element() host: HTMLDatacomDatepickerInputElement;
+  @Element() host: HTMLDatacomDatePickerInputElement;
 
-  @Event({ eventName: 'datepickerChanged', bubbles: true, composed: true })
+  @Event({ eventName: 'datePickerChanged', bubbles: true, composed: true })
   changed: EventEmitter<Date | Date[]>;
   @Event({ eventName: 'inputFocused', bubbles: true, composed: true })
   focused: EventEmitter;
@@ -286,10 +286,10 @@ export class DatacomDatepickerInput {
 
   render() {
     const classes = {
-      'dc-datepicker-input-wrapper': true,
-      'dc-datepicker-input-edit': this.isEditing || this.value !== '',
-      'dc-datepicker-input-disabled': this.disabled,
-      'dc-datepicker-input-error': this.isError,
+      'dc-date-picker-input-wrapper': true,
+      'dc-date-picker-input-edit': this.isEditing || this.value !== '',
+      'dc-date-picker-input-disabled': this.disabled,
+      'dc-date-picker-input-error': this.isError,
     };
     return (
       <Host>
@@ -298,7 +298,7 @@ export class DatacomDatepickerInput {
           <input
             type="text"
             id={this.inputId}
-            class="dc-datepicker-input"
+            class="dc-date-picker-input"
             ref={(el) => (this.inputElement = el)}
             name={this.inputId}
             required={this.required}
@@ -310,20 +310,20 @@ export class DatacomDatepickerInput {
           />
           {this.value && (
             <button
-              class="dc-datepicker-clear"
+              class="dc-date-picker-clear"
               onClick={this.clearDateInputHandler}>
-              {getSvg('clear', { class: 'dc-datepicker-clear-icon' })}
+              {getSvg('clear', { class: 'dc-date-picker-clear-icon' })}
             </button>
           )}
           <button
             tabIndex={-1}
-            class="dc-datepicker-calendar"
+            class="dc-date-picker-calendar"
             onClick={(event: MouseEvent) => {
               event.preventDefault();
               this.inputElement.focus();
             }}
             disabled={this.disabled}>
-            {getSvg('calendar-alt', { class: 'dc-datepicker-calendar-icon' })}
+            {getSvg('calendar-alt', { class: 'dc-date-picker-calendar-icon' })}
           </button>
         </div>
       </Host>
@@ -331,5 +331,5 @@ export class DatacomDatepickerInput {
   }
 }
 
-export type HTMLDatacomDatepickerInputElement = HTMLElement &
-  DatacomDatepickerInput;
+export type HTMLDatacomDatePickerInputElement = HTMLElement &
+  DatacomDatePickerInput;

@@ -48,16 +48,16 @@
   --dc-primary-link-visited-color: var(--dc-token-link-visited-white-theme);
 
 
-  --dc-datepicker-text-icon-color: var(--dc-token-text-05);
-  --dc-datepicker-interactive-icon-color: var(--dc-token-interactive-04);
-  --dc-datepicker-ui-color: var(--dc-token-ui-01);
-  --dc-datepicker-interactive-hover-color: var(--dc-token-interactive-hover-01);
-  --dc-datepicker-primary-text-color: var(--dc-token-text-01);
-  --dc-datepicker-secondary-text-color: var(--dc-token-text-05);
-  --dc-datepicker-primary-interactive-color: var(--dc-token-interactive-01);
-  --dc-datepicker-secondary-interactive-color: var(--dc-token-interactive-02);
-  --dc-datepicker-disabled-color: var(--dc-token-disabled-02);
-  --dc-datepicker-error-color: var(--dc-token-support-extended-01);
+  --dc-date-picker-text-icon-color: var(--dc-token-text-05);
+  --dc-date-picker-interactive-icon-color: var(--dc-token-interactive-04);
+  --dc-date-picker-ui-color: var(--dc-token-ui-01);
+  --dc-date-picker-interactive-hover-color: var(--dc-token-interactive-hover-01);
+  --dc-date-picker-primary-text-color: var(--dc-token-text-01);
+  --dc-date-picker-secondary-text-color: var(--dc-token-text-05);
+  --dc-date-picker-primary-interactive-color: var(--dc-token-interactive-01);
+  --dc-date-picker-secondary-interactive-color: var(--dc-token-interactive-02);
+  --dc-date-picker-disabled-color: var(--dc-token-disabled-02);
+  --dc-date-picker-error-color: var(--dc-token-support-extended-01);
 
   --dc-greyscale-01: #151515;
   --dc-greyscale-02: #333333;
@@ -158,16 +158,16 @@
   --dc-disabled-color-01: var(--dc-token-disabled-03);
   --dc-primary-link-visited-color: var(--dc-token-link-visited-dark-theme);
 
-  --dc-datepicker-text-icon-color: var(--dc-token-text-06);
-  --dc-datepicker-interactive-icon-color: var(--dc-token-interactive-02);
-  --dc-datepicker-ui-color: var(--dc-token-ui-02);
-  --dc-datepicker-interactive-hover-color: var(--dc-token-interactive-hover-03);
-  --dc-datepicker-primary-text-color: var(--dc-token-text-02);
-  --dc-datepicker-secondary-text-color: var(--dc-token-text-06);
-  --dc-datepicker-primary-interactive-color: var(--dc-token-interactive-03);
-  --dc-datepicker-secondary-interactive-color: var(--dc-token-interactive-04);
-  --dc-datepicker-disabled-color: var(--dc-token-disabled-03);
-  --dc-datepicker-error-color: var(--dc-token-support-01);
+  --dc-date-picker-text-icon-color: var(--dc-token-text-06);
+  --dc-date-picker-interactive-icon-color: var(--dc-token-interactive-02);
+  --dc-date-picker-ui-color: var(--dc-token-ui-02);
+  --dc-date-picker-interactive-hover-color: var(--dc-token-interactive-hover-03);
+  --dc-date-picker-primary-text-color: var(--dc-token-text-02);
+  --dc-date-picker-secondary-text-color: var(--dc-token-text-06);
+  --dc-date-picker-primary-interactive-color: var(--dc-token-interactive-03);
+  --dc-date-picker-secondary-interactive-color: var(--dc-token-interactive-04);
+  --dc-date-picker-disabled-color: var(--dc-token-disabled-03);
+  --dc-date-picker-error-color: var(--dc-token-support-01);
 }
 
 /*
