@@ -18,12 +18,14 @@
 }
 
 .dc-item-menu-icon {
-  display: inline-flex;
-  padding-right: 12px;
+ display: inline-flex;
+ padding-right: 12px;
  width: 14px;
  height: 14px;
  padding-right: 12px;
 }
+
+
 :host(:last-child) .dc-menu-item-wrapper {
   border-bottom: 0;
 }

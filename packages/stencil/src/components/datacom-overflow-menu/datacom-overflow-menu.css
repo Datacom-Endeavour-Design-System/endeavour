@@ -1,9 +1,8 @@
 :host {
   display: flex;
-
 }
 
- .dc-overflow-menu-horizontal {
+.dc-overflow-menu-horizontal {
   transform: rotate(90deg);
   position: relative;
 }

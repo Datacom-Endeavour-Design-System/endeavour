@@ -10,6 +10,7 @@ export class DatacomMenuItems {
   @Prop() itemText: string;
   @Prop() itemUrl: string;
   @Prop() icon: string;
+  @Prop() size: string;
 
   @Event() buttonClicked: EventEmitter;
 
