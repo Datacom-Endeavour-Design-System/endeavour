@@ -1,5 +1,5 @@
 import { Component, h, Prop, Host, Event, EventEmitter } from '@stencil/core';
-// import { getSvg } from '../../common/images/icon-provider';
+import { getSvg } from '../../common/images/icon-provider';
 
 @Component({
   tag: 'datacom-menu-items',
@@ -26,14 +26,15 @@ export class DatacomMenuItems {
         <div class={itemsClasses}>
           {this.itemUrl ? (
             <a href={this.itemUrl}>
-              {/* {getSvg(this.icon, { class: 'dc-item-menu-icon' })} */}
+              {getSvg(this.icon, { class: 'dc-item-menu-icon' })}
               {this.itemText}
-              <slot />
+              <slot></slot>
             </a>
           ) : (
             <button class="dc-item-menu-button" onClick={this.onHandleClick}>
-              {/* {getSvg(this.icon, { class: 'dc-item-menu-icon' })} */}
+              {getSvg(this.icon, { class: 'dc-item-menu-icon' })}
               {this.itemText}
+              <slot></slot>
             </button>
           )}
         </div>

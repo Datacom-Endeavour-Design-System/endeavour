@@ -43,7 +43,12 @@ export const Primary: Story = {
     return (
       <div style={{ maxWidth: 272 }}>
         <DatacomOverflowMenu {...props}>
-          <DatacomMenuItems itemUrl="#">text1</DatacomMenuItems>
+          <DatacomMenuItems itemUrl="#" icon="globe">
+            text1
+          </DatacomMenuItems>
+          <DatacomMenuItems itemText="text" icon="globe">
+            jjj
+          </DatacomMenuItems>
           <DatacomMenuItems itemText="text">jjj</DatacomMenuItems>
         </DatacomOverflowMenu>
       </div>
