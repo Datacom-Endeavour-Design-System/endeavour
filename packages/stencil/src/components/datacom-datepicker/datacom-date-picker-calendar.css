@@ -167,8 +167,8 @@
   fill: var(--dc-date-picker-interactive-icon-color);
 }
 
-.dc-date-picker-header .dc-date-picker-quantity-up.dc-test .dc-date-picker-quantity-up-icon path,
-.dc-date-picker-header .dc-date-picker-quantity-down.dc-test .dc-date-picker-quantity-down-icon path {
+.dc-date-picker-header .dc-date-picker-quantity-up.dc-date-picker-year-changed .dc-date-picker-quantity-up-icon path,
+.dc-date-picker-header .dc-date-picker-quantity-down.dc-date-picker-year-changed .dc-date-picker-quantity-down-icon path {
   fill: var(--dc-date-picker-primary-interactive-color);
 }
 
@@ -242,4 +242,20 @@
 .dc-date-picker-dates button.dc-date-picker-disabled {
   color: var(--dc-token-disabled-01);
   cursor: not-allowed;
+}
+
+/* Disabled state */
+.dc-date-picker-calendar-disabled,
+.dc-date-picker-calendar-disabled .dc-date-picker-header input{
+  color: var(--dc-token-disabled-01);
+}
+
+.dc-date-picker-calendar-disabled .dc-date-picker-prev-icon,
+.dc-date-picker-calendar-disabled .dc-date-picker-next-icon {
+  cursor: not-allowed;
+}
+
+.dc-date-picker-calendar-disabled .dc-date-picker-prev-icon path,
+.dc-date-picker-calendar-disabled .dc-date-picker-next-icon path {
+  fill: var(--dc-token-disabled-01);
 }

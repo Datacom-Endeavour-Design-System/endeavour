@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { StoryFn, StoryObj } from '@storybook/react';
 import { DatacomDatePicker, DatacomButton } from '@datacom/endeavour-react';
+import { isValid } from 'date-fns';
 
 export default {
   title: 'Date Picker',
@@ -92,7 +93,6 @@ export const DateRange: StoryObj<typeof DatacomDatePicker> = {
 };
 
 export const FormSubmission: StoryFn<typeof DatacomDatePicker> = () => {
-  const form = useRef<HTMLFormElement>();
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [startDate, setStartDate] = useState<Date>();
   const [endaDate, setEndDate] = useState<Date>();
@@ -112,7 +112,7 @@ export const FormSubmission: StoryFn<typeof DatacomDatePicker> = () => {
 
   const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    if (form.current.checkValidity()) {
+    if (isValid(selectedDate) && isValid(startDate) && isValid(endaDate)) {
       setSubmitted(true);
     } else {
       setSubmitted(false);
@@ -120,7 +120,7 @@ export const FormSubmission: StoryFn<typeof DatacomDatePicker> = () => {
   };
 
   return (
-    <form method="post" ref={form} onSubmit={handleOnSubmit}>
+    <form method="post" onSubmit={handleOnSubmit}>
       <div style={{ width: '272px', marginBottom: '30px' }}>
         <DatacomDatePicker
           label="Enter date"

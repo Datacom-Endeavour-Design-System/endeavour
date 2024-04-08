@@ -152,6 +152,7 @@ export class DatacomDatePickerInput {
     } else {
       this.selectedDate = undefined;
     }
+    this.isChanged = false;
   };
 
   private parseToDate = (
@@ -309,23 +310,27 @@ export class DatacomDatePickerInput {
             onInput={this.changeDateHandler}
             value={this.value}
           />
-          {this.value && (
+          {this.inputElement?.value ? (
             <button
               class="dc-date-picker-clear"
-              onClick={this.clearDateInputHandler}>
+              onClick={this.clearDateInputHandler}
+              disabled={this.disabled}>
               {getSvg('clear', { class: 'dc-date-picker-clear-icon' })}
             </button>
+          ) : (
+            <button
+              tabIndex={-1}
+              class="dc-date-picker-calendar"
+              onClick={(event: MouseEvent) => {
+                event.preventDefault();
+                this.inputElement.focus();
+              }}
+              disabled={this.disabled}>
+              {getSvg('calendar-alt', {
+                class: 'dc-date-picker-calendar-icon',
+              })}
+            </button>
           )}
-          <button
-            tabIndex={-1}
-            class="dc-date-picker-calendar"
-            onClick={(event: MouseEvent) => {
-              event.preventDefault();
-              this.inputElement.focus();
-            }}
-            disabled={this.disabled}>
-            {getSvg('calendar-alt', { class: 'dc-date-picker-calendar-icon' })}
-          </button>
         </div>
       </Host>
     );

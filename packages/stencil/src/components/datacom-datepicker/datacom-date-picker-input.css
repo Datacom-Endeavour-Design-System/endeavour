@@ -7,6 +7,7 @@
   --dc-date-picker-input-border-color: var(--dc-token-border-default-01);
   --dc-date-picker-input-border-bottom-color: var(--dc-token-border-default-01);
   --dc-date-picker-input-border-hover-color: var(--dc-date-picker-interactive-hover-color);
+  --dc-date-picker-input-border-bottom-hover-color: var(--dc-date-picker-interactive-hover-color);
 }
 
 :host * {
@@ -51,8 +52,9 @@
   text-overflow: ellipsis;
 }
 
-.dc-date-picker-input-wrapper:not(.dc-date-picker-input-edit):not(.dc-date-picker-input-error):not(.dc-date-picker-input-disabled) input:hover {
+.dc-date-picker-input-wrapper input:hover {
   border-color: var(--dc-date-picker-input-border-hover-color);
+  border-bottom-color: var(--dc-date-picker-input-border-bottom-hover-color);
 }
 
 .dc-date-picker-input-wrapper input:disabled {
@@ -87,7 +89,6 @@
 }
 
 .dc-date-picker-input-wrapper .dc-date-picker-calendar {
-  display: block;
   cursor: text;
   top: 16px;
   right: 16px;
@@ -129,25 +130,18 @@
   display: block;
 }
 
-.dc-date-picker-input-edit .dc-date-picker-calendar {
-  display: none
-}
-
 /* Disabled state */
-.dc-date-picker-input-disabled input,
-.dc-date-picker-input-disabled input:hover {
-  border-color: var(--dc-date-picker-disabled-color);
-}
-
 .dc-date-picker-input-disabled label,
 .dc-date-picker-input-disabled input {
   color: var(--dc-token-disabled-01);
 }
 
+.dc-date-picker-input-disabled .dc-date-picker-clear-icon,
 .dc-date-picker-input-disabled .dc-date-picker-calendar-icon {
   cursor: not-allowed;
 }
 
+.dc-date-picker-input-disabled .dc-date-picker-clear-icon path,
 .dc-date-picker-input-disabled .dc-date-picker-calendar-icon path {
   fill: var(--dc-token-disabled-01);
 }

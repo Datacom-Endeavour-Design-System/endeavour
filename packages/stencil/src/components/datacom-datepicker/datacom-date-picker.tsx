@@ -163,6 +163,13 @@ export class DatacomDatePicker {
     }
   }
 
+  @Watch('disabled')
+  async watchDisabled(): Promise<void> {
+    if (this.isOpenCalendar) {
+      await this.toggleCalendarHandler();
+    }
+  }
+
   private toggleCalendarHandler = async (
     event?: KeyboardEvent | MouseEvent | CustomEvent,
   ): Promise<void> => {
@@ -311,9 +318,11 @@ export class DatacomDatePicker {
       range: this.range,
       dateFormat: this.dateFormat,
       supportedFormat: this.supportedFormat,
+      autoValidate: this.autoValidate,
     };
 
     const calendarProps = {
+      disabled: this.disabled,
       selectedDate: this.selectedDate,
       startDate: this.startDate,
       endDate: this.endDate,
@@ -335,7 +344,8 @@ export class DatacomDatePicker {
                 class="dc-date-picker-close"
                 variant="secondary"
                 size="small"
-                onClick={this.toggleCalendarHandler}>
+                onClick={this.toggleCalendarHandler}
+                disabled={this.disabled}>
                 Close
               </datacom-button>
             </div>

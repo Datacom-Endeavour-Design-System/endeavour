@@ -43,6 +43,8 @@ export class DatacomDatePickerCalendar {
   @Event({ eventName: 'datePickerChanged', bubbles: true, composed: true })
   changed: EventEmitter<Date | Date[]>;
 
+  @Prop() disabled? = false;
+
   @Prop({ mutable: true }) selectedDate?: Date;
   @Prop({ mutable: true }) startDate?: Date;
   @Prop({ mutable: true }) endDate?: Date;
@@ -85,9 +87,9 @@ export class DatacomDatePickerCalendar {
       'yearDownIcon',
       'yearUpIcon',
     ];
-    this.yearMouseover = !!attributeName.includes(
-      mouseoverElement.getAttribute('name'),
-    );
+    this.yearMouseover =
+      !this.disabled &&
+      !!attributeName.includes(mouseoverElement.getAttribute('name'));
   }
 
   @Watch('selectedDate')
@@ -126,9 +128,9 @@ export class DatacomDatePickerCalendar {
     const buttonElement = this.host.querySelector<HTMLDivElement>(
       '.dc-date-picker-quantity-up',
     );
-    buttonElement.classList.add('dc-test');
+    buttonElement.classList.add('dc-date-picker-year-changed');
     setTimeout(() => {
-      buttonElement.classList.remove('dc-test');
+      buttonElement.classList.remove('dc-date-picker-year-changed');
     }, 100);
   };
 
@@ -271,6 +273,10 @@ export class DatacomDatePickerCalendar {
   private getDayClasses = (day: number, index: number): string => {
     const classDigit = [];
 
+    if (this.disabled) {
+      return 'dc-date-picker-disabled';
+    }
+
     if (this.isToday(day, index)) {
       classDigit.push('dc-date-picker-active');
     }
@@ -348,26 +354,32 @@ export class DatacomDatePickerCalendar {
   };
 
   render() {
-    const yearInputClass = {
+    const calendarClasses = {
+      'dc-date-picker-calendar': true,
+      'dc-date-picker-calendar-disabled': this.disabled,
+    };
+
+    const yearInputClasses = {
       'dc-date-picker-input-wrapper': true,
       'dc-date-picker-year-input-focused':
         this.yearFocused || this.yearMouseover,
     };
     return (
       <Host>
-        <div class="dc-date-picker-calendar">
+        <div class={calendarClasses}>
           <div class="dc-date-picker-header">
             <button
               class="dc-date-picker-prev"
               onClick={async (event: MouseEvent): Promise<void> => {
                 event.preventDefault();
                 await this.switchToPreviousMonth();
-              }}>
+              }}
+              disabled={this.disabled}>
               {getSvg('chevron', { class: 'dc-date-picker-prev-icon' })}
             </button>
             <div class="dc-date-picker-month-year-container">
               <span>{format(this.calendarDate, 'LLLL')}</span>
-              <div class={yearInputClass}>
+              <div class={yearInputClasses}>
                 <input
                   type="number"
                   name="yearInput"
@@ -377,13 +389,15 @@ export class DatacomDatePickerCalendar {
                   onBlur={this.blurYearHandler}
                   onInput={this.changeYearHandler}
                   value={this.calendarDate.getFullYear()}
+                  disabled={this.disabled}
                 />
                 <div class="dc-date-picker-quantity-nav">
                   <button
                     tabIndex={-1}
                     name="yearUp"
                     class="dc-date-picker-quantity-up"
-                    onClick={this.yearIncreaseHandler}>
+                    onClick={this.yearIncreaseHandler}
+                    disabled={this.disabled}>
                     {getSvg('caret', {
                       class: 'dc-date-picker-quantity-up-icon',
                       name: 'yearUpIcon',
@@ -393,7 +407,8 @@ export class DatacomDatePickerCalendar {
                     tabIndex={-1}
                     name="yearDown"
                     class="dc-date-picker-quantity-down"
-                    onClick={this.yearDecreaseHandler}>
+                    onClick={this.yearDecreaseHandler}
+                    disabled={this.disabled}>
                     {getSvg('caret', {
                       class: 'dc-date-picker-quantity-down-icon',
                       name: 'yearDownIcon',
@@ -407,7 +422,8 @@ export class DatacomDatePickerCalendar {
               onClick={async (event: MouseEvent): Promise<void> => {
                 event.preventDefault();
                 await this.switchToNextMonth();
-              }}>
+              }}
+              disabled={this.disabled}>
               {getSvg('chevron', { class: 'dc-date-picker-next-icon' })}
             </button>
           </div>
@@ -434,7 +450,8 @@ export class DatacomDatePickerCalendar {
                     class={this.getDayClasses(day, index)}
                     name={this.getDayName(day)}
                     onMouseOver={this.mouseoverDayHandler}
-                    onClick={(e) => this.selectDayHandler(e, day)}>
+                    onClick={(e) => this.selectDayHandler(e, day)}
+                    disabled={this.disabled}>
                     {day}
                   </button>
                 );

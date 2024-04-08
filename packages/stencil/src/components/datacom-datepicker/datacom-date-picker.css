@@ -41,6 +41,8 @@
   --dc-date-picker-input-border-width: 2px 2px 0 2px;
   --dc-date-picker-input-border-radius: 8px 8px 0 0;
   --dc-date-picker-input-border-color: var(--dc-date-picker-primary-interactive-color);
+  --dc-date-picker-input-border-hover-color: var(--dc-date-picker-primary-interactive-color);
+  --dc-date-picker-input-border-bottom-hover-color: var(--dc-token-border-default-01);
 }
 
 .dc-date-picker-open-calendar .dc-date-picker-calendar-container {
@@ -49,7 +51,6 @@
   border-style: solid;
   border-color: var(--dc-date-picker-primary-interactive-color);
   border-radius: 0 0 8px 8px;
-  height: 260px;
   padding-top: 1px;
   position: absolute;
   top: 51px;
@@ -57,15 +58,11 @@
   z-index: 1000;
 }
 
-.dc-date-picker-open-calendar .dc-date-picker-error-msg {
-  position: absolute;
-  top: 314px;
-  left: 0;
-}
-
-/* Required state */
-.dc-date-picker-open-calendar.dc-date-picker-required .dc-date-picker-calendar-container {
-  height: 343px;
+.dc-date-picker-open-calendar.dc-date-picker-disabled datacom-date-picker-input {
+  --dc-date-picker-input-border-color: var(--dc-date-picker-disabled-color);
+  --dc-date-picker-input-border-bottom-color: var(--dc-date-picker-disabled-color);
+  --dc-date-picker-input-border-hover-color: var(--dc-date-picker-disabled-color);
+  --dc-date-picker-input-border-bottom-hover-color: var(--dc-date-picker-disabled-color);
 }
 
 .dc-date-picker-open-calendar.dc-date-picker-required .dc-date-picker-close-wrapper {
@@ -75,25 +72,29 @@
   border-top: 1px solid var(--dc-token-border-default-01);
 }
 
-.dc-date-picker-open-calendar.dc-date-picker-required .dc-date-picker-error-msg {
-  top: 397px;
+.dc-date-picker-open-calendar.dc-date-picker-required.dc-date-picker-disabled .dc-date-picker-close-wrapper {
+  border-color: var(--dc-date-picker-disabled-color);
+}
+
+/* Disabled state */
+.dc-date-picker-disabled:not(.dc-date-picker-open-calendar) datacom-date-picker-input {
+  --dc-date-picker-input-border-color: var(--dc-date-picker-disabled-color);
+  --dc-date-picker-input-border-bottom-color: var(--dc-date-picker-disabled-color);
+  --dc-date-picker-input-border-hover-color: var(--dc-date-picker-disabled-color);
+  --dc-date-picker-input-border-bottom-hover-color: var(--dc-date-picker-disabled-color);
+}
+
+.dc-date-picker-disabled .dc-date-picker-calendar-container {
+  border-color: var(--dc-date-picker-disabled-color);
 }
 
 /* Error state */
 .dc-date-picker-error:not(.dc-date-picker-open-calendar) datacom-date-picker-input {
+  --dc-date-picker-input-border-color: var(--dc-date-picker-error-color);
   --dc-date-picker-input-border-bottom-color: var(--dc-date-picker-error-color);
 }
 
-.dc-date-picker-error .dc-date-picker {
-  border-color: var(--dc-date-picker-error-color);
-}
-
-.dc-date-picker-error datacom-date-picker-input {
-  --dc-date-picker-input-border-color: var(--dc-date-picker-error-color);
-  --dc-date-picker-input-border-hover-color: var(--dc-date-picker-error-color);
-}
-
-.dc-date-picker-error .dc-date-picker-calendar-container {
+.dc-date-picker-error:not(.dc-date-picker-open-calendar) .dc-date-picker-calendar-container {
   border-color: var(--dc-date-picker-error-color);
 }
 
