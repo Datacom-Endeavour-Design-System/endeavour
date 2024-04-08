@@ -62,10 +62,7 @@ export class DatacomDatePicker {
 
   @Listen('click', { target: 'document' })
   async handleOnClick(event: MouseEvent): Promise<void> {
-    if (
-      !this.host.contains(event.target as Node) &&
-      typeof this.isValid !== 'boolean'
-    ) {
+    if (!this.host.contains(event.target as Node)) {
       if (this.isOpenCalendar) {
         await this.toggleCalendarHandler();
       }

@@ -34,6 +34,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  cursor: text;
 }
 
 .dc-date-picker-input-wrapper input {
@@ -89,7 +90,7 @@
 }
 
 .dc-date-picker-input-wrapper .dc-date-picker-calendar {
-  cursor: text;
+  cursor: pointer;
   top: 16px;
   right: 16px;
 }
