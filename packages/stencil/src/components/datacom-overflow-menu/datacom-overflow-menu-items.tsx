@@ -26,7 +26,7 @@ export class DatacomMenuItems {
       <Host>
         <div class={itemsClasses}>
           {this.itemUrl ? (
-            <a href={this.itemUrl}>
+            <a href={this.itemUrl} class="dc-item-menu-link">
               {getSvg(this.icon, { class: 'dc-item-menu-icon' })}
               {this.itemText}
               <slot></slot>

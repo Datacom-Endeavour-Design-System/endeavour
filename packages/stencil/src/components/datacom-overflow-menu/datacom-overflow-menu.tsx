@@ -30,8 +30,8 @@ export class DatacomOverflowMenu {
   render() {
     const Classes = {
       // [`dc-overflow-menu-${this.variant}`]: true,
-      [`dc-menu-item-${this.size}`]: true,
       'dropdown-options': true,
+      [`dc-menu-item-${this.size}`]: true,
     };
 
     return (

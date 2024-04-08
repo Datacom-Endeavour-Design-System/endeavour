@@ -49,7 +49,6 @@ export const Primary: Story = {
           <DatacomMenuItems itemText="text" icon="globe">
             jjj
           </DatacomMenuItems>
-          <DatacomMenuItems itemText="text">jjj</DatacomMenuItems>
         </DatacomOverflowMenu>
       </div>
     );
