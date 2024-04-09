@@ -129,29 +129,34 @@ WithIcon.args = {
 };
 
 export const InlineLinks: StoryObj<typeof DatacomLink> = {
+  argTypes: {
+    variant: {
+      name: 'Variant',
+      description: " Link variants.Defaults to 'standalone' if not set.",
+      table: { disable: true },
+    },
+  },
   args: {
     variant: 'inline',
-    icon: ' ',
     url: 'https://www.datacom.com/nz/en',
   },
 
   render: (props) => {
     return (
       <div>
-        <div style={{ paddingBottom: '12px' }}>
-          <p
-            style={{
-              color: 'var(--dc-primary-text-color)',
-              font: '16px',
-              fontFamily: 'montserrat, sans-serif',
-            }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua&nbsp;
-            <DatacomLink {...props}></DatacomLink>&nbsp;Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.
-          </p>
-        </div>
+        <p
+          style={{
+            display: 'inline-flex',
+            color: 'var(--dc-primary-text-color)',
+            font: '16px',
+            fontFamily: 'montserrat, sans-serif',
+          }}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua &nbsp;{' '}
+          <DatacomLink {...props}></DatacomLink> &nbsp;Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat.
+        </p>
       </div>
     );
   },
