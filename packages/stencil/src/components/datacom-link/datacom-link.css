@@ -58,6 +58,7 @@
 
 .dc-link-image-left {
   display: inline-flex;
+  align-items: baseline;
 }
 
 .dc-link-image-left .dc-link-icon {

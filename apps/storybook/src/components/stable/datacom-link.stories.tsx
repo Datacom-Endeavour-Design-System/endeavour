@@ -1,6 +1,7 @@
 import React from 'react';
 import { StoryFn, StoryObj } from '@storybook/react';
 import { DatacomLink } from '@datacom/endeavour-react';
+import styled from '@emotion/styled';
 
 type LinkProps = React.ComponentProps<typeof DatacomLink>;
 
@@ -110,7 +111,6 @@ export default {
   args: {
     linkLabel: 'Learn more',
     variant: 'standalone',
-    iconPosition: 'left',
     icon: '',
     disabled: false,
     url: '#',
@@ -142,22 +142,25 @@ export const InlineLinks: StoryObj<typeof DatacomLink> = {
   },
 
   render: (props) => {
+    const Panel = styled.p`
+      color: var(--dc-primary-text-color);
+      font: 16px;
+      line-hight: 24px;
+      font-family: montserrat, sans-serif;
+      padding: 0;
+    `;
     return (
-      <div>
-        <p
-          style={{
-            display: 'inline-flex',
-            color: 'var(--dc-primary-text-color)',
-            font: '16px',
-            fontFamily: 'montserrat, sans-serif',
-          }}>
+      <>
+        <Panel>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua &nbsp;{' '}
-          <DatacomLink {...props}></DatacomLink> &nbsp;Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat.
-        </p>
-      </div>
+          eiusmod tempor incididunt ut labore et dolore magna aliqua{' '}
+          <span>
+            <DatacomLink {...props}></DatacomLink>
+          </span>{' '}
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          nisi ut aliquip ex ea commodo consequat.
+        </Panel>
+      </>
     );
   },
 };
