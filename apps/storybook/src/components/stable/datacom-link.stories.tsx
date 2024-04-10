@@ -111,7 +111,7 @@ export default {
   args: {
     linkLabel: 'Learn more',
     variant: 'standalone',
-    iconPosition: '',
+    iconPosition: 'left',
     icon: '',
     disabled: false,
     url: '#',
