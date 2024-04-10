@@ -159,14 +159,18 @@ export const Default: StoryObj<
     },
     message: {
       name: 'Message',
+      description:
+        'Message that provides an indication of what kind of content is within a banner.',
       type: { name: 'string' },
     },
     ctaLabel: {
       name: 'CTA label',
+      description: 'Text within the CTA element.',
       type: { name: 'string' },
     },
     ctaURL: {
       name: 'CTA URL',
+      description: 'URL that should link to.',
       type: { name: 'string' },
     },
   },
