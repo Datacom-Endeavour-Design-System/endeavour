@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn } from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import { DatacomRating } from '@datacom/endeavour-react';
 
 export default {
@@ -18,7 +18,7 @@ export default {
         'Size of stars in rating component. Defaults to standard if not set.',
       control: {
         type: 'select',
-        labels: { standard: 'Standard', large: 'Large' },
+        labels: { standard: 'Small', large: 'Large' },
       },
       defaultValue: 'standard',
       options: ['standard', 'large'],
@@ -37,10 +37,14 @@ export default {
       if: { arg: 'readonly' },
     },
   },
+  args: {
+    label: '',
+    size: 'large',
+  },
 };
 
-const RatingTemplate: StoryFn<typeof DatacomRating> = (args) => (
-  <DatacomRating {...args}></DatacomRating>
-);
-
-export const Rating = RatingTemplate.bind({});
+export const Default: StoryObj<typeof DatacomRating> = {
+  render: (props) => {
+    return <DatacomRating {...props}></DatacomRating>;
+  },
+};

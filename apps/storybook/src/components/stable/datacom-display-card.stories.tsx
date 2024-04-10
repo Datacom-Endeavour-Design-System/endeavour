@@ -24,11 +24,12 @@ export default {
     },
     ctaText: {
       name: 'CTA text',
+      description: 'Text within the CTA element',
       type: { name: 'string' },
     },
     url: {
       name: 'URL',
-      description: 'URL that  should link to.',
+      description: 'URL that should link to.',
       type: { name: 'string' },
     },
     imageUrl: {
@@ -71,10 +72,10 @@ const Template: StoryFn<DisplayCardProps & { description: string }> = (
   );
 };
 
-export const DisplayCard = Template.bind({});
-DisplayCard.args = {};
+export const Default = Template.bind({});
+Default.args = {};
 
-export const DisplayCardGroup = () => {
+export const DisplayCardGrouping = () => {
   return (
     <div style={{ minWidth: '1200' }}>
       <DatacomDisplayCardGroup>
