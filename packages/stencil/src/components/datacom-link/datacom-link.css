@@ -58,6 +58,7 @@
 
 .dc-link-image-left {
   display: inline-flex;
+  align-items: baseline;
 }
 
 .dc-link-image-left .dc-link-icon {
@@ -77,10 +78,6 @@
   fill: var(--link-visited-color);
 }
 
-.dc-link-inline:visited::before {
-  background: var(--link-visited-color);
-}
-
 /* Focus style */
 .dc-link:focus-visible {
   border-bottom: 3px solid var(--dc-primary-colour);
@@ -96,12 +93,6 @@
 .dc-link-inline {
   --link-font-size: 16px;
   --link-height: 22px;
-}
-
-.dc-link-inline::before {
-  transform: scaleX(1);
-  transition: none;
-  background: var(--link-color);
 }
 
 /* Footer and stacked variant */
@@ -173,9 +164,4 @@
 
 .dc-link-disabled:hover .dc-link-icon path {
   fill: var(--dc-primary-disabled-colour);
-}
-
-.dc-link-disabled.dc-link-inline::before {
-  background: var(--dc-primary-disabled-colour);
-  visibility: visible;
 }

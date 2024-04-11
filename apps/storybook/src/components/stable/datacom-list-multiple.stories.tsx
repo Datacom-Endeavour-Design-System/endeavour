@@ -16,7 +16,6 @@ const meta = {
           unordered: 'Unordered',
         },
       },
-      defaultValue: 'ordered',
       options: ['ordered', 'unordered'],
       type: { name: 'string' },
     },
@@ -67,8 +66,11 @@ export const UnorderedList: Story = {
 
 export const OrderedListWithNestedItems: Story = {
   argTypes: {
+    variant: {
+      name: 'Variant',
+      table: { disable: true },
+    },
     type: {
-      name: 'Numbering type',
       table: { disable: true },
     },
   },
@@ -94,8 +96,11 @@ export const OrderedListWithNestedItems: Story = {
 
 export const UnorderedListWithNestedItems: Story = {
   argTypes: {
+    variant: {
+      name: 'Variant',
+      table: { disable: true },
+    },
     type: {
-      name: 'Numbering type',
       table: { disable: true },
     },
   },
@@ -121,15 +126,18 @@ export const UnorderedListWithNestedItems: Story = {
 
 export const OrderedListWithNestedUnorderedItems: Story = {
   argTypes: {
+    variant: {
+      name: 'Variant',
+      table: { disable: true },
+    },
     type: {
-      name: 'Numbering type',
       table: { disable: true },
     },
   },
-  render: () => {
+  render: (props) => {
     return (
       <div>
-        <DatacomList>
+        <DatacomList {...props} variant="ordered">
           <DatacomLi>List content item</DatacomLi>
           <DatacomLi>
             List content item
@@ -148,78 +156,28 @@ export const OrderedListWithNestedUnorderedItems: Story = {
 
 export const UnorderedListWithNestedOrderedItems: Story = {
   argTypes: {
+    variant: {
+      name: 'Variant',
+      table: { disable: true },
+    },
     type: {
-      name: 'Numbering type',
       table: { disable: true },
     },
   },
-  render: () => {
+  render: (props) => {
     return (
       <div>
         <DatacomList variant="unordered">
           <DatacomLi>List content item</DatacomLi>
           <DatacomLi>
             List content item
-            <DatacomList>
+            <DatacomList {...props}>
               <DatacomLi>List content item</DatacomLi>
               <DatacomLi>List content item</DatacomLi>
               <DatacomLi>List content item</DatacomLi>
             </DatacomList>
           </DatacomLi>
           <DatacomLi>List content item</DatacomLi>
-        </DatacomList>
-      </div>
-    );
-  },
-};
-
-export const StandaloneOrderedList: Story = {
-  argTypes: {
-    heading: {
-      name: 'Heading',
-      description: 'List variant. Defaults ordered if not set.',
-    },
-  },
-
-  render: (args: ComponentProps<typeof DatacomList> & { heading?: string }) => {
-    const { heading } = args;
-
-    return (
-      <div>
-        <DatacomList {...args}>
-          <DatacomLi {...args} heading={heading}>
-            Lorem ipsum dolor sit amet
-          </DatacomLi>
-          <DatacomLi {...args} heading={heading}>
-            Lorem ipsum dolor sit amet
-          </DatacomLi>
-          <DatacomLi {...args} heading={heading}>
-            Lorem ipsum dolor sit amet
-          </DatacomLi>
-        </DatacomList>
-      </div>
-    );
-  },
-};
-export const StandaloneUnorderedList: Story = {
-  args: {
-    heading: 'List content item',
-    variant: 'unordered',
-  },
-  render: (args: ComponentProps<typeof DatacomList> & { heading?: string }) => {
-    const { heading } = args;
-    return (
-      <div>
-        <DatacomList {...args}>
-          <DatacomLi {...args} heading={heading}>
-            Lorem ipsum dolor sit ame
-          </DatacomLi>
-          <DatacomLi {...args} heading={heading}>
-            Lorem ipsum dolor sit amet
-          </DatacomLi>
-          <DatacomLi {...args} heading={heading}>
-            Lorem ipsum dolor sit amet
-          </DatacomLi>
         </DatacomList>
       </div>
     );
