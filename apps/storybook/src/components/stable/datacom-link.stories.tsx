@@ -1,6 +1,7 @@
 import React from 'react';
-import { StoryFn } from '@storybook/react';
+import { StoryFn, StoryObj } from '@storybook/react';
 import { DatacomLink } from '@datacom/endeavour-react';
+import styled from '@emotion/styled';
 
 type LinkProps = React.ComponentProps<typeof DatacomLink>;
 
@@ -8,13 +9,14 @@ export default {
   title: 'Link',
   component: DatacomLink,
   argTypes: {
-    label: {
+    linkLabel: {
       name: 'Label',
+      description: 'Specify label for link.',
       type: { name: 'string' },
     },
     variant: {
       name: 'Variant',
-      description: " Link variants.Defaults to 'standalone' if not set.",
+      description: "Link variants.Defaults to 'standalone' if not set.",
       control: {
         type: 'select',
         labels: {
@@ -28,7 +30,7 @@ export default {
       type: { name: 'string' },
     },
     iconPosition: {
-      name: 'Image position',
+      name: 'Icon position',
       description: 'Image or icon position. Defaults to left if not set',
       control: {
         type: 'select',
@@ -102,12 +104,12 @@ export default {
     },
     url: {
       name: 'URL',
-      description: ' should be add link to. ',
+      description: 'Should be add link to. ',
       type: { name: 'string' },
     },
   },
   args: {
-    label: 'Learn more',
+    linkLabel: 'Learn more',
     variant: 'standalone',
     iconPosition: 'left',
     icon: '',
@@ -116,21 +118,57 @@ export default {
   },
 };
 
-const Template: StoryFn<LinkProps & { label: string }> = (args) => {
-  const { label } = args;
-  return <DatacomLink {...args}>{label}</DatacomLink>;
+const Template: StoryFn<LinkProps> = (args) => {
+  return <DatacomLink {...args}></DatacomLink>;
 };
 
-export const Link = Template.bind({});
+export const Default = Template.bind({});
 
-export const LinkWithIcon = Template.bind({});
-LinkWithIcon.args = {
+export const WithIcon = Template.bind({});
+WithIcon.args = {
   icon: 'globe',
 };
 
-export const stackedLinks = {
+export const InlineLinks: StoryObj<typeof DatacomLink> = {
   argTypes: {
-    label: {
+    variant: {
+      name: 'Variant',
+      description: " Link variants.Defaults to 'standalone' if not set.",
+      table: { disable: true },
+    },
+  },
+  args: {
+    variant: 'inline',
+    url: 'https://www.datacom.com/nz/en',
+  },
+
+  render: (props) => {
+    const Panel = styled.p`
+      color: var(--dc-primary-text-color);
+      font: 16px;
+      line-hight: 24px;
+      font-family: montserrat, sans-serif;
+      padding: 0;
+    `;
+    return (
+      <>
+        <Panel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua{' '}
+          <span>
+            <DatacomLink {...props}></DatacomLink>
+          </span>{' '}
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          nisi ut aliquip ex ea commodo consequat.
+        </Panel>
+      </>
+    );
+  },
+};
+
+export const StackedLinks = {
+  argTypes: {
+    linkLabel: {
       name: 'Label',
       type: { name: 'string' },
     },
@@ -164,6 +202,52 @@ export const stackedLinks = {
         </div>
         <DatacomLink
           variant="stacked"
+          url="https://www.datacom.com/nz/en/search"
+          icon="settings"
+          iconPosition="right">
+          Account settings
+        </DatacomLink>
+      </div>
+    );
+  },
+};
+
+export const FooterLinks = {
+  argTypes: {
+    linkLabel: {
+      name: 'Label',
+      type: { name: 'string' },
+    },
+    variant: {
+      name: 'Variant',
+      description: " Link variants.Defaults to 'standalone' if not set.",
+      table: { disable: true },
+    },
+    iconPosition: {
+      name: 'Image position',
+      description: 'Image or icon position. Defaults to left if not set',
+      table: { disable: true },
+    },
+    icon: {
+      name: 'Icon',
+      description: 'Display image icon from a set of pre-defined images',
+      table: { disable: true },
+    },
+  },
+  render: () => {
+    return (
+      <div>
+        <div style={{ paddingBottom: '12px' }}>
+          <DatacomLink
+            variant="footer"
+            url="https://www.datacom.com/nz/en"
+            icon="forward"
+            iconPosition="right">
+            Learn more
+          </DatacomLink>
+        </div>
+        <DatacomLink
+          variant="footer"
           url="https://www.datacom.com/nz/en/search"
           icon="settings"
           iconPosition="right">

@@ -78,7 +78,7 @@ const Template: StoryFn<typeof DatacomTextarea> = (args) => {
   );
 };
 
-export const Standard = Template.bind({});
+export const Default = Template.bind({});
 
 export const WithHelperText = Template.bind({});
 WithHelperText.args = {
