@@ -9,45 +9,48 @@ const meta: Meta<typeof DatacomOverflowMenu> = {
   title: 'Overflow Menu',
   component: DatacomOverflowMenu,
   argTypes: {
-    // itemText: {
-    //   name: ' tooltip Text',
-    //   defaultValue: 'Button text',
-    //   description: 'Button text',
-    //   type: { name: 'string' },
-    // },
     variant: {
       name: 'Variant',
-      description: 'Main button variant. Defaults to primary if not set.',
+      description: 'Main  variant. Defaults to horizontal if not set.',
       control: {
         type: 'select',
-        // labels: {
-        //   primary: 'Primary',
-        //   secondary: 'Secondary',
-        //   tertiary: 'Tertiary',
-        // },
+        labels: {
+          horizontal: 'Horizontal',
+          vertical: 'Vertical',
+        },
       },
       options: ['horizontal', 'vertical'],
       type: { name: 'string' },
     },
+    label: {
+      name: 'Tooltip label',
+      description: 'Text displayed in tooltip.',
+      type: { name: 'string' },
+    },
   },
-  // args: {
-  //   itemText: 'Button',
-  // },
+  args: {
+    label: 'More options',
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Default: Story = {
   render: (props) => {
     return (
-      <div style={{ maxWidth: 272 }}>
+      <div style={{ maxWidth: '272px' }}>
         <DatacomOverflowMenu {...props}>
-          <DatacomMenuItems itemUrl="#" icon="globe">
-            text1
+          <DatacomMenuItems
+            itemUrl="https://www.datacom.com/nz/en"
+            icon="globe">
+            Option
           </DatacomMenuItems>
-          <DatacomMenuItems itemText="text" icon="globe">
-            jjj
+          <DatacomMenuItems itemText="Option" icon="globe"></DatacomMenuItems>
+          <DatacomMenuItems
+            itemUrl="https://www.datacom.com/nz/en"
+            icon="globe">
+            Option
           </DatacomMenuItems>
         </DatacomOverflowMenu>
       </div>

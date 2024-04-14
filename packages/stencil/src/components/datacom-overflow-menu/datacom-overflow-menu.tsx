@@ -2,7 +2,6 @@ import { Component, Host, h, Prop, State } from '@stencil/core';
 import { OverflowMenuIcon } from './assets/overflow-menu-icon';
 
 export type OverFlowMenuVariantType = 'horizontal' | 'vertical';
-export type MenuSizeType = 'standard' | 'small';
 
 @Component({
   tag: 'datacom-overflow-menu',
@@ -14,35 +13,38 @@ export class DatacomOverflowMenu {
   @Prop() label: string;
   @Prop() close: true;
   @State() isOpen: boolean = false;
-  @Prop() url: string;
-  @Prop() menuText: string;
-  @Prop() size: MenuSizeType = 'small';
-
-  // @Method()
-  // async isExpanded(): Promise<boolean> {
-  //   return this.expanded;
-  // }
 
   toggleMenu() {
     this.isOpen = !this.isOpen;
   }
 
+  handleKeyUp = (event: KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === 'Return' || event.key == ' ') {
+      this.toggleMenu();
+      return;
+    }
+  };
+
   render() {
     const Classes = {
-      // [`dc-overflow-menu-${this.variant}`]: true,
-      'dropdown-options': true,
-      [`dc-menu-item-${this.size}`]: true,
+      'dc-overflow-dropdown-options': true,
     };
-
     return (
       <Host>
-        <div onClick={() => this.toggleMenu()}>
+        <div
+          onClick={() => this.toggleMenu()}
+          onKeyUp={this.handleKeyUp}
+          class="dc-overflow-menu-wrapper"
+          tabIndex={0}>
           {!this.isOpen ? (
-            <datacom-tooltip label="More options">
+            <datacom-tooltip
+              label={this.label}
+              tabIndex={-1}
+              class="dc-overflow-menu-tooltip">
               <OverflowMenuIcon class={`dc-overflow-menu-${this.variant}`} />
             </datacom-tooltip>
           ) : (
-            <div>
+            <div class="dc-overflow-dropdown-wrapper">
               <OverflowMenuIcon class={`dc-overflow-menu-${this.variant}`} />
               <div class={Classes}>
                 <slot />

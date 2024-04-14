@@ -1,5 +1,6 @@
 import { Component, h, Prop, Host, Event, EventEmitter } from '@stencil/core';
 import { getSvg } from '../../common/images/icon-provider';
+export type MenuSizeType = 'standard' | 'small';
 
 @Component({
   tag: 'datacom-menu-items',
@@ -10,7 +11,7 @@ export class DatacomMenuItems {
   @Prop() itemText: string;
   @Prop() itemUrl: string;
   @Prop() icon: string;
-  @Prop() size: string;
+  @Prop() size: MenuSizeType = 'small';
 
   @Event() buttonClicked: EventEmitter;
 
@@ -19,26 +20,26 @@ export class DatacomMenuItems {
   };
 
   render() {
-    const itemsClasses = {
+    const menuClasses = {
       'dc-menu-item-wrapper': true,
+      [`dc-menu-item-${this.size}`]: true,
+      'dc-menu-item-button': true,
     };
     return (
       <Host>
-        <div class={itemsClasses}>
-          {this.itemUrl ? (
-            <a href={this.itemUrl} class="dc-item-menu-link">
-              {getSvg(this.icon, { class: 'dc-item-menu-icon' })}
-              {this.itemText}
-              <slot></slot>
-            </a>
-          ) : (
-            <button class="dc-item-menu-button" onClick={this.onHandleClick}>
-              {getSvg(this.icon, { class: 'dc-item-menu-icon' })}
-              {this.itemText}
-              <slot></slot>
-            </button>
-          )}
-        </div>
+        {this.itemUrl ? (
+          <a href={this.itemUrl} class={menuClasses} tabIndex={0}>
+            {getSvg(this.icon, { class: 'dc-item-menu-icon' })}
+            {this.itemText}
+            <slot></slot>
+          </a>
+        ) : (
+          <button class={menuClasses} onClick={this.onHandleClick}>
+            {getSvg(this.icon, { class: 'dc-item-menu-icon' })}
+            {this.itemText}
+            <slot></slot>
+          </button>
+        )}
       </Host>
     );
   }

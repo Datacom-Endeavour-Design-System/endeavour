@@ -2,25 +2,33 @@
   display: flex;
 }
 
+.dc-overflow-menu-horizontal path,
+.dc-overflow-menu-vertical path  {
+  fill: var(--dc-primary-text-color);
+  outline: none;
+}
+
 .dc-overflow-menu-horizontal {
   transform: rotate(90deg);
   position: relative;
 }
- 
-.dropdown-options {
+
+.dc-overflow-menu-tooltip:focus-visible {
+  outline: none;
+}
+
+.dc-overflow-dropdown-options {
   display: flex;
+  max-width: 272px;
+  min-width: 140px;
   flex-direction: column;
   box-sizing: border-box;
-  border: 1px solid red;
   border-radius: 8px;
   justify-content: center;
   box-shadow: var(--dc-primary-box-shadow);
 }
 
-.dc-menu-item-small {
-  width: 140px;
-}
-
-.dc-menu-item-standard  {
-  width: 272px;
+.dc-overflow-menu-wrapper:focus-visible {
+  outline: 3px solid var(--dc-primary-colour);
+  outline-offset: 1px;
 }
