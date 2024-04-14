@@ -14,9 +14,10 @@ export class DatacomOverflowMenu {
   @Prop() close: true;
   @State() isOpen: boolean = false;
 
-  toggleMenu() {
+  private toggleMenu = () => {
     this.isOpen = !this.isOpen;
-  }
+    return;
+  };
 
   handleKeyUp = (event: KeyboardEvent) => {
     if (event.key === 'Enter' || event.key === 'Return' || event.key == ' ') {

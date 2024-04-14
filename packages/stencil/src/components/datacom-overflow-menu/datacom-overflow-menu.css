@@ -13,10 +13,6 @@
   position: relative;
 }
 
-.dc-overflow-menu-tooltip:focus-visible {
-  outline: none;
-}
-
 .dc-overflow-dropdown-options {
   display: flex;
   max-width: 272px;
@@ -30,5 +26,9 @@
 
 .dc-overflow-menu-wrapper:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
-  outline-offset: 1px;
+}
+
+.dc-overflow-menu-horizontal:focus,
+.dc-overflow-menu-vertical:focus {
+  outline: none;
 }
