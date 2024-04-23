@@ -4,7 +4,6 @@ import {
   DatacomOverflowMenu,
   DatacomMenuItems,
 } from '@datacom/endeavour-react';
-
 const meta: Meta<typeof DatacomOverflowMenu> = {
   title: 'Overflow Menu',
   component: DatacomOverflowMenu,
@@ -27,6 +26,30 @@ const meta: Meta<typeof DatacomOverflowMenu> = {
       description: 'Text displayed in tooltip.',
       type: { name: 'string' },
     },
+    size: {
+      name: 'Size',
+      description:
+        'OverflowMenu and dropdown options size within variant. Defaults to small if not set',
+      control: {
+        type: 'select',
+        labels: { standard: 'Large', small: 'Small' },
+      },
+      options: ['standard', 'small'],
+      type: { name: 'string' },
+    },
+    position: {
+      name: 'Overflow options position',
+      description: 'Sets position of overflow menu dropdown options.',
+      control: {
+        type: 'select',
+        labels: {
+          center: 'Center',
+          left: 'Left',
+          right: 'Right',
+        },
+      },
+      options: ['center', 'left', 'right'],
+    },
   },
   args: {
     label: 'More options',
@@ -39,17 +62,29 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (props) => {
     return (
-      <div style={{ maxWidth: '272px' }}>
+      <div
+        style={{
+          width: '272px',
+          display: 'block',
+          paddingLeft: '400px',
+          height: 'calc(100vh - 8rem)',
+        }}>
         <DatacomOverflowMenu {...props}>
           <DatacomMenuItems
             itemUrl="https://www.datacom.com/nz/en"
-            icon="globe">
+            icon="globe"
+            size={props.size}>
             Option
           </DatacomMenuItems>
-          <DatacomMenuItems itemText="Option" icon="globe"></DatacomMenuItems>
+          <DatacomMenuItems
+            itemText="Option"
+            icon="globe"
+            size={props.size}
+            disabled></DatacomMenuItems>
           <DatacomMenuItems
             itemUrl="https://www.datacom.com/nz/en"
-            icon="globe">
+            icon="globe"
+            size={props.size}>
             Option
           </DatacomMenuItems>
         </DatacomOverflowMenu>

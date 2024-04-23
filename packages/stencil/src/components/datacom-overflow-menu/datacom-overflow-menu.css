@@ -1,5 +1,17 @@
 :host {
-  display: flex;
+ display: flex;
+}
+
+.dc-overflow-menu-wrapper {
+  display: flex; 
+  flex-direction: column;
+  box-sizing: border-box;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  border: transparent;
+  justify-content: center;
+  border-radius: 8px;
 }
 
 .dc-overflow-menu-horizontal path,
@@ -15,8 +27,7 @@
 
 .dc-overflow-dropdown-options {
   display: flex;
-  max-width: 272px;
-  min-width: 140px;
+  position: relative;
   flex-direction: column;
   box-sizing: border-box;
   border-radius: 8px;
@@ -24,8 +35,54 @@
   box-shadow: var(--dc-primary-box-shadow);
 }
 
+.dc-overflow-dropdown-options .dc-menu-item-small {
+ width: 140px;
+}
+ .dc-overflow-dropdown-options .dc-menu-item-standard {
+  width: 272px;
+}
+
+.dc-menu-item-center {
+  bottom: 0px;
+  left: 50%;
+  padding-top: 2px;
+  translate: -75% calc(5% + 2px);
+}
+
+.dc-menu-item-left {
+  bottom: 0px;
+  left: 40%;
+  padding-top: 2px;
+  translate: -40% calc(5% + 2px);
+}
+
+.dc-menu-item-right {
+  bottom: 0px;
+  left: 40%;
+  padding-top: 2px;
+  translate: -110% calc(5% + 2px);
+}
+
+.dc-menu-item-standard .dc-overflow-menu-horizontal,
+.dc-menu-item-standard .dc-overflow-menu-vertical {
+  height: 24px;
+  width: 24px;
+  padding: 24px;
+}
+
+.dc-menu-item-small .dc-overflow-menu-horizontal,
+.dc-menu-item-small .dc-overflow-menu-vertical {
+  height: 16px;
+  width: 16px;
+  padding: 16px;
+}
+
 .dc-overflow-menu-wrapper:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
+}
+
+.dc-overflow-menu-wrapper:hover:enabled {
+background-color: var( --dc-ui-fill-hover-colour);
 }
 
 .dc-overflow-menu-horizontal:focus,

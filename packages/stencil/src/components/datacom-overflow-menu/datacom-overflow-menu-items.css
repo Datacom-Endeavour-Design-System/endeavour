@@ -9,7 +9,6 @@
   font-family: var(--dc-font-family);
   color: var(--dc-primary-text-color);
   margin: 0;
-  padding: 14px 16px;
   outline: none;
   cursor: pointer;
   align-items: center;
@@ -25,11 +24,13 @@
 
 .dc-menu-item-small {
   width: 140px;
+  padding: 8px 14px;
   font-size: 14px;
 }
 
 .dc-menu-item-standard {
   width: 272px;
+  padding: 14px 16px;
   font-size: 18px;
 }
 
@@ -60,6 +61,11 @@
   outline-offset: 1px;
   z-index: 99;
 }
+.dc-menu-item-wrapper:focus{
+  outline: 3px solid var(--dc-primary-colour);
+  outline-offset: 1px;
+  z-index: 99;
+}
 
 :host(:first-child) .dc-menu-item-wrapper  {
   border-top: none;
@@ -71,4 +77,13 @@
   border-bottom: none;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px; 
+}
+
+.dc-menu-item-disabled {
+  color: var(--dc-primary-disabled-colour);
+  cursor: not-allowed;
+}
+
+.dc-menu-item-disabled .dc-item-menu-icon path {
+  fill: var(--dc-primary-disabled-colour); 
 }

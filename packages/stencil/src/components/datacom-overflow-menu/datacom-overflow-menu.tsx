@@ -1,7 +1,17 @@
-import { Component, Host, h, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  State,
+  Element,
+  Listen,
+} from '@stencil/core';
 import { OverflowMenuIcon } from './assets/overflow-menu-icon';
 
+export type MenuSizeType = 'standard' | 'small';
 export type OverFlowMenuVariantType = 'horizontal' | 'vertical';
+export type MenuItemsPositionType = 'center' | 'left' | 'right';
 
 @Component({
   tag: 'datacom-overflow-menu',
@@ -11,45 +21,101 @@ export type OverFlowMenuVariantType = 'horizontal' | 'vertical';
 export class DatacomOverflowMenu {
   @Prop() variant: OverFlowMenuVariantType = 'horizontal';
   @Prop() label: string;
-  @Prop() close: true;
   @State() isOpen: boolean = false;
+  @Prop() size: MenuSizeType = 'small';
+  @Element() hostElement: HTMLElement;
+  @Prop({ mutable: true }) position: MenuItemsPositionType = 'center';
+  private buttonRef: HTMLButtonElement;
+  private firstElementRef: HTMLElement;
+  private currentPosition: MenuItemsPositionType;
 
-  private toggleMenu = () => {
-    this.isOpen = !this.isOpen;
-    return;
-  };
+  private open() {
+    this.isOpen = true;
+    this.setFocusToFirstItem();
+  }
+
+  private close() {
+    this.isOpen = false;
+  }
 
   handleKeyUp = (event: KeyboardEvent) => {
     if (event.key === 'Enter' || event.key === 'Return' || event.key == ' ') {
-      this.toggleMenu();
+      this.open();
+      this.setFocusToFirstItem();
+      return;
+    }
+    if (event.key === 'Escape' && this.isOpen) {
+      this.close();
+      this.buttonRef.focus();
       return;
     }
   };
+  /**
+   *Set the focus first element of dropdown options when click on the menu button
+   *First child of slot
+   */
+  setFocusToFirstItem(_event?: MouseEvent | KeyboardEvent) {
+    this.firstElementRef = this.hostElement.shadowRoot
+      .querySelector('.dc-overflow-dropdown-options')
+      ?.querySelector('slot')
+      .assignedElements()[0]
+      .shadowRoot.querySelector('.dc-menu-item-wrapper') as HTMLElement;
+    if (this.firstElementRef) {
+      this.firstElementRef.setAttribute('tabindex', '0');
+      this.firstElementRef.focus(); // Set focus to the first item of the menu
+    }
+  }
+
+  private toggleMenu = (event: MouseEvent) => {
+    if (this.isOpen !== true) {
+      this.open();
+      setTimeout(() => {
+        this.setFocusToFirstItem(event);
+      }, 0);
+    } else {
+      this.close();
+    }
+    event.preventDefault();
+    return;
+  };
+
+  @Listen('click', { target: 'document' })
+  handleOutsideClick(event: MouseEvent) {
+    if (!this.hostElement.contains(event.target as Node)) {
+      this.close();
+    }
+  }
 
   render() {
-    const Classes = {
+    const dropdownClasses = {
       'dc-overflow-dropdown-options': true,
+      [`dc-menu-item-${this.position}`]: true,
+      [`dc-menu-item-${this.size}`]: true,
     };
+    const Classes = {
+      'dc-overflow-menu-wrapper': true,
+      [`dc-menu-item-${this.size}`]: true,
+    };
+
     return (
       <Host>
-        <div
-          onClick={() => this.toggleMenu()}
-          onKeyUp={this.handleKeyUp}
-          class="dc-overflow-menu-wrapper"
-          tabIndex={0}>
-          {!this.isOpen ? (
-            <datacom-tooltip
-              label={this.label}
-              tabIndex={-1}
-              class="dc-overflow-menu-tooltip">
+        <div>
+          <datacom-tooltip label={this.label} class="dc-overflow-menu-tooltip">
+            <button
+              ref={(el) => (this.buttonRef = el)}
+              onClick={this.toggleMenu}
+              class={Classes}
+              tabIndex={0}
+              onKeyUp={this.handleKeyUp}>
               <OverflowMenuIcon class={`dc-overflow-menu-${this.variant}`} />
-            </datacom-tooltip>
-          ) : (
-            <div class="dc-overflow-dropdown-wrapper">
-              <OverflowMenuIcon class={`dc-overflow-menu-${this.variant}`} />
-              <div class={Classes}>
-                <slot />
-              </div>
+            </button>
+          </datacom-tooltip>
+          {this.isOpen && (
+            <div
+              ref={(el) => (this.firstElementRef = el)}
+              class={dropdownClasses}
+              onKeyUp={this.handleKeyUp}>
+              <slot />
             </div>
           )}
         </div>
