@@ -29,3 +29,4 @@ export * from './drill-down';
 export * from './check-circle';
 export * from './theme';
 export * from './close';
+export * from './clock';
