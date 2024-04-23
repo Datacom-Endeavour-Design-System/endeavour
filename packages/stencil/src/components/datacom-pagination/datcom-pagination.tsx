@@ -22,7 +22,6 @@ export class DatacomPagination {
     composed: true,
   })
   private pageChanged: EventEmitter<number>;
-  // private inputElement: HTMLInputElement;
 
   /**
    * Handle boundary cases such as only allowing to navigate between the range.
@@ -65,7 +64,7 @@ export class DatacomPagination {
   /**
    * Update the value when enter the page number in the input field.
    */
-  onPageChangeHandler = (event: Event): void => {
+  onPageChangeHandler = (event: MouseEvent | KeyboardEvent): void => {
     const inputNumber = (event.target as HTMLInputElement).value;
     const newPage = parseInt(inputNumber);
     if (isNaN(newPage)) {
@@ -75,6 +74,7 @@ export class DatacomPagination {
     }
     this.pageChanged.emit(this.currentPage);
   };
+
   @Listen('input', { capture: true })
   onInput(event: InputEvent): void {
     const inputElement = event.target as HTMLInputElement;
@@ -84,7 +84,7 @@ export class DatacomPagination {
     this.pageChanged.emit(this.currentPage);
   }
 
-  handleInputBlur = (event: Event): void => {
+  handleInputBlur = (event: MouseEvent | KeyboardEvent): void => {
     const inputNumber = (event.target as HTMLInputElement).value;
     let newEnteredHigher = parseInt(inputNumber);
     if (newEnteredHigher > this.totalPages) {
@@ -121,8 +121,8 @@ export class DatacomPagination {
               type="number"
               class="dc-pagination-current"
               value={this.currentPage}
-              onChange={this.onPageChangeHandler}
-              onBlur={this.handleInputBlur}></input>
+              onChange={() => this.onPageChangeHandler}
+              onBlur={() => this.handleInputBlur}></input>
             of
             <span class="dc-total-page">{this.totalPages}</span>
           </div>
