@@ -15,7 +15,7 @@ export class Calendar {
   public getCalendarDays(): number[] {
     const daysOfCurrentMonth = this.getDaysOfCurrentMonth();
     const daysOfPrevMonth = this.getDaysOfPrevMonth();
-    const daysOfNextMonth = this.geDaysOfNextMonth();
+    const daysOfNextMonth = this.getDaysOfNextMonth();
 
     this.daysOfPrevMonthCount = daysOfPrevMonth.length;
     this.daysOfNextMonthCount = daysOfNextMonth.length;
@@ -42,7 +42,7 @@ export class Calendar {
     return days;
   }
 
-  private geDaysOfNextMonth(): number[] {
+  private getDaysOfNextMonth(): number[] {
     const daysOfMonth = new Date(this.year, this.month + 1, 1);
     const days: number[] = [];
     // return empty array if 1st day of next month falls to Monday
