@@ -27,7 +27,6 @@ export class DatacomOverflowMenu {
   @Prop({ mutable: true }) position: MenuItemsPositionType = 'center';
   private buttonRef: HTMLButtonElement;
   private firstElementRef: HTMLElement;
-  private currentPosition: MenuItemsPositionType;
 
   private open() {
     this.isOpen = true;
@@ -54,7 +53,7 @@ export class DatacomOverflowMenu {
    *Set the focus first element of dropdown options when click on the menu button
    *First child of slot
    */
-  setFocusToFirstItem(_event?: MouseEvent | KeyboardEvent) {
+  setFocusToFirstItem() {
     this.firstElementRef = this.hostElement.shadowRoot
       .querySelector('.dc-overflow-dropdown-options')
       ?.querySelector('slot')
@@ -70,7 +69,7 @@ export class DatacomOverflowMenu {
     if (this.isOpen !== true) {
       this.open();
       setTimeout(() => {
-        this.setFocusToFirstItem(event);
+        this.setFocusToFirstItem();
       }, 0);
     } else {
       this.close();
