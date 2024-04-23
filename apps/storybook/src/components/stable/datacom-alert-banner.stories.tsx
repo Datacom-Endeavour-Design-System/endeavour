@@ -23,7 +23,7 @@ export default {
   component: DatacomAlertBanner,
 };
 
-export const AlertBanner: StoryObj<
+export const Default: StoryObj<
   AlertBannerProps & {
     variantForMasterbrand: string;
     variantForDatapay: string;
@@ -159,14 +159,18 @@ export const AlertBanner: StoryObj<
     },
     message: {
       name: 'Message',
+      description:
+        'Message that provides an indication of what kind of content is within a banner.',
       type: { name: 'string' },
     },
     ctaLabel: {
       name: 'CTA label',
+      description: 'Text within the CTA element.',
       type: { name: 'string' },
     },
     ctaURL: {
       name: 'CTA URL',
+      description: 'URL that should link to.',
       type: { name: 'string' },
     },
   },
