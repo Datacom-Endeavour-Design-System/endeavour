@@ -49,10 +49,12 @@ const meta: Meta<typeof DatacomOverflowMenu> = {
         },
       },
       options: ['center', 'left', 'right'],
+      type: { name: 'string' },
     },
   },
   args: {
     label: 'More options',
+    size: 'small',
   },
 };
 
