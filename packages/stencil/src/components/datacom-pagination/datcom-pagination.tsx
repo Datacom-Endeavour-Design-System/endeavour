@@ -6,6 +6,7 @@ import {
   Event,
   EventEmitter,
   Listen,
+  Watch,
 } from '@stencil/core';
 import { getSvg } from '../../common/images';
 
@@ -41,22 +42,22 @@ export class DatacomPagination {
     return Math.ceil(this.totalItems / this.itemsPerPage);
   }
 
-  onClickFirstPageHandler = () => {
+  private onClickFirstPageHandler = () => {
     this.goToPage(1);
     this.pageChanged.emit(this.currentPage);
   };
 
-  onClickPerviousPageHandler = () => {
+  private onClickPerviousPageHandler = () => {
     this.goToPage(this.currentPage - 1);
     this.pageChanged.emit(this.currentPage);
   };
 
-  onClickNextPageHandler = () => {
+  private onClickNextPageHandler = () => {
     this.goToPage(+this.currentPage + 1);
     this.pageChanged.emit(this.currentPage);
   };
 
-  onClickLastPageHandler = () => {
+  private onClickLastPageHandler = () => {
     this.currentPage = this.totalPages;
     this.pageChanged.emit(this.currentPage);
   };
@@ -64,18 +65,16 @@ export class DatacomPagination {
   /**
    * Update the value when enter the page number in the input field.
    */
-  handlePageChangeHandler = (event: Event): void => {
-    const inputNumber = (event.target as HTMLInputElement).value;
-    const newPage = parseInt(inputNumber);
+  @Watch('currentPage')
+  WatchChange(): void {
+    const newPage = this.currentPage;
     if (isNaN(newPage)) {
       this.goToPage(this.currentPage);
     } else {
       this.goToPage(newPage);
     }
     this.pageChanged.emit(this.currentPage);
-    event.preventDefault;
-    console.log('change');
-  };
+  }
 
   @Listen('input', { capture: true })
   onInput(event: InputEvent): void {
@@ -123,7 +122,6 @@ export class DatacomPagination {
               type="number"
               class="dc-pagination-current"
               value={this.currentPage}
-              onChange={this.handlePageChangeHandler}
               onBlur={this.handleInputBlur}></input>
             of
             <span class="dc-total-page">{this.totalPages}</span>
