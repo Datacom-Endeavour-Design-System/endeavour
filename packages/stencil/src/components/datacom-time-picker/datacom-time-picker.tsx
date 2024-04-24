@@ -15,8 +15,8 @@ import { debounce, randomString } from '../../utils';
 import { getSvg } from '../../common/images';
 
 type Time = {
-  hour: string;
-  minute: string;
+  hour?: string;
+  minute?: string;
   period?: string;
 };
 
@@ -66,7 +66,6 @@ export class DatacomTimePicker implements FormControl {
   @State() periodOptions: string[] = [];
   @State() tabCount = 4;
   @State() activeOptionsWrapper: HTMLDivElement;
-  @State() isTabbing = false;
   @State() isValidTime = true;
 
   @Listen('click', { target: 'document' })
@@ -136,7 +135,7 @@ export class DatacomTimePicker implements FormControl {
   }
 
   private setTimeValue = (value: string, type: string): void => {
-    const newTime = { ...this.time } as Time;
+    const newTime: Time = { ...this.time };
     if (type === 'selectedHour') {
       newTime.hour = value;
     }
@@ -215,10 +214,6 @@ export class DatacomTimePicker implements FormControl {
     //
     const noneCloneOptionsCount = options.length / 2;
 
-    // if (element.scrollTop === 0) {
-    //   this.host.scrollTo({top: this.optionHeight * noneCloneOptionsCount});
-    // }
-
     if (element.scrollTop === element.scrollHeight - element.clientHeight) {
       const remainder = noneCloneOptionsCount % this.visibleOptionsCount;
       if (remainder === 0) {
@@ -233,22 +228,6 @@ export class DatacomTimePicker implements FormControl {
         });
       }
     }
-
-    // if (element === this.hourOptionsWrapper && this.selectedHour !== undefined && !this.isTabbing) {
-    //   const option = options.find((_, i: number) => {
-    //     const nextIndex = i + 1;
-    //     return (nextIndex * this.optionHeight) > this.hourOptionsWrapper.scrollTop;
-    //   })
-    //   this.selectedHour = option?.value;
-    // }
-    //
-    // if (element === this.minuteOptionsWrapper && this.selectedMinute !== undefined && !this.isTabbing) {
-    //   const option = options.find((_, i: number) => {
-    //     const nextIndex = i + 1;
-    //     return (nextIndex * this.optionHeight) > this.minuteOptionsWrapper.scrollTop;
-    //   })
-    //   this.selectedMinute = option?.value;
-    // }
   };
 
   private handleClick = (event: MouseEvent): void => {
@@ -316,7 +295,7 @@ export class DatacomTimePicker implements FormControl {
       this.timeInputElement?.focus();
     }, 100);
 
-    this.isTabbing = false;
+    this.tabCount = 4;
     this.activeOptionsWrapper = undefined;
   };
 
@@ -333,21 +312,30 @@ export class DatacomTimePicker implements FormControl {
   }, 1000);
 
   private parseValueToTime = (value: string): Time => {
-    const time = {} as Time;
+    const time: Time = {};
     const hourPattern: RegExp = /^(0?[1-9]|1\d|2[0-4])$/;
     const timePattern: RegExp = /^(\d{1,2}):(\d{2})(?:\s*([AP]M))?$/i;
 
     if (hourPattern.test(value)) {
-      time.hour = value;
-      time.minute = '00';
-      time.period = 'AM';
+      const match = value.match(hourPattern);
+
+      let hour = match[1];
+
+      if (parseInt(hour) >= 12 && !this.militaryTime) {
+        hour = String(parseInt(hour) % 12).padStart(2, '0');
+      } else {
+        hour = String(parseInt(hour)).padStart(2, '0');
+      }
+
+      time.hour = hour;
     } else if (timePattern.test(value)) {
       const match = value.match(timePattern);
+
       let hour = match[1];
       let minute = match[2];
       let period = match[3]?.toUpperCase();
 
-      if (parseInt(hour) >= 12) {
+      if (parseInt(hour) >= 12 && !this.militaryTime) {
         hour = String(parseInt(hour) % 12).padStart(2, '0');
         period = period || 'PM';
       } else {
@@ -515,8 +503,7 @@ export class DatacomTimePicker implements FormControl {
       const activeElement = document.activeElement;
 
       if (activeElement.classList.contains('dc-time-picker-time-option')) {
-        // const parent = this.activeOptionsWrapper || this.hourOptionsWrapper;
-        const parent = activeElement.parentNode;
+        const parent = activeElement.parentNode as HTMLDivElement;
         const children = Array.from(
           parent.querySelectorAll('.dc-time-picker-time-option'),
         ) as HTMLButtonElement[];
@@ -525,11 +512,14 @@ export class DatacomTimePicker implements FormControl {
 
         if (event.key === 'Tab') {
           // Focus first on first tab
-          if (!this.isTabbing) {
+          if (
+            this.activeOptionsWrapper === undefined &&
+            this.activeOptionsWrapper !== parent
+          ) {
             const firstChild = children[0] as HTMLButtonElement;
             firstChild.focus();
             this.scrollToSelectedOption(firstChild);
-            this.isTabbing = true;
+            this.activeOptionsWrapper = parent;
           }
 
           if (event.shiftKey) {
@@ -577,7 +567,8 @@ export class DatacomTimePicker implements FormControl {
 
         this.tabCount = tabCount;
       } else {
-        this.isTabbing = false;
+        this.tabCount = 4;
+        this.activeOptionsWrapper = undefined;
       }
     }, 100);
   };
@@ -587,48 +578,68 @@ export class DatacomTimePicker implements FormControl {
       const activeElement = document.activeElement;
 
       if (activeElement.classList.contains('dc-time-picker-time-option')) {
+        let currentValue: string;
+
+        const currentSelection =
+          this.activeOptionsWrapper || this.hourOptionsWrapper;
         let leftSelection: HTMLDivElement;
         let rightSelection: HTMLDivElement;
 
-        if (
-          this.activeOptionsWrapper === undefined ||
-          this.activeOptionsWrapper === this.hourOptionsWrapper
-        ) {
+        if (currentSelection === this.hourOptionsWrapper) {
+          currentValue = this.selectedHour;
+
           leftSelection = this.militaryTime
             ? this.minuteOptionsWrapper
             : this.periodOptionsWrapper;
           rightSelection = this.minuteOptionsWrapper;
-        } else if (this.activeOptionsWrapper === this.minuteOptionsWrapper) {
+        } else if (currentSelection === this.minuteOptionsWrapper) {
+          currentValue = this.selectedMinute;
+
           leftSelection = this.hourOptionsWrapper;
           rightSelection = this.militaryTime
             ? this.hourOptionsWrapper
             : this.periodOptionsWrapper;
-        } else if (this.activeOptionsWrapper === this.periodOptionsWrapper) {
+        } else if (currentSelection === this.periodOptionsWrapper) {
+          currentValue = this.selectedPeriod;
+
           leftSelection = this.minuteOptionsWrapper;
           rightSelection = this.hourOptionsWrapper;
         }
 
+        // Reset scroll top of current wrapper before moving to another wrapper
+        this.initScrollTop(currentSelection, currentValue);
+
         if (event.key === 'ArrowLeft') {
-          const options = leftSelection.querySelectorAll(
-            '.dc-time-picker-time-option',
-          );
-          const firstOption = options[0] as HTMLButtonElement;
-          firstOption.focus();
-          this.scrollToSelectedOption(firstOption);
+          this.initScrollTop(leftSelection);
           this.activeOptionsWrapper = leftSelection;
         }
 
         if (event.key === 'ArrowRight') {
-          const options = rightSelection.querySelectorAll(
-            '.dc-time-picker-time-option',
-          );
-          const firstOption = options[0] as HTMLButtonElement;
-          firstOption.focus();
-          this.scrollToSelectedOption(firstOption);
+          this.initScrollTop(rightSelection);
           this.activeOptionsWrapper = rightSelection;
         }
+
+        this.tabCount = 4;
       }
     }, 100);
+  };
+
+  private initScrollTop = (wrapper: HTMLDivElement, selectedValue?: string) => {
+    const options = Array.from(
+      wrapper.querySelectorAll(
+        '.dc-time-picker-time-option:not(.dc-time-picker-time-option-clone)',
+      ),
+    ) as HTMLButtonElement[];
+    let optionToFocus = options[0] as HTMLButtonElement;
+
+    if (selectedValue !== undefined) {
+      optionToFocus = options.find(
+        (option: HTMLButtonElement) => option.value === selectedValue,
+      );
+    }
+
+    optionToFocus.focus();
+    this.scrollToSelectedOption(optionToFocus);
   };
 
   private getHourOptionActiveClass = (value: string): string => {
@@ -667,11 +678,6 @@ export class DatacomTimePicker implements FormControl {
   }
 
   private renderTimePickerControl() {
-    const optionsWrapperClasses = {
-      'dc-time-picker-options-wrapper': true,
-      'dc-time-picker-options-tabbing': this.isTabbing,
-    };
-
     return (
       <Fragment>
         <div class="dc-time-picker-control-content">
@@ -689,16 +695,10 @@ export class DatacomTimePicker implements FormControl {
           <div class="dc-time-picker-control-container">
             <div class="dc-time-picker-time-control-container">
               <div
-                class={optionsWrapperClasses}
+                class="dc-time-picker-options-wrapper"
                 ref={(el: HTMLDivElement) => (this.hourOptionsWrapper = el)}>
-                {this.selectedHour !== undefined && (
-                  <div class="dc-time-picker-option-active-container">
-                    <button tabIndex={-1}>{this.selectedHour}</button>
-                  </div>
-                )}
                 {this.hourOptions.map((option: string) => (
                   <button
-                    // tabIndex={this.activeOptionsWrapper === undefined || this.activeOptionsWrapper === this.hourOptionsWrapper ? 0 : -1}
                     name="hourOption"
                     class={`dc-time-picker-time-option ${this.getHourOptionActiveClass(
                       option,
@@ -712,7 +712,6 @@ export class DatacomTimePicker implements FormControl {
                 {this.hourOptions.length > this.visibleOptionsCount &&
                   this.hourOptions.map((option: string) => (
                     <button
-                      // tabIndex={this.activeOptionsWrapper === undefined || this.activeOptionsWrapper === this.hourOptionsWrapper ? 0 : -1}
                       name="hourOption"
                       class={`dc-time-picker-time-option dc-time-picker-time-option-clone ${this.getHourOptionActiveClass(
                         option,
@@ -725,16 +724,10 @@ export class DatacomTimePicker implements FormControl {
               </div>
               <div class="dc-time-picker-divider"></div>
               <div
-                class={optionsWrapperClasses}
+                class="dc-time-picker-options-wrapper"
                 ref={(el: HTMLDivElement) => (this.minuteOptionsWrapper = el)}>
-                {this.selectedMinute !== undefined && (
-                  <div class="dc-time-picker-option-active-container">
-                    <button tabIndex={-1}>{this.selectedMinute}</button>
-                  </div>
-                )}
                 {this.minuteOptions.map((option: string) => (
                   <button
-                    // tabIndex={this.activeOptionsWrapper === this.minuteOptionsWrapper ? 0 : -1}
                     name="minuteOption"
                     class={`dc-time-picker-time-option ${this.getMinuteOptionActiveClass(
                       option,
@@ -748,7 +741,6 @@ export class DatacomTimePicker implements FormControl {
                 {this.minuteOptions.length > this.visibleOptionsCount &&
                   this.minuteOptions.map((option: string) => (
                     <button
-                      // tabIndex={this.activeOptionsWrapper === this.minuteOptionsWrapper ? 0 : -1}
                       name="minuteOption"
                       class={`dc-time-picker-time-option dc-time-picker-time-option-clone ${this.getMinuteOptionActiveClass(
                         option,
@@ -763,18 +755,12 @@ export class DatacomTimePicker implements FormControl {
                 <Fragment>
                   <div class="dc-time-picker-divider"></div>
                   <div
-                    class={optionsWrapperClasses}
+                    class="dc-time-picker-options-wrapper"
                     ref={(el: HTMLDivElement) =>
                       (this.periodOptionsWrapper = el)
                     }>
-                    {this.selectedPeriod !== undefined && (
-                      <div class="dc-time-picker-option-active-container">
-                        <button tabIndex={-1}>{this.selectedPeriod}</button>
-                      </div>
-                    )}
                     {this.periodOptions.map((option: string) => (
                       <button
-                        // tabIndex={this.activeOptionsWrapper === this.periodOptionsWrapper ? 0 : -1}
                         name="periodOption"
                         class={`dc-time-picker-time-option ${this.getPeriodOptionActiveClass(
                           option,

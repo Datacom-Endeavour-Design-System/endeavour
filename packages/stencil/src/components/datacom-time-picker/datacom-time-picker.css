@@ -118,7 +118,7 @@
   padding: 24px 16px
 }
 
-.dc-time-picker-time-control-container button {
+.dc-time-picker-time-control-container .dc-time-picker-time-option {
   cursor: pointer;
   border: none;
   padding: 12px 16px;
@@ -131,23 +131,13 @@
   color: var(--dc-primary-text-color);
 }
 
-.dc-time-picker-divider {
-  border-right: 1px solid var(--dc-token-border-default-01);
-}
-
-.dc-time-picker-option-active-container {
-  position: fixed;
-  top: 68px;
-  display: flex;
-  justify-content: center;
-  padding-top: 16px;
-  /*background-color: var(--dc-date-picker-ui-color);*/
-  border-radius: 0 0 8px 8px;
-}
-
-.dc-time-picker-option-active-container button {
+.dc-time-picker-time-control-container .dc-time-picker-option-active {
   background: var(--dc-date-picker-primary-interactive-color);
   color: var(--dc-date-picker-secondary-interactive-color);
+}
+
+.dc-time-picker-divider {
+  border-right: 1px solid var(--dc-token-border-default-01);
 }
 
 .dc-time-picker-options-wrapper {
@@ -165,21 +155,12 @@
   display: none;
 }
 
-/** Tabbing state **/
-.dc-time-picker-options-wrapper.dc-time-picker-options-tabbing .dc-time-picker-option-active-container {
-  display: none;
-}
-
-.dc-time-picker-options-wrapper.dc-time-picker-options-tabbing .dc-time-picker-option-active {
-  color: var(--dc-date-picker-primary-interactive-color);
-}
-
 /* Hover state */
 .dc-time-picker:not(.dc-time-picker-open):not(.dc-time-picker-disabled) .dc-time-picker-input:hover {
   border: 1px solid var(--dc-primary-accent-colour);
 }
 
-.dc-time-picker-time-control-container button:hover:not(.dc-time-picker-option-active) {
+.dc-time-picker-time-control-container .dc-time-picker-time-option:not(.dc-time-picker-option-active):hover {
   background: var(--dc-token-interactive-hover-03);
   color: var(--dc-token-interactive-04);
 }
@@ -190,7 +171,7 @@
   outline-offset: 1px;
 }
 
-.dc-time-picker-time-control-container button:focus-visible {
+.dc-time-picker-time-control-container .dc-time-picker-time-option:focus-visible {
   outline: 2px solid var(--dc-date-picker-primary-interactive-color);
   outline-offset: 1px;
 }
@@ -236,6 +217,7 @@
 
 .dc-time-picker-disabled .dc-time-picker-input {
   border-color: var(--dc-ui-disabled-border);
+  color: var(--dc-greyscale-04);
   cursor: not-allowed;
 }
 

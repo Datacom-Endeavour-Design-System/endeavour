@@ -57,7 +57,7 @@ export default {
   },
 };
 
-export const TimePickerInput: StoryObj<typeof DatacomTimePicker> = {
+export const Default: StoryObj<typeof DatacomTimePicker> = {
   render: (props) => {
     return (
       <div style={{ width: '272px' }}>
