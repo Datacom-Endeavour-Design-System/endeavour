@@ -32,9 +32,9 @@ import {
   scoped: true,
 })
 export class DatacomDatePickerCalendar {
-  private dayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  private dayNames: string[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   private yearInputElement: HTMLInputElement;
-  private currentDate = new Date();
+  private currentDate: Date = new Date();
   private daysOfPrevMonthCount: number;
   private daysOfNextMonthCount: number;
 
@@ -43,20 +43,20 @@ export class DatacomDatePickerCalendar {
   @Event({ eventName: 'datePickerChanged', bubbles: true, composed: true })
   changed: EventEmitter<Date | Date[]>;
 
-  @Prop() disabled? = false;
+  @Prop() disabled?: boolean = false;
 
   @Prop({ mutable: true }) selectedDate?: Date;
   @Prop({ mutable: true }) startDate?: Date;
   @Prop({ mutable: true }) endDate?: Date;
-  @Prop() range? = false;
-  @Prop() dateFormat? = 'dd/MM/yyyy';
+  @Prop() range?: boolean = false;
+  @Prop() dateFormat?: string = 'dd/MM/yyyy';
 
-  @State() yearChanged = false;
-  @State() yearFocused = false;
-  @State() yearMouseover = false;
-  @State() calendarDate = startOfMonth(new Date());
+  @State() yearChanged: boolean = false;
+  @State() yearFocused: boolean = false;
+  @State() yearMouseover: boolean = false;
+  @State() calendarDate: Date = startOfMonth(new Date());
   @State() calendarDays: number[];
-  @State() isSelecting = false;
+  @State() isSelecting: boolean = false;
   @State() mouseoverDate: Date;
 
   @Listen('keydown', { capture: true })
@@ -92,115 +92,6 @@ export class DatacomDatePickerCalendar {
       !!attributeName.includes(mouseoverElement.getAttribute('name'));
   }
 
-  @Watch('selectedDate')
-  @Watch('startDate')
-  @Watch('endDate')
-  watchDates(newDate: Date, _, propName: string): void {
-    this.setCalendarDate(newDate, propName);
-  }
-
-  @Watch('calendarDate')
-  watchCalendarDate(): void {
-    this.setCalendarDetails();
-  }
-
-  componentWillLoad(): void {
-    this.setCalendarDetails();
-  }
-
-  private setCalendarDetails = (): void => {
-    const month = this.calendarDate.getMonth();
-    const year = this.calendarDate.getFullYear();
-    const calendar = new Calendar(year, month);
-    this.calendarDays = calendar.getCalendarDays();
-    this.daysOfPrevMonthCount = calendar.getDaysOfPrevMonthCount();
-    this.daysOfNextMonthCount =
-      calendar.daysInCalendar - calendar.getDaysOfNextMonthCount();
-  };
-
-  private yearIncreaseHandler = (event: MouseEvent | KeyboardEvent): void => {
-    event.preventDefault();
-    this.yearChanged = true;
-    this.yearFocused = true;
-    this.yearInputElement.focus();
-    this.calendarDate = addYears(this.calendarDate, 1);
-
-    const buttonElement = this.host.querySelector<HTMLDivElement>(
-      '.dc-date-picker-quantity-up',
-    );
-    buttonElement.classList.add('dc-date-picker-year-changed');
-    setTimeout(() => {
-      buttonElement.classList.remove('dc-date-picker-year-changed');
-    }, 100);
-  };
-
-  private yearDecreaseHandler = (event: MouseEvent | KeyboardEvent): void => {
-    event.preventDefault();
-    this.yearChanged = true;
-    this.yearFocused = true;
-    this.yearInputElement.focus();
-    this.calendarDate = subYears(this.calendarDate, 1);
-    const buttonElement = this.host.querySelector<HTMLDivElement>(
-      '.dc-date-picker-quantity-down',
-    );
-    buttonElement.classList.add('dc-test');
-    setTimeout(() => {
-      buttonElement.classList.remove('dc-test');
-    }, 100);
-  };
-
-  private mouseoverDayHandler = (event: MouseEvent): void => {
-    event.preventDefault();
-    if (this.isSelecting) {
-      const mouseoverDayElement = event.target as HTMLButtonElement;
-      this.mouseoverDate = parse(
-        mouseoverDayElement.name,
-        this.dateFormat,
-        new Date(),
-      );
-    }
-  };
-
-  private selectDayHandler = (
-    event: MouseEvent | KeyboardEvent,
-    day: number,
-  ): void => {
-    event.preventDefault();
-    const date = setDate(this.calendarDate, day);
-    if (this.range) {
-      if (this.isSelecting && this.startDate <= date) {
-        this.endSelection(date);
-      } else {
-        this.startSelection(date);
-      }
-    } else {
-      this.selectedDate = date;
-      this.changed.emit(date);
-    }
-  };
-
-  private focusYearHandler = (event: FocusEvent): void => {
-    event.preventDefault();
-    this.yearFocused = true;
-  };
-
-  private blurYearHandler = (event: FocusEvent): void => {
-    event.preventDefault();
-    setTimeout(() => {
-      if (this.yearChanged) {
-        this.yearChanged = false;
-      } else {
-        this.yearFocused = false;
-      }
-    }, 200);
-  };
-
-  private changeYearHandler = (event: InputEvent): void => {
-    event.preventDefault();
-    const el = event.target as HTMLInputElement;
-    this.calendarDate = setYear(this.calendarDate, parseInt(el.value));
-  };
-
   @Method()
   public async switchToPreviousMonth(): Promise<void> {
     this.calendarDate = subMonths(this.calendarDate, 1);
@@ -222,6 +113,116 @@ export class DatacomDatePickerCalendar {
       this.mouseoverDate = date;
     }
   }
+
+  @Watch('selectedDate')
+  @Watch('startDate')
+  @Watch('endDate')
+  watchDates(newDate: Date, _, propName: string): void {
+    this.setCalendarDate(newDate, propName);
+  }
+
+  @Watch('calendarDate')
+  watchCalendarDate(): void {
+    this.setCalendarDetails();
+  }
+
+  componentWillLoad(): void {
+    this.setCalendarDetails();
+  }
+
+  private setCalendarDetails = (): void => {
+    const month: number = this.calendarDate.getMonth();
+    const year: number = this.calendarDate.getFullYear();
+    const calendar: Calendar = new Calendar(year, month);
+    this.calendarDays = calendar.getCalendarDays();
+    this.daysOfPrevMonthCount = calendar.getDaysOfPrevMonthCount();
+    this.daysOfNextMonthCount =
+      calendar.daysInCalendar - calendar.getDaysOfNextMonthCount();
+  };
+
+  private yearIncreaseHandler = (event: MouseEvent | KeyboardEvent): void => {
+    event.preventDefault();
+    this.yearChanged = true;
+    this.yearFocused = true;
+    this.yearInputElement.focus();
+    this.calendarDate = addYears(this.calendarDate, 1);
+
+    const buttonElement: HTMLButtonElement =
+      this.host.querySelector<HTMLButtonElement>('.dc-date-picker-quantity-up');
+    buttonElement.classList.add('dc-date-picker-year-changed');
+    setTimeout((): void => {
+      buttonElement.classList.remove('dc-date-picker-year-changed');
+    }, 100);
+  };
+
+  private yearDecreaseHandler = (event: MouseEvent | KeyboardEvent): void => {
+    event.preventDefault();
+    this.yearChanged = true;
+    this.yearFocused = true;
+    this.yearInputElement.focus();
+    this.calendarDate = subYears(this.calendarDate, 1);
+    const buttonElement: HTMLButtonElement =
+      this.host.querySelector<HTMLButtonElement>(
+        '.dc-date-picker-quantity-down',
+      );
+    buttonElement.classList.add('dc-test');
+    setTimeout((): void => {
+      buttonElement.classList.remove('dc-test');
+    }, 100);
+  };
+
+  private mouseoverDayHandler = (event: MouseEvent): void => {
+    event.preventDefault();
+    if (this.isSelecting) {
+      const mouseoverDayElement: HTMLButtonElement =
+        event.target as HTMLButtonElement;
+      this.mouseoverDate = parse(
+        mouseoverDayElement.name,
+        this.dateFormat,
+        new Date(),
+      );
+    }
+  };
+
+  private selectDayHandler = (
+    event: MouseEvent | KeyboardEvent,
+    day: number,
+  ): void => {
+    event.preventDefault();
+    const date: Date = setDate(this.calendarDate, day);
+    if (this.range) {
+      if (this.isSelecting && this.startDate <= date) {
+        this.endSelection(date);
+      } else {
+        this.startSelection(date);
+      }
+    } else {
+      this.selectedDate = date;
+      this.changed.emit(date);
+    }
+  };
+
+  private focusYearHandler = (event: FocusEvent): void => {
+    event.preventDefault();
+    this.yearFocused = true;
+  };
+
+  private blurYearHandler = (event: FocusEvent): void => {
+    event.preventDefault();
+    setTimeout((): void => {
+      if (this.yearChanged) {
+        this.yearChanged = false;
+      } else {
+        this.yearFocused = false;
+      }
+    }, 200);
+  };
+
+  private changeYearHandler = (event: InputEvent): void => {
+    event.preventDefault();
+    const el: HTMLInputElement = event.target as HTMLInputElement;
+    this.calendarDate = setYear(this.calendarDate, parseInt(el.value));
+  };
 
   private setCalendarDate(date: Date, propName: string): void {
     if (propName === 'selectedDate' && isValid(date)) {
@@ -253,7 +254,7 @@ export class DatacomDatePickerCalendar {
   };
 
   private getDayTabIndex = (day: number, index: number): number => {
-    let tabIndex = -1;
+    let tabIndex: number = -1;
 
     if (this.isToday(day, index)) {
       tabIndex = 0;
@@ -271,7 +272,7 @@ export class DatacomDatePickerCalendar {
   };
 
   private getDayClasses = (day: number, index: number): string => {
-    const classDigit = [];
+    const classDigit: string[] = [];
 
     if (this.disabled) {
       return 'dc-date-picker-disabled';
@@ -309,7 +310,7 @@ export class DatacomDatePickerCalendar {
   };
 
   private isToday = (day: number, index: number): boolean => {
-    const date = setDate(this.calendarDate, day);
+    const date: Date = setDate(this.calendarDate, day);
     return (
       this.currentDate.toDateString() === date.toDateString() &&
       !(index < this.daysOfPrevMonthCount || index >= this.daysOfNextMonthCount)
@@ -317,35 +318,35 @@ export class DatacomDatePickerCalendar {
   };
 
   private isSelectedDay = (day: number, index: number) => {
-    const date = setDate(this.calendarDate, day);
+    const date: Date = setDate(this.calendarDate, day);
     return (
       this.selectedDate.toDateString() === date.toDateString() &&
       !(index < this.daysOfPrevMonthCount || index >= this.daysOfNextMonthCount)
     );
   };
 
-  private isStartDate = (day: number) => {
-    const date = setDate(this.calendarDate, day);
+  private isStartDate = (day: number): boolean => {
+    const date: Date = setDate(this.calendarDate, day);
     return this.startDate.toDateString() === date.toDateString();
   };
 
-  private isEndDate = (day: number) => {
-    const date = setDate(this.calendarDate, day);
+  private isEndDate = (day: number): boolean => {
+    const date: Date = setDate(this.calendarDate, day);
     return this.endDate.toDateString() === date.toDateString();
   };
 
   private isInBetween = (day: number) => {
-    const date = setDate(this.calendarDate, day);
+    const date: Date = setDate(this.calendarDate, day);
     return this.startDate < date && date < this.endDate;
   };
 
   private isInRange = (day: number) => {
-    const date = setDate(this.calendarDate, day);
+    const date: Date = setDate(this.calendarDate, day);
     return this.startDate <= date && date <= this.mouseoverDate;
   };
 
   private isMouseoverDate = (day: number) => {
-    const date = setDate(this.calendarDate, day);
+    const date: Date = setDate(this.calendarDate, day);
     return this.mouseoverDate.toDateString() === date.toDateString();
   };
 
@@ -383,7 +384,7 @@ export class DatacomDatePickerCalendar {
                 <input
                   type="number"
                   name="yearInput"
-                  ref={(el) => (this.yearInputElement = el)}
+                  ref={(el: HTMLInputElement) => (this.yearInputElement = el)}
                   min={1}
                   onFocus={this.focusYearHandler}
                   onBlur={this.blurYearHandler}
@@ -428,12 +429,12 @@ export class DatacomDatePickerCalendar {
             </button>
           </div>
           <div class="dc-date-picker-days">
-            {this.dayNames.map((dayName) => (
+            {this.dayNames.map((dayName: string) => (
               <span>{dayName}</span>
             ))}
           </div>
           <div class="dc-date-picker-dates">
-            {this.calendarDays.map((day, index) => {
+            {this.calendarDays.map((day: number, index: number) => {
               if (
                 index < this.daysOfPrevMonthCount ||
                 index >= this.daysOfNextMonthCount
@@ -450,7 +451,7 @@ export class DatacomDatePickerCalendar {
                     class={this.getDayClasses(day, index)}
                     name={this.getDayName(day)}
                     onMouseOver={this.mouseoverDayHandler}
-                    onClick={(e) => this.selectDayHandler(e, day)}
+                    onClick={(e: MouseEvent) => this.selectDayHandler(e, day)}
                     disabled={this.disabled}>
                     {day}
                   </button>

@@ -10,6 +10,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import { FormControl } from '../form-control';
 import { debounce, randomString } from '../../utils';
 import { format, isMatch, isValid, parse } from 'date-fns';
 import { getSvg } from '../../common/images';
@@ -19,10 +20,9 @@ import { getSvg } from '../../common/images';
   styleUrl: 'datacom-date-picker-input.css',
   scoped: true,
 })
-export class DatacomDatePickerInput {
-  private inputId = randomString();
+export class DatacomDatePickerInput implements FormControl {
   private inputElement: HTMLInputElement;
-  private formElement: HTMLFormElement;
+  private inputId: string = randomString();
 
   @Element() host: HTMLDatacomDatePickerInputElement;
 
@@ -30,20 +30,18 @@ export class DatacomDatePickerInput {
   changed: EventEmitter<Date | Date[]>;
   @Event({ eventName: 'inputFocused', bubbles: true, composed: true })
   focused: EventEmitter;
-  @Event({ eventName: 'inputInvalid', bubbles: true, composed: true })
-  invalid: EventEmitter<boolean>;
 
   @Prop() placeholder?: string;
-  @Prop() disabled? = false;
-  @Prop() required? = false;
+  @Prop() disabled?: boolean = false;
+  @Prop() required?: boolean = false;
 
   @Prop() label?: string;
   @Prop({ mutable: true }) selectedDate?: Date;
   @Prop({ mutable: true }) startDate?: Date;
   @Prop({ mutable: true }) endDate?: Date;
-  @Prop() range? = false;
-  @Prop() dateFormat? = 'dd/MM/yyyy';
-  @Prop() supportedFormat? = [
+  @Prop() range?: boolean = false;
+  @Prop() dateFormat?: string = 'dd/MM/yyyy';
+  @Prop() supportedFormat?: string[] = [
     'MMMM',
     'dd MMMM',
     'dd MMMM yyyy',
@@ -55,11 +53,26 @@ export class DatacomDatePickerInput {
 
   @State() value = '';
   @State() oldValue = '';
-  @State() isEditing = false;
   @State() focusedDate: Date;
-  @State() isError = false;
+  @State() isEditing = false;
+  @State() isValid = false;
   @State() isSubmitted = false;
   @State() isChanged = false;
+
+  @Method()
+  async validate(): Promise<boolean> {
+    return await this.checkValidity();
+  }
+
+  @Method()
+  async checkValidity(): Promise<boolean> {
+    return this.isValid;
+  }
+
+  @Method()
+  public async toggleIsEditing(isEditing: boolean): Promise<void> {
+    this.isEditing = isEditing;
+  }
 
   @Watch('selectedDate')
   @Watch('startDate')
@@ -67,67 +80,6 @@ export class DatacomDatePickerInput {
   watchDates(newDate: Date, _, propName: string): void {
     this.setValue(newDate, propName);
   }
-
-  @Watch('value')
-  watchInputValue(): void {
-    if (this.isSubmitted) {
-      this.validateValue();
-    }
-  }
-
-  @Watch('isError')
-  watchInputError(error: boolean): void {
-    this.invalid.emit(error);
-  }
-
-  disconnectedCallback(): void {
-    if (this.formElement !== undefined && this.formElement !== null) {
-      this.formElement.removeEventListener('submit', this.submitForm);
-    }
-  }
-
-  componentDidLoad(): void {
-    this.addNearestFormSubmitEvent();
-  }
-
-  private addNearestFormSubmitEvent = (): void => {
-    if (this.autoValidate) {
-      this.formElement = this.host.closest('form');
-      if (this.formElement !== undefined && this.formElement !== null) {
-        this.formElement.noValidate = true;
-        this.formElement.addEventListener('submit', this.submitForm);
-      }
-    }
-  };
-
-  private submitForm = (event: SubmitEvent): void => {
-    event.preventDefault();
-    this.isSubmitted = true;
-    this.validateValue();
-  };
-
-  private validateValue = (): void => {
-    this.isError = false;
-    if (this.required && this.value === '') {
-      this.isError = true;
-    } else if (this.value !== '') {
-      const value = this.value.replace(/\s+/g, '');
-      if (this.range) {
-        const { startDate, endDate } = this.getStartEndDateString(value);
-        if (!this.validateDate(startDate) || !this.validateDate(endDate)) {
-          this.isError = true;
-        }
-      } else {
-        const selectedDate = value.substring(
-          0,
-          this.getFormattedDateStringCount(),
-        );
-        if (!this.validateDate(selectedDate)) {
-          this.isError = true;
-        }
-      }
-    }
-  };
 
   private focusDateHandler = (event: FocusEvent | MouseEvent): void => {
     event.preventDefault();
@@ -138,7 +90,7 @@ export class DatacomDatePickerInput {
   private changeDateHandler = (event: InputEvent): void => {
     event.preventDefault();
     this.isChanged = true;
-    const el = event.target as HTMLInputElement;
+    const el: HTMLInputElement = event.target as HTMLInputElement;
     this.debouncedDateInput(el.value);
   };
 
@@ -161,9 +113,9 @@ export class DatacomDatePickerInput {
     let date: { format?: string; date?: Date; isValid: boolean } = {
       isValid: false,
     };
-    for (let i = 0; i < this.supportedFormat.length; i++) {
-      const format = this.supportedFormat[i];
-      const parsedDate = parse(value, format, new Date());
+    for (let i: number = 0; i < this.supportedFormat.length; i++) {
+      const format: string = this.supportedFormat[i];
+      const parsedDate: Date = parse(value, format, new Date());
       if (isValid(parsedDate)) {
         date = {
           format: this.supportedFormat[i],
@@ -177,9 +129,9 @@ export class DatacomDatePickerInput {
   };
 
   private debouncedDateInput = debounce((debouncedValue: string): void => {
-    let newDebouncedValue = debouncedValue;
+    let newDebouncedValue: string = debouncedValue;
 
-    const valueToParse = debouncedValue.substring(this.oldValue.length);
+    const valueToParse: string = debouncedValue.substring(this.oldValue.length);
     const parsedDate = this.parseToDate(valueToParse);
     if (parsedDate.isValid) {
       newDebouncedValue = newDebouncedValue.replace(
@@ -213,7 +165,7 @@ export class DatacomDatePickerInput {
         this.endDate = undefined;
       }
     } else {
-      const selectedDate = newDebouncedValue.substring(
+      const selectedDate: string = newDebouncedValue.substring(
         0,
         this.getFormattedDateStringCount(),
       );
@@ -231,18 +183,22 @@ export class DatacomDatePickerInput {
 
     if (propName === 'selectedDate' && isValid(date)) {
       value = format(date, this.dateFormat);
+      this.isValid = true;
       this.changed.emit(date);
     } else if (propName === 'selectedDate' && !isValid(date)) {
+      this.isValid = false;
       this.changed.emit();
     }
 
     if (propName === 'startDate' && isValid(date)) {
-      const startDateStr = `${format(date, this.dateFormat)} - `;
-      const endDateString = value.substring(startDateStr.length);
+      const startDateStr: string = `${format(date, this.dateFormat)} - `;
+      const endDateString: string = value.substring(startDateStr.length);
       oldValue = startDateStr;
       value = this.isChanged ? `${startDateStr}${endDateString}` : startDateStr;
+      this.isValid = true;
       this.changed.emit([date]);
     } else if (propName === 'startDate' && !isValid(date)) {
+      this.isValid = false;
       this.changed.emit([]);
     }
 
@@ -251,8 +207,10 @@ export class DatacomDatePickerInput {
         date,
         this.dateFormat,
       )}`;
+      this.isValid = true;
       this.changed.emit([this.startDate, date]);
     } else if (propName === 'endDate' && !isValid(date)) {
+      this.isValid = false;
       this.changed.emit([this.startDate]);
     }
 
@@ -265,25 +223,20 @@ export class DatacomDatePickerInput {
   private getStartEndDateString = (
     value: string,
   ): { startDate: string; endDate: string } => {
-    const formattedDateStringCount = this.getFormattedDateStringCount();
-    const startDate = value.substring(0, formattedDateStringCount);
-    const endDate = value.substring(formattedDateStringCount + 1);
+    const formattedDateStringCount: number = this.getFormattedDateStringCount();
+    const startDate: string = value.substring(0, formattedDateStringCount);
+    const endDate: string = value.substring(formattedDateStringCount + 1);
     return { startDate, endDate };
   };
 
   private validateDate = (date: string): boolean => {
-    const dateStringCount = this.getFormattedDateStringCount();
+    const dateStringCount: number = this.getFormattedDateStringCount();
     return date.length === dateStringCount && isMatch(date, this.dateFormat);
   };
 
   private getFormattedDateStringCount = (): number => {
     return format(new Date(), this.dateFormat).length;
   };
-
-  @Method()
-  public async toggleIsEditing(isEditing: boolean): Promise<void> {
-    this.isEditing = isEditing;
-  }
 
   render() {
     const classes = {
@@ -293,7 +246,6 @@ export class DatacomDatePickerInput {
         (this.inputElement?.value !== undefined &&
           this.inputElement?.value !== ''),
       'dc-date-picker-input-disabled': this.disabled,
-      'dc-date-picker-input-error': this.isError,
     };
     return (
       <Host>
@@ -303,7 +255,7 @@ export class DatacomDatePickerInput {
             type="text"
             id={this.inputId}
             class="dc-date-picker-input"
-            ref={(el) => (this.inputElement = el)}
+            ref={(el: HTMLInputElement) => (this.inputElement = el)}
             name={this.inputId}
             required={this.required}
             disabled={this.disabled}
