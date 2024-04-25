@@ -662,6 +662,8 @@ export class DatacomTimePicker implements FormControl {
 
         if (event.key === 'ArrowDown') {
           activeOptionIndex = this.activeOptionIndex + 1;
+          activeOptionIndex =
+            activeOptionIndex === options.length ? 0 : activeOptionIndex;
           const activeOption: HTMLButtonElement = options[activeOptionIndex];
           activeOption.focus();
 
