@@ -247,6 +247,7 @@ export class DatacomDatePickerInput implements FormControl {
           this.inputElement?.value !== ''),
       'dc-date-picker-input-disabled': this.disabled,
     };
+
     return (
       <Host>
         <div class={classes}>
