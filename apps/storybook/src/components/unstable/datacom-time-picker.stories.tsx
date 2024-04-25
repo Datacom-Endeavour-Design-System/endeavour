@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { StoryObj } from '@storybook/react';
-import { DatacomTimePicker } from '@datacom/endeavour-react';
+import { DatacomTimePicker, DatacomButton } from '@datacom/endeavour-react';
 
 export default {
   title: 'Time Picker',
@@ -63,6 +63,53 @@ export const Default: StoryObj<typeof DatacomTimePicker> = {
       <div style={{ width: '272px' }}>
         <DatacomTimePicker {...props} />
       </div>
+    );
+  },
+};
+
+export const FormSubmission: StoryObj<typeof DatacomTimePicker> = {
+  render: () => {
+    const formRef = useRef<HTMLFormElement>();
+    const [selectedValue, setSelectedValue] = useState<string>('');
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleOnChanged = (event: CustomEvent): void => {
+      const value = event.detail as string;
+      setSelectedValue(value);
+      setSubmitted(false);
+    };
+
+    const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+      event.preventDefault();
+      if (formRef.current.checkValidity()) {
+        setSubmitted(true);
+      } else {
+        setSubmitted(false);
+      }
+    };
+
+    return (
+      <form method="post" ref={formRef} onSubmit={handleOnSubmit}>
+        <div style={{ width: '272px', marginBottom: '30px' }}>
+          <DatacomTimePicker
+            label="Enter time"
+            placeholder="00:00 AM"
+            message="Please enter a valid time"
+            minuteInterval={10}
+            required={true}
+            value={selectedValue}
+            onChanged={handleOnChanged}
+          />
+          {submitted && (
+            <p style={{ color: 'var(--dc-primary-text-color)' }}>
+              Form would have been submitted but was prevented
+            </p>
+          )}
+        </div>
+        <DatacomButton variant="primary" type="submit">
+          Submit
+        </DatacomButton>
+      </form>
     );
   },
 };

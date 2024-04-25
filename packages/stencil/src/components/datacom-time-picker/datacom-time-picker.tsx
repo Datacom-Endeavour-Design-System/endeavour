@@ -1,6 +1,8 @@
 import {
   Component,
   Element,
+  Event,
+  EventEmitter,
   Fragment,
   Host,
   h,
@@ -20,57 +22,68 @@ type Time = {
   period?: string;
 };
 
+type HourPeriod = {
+  hour?: string;
+  period?: string;
+};
+
 @Component({
   tag: 'datacom-time-picker',
   styleUrl: 'datacom-time-picker.css',
   scoped: true,
 })
 export class DatacomTimePicker implements FormControl {
+  private inputElement: HTMLInputElement;
   private timeInputElement: HTMLInputElement;
   private formElement: HTMLFormElement;
   private hourOptionsWrapper: HTMLDivElement;
   private minuteOptionsWrapper: HTMLDivElement;
   private periodOptionsWrapper: HTMLDivElement;
-  private optionHeight = 56;
-  private visibleOptionsCount = 4;
+  private optionHeight: number = 56;
+  private visibleOptionsCount: number = 4;
   private inputId = randomString();
 
   @Element() private host: HTMLDatacomTimePickerElement;
 
+  @Event({ bubbles: true, composed: true }) changed: EventEmitter<string>;
+
   @Prop() name: string;
-  @Prop({ mutable: true }) value? = '';
+  @Prop({ mutable: true }) value?: string = '';
   @Prop() placeholder?: string = 'Select item(s)';
-  @Prop() disabled? = false;
-  @Prop() readonly? = false;
-  @Prop() required? = false;
+  @Prop() disabled?: boolean = false;
+  @Prop() readonly?: boolean = false;
+  @Prop() required?: boolean = false;
   @Prop() form?: string;
   @Prop() title: string;
 
   @Prop() label: string;
-  @Prop() minuteInterval? = 1;
-  @Prop() militaryTime? = false;
+  @Prop() minuteInterval?: number = 1;
+  @Prop() militaryTime?: boolean = false;
 
   @Prop() message?: string;
   @Prop({ attribute: 'valid' }) isValid?: boolean;
-  @Prop() autoValidate? = true;
+  @Prop() autoValidate?: boolean = true;
 
+  @State() transientValue: string;
   @State() time: Time;
-  @State() isInError = false;
-  @State() isOpen = false;
-  @State() isChanged = false;
+  @State() isValidTime: boolean = true;
+  @State() isInError: boolean = false;
+  @State() isOpen: boolean = false;
+  @State() isChanged: boolean = false;
+  @State() isOnInputChange: boolean = false;
   @State() selectedHour: string;
   @State() selectedMinute: string;
   @State() selectedPeriod: string;
   @State() hourOptions: string[] = [];
   @State() minuteOptions: string[] = [];
   @State() periodOptions: string[] = [];
-  @State() tabCount = 4;
   @State() activeOptionsWrapper: HTMLDivElement;
-  @State() isValidTime = true;
+  @State() activeOptionIndex: number;
+  @State() tabCount: number;
 
   @Listen('click', { target: 'document' })
-  handleOutsideClick(event: MouseEvent) {
-    if (this.disabled) {
+  handleOutsideClick(event: MouseEvent): void {
+    if (!this.isOpen || this.disabled) {
       return;
     }
 
@@ -79,26 +92,69 @@ export class DatacomTimePicker implements FormControl {
     }
   }
 
+  @Listen('keydown', { capture: true })
+  handleKeyDown(event: KeyboardEvent): void {
+    if (!this.isOpen || this.disabled) {
+      event.preventDefault();
+      return;
+    }
+
+    switch (event.key) {
+      case 'Tab':
+        this.changeOptionFocusOnTab();
+        break;
+      case 'ArrowLeft':
+      case 'ArrowRight':
+        this.changeActiveSelection(event);
+        break;
+      case 'ArrowDown':
+      case 'ArrowUp':
+        this.changeActiveOption(event);
+        break;
+      default:
+        break;
+    }
+  }
+
+  @Listen('keyup', { capture: true })
+  handleKeyUp(event: KeyboardEvent): void {
+    if (this.disabled) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'Enter':
+      case ' ':
+        this.open();
+        break;
+      case 'Escape':
+        this.close();
+        break;
+      default:
+        break;
+    }
+  }
+
   @Method()
   async validate(): Promise<boolean> {
-    return true;
+    this.isInError = !(await this.checkValidity());
+
+    return this.isInError;
   }
 
   @Method()
   async checkValidity(): Promise<boolean> {
-    return this.timeInputElement.checkValidity();
-  }
-
-  @Watch('selectedHour')
-  @Watch('selectedMinute')
-  @Watch('selectedPeriod')
-  watchSelection(newValue: string, _, propName: string) {
-    this.setTimeValue(newValue, propName);
+    if (this.isValidTime) {
+      this.inputElement.value = this.timeInputElement.value;
+    } else {
+      this.inputElement.value = '';
+    }
+    return this.inputElement.checkValidity();
   }
 
   @Watch('time')
   watchTime(newTime: Time): void {
-    let time: string = '';
+    let time: string = this.timeInputElement.value;
     if (newTime.hour !== undefined) {
       time = `${newTime.hour}:`;
     }
@@ -108,7 +164,7 @@ export class DatacomTimePicker implements FormControl {
     if (newTime.period !== undefined) {
       time = `${time} ${newTime.period}`;
     }
-    this.value = time;
+    this.transientValue = time;
   }
 
   @Watch('minuteInterval')
@@ -134,22 +190,6 @@ export class DatacomTimePicker implements FormControl {
     this.addScrollEvent();
   }
 
-  private setTimeValue = (value: string, type: string): void => {
-    const newTime: Time = { ...this.time };
-    if (type === 'selectedHour') {
-      newTime.hour = value;
-    }
-
-    if (type === 'selectedMinute') {
-      newTime.minute = value;
-    }
-
-    if (type === 'selectedPeriod') {
-      newTime.period = value;
-    }
-    this.time = newTime;
-  };
-
   private initOptions = (): void => {
     this.initHourOptions();
     this.initMinuteOptions();
@@ -158,9 +198,9 @@ export class DatacomTimePicker implements FormControl {
 
   private initHourOptions = (): void => {
     let hourOptions: string[] = [];
-    const hour = this.militaryTime ? 24 : 12;
-    const hourStart = this.militaryTime ? 0 : 1;
-    for (let i = hourStart; i <= hour; i++) {
+    const hour: number = this.militaryTime ? 24 : 12;
+    const hourStart: number = this.militaryTime ? 0 : 1;
+    for (let i: number = hourStart; i <= hour; i++) {
       if (!this.militaryTime && i === 12) {
         hourOptions = [i.toString(), ...hourOptions];
       } else {
@@ -172,9 +212,9 @@ export class DatacomTimePicker implements FormControl {
 
   private initMinuteOptions = (): void => {
     const minuteOptions: string[] = [];
-    const minute = 60 / this.minuteInterval;
-    const minuteStart = 0;
-    for (let i = minuteStart; i < minute; i++) {
+    const minute: number = 60 / this.minuteInterval;
+    const minuteStart: number = 0;
+    for (let i: number = minuteStart; i < minute; i++) {
       minuteOptions.push((i * this.minuteInterval).toString().padStart(2, '0'));
     }
     this.minuteOptions = minuteOptions;
@@ -200,30 +240,40 @@ export class DatacomTimePicker implements FormControl {
     this.periodOptionsWrapper?.addEventListener('scroll', this.scrollUpdate);
   };
 
-  private submitForm = (event: SubmitEvent): void => {
+  private submitForm = async (event: SubmitEvent): Promise<void> => {
     event.preventDefault();
-    // TODO: submit form
+
+    const valid = await this.checkValidity();
+    if (!valid) {
+      this.isInError = true;
+    }
   };
 
   private scrollUpdate = (event: Event): void => {
-    const element = event.target as HTMLDivElement;
+    const optionsWrapper: HTMLDivElement = event.target as HTMLDivElement;
 
-    const options = Array.from(
-      element.querySelectorAll('.dc-time-picker-time-option'),
-    ) as HTMLButtonElement[];
-    //
-    const noneCloneOptionsCount = options.length / 2;
+    const options: HTMLButtonElement[] = Array.from(
+      optionsWrapper.querySelectorAll<HTMLButtonElement>(
+        '.dc-time-picker-time-option',
+      ),
+    );
 
-    if (element.scrollTop === element.scrollHeight - element.clientHeight) {
-      const remainder = noneCloneOptionsCount % this.visibleOptionsCount;
+    const noneCloneOptionsCount: number = options.length / 2;
+
+    if (
+      optionsWrapper.scrollTop ===
+      optionsWrapper.scrollHeight - optionsWrapper.clientHeight
+    ) {
+      const remainder: number =
+        noneCloneOptionsCount % this.visibleOptionsCount;
       if (remainder === 0) {
-        element.scrollTo({
+        optionsWrapper.scrollTo({
           top:
             this.optionHeight *
             (noneCloneOptionsCount - this.visibleOptionsCount),
         });
       } else {
-        element.scrollTo({
+        optionsWrapper.scrollTo({
           top: this.optionHeight * (noneCloneOptionsCount - remainder),
         });
       }
@@ -237,119 +287,97 @@ export class DatacomTimePicker implements FormControl {
     }
   };
 
-  private handleTimeChange = (event: InputEvent): void => {
-    event.preventDefault();
-    this.isChanged = true;
-    this.isValidTime = true;
-    const el = event.target as HTMLInputElement;
-    this.debouncedTimeInput(el.value);
-  };
-
   private handleConfirm = (event: MouseEvent): void => {
     event.preventDefault();
+    event.stopPropagation();
+    this.isInError = false;
+    this.value = this.timeInputElement.value;
+    this.changed.emit(this.timeInputElement.value);
     this.close();
   };
 
   private handleOptionSelect = (event: MouseEvent): void => {
     event.preventDefault();
-    const option = event.target as HTMLButtonElement;
+    this.isChanged = true;
+    this.isOnInputChange = false;
+    this.isValidTime = true;
+    const option: HTMLButtonElement = event.target as HTMLButtonElement;
 
-    switch (option.name) {
-      case 'hourOption': {
-        if (this.hourOptions.length > this.visibleOptionsCount) {
-          this.scrollToSelectedOption(option);
-        } else {
-          this.hourOptions = this.startOptionsWithSelectedOption(
-            option.value,
-            this.hourOptions,
-          );
-        }
-        this.selectedHour = option.value;
-        break;
-      }
-      case 'minuteOption': {
-        if (this.minuteOptions.length > this.visibleOptionsCount) {
-          this.scrollToSelectedOption(option);
-        } else {
-          this.minuteOptions = this.startOptionsWithSelectedOption(
-            option.value,
-            this.minuteOptions,
-          );
-        }
-        this.selectedMinute = option.value;
-        break;
-      }
-      case 'periodOption': {
-        this.periodOptions = this.startOptionsWithSelectedOption(
-          option.value,
-          this.periodOptions,
-        );
-        this.selectedPeriod = option.value;
-        break;
-      }
-      default:
-        break;
+    const newTime: Time = { ...this.time };
+    if (option.name === 'hourOption') {
+      newTime.hour = option.value;
+    } else if (option.name === 'minuteOption') {
+      newTime.minute = option.value;
+    } else if (option.name === 'periodOption') {
+      newTime.period = option.value;
     }
 
-    setTimeout(() => {
-      this.timeInputElement?.focus();
-    }, 100);
+    this.updateTimeControl(newTime);
 
-    this.tabCount = 4;
-    this.activeOptionsWrapper = undefined;
+    this.time = newTime;
+
+    setTimeout((): void => {
+      this.timeInputElement.focus();
+    }, 100);
+  };
+
+  private handleTimeChange = (event: InputEvent): void => {
+    event.preventDefault();
+    this.isChanged = true;
+    this.isOnInputChange = true;
+    this.isValidTime = true;
+    const el: HTMLInputElement = event.target as HTMLInputElement;
+    this.debouncedTimeInput(el.value);
   };
 
   private debouncedTimeInput = debounce((debouncedValue: string): void => {
-    let newDebouncedValue = debouncedValue;
-    newDebouncedValue = newDebouncedValue.replace(/\s+/g, '');
+    this.populateTime(debouncedValue.replace(/\s+/g, ''));
+  }, 500);
 
-    const time = this.parseValueToTime(newDebouncedValue);
+  private populateTime = (value: string): void => {
+    const time: Time = this.parseValueToTime(value);
+
     this.updateTimeControl(time);
 
-    if (this.isValidTime) {
-      this.time = time;
-    }
-  }, 1000);
+    this.time = time;
+  };
 
   private parseValueToTime = (value: string): Time => {
     const time: Time = {};
-    const hourPattern: RegExp = /^(0?[1-9]|1\d|2[0-4])$/;
+    const hourPattern: RegExp = /^(0?\d|1\d|2[0-3])(:)?$/;
     const timePattern: RegExp = /^(\d{1,2}):(\d{2})(?:\s*([AP]M))?$/i;
+    const militaryTimePattern: RegExp = /^(0?\d|1\d|2[0-3]):([0-5]?\d)$/;
 
     if (hourPattern.test(value)) {
-      const match = value.match(hourPattern);
+      const match: RegExpMatchArray = value.match(hourPattern);
 
-      let hour = match[1];
+      const hour: string = match[1];
 
-      if (parseInt(hour) >= 12 && !this.militaryTime) {
-        hour = String(parseInt(hour) % 12).padStart(2, '0');
-      } else {
-        hour = String(parseInt(hour)).padStart(2, '0');
+      time.hour = this.parseHour(hour).hour;
+
+      this.isValidTime = false;
+    } else if (militaryTimePattern.test(value)) {
+      const match: RegExpMatchArray = value.match(militaryTimePattern);
+
+      const hour: string = match[1];
+      const minute: string = match[2];
+
+      time.hour = this.parseHour(hour).hour;
+      time.minute = this.parseMinute(minute);
+      time.period = this.parseHour(hour).period;
+
+      if (!this.militaryTime) {
+        this.isValidTime = false;
       }
-
-      time.hour = hour;
     } else if (timePattern.test(value)) {
-      const match = value.match(timePattern);
+      const match: RegExpMatchArray = value.match(timePattern);
 
-      let hour = match[1];
-      let minute = match[2];
-      let period = match[3]?.toUpperCase();
+      const hour: string = match[1];
+      const minute: string = match[2];
+      const period: string = match[3]?.toUpperCase();
 
-      if (parseInt(hour) >= 12 && !this.militaryTime) {
-        hour = String(parseInt(hour) % 12).padStart(2, '0');
-        period = period || 'PM';
-      } else {
-        hour = String(parseInt(hour)).padStart(2, '0');
-        period = period || 'AM';
-      }
-
-      const minuteRemainder = parseInt(minute) % this.minuteInterval;
-      if (minuteRemainder > 0) {
-        minute = String(parseInt(minute) - minuteRemainder).padStart(2, '0');
-      }
-
-      time.hour = hour;
-      time.minute = minute;
+      time.hour = this.parseHour(hour).hour;
+      time.minute = this.parseMinute(minute);
       time.period = period;
     } else {
       this.isValidTime = false;
@@ -358,47 +386,52 @@ export class DatacomTimePicker implements FormControl {
     return time;
   };
 
+  private parseHour = (value: string): HourPeriod => {
+    const hourPeriod: HourPeriod = {};
+    if (!this.militaryTime && parseInt(value) === 0) {
+      hourPeriod.hour = '12';
+      hourPeriod.period = 'AM';
+    } else if (!this.militaryTime && parseInt(value) > 12) {
+      hourPeriod.hour = String(parseInt(value) - 12).padStart(2, '0');
+      hourPeriod.period = 'PM';
+    } else {
+      hourPeriod.hour = String(parseInt(value)).padStart(2, '0');
+    }
+    return hourPeriod;
+  };
+
+  private parseMinute = (value: string): string => {
+    let minute: string = value;
+    const minuteRemainder: number = parseInt(minute) % this.minuteInterval;
+    if (minuteRemainder > 0) {
+      minute = String(parseInt(minute) - minuteRemainder).padStart(2, '0');
+    }
+    return minute;
+  };
+
   private updateTimeControl = (time: Time): void => {
-    const hourOptions = Array.from(
-      this.hourOptionsWrapper.querySelectorAll(
-        '.dc-time-picker-time-option:not(.dc-time-picker-time-option-clone)',
-      ),
-    ) as HTMLButtonElement[];
-    const firstHourOption = hourOptions[0] as HTMLButtonElement;
-    if (hourOptions.length > this.visibleOptionsCount) {
-      const hourOption = hourOptions.find(
-        (option: HTMLButtonElement) => option.value === time.hour,
-      );
-      this.scrollToSelectedOption(hourOption || firstHourOption);
+    if (this.hourOptions.length > this.visibleOptionsCount) {
+      this.initScrollTop(this.hourOptionsWrapper, time.hour);
     } else {
       this.hourOptions = this.startOptionsWithSelectedOption(
-        time.hour || firstHourOption.value,
+        time.hour,
         this.hourOptions,
       );
     }
     this.selectedHour = time.hour;
 
-    const minuteOptions = Array.from(
-      this.minuteOptionsWrapper.querySelectorAll(
-        '.dc-time-picker-time-option:not(.dc-time-picker-time-option-clone)',
-      ),
-    ) as HTMLButtonElement[];
-    const firstMinuteOption = minuteOptions[0] as HTMLButtonElement;
-    if (minuteOptions.length > this.visibleOptionsCount) {
-      const minuteOption = minuteOptions.find(
-        (option: HTMLButtonElement) => option.value === time.minute,
-      );
-      this.scrollToSelectedOption(minuteOption || firstMinuteOption);
+    if (this.minuteOptions.length > this.visibleOptionsCount) {
+      this.initScrollTop(this.minuteOptionsWrapper, time.minute);
     } else {
       this.minuteOptions = this.startOptionsWithSelectedOption(
-        time.minute || firstMinuteOption.value,
+        time.minute,
         this.minuteOptions,
       );
     }
     this.selectedMinute = time.minute;
 
     this.periodOptions = this.startOptionsWithSelectedOption(
-      time.period || 'AM',
+      time.period,
       this.periodOptions,
     );
     this.selectedPeriod = time.period;
@@ -406,23 +439,26 @@ export class DatacomTimePicker implements FormControl {
 
   private scrollToSelectedOption = (option: HTMLButtonElement): void => {
     let totalScrollTop: number;
-    const optionsWrapper = option.parentNode as HTMLDivElement;
-    const options = Array.from(
-      optionsWrapper.querySelectorAll(
+    const optionsWrapper: HTMLDivElement = option.parentNode as HTMLDivElement;
+    const options: HTMLButtonElement[] = Array.from(
+      optionsWrapper.querySelectorAll<HTMLButtonElement>(
         '.dc-time-picker-time-option:not(.dc-time-picker-time-option-clone)',
       ),
-    ) as HTMLButtonElement[];
+    );
     const optionIndex = options.indexOf(option);
     if (optionIndex >= 0) {
       totalScrollTop = this.optionHeight * optionIndex;
     } else {
       // Get all clone options
-      const cloneOptions = Array.from(
-        optionsWrapper.querySelectorAll('.dc-time-picker-time-option-clone'),
-      ) as HTMLButtonElement[];
-      const cloneChildIndex = cloneOptions.indexOf(option);
-      totalScrollTop = this.optionHeight * cloneChildIndex;
+      const cloneOptions: HTMLButtonElement[] = Array.from(
+        optionsWrapper.querySelectorAll<HTMLButtonElement>(
+          '.dc-time-picker-time-option-clone',
+        ),
+      );
+      const cloneOptionIndex: number = cloneOptions.indexOf(option);
+      totalScrollTop = this.optionHeight * cloneOptionIndex;
     }
+
     optionsWrapper.scrollTo({ top: totalScrollTop });
   };
 
@@ -448,174 +484,138 @@ export class DatacomTimePicker implements FormControl {
       return;
     }
 
-    this.isOpen = true;
+    if (!this.isOpen) {
+      this.isOpen = true;
 
-    setTimeout(() => this.timeInputElement?.focus(), 100);
+      setTimeout(() => {
+        this.populateTime(this.value);
+        this.timeInputElement.focus();
+      }, 100);
+    }
   };
 
   private close = (): void => {
-    this.isOpen = false;
+    this.transientValue = this.value;
 
-    if (this.timeInputElement?.value === '') {
+    if (this.value === '') {
       this.isChanged = false;
     }
+
+    setTimeout(() => {
+      this.populateTime(this.value);
+    }, 100);
+
+    this.isOpen = false;
   };
 
   // Accessibility
-  private handleKeyUp = (event: KeyboardEvent): void => {
-    if (this.disabled) {
-      return;
-    }
+  private changeOptionFocusOnTab = (): void => {
+    setTimeout((): void => {
+      const activeElement: Element = document.activeElement;
 
-    switch (event.key) {
-      case 'Enter':
-      case ' ':
-        this.open();
-        break;
-      case 'Escape':
-        this.close();
-        break;
-      default:
-        break;
-    }
-  };
+      const timeInputElement: HTMLInputElement = this.timeInputElement;
+      const confirmButtonElement = this.host.querySelector<HTMLButtonElement>(
+        '.dc-time-picker-confirm button',
+      );
+      const tabLoopStart: HTMLDivElement =
+        this.host.querySelector<HTMLDivElement>(
+          '.dc-time-picker-tab-loop-start',
+        );
+      const tabLoopEnd: HTMLDivElement =
+        this.host.querySelector<HTMLDivElement>('.dc-time-picker-tab-loop-end');
+      const controlInStart: HTMLDivElement =
+        this.host.querySelector<HTMLDivElement>(
+          '.dc-time-picker-control-in-start',
+        );
+      const controlOutStart: HTMLDivElement =
+        this.host.querySelector<HTMLDivElement>(
+          '.dc-time-picker-control-out-start',
+        );
+      const controlInEnd: HTMLDivElement =
+        this.host.querySelector<HTMLDivElement>(
+          '.dc-time-picker-control-in-end',
+        );
+      const controlOutEnd: HTMLDivElement =
+        this.host.querySelector<HTMLDivElement>(
+          '.dc-time-picker-control-out-end',
+        );
 
-  private handleKeyDown = (event: KeyboardEvent): void => {
-    if (this.disabled) {
-      return;
-    }
-
-    switch (event.key) {
-      case 'Tab':
-        this.changeOptionFocus(event);
-        break;
-      case 'ArrowLeft':
-      case 'ArrowRight':
-        this.changeActiveSelection(event);
-        break;
-      default:
-        break;
-    }
-  };
-
-  private changeOptionFocus = (event: KeyboardEvent): void => {
-    setTimeout(() => {
-      const activeElement = document.activeElement;
-
-      if (activeElement.classList.contains('dc-time-picker-time-option')) {
-        const parent = activeElement.parentNode as HTMLDivElement;
-        const children = Array.from(
-          parent.querySelectorAll('.dc-time-picker-time-option'),
-        ) as HTMLButtonElement[];
-        const childIndex = children.indexOf(activeElement as HTMLButtonElement);
-        let tabCount = this.tabCount;
-
-        if (event.key === 'Tab') {
-          // Focus first on first tab
-          if (
-            this.activeOptionsWrapper === undefined &&
-            this.activeOptionsWrapper !== parent
-          ) {
-            const firstChild = children[0] as HTMLButtonElement;
-            firstChild.focus();
-            this.scrollToSelectedOption(firstChild);
-            this.activeOptionsWrapper = parent;
-          }
-
-          if (event.shiftKey) {
-            const isLastChild = childIndex + 1 === children.length;
-            if (isLastChild) {
-              const noCloneChildCount = children.length / 2;
-              const lastNoCloneChild = children[
-                childIndex - noCloneChildCount
-              ] as HTMLButtonElement;
-              lastNoCloneChild.focus();
-              return;
-            }
-
-            if (childIndex >= this.visibleOptionsCount) {
-              const remainder = (childIndex + 1) % this.visibleOptionsCount;
-              if (remainder === 0) {
-                const child = children[
-                  childIndex + 1 - this.visibleOptionsCount
-                ] as HTMLButtonElement;
-                this.scrollToSelectedOption(child);
-                tabCount -= this.visibleOptionsCount;
-              }
-            } else {
-              const child = children[0] as HTMLButtonElement;
-              this.scrollToSelectedOption(child);
-              tabCount = this.visibleOptionsCount;
-            }
-          } else {
-            if (childIndex === tabCount) {
-              const noCloneChildCount = children.length / 2;
-              if (children.length - childIndex <= noCloneChildCount) {
-                const childIndexToFocus = childIndex - noCloneChildCount;
-                const child = children[childIndexToFocus] as HTMLButtonElement;
-                child.focus();
-                this.scrollToSelectedOption(child);
-                tabCount = childIndexToFocus + this.visibleOptionsCount;
-              } else {
-                const child = children[childIndex] as HTMLButtonElement;
-                this.scrollToSelectedOption(child);
-                tabCount += this.visibleOptionsCount;
-              }
-            }
-          }
-        }
-
-        this.tabCount = tabCount;
-      } else {
-        this.tabCount = 4;
-        this.activeOptionsWrapper = undefined;
+      if (activeElement === tabLoopStart) {
+        confirmButtonElement.focus();
+      } else if (activeElement === tabLoopEnd) {
+        timeInputElement.focus();
+      } else if (
+        activeElement === controlInStart ||
+        activeElement === controlInEnd
+      ) {
+        this.initScrollTop(this.hourOptionsWrapper, this.selectedHour, true);
+        this.activeOptionsWrapper = this.hourOptionsWrapper;
+        this.tabCount = 4 + this.activeOptionIndex;
+      } else if (activeElement === controlOutStart) {
+        timeInputElement.focus();
+      } else if (activeElement === controlOutEnd) {
+        confirmButtonElement.focus();
       }
     }, 100);
   };
 
   private changeActiveSelection = (event: KeyboardEvent): void => {
-    setTimeout(() => {
-      const activeElement = document.activeElement;
+    setTimeout((): void => {
+      const activeElement: Element = document.activeElement;
 
       if (activeElement.classList.contains('dc-time-picker-time-option')) {
         let currentValue: string;
+        let leftValue: string;
+        let rightValue: string;
 
-        const currentSelection =
-          this.activeOptionsWrapper || this.hourOptionsWrapper;
+        const currentSelection: HTMLDivElement = this.activeOptionsWrapper;
         let leftSelection: HTMLDivElement;
         let rightSelection: HTMLDivElement;
 
         if (currentSelection === this.hourOptionsWrapper) {
           currentValue = this.selectedHour;
 
-          leftSelection = this.militaryTime
-            ? this.minuteOptionsWrapper
-            : this.periodOptionsWrapper;
+          if (this.militaryTime) {
+            leftSelection = this.minuteOptionsWrapper;
+            leftValue = this.selectedMinute;
+          } else {
+            leftSelection = this.periodOptionsWrapper;
+            leftValue = this.selectedPeriod;
+          }
+
           rightSelection = this.minuteOptionsWrapper;
+          rightValue = this.selectedMinute;
         } else if (currentSelection === this.minuteOptionsWrapper) {
           currentValue = this.selectedMinute;
 
           leftSelection = this.hourOptionsWrapper;
-          rightSelection = this.militaryTime
-            ? this.hourOptionsWrapper
-            : this.periodOptionsWrapper;
+          leftValue = this.selectedHour;
+
+          if (this.militaryTime) {
+            rightSelection = this.hourOptionsWrapper;
+            rightValue = this.selectedHour;
+          } else {
+            rightSelection = this.periodOptionsWrapper;
+            rightValue = this.selectedPeriod;
+          }
         } else if (currentSelection === this.periodOptionsWrapper) {
           currentValue = this.selectedPeriod;
 
           leftSelection = this.minuteOptionsWrapper;
+          leftValue = this.selectedMinute;
+
           rightSelection = this.hourOptionsWrapper;
+          rightValue = this.selectedHour;
         }
 
         // Reset scroll top of current wrapper before moving to another wrapper
         this.initScrollTop(currentSelection, currentValue);
 
         if (event.key === 'ArrowLeft') {
-          this.initScrollTop(leftSelection);
+          this.initScrollTop(leftSelection, leftValue, true);
           this.activeOptionsWrapper = leftSelection;
-        }
-
-        if (event.key === 'ArrowRight') {
-          this.initScrollTop(rightSelection);
+        } else if (event.key === 'ArrowRight') {
+          this.initScrollTop(rightSelection, rightValue, true);
           this.activeOptionsWrapper = rightSelection;
         }
 
@@ -624,29 +624,114 @@ export class DatacomTimePicker implements FormControl {
     }, 100);
   };
 
-  private initScrollTop = (wrapper: HTMLDivElement, selectedValue?: string) => {
-    const options = Array.from(
-      wrapper.querySelectorAll(
+  private changeActiveOption = (event: KeyboardEvent): void => {
+    event.preventDefault();
+    setTimeout((): void => {
+      const activeElement: Element = document.activeElement;
+
+      if (activeElement.classList.contains('dc-time-picker-time-option')) {
+        const activeOptionsWrapper: HTMLDivElement = this.activeOptionsWrapper;
+        const options: HTMLButtonElement[] = Array.from(
+          activeOptionsWrapper.querySelectorAll<HTMLButtonElement>(
+            '.dc-time-picker-time-option',
+          ),
+        );
+
+        let tabCount: number = this.tabCount;
+        let activeOptionIndex: number;
+
+        if (event.key === 'ArrowDown') {
+          activeOptionIndex = this.activeOptionIndex + 1;
+          const activeOption: HTMLButtonElement = options[activeOptionIndex];
+          activeOption.focus();
+
+          if (activeOptionIndex === tabCount) {
+            const noCloneOptionCount: number = options.length / 2;
+
+            if (options.length - activeOptionIndex <= noCloneOptionCount) {
+              const optionIndex: number =
+                activeOptionIndex - noCloneOptionCount;
+              const option: HTMLButtonElement = options[optionIndex];
+              option.focus();
+
+              this.scrollToSelectedOption(option);
+
+              tabCount = optionIndex + this.visibleOptionsCount;
+              activeOptionIndex = optionIndex;
+            } else {
+              const option: HTMLButtonElement = options[activeOptionIndex];
+              option.focus();
+
+              this.scrollToSelectedOption(option);
+
+              tabCount += this.visibleOptionsCount;
+            }
+          }
+        } else if (event.key === 'ArrowUp') {
+          activeOptionIndex =
+            this.activeOptionIndex > 0 ? this.activeOptionIndex - 1 : 0;
+          const newTabCount = tabCount - this.visibleOptionsCount;
+
+          if (activeOptionIndex < newTabCount) {
+            let option: HTMLButtonElement;
+            const optionIndex: number =
+              activeOptionIndex + 1 - this.visibleOptionsCount;
+
+            if (optionIndex > 0) {
+              option = options[optionIndex];
+            } else {
+              option = options[0];
+            }
+
+            this.scrollToSelectedOption(option);
+
+            tabCount = newTabCount;
+          }
+
+          options[activeOptionIndex].focus();
+        }
+
+        this.activeOptionIndex = activeOptionIndex;
+        this.tabCount = tabCount;
+      }
+    }, 100);
+  };
+
+  private initScrollTop = (
+    wrapper: HTMLDivElement,
+    selectedValue: string,
+    autoFocus?: boolean,
+  ): void => {
+    const options: HTMLButtonElement[] = Array.from(
+      wrapper.querySelectorAll<HTMLButtonElement>(
         '.dc-time-picker-time-option:not(.dc-time-picker-time-option-clone)',
       ),
-    ) as HTMLButtonElement[];
-    let optionToFocus = options[0] as HTMLButtonElement;
+    );
+
+    let option: HTMLButtonElement = options[0];
+    let optionIndex: number = 0;
 
     if (selectedValue !== undefined) {
-      optionToFocus = options.find(
-        (option: HTMLButtonElement) => option.value === selectedValue,
+      option = options.find(
+        (option: HTMLButtonElement): boolean => option.value === selectedValue,
       );
+      optionIndex = options.indexOf(option);
     }
 
-    optionToFocus.focus();
-    this.scrollToSelectedOption(optionToFocus);
+    if (autoFocus) {
+      option.focus();
+    }
+
+    this.scrollToSelectedOption(option);
+
+    this.activeOptionIndex = optionIndex;
   };
 
   private getHourOptionActiveClass = (value: string): string => {
     if (this.selectedHour === value) {
       return 'dc-time-picker-option-active';
     }
-    return;
+    return '';
   };
 
   private getMinuteOptionActiveClass = (value: string): string => {
@@ -681,24 +766,32 @@ export class DatacomTimePicker implements FormControl {
     return (
       <Fragment>
         <div class="dc-time-picker-control-content">
+          <div
+            class="dc-time-picker-tab-loop-start"
+            tabIndex={this.isOpen ? 0 : -1}></div>
           <input
             tabIndex={this.isOpen ? 0 : -1}
             ref={(el: HTMLInputElement) => (this.timeInputElement = el)}
-            name={this.name}
             id={this.inputId}
             placeholder={this.placeholder}
             required={this.required}
-            form={this.form}
             onInput={this.handleTimeChange}
-            value={this.value}
+            value={this.transientValue}
           />
           <div class="dc-time-picker-control-container">
+            <div
+              class="dc-time-picker-control-in-start"
+              tabIndex={this.isOpen ? 0 : -1}></div>
+            <div
+              class="dc-time-picker-control-out-start"
+              tabIndex={this.isOpen ? 0 : -1}></div>
             <div class="dc-time-picker-time-control-container">
               <div
                 class="dc-time-picker-options-wrapper"
                 ref={(el: HTMLDivElement) => (this.hourOptionsWrapper = el)}>
                 {this.hourOptions.map((option: string) => (
                   <button
+                    tabIndex={-1}
                     name="hourOption"
                     class={`dc-time-picker-time-option ${this.getHourOptionActiveClass(
                       option,
@@ -712,6 +805,7 @@ export class DatacomTimePicker implements FormControl {
                 {this.hourOptions.length > this.visibleOptionsCount &&
                   this.hourOptions.map((option: string) => (
                     <button
+                      tabIndex={-1}
                       name="hourOption"
                       class={`dc-time-picker-time-option dc-time-picker-time-option-clone ${this.getHourOptionActiveClass(
                         option,
@@ -728,6 +822,7 @@ export class DatacomTimePicker implements FormControl {
                 ref={(el: HTMLDivElement) => (this.minuteOptionsWrapper = el)}>
                 {this.minuteOptions.map((option: string) => (
                   <button
+                    tabIndex={-1}
                     name="minuteOption"
                     class={`dc-time-picker-time-option ${this.getMinuteOptionActiveClass(
                       option,
@@ -741,6 +836,7 @@ export class DatacomTimePicker implements FormControl {
                 {this.minuteOptions.length > this.visibleOptionsCount &&
                   this.minuteOptions.map((option: string) => (
                     <button
+                      tabIndex={-1}
                       name="minuteOption"
                       class={`dc-time-picker-time-option dc-time-picker-time-option-clone ${this.getMinuteOptionActiveClass(
                         option,
@@ -761,6 +857,7 @@ export class DatacomTimePicker implements FormControl {
                     }>
                     {this.periodOptions.map((option: string) => (
                       <button
+                        tabIndex={-1}
                         name="periodOption"
                         class={`dc-time-picker-time-option ${this.getPeriodOptionActiveClass(
                           option,
@@ -774,8 +871,15 @@ export class DatacomTimePicker implements FormControl {
                 </Fragment>
               )}
             </div>
+            <div
+              class="dc-time-picker-control-out-end"
+              tabIndex={this.isOpen ? 0 : -1}></div>
+            <div
+              class="dc-time-picker-control-in-end"
+              tabIndex={this.isOpen ? 0 : -1}></div>
             <div class="dc-time-picker-confirm-container">
               <datacom-button
+                class="dc-time-picker-confirm"
                 variant="secondary"
                 size="small"
                 disabled={this.disabled}
@@ -784,6 +888,9 @@ export class DatacomTimePicker implements FormControl {
               </datacom-button>
             </div>
           </div>
+          <div
+            class="dc-time-picker-tab-loop-end"
+            tabIndex={this.isOpen ? 0 : -1}></div>
         </div>
       </Fragment>
     );
@@ -800,11 +907,7 @@ export class DatacomTimePicker implements FormControl {
 
     return (
       <Host>
-        <div
-          class={classes}
-          onKeyUp={this.handleKeyUp}
-          onKeyDown={this.handleKeyDown}
-          onClick={this.handleClick}>
+        <div class={classes} onClick={this.handleClick}>
           <div tabIndex={!this.disabled ? 0 : -1} class="dc-time-picker-input">
             {this.renderTimePickerInput()}
           </div>
@@ -818,6 +921,14 @@ export class DatacomTimePicker implements FormControl {
             {getSvg('clock', { class: 'dc-time-picker-clock-icon' })}
           </button>
         </div>
+
+        <input
+          class="dc-time-picker-input-hidden"
+          ref={(el: HTMLInputElement) => (this.inputElement = el)}
+          name={this.name}
+          required={this.required}
+          form={this.form}
+        />
       </Host>
     );
   }

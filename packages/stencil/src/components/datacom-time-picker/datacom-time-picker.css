@@ -99,7 +99,7 @@
 }
 
 .dc-time-picker-control-container {
-
+  background-color: var(--dc-date-picker-ui-color);
 }
 
 .dc-time-picker-time-control-container {
@@ -153,6 +153,13 @@
 
 .dc-time-picker-options-wrapper::-webkit-scrollbar {
   display: none;
+}
+
+.dc-time-picker-input-hidden {
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
 }
 
 /* Hover state */
