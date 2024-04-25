@@ -88,18 +88,14 @@ export class DatacomDatePicker {
       const [startDate, endDate] = event.detail;
       this.startDate = startDate;
       this.endDate = endDate;
-      this.inputElement.value = 'valid date';
-    } else {
-      this.startDate = undefined;
-      this.endDate = undefined;
-      this.inputElement.value = '';
-    }
-
-    if (isValid(event.detail)) {
+      this.inputElement.value = 'valid start date and end date';
+    } else if (isValid(event.detail)) {
       this.selectedDate = event.detail;
-      this.inputElement.value = 'valid date';
+      this.inputElement.value = 'valid selected date';
     } else {
       this.selectedDate = undefined;
+      this.startDate = undefined;
+      this.endDate = undefined;
       this.inputElement.value = '';
     }
 

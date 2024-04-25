@@ -195,7 +195,7 @@ export class DatacomDatePickerInput implements FormControl {
       const endDateString: string = value.substring(startDateStr.length);
       oldValue = startDateStr;
       value = this.isChanged ? `${startDateStr}${endDateString}` : startDateStr;
-      this.isValid = true;
+      this.isValid = false;
       this.changed.emit([date]);
     } else if (propName === 'startDate' && !isValid(date)) {
       this.isValid = false;
