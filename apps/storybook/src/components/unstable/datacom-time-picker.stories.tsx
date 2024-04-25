@@ -102,6 +102,7 @@ export const FormSubmission: StoryObj<typeof DatacomTimePicker> = {
             placeholder="00:00 AM"
             message="Please enter a valid time"
             minuteInterval={10}
+            militaryTime={false}
             required={true}
             value={selectedValue}
             onChanged={handleOnChanged}
