@@ -31,6 +31,11 @@ export default {
       options: [1, 5, 10, 15, 20, 30],
       type: { name: 'number' },
     },
+    militaryTime: {
+      name: '24 hour format',
+      description: '24 hour format time picker',
+      type: { name: 'boolean' },
+    },
     disabled: {
       name: 'Disabled',
       description: 'Controls disable state of time picker',
@@ -54,6 +59,7 @@ export default {
     minuteInterval: 10,
     disabled: false,
     required: false,
+    militaryTime: false,
   },
 };
 

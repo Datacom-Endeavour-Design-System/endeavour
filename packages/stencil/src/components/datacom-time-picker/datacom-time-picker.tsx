@@ -172,6 +172,11 @@ export class DatacomTimePicker implements FormControl {
     this.initMinuteOptions();
   }
 
+  @Watch('militaryTime')
+  watchMilitaryTime(): void {
+    this.initHourOptions();
+  }
+
   disconnectedCallback(): void {
     if (this.formElement !== undefined && this.formElement !== null) {
       this.formElement.removeEventListener('submit', this.submitForm);
@@ -749,17 +754,7 @@ export class DatacomTimePicker implements FormControl {
   };
 
   private renderTimePickerInput() {
-    return (
-      <Fragment>
-        <label
-          class="dc-time-picker-label"
-          htmlFor={this.inputId}
-          tabIndex={-1}>
-          {this.label}
-        </label>
-        {this.value}
-      </Fragment>
-    );
+    return <Fragment>{this.value}</Fragment>;
   }
 
   private renderTimePickerControl() {
@@ -896,6 +891,22 @@ export class DatacomTimePicker implements FormControl {
     );
   }
 
+  private renderLabel() {
+    return (
+      <label class="dc-time-picker-label" htmlFor={this.inputId} tabIndex={-1}>
+        {this.label}
+      </label>
+    );
+  }
+
+  private renderClockIcon() {
+    return (
+      <button class="dc-time-picker-clock" disabled={this.disabled}>
+        {getSvg('clock', { class: 'dc-time-picker-clock-icon' })}
+      </button>
+    );
+  }
+
   render() {
     const classes = {
       'dc-time-picker-disabled': this.disabled,
@@ -908,18 +919,19 @@ export class DatacomTimePicker implements FormControl {
     return (
       <Host>
         <div class={classes} onClick={this.handleClick}>
+          <div tabIndex={-1} class="dc-time-picker-control">
+            {this.renderClockIcon()}
+            {this.renderLabel()}
+            {this.renderTimePickerControl()}
+          </div>
           <div tabIndex={!this.disabled ? 0 : -1} class="dc-time-picker-input">
+            {this.renderClockIcon()}
+            {this.renderLabel()}
             {this.renderTimePickerInput()}
           </div>
           <p tabIndex={-1} class="dc-time-picker-error-msg">
             {this.message}
           </p>
-          <div tabIndex={-1} class="dc-time-picker-control">
-            {this.renderTimePickerControl()}
-          </div>
-          <button class="dc-time-picker-clock" disabled={this.disabled}>
-            {getSvg('clock', { class: 'dc-time-picker-clock-icon' })}
-          </button>
         </div>
 
         <input
