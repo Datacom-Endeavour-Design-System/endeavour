@@ -285,6 +285,21 @@ export class DatacomTimePicker implements FormControl {
     }
   };
 
+  private handleClear = (event: MouseEvent | KeyboardEvent): void => {
+    event.preventDefault();
+    if (!this.isOpen) {
+      this.value = '';
+      this.isChanged = false;
+      this.changed.emit('');
+    }
+
+    this.transientValue = '';
+
+    setTimeout((): void => {
+      this.populateTime('');
+    }, 100);
+  };
+
   private handleClick = (event: MouseEvent): void => {
     event.preventDefault();
     if (!this.isOpen) {
@@ -292,7 +307,7 @@ export class DatacomTimePicker implements FormControl {
     }
   };
 
-  private handleConfirm = (event: MouseEvent): void => {
+  private handleConfirm = (event: MouseEvent | KeyboardEvent): void => {
     event.preventDefault();
     event.stopPropagation();
     this.isInError = false;
@@ -301,7 +316,7 @@ export class DatacomTimePicker implements FormControl {
     this.close();
   };
 
-  private handleOptionSelect = (event: MouseEvent): void => {
+  private handleOptionSelect = (event: MouseEvent | KeyboardEvent): void => {
     event.preventDefault();
     this.isChanged = true;
     this.isOnInputChange = false;
@@ -492,7 +507,7 @@ export class DatacomTimePicker implements FormControl {
     if (!this.isOpen) {
       this.isOpen = true;
 
-      setTimeout(() => {
+      setTimeout((): void => {
         this.populateTime(this.value);
         this.timeInputElement.focus();
       }, 100);
@@ -506,7 +521,7 @@ export class DatacomTimePicker implements FormControl {
       this.isChanged = false;
     }
 
-    setTimeout(() => {
+    setTimeout((): void => {
       this.populateTime(this.value);
     }, 100);
 
@@ -754,7 +769,13 @@ export class DatacomTimePicker implements FormControl {
   };
 
   private renderTimePickerInput() {
-    return <Fragment>{this.value}</Fragment>;
+    return (
+      <Fragment>
+        <div class="dc-time-picker-input-content" onClick={this.handleClick}>
+          {this.value}
+        </div>
+      </Fragment>
+    );
   }
 
   private renderTimePickerControl() {
@@ -893,7 +914,11 @@ export class DatacomTimePicker implements FormControl {
 
   private renderLabel() {
     return (
-      <label class="dc-time-picker-label" htmlFor={this.inputId} tabIndex={-1}>
+      <label
+        class="dc-time-picker-label"
+        htmlFor={this.inputId}
+        tabIndex={-1}
+        onClick={this.handleClick}>
         {this.label}
       </label>
     );
@@ -901,8 +926,22 @@ export class DatacomTimePicker implements FormControl {
 
   private renderClockIcon() {
     return (
-      <button class="dc-time-picker-clock" disabled={this.disabled}>
+      <button
+        class="dc-time-picker-clock"
+        disabled={this.disabled}
+        onClick={this.handleClick}>
         {getSvg('clock', { class: 'dc-time-picker-clock-icon' })}
+      </button>
+    );
+  }
+
+  private renderClearIcon() {
+    return (
+      <button
+        class="dc-time-picker-clear"
+        disabled={this.disabled}
+        onClick={this.handleClear}>
+        {getSvg('clear', { class: 'dc-time-picker-clear-icon' })}
       </button>
     );
   }
@@ -918,14 +957,14 @@ export class DatacomTimePicker implements FormControl {
 
     return (
       <Host>
-        <div class={classes} onClick={this.handleClick}>
+        <div class={classes}>
           <div tabIndex={-1} class="dc-time-picker-control">
-            {this.renderClockIcon()}
+            {this.isChanged ? this.renderClearIcon() : this.renderClockIcon()}
             {this.renderLabel()}
             {this.renderTimePickerControl()}
           </div>
           <div tabIndex={!this.disabled ? 0 : -1} class="dc-time-picker-input">
-            {this.renderClockIcon()}
+            {this.isChanged ? this.renderClearIcon() : this.renderClockIcon()}
             {this.renderLabel()}
             {this.renderTimePickerInput()}
           </div>

@@ -20,9 +20,10 @@
   max-width: 400px;
 }
 
+.dc-time-picker .dc-time-picker-clear,
 .dc-time-picker .dc-time-picker-clock {
   position: absolute;
-  top: 16px;
+  top: 15px;
   right: 16px;
   cursor: pointer;
   outline: none;
@@ -33,9 +34,14 @@
   display: inline-flex;
 }
 
+.dc-time-picker .dc-time-picker-clear-icon,
 .dc-time-picker .dc-time-picker-clock-icon {
   width: 20px;
   height: 20px;
+}
+
+.dc-time-picker .dc-time-picker-clear-icon path {
+  fill: var(--dc-date-picker-interactive-icon-color);
 }
 
 .dc-time-picker .dc-time-picker-clock-icon path {
@@ -43,17 +49,22 @@
 }
 
 .dc-time-picker-input {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 52px;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   outline: 3px solid transparent;
   border: 1px solid var(--dc-token-border-default-01);
   border-radius: 8px;
+  position: relative;
+}
+
+.dc-time-picker-input-content {
+  height: 100%;
+  display: flex;
   padding: 14px 16px;
   cursor: text;
-  position: relative;
+  border-radius: 8px;
 }
 
 .dc-time-picker-label {
@@ -201,8 +212,9 @@
   line-height: 16px;
 }
 
+.dc-time-picker-open .dc-time-picker-clear,
 .dc-time-picker-open .dc-time-picker-clock {
-  top: 15px;
+  top: 14px;
   right: 15px;
 }
 
@@ -219,10 +231,15 @@
   display: none;
 }
 
+.dc-time-picker-disabled .dc-time-picker-clear-icon {
+  cursor: pointer;
+}
+
 .dc-time-picker-disabled .dc-time-picker-clock-icon {
   cursor: not-allowed;
 }
 
+.dc-time-picker-disabled .dc-time-picker-clear-icon path,
 .dc-time-picker-disabled .dc-time-picker-clock-icon path {
   fill: var(--dc-token-disabled-01);
 }
