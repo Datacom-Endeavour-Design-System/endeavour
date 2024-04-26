@@ -110,6 +110,10 @@
   text-overflow: ellipsis;
 }
 
+.dc-time-picker-control-content input::placeholder {
+  color: var(--dc-date-picker-secondary-text-color);
+}
+
 .dc-time-picker-time-control-container {
   display: flex;
   align-self: stretch;
