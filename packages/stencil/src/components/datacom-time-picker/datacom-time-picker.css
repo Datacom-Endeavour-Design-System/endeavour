@@ -225,6 +225,12 @@
   display: block;
 }
 
+.dc-time-picker-open .dc-time-picker-input .dc-time-picker-label,
+.dc-time-picker-open .dc-time-picker-input .dc-time-picker-clear,
+.dc-time-picker-open .dc-time-picker-input .dc-time-picker-clock {
+  display: none;
+}
+
 /* Disabled state */
 .dc-time-picker-disabled .dc-time-picker-control {
   display: none;
