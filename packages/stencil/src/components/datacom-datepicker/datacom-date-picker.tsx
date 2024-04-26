@@ -447,6 +447,7 @@ export class DatacomDatePicker {
   private renderCalendarIcon() {
     return (
       <button
+        tabIndex={-1}
         class="dc-date-picker-calendar"
         disabled={this.disabled}
         onClick={this.open}>
@@ -458,6 +459,7 @@ export class DatacomDatePicker {
   private renderClearIcon() {
     return (
       <button
+        tabIndex={0}
         class="dc-date-picker-clear"
         disabled={this.disabled}
         onClick={this.clear}>

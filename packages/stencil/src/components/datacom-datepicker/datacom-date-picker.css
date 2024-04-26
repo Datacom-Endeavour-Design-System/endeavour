@@ -33,6 +33,12 @@
   display: inline-flex;
 }
 
+.dc-date-picker-clear:focus-visible {
+  outline: 2px solid var(--dc-date-picker-primary-interactive-color);
+  outline-offset: 1px;
+  border-radius: 10px;
+}
+
 .dc-date-picker-clear-icon,
 .dc-date-picker-calendar-icon {
   width: 20px;
