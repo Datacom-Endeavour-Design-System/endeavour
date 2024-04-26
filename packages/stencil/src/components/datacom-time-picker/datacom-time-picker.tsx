@@ -786,22 +786,35 @@ export class DatacomTimePicker implements FormControl {
             onInput={this.handleTimeChange}
             value={this.transientValue}
           />
-          <div class="dc-time-picker-control-container">
+          <div
+            class="dc-time-picker-control-in-start"
+            tabIndex={this.isOpen ? 0 : -1}></div>
+          <div
+            class="dc-time-picker-control-out-start"
+            tabIndex={this.isOpen ? 0 : -1}></div>
+          <div class="dc-time-picker-time-control-container">
             <div
-              class="dc-time-picker-control-in-start"
-              tabIndex={this.isOpen ? 0 : -1}></div>
-            <div
-              class="dc-time-picker-control-out-start"
-              tabIndex={this.isOpen ? 0 : -1}></div>
-            <div class="dc-time-picker-time-control-container">
-              <div
-                class="dc-time-picker-options-wrapper"
-                ref={(el: HTMLDivElement) => (this.hourOptionsWrapper = el)}>
-                {this.hourOptions.map((option: string) => (
+              class="dc-time-picker-options-wrapper"
+              ref={(el: HTMLDivElement) => (this.hourOptionsWrapper = el)}>
+              {this.hourOptions.map((option: string) => (
+                <button
+                  tabIndex={-1}
+                  name="hourOption"
+                  class={`dc-time-picker-time-option ${this.getHourOptionActiveClass(
+                    option,
+                  )}`}
+                  value={option}
+                  onClick={this.handleOptionSelect}>
+                  {option}
+                </button>
+              ))}
+              {/* clone options */}
+              {this.hourOptions.length > this.visibleOptionsCount &&
+                this.hourOptions.map((option: string) => (
                   <button
                     tabIndex={-1}
                     name="hourOption"
-                    class={`dc-time-picker-time-option ${this.getHourOptionActiveClass(
+                    class={`dc-time-picker-time-option dc-time-picker-time-option-clone ${this.getHourOptionActiveClass(
                       option,
                     )}`}
                     value={option}
@@ -809,30 +822,30 @@ export class DatacomTimePicker implements FormControl {
                     {option}
                   </button>
                 ))}
-                {/* clone options */}
-                {this.hourOptions.length > this.visibleOptionsCount &&
-                  this.hourOptions.map((option: string) => (
-                    <button
-                      tabIndex={-1}
-                      name="hourOption"
-                      class={`dc-time-picker-time-option dc-time-picker-time-option-clone ${this.getHourOptionActiveClass(
-                        option,
-                      )}`}
-                      value={option}
-                      onClick={this.handleOptionSelect}>
-                      {option}
-                    </button>
-                  ))}
-              </div>
-              <div class="dc-time-picker-divider"></div>
-              <div
-                class="dc-time-picker-options-wrapper"
-                ref={(el: HTMLDivElement) => (this.minuteOptionsWrapper = el)}>
-                {this.minuteOptions.map((option: string) => (
+            </div>
+            <div class="dc-time-picker-divider"></div>
+            <div
+              class="dc-time-picker-options-wrapper"
+              ref={(el: HTMLDivElement) => (this.minuteOptionsWrapper = el)}>
+              {this.minuteOptions.map((option: string) => (
+                <button
+                  tabIndex={-1}
+                  name="minuteOption"
+                  class={`dc-time-picker-time-option ${this.getMinuteOptionActiveClass(
+                    option,
+                  )}`}
+                  value={option}
+                  onClick={this.handleOptionSelect}>
+                  {option}
+                </button>
+              ))}
+              {/* clone options */}
+              {this.minuteOptions.length > this.visibleOptionsCount &&
+                this.minuteOptions.map((option: string) => (
                   <button
                     tabIndex={-1}
                     name="minuteOption"
-                    class={`dc-time-picker-time-option ${this.getMinuteOptionActiveClass(
+                    class={`dc-time-picker-time-option dc-time-picker-time-option-clone ${this.getMinuteOptionActiveClass(
                       option,
                     )}`}
                     value={option}
@@ -840,13 +853,20 @@ export class DatacomTimePicker implements FormControl {
                     {option}
                   </button>
                 ))}
-                {/* clone options */}
-                {this.minuteOptions.length > this.visibleOptionsCount &&
-                  this.minuteOptions.map((option: string) => (
+            </div>
+            {!this.militaryTime && (
+              <Fragment>
+                <div class="dc-time-picker-divider"></div>
+                <div
+                  class="dc-time-picker-options-wrapper"
+                  ref={(el: HTMLDivElement) =>
+                    (this.periodOptionsWrapper = el)
+                  }>
+                  {this.periodOptions.map((option: string) => (
                     <button
                       tabIndex={-1}
-                      name="minuteOption"
-                      class={`dc-time-picker-time-option dc-time-picker-time-option-clone ${this.getMinuteOptionActiveClass(
+                      name="periodOption"
+                      class={`dc-time-picker-time-option ${this.getPeriodOptionActiveClass(
                         option,
                       )}`}
                       value={option}
@@ -854,47 +874,25 @@ export class DatacomTimePicker implements FormControl {
                       {option}
                     </button>
                   ))}
-              </div>
-              {!this.militaryTime && (
-                <Fragment>
-                  <div class="dc-time-picker-divider"></div>
-                  <div
-                    class="dc-time-picker-options-wrapper"
-                    ref={(el: HTMLDivElement) =>
-                      (this.periodOptionsWrapper = el)
-                    }>
-                    {this.periodOptions.map((option: string) => (
-                      <button
-                        tabIndex={-1}
-                        name="periodOption"
-                        class={`dc-time-picker-time-option ${this.getPeriodOptionActiveClass(
-                          option,
-                        )}`}
-                        value={option}
-                        onClick={this.handleOptionSelect}>
-                        {option}
-                      </button>
-                    ))}
-                  </div>
-                </Fragment>
-              )}
-            </div>
-            <div
-              class="dc-time-picker-control-out-end"
-              tabIndex={this.isOpen ? 0 : -1}></div>
-            <div
-              class="dc-time-picker-control-in-end"
-              tabIndex={this.isOpen ? 0 : -1}></div>
-            <div class="dc-time-picker-confirm-container">
-              <datacom-button
-                class="dc-time-picker-confirm"
-                variant="secondary"
-                size="small"
-                disabled={this.disabled}
-                onClick={this.handleConfirm}>
-                Confirm
-              </datacom-button>
-            </div>
+                </div>
+              </Fragment>
+            )}
+          </div>
+          <div
+            class="dc-time-picker-control-out-end"
+            tabIndex={this.isOpen ? 0 : -1}></div>
+          <div
+            class="dc-time-picker-control-in-end"
+            tabIndex={this.isOpen ? 0 : -1}></div>
+          <div class="dc-time-picker-confirm-container">
+            <datacom-button
+              class="dc-time-picker-confirm"
+              variant="secondary"
+              size="small"
+              disabled={this.disabled}
+              onClick={this.handleConfirm}>
+              Confirm
+            </datacom-button>
           </div>
           <div
             class="dc-time-picker-tab-loop-end"

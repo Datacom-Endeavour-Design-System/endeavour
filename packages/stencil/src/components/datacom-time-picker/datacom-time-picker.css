@@ -107,10 +107,6 @@
   text-overflow: ellipsis;
 }
 
-.dc-time-picker-control-container {
-  background-color: var(--dc-date-picker-ui-color);
-}
-
 .dc-time-picker-time-control-container {
   display: flex;
   align-self: stretch;
