@@ -33,6 +33,12 @@
   display: inline-flex;
 }
 
+.dc-time-picker-clear:focus-visible {
+  outline: 2px solid var(--dc-date-picker-primary-interactive-color);
+  outline-offset: 1px;
+  border-radius: 10px;
+}
+
 .dc-time-picker-clear-icon,
 .dc-time-picker-clock-icon {
   width: 20px;
