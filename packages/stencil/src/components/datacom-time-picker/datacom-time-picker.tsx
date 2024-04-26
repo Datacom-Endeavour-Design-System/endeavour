@@ -770,16 +770,6 @@ export class DatacomTimePicker implements FormControl {
     return;
   };
 
-  private renderTimePickerInput() {
-    return (
-      <Fragment>
-        <div class="dc-time-picker-input-content" onClick={this.handleClick}>
-          {this.value}
-        </div>
-      </Fragment>
-    );
-  }
-
   private renderTimePickerControl() {
     return (
       <Fragment>
@@ -909,6 +899,16 @@ export class DatacomTimePicker implements FormControl {
           <div
             class="dc-time-picker-tab-loop-end"
             tabIndex={this.isOpen ? 0 : -1}></div>
+        </div>
+      </Fragment>
+    );
+  }
+
+  private renderTimePickerInput() {
+    return (
+      <Fragment>
+        <div class="dc-time-picker-input-content" onClick={this.handleClick}>
+          {this.value}
         </div>
       </Fragment>
     );
