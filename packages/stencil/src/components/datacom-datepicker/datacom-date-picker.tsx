@@ -23,9 +23,12 @@ import {
   subDays,
   subWeeks,
 } from 'date-fns';
+import { randomString } from '../../utils';
 import { HTMLDatacomDatePickerCalendarElement } from './datacom-date-picker-calendar';
 import { HTMLDatacomDatePickerInputElement } from './datacom-date-picker-input';
+import { getSvg } from '../../common/images';
 
+type Direction = 'up' | 'down' | 'left' | 'right';
 @Component({
   tag: 'datacom-date-picker',
   styleUrl: 'datacom-date-picker.css',
@@ -34,6 +37,7 @@ import { HTMLDatacomDatePickerInputElement } from './datacom-date-picker-input';
 export class DatacomDatePicker {
   private inputElement: HTMLInputElement;
   private formElement: HTMLFormElement;
+  private inputId: string = randomString();
 
   @Element() host: HTMLDatacomDatePickerElement;
 
@@ -43,8 +47,8 @@ export class DatacomDatePicker {
 
   @Prop() name: string;
   @Prop() placeholder?: string;
-  @Prop() disabled? = false;
-  @Prop() required? = false;
+  @Prop() disabled?: boolean = false;
+  @Prop() required?: boolean = false;
   @Prop() form?: string;
 
   @Prop() label?: string;
@@ -58,32 +62,33 @@ export class DatacomDatePicker {
   @Prop({ attribute: 'valid' }) isValid?: boolean;
   @Prop() autoValidate?: boolean = true;
 
+  @State() value: string = '';
+  @State() isChanged: boolean = false;
   @State() isEditing: boolean = false;
-  @State() isError: boolean = false;
+  @State() isOpen: boolean = false;
+  @State() isInError: boolean = false;
   // Accessibility
   @State() focusedDate: Date;
-  // Calendar toggle state
-  @State() isOpenCalendar = false;
 
   @Listen('click', { target: 'document' })
-  async handleOnClick(event: MouseEvent): Promise<void> {
+  handleOnClick(event: MouseEvent): void {
     if (!this.host.contains(event.target as Node)) {
-      if (this.isOpenCalendar) {
-        await this.toggleCalendarHandler();
+      if (this.isOpen) {
+        this.close();
       }
       this.isEditing = isValid(this.selectedDate) || isValid(this.startDate);
     }
   }
 
-  @Listen('inputFocused')
+  @Listen('datePickerInputFocused')
   async handleOnInputFocused(): Promise<void> {
-    if (!this.isOpenCalendar) {
-      await this.toggleCalendarHandler();
+    if (!this.isOpen) {
+      this.open();
     }
   }
 
   @Listen('datePickerChanged')
-  handleOnInputChanged(event: CustomEvent): void {
+  handleOnDateChanged(event: CustomEvent): void {
     if (event.detail instanceof Array) {
       const [startDate, endDate] = event.detail;
       this.startDate = startDate;
@@ -100,6 +105,25 @@ export class DatacomDatePicker {
     }
 
     this.changed.emit(event.detail);
+  }
+
+  @Listen('datePickerInputChanged')
+  async handleOnInputChanged(event: CustomEvent): Promise<void> {
+    this.value = event.detail;
+  }
+
+  @Listen('keydown', { target: 'document' })
+  handleDocumentOnKeydown(event: KeyboardEvent): void {
+    switch (event.key) {
+      case 'ArrowUp':
+      case 'ArrowDown':
+      case 'ArrowLeft':
+      case 'ArrowRight':
+        event.preventDefault();
+        break;
+      default:
+        break;
+    }
   }
 
   @Listen('keydown', { capture: true })
@@ -121,14 +145,33 @@ export class DatacomDatePicker {
         this.loopTabFocus();
         break;
       case 'Escape':
-        await this.toggleCalendarHandler();
+        this.close();
         break;
       default:
         break;
     }
   }
 
-  @Watch('isOpenCalendar')
+  @Listen('keyup', { capture: true })
+  handleKeyUp(event: KeyboardEvent): void {
+    if (this.disabled) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'Enter':
+      case ' ':
+        this.open();
+        break;
+      case 'Escape':
+        this.close();
+        break;
+      default:
+        break;
+    }
+  }
+
+  @Watch('isOpen')
   watchCalendarToggle(open: boolean): void {
     const inputElement: HTMLInputElement =
       this.host.querySelector<HTMLInputElement>(
@@ -144,27 +187,19 @@ export class DatacomDatePicker {
   @Watch('selectedDate')
   @Watch('startDate')
   @Watch('endDate')
-  async watchDates(newDate: Date, _, propName: string): Promise<void> {
+  watchDates(newDate: Date, _, propName: string): void {
     if (
-      (propName === 'selectedDate' || propName === 'endDate') &&
       isValid(newDate) &&
-      this.isOpenCalendar
+      (propName === 'selectedDate' || propName === 'endDate')
     ) {
-      await this.toggleCalendarHandler();
-    }
-  }
-
-  @Watch('isValid')
-  async watchIsValid(): Promise<void> {
-    if (!this.isOpenCalendar) {
-      await this.toggleCalendarHandler();
+      this.close();
     }
   }
 
   @Watch('disabled')
-  async watchDisabled(): Promise<void> {
-    if (this.isOpenCalendar) {
-      await this.toggleCalendarHandler();
+  watchDisabled(): void {
+    if (this.isOpen) {
+      this.close();
     }
   }
 
@@ -191,42 +226,47 @@ export class DatacomDatePicker {
   private submitForm = async (event: SubmitEvent): Promise<void> => {
     event.preventDefault();
 
-    const inputElement: HTMLDatacomDatePickerInputElement =
+    const datePickerInput: HTMLDatacomDatePickerInputElement =
       this.host.querySelector<HTMLDatacomDatePickerInputElement>(
         'datacom-date-picker-input',
       );
 
-    const valid: boolean = await inputElement.checkValidity();
+    const valid: boolean = await datePickerInput.checkValidity();
 
-    this.isError = !valid;
+    this.isInError = !valid;
   };
 
-  private toggleCalendarHandler = async (
-    event?: KeyboardEvent | MouseEvent | CustomEvent,
-  ): Promise<void> => {
-    if (
-      event instanceof MouseEvent ||
-      event instanceof KeyboardEvent ||
-      event instanceof CustomEvent
-    ) {
-      event.preventDefault();
+  private open = (): void => {
+    this.isOpen = true;
 
-      const activeElement: HTMLElement = document.activeElement as HTMLElement;
-      activeElement.blur();
-    }
-    const inputElement: HTMLDatacomDatePickerInputElement =
+    setTimeout((): void => {
+      const inputElement: HTMLInputElement =
+        this.host.querySelector<HTMLInputElement>(
+          'datacom-date-picker-input input',
+        );
+      inputElement.focus();
+    }, 100);
+  };
+
+  private close = (): void => {
+    this.isOpen = false;
+  };
+
+  private clear = async (): Promise<void> => {
+    this.value = '';
+    const datePickerInputElement: HTMLDatacomDatePickerInputElement =
       this.host.querySelector<HTMLDatacomDatePickerInputElement>(
         'datacom-date-picker-input',
       );
-    await inputElement.toggleIsEditing(!this.isOpenCalendar);
-
-    this.isOpenCalendar = !this.isOpenCalendar;
+    await datePickerInputElement.clearValue();
   };
 
+  // Accessibility
   private loopTabFocus = (): void => {
     setTimeout((): void => {
       const activeElement = document.activeElement;
-      if (this.isOpenCalendar) {
+
+      if (this.isOpen) {
         const firstElement: HTMLInputElement =
           this.host.querySelector<HTMLInputElement>(
             'datacom-date-picker-input input',
@@ -266,15 +306,15 @@ export class DatacomDatePicker {
     }, 100);
   };
 
-  private moveDateFocus = async (
-    direction: 'up' | 'down' | 'left' | 'right',
-  ): Promise<void> => {
+  private moveDateFocus = async (direction: Direction): Promise<void> => {
     let focusedDate: Date = this.focusedDate;
+
     if (isValid(focusedDate)) {
       let focusedDateElementName: string = format(focusedDate, this.dateFormat);
       let dateElement: HTMLButtonElement = this.host.querySelector(
         `button[name="${focusedDateElementName}"]`,
       ) as HTMLButtonElement;
+
       if (dateElement instanceof HTMLButtonElement) {
         dateElement.tabIndex = -1;
         dateElement.blur();
@@ -306,7 +346,9 @@ export class DatacomDatePicker {
         this.host.querySelector<HTMLDatacomDatePickerCalendarElement>(
           'datacom-date-picker-calendar',
         );
+
       await calendarElement.setMouseoverDate(focusedDate);
+
       const calendarDate: Date = await calendarElement.getCalendarDate();
 
       const firstDayOfMonth: Date = startOfMonth(calendarDate);
@@ -328,23 +370,16 @@ export class DatacomDatePicker {
         }
       }, 100);
     }
+
     this.focusedDate = focusedDate;
   };
 
-  render() {
-    const classes = {
-      'dc-date-picker-container': true,
-      'dc-date-picker-open-calendar': this.isOpenCalendar,
-      'dc-date-picker-error': this.isError || this.isValid === false,
-      'dc-date-picker-disabled': this.disabled,
-      'dc-date-picker-required': !this.required,
-    };
-
+  private renderDatePickerControl() {
     const inputProps = {
       placeholder: this.placeholder,
       disabled: this.disabled,
       required: this.required,
-      label: this.label,
+      inputId: this.inputId,
       selectedDate: this.selectedDate,
       startDate: this.startDate,
       endDate: this.endDate,
@@ -364,32 +399,104 @@ export class DatacomDatePicker {
     };
 
     return (
+      <div class="dc-date-picker-control-content">
+        <div
+          class="dc-date-picker-tab-loop-start"
+          tabIndex={this.isOpen ? 0 : -1}></div>
+        <datacom-date-picker-input {...inputProps} />
+        <div class="dc-date-picker-control-container">
+          <datacom-date-picker-calendar {...calendarProps} />
+        </div>
+        <div class="dc-date-picker-close-wrapper">
+          <datacom-button
+            class="dc-date-picker-close"
+            variant="secondary"
+            size="small"
+            onClick={this.close}
+            disabled={this.disabled}>
+            Close
+          </datacom-button>
+        </div>
+        <div
+          class="dc-date-picker-tab-loop-end"
+          tabIndex={this.isOpen ? 0 : -1}></div>
+      </div>
+    );
+  }
+
+  private renderDatePickerInput() {
+    return (
+      <div class="dc-date-picker-input-content" onClick={this.open}>
+        {this.value}
+      </div>
+    );
+  }
+
+  private renderLabel() {
+    return (
+      <label
+        class="dc-date-picker-label"
+        tabIndex={-1}
+        htmlFor={this.inputId}
+        onClick={this.open}>
+        {this.label}
+      </label>
+    );
+  }
+
+  private renderCalendarIcon() {
+    return (
+      <button
+        class="dc-date-picker-calendar"
+        disabled={this.disabled}
+        onClick={this.open}>
+        {getSvg('calendar-alt', { class: 'dc-date-picker-calendar-icon' })}
+      </button>
+    );
+  }
+
+  private renderClearIcon() {
+    return (
+      <button
+        class="dc-date-picker-clear"
+        disabled={this.disabled}
+        onClick={this.clear}>
+        {getSvg('clear', { class: 'dc-date-picker-clear-icon' })}
+      </button>
+    );
+  }
+
+  render() {
+    const classes = {
+      'dc-date-picker': true,
+      'dc-date-picker-open': this.isOpen,
+      'dc-date-picker-changed': this.value !== '',
+      'dc-date-picker-error': this.isInError || this.isValid === false,
+      'dc-date-picker-disabled': this.disabled,
+      'dc-date-picker-required': !this.required,
+    };
+
+    return (
       <Host>
         <div class={classes}>
-          <div
-            class="dc-date-picker-tab-loop-start"
-            tabIndex={this.isOpenCalendar ? 0 : -1}></div>
-          <datacom-date-picker-input {...inputProps} />
-          <div class="dc-date-picker-calendar-container">
-            <datacom-date-picker-calendar {...calendarProps} />
-            <div class="dc-date-picker-close-wrapper">
-              <datacom-button
-                class="dc-date-picker-close"
-                variant="secondary"
-                size="small"
-                onClick={this.toggleCalendarHandler}
-                disabled={this.disabled}>
-                Close
-              </datacom-button>
-            </div>
+          <div class="dc-date-picker-control">
+            {this.value !== ''
+              ? this.renderClearIcon()
+              : this.renderCalendarIcon()}
+            {this.renderLabel()}
+            {this.renderDatePickerControl()}
+          </div>
+          <div tabIndex={!this.disabled ? 0 : -1} class="dc-date-picker-input">
+            {this.value !== ''
+              ? this.renderClearIcon()
+              : this.renderCalendarIcon()}
+            {this.renderLabel()}
+            {this.renderDatePickerInput()}
           </div>
           <p tabIndex={-1} class="dc-date-picker-error-msg">
             {this.message}
           </p>
         </div>
-        <div
-          class="dc-date-picker-tab-loop-end"
-          tabIndex={this.isOpenCalendar ? 0 : -1}></div>
 
         <input
           class="dc-date-picker-input-hidden"

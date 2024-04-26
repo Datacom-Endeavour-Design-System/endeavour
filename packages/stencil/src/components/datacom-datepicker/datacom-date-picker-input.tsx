@@ -11,10 +11,13 @@ import {
   Watch,
 } from '@stencil/core';
 import { FormControl } from '../form-control';
-import { debounce, randomString } from '../../utils';
+import { debounce } from '../../utils';
 import { format, isMatch, isValid, parse } from 'date-fns';
-import { getSvg } from '../../common/images';
 
+type RangeTime = {
+  startDate: string;
+  endDate: string;
+};
 @Component({
   tag: 'datacom-date-picker-input',
   styleUrl: 'datacom-date-picker-input.css',
@@ -22,20 +25,21 @@ import { getSvg } from '../../common/images';
 })
 export class DatacomDatePickerInput implements FormControl {
   private inputElement: HTMLInputElement;
-  private inputId: string = randomString();
 
   @Element() host: HTMLDatacomDatePickerInputElement;
 
+  @Event({ eventName: 'datePickerInputFocused', bubbles: true, composed: true })
+  focused: EventEmitter;
   @Event({ eventName: 'datePickerChanged', bubbles: true, composed: true })
   changed: EventEmitter<Date | Date[]>;
-  @Event({ eventName: 'inputFocused', bubbles: true, composed: true })
-  focused: EventEmitter;
+  @Event({ eventName: 'datePickerInputChanged', bubbles: true, composed: true })
+  inputChanged: EventEmitter<string>;
 
   @Prop() placeholder?: string;
   @Prop() disabled?: boolean = false;
   @Prop() required?: boolean = false;
 
-  @Prop() label?: string;
+  @Prop() inputId?: string;
   @Prop({ mutable: true }) selectedDate?: Date;
   @Prop({ mutable: true }) startDate?: Date;
   @Prop({ mutable: true }) endDate?: Date;
@@ -49,15 +53,14 @@ export class DatacomDatePickerInput implements FormControl {
     'ddMMyyyy',
   ];
   @Prop() message?: string;
-  @Prop() autoValidate? = true;
+  @Prop() autoValidate?: boolean = true;
 
-  @State() value = '';
-  @State() oldValue = '';
+  @State() value: string = '';
+  @State() oldValue: string = '';
   @State() focusedDate: Date;
-  @State() isEditing = false;
-  @State() isValid = false;
-  @State() isSubmitted = false;
-  @State() isChanged = false;
+  @State() isValid: boolean = false;
+  @State() isSubmitted: boolean = false;
+  @State() isChanged: boolean = false;
 
   @Method()
   async validate(): Promise<boolean> {
@@ -70,8 +73,10 @@ export class DatacomDatePickerInput implements FormControl {
   }
 
   @Method()
-  public async toggleIsEditing(isEditing: boolean): Promise<void> {
-    this.isEditing = isEditing;
+  async clearValue(): Promise<void> {
+    this.value = '';
+    this.inputElement.value = '';
+    this.populateDate('');
   }
 
   @Watch('selectedDate')
@@ -81,9 +86,50 @@ export class DatacomDatePickerInput implements FormControl {
     this.setValue(newDate, propName);
   }
 
+  private setValue(date: Date, propName: string): void {
+    let value: string = this.inputElement.value;
+
+    if (propName === 'selectedDate' && isValid(date)) {
+      value = format(date, this.dateFormat);
+      this.isValid = true;
+      this.changed.emit(date);
+    } else if (propName === 'selectedDate' && !isValid(date)) {
+      this.isValid = false;
+      this.changed.emit();
+    }
+
+    if (propName === 'startDate' && isValid(date)) {
+      const startDateStr: string = `${format(date, this.dateFormat)} - `;
+      const endDateString: string = value.substring(startDateStr.length);
+      value = this.isChanged ? `${startDateStr}${endDateString}` : startDateStr;
+      this.isValid = false;
+      this.oldValue = startDateStr;
+      this.changed.emit([date]);
+    } else if (propName === 'startDate' && !isValid(date)) {
+      this.isValid = false;
+      this.changed.emit([]);
+    }
+
+    if (propName === 'endDate' && isValid(date)) {
+      value = `${format(this.startDate, this.dateFormat)} - ${format(
+        date,
+        this.dateFormat,
+      )}`;
+      this.isValid = true;
+      this.changed.emit([this.startDate, date]);
+    } else if (propName === 'endDate' && !isValid(date)) {
+      this.isValid = false;
+      this.changed.emit([this.startDate]);
+    }
+
+    this.value = value;
+    this.inputElement.value = value;
+    this.inputChanged.emit(value);
+    this.isChanged = false;
+  }
+
   private focusDateHandler = (event: FocusEvent | MouseEvent): void => {
     event.preventDefault();
-    this.isEditing = true;
     this.focused.emit();
   };
 
@@ -91,20 +137,61 @@ export class DatacomDatePickerInput implements FormControl {
     event.preventDefault();
     this.isChanged = true;
     const el: HTMLInputElement = event.target as HTMLInputElement;
+    this.inputChanged.emit(el.value);
     this.debouncedDateInput(el.value);
   };
 
-  private clearDateInputHandler = (event: MouseEvent | KeyboardEvent): void => {
-    event.preventDefault();
-    this.value = '';
-    this.inputElement.value = '';
-    if (this.range) {
-      this.startDate = undefined;
-      this.endDate = undefined;
-    } else {
-      this.selectedDate = undefined;
+  private debouncedDateInput = debounce((debouncedValue: string): void => {
+    let newDebouncedValue: string = debouncedValue;
+
+    const valueToParse: string = debouncedValue.substring(this.oldValue.length);
+
+    const parsedDate = this.parseToDate(valueToParse);
+    if (parsedDate.isValid) {
+      newDebouncedValue = newDebouncedValue.replace(
+        valueToParse,
+        format(parsedDate.date, this.dateFormat),
+      );
     }
-    this.isChanged = false;
+
+    newDebouncedValue = newDebouncedValue.replace(/\s+/g, '');
+    this.populateDate(newDebouncedValue);
+  }, 1000);
+
+  private populateDate = (value: string): void => {
+    if (this.range) {
+      let parsedStartDate: Date;
+      let parsedEndDate: Date;
+      const { startDate, endDate } = this.getStartEndDateString(value);
+      if (this.validateDate(startDate)) {
+        parsedStartDate = parse(startDate, this.dateFormat, new Date());
+        this.startDate = parsedStartDate;
+        this.endDate = undefined;
+      } else {
+        this.startDate = undefined;
+        this.endDate = undefined;
+      }
+      if (this.validateDate(endDate)) {
+        parsedEndDate = parse(endDate, this.dateFormat, new Date());
+        if (parsedStartDate > parsedEndDate) {
+          this.endDate = parsedStartDate;
+        } else {
+          this.endDate = parsedEndDate;
+        }
+      } else {
+        this.endDate = undefined;
+      }
+    } else {
+      const selectedDate: string = value.substring(
+        0,
+        this.getFormattedDateStringCount(),
+      );
+      if (selectedDate !== '' && this.validateDate(selectedDate)) {
+        this.selectedDate = parse(selectedDate, this.dateFormat, new Date());
+      } else {
+        this.selectedDate = undefined;
+      }
+    }
   };
 
   private parseToDate = (
@@ -128,101 +215,7 @@ export class DatacomDatePickerInput implements FormControl {
     return date;
   };
 
-  private debouncedDateInput = debounce((debouncedValue: string): void => {
-    let newDebouncedValue: string = debouncedValue;
-
-    const valueToParse: string = debouncedValue.substring(this.oldValue.length);
-    const parsedDate = this.parseToDate(valueToParse);
-    if (parsedDate.isValid) {
-      newDebouncedValue = newDebouncedValue.replace(
-        valueToParse,
-        format(parsedDate.date, this.dateFormat),
-      );
-    }
-
-    newDebouncedValue = newDebouncedValue.replace(/\s+/g, '');
-    if (this.range) {
-      let parsedStartDate: Date;
-      let parsedEndDate: Date;
-      const { startDate, endDate } =
-        this.getStartEndDateString(newDebouncedValue);
-      if (this.validateDate(startDate)) {
-        parsedStartDate = parse(startDate, this.dateFormat, new Date());
-        this.startDate = parsedStartDate;
-        this.endDate = undefined;
-      } else {
-        this.startDate = undefined;
-        this.endDate = undefined;
-      }
-      if (this.validateDate(endDate)) {
-        parsedEndDate = parse(endDate, this.dateFormat, new Date());
-        if (parsedStartDate > parsedEndDate) {
-          this.endDate = parsedStartDate;
-        } else {
-          this.endDate = parsedEndDate;
-        }
-      } else {
-        this.endDate = undefined;
-      }
-    } else {
-      const selectedDate: string = newDebouncedValue.substring(
-        0,
-        this.getFormattedDateStringCount(),
-      );
-      if (selectedDate !== '' && this.validateDate(selectedDate)) {
-        this.selectedDate = parse(selectedDate, this.dateFormat, new Date());
-      } else {
-        this.selectedDate = undefined;
-      }
-    }
-  }, 1000);
-
-  private setValue = (date: Date, propName: string): void => {
-    let oldValue: string = '';
-    let value: string = this.inputElement.value;
-
-    if (propName === 'selectedDate' && isValid(date)) {
-      value = format(date, this.dateFormat);
-      this.isValid = true;
-      this.changed.emit(date);
-    } else if (propName === 'selectedDate' && !isValid(date)) {
-      this.isValid = false;
-      this.changed.emit();
-    }
-
-    if (propName === 'startDate' && isValid(date)) {
-      const startDateStr: string = `${format(date, this.dateFormat)} - `;
-      const endDateString: string = value.substring(startDateStr.length);
-      oldValue = startDateStr;
-      value = this.isChanged ? `${startDateStr}${endDateString}` : startDateStr;
-      this.isValid = false;
-      this.changed.emit([date]);
-    } else if (propName === 'startDate' && !isValid(date)) {
-      this.isValid = false;
-      this.changed.emit([]);
-    }
-
-    if (propName === 'endDate' && isValid(date)) {
-      value = `${format(this.startDate, this.dateFormat)} - ${format(
-        date,
-        this.dateFormat,
-      )}`;
-      this.isValid = true;
-      this.changed.emit([this.startDate, date]);
-    } else if (propName === 'endDate' && !isValid(date)) {
-      this.isValid = false;
-      this.changed.emit([this.startDate]);
-    }
-
-    this.oldValue = oldValue;
-    this.value = value;
-    this.inputElement.value = value;
-    this.isChanged = false;
-  };
-
-  private getStartEndDateString = (
-    value: string,
-  ): { startDate: string; endDate: string } => {
+  private getStartEndDateString = (value: string): RangeTime => {
     const formattedDateStringCount: number = this.getFormattedDateStringCount();
     const startDate: string = value.substring(0, formattedDateStringCount);
     const endDate: string = value.substring(formattedDateStringCount + 1);
@@ -239,23 +232,12 @@ export class DatacomDatePickerInput implements FormControl {
   };
 
   render() {
-    const classes = {
-      'dc-date-picker-input-wrapper': true,
-      'dc-date-picker-input-edit':
-        this.isEditing ||
-        (this.inputElement?.value !== undefined &&
-          this.inputElement?.value !== ''),
-      'dc-date-picker-input-disabled': this.disabled,
-    };
-
     return (
       <Host>
-        <div class={classes}>
-          <label htmlFor={this.inputId}>{this.label}</label>
+        <div class="dc-date-picker-input-wrapper">
           <input
             type="text"
             id={this.inputId}
-            class="dc-date-picker-input"
             ref={(el: HTMLInputElement) => (this.inputElement = el)}
             name={this.inputId}
             required={this.required}
@@ -265,27 +247,6 @@ export class DatacomDatePickerInput implements FormControl {
             onInput={this.changeDateHandler}
             value={this.value}
           />
-          {this.inputElement?.value ? (
-            <button
-              class="dc-date-picker-clear"
-              onClick={this.clearDateInputHandler}
-              disabled={this.disabled}>
-              {getSvg('clear', { class: 'dc-date-picker-clear-icon' })}
-            </button>
-          ) : (
-            <button
-              tabIndex={-1}
-              class="dc-date-picker-calendar"
-              onClick={(event: MouseEvent) => {
-                event.preventDefault();
-                this.inputElement.focus();
-              }}
-              disabled={this.disabled}>
-              {getSvg('calendar-alt', {
-                class: 'dc-date-picker-calendar-icon',
-              })}
-            </button>
-          )}
         </div>
       </Host>
     );

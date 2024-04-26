@@ -11,28 +11,99 @@
   letter-spacing: -0.2px;
 }
 
-.dc-date-picker-container {
+.dc-date-picker {
   position: relative;
   max-width: 400px;
   min-width: 272px;
   color: var(--dc-date-picker-primary-text-color);
 }
 
-.dc-date-picker-container .dc-date-picker-calendar-container,
-.dc-date-picker-container .dc-date-picker-close-wrapper {
-  display: none;
+.dc-date-picker-clear,
+.dc-date-picker-calendar {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: var(--dc-primary-text-color);
+  padding: 0;
+  display: inline-flex;
 }
 
-.dc-date-picker-error-msg {
+.dc-date-picker-clear-icon,
+.dc-date-picker-calendar-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.dc-date-picker-clear-icon path {
+  fill: var(--dc-date-picker-interactive-icon-color);
+}
+
+.dc-date-picker-calendar-icon path {
+  fill: var(--dc-date-picker-text-icon-color);
+}
+
+.dc-date-picker-label {
+  position: absolute;
+  top: 14px;
+  left: 12px;
+  padding: 0 4px;
+  background: var(--dc-date-picker-ui-color);
+  color: var(--dc-date-picker-primary-text-color);
+  transition: all 0.3s;
+  max-width: calc(100% - 52px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: text;
+}
+
+.dc-date-picker-control {
+  border: 2px solid var(--dc-date-picker-primary-interactive-color);
+  border-radius: 8px;
+  box-sizing: border-box;
   display: none;
-  color: var(--dc-date-picker-error-color);
-  font-size: 12px;
-  font-weight: 400;
-  margin: 0;
-  max-width: 272px;
-  outline: none;
-  padding: 4px 0 0 14px;
-  white-space: pre-wrap;
+  width: 100%;
+  position: relative;
+}
+
+.dc-date-picker-control-content {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dc-date-picker-control-container {
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: var(--dc-token-border-default-01);
+}
+
+.dc-date-picker-close-wrapper {
+  display: flex;
+  justify-content: right;
+  padding: 24px 16px;
+}
+
+.dc-date-picker-input {
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  outline: 3px solid transparent;
+  border: 1px solid var(--dc-token-border-default-01);
+  border-radius: 8px;
+  position: relative;
+}
+
+.dc-date-picker-input-content {
+  height: 100%;
+  display: flex;
+  padding: 14px 16px;
+  cursor: text;
+  border-radius: 8px;
 }
 
 .dc-date-picker-input-hidden {
@@ -42,67 +113,54 @@
   margin: 0;
 }
 
-/* Calendar open state */
-.dc-date-picker-open-calendar datacom-date-picker-input {
-  --dc-date-picker-input-padding: 13px 35px 14px 15px;
-  --dc-date-picker-input-border-width: 2px 2px 0 2px;
-  --dc-date-picker-input-border-radius: 8px 8px 0 0;
-  --dc-date-picker-input-border-color: var(--dc-date-picker-primary-interactive-color);
-  --dc-date-picker-input-border-hover-color: var(--dc-date-picker-primary-interactive-color);
-  --dc-date-picker-input-border-bottom-hover-color: var(--dc-token-border-default-01);
+/* Focus state */
+.dc-date-picker .dc-date-picker-input:focus-visible {
+  outline: 3px solid var(--dc-date-picker-primary-interactive-color);
+  outline-offset: 1px;
 }
 
-.dc-date-picker-open-calendar .dc-date-picker-calendar-container {
+/* Change state */
+.dc-date-picker-changed .dc-date-picker-label {
+  font-size: 12px;
+  top: -6px;
+  line-height: 16px;
+}
+
+/* Open state */
+.dc-date-picker-open .dc-date-picker-label {
+  font-size: 12px;
+  top: -6px;
+  line-height: 16px;
+}
+
+.dc-date-picker-open .dc-date-picker-clear,
+.dc-date-picker-open .dc-date-picker-calendar {
+  top: 14px;
+  right: 15px;
+}
+
+.dc-date-picker-open .dc-date-picker-control {
   display: block;
-  border-width: 0 2px 2px 2px;
-  border-style: solid;
-  border-color: var(--dc-date-picker-primary-interactive-color);
-  border-radius: 0 0 8px 8px;
-  padding-top: 1px;
-  position: absolute;
-  top: 51px;
-  left: 0;
-  z-index: 1000;
 }
 
-.dc-date-picker-open-calendar.dc-date-picker-disabled datacom-date-picker-input {
-  --dc-date-picker-input-border-color: var(--dc-date-picker-disabled-color);
-  --dc-date-picker-input-border-bottom-color: var(--dc-date-picker-disabled-color);
-  --dc-date-picker-input-border-hover-color: var(--dc-date-picker-disabled-color);
-  --dc-date-picker-input-border-bottom-hover-color: var(--dc-date-picker-disabled-color);
-}
-
-.dc-date-picker-open-calendar.dc-date-picker-required .dc-date-picker-close-wrapper {
-  display: flex;
-  justify-content: right;
-  padding: 24px 16px;
-  border-top: 1px solid var(--dc-token-border-default-01);
-}
-
-.dc-date-picker-open-calendar.dc-date-picker-required.dc-date-picker-disabled .dc-date-picker-close-wrapper {
-  border-color: var(--dc-date-picker-disabled-color);
+.dc-date-picker-open:not(.dc-date-picker-disabled) .dc-date-picker-input {
+  display: none;
 }
 
 /* Disabled state */
-.dc-date-picker-disabled:not(.dc-date-picker-open-calendar) datacom-date-picker-input {
-  --dc-date-picker-input-border-color: var(--dc-date-picker-disabled-color);
-  --dc-date-picker-input-border-bottom-color: var(--dc-date-picker-disabled-color);
-  --dc-date-picker-input-border-hover-color: var(--dc-date-picker-disabled-color);
-  --dc-date-picker-input-border-bottom-hover-color: var(--dc-date-picker-disabled-color);
-}
-
-.dc-date-picker-disabled .dc-date-picker-calendar-container {
-  border-color: var(--dc-date-picker-disabled-color);
+.dc-date-picker-disabled .dc-date-picker-control {
+  display: none;
 }
 
 /* Error state */
-.dc-date-picker-error:not(.dc-date-picker-open-calendar) datacom-date-picker-input {
-  --dc-date-picker-input-border-color: var(--dc-date-picker-error-color);
-  --dc-date-picker-input-border-bottom-color: var(--dc-date-picker-error-color);
-}
-
-.dc-date-picker-error:not(.dc-date-picker-open-calendar) .dc-date-picker-calendar-container {
-  border-color: var(--dc-date-picker-error-color);
+.dc-date-picker-error-msg {
+  display: none;
+  color: var(--dc-date-picker-error-color);
+  font-size: 12px;
+  padding: 4px 0 0 14px;
+  white-space: pre-wrap;
+  margin: 0;
+  outline: none;
 }
 
 .dc-date-picker-error .dc-date-picker-error-msg:not(:empty) {

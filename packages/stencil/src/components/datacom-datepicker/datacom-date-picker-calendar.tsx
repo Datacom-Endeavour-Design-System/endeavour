@@ -184,12 +184,10 @@ export class DatacomDatePickerCalendar {
     }
   };
 
-  private selectDayHandler = (
-    event: MouseEvent | KeyboardEvent,
-    day: number,
-  ): void => {
+  private selectDayHandler = (event: MouseEvent | KeyboardEvent): void => {
     event.preventDefault();
-    const date: Date = setDate(this.calendarDate, day);
+    const dayElement: HTMLButtonElement = event.target as HTMLButtonElement;
+    const date: Date = setDate(this.calendarDate, parseInt(dayElement.value));
     if (this.range) {
       if (this.isSelecting && this.startDate <= date) {
         this.endSelection(date);
@@ -198,7 +196,6 @@ export class DatacomDatePickerCalendar {
       }
     } else {
       this.selectedDate = date;
-      this.changed.emit(date);
     }
   };
 
@@ -227,6 +224,7 @@ export class DatacomDatePickerCalendar {
   private setCalendarDate(date: Date, propName: string): void {
     if (propName === 'selectedDate' && isValid(date)) {
       this.calendarDate = date;
+      this.changed.emit(date);
     } else if (propName === 'startDate' && isValid(date)) {
       this.calendarDate = date;
       this.isSelecting = true;
@@ -355,19 +353,15 @@ export class DatacomDatePickerCalendar {
   };
 
   render() {
-    const calendarClasses = {
-      'dc-date-picker-calendar': true,
-      'dc-date-picker-calendar-disabled': this.disabled,
-    };
-
     const yearInputClasses = {
       'dc-date-picker-input-wrapper': true,
       'dc-date-picker-year-input-focused':
         this.yearFocused || this.yearMouseover,
     };
+
     return (
       <Host>
-        <div class={calendarClasses}>
+        <div class="dc-date-picker-calendar">
           <div class="dc-date-picker-header">
             <button
               class="dc-date-picker-prev"
@@ -450,8 +444,9 @@ export class DatacomDatePickerCalendar {
                     tabIndex={this.getDayTabIndex(day, index)}
                     class={this.getDayClasses(day, index)}
                     name={this.getDayName(day)}
+                    value={day}
                     onMouseOver={this.mouseoverDayHandler}
-                    onClick={(e: MouseEvent) => this.selectDayHandler(e, day)}
+                    onClick={this.selectDayHandler}
                     disabled={this.disabled}>
                     {day}
                   </button>
