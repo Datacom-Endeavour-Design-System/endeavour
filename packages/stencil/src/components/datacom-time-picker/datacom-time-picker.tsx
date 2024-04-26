@@ -926,6 +926,7 @@ export class DatacomTimePicker implements FormControl {
   private renderClockIcon() {
     return (
       <button
+        tabIndex={-1}
         class="dc-time-picker-clock"
         disabled={this.disabled}
         onClick={this.handleClick}>
@@ -937,6 +938,7 @@ export class DatacomTimePicker implements FormControl {
   private renderClearIcon() {
     return (
       <button
+        tabIndex={0}
         class="dc-time-picker-clear"
         disabled={this.disabled}
         onClick={this.handleClear}>
