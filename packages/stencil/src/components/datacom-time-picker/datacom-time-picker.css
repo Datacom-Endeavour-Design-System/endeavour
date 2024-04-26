@@ -218,12 +218,12 @@
   z-index: 20;
 }
 
-.dc-time-picker-open .dc-time-picker-input {
-  display: none;
-}
-
 .dc-time-picker-open .dc-time-picker-control {
   display: block;
+}
+
+.dc-time-picker-open:not(.dc-time-picker-disabled) .dc-time-picker-input {
+  display: none;
 }
 
 /* Disabled state */
@@ -232,7 +232,7 @@
 }
 
 .dc-time-picker-disabled .dc-time-picker-clear-icon {
-  cursor: pointer;
+  cursor: not-allowed;
 }
 
 .dc-time-picker-disabled .dc-time-picker-clock-icon {
