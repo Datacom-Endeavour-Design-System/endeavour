@@ -82,17 +82,19 @@
 }
 
 .dc-time-picker-control {
-  border: 2px solid var(--dc-date-picker-primary-interactive-color);
-  border-radius: 8px;
-  box-sizing: border-box;
   display: none;
   width: 100%;
   position: relative;
 }
 
 .dc-time-picker-control-content {
+  position: absolute;
+  top: 0;
+  border: 2px solid var(--dc-date-picker-primary-interactive-color);
   border-radius: 8px;
+  box-sizing: border-box;
   overflow: hidden;
+  z-index: 10;
 }
 
 .dc-time-picker-control-content input {
@@ -198,15 +200,17 @@
 /* Open state */
 .dc-time-picker-open .dc-time-picker-label {
   font-size: 12px;
-  top: -7px;
-  left: 11px;
+  top: -5px;
+  left: 13px;
   line-height: 16px;
+  z-index: 20;
 }
 
 .dc-time-picker-open .dc-time-picker-clear,
 .dc-time-picker-open .dc-time-picker-clock {
-  top: 14px;
-  right: 15px;
+  top: 16px;
+  right: 17px;
+  z-index: 20;
 }
 
 .dc-time-picker-open .dc-time-picker-input {
