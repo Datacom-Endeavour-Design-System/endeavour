@@ -95,7 +95,6 @@ export class DatacomTimePicker implements FormControl {
   @Listen('keydown', { capture: true })
   handleKeyDown(event: KeyboardEvent): void {
     if (!this.isOpen || this.disabled) {
-      event.preventDefault();
       return;
     }
 
