@@ -13,9 +13,10 @@
 
 .dc-date-picker {
   position: relative;
-  max-width: 400px;
-  min-width: 272px;
+  background-color: var(--dc-date-picker-ui-color);
   color: var(--dc-date-picker-primary-text-color);
+  min-width: 272px;
+  max-width: 400px;
 }
 
 .dc-date-picker-clear,
@@ -61,6 +62,25 @@
   cursor: text;
 }
 
+.dc-date-picker-input {
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  outline: 3px solid transparent;
+  border: 1px solid var(--dc-token-border-default-01);
+  border-radius: 8px;
+  position: relative;
+}
+
+.dc-date-picker-input-content {
+  height: 100%;
+  display: flex;
+  padding: 14px 16px;
+  cursor: text;
+  border-radius: 8px;
+}
+
 .dc-date-picker-control {
   border: 2px solid var(--dc-date-picker-primary-interactive-color);
   border-radius: 8px;
@@ -81,29 +101,10 @@
   border-color: var(--dc-token-border-default-01);
 }
 
-.dc-date-picker-close-wrapper {
+.dc-date-picker-close-container {
   display: flex;
   justify-content: right;
   padding: 24px 16px;
-}
-
-.dc-date-picker-input {
-  height: 52px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  outline: 3px solid transparent;
-  border: 1px solid var(--dc-token-border-default-01);
-  border-radius: 8px;
-  position: relative;
-}
-
-.dc-date-picker-input-content {
-  height: 100%;
-  display: flex;
-  padding: 14px 16px;
-  cursor: text;
-  border-radius: 8px;
 }
 
 .dc-date-picker-input-hidden {

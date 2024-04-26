@@ -407,7 +407,7 @@ export class DatacomDatePicker {
         <div class="dc-date-picker-control-container">
           <datacom-date-picker-calendar {...calendarProps} />
         </div>
-        <div class="dc-date-picker-close-wrapper">
+        <div class="dc-date-picker-close-container">
           <datacom-button
             class="dc-date-picker-close"
             variant="secondary"
