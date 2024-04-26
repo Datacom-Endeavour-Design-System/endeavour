@@ -88,8 +88,11 @@
 }
 
 .dc-time-picker-control-content {
+  background-color: var(--dc-date-picker-ui-color);
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   border: 2px solid var(--dc-date-picker-primary-interactive-color);
   border-radius: 8px;
   box-sizing: border-box;
@@ -220,10 +223,6 @@
 
 .dc-time-picker-open .dc-time-picker-control {
   display: block;
-}
-
-.dc-time-picker-open:not(.dc-time-picker-disabled) .dc-time-picker-input {
-  display: none;
 }
 
 /* Disabled state */
