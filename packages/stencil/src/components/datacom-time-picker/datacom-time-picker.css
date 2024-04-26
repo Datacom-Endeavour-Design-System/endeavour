@@ -98,6 +98,7 @@
 }
 
 .dc-time-picker-control-content input {
+  background-color: var(--dc-date-picker-ui-color);
   color: var(--dc-date-picker-primary-text-color);
   border: none;
   caret-color: var(--dc-date-picker-primary-interactive-color);
