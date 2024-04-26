@@ -152,6 +152,16 @@
   display: block;
 }
 
+.dc-date-picker-open .dc-date-picker-input .dc-date-picker-label {
+
+}
+
+.dc-date-picker-open .dc-date-picker-input .dc-date-picker-label,
+.dc-date-picker-open .dc-date-picker-input .dc-date-picker-clear,
+.dc-date-picker-open .dc-date-picker-input .dc-date-picker-calendar {
+  display: none;
+}
+
 .dc-date-picker-open:not(.dc-date-picker-disabled) .dc-date-picker-input {
   display: none;
 }
