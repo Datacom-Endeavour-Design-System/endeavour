@@ -129,7 +129,8 @@
 /* Open state */
 .dc-date-picker-open .dc-date-picker-label {
   font-size: 12px;
-  top: -6px;
+  top: -7px;
+  left: 11px;
   line-height: 16px;
 }
 
