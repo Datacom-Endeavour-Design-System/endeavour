@@ -158,6 +158,39 @@
   display: none;
 }
 
+.dc-date-picker-disabled .dc-date-picker-clear-icon {
+  cursor: not-allowed;
+}
+
+.dc-date-picker-disabled .dc-date-picker-clock-icon {
+  cursor: not-allowed;
+}
+
+.dc-date-picker-disabled .dc-date-picker-clear-icon path,
+.dc-date-picker-disabled .dc-date-picker-clock-icon path {
+  fill: var(--dc-token-disabled-01);
+}
+
+.dc-date-picker-disabled .dc-date-picker-input {
+  border-color: var(--dc-ui-disabled-border);
+  color: var(--dc-greyscale-04);
+  cursor: not-allowed;
+}
+
+.dc-date-picker-disabled .dc-date-picker-label,
+.dc-date-picker-disabled .dc-date-picker-value {
+  color: var(--dc-greyscale-04);
+  cursor: not-allowed;
+}
+
+.dc-date-picker-disabled .dc-date-picker-input:hover {
+  border-color: var(--dc-ui-disabled-border);
+}
+
+.dc-date-picker-disabled .dc-date-picker-input:focus-visible {
+  outline: none;
+}
+
 /* Error state */
 .dc-date-picker-error-msg {
   display: none;
@@ -167,6 +200,10 @@
   white-space: pre-wrap;
   margin: 0;
   outline: none;
+}
+
+.dc-date-picker-error .dc-date-picker-input {
+  border: 1px solid var(--dc-primary-error-color);
 }
 
 .dc-date-picker-error .dc-date-picker-error-msg:not(:empty) {
