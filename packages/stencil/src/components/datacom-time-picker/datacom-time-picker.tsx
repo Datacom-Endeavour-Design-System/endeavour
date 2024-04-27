@@ -153,15 +153,41 @@ export class DatacomTimePicker implements FormControl {
 
   @Watch('time')
   watchTime(newTime: Time): void {
-    let time: string = this.timeInputElement.value;
-    if (newTime.hour !== undefined) {
+    let time: string;
+    if (
+      newTime.hour === undefined &&
+      newTime.minute === undefined &&
+      newTime.period === undefined
+    ) {
+      time = this.timeInputElement.value;
+    } else if (
+      newTime.hour !== undefined &&
+      newTime.minute === undefined &&
+      newTime.period === undefined
+    ) {
+      // 00: - 23:
       time = `${newTime.hour}:`;
-    }
-    if (newTime.minute !== undefined) {
-      time = `${time}${newTime.minute}`;
-    }
-    if (newTime.period !== undefined) {
-      time = `${time} ${newTime.period}`;
+    } else if (
+      newTime.hour === undefined &&
+      newTime.minute !== undefined &&
+      newTime.period === undefined
+    ) {
+      // :00 - :59
+      time = `:${newTime.minute}`;
+    } else if (
+      newTime.hour === undefined &&
+      newTime.minute === undefined &&
+      newTime.period !== undefined
+    ) {
+      // AM/PM
+      time = `${newTime.period}`;
+    } else {
+      // 12:00 AM
+      // :00 AM
+      // 12: AM
+      time = `${newTime.hour || ''}:${newTime.minute || ''} ${
+        newTime.period || ''
+      }`;
     }
     this.transientValue = time;
   }
