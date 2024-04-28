@@ -21,11 +21,6 @@ const meta: Meta<typeof DatacomOverflowMenu> = {
       options: ['horizontal', 'vertical'],
       type: { name: 'string' },
     },
-    label: {
-      name: 'Tooltip label',
-      description: 'Text displayed in tooltip.',
-      type: { name: 'string' },
-    },
     size: {
       name: 'Size',
       description:
@@ -37,8 +32,13 @@ const meta: Meta<typeof DatacomOverflowMenu> = {
       options: ['standard', 'small'],
       type: { name: 'string' },
     },
+    label: {
+      name: 'Tooltip label',
+      description: 'Text displayed in tooltip.',
+      type: { name: 'string' },
+    },
     position: {
-      name: 'Overflow options position',
+      name: 'Overflow options placement',
       description: 'Sets position of overflow menu dropdown options.',
       control: {
         type: 'select',
@@ -53,8 +53,9 @@ const meta: Meta<typeof DatacomOverflowMenu> = {
     },
   },
   args: {
-    label: 'More options',
+    variant: 'horizontal',
     size: 'small',
+    label: 'More options',
   },
 };
 
@@ -68,6 +69,7 @@ export const Default: Story = {
         style={{
           width: '272px',
           display: 'block',
+          paddingTop: '50px',
           paddingLeft: '400px',
           height: 'calc(100vh - 8rem)',
         }}>

@@ -99,7 +99,10 @@ export class DatacomOverflowMenu {
     return (
       <Host>
         <div>
-          <datacom-tooltip label={this.label} class="dc-overflow-menu-tooltip">
+          <datacom-tooltip
+            label={this.label}
+            class="dc-overflow-menu-tooltip"
+            position="top">
             <button
               ref={(el) => (this.buttonRef = el)}
               onClick={this.toggleMenu}

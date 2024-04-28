@@ -26,11 +26,11 @@ export class DatacomMenuItems {
 
   @Event() buttonClicked: EventEmitter;
 
-  onHandleClick = () => {
+  private onHandleClick = () => {
     this.buttonClicked;
   };
 
-  setFocus = () => {
+  private setFocus = () => {
     if (this.disabled) {
       return;
     }
@@ -46,10 +46,10 @@ export class DatacomMenuItems {
     }
     if (event.key === 'Enter' || event.key === 'Return' || event.key == ' ') {
       this.elementRef.focus();
-      console.log('keyup');
       return;
     }
   };
+
   render() {
     const tabIndex = !this.disabled ? 0 : -1;
     const menuClasses = {
@@ -58,6 +58,7 @@ export class DatacomMenuItems {
       'dc-menu-item-button': true,
       'dc-menu-item-disabled': this.disabled,
     };
+
     return (
       <Host>
         {this.itemUrl ? (

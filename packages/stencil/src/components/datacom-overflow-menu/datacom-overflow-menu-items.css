@@ -61,6 +61,7 @@
   outline-offset: 1px;
   z-index: 99;
 }
+
 .dc-menu-item-wrapper:focus{
   outline: 3px solid var(--dc-primary-colour);
   outline-offset: 1px;
