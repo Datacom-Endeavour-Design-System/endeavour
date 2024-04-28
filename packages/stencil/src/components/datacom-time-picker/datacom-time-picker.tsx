@@ -64,7 +64,7 @@ export class DatacomTimePicker implements FormControl {
   @Prop({ attribute: 'valid' }) isValid?: boolean;
   @Prop() autoValidate?: boolean = true;
 
-  @State() transientValue: string;
+  @State() transientValue: string = '';
   @State() time: Time;
   @State() isValidTime: boolean = true;
   @State() isInError: boolean = false;
@@ -153,53 +153,70 @@ export class DatacomTimePicker implements FormControl {
 
   @Watch('time')
   watchTime(newTime: Time): void {
-    let time: string;
+    let value: string;
     if (
       newTime.hour === undefined &&
       newTime.minute === undefined &&
       newTime.period === undefined
     ) {
-      time = this.timeInputElement.value;
+      value = this.timeInputElement.value;
     } else if (
       newTime.hour !== undefined &&
       newTime.minute === undefined &&
       newTime.period === undefined
     ) {
       // 00: - 23:
-      time = `${newTime.hour}:`;
+      value = `${newTime.hour}:`;
     } else if (
       newTime.hour === undefined &&
       newTime.minute !== undefined &&
       newTime.period === undefined
     ) {
       // :00 - :59
-      time = `:${newTime.minute}`;
+      value = `:${newTime.minute.padStart(2, '0')}`;
     } else if (
       newTime.hour === undefined &&
       newTime.minute === undefined &&
       newTime.period !== undefined
     ) {
       // AM/PM
-      time = `${newTime.period}`;
+      value = `${newTime.period}`;
     } else {
       // 12:00 AM
       // :00 AM
       // 12: AM
-      time = `${newTime.hour || ''}:${newTime.minute || ''} ${
-        newTime.period || ''
-      }`;
+      if (newTime.period !== undefined) {
+        value = `${newTime.hour || ''}:${newTime.minute || ''} ${
+          newTime.period || ''
+        }`;
+      } else {
+        value = `${newTime.hour || ''}:${newTime.minute || ''}`;
+      }
     }
-    this.transientValue = time;
+    this.transientValue = value;
+
+    setTimeout((): void => {
+      this.timeInputElement.value = value;
+      this.timeInputElement.focus();
+    }, 100);
   }
 
   @Watch('minuteInterval')
   watchMinuteInterval(): void {
     this.initMinuteOptions();
+    setTimeout((): void => {
+      this.populateTime(this.transientValue);
+      this.timeInputElement.focus();
+    }, 100);
   }
 
   @Watch('militaryTime')
   watchMilitaryTime(): void {
     this.initHourOptions();
+    setTimeout((): void => {
+      this.populateTime(this.transientValue);
+      this.timeInputElement.focus();
+    }, 100);
   }
 
   disconnectedCallback(): void {
@@ -314,7 +331,6 @@ export class DatacomTimePicker implements FormControl {
     event.preventDefault();
     if (!this.isOpen) {
       this.value = '';
-      this.isChanged = false;
       this.changed.emit('');
     }
 
@@ -322,6 +338,8 @@ export class DatacomTimePicker implements FormControl {
 
     setTimeout((): void => {
       this.populateTime('');
+      this.isChanged = false;
+      this.isOpen = true;
     }, 100);
   };
 
@@ -360,10 +378,6 @@ export class DatacomTimePicker implements FormControl {
     this.updateTimeControl(newTime);
 
     this.time = newTime;
-
-    setTimeout((): void => {
-      this.timeInputElement.focus();
-    }, 100);
   };
 
   private handleTimeChange = (event: InputEvent): void => {
@@ -376,14 +390,13 @@ export class DatacomTimePicker implements FormControl {
   };
 
   private debouncedTimeInput = debounce((debouncedValue: string): void => {
-    this.populateTime(debouncedValue.replace(/\s+/g, ''));
+    this.populateTime(debouncedValue);
   }, 500);
 
   private populateTime = (value: string): void => {
-    const time: Time = this.parseValueToTime(value);
+    const time: Time = this.parseValueToTime(value.replace(/\s+/g, ''));
 
     this.updateTimeControl(time);
-
     this.time = time;
   };
 
@@ -421,9 +434,12 @@ export class DatacomTimePicker implements FormControl {
       const minute: string = match[2];
       const period: string = match[3]?.toUpperCase();
 
-      time.hour = this.parseHour(hour).hour;
+      time.hour = this.parseHour(hour, period).hour;
       time.minute = this.parseMinute(minute);
-      time.period = period;
+
+      if (!this.militaryTime) {
+        time.period = period;
+      }
     } else {
       this.isValidTime = false;
     }
@@ -431,27 +447,37 @@ export class DatacomTimePicker implements FormControl {
     return time;
   };
 
-  private parseHour = (value: string): HourPeriod => {
+  private parseHour = (hour: string, period?: string): HourPeriod => {
     const hourPeriod: HourPeriod = {};
-    if (!this.militaryTime && parseInt(value) === 0) {
-      hourPeriod.hour = '12';
-      hourPeriod.period = 'AM';
-    } else if (!this.militaryTime && parseInt(value) > 12) {
-      hourPeriod.hour = String(parseInt(value) - 12).padStart(2, '0');
-      hourPeriod.period = 'PM';
+    if (this.militaryTime) {
+      if (period === 'PM' && parseInt(hour) < 12) {
+        hourPeriod.hour = String(parseInt(hour) + 12).padStart(2, '0');
+      } else if (period === 'AM' && parseInt(hour) >= 12) {
+        hourPeriod.hour = String(parseInt(hour) % 12).padStart(2, '0');
+      } else {
+        hourPeriod.hour = String(parseInt(hour)).padStart(2, '0');
+      }
     } else {
-      hourPeriod.hour = String(parseInt(value)).padStart(2, '0');
+      if (parseInt(hour) === 0) {
+        hourPeriod.hour = '12';
+        hourPeriod.period = 'AM';
+      } else if (parseInt(hour) > 12) {
+        hourPeriod.hour = String(parseInt(hour) - 12).padStart(2, '0');
+        hourPeriod.period = 'PM';
+      } else if (parseInt(hour) <= 12) {
+        hourPeriod.hour = String(parseInt(hour)).padStart(2, '0');
+      }
     }
     return hourPeriod;
   };
 
   private parseMinute = (value: string): string => {
-    let minute: string = value;
-    const minuteRemainder: number = parseInt(minute) % this.minuteInterval;
+    let minute: number = parseInt(value);
+    const minuteRemainder: number = minute % this.minuteInterval;
     if (minuteRemainder > 0) {
-      minute = String(parseInt(minute) - minuteRemainder).padStart(2, '0');
+      minute = minute - minuteRemainder;
     }
-    return minute;
+    return String(minute).padStart(2, '0');
   };
 
   private updateTimeControl = (time: Time): void => {
@@ -531,7 +557,6 @@ export class DatacomTimePicker implements FormControl {
 
     if (!this.isOpen) {
       this.isOpen = true;
-
       setTimeout((): void => {
         this.populateTime(this.value);
         this.timeInputElement.focus();
@@ -914,7 +939,7 @@ export class DatacomTimePicker implements FormControl {
               class="dc-time-picker-confirm"
               variant="secondary"
               size="small"
-              disabled={this.disabled}
+              disabled={this.disabled || this.transientValue === ''}
               onClick={this.handleConfirm}>
               Confirm
             </datacom-button>
@@ -986,12 +1011,18 @@ export class DatacomTimePicker implements FormControl {
       <Host>
         <div class={classes}>
           <div tabIndex={-1} class="dc-time-picker-control">
-            {this.isChanged ? this.renderClearIcon() : this.renderClockIcon()}
+            {this.transientValue !== ''
+              ? this.renderClearIcon()
+              : this.renderClockIcon()}
             {this.renderLabel()}
             {this.renderTimePickerControl()}
           </div>
-          <div tabIndex={!this.disabled ? 0 : -1} class="dc-time-picker-input">
-            {this.isChanged ? this.renderClearIcon() : this.renderClockIcon()}
+          <div
+            tabIndex={!this.disabled && !this.isOpen ? 0 : -1}
+            class="dc-time-picker-input">
+            {this.transientValue !== ''
+              ? this.renderClearIcon()
+              : this.renderClockIcon()}
             {this.renderLabel()}
             {this.renderTimePickerInput()}
           </div>
