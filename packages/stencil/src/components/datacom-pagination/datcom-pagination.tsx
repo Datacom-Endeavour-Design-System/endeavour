@@ -66,7 +66,7 @@ export class DatacomPagination {
    * Update the value when enter the page number in the input field.
    */
   @Watch('currentPage')
-  WatchChange(): void {
+  watchChange(): void {
     const newPage = this.currentPage;
     if (isNaN(newPage)) {
       this.goToPage(this.currentPage);
@@ -85,7 +85,7 @@ export class DatacomPagination {
     this.pageChanged.emit(this.currentPage);
   }
 
-  handleInputBlur = (event: FocusEvent): void => {
+  private handleInputBlur = (event: FocusEvent): void => {
     const inputNumber = (event.target as HTMLInputElement).value;
     let newEnteredHigher = parseInt(inputNumber);
     if (newEnteredHigher > this.totalPages) {
