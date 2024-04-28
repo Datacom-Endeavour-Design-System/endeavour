@@ -259,6 +259,7 @@ export class DatacomDatePicker {
         'datacom-date-picker-input',
       );
     await datePickerInputElement.clearValue();
+    this.open();
   };
 
   // Accessibility
