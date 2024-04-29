@@ -58,13 +58,7 @@
 
 .dc-menu-item-wrapper:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
-  outline-offset: 1px;
-  z-index: 99;
-}
-
-.dc-menu-item-wrapper:focus{
-  outline: 3px solid var(--dc-primary-colour);
-  outline-offset: 1px;
+  outline-offset: -2px;
   z-index: 99;
 }
 
@@ -83,6 +77,10 @@
 .dc-menu-item-disabled {
   color: var(--dc-primary-disabled-colour);
   cursor: not-allowed;
+}
+
+.dc-menu-item-disabled:hover {
+  background-color: var(--dc-background-colour);
 }
 
 .dc-menu-item-disabled .dc-item-menu-icon path {

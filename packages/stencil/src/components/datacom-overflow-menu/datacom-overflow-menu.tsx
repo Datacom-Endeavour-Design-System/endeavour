@@ -68,9 +68,6 @@ export class DatacomOverflowMenu {
   private toggleMenu = (event: MouseEvent) => {
     if (this.isOpen !== true) {
       this.open();
-      setTimeout(() => {
-        this.setFocusToFirstItem();
-      }, 0);
     } else {
       this.close();
     }

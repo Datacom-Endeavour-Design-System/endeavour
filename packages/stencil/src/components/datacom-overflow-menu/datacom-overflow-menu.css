@@ -35,6 +35,7 @@
   border-radius: 8px;
   justify-content: center;
   box-shadow: var(--dc-primary-box-shadow);
+  padding: 0;
 }
 
 .dc-overflow-dropdown-options .dc-menu-item-small {
@@ -45,26 +46,41 @@
   width: 272px;
 }
 
-.dc-menu-item-center {
+.dc-menu-item-small.dc-menu-item-center   {
   bottom: 0px;
-  left: 50%;
-  padding-top: 2px;
-  translate: -75% calc(5% + 2px);
+  left: 60%;
+  translate: -100% calc(5% + 2px);
 }
 
-.dc-menu-item-left {
+.dc-menu-item-small.dc-menu-item-left {
   bottom: 0px;
-  left: 40%;
-  padding-top: 2px;
-  translate: -40% calc(5% + 2px);
+  left: 99%;
+  translate: -100% calc(5% + 2px);
 }
 
-.dc-menu-item-right {
+.dc-menu-item-small.dc-menu-item-right {
   bottom: 0px;
-  left: 40%;
-  padding-top: 2px;
-  translate: -110% calc(5% + 2px);
+  left: 33%;
+  translate: -100% calc(5% + 2px);
+} 
+
+.dc-menu-item-standard.dc-menu-item-center {
+  bottom: 0px;
+  left: 60%;
+  translate: -100% calc(5% + 2px);
 }
+
+.dc-menu-item-standard.dc-menu-item-left {
+  bottom: 0px;
+  left: 100%;
+  translate: -100% calc(5% + 2px);
+}
+
+.dc-menu-item-standard.dc-menu-item-right {
+  bottom: 0px;
+  left: 27%;
+  translate: -100% calc(5% + 2px);
+} 
 
 .dc-menu-item-standard .dc-overflow-menu-horizontal,
 .dc-menu-item-standard .dc-overflow-menu-vertical {
