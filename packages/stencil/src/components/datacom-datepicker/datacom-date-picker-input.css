@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  outline: none;
+}
+
+:host * {
+  font-family: var(--dc-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
+.dc-date-picker-input-wrapper input {
+  background-color: var(--dc-date-picker-ui-color);
+  color: var(--dc-date-picker-primary-text-color);
+  border: none;
+  caret-color: var(--dc-date-picker-primary-interactive-color);
+  box-sizing: border-box;
+  height: 49px;
+  width: 100%;
+  outline: none;
+  padding: 13px 15px 14px 15px;
+  text-overflow: ellipsis;
+}
+
+.dc-date-picker-input-edit input::placeholder {
+  color: var(--dc-date-picker-secondary-text-color);
+}
+
+.dc-date-picker-input-edit .dc-date-picker-clear {
+  display: block;
+}
