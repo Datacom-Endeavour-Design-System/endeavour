@@ -126,7 +126,7 @@
 }
 
 /* Focus state */
-.dc-date-picker .dc-date-picker-input:focus-visible {
+.dc-date-picker:not(.dc-date-picker-open) .dc-date-picker-input:focus-visible {
   outline: 3px solid var(--dc-date-time-picker-primary-interactive-color);
   outline-offset: 1px;
 }

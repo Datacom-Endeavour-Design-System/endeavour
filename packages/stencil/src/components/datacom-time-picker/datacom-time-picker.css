@@ -194,7 +194,7 @@
 }
 
 /* Focus state */
-.dc-time-picker .dc-time-picker-input:focus-visible {
+.dc-time-picker:not(.dc-time-picker-open) .dc-time-picker-input:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
   outline-offset: 1px;
 }
