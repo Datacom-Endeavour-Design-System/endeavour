@@ -66,7 +66,7 @@ export class DatacomTimePicker implements FormControl {
 
   @State() transientValue: string = '';
   @State() time: Time;
-  @State() isValidTime: boolean = true;
+  @State() isValidTime: boolean = false;
   @State() isInError: boolean = false;
   @State() isOpen: boolean = false;
   @State() isChanged: boolean = false;
@@ -151,6 +151,21 @@ export class DatacomTimePicker implements FormControl {
     return this.inputElement.checkValidity();
   }
 
+  @Watch('selectedHour')
+  @Watch('selectedMinute')
+  @Watch('selectedPeriod')
+  watchSelectedTime(): void {
+    if (this.militaryTime) {
+      if (this.selectedHour && this.selectedMinute) {
+        this.isValidTime = true;
+      }
+    } else {
+      if (this.selectedHour && this.selectedMinute && this.selectedPeriod) {
+        this.isValidTime = true;
+      }
+    }
+  }
+
   @Watch('time')
   watchTime(newTime: Time): void {
     let value: string;
@@ -217,6 +232,13 @@ export class DatacomTimePicker implements FormControl {
       this.populateTime(this.transientValue);
       this.timeInputElement.focus();
     }, 100);
+  }
+
+  @Watch('disabled')
+  watchDisabled(): void {
+    if (this.isOpen) {
+      this.close();
+    }
   }
 
   disconnectedCallback(): void {
@@ -363,7 +385,6 @@ export class DatacomTimePicker implements FormControl {
     event.preventDefault();
     this.isChanged = true;
     this.isOnInputChange = false;
-    this.isValidTime = true;
     const option: HTMLButtonElement = event.target as HTMLButtonElement;
 
     const newTime: Time = { ...this.time };
@@ -384,7 +405,6 @@ export class DatacomTimePicker implements FormControl {
     event.preventDefault();
     this.isChanged = true;
     this.isOnInputChange = true;
-    this.isValidTime = true;
     const el: HTMLInputElement = event.target as HTMLInputElement;
     this.debouncedTimeInput(el.value);
   };
@@ -397,6 +417,7 @@ export class DatacomTimePicker implements FormControl {
     const time: Time = this.parseValueToTime(value.replace(/\s+/g, ''));
 
     this.updateTimeControl(time);
+
     this.time = time;
   };
 
@@ -939,7 +960,7 @@ export class DatacomTimePicker implements FormControl {
               class="dc-time-picker-confirm"
               variant="secondary"
               size="small"
-              disabled={this.disabled || this.transientValue === ''}
+              disabled={this.disabled || !this.isValidTime}
               onClick={this.handleConfirm}>
               Confirm
             </datacom-button>
@@ -1000,11 +1021,11 @@ export class DatacomTimePicker implements FormControl {
 
   render() {
     const classes = {
-      'dc-time-picker-disabled': this.disabled,
+      'dc-time-picker': true,
       'dc-time-picker-open': this.isOpen,
       'dc-time-picker-changed': this.value !== '' || this.isChanged,
       'dc-time-picker-error': this.isInError || this.isValid == false,
-      'dc-time-picker': true,
+      'dc-time-picker-disabled': this.disabled,
     };
 
     return (

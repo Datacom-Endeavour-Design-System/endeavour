@@ -112,7 +112,7 @@
   border: none;
   caret-color: var(--dc-date-time-picker-primary-interactive-color);
   box-sizing: border-box;
-  height: 49px;
+  height: 50px;
   width: 100%;
   outline: none;
   padding: 13px 15px 14px 15px;
@@ -204,13 +204,6 @@
   outline-offset: 1px;
 }
 
-/* Change state */
-.dc-time-picker-changed .dc-time-picker-label {
-  font-size: 12px;
-  top: -6px;
-  line-height: 16px;
-}
-
 /* Open state */
 .dc-time-picker-open .dc-time-picker-label {
   font-size: 12px;
@@ -235,6 +228,13 @@
 .dc-time-picker-open .dc-time-picker-input .dc-time-picker-clear,
 .dc-time-picker-open .dc-time-picker-input .dc-time-picker-clock {
   display: none;
+}
+
+/* Change state */
+.dc-time-picker-changed .dc-time-picker-label {
+  font-size: 12px;
+  top: -6px;
+  line-height: 16px;
 }
 
 /* Disabled state */
