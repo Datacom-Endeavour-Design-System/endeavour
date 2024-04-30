@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStoryFn } from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import { DatacomBreadcrumb } from '@datacom/endeavour-react';
 
 export default {
@@ -8,24 +8,27 @@ export default {
   argTypes: {
     url: {
       name: 'URL',
-      defaultValue: 'https://datacom.com/',
+      description: 'Specify the URL for the breadcrumb',
       type: { text: 'string' },
       options: [' ', 'https://datacom.com/'],
     },
   },
+  args: {
+    url: 'https://datacom.com/',
+  },
 };
 
-const Template: ComponentStoryFn<typeof DatacomBreadcrumb> = (args) => {
-  const { url } = args;
-  return (
-    <DatacomBreadcrumb url={url} separator>
-      Breadcrumb
-    </DatacomBreadcrumb>
-  );
+export const Default: StoryObj<typeof DatacomBreadcrumb> = {
+  render: (props) => {
+    return (
+      <DatacomBreadcrumb {...props} separator>
+        Breadcrumb
+      </DatacomBreadcrumb>
+    );
+  },
 };
-export const Breadcrumb = Template.bind({});
 
-export const BreadcrumbGrouped = () => {
+export const BreadcrumbGrouping = () => {
   return (
     <div style={{ display: 'inline-block' }}>
       <DatacomBreadcrumb url="https://datacom.com" separator>

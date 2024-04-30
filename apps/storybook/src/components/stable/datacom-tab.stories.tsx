@@ -22,7 +22,7 @@ export default {
   component: DatacomTabgroup,
 };
 
-export const SingleTab: StoryObj<
+export const Default: StoryObj<
   TabGroupProps & { label: string; disabled: boolean }
 > = {
   argTypes: {
@@ -71,7 +71,7 @@ tabs.forEach((tab, i) => {
   tabsArgs[`Tab${tabNumber}Disabled`] = tabNumber === 3;
 });
 
-export const Tabs: StoryObj<typeof DatacomTabgroup> = {
+export const TabsGrouping: StoryObj<typeof DatacomTabgroup> = {
   argTypes: tabsArgTypes,
   args: tabsArgs,
   render: (props) => {

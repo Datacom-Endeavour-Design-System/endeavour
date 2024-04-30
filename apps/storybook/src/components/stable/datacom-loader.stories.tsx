@@ -13,7 +13,7 @@ const meta: Meta<LoaderProps> = {
 
 export default meta;
 
-export const Loader: StoryObj<LoaderProps> = {
+export const Default: StoryObj<LoaderProps> = {
   argTypes: {
     size: {
       name: 'Size',

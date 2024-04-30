@@ -90,7 +90,7 @@ const Panel = styled.div`
   width: 272px;
 `;
 
-export const Standard: StoryObj<InputProps> = {
+export const Default: StoryObj<InputProps> = {
   render: (props) => {
     return (
       <Panel>

@@ -1,0 +1,222 @@
+:host {
+  display: block;
+  outline: none;
+}
+
+:host * {
+  font-family: var(--dc-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
+.dc-date-picker {
+  position: relative;
+  background-color: var(--dc-date-picker-ui-color);
+  color: var(--dc-date-picker-primary-text-color);
+  min-width: 272px;
+  max-width: 400px;
+}
+
+.dc-date-picker-clear,
+.dc-date-picker-calendar {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: var(--dc-primary-text-color);
+  padding: 0;
+  display: inline-flex;
+}
+
+.dc-date-picker-clear:focus-visible {
+  outline: 2px solid var(--dc-date-picker-primary-interactive-color);
+  outline-offset: 1px;
+  border-radius: 10px;
+}
+
+.dc-date-picker-clear-icon,
+.dc-date-picker-calendar-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.dc-date-picker-clear-icon path {
+  fill: var(--dc-date-picker-interactive-icon-color);
+}
+
+.dc-date-picker-calendar-icon path {
+  fill: var(--dc-date-picker-text-icon-color);
+}
+
+.dc-date-picker-label {
+  position: absolute;
+  top: 14px;
+  left: 12px;
+  padding: 0 4px;
+  background: var(--dc-date-picker-ui-color);
+  color: var(--dc-date-picker-primary-text-color);
+  transition: all 0.3s;
+  max-width: calc(100% - 52px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: text;
+}
+
+.dc-date-picker-input {
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  outline: 3px solid transparent;
+  border: 1px solid var(--dc-token-border-default-01);
+  border-radius: 8px;
+  position: relative;
+}
+
+.dc-date-picker-input-content {
+  height: 100%;
+  display: flex;
+  padding: 14px 16px;
+  cursor: text;
+  border-radius: 8px;
+}
+
+.dc-date-picker-control {
+  display: none;
+  width: 100%;
+  position: relative;
+}
+
+.dc-date-picker-control-content {
+  background-color: var(--dc-date-picker-ui-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border: 2px solid var(--dc-date-picker-primary-interactive-color);
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.dc-date-picker-control-container {
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: var(--dc-token-border-default-01);
+}
+
+.dc-date-picker-close-container {
+  display: flex;
+  justify-content: right;
+  padding: 24px 16px;
+}
+
+.dc-date-picker-input-hidden {
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Focus state */
+.dc-date-picker .dc-date-picker-input:focus-visible {
+  outline: 3px solid var(--dc-date-picker-primary-interactive-color);
+  outline-offset: 1px;
+}
+
+/* Change state */
+.dc-date-picker-changed .dc-date-picker-label {
+  font-size: 12px;
+  top: -6px;
+  line-height: 16px;
+}
+
+/* Open state */
+.dc-date-picker-open .dc-date-picker-label {
+  font-size: 12px;
+  top: -5px;
+  left: 13px;
+  line-height: 16px;
+  z-index: 20;
+}
+
+.dc-date-picker-open .dc-date-picker-clear,
+.dc-date-picker-open .dc-date-picker-calendar {
+  top: 16px;
+  right: 17px;
+  z-index: 20;
+}
+
+.dc-date-picker-open .dc-date-picker-control {
+  display: block;
+}
+
+.dc-date-picker-open .dc-date-picker-input .dc-date-picker-label,
+.dc-date-picker-open .dc-date-picker-input .dc-date-picker-clear,
+.dc-date-picker-open .dc-date-picker-input .dc-date-picker-calendar {
+  display: none;
+}
+
+.dc-date-picker-open:not(.dc-date-picker-disabled) .dc-date-picker-input {
+  display: none;
+}
+
+/* Disabled state */
+.dc-date-picker-disabled .dc-date-picker-control {
+  display: none;
+}
+
+.dc-date-picker-disabled .dc-date-picker-clear-icon {
+  cursor: not-allowed;
+}
+
+.dc-date-picker-disabled .dc-date-picker-clock-icon {
+  cursor: not-allowed;
+}
+
+.dc-date-picker-disabled .dc-date-picker-clear-icon path,
+.dc-date-picker-disabled .dc-date-picker-clock-icon path {
+  fill: var(--dc-token-disabled-01);
+}
+
+.dc-date-picker-disabled .dc-date-picker-input {
+  border-color: var(--dc-ui-disabled-border);
+  color: var(--dc-greyscale-04);
+  cursor: not-allowed;
+}
+
+.dc-date-picker-disabled .dc-date-picker-label,
+.dc-date-picker-disabled .dc-date-picker-value {
+  color: var(--dc-greyscale-04);
+  cursor: not-allowed;
+}
+
+.dc-date-picker-disabled .dc-date-picker-input:hover {
+  border-color: var(--dc-ui-disabled-border);
+}
+
+/* Error state */
+.dc-date-picker-error-msg {
+  display: none;
+  color: var(--dc-date-picker-error-color);
+  font-size: 12px;
+  padding: 4px 0 0 14px;
+  white-space: pre-wrap;
+  margin: 0;
+  outline: none;
+}
+
+.dc-date-picker-error .dc-date-picker-input {
+  border: 1px solid var(--dc-primary-error-color);
+}
+
+.dc-date-picker-error .dc-date-picker-error-msg:not(:empty) {
+  display: block;
+}
