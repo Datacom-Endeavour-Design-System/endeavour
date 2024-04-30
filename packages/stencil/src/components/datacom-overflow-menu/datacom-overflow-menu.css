@@ -104,6 +104,9 @@
 .dc-overflow-menu-wrapper:focus-visible {
   outline: 3px solid var(--dc-primary-colour);
 }
+.dc-overflow-dropdown-options:focus-visible {
+  outline:none;
+}
 
 .dc-overflow-menu-wrapper:hover:enabled {
   background-color: var( --dc-ui-fill-hover-colour);

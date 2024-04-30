@@ -23,15 +23,15 @@ export class DatacomOverflowMenu {
   @Prop() label: string;
   @State() isOpen: boolean = false;
   @Prop() size: MenuSizeType = 'small';
-  @Element() hostElement: HTMLElement;
+  @Element() hostElement: HTMLDatacomOverflowMenuElement;
   @Prop({ mutable: true }) position: MenuItemsPositionType = 'center';
   private buttonRef: HTMLButtonElement;
   private firstElementRef: HTMLElement;
 
   private open() {
     this.isOpen = true;
+    console.log('open');
   }
-
   private close() {
     this.isOpen = false;
   }
@@ -39,7 +39,9 @@ export class DatacomOverflowMenu {
   handleKeyUp = (event: KeyboardEvent) => {
     if (event.key === 'Enter' || event.key === 'Return' || event.key == ' ') {
       this.open();
-      this.setFocusToFirstItem();
+      setTimeout(() => {
+        this.setFocusToFirstItem();
+      }, 100);
       return;
     }
     if (event.key === 'Escape' && this.isOpen) {
@@ -67,6 +69,14 @@ export class DatacomOverflowMenu {
   private toggleMenu = (event: MouseEvent) => {
     if (this.isOpen !== true) {
       this.open();
+      setTimeout(() => {
+        const sampleText =
+          this.hostElement.shadowRoot.querySelector<HTMLDivElement>(
+            '.dc-overflow-dropdown-options',
+          );
+        sampleText.focus();
+      }, 100);
+      return;
     } else {
       this.close();
     }
@@ -80,7 +90,6 @@ export class DatacomOverflowMenu {
       this.close();
     }
   }
-
   render() {
     const dropdownClasses = {
       'dc-overflow-dropdown-options': true,
@@ -101,15 +110,16 @@ export class DatacomOverflowMenu {
             position="top">
             <button
               ref={(el) => (this.buttonRef = el)}
+              onKeyUp={this.handleKeyUp}
               onClick={this.toggleMenu}
               class={Classes}
-              tabIndex={0}
-              onKeyUp={this.handleKeyUp}>
+              tabIndex={0}>
               <OverflowMenuIcon class={`dc-overflow-menu-${this.variant}`} />
             </button>
           </datacom-tooltip>
           {this.isOpen && (
             <div
+              tabIndex={this.isOpen ? 0 : -1}
               ref={(el) => (this.firstElementRef = el)}
               class={dropdownClasses}
               onKeyUp={this.handleKeyUp}>
