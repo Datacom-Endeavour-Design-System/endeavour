@@ -67,6 +67,7 @@ export class DatacomOverflowMenu {
   }
 
   private toggleMenu = (event: MouseEvent) => {
+    event.preventDefault();
     if (this.isOpen !== true) {
       this.open();
       setTimeout(() => {
@@ -79,8 +80,8 @@ export class DatacomOverflowMenu {
       return;
     } else {
       this.close();
+      this.buttonRef.blur();
     }
-    event.preventDefault();
     return;
   };
 
