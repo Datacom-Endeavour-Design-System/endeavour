@@ -30,7 +30,6 @@ export class DatacomOverflowMenu {
 
   private open() {
     this.isOpen = true;
-    this.setFocusToFirstItem();
   }
 
   private close() {
@@ -95,7 +94,7 @@ export class DatacomOverflowMenu {
 
     return (
       <Host>
-        <div>
+        <div class="dc-overflow-menu-content">
           <datacom-tooltip
             label={this.label}
             class="dc-overflow-menu-tooltip"

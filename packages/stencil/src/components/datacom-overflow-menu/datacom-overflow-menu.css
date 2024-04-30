@@ -2,6 +2,11 @@
  display: flex;
 }
 
+.dc-overflow-menu-content {
+ display: block;
+ position: absolute;
+}
+
 .dc-overflow-menu-wrapper {
   display: flex; 
   flex-direction: column;
@@ -48,25 +53,25 @@
 
 .dc-menu-item-small.dc-menu-item-center   {
   bottom: 0px;
-  left: 62%;
+  left: 68%;
   translate: -100% calc(5% + 2px);
 }
 
 .dc-menu-item-small.dc-menu-item-left {
   bottom: 0px;
-  left: 99%;
+  left: 100%;
   translate: -100% calc(5% + 2px);
 }
 
 .dc-menu-item-small.dc-menu-item-right {
   bottom: 0px;
-  left: 35%;
+  left: 34%;
   translate: -100% calc(5% + 2px);
 } 
 
 .dc-menu-item-standard.dc-menu-item-center {
   bottom: 0px;
-  left: 60%;
+  left: 63%;
   translate: -100% calc(5% + 2px);
 }
 
@@ -78,7 +83,7 @@
 
 .dc-menu-item-standard.dc-menu-item-right {
   bottom: 0px;
-  left: 27%;
+  left: 26%;
   translate: -100% calc(5% + 2px);
 } 
 
