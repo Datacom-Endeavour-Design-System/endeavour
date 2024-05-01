@@ -18,7 +18,7 @@
     "test:interactive": "cypress open --component"
   },
   "dependencies": {
-    "@datacom/endeavour": "*",
+    "@datacom-digital/endeavour": "*",
     "@datacom/endeavour-react": "*",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
