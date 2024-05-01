@@ -1,0 +1,119 @@
+:host {
+ display: flex;
+}
+
+.dc-overflow-menu-content {
+ display: block;
+ position: absolute;
+}
+
+.dc-overflow-menu-wrapper {
+  display: flex; 
+  flex-direction: column;
+  box-sizing: border-box;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  border: transparent;
+  justify-content: center;
+  border-radius: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.dc-overflow-menu-horizontal path,
+.dc-overflow-menu-vertical path  {
+  fill: var(--dc-primary-text-color);
+  outline: none;
+}
+
+.dc-overflow-menu-horizontal {
+  transform: rotate(90deg);
+  position: relative;
+}
+
+.dc-overflow-dropdown-options {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-radius: 8px;
+  justify-content: center;
+  box-shadow: var(--dc-primary-box-shadow);
+  padding: 0;
+}
+
+.dc-overflow-dropdown-options .dc-menu-item-small {
+  width: 140px;
+}
+
+ .dc-overflow-dropdown-options .dc-menu-item-standard {
+  width: 272px;
+}
+
+.dc-menu-item-small.dc-menu-item-center   {
+  bottom: 0px;
+  left: 68%;
+  translate: -100% calc(5% + 2px);
+}
+
+.dc-menu-item-small.dc-menu-item-left {
+  bottom: 0px;
+  left: 100%;
+  translate: -100% calc(5% + 2px);
+}
+
+.dc-menu-item-small.dc-menu-item-right {
+  bottom: 0px;
+  left: 34%;
+  translate: -100% calc(5% + 2px);
+} 
+
+.dc-menu-item-standard.dc-menu-item-center {
+  bottom: 0px;
+  left: 63%;
+  translate: -100% calc(5% + 2px);
+}
+
+.dc-menu-item-standard.dc-menu-item-left {
+  bottom: 0px;
+  left: 100%;
+  translate: -100% calc(5% + 2px);
+}
+
+.dc-menu-item-standard.dc-menu-item-right {
+  bottom: 0px;
+  left: 26%;
+  translate: -100% calc(5% + 2px);
+} 
+
+.dc-menu-item-standard .dc-overflow-menu-horizontal,
+.dc-menu-item-standard .dc-overflow-menu-vertical {
+  height: 24px;
+  width: 24px;
+  padding: 24px;
+}
+
+.dc-menu-item-small .dc-overflow-menu-horizontal,
+.dc-menu-item-small .dc-overflow-menu-vertical {
+  height: 16px;
+  width: 16px;
+  padding: 16px;
+}
+
+.dc-overflow-menu-wrapper:focus-visible {
+  outline: 3px solid var(--dc-primary-colour);
+}
+.dc-overflow-dropdown-options:focus-visible {
+  outline:none;
+}
+
+.dc-overflow-menu-wrapper:hover:enabled {
+  background-color: var( --dc-ui-fill-hover-colour);
+  cursor: pointer;
+}
+
+.dc-overflow-menu-horizontal:focus,
+.dc-overflow-menu-vertical:focus {
+  outline: none;
+}
