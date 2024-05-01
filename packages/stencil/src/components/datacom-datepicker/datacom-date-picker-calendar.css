@@ -12,8 +12,8 @@
 }
 
 .dc-date-picker-calendar {
-  background: var(--dc-date-time-picker-ui-color);
-  color: var(--dc-date-time-picker-primary-text-color);
+  background: var(--dc-background-token-fill-color);
+  color: var(--dc-primary-text-color);
   border-radius: 0 0 8px 8px;
   padding: 16px;
   width: 236px;
@@ -29,7 +29,7 @@
 }
 
 .dc-date-picker-calendar button:focus-visible {
-  outline: 2px solid var(--dc-date-time-picker-primary-interactive-color);
+  outline: 2px solid var(--dc-primary-colour);
   outline-offset: 1px;
   border-radius: 8px;
 }
@@ -61,7 +61,7 @@
 
 .dc-date-picker-header .dc-date-picker-prev-icon path,
 .dc-date-picker-header .dc-date-picker-next-icon path {
-  fill: var(--dc-date-time-picker-primary-interactive-color);
+  fill: var(--dc-primary-colour);
 }
 
 .dc-date-picker-header .dc-date-picker-prev-icon {
@@ -102,7 +102,7 @@
 .dc-date-picker-header input {
   border: none;
   background: transparent;
-  color: var(--dc-date-time-picker-primary-text-color);
+  color: var(--dc-primary-text-color);
   border-radius: 4px;
   width: 51px;
   padding: 2px 4px;
@@ -110,7 +110,7 @@
 }
 
 .dc-date-picker-header input:focus-visible {
-  outline: 1px solid var(--dc-date-time-picker-primary-interactive-color);
+  outline: 1px solid var(--dc-primary-colour);
 }
 
 /* Remove default arrows/spinners of input field in Firefox  */
@@ -164,12 +164,12 @@
 
 .dc-date-picker-header .dc-date-picker-quantity-up-icon path,
 .dc-date-picker-header .dc-date-picker-quantity-down-icon path {
-  fill: var(--dc-date-time-picker-interactive-icon-color);
+  fill: var(--dc-primary-interactive-color);
 }
 
 .dc-date-picker-header .dc-date-picker-quantity-up.dc-date-picker-year-changed .dc-date-picker-quantity-up-icon path,
 .dc-date-picker-header .dc-date-picker-quantity-down.dc-date-picker-year-changed .dc-date-picker-quantity-down-icon path {
-  fill: var(--dc-date-time-picker-primary-interactive-color);
+  fill: var(--dc-primary-colour);
 }
 
 .dc-date-picker-header .dc-date-picker-quantity-up-icon {
@@ -218,15 +218,15 @@
 }
 
 .dc-date-picker-dates button.dc-date-picker-active {
-  color: var(--dc-date-time-picker-primary-interactive-color);
+  color: var(--dc-primary-colour);
 }
 
 .dc-date-picker-dates button.dc-date-picker-selected,
 .dc-date-picker-dates button.dc-date-picker-start-date,
 .dc-date-picker-dates button.dc-date-picker-end-date,
 .dc-date-picker-dates button.dc-date-picker-in-range.dc-date-picker-mouseover-date {
-  background: var(--dc-date-time-picker-primary-interactive-color);
-  color: var(--dc-date-time-picker-secondary-interactive-color);
+  background: var(--dc-primary-colour);
+  color: var(--dc-primary-text-interactive-color);
   border-radius: 8px;
 }
 

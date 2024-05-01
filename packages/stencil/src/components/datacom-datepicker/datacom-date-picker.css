@@ -13,8 +13,8 @@
 
 .dc-date-picker {
   position: relative;
-  background-color: var(--dc-date-time-picker-ui-color);
-  color: var(--dc-date-time-picker-primary-text-color);
+  background-color: var(--dc-background-token-fill-color);
+  color: var(--dc-primary-text-color);
   min-width: 272px;
   max-width: 400px;
 }
@@ -34,7 +34,7 @@
 }
 
 .dc-date-picker-clear:focus-visible {
-  outline: 2px solid var(--dc-date-time-picker-primary-interactive-color);
+  outline: 2px solid var(--dc-primary-colour);
   outline-offset: 1px;
   border-radius: 10px;
 }
@@ -46,11 +46,11 @@
 }
 
 .dc-date-picker-clear-icon path {
-  fill: var(--dc-date-time-picker-interactive-icon-color);
+  fill: var(--dc-primary-interactive-color);
 }
 
 .dc-date-picker-calendar-icon path {
-  fill: var(--dc-date-time-picker-text-icon-color);
+  fill: var(--dc-accent-text-color);
 }
 
 .dc-date-picker-label {
@@ -58,8 +58,8 @@
   top: 14px;
   left: 12px;
   padding: 0 4px;
-  background: var(--dc-date-time-picker-ui-color);
-  color: var(--dc-date-time-picker-primary-text-color);
+  background: var(--dc-background-token-fill-color);
+  color: var(--dc-primary-text-color);
   transition: all 0.3s;
   max-width: calc(100% - 52px);
   overflow: hidden;
@@ -94,12 +94,12 @@
 }
 
 .dc-date-picker-control-content {
-  background-color: var(--dc-date-time-picker-ui-color);
+  background-color: var(--dc-background-token-fill-color);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  border: 2px solid var(--dc-date-time-picker-primary-interactive-color);
+  border: 2px solid var(--dc-primary-colour);
   border-radius: 8px;
   box-sizing: border-box;
   overflow: hidden;
@@ -127,7 +127,7 @@
 
 /* Focus state */
 .dc-date-picker:not(.dc-date-picker-open) .dc-date-picker-input:focus-visible {
-  outline: 3px solid var(--dc-date-time-picker-primary-interactive-color);
+  outline: 3px solid var(--dc-primary-colour);
   outline-offset: 1px;
 }
 
@@ -205,7 +205,7 @@
 /* Error state */
 .dc-date-picker-error-msg {
   display: none;
-  color: var(--dc-date-time-picker-error-color);
+  color: var(--dc-primary-error-color);
   font-size: 12px;
   padding: 4px 0 0 14px;
   white-space: pre-wrap;

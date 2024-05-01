@@ -3,7 +3,7 @@
 ```html
 <form>
   <div>
-    <DatacomTimePicker
+    <datacom-time-picker
       label="Enter time"
       placeholder="00:00 AM"
       message="Please enter a valid time"

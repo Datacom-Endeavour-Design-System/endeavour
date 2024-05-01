@@ -13,8 +13,8 @@
 
 .dc-time-picker {
   position: relative;
-  background-color: var(--dc-date-time-picker-ui-color);
-  color: var(--dc-date-time-picker-primary-text-color);
+  background-color: var(--dc-background-token-fill-color);
+  color: var(--dc-primary-text-color);
   min-width: 272px;
   max-width: 400px;
 }
@@ -34,7 +34,7 @@
 }
 
 .dc-time-picker-clear:focus-visible {
-  outline: 2px solid var(--dc-date-time-picker-primary-interactive-color);
+  outline: 2px solid var(--dc-primary-colour);
   outline-offset: 1px;
   border-radius: 10px;
 }
@@ -46,11 +46,11 @@
 }
 
 .dc-time-picker-clear-icon path {
-  fill: var(--dc-date-time-picker-interactive-icon-color);
+  fill: var(--dc-primary-interactive-color);
 }
 
 .dc-time-picker-clock-icon path {
-  fill: var(--dc-date-time-picker-text-icon-color);
+  fill: var(--dc-accent-text-color);
 }
 
 .dc-time-picker-label {
@@ -58,8 +58,8 @@
   top: 14px;
   left: 12px;
   padding: 0 4px;
-  background: var(--dc-date-time-picker-ui-color);
-  color: var(--dc-date-time-picker-primary-text-color);
+  background: var(--dc-background-token-fill-color);
+  color: var(--dc-primary-text-color);
   transition: all 0.3s;
   max-width: calc(100% - 52px);
   overflow: hidden;
@@ -94,12 +94,12 @@
 }
 
 .dc-time-picker-control-content {
-  background-color: var(--dc-date-time-picker-ui-color);
+  background-color: var(--dc-background-token-fill-color);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  border: 2px solid var(--dc-date-time-picker-primary-interactive-color);
+  border: 2px solid var(--dc-primary-colour);
   border-radius: 8px;
   box-sizing: border-box;
   overflow: hidden;
@@ -107,10 +107,10 @@
 }
 
 .dc-time-picker-control-content input {
-  background-color: var(--dc-date-time-picker-ui-color);
-  color: var(--dc-date-time-picker-primary-text-color);
+  background-color: var(--dc-background-token-fill-color);
+  color: var(--dc-primary-text-color);
   border: none;
-  caret-color: var(--dc-date-time-picker-primary-interactive-color);
+  caret-color: var(--dc-primary-colour);
   box-sizing: border-box;
   height: 50px;
   width: 100%;
@@ -120,7 +120,7 @@
 }
 
 .dc-time-picker-control-content input::placeholder {
-  color: var(--dc-date-time-picker-secondary-text-color);
+  color: var(--dc-accent-text-color);
 }
 
 .dc-time-picker-time-control-container {
@@ -153,8 +153,8 @@
 }
 
 .dc-time-picker-time-control-container .dc-time-picker-option-active {
-  background: var(--dc-date-time-picker-primary-interactive-color);
-  color: var(--dc-date-time-picker-secondary-interactive-color);
+  background: var(--dc-primary-colour);
+  color: var(--dc-primary-text-interactive-color);
 }
 
 .dc-time-picker-divider {
@@ -200,7 +200,7 @@
 }
 
 .dc-time-picker-time-control-container .dc-time-picker-time-option:focus-visible {
-  outline: 2px solid var(--dc-date-time-picker-primary-interactive-color);
+  outline: 2px solid var(--dc-primary-colour);
   outline-offset: 1px;
 }
 

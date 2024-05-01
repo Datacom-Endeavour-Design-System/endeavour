@@ -180,31 +180,30 @@ export class DatacomTimePicker implements FormControl {
       newTime.minute === undefined &&
       newTime.period === undefined
     ) {
-      // 00: - 23:
+      // Set value to 00: - 23:
       value = `${newTime.hour}:`;
     } else if (
       newTime.hour === undefined &&
       newTime.minute !== undefined &&
       newTime.period === undefined
     ) {
-      // :00 - :59
+      // Set value to :00 - :59
       value = `:${newTime.minute.padStart(2, '0')}`;
     } else if (
       newTime.hour === undefined &&
       newTime.minute === undefined &&
       newTime.period !== undefined
     ) {
-      // AM/PM
+      // Set value to AM or PM
       value = `${newTime.period}`;
     } else {
-      // 12:00 AM
-      // :00 AM
-      // 12: AM
       if (newTime.period !== undefined) {
+        // Set value to 12:00 AM
         value = `${newTime.hour || ''}:${newTime.minute || ''} ${
           newTime.period || ''
         }`;
       } else {
+        // Set value to 12:00
         value = `${newTime.hour || ''}:${newTime.minute || ''}`;
       }
     }

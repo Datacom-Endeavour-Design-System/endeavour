@@ -12,10 +12,10 @@
 }
 
 .dc-date-picker-input-wrapper input {
-  background-color: var(--dc-date-time-picker-ui-color);
-  color: var(--dc-date-time-picker-primary-text-color);
+  background-color: var(--dc-background-token-fill-color);
+  color: var(--dc-primary-text-color);
   border: none;
-  caret-color: var(--dc-date-time-picker-primary-interactive-color);
+  caret-color: var(--dc-primary-colour);
   box-sizing: border-box;
   height: 50px;
   width: 100%;
@@ -25,7 +25,7 @@
 }
 
 .dc-date-picker-input-edit input::placeholder {
-  color: var(--dc-date-time-picker-secondary-text-color);
+  color: var(--dc-accent-text-color);
 }
 
 .dc-date-picker-input-edit .dc-date-picker-clear {
