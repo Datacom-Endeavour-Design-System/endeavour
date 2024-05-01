@@ -32,3 +32,4 @@ export * from './check-circle';
 export * from './last';
 export * from './theme';
 export * from './close';
+export * from './clock';
