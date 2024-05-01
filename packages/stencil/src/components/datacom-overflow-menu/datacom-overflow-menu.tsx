@@ -70,11 +70,11 @@ export class DatacomOverflowMenu {
     if (this.isOpen !== true) {
       this.open();
       setTimeout(() => {
-        const sampleText =
+        const dropdownOptionList =
           this.hostElement.shadowRoot.querySelector<HTMLDivElement>(
             '.dc-overflow-dropdown-options',
           );
-        sampleText.focus();
+        dropdownOptionList.focus();
       }, 100);
       return;
     } else {

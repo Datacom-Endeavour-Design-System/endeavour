@@ -1,9 +1,6 @@
 import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
-import {
-  DatacomOverflowMenu,
-  DatacomMenuItems,
-} from '@datacom/endeavour-react';
+import { DatacomOverflowMenu, DatacomMenuItem } from '@datacom/endeavour-react';
 const meta: Meta<typeof DatacomOverflowMenu> = {
   title: 'Overflow Menu',
   component: DatacomOverflowMenu,
@@ -73,23 +70,23 @@ export const Default: Story = {
           height: 'calc(100vh - 2rem)',
         }}>
         <DatacomOverflowMenu {...props}>
-          <DatacomMenuItems
+          <DatacomMenuItem
             itemUrl="https://www.datacom.com/nz/en"
             icon="globe"
             size={props.size}>
             Option
-          </DatacomMenuItems>
-          <DatacomMenuItems
+          </DatacomMenuItem>
+          <DatacomMenuItem
             itemText="Option"
             icon="globe"
             size={props.size}
-            disabled></DatacomMenuItems>
-          <DatacomMenuItems
+            disabled></DatacomMenuItem>
+          <DatacomMenuItem
             itemUrl="https://www.datacom.com/nz/en"
             icon="globe"
             size={props.size}>
             Option
-          </DatacomMenuItems>
+          </DatacomMenuItem>
         </DatacomOverflowMenu>
       </div>
     );

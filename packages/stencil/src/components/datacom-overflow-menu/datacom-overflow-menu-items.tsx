@@ -11,11 +11,11 @@ import { getSvg } from '../../common/images/icon-provider';
 export type MenuSizeType = 'standard' | 'small';
 
 @Component({
-  tag: 'datacom-menu-items',
+  tag: 'datacom-menu-item',
   styleUrl: 'datacom-overflow-menu-items.css',
   shadow: true,
 })
-export class DatacomMenuItems {
+export class DatacomMenuItem {
   @Element() hostElement: HTMLElement;
   @Prop() itemText: string;
   @Prop() itemUrl: string;
@@ -78,4 +78,4 @@ export class DatacomMenuItems {
   }
 }
 
-export type HTMLDatacomMenuItemsElement = HTMLElement & DatacomMenuItems;
+export type HTMLDatacomMenuItemElement = HTMLElement & DatacomMenuItem;
