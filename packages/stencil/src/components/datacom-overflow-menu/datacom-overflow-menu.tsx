@@ -30,7 +30,6 @@ export class DatacomOverflowMenu {
 
   private open() {
     this.isOpen = true;
-    console.log('open');
   }
   private close() {
     this.isOpen = false;
@@ -54,7 +53,7 @@ export class DatacomOverflowMenu {
    *Set the focus first element of dropdown options when click on the menu button
    *First child of slot
    */
-  setFocusToFirstItem() {
+  private setFocusToFirstItem() {
     this.firstElementRef = this.hostElement.shadowRoot
       .querySelector('.dc-overflow-dropdown-options')
       ?.querySelector('slot')
@@ -62,7 +61,7 @@ export class DatacomOverflowMenu {
       .shadowRoot.querySelector('.dc-menu-item-wrapper') as HTMLElement;
     if (this.firstElementRef) {
       this.firstElementRef.setAttribute('tabindex', '0');
-      this.firstElementRef.focus(); // Set focus to the first item of the menu
+      this.firstElementRef.focus();
     }
   }
 
@@ -85,12 +84,16 @@ export class DatacomOverflowMenu {
     return;
   };
 
+  /**
+   * Handle any click events outside the overflow menu and close the menu dropdown options.
+   */
   @Listen('click', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     if (!this.hostElement.contains(event.target as Node)) {
       this.close();
     }
   }
+
   render() {
     const dropdownClasses = {
       'dc-overflow-dropdown-options': true,

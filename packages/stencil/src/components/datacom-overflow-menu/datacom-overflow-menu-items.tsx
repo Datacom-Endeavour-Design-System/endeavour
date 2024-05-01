@@ -40,16 +40,6 @@ export class DatacomMenuItems {
     }
   };
 
-  handleKeyUp = (event: KeyboardEvent) => {
-    if (this.disabled) {
-      return;
-    }
-    if (event.key === 'Enter' || event.key === 'Return' || event.key == ' ') {
-      this.elementRef.focus();
-      return;
-    }
-  };
-
   render() {
     const tabIndex = !this.disabled ? 0 : -1;
     const menuClasses = {
@@ -67,7 +57,6 @@ export class DatacomMenuItems {
             href={this.itemUrl}
             class={menuClasses}
             tabIndex={tabIndex}
-            onKeyUp={this.handleKeyUp}
             onFocus={this.setFocus}>
             {getSvg(this.icon, { class: 'dc-item-menu-icon' })}
             {this.itemText}
@@ -78,8 +67,7 @@ export class DatacomMenuItems {
             class={menuClasses}
             onClick={this.onHandleClick}
             tabIndex={tabIndex}
-            onFocus={this.setFocus}
-            onKeyUp={this.handleKeyUp}>
+            onFocus={this.setFocus}>
             {getSvg(this.icon, { class: 'dc-item-menu-icon' })}
             {this.itemText}
             <slot></slot>
