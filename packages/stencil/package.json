@@ -1,5 +1,5 @@
 {
-  "name": "@datacom/endeavour",
+  "name": "@datacom-digital/endeavour",
   "version": "0.2.0",
   "description": "Datacom Component Library with Stencil",
   "main": "dist/index.cjs.js",
@@ -43,6 +43,10 @@
   },
   "license": "MIT",
   "author": "endeavour@datacom.co.nz",
+  "bugs": {
+    "url": "https://github.com/Datacom-Endeavour-Design-System/endeavour/issues"
+  },
+  "homepage": "https://github.com/Datacom-Endeavour-Design-System/endeavour#readme",
   "nx": {
     "targets": {
       "build": {
