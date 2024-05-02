@@ -13,7 +13,7 @@
     "dev:react": "npm run dev --workspace=packages/react",
     "dev:stencil": "npm run dev --workspace=packages/stencil",
     "start:storybook": "nx run @datacom/endeavour-storybook:start",
-    "start:stencil": "nx run @datacom/endeavour:start",
+    "start:stencil": "nx run @datacom-digital/endeavour:start",
     "prepare": "husky install",
     "postinstall": "patch-package"
   },

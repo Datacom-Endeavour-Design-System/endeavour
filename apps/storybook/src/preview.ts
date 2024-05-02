@@ -1,5 +1,5 @@
 // .storybook/preview.ts
-import '@datacom/endeavour/dist/endeavour/endeavour.css';
+import '@datacom-digital/endeavour/dist/endeavour/endeavour.css';
 import { Preview } from '@storybook/react';
 
 import { PreviewDecorator, DocsContainer } from './theme/decorators';

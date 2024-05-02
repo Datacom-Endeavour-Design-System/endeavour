@@ -8,7 +8,7 @@ export const config: Config = {
   },
   outputTargets: [
     react({
-      componentCorePackage: '@datacom/endeavour',
+      componentCorePackage: '@datacom-digital/endeavour',
       proxiesFile: '../react/src/components/stencil-generated/index.ts',
       includeDefineCustomElements: true,
     }),
