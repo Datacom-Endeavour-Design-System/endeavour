@@ -12,8 +12,10 @@
     "dev:storybook": "npm run dev --workspace=apps/storybook",
     "dev:react": "npm run dev --workspace=packages/react",
     "dev:stencil": "npm run dev --workspace=packages/stencil",
+    "change": "changeset",
     "start:storybook": "nx run @datacom/endeavour-storybook:start",
     "start:stencil": "nx run @datacom-digital/endeavour:start",
+    "release": "npm run build && changeset publish",
     "prepare": "husky install",
     "postinstall": "patch-package"
   },
@@ -25,6 +27,7 @@
     "./apps/storybook"
   ],
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "@eslint/eslintrc": "^2.1.2",
     "@nrwl/nx-cloud": "latest",
     "@stencil-community/eslint-plugin": "^0.5.0",
