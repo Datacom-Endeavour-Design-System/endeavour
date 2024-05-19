@@ -9,7 +9,7 @@
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/@datacom-digital/endeavour/datacom.esm.js",
+  "unpkg": "dist/endeavour/endeavour.esm.js",
   "scripts": {
     "build": "npm run clean && stencil build --es5",
     "dev": "npm run clean && stencil build --watch --es5",
