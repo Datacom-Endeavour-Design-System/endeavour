@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn } from '@storybook/react';
-import { DatacomFeatureHighlight } from '@datacom/endeavour-react';
+import { DatacomFeatureHighlight } from '@datacom-digital/endeavour-react';
 
 type FeatureHighlightProps = React.ComponentProps<
   typeof DatacomFeatureHighlight

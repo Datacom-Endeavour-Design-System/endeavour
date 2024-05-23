@@ -3,7 +3,7 @@ import { StoryObj } from '@storybook/react';
 import {
   DatacomFeatureHighlight,
   DatacomFeatureHighlightGroup,
-} from '@datacom/endeavour-react';
+} from '@datacom-digital/endeavour-react';
 
 type FeatureHighlightProps = React.ComponentProps<
   typeof DatacomFeatureHighlight

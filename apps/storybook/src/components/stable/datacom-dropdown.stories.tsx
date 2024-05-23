@@ -4,7 +4,7 @@ import {
   DatacomButton,
   DatacomDropdown,
   DatacomOption,
-} from '@datacom/endeavour-react';
+} from '@datacom-digital/endeavour-react';
 type DatacomDropdownProps = React.ComponentProps<typeof DatacomDropdown>;
 const meta: Meta<typeof DatacomDropdown> = {
   title: 'Dropdown',

@@ -5,7 +5,7 @@ import {
   DatacomSelectionCard,
   DatacomContentTag,
   DatacomRadio,
-} from '@datacom/endeavour-react';
+} from '@datacom-digital/endeavour-react';
 
 type SelectionCardProps = React.ComponentProps<typeof DatacomSelectionCard>;
 

@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { StoryObj } from '@storybook/react';
-import { DatacomTimePicker, DatacomButton } from '@datacom/endeavour-react';
+import {
+  DatacomTimePicker,
+  DatacomButton,
+} from '@datacom-digital/endeavour-react';
 
 export default {
   title: 'Time Picker',

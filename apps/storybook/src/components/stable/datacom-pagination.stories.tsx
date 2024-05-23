@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { DatacomPagination } from '@datacom/endeavour-react';
+import { DatacomPagination } from '@datacom-digital/endeavour-react';
 
 const meta: Meta<typeof DatacomPagination> = {
   title: 'Pagination',

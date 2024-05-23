@@ -4,7 +4,7 @@ import {
   DatacomCheckbox,
   DatacomCheckboxGroup,
   DatacomButton,
-} from '@datacom/endeavour-react';
+} from '@datacom-digital/endeavour-react';
 import styled from '@emotion/styled';
 
 const meta: Meta<typeof DatacomCheckbox> = {
