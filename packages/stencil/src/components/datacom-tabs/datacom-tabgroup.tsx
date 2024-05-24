@@ -164,7 +164,7 @@ export class DatacomTabGroup {
 
     const tabIndex = disabled == true ? -1 : 0;
     const classes = {
-      'dc-tab-label': true,
+      'tab-label': true,
       selected: selected && !disabled,
       disabled: disabled,
     };
@@ -177,7 +177,7 @@ export class DatacomTabGroup {
         tabIndex={tabIndex}
         onClick={() => this.onClick(index)}
         onKeyPress={(e) => this.onKeyPress(e, index)}>
-        <span class="dc-tab-text">{label}</span>
+        <span class="tab-text">{label}</span>
       </label>
     );
   }
@@ -185,8 +185,8 @@ export class DatacomTabGroup {
   render() {
     return (
       <Host>
-        <div class="dc-tab-group">
-          <div class="dc-tab-bar">
+        <div class="tab-group">
+          <div class="tab-bar">
             {this.tabs.map((t, ind) => this.header(t, ind))}
           </div>
           <slot />

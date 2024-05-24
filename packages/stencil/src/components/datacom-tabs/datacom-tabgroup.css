@@ -1,18 +1,10 @@
-:host {
-  display: block;
-  outline: none;
-}
-
 :host * {
+  display: block;
   font-family: var(--dc-font-family);
   color: var(--dc-primary-text-color);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: -0.2px;
 }
 
-.dc-tab-label {
+.tab-label {
   outline: none;
   display: inline-flex;
   justify-content: center;
@@ -24,42 +16,43 @@
   cursor: pointer;
 }
 
-.dc-tab-text {
+.tab-text {
   font-size: 18px;
   font-weight: 500;
+  line-height: 24px;
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 300px;
   white-space: nowrap;
 }
 
-.dc-tab-group {
+.tag-group {
   margin-bottom: 48px;
   display: block;
 }
 
-.dc-tab-bar {
+.tab-bar {
   border-bottom: 1px solid var(--dc-token-border-default-01);
 }
 
-.dc-tab-label:focus-visible {
+.tab-label:focus-visible {
   border: 3px solid var(--dc-primary-colour);
 }
 
-.dc-tab-label:focus-visible::after {
+.tab-label:focus-visible::after {
   display: none;
 }
 
-.dc-tab-label.selected {
+.tab-label.selected {
   border: none;
   cursor: auto;
 }
 
-.dc-tab-label.selected .dc-tab-text {
+.tab-label.selected .tab-text {
   font-weight: 700;
 }
 
-.dc-tab-label.selected::after {
+.tab-label.selected::after {
   display: block;
   content: "";
   position: absolute;
@@ -82,7 +75,7 @@
   }
 }
 
-.dc-tab-label:hover:not(:focus)::after {
+.tab-label:hover:not(:focus)::after {
   display: block;
   content: "";
   position: absolute;
@@ -94,18 +87,18 @@
   background-color: var(--dc-primary-colour);
 }
 
-.dc-tab-label.disabled {
+.tab-label.disabled {
   cursor: not-allowed;
 }
 
-.dc-tab-label.disabled .dc-tab-text {
+.tab-label.disabled .tab-text {
   color: var(--dc-primary-disabled-colour);
 }
 
-.dc-tab-label:hover.disabled::after {
+.tab-label:hover.disabled::after {
   display: none;
 }
 
-.dc-tab-label.disabled:focus {
+.tab-label.disabled:focus {
   border: none;
 }
