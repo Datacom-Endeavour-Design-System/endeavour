@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryObj } from '@storybook/react';
-import { DatacomTabgroup, DatacomTab } from '@datacom/endeavour-react';
+import { DatacomTabgroup, DatacomTab } from '@datacom-digital/endeavour-react';
 import styled from '@emotion/styled';
 
 type TabGroupProps = React.ComponentProps<typeof DatacomTabgroup>;

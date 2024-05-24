@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryObj } from '@storybook/react';
-import { DatacomBreadcrumb } from '@datacom/endeavour-react';
+import { DatacomBreadcrumb } from '@datacom-digital/endeavour-react';
 
 export default {
   title: 'Breadcrumb',

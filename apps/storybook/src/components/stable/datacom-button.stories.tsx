@@ -1,5 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react';
-import { DatacomButton } from '@datacom/endeavour-react';
+import { DatacomButton } from '@datacom-digital/endeavour-react';
 
 const meta: Meta<typeof DatacomButton> = {
   title: 'Button',

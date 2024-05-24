@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryObj } from '@storybook/react';
-import { DatacomToggle } from '@datacom/endeavour-react';
+import { DatacomToggle } from '@datacom-digital/endeavour-react';
 
 export default {
   title: 'Toggle',

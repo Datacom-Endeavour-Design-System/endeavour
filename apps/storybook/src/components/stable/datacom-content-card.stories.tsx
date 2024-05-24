@@ -4,7 +4,7 @@ import {
   DatacomCardGroup,
   DatacomContentCard,
   DatacomContentTag,
-} from '@datacom/endeavour-react';
+} from '@datacom-digital/endeavour-react';
 
 type ContentCardProps = React.ComponentProps<typeof DatacomContentCard>;
 

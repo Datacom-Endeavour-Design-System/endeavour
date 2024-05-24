@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { DatacomAvatar } from '@datacom/endeavour-react';
+import { DatacomAvatar } from '@datacom-digital/endeavour-react';
 
 const meta: Meta<typeof DatacomAvatar> = {
   title: 'Avatar',

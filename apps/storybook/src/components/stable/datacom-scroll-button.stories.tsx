@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { DatacomScrollButton } from '@datacom/endeavour-react';
+import { DatacomScrollButton } from '@datacom-digital/endeavour-react';
 
 import styled from '@emotion/styled';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryObj } from '@storybook/react';
-import { DatacomRating } from '@datacom/endeavour-react';
+import { DatacomRating } from '@datacom-digital/endeavour-react';
 
 export default {
   title: 'Rating',

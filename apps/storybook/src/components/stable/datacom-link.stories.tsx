@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn, StoryObj } from '@storybook/react';
-import { DatacomLink } from '@datacom/endeavour-react';
+import { DatacomLink } from '@datacom-digital/endeavour-react';
 import styled from '@emotion/styled';
 
 type LinkProps = React.ComponentProps<typeof DatacomLink>;

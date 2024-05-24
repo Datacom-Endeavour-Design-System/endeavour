@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { DatacomButton, DatacomLoader } from '@datacom/endeavour-react';
+import { DatacomButton, DatacomLoader } from '@datacom-digital/endeavour-react';
 import styled from '@emotion/styled';
 
 type LoaderProps = React.ComponentProps<typeof DatacomLoader>;

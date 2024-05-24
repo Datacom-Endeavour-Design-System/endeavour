@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { DatacomInput, DatacomButton } from '@datacom/endeavour-react';
+import { DatacomInput, DatacomButton } from '@datacom-digital/endeavour-react';
 
 import styled from '@emotion/styled';
 
