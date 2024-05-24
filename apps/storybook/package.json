@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@datacom-digital/endeavour": "*",
-    "@datacom/endeavour-react": "*",
+    "@datacom-digital/endeavour-react": "*",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "react": "^18.2.0",

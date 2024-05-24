@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn } from '@storybook/react';
-import { DatacomContentTag } from '@datacom/endeavour-react';
+import { DatacomContentTag } from '@datacom-digital/endeavour-react';
 
 type ContentTagProps = React.ComponentProps<typeof DatacomContentTag>;
 

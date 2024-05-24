@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryObj } from '@storybook/react';
-import { DatacomAlertBanner } from '@datacom/endeavour-react';
+import { DatacomAlertBanner } from '@datacom-digital/endeavour-react';
 
 type AlertBannerProps = React.ComponentProps<typeof DatacomAlertBanner>;
 

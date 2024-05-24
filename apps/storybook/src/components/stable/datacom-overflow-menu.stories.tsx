@@ -1,6 +1,9 @@
 import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
-import { DatacomOverflowMenu, DatacomMenuItem } from '@datacom/endeavour-react';
+import {
+  DatacomOverflowMenu,
+  DatacomMenuItem,
+} from '@datacom-digital/endeavour-react';
 const meta: Meta<typeof DatacomOverflowMenu> = {
   title: 'Overflow Menu',
   component: DatacomOverflowMenu,

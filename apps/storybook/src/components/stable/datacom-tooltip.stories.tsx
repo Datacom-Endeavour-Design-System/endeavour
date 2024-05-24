@@ -1,6 +1,9 @@
 import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
-import { DatacomButton, DatacomTooltip } from '@datacom/endeavour-react';
+import {
+  DatacomButton,
+  DatacomTooltip,
+} from '@datacom-digital/endeavour-react';
 
 export default {
   title: 'Tooltip',

@@ -3,7 +3,7 @@ import { StoryFn } from '@storybook/react';
 import {
   DatacomAccordionGroup,
   DatacomAccordion,
-} from '@datacom/endeavour-react';
+} from '@datacom-digital/endeavour-react';
 
 export default {
   title: 'Accordion',

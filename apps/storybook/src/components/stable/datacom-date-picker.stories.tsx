@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { StoryFn, StoryObj } from '@storybook/react';
-import { DatacomDatePicker, DatacomButton } from '@datacom/endeavour-react';
+import {
+  DatacomDatePicker,
+  DatacomButton,
+} from '@datacom-digital/endeavour-react';
 
 export default {
   title: 'Date Picker',

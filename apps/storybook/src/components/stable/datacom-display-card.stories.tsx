@@ -3,7 +3,7 @@ import { StoryFn } from '@storybook/react';
 import {
   DatacomDisplayCardGroup,
   DatacomDisplayCard,
-} from '@datacom/endeavour-react';
+} from '@datacom-digital/endeavour-react';
 import styled from '@emotion/styled';
 
 type DisplayCardProps = React.ComponentProps<typeof DatacomDisplayCard>;

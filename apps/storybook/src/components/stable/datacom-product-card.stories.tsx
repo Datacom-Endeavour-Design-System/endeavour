@@ -4,7 +4,7 @@ import {
   DatacomCardGroup,
   DatacomContentTag,
   DatacomProductCard,
-} from '@datacom/endeavour-react';
+} from '@datacom-digital/endeavour-react';
 
 export default {
   title: 'Card',

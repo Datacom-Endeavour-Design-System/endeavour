@@ -1,6 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import { DatacomTextarea, DatacomButton } from '@datacom/endeavour-react';
+import {
+  DatacomTextarea,
+  DatacomButton,
+} from '@datacom-digital/endeavour-react';
 
 import styled from '@emotion/styled';
 

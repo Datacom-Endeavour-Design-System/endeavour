@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { DatacomLi, DatacomList } from '@datacom/endeavour-react';
+import { DatacomLi, DatacomList } from '@datacom-digital/endeavour-react';
 
 type ListProps = React.ComponentProps<typeof DatacomList>;
 type List = {

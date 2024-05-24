@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { DatacomRadio, DatacomRadioGroup } from '@datacom/endeavour-react';
+import {
+  DatacomRadio,
+  DatacomRadioGroup,
+} from '@datacom-digital/endeavour-react';
 
 const meta = {
   title: 'Radio',

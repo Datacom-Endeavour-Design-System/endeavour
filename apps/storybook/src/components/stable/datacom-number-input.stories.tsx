@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
-import { DatacomNumberInput } from '@datacom/endeavour-react';
+import { DatacomNumberInput } from '@datacom-digital/endeavour-react';
 
 const meta: Meta<typeof DatacomNumberInput> = {
   title: 'Number Input',
